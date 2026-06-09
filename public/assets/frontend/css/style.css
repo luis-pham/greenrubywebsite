@@ -1512,8 +1512,9 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     #header .header-mobile {
-        height: 52px;
-        padding: 0 20px;
+        min-height: 72px;
+        height: auto;
+        padding: 6px 20px;
         width: 100%;
     }
 
@@ -1525,8 +1526,8 @@ h1, h2, h3, h4, h5, h6 {
 
     #header .header-mobile .header-left img {
         width: auto;
-        height: 39px;
-        max-width: 196px;
+        height: 58.5px;
+        max-width: 294px;
         object-fit: contain;
         object-position: left center;
     }
