@@ -1500,11 +1500,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 1023px) {
+    #header {
+        position: relative;
+        z-index: 100;
+    }
+
     #header > .container-fluid {
         background: #0D2B1A;
         border-bottom: none;
         padding-left: 0;
         padding-right: 0;
+    }
+
+    /* Homepage — header trong suốt, hero ảnh kéo lên phía sau */
+    #header:has(+ #main #home) > .container-fluid {
+        background: transparent;
     }
 
     #header > .container-fluid:before {
@@ -1876,6 +1886,7 @@ h1, h2, h3, h4, h5, h6 {
 #footer .footer-social-block {
     margin-top: 1.25rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 0.75rem;
     min-width: 0;
@@ -1895,24 +1906,28 @@ h1, h2, h3, h4, h5, h6 {
 #footer .footer-social-icons {
     display: flex;
     flex-wrap: nowrap;
-    gap: 8px;
+    justify-content: center;
+    gap: 11px;
     min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 #footer .footer-social-icon-btn {
-    width: 32px;
-    height: 32px;
+    width: 45px;
+    height: 45px;
     border: none;
     border-radius: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     transition: background-color 0.2s linear;
 }
 
 #footer .footer-social-icon-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     transition: stroke 0.2s linear;
 }
 
@@ -2024,6 +2039,42 @@ h1, h2, h3, h4, h5, h6 {
 
     #footer .footer-nav-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Footer socials — PC */
+@media (min-width: 1024px) {
+    #footer .footer-social-icons {
+        gap: 5px;
+    }
+
+    #footer .footer-social-icon-btn {
+        width: 26px;
+        height: 26px;
+    }
+
+    #footer .footer-social-icon-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Footer — mobile */
+@media (max-width: 1023px) {
+    #footer .footer-cert-badge {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #footer .footer-social-icons {
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    #footer .footer-social-icons::-webkit-scrollbar {
+        display: none;
     }
 }
 
@@ -2365,16 +2416,8 @@ body.menu-mobile-show{
 
     /* Pseudo ::before/::after z-index:-1 — tạo stacking context */
     #home .section-7 .container-fluid,
+    #home .section-9 .container-fluid,
     #main .section-testimonial .container-fluid {
-        isolation: isolate;
-    }
-
-    /* Tailored Experiences — nền tối vùng title + tabs */
-    #home .section-9 {
-        background-color: #0e1f2d;
-    }
-
-    #home .section-9 .list-item .item .main-info-wrapper {
         isolation: isolate;
     }
 
@@ -2392,6 +2435,16 @@ body.menu-mobile-show{
     #experience .list-itinerary-cruise.row {
         margin-left: 0 !important;
         margin-right: 0 !important;
+    }
+
+    /* Homepage carousel cards (Curated Journeys, Private Sanctuaries) — giảm shadow 70% */
+    #home .list-itinerary-cruise .item .item-wrapper {
+        box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018) !important;
+    }
+
+    #home .list-itinerary-cruise .item .item-body,
+    #home .list-itinerary-cruise .item .item-footer {
+        border-color: rgba(14, 95, 75, 0.03) !important;
     }
 }
 

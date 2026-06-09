@@ -171,11 +171,13 @@
     }
 }
 
-/* Section 1 — hero mobile/tablet (≤1023px): image 4:3 + content below */
+/* Section 1 — hero mobile/tablet (≤1023px): image kéo lên dưới header + content below */
 @media (max-width: 1023px) {
     #home .section-1.section-cover {
-        margin-top: 0;
+        margin-top: calc(-72px - env(safe-area-inset-top, 0px));
         padding: 0 !important;
+        position: relative;
+        z-index: 1;
     }
 
     #home .section-1.section-cover .page-cover,
@@ -231,7 +233,11 @@
     }
 
     #home .section-1.section-cover .page-cover .image-wrapper::before {
-        display: none;
+        display: block;
+        height: 140px;
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+        pointer-events: none;
     }
 
     #home .section-1.section-cover .page-cover .slide-1 .owl-dots {
@@ -1369,6 +1375,44 @@
     }
 }
 
+@media (max-width: 1023px) {
+    /* Premium Amenities — Explore Green Ruby 1 & 2 */
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 6px !important;
+    }
+
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer a,
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer {
+        flex: 1 !important;
+        width: auto !important;
+        margin: 0 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        padding: 11px 6px !important;
+        font-size: 11px !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        font-weight: 500 !important;
+        border-radius: 0 !important;
+        line-height: 1.3 !important;
+        font-family: 'DM Sans', system-ui, sans-serif !important;
+    }
+
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-warning {
+        background: #C8A84B !important;
+        color: #0D2B1A !important;
+        border: none !important;
+    }
+
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-success {
+        background: transparent !important;
+        color: rgba(13, 43, 26, 0.55) !important;
+        border: 0.5px solid rgba(13, 43, 26, 0.2) !important;
+    }
+}
+
 /* Section 9 */
 #home .section-9 .slide-1 {
     margin-left: -15px;
@@ -1461,7 +1505,65 @@
     cursor: default;
 }
 
+/* Section 9 — Tailored Experiences: nền tối title + tabs (mọi breakpoint) */
+#home .section-9 .container-fluid {
+    position: relative;
+    isolation: isolate;
+    background-color: #0e1f2d;
+}
+
+#home .section-9 .container-fluid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    background: url('/assets/frontend/images/bg-grain.png') center no-repeat;
+    background-size: cover;
+    opacity: .05;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#home .section-9 .container-fluid > .container,
+#home .section-9 .tab-filter,
+#home .section-9 .slide-1 {
+    position: relative;
+    z-index: 1;
+}
+
+#home .section-9 .section-description {
+    color: #f0ece4;
+}
+
+#home .section-9 .tab-filter .list-button .item button:not(.active),
+#home .section-9 .tab-filter .list-button .item a:not(.active) {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 @media (max-width: 1023px) {
+    #home .section-9 {
+        padding: 0;
+        background-color: #0e1f2d;
+    }
+
+    #home .section-9 .container-fluid {
+        padding: 3rem 0;
+    }
+
+    #home .section-9 .list-item .item .main-info-wrapper {
+        isolation: isolate;
+    }
+
+    #home .section-9 .list-item .item .main-info-wrapper::before {
+        z-index: 0;
+    }
+
+    #home .section-9 .list-item .item .main-info {
+        z-index: 1;
+    }
+
     #home .section-9 .btn,
     #home .section-9 button,
     #home .section-9 .list-item .item .main-info .list-button .btn {
