@@ -1,0 +1,112 @@
+<?php
+return [
+    // Progress bar
+    'progress_booking_info' => 'Thông tin đặt chỗ',
+    'progress_guest_details' => 'Thông tin khách',
+    'progress_payment' => 'Thanh toán',
+    'progress_complete' => 'Hoàn tất',
+
+    // Step 1 - Itinerary & date
+    'step1_title' => 'Tạo hành trình riêng của bạn',
+    'step1_subtitle' => 'Trình lập kế hoạch hành trình cao cấp',
+    'step1_departure_date' => 'Ngày khởi hành',
+    'step1_date_format' => 'dd/MM/yyyy',
+    'step1_choose_voyage' => 'Chọn hành trình của bạn',
+    'step1_voyage_placeholder' => 'Chọn hành trình',
+    'step1_voyage_loading' => 'Đang tải...',
+    'step1_itinerary_sample_title' => 'Hạ Long Bay Wonder Discovery',
+    'step1_button_see_detail' => 'Xem chi tiết',
+    'step1_destination_primary' => 'Vịnh Hạ Long',
+    'step1_destination_secondary_1' => 'Động Sửng Sốt',
+    'step1_destination_secondary_2' => 'Đảo Ti Tốp',
+    'step1_inclusions_title' => 'Bao gồm',
+    'step1_inclusion_1' => 'Tham quan động Sửng Sốt',
+    'step1_inclusion_2' => 'Chèo kayak tại hang Luồn',
+    'step1_inclusion_3' => 'Tắm biển tại đảo Titop',
+    'step1_inclusion_4' => 'Tiệc hoàng hôn trên boong tàu',
+    'step1_inclusion_5' => 'Câu mực đêm',
+
+    // Step 2 - Cabins & guests
+    'step2_title' => 'Chọn cabin & khách',
+    'step2_in_voyage_title' => 'Cabin trong hành trình (0)',
+    'step2_empty_message' => 'Hành trình của bạn chưa có cabin nào. Vui lòng chọn danh mục phía trên.',
+    'step2_price_from' => 'Từ',
+    'step2_price_from_prefix' => 'Từ',
+    'step2_button_view_detail' => 'Xem chi tiết',
+    'step2_button_add_cabin' => 'Thêm cabin',
+
+    // Amenities (step 3)
+    'step3_title' => 'Tiện ích độc quyền',
+    'step3_amenity_transfer' => 'Xe đưa đón Hà Nội - Hạ Long',
+    'step3_amenity_spa' => 'Gói Spa & Massage',
+    'step3_amenity_welcome' => 'Rượu vang & hoa chào mừng',
+    'step3_amenity_photo' => 'Chụp ảnh chuyên nghiệp',
+    'step3_amenity_drone' => 'Quay phim & chụp ảnh flycam',
+    'step3_quantity_label' => 'Số lượng',
+
+    // Generic buttons
+    'button_continue_voyage' => 'Tiếp tục hành trình',
+    'button_back' => 'Quay lại',
+    'button_back_to_home' => 'Về trang chủ',
+
+    // Guest details
+    'guest_details_title' => 'Thông tin khách',
+    'guest_full_name' => 'Họ và tên',
+    'guest_phone_number' => 'Số điện thoại',
+    'guest_email_address' => 'Địa chỉ email',
+    'guest_input_placeholder' => 'Nhập',
+
+    // Payment
+    'payment_confirmation_method' => 'Hình thức xác nhận',
+    'payment_direct_title' => 'Thanh toán trực tiếp',
+    'payment_direct_subtitle' => 'Xác nhận ngay lập tức',
+    'payment_inquiry_title' => 'Tư vấn trực tiếp',
+    'payment_inquiry_subtitle' => 'Chuyên viên tư vấn sẽ liên hệ và hướng dẫn thanh toán',
+    'payment_method_stripe' => 'Thanh toán Stripe',
+    'payment_method_paypal' => 'Ví điện tử PayPal',
+    'payment_method_sepay' => 'Chuyển khoản ngân hàng',
+    'payment_currency_notice' => 'Vui lòng chọn phương thức thanh toán theo đơn vị tiền tệ: Stripe và PayPal cho USD, Chuyển khoản ngân hàng cho VND.',
+    'payment_currency_notice_en' => 'Please choose a payment method according to your currency: Stripe and PayPal for USD, Bank Transfer for VND.',
+    'payment_currency_notice_vi' => 'Vui lòng chọn phương thức thanh toán theo đơn vị tiền tệ: Stripe và PayPal cho USD, Chuyển khoản ngân hàng cho VND.',
+    'payment_currency_mismatch_usd_only_en' => 'Stripe and PayPal only support USD. Please choose Bank Transfer for VND.',
+    'payment_currency_mismatch_usd_only_vi' => 'Stripe và PayPal chỉ hỗ trợ thanh toán bằng USD. Vui lòng chọn Chuyển khoản ngân hàng cho VND.',
+    'payment_currency_mismatch_vnd_only_en' => 'Bank Transfer only supports VND. Please choose Stripe or PayPal for USD.',
+    'payment_currency_mismatch_vnd_only_vi' => 'Chuyển khoản ngân hàng chỉ hỗ trợ VND. Vui lòng chọn Stripe hoặc PayPal cho USD.',
+    'payment_inquiry_continue_message' => 'Vui lòng bấm nút "Tiếp tục hành trình" bên dưới để hoàn tất đặt chỗ.',
+    'payment_inquiry_continue_before' => 'Vui lòng bấm nút "',
+    'payment_inquiry_continue_after' => '" bên dưới để hoàn tất đặt chỗ.',
+
+    'complete_success_title' => 'Đặt chỗ thành công!',
+    'complete_success_message' => 'Chúng tôi sẽ gửi thông tin xác nhận qua email. Vui lòng kiểm tra hộp thư. Mọi thắc mắc xin liên hệ hotline 1900 8888.',
+    'complete_pending_title' => 'Thanh toán đang chờ',
+    'complete_pending_message' => 'Thanh toán của bạn đang được xác nhận. Chúng tôi sẽ gửi email khi hoàn tất đặt chỗ.',
+    'complete_failed_title' => 'Thanh toán thất bại',
+    'complete_failed_message' => 'Thanh toán chưa hoàn tất. Nếu tài khoản đã bị trừ tiền, vui lòng liên hệ bộ phận hỗ trợ.',
+
+    // Summary
+    'summary_tagline' => 'Những câu chuyện tình vĩnh cửu',
+    'summary_heading' => 'Tóm tắt đặt chỗ',
+    'summary_reviews' => '(13 đánh giá)',
+    'summary_departure_date' => 'Ngày khởi hành',
+    'summary_global_guests' => 'Tổng số khách',
+    'summary_global_guests_placeholder' => '0 khách',
+    'summary_in_voyage_cabins' => 'Cabin trong hành trình',
+    'summary_exclusive_amenities' => 'Tiện ích độc quyền',
+    'summary_booking_policies' => 'Chính sách đặt chỗ',
+    'summary_policy_7_days' => 'Hủy trước 7 ngày khởi hành: Miễn phí.',
+    'summary_policy_3_7_days' => 'Hủy trước 3-7 ngày: Phí 50%.',
+    'summary_policy_under_3_days' => 'Hủy trong vòng 3 ngày: Phí 100%.',
+    'summary_estimated_total' => 'Tổng tạm tính',
+
+    'validation_voyage_required' => 'Vui lòng chọn hành trình.',
+    'validation_cabin_required' => 'Vui lòng chọn ít nhất một cabin.',
+    'validation_guest_per_cabin' => 'Mỗi cabin phải có ít nhất 1 khách (Người lớn, 6-12 tuổi, 2-5 tuổi hoặc Em bé).',
+
+    'validation_guest_full_name_required' => 'Vui lòng nhập họ và tên.',
+    'validation_guest_phone_required' => 'Vui lòng nhập số điện thoại.',
+    'validation_guest_phone_numeric' => 'Số điện thoại phải là định dạng số.',
+    'validation_guest_email_required' => 'Vui lòng nhập địa chỉ email.',
+    'validation_guest_email_invalid' => 'Địa chỉ email không đúng định dạng.',
+    'validation_departure_date_required' => 'Vui lòng chọn Ngày khởi hành trước.',
+];
+

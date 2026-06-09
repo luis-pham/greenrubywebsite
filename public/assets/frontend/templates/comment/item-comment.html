@@ -1,0 +1,24 @@
+<ul class="parent">
+    <li class="item">
+        <div class="clearfix">
+            <div class="avatar">
+                <div class="image-wrapper position-relative overflow-hidden rounded-circle">
+                    <img src="/assets/frontend/images/no-avatar.png" alt="{{ fullname }}" class="position-absolute w-100 h-100">
+                </div>
+            </div>
+            <div class="content">
+                <p class="fullname">{{ fullname }}</p>
+                <p class="mb-2">{{{ content }}}</p>
+                <div class="function {{#totalChild}}mb-2{{/totalChild}}{{^totalChild}}mb-3{{/totalChild}}">
+                    <a href="#" class="btn-reply mr-3" data-parent-id="{{ id }}">
+                        <i class="fas fa-comments"></i> Trả lời
+                    </a>
+                    <span class="time btn-tooltip" title="{{ createdAtDisplay }}">{{ createdAtAgo }}</span>
+                </div>
+                {{#totalChild}}
+                    <a href="#" class="btn-get-reply d-inline-block mb-2" data-parent-id="{{ id }}"><i class="fas fa-share fa-rotate-180 fa-flip-vertical"></i> Xem {{ totalChild }} trả lời</a>
+                {{/totalChild}}
+            </div>
+        </div>
+    </li>
+</ul>

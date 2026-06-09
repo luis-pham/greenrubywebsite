@@ -1,0 +1,220 @@
+#experience .section-1 .container-fluid .page-cover .image-wrapper::before{
+    opacity: 0.3;
+}
+#experience .section-1 .title {
+    font-size: 2.125rem;
+}
+
+#experience .section-2 .section-description {
+    font-size: 2.125rem;
+}
+#experience .section-3 .section-description {
+    font-size: 2.125rem;
+}
+#experience .section-gallery .section-description {
+    font-size: 2.125rem;
+}
+#experience .section-4 .section-description {
+    font-size: 2.125rem;
+}
+#experience .section-5 .section-description {
+    font-size: 2.125rem;
+}
+
+@media (min-width: 992px) {
+    #experience .section-5 .section-description {
+        font-size: 3.125rem;
+    }
+    #experience .section-4 .section-description {
+        font-size: 3.125rem;
+    }
+    #experience .section-gallery .section-description {
+        font-size: 3.125rem;
+    }
+    #experience .section-2 .section-description {
+        font-size: 3.125rem;
+    }
+    #experience .section-3 .section-description {
+        font-size: 3.125rem;
+    }
+    #experience .section-1 .title {
+        font-size: 3.375rem;
+    }
+    #experience .section-1 .container-fluid .page-cover .image-wrapper::before{
+        opacity: 0.5;
+    }
+}
+/* Section 2
+ */
+#experience .section-2.bg.bg-azure .container-fluid {
+    background-color: #f3f3f0;
+}
+
+/* Giảm gutter grid xuống còn 24px (12px mỗi bên) cho list-itinerary-cruise trong section-experience */
+#experience .section-experience .itinerary-cruise .list-itinerary-cruise {
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+#experience .section-experience .itinerary-cruise .list-itinerary-cruise > [class*="col-"] {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+#experience .section-2 .slide-1 .owl-carousel {
+    position: relative;
+}
+#experience .section-2 .slide-1 .owl-prev,
+#experience .section-2 .slide-1 .owl-next {
+    top: 35%;
+    transform: translateY(-50%);
+}
+#experience .section-2 .item {
+    box-shadow: 0px 4px 12px 0px #0020180f;
+}
+#experience .section-2 .item .item-body {
+    padding: 0;
+    border: none;
+    flex-grow: 1;
+}
+#experience .section-2 .item .item-body .item-content-wrapper {
+    padding: 1rem 1rem 1.5rem 1rem;
+}
+#experience .section-2 .title {
+    color: #c8a84b;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    margin-bottom: 0.75rem;
+}
+#experience .section-2 .description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-body);
+    margin-bottom: 0;
+}
+
+#experience .section-experience.section-itinerary .itinerary-cruise .list-item .item
+{
+    width: 100%;
+}
+
+#experience .section-experience .container-fluid {
+    position: relative;
+    z-index: 0;
+    min-height: 533px;
+}
+
+#experience .section-experience .container-fluid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        #083a2e 0px,
+        #083a2e 450px,
+        #f3f3f0 450px,
+        #f3f3f0 100%
+    );
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+#experience .section-experience .section-description {
+    color: #ffffff;
+}
+
+#experience .section-testimonial .container-fluid {
+    position: relative;
+}
+
+@media (min-width: 992px) {
+    #experience .section-experience .itinerary-cruise .list-itinerary-cruise .col-12.is-hidden {
+        display: none !important;
+    }
+}
+
+/* Section 5 */
+#experience .section-5.bg.bg-azure .container-fluid {
+    background-color: #f3f3f0;
+}
+
+#experience .section-5 .section-description {
+    margin-bottom: 1.25rem;
+}
+/* #experience .section-5 .section-content-sustainability {
+    margin-top: 4rem;
+} */
+
+#experience .section-5 .section-content-sustainability .section-description {
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 992px) {
+    #experience .section-5 .section-description {
+        margin-bottom: 2.25rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    #experience .section-5 .section-content-sustainability .section-description {
+        margin-bottom: 3rem;
+    }
+}
+
+#experience .section-5 .section-content-sustainability .slide-1 {
+    margin: .75rem;
+}
+
+#experience .section-5 .section-content-sustainability .slide-1 .owl-theme .owl-dots {
+    margin-top: 0.25rem;
+}
+
+/* Đảm bảo các slide có chiều cao bằng nhau trên mọi kích thước màn hình */
+#experience .section-5 .section-content-sustainability .slide-1 .owl-stage {
+    display: flex;
+    display: -webkit-flex;
+}
+
+#experience .section-5 .section-content-sustainability .slide-1 .owl-item {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+#experience .section-5 .section-content-sustainability .slide-1 .owl-item .item {
+    width: 100%;
+    display: flex;
+}
+
+#experience .section-5 .section-content-sustainability .list-item .item {
+    padding: .75rem;
+}
+
+#experience .section-5 .section-content-sustainability .list-item .item .item-wrapper {
+    padding: 2.5rem 2rem;
+    min-height: 260px;
+    box-shadow: 0px 4px 12px 0px #0020180f;
+}
+
+#experience .section-5 .section-content-sustainability .list-item .item .icon {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+#experience .section-5 .section-content-sustainability .list-item .item .title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    /* line-height: 1.5; */
+    /* min-height: calc(1.25rem * 1.5 * 2); */
+}
+
+#experience .section-5 .section-content-sustainability .list-item .item .description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-muted);
+}
+
+

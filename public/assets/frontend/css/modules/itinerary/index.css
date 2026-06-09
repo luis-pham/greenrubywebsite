@@ -1,0 +1,175 @@
+#itinerary .section-cover .page-cover .main-info{
+    width: 100%;
+}
+
+#itinerary .section-cover .page-cover .image-wrapper::before{
+    opacity: 0.5;
+}
+
+#itinerary .section-service .container-fluid{
+    position: relative;
+    background: transparent !important;
+}
+
+#itinerary .section-service .container-fluid::after {
+    z-index: -1;
+    opacity: 0.03;
+    background: url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
+}
+
+#itinerary .section-service .container-fluid::before{
+    background-color: #083A2E;
+    z-index: -1;
+}
+
+#itinerary .section-service .container-fluid::after,
+#itinerary .section-service .container-fluid::before{
+    content: "";
+    inset: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#itinerary .section-service .section-description{
+    color: white;
+}
+
+#itinerary .section-service .btn-view-all {
+    padding: 13.5px 1.5rem;
+}
+
+#itinerary .section-service.section-amenity .list-item .item .item-wrapper{
+    border: 0.5px solid rgba(200,168,75,0.2);
+}
+
+#itinerary .section-service .list-item .item .image-container{
+    width: 3.75rem;
+    color: white;
+    padding: 0.75rem;
+}
+
+#itinerary .section-service .list-item .item .image-container img {
+    width: 2.25rem;
+}
+
+#itinerary .section-service .list-item .item .title{
+    font-size: 1.625rem;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+}
+
+#itinerary .section-service .list-item .item .description{
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0;
+}
+
+#itinerary .section-faq .grid-faq-outer {
+    position: relative;
+    height: 100%;
+}
+
+#itinerary .section-faq .grid-faq-inner:not(.owl-loaded){
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+#itinerary .section-faq .grid-faq-inner.owl-carousel .owl-stage{
+    display: flex;
+}
+
+#itinerary .section-faq .grid-faq-inner.owl-carousel .owl-stage .owl-item .item{
+    height: 100%;
+}
+
+#itinerary .section-faq .grid-faq-inner .item{
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 4px 24px 0 #0020180F;
+    text-align: center;
+}
+
+#itinerary .section-faq .grid-faq-inner .item .question{
+    font-family: var(--font-display);
+    font-weight: bold;
+    font-size: 1.375rem;
+    color: #1c1f1e;
+    margin-bottom: 0.75rem;
+}
+
+#itinerary .section-faq .grid-faq-inner .item .answer{
+    font-size: 1rem;
+    color: var(--color-muted);
+}
+
+#itinerary .section-faq .grid-faq-inner .item p{
+    margin-bottom: 0;
+}
+
+#itinerary .section-contact .container-fluid{
+    position: relative;
+}
+
+#itinerary .section-contact .container-fluid::after {
+    z-index: -1;
+    opacity: 0.3;
+    background: url(/assets/frontend/images/modules/itinerary/section-contact-bg.png) center center / cover no-repeat;
+}
+
+#itinerary .section-contact .container-fluid::before{
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.64) 100%);
+    z-index: -1;
+}
+
+#itinerary .section-contact .container-fluid::after,
+#itinerary .section-contact .container-fluid::before{
+    content: "";
+    inset: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#itinerary .section-contact .section-title{
+    font-size: 2.125rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+#itinerary .section-contact .section-description{
+    font-weight: 700;
+    font-size: 1.375rem;
+    margin-bottom: 1.875rem;
+    color: #c8a84b;
+}
+
+#itinerary .section-contact .list-btn{
+   gap: 0.75rem;
+}
+
+@media (min-width: 1200px) {
+    #itinerary .section-faq .grid-faq-inner:not(.owl-loaded) {
+        grid-template-columns: repeat(3,1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #itinerary .section-contact .section-title{
+        font-size: 3.125rem;
+    }
+
+    #itinerary .section-faq .grid-faq-inner:not(.owl-loaded) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #itinerary .section-contact .list-btn{
+        gap: 1.5rem;
+    }
+}

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Payment API Test</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{box-sizing:border-box;font-family:system-ui,sans-serif}
+        body{margin:0;padding:24px;background:#0f172a;color:#e2e8f0}
+        .card{max-width:520px;margin:0 auto;background:#1e293b;border-radius:12px;padding:24px;border:1px solid #334155}
+        .card-result{max-width:400px;margin:0 auto;background:#1e293b;border-radius:12px;padding:24px;border:1px solid #334155;text-align:center}
+        h1{margin:0 0 8px;font-size:20px}
+        .subtitle{margin:0 0 20px;font-size:13px;color:#94a3b8}
+        label{display:block;margin-bottom:4px;font-size:12px;color:#cbd5e1}
+        input,select{width:100%;padding:8px 12px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;margin-bottom:12px}
+        .row{display:flex;gap:12px}
+        .row .field{flex:1}
+        button{padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;border:none;margin-right:8px;margin-top:8px}
+        button.primary{background:#22c55e;color:#fff}
+        button.secondary{background:#475569;color:#fff}
+        button:disabled{opacity:0.6;cursor:not-allowed}
+        #status{margin-top:12px;font-size:15px;min-height:24px;font-weight:500}
+        #status.ok{color:#4ade80}
+        #status.error{color:#f87171}
+        #status.pending{color:#fbbf24}
+        pre{background:#0f172a;padding:12px;border-radius:8px;font-size:12px;overflow:auto;border:1px solid #334155;margin-top:16px}
+        .hide{display:none !important}
+        .back-link{margin-top:20px;font-size:14px}
+        .back-link a{color:#60a5fa;text-decoration:none}
+        .back-link a:hover{text-decoration:underline}
+        .result-icon{font-size:64px;display:block;margin:16px auto}
+        .result-icon--ok{color:#22c55e}
+        .result-icon--error{color:#ef4444}
+        .result-icon--pending{color:#94a3b8}
+        .result-label{margin-top:8px;font-size:15px;font-weight:500}
+        .result-label--ok{color:#22c55e}
+        .result-label--error{color:#ef4444}
+        .result-label--pending{color:#94a3b8}
+        #result-tx{text-align:center}
+        .amount-text{margin:-8px 0 12px;font-size:13px;color:#94a3b8;min-height:18px}
+    </style>
+</head>
+<body>
+<div id="page-form" class="card">
+    <h1>Payment API Test</h1>
+    <form id="payment-form">
+        <div class="field">
+            <label>Phương thức</label>
+            <select id="method" name="method">
+                <option value="stripe">Stripe</option>
+                <option value="paypal">PayPal</option>
+                <option value="sepay">SePay (VietQR / Bank)</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="field" style="flex:2">
+                <label>Số tiền</label>
+                <input id="amount" name="amount" type="number" value="5000000" min="1">
+                <p id="amount-text" class="amount-text"></p>
+            </div>
+            <div class="field" style="flex:1">
+                <label>Tiền tệ</label>
+                <input id="currency" name="currency" type="text" value="vnd">
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="primary" id="btn-init">Thanh toán</button>
+        </div>
+        <div id="status" class="status"></div>
+    </form>
+    <pre id="response">{ }</pre>
+</div>
+
+<div id="page-result" class="card-result hide">
+    <h1>Kết quả thanh toán</h1>
+    <div id="result-icon-wrap"></div>
+    <p id="result-label" class="result-label"></p>
+    <p id="result-tx" style="margin-top:12px;font-size:12px;color:#94a3b8;word-break:break-all"></p>
+    <p id="result-detail" style="margin-top:8px;font-size:12px;color:#64748b;display:none"></p>
+    <div class="back-link">
+        <a href="" id="link-new">← Thanh toán giao dịch khác</a>
+    </div>
+</div>
+
+<script>
+(function () {
+    var form = document.getElementById('payment-form');
+    var statusEl = document.getElementById('status');
+    var respEl = document.getElementById('response');
+    var btnInit = document.getElementById('btn-init');
+    var pageForm = document.getElementById('page-form');
+    var pageResult = document.getElementById('page-result');
+    var resultIconWrap = document.getElementById('result-icon-wrap');
+    var resultLabel = document.getElementById('result-label');
+    var resultTx = document.getElementById('result-tx');
+    var resultDetail = document.getElementById('result-detail');
+    var linkNew = document.getElementById('link-new');
+
+    var resultTexts = { ok: 'Thanh toán thành công.', error: 'Đã hủy hoặc thất bại.', pending: 'Đang xác nhận...' };
+
+    function formatAmountText(num) {
+        var n = parseInt(num, 10);
+        if (!n || n < 0) return '';
+        if (n >= 1e9) return (n / 1e9) + ' tỷ';
+        if (n >= 1e6) return (n / 1e6) + ' triệu';
+        if (n >= 1e3) return (n / 1e3) + ' nghìn';
+        return n.toLocaleString('vi-VN');
+    }
+
+    function updateAmountText() {
+        var amountEl = document.getElementById('amount');
+        var textEl = document.getElementById('amount-text');
+        if (!amountEl || !textEl) return;
+        var val = amountEl.value;
+        textEl.textContent = val ? formatAmountText(val) : '';
+    }
+
+    function setResultIcon(type, errorMessage, errorCode) {
+        if (!resultIconWrap) return;
+        var icon = type === 'ok' ? 'fa-circle-check' : (type === 'error' ? 'fa-circle-xmark' : 'fa-clock');
+        var cls = 'result-icon result-icon--' + (type === 'ok' ? 'ok' : (type === 'error' ? 'error' : 'pending'));
+        resultIconWrap.innerHTML = '<i class="fa-solid ' + icon + ' ' + cls + '"></i>';
+        if (resultLabel) {
+            var text = errorMessage || resultTexts[type] || '';
+            resultLabel.textContent = text;
+            resultLabel.className = 'result-label result-label--' + (type === 'ok' ? 'ok' : (type === 'error' ? 'error' : 'pending'));
+        }
+        if (resultDetail) {
+            if (errorCode) {
+                resultDetail.textContent = 'Mã lỗi: ' + errorCode;
+                resultDetail.style.display = 'block';
+            } else {
+                resultDetail.style.display = 'none';
+            }
+        }
+    }
+
+    function getQuery() {
+        var o = {};
+        window.location.search.slice(1).split('&').forEach(function (p) {
+            var i = p.indexOf('=');
+            if (i > 0) o[decodeURIComponent(p.slice(0, i))] = decodeURIComponent(p.slice(i + 1));
+        });
+        return o;
+    }
+
+    function showResultPage() {
+        if (pageForm) pageForm.classList.add('hide');
+        if (pageResult) pageResult.classList.remove('hide');
+        if (linkNew) linkNew.href = window.location.pathname || '/payment-test.html';
+    }
+
+    function showFormPage() {
+        if (pageResult) pageResult.classList.add('hide');
+        if (pageForm) pageForm.classList.remove('hide');
+    }
+
+    function pollStatus(internalTxId) {
+        var maxAttempts = 30;
+        var interval = 2000;
+        var attempts = 0;
+        setResultIcon('pending');
+        if (resultTx) resultTx.textContent = 'internal_tx_id: ' + internalTxId;
+
+        function poll() {
+            fetch('/api/payment/status?internal_tx_id=' + encodeURIComponent(internalTxId), {
+                headers: { 'Accept': 'application/json' }
+            }).then(function (r) { return r.json(); }).then(function (data) {
+                attempts++;
+                if (data.success && data.status && data.status !== 'pending') {
+                    var errMsg = (data.status === 'failed' || data.status === 'canceled') && data.message ? data.message : null;
+                    var errCode = (data.status === 'failed' || data.status === 'canceled') && data.error_code ? data.error_code : null;
+                    setResultIcon(data.status === 'succeeded' ? 'ok' : 'error', errMsg, errCode);
+                    return;
+                }
+                if (attempts >= maxAttempts) {
+                    setResultIcon('error', 'Đã hết thời gian chờ xác nhận. Vui lòng kiểm tra trạng thái giao dịch sau.', null);
+                    return;
+                }
+                setTimeout(poll, interval);
+            }).catch(function () {
+                setResultIcon('error', 'Không thể kết nối để kiểm tra trạng thái giao dịch.', null);
+            });
+        }
+        poll();
+    }
+
+    var q = getQuery();
+    if (q.result && q.tx) {
+        showResultPage();
+        if (resultTx) resultTx.textContent = 'internal_tx_id: ' + q.tx;
+        if (q.result === 'cancel') {
+            setResultIcon('error');
+            fetch('/api/payment/status?tx=' + encodeURIComponent(q.tx) + '&result=cancel', {
+                headers: { 'Accept': 'application/json' }
+            }).then(function (r) { return r.json(); }).then(function (data) {
+                if (data.success) setResultIcon('error', data.message, data.error_code);
+            }).catch(function () {});
+        } else if (q.result === 'success') {
+            pollStatus(q.tx);
+        } else {
+            setResultIcon('error');
+            fetch('/api/payment/status?tx=' + encodeURIComponent(q.tx) + '&result=cancel', {
+                headers: { 'Accept': 'application/json' }
+            }).then(function (r) { return r.json(); }).then(function (data) {
+                if (data.success) setResultIcon('error', data.message, data.error_code);
+            }).catch(function () {});
+        }
+    } else {
+        showFormPage();
+    }
+
+    var amountInput = document.getElementById('amount');
+    var currencyInput = document.getElementById('currency');
+    var methodSelect = document.getElementById('method');
+    if (amountInput) {
+        updateAmountText();
+        amountInput.addEventListener('input', updateAmountText);
+        amountInput.addEventListener('change', updateAmountText);
+    }
+    if (methodSelect && currencyInput) {
+        methodSelect.addEventListener('change', function () {
+            var m = methodSelect.value;
+            if (m === 'sepay') {
+                currencyInput.value = 'vnd';
+                currencyInput.readOnly = true;
+            } else {
+                currencyInput.readOnly = false;
+            }
+        });
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        statusEl.textContent = 'Đang khởi tạo...';
+        statusEl.className = 'status pending';
+        respEl.textContent = '{ }';
+        btnInit.disabled = true;
+
+        var method = document.getElementById('method').value;
+        var returnBase = window.location.origin + window.location.pathname;
+
+        var payload = {
+            method: method,
+            amount: Number(document.getElementById('amount').value),
+            currency: document.getElementById('currency').value,
+            return_base: returnBase
+        };
+
+        fetch('/api/payment/init', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(function (res) { return res.json().then(function (data) { return { res: res, data: data }; }); }).then(function (_) {
+            var res = _.res;
+            var data = _.data;
+            respEl.textContent = JSON.stringify(data, null, 2);
+            if (res.ok && data && data.success && data.payment_url) {
+                statusEl.textContent = 'Đang chuyển sang trang thanh toán...';
+                window.location.href = data.payment_url;
+                return;
+            }
+            statusEl.textContent = 'Init thất bại.';
+            statusEl.className = 'status error';
+            btnInit.disabled = false;
+        }).catch(function (err) {
+            statusEl.textContent = 'Lỗi kết nối API.';
+            statusEl.className = 'status error';
+            respEl.textContent = String(err);
+            btnInit.disabled = false;
+        });
+    });
+})();
+</script>
+</body>
+</html>
+

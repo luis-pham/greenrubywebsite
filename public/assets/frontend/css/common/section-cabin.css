@@ -1,0 +1,27 @@
+#main .section-cabin .list-itinerary-cruise .item .item-body .list-specification .item-specification {
+    color: var(--color-body);
+}
+
+#main .section-cabin .list-itinerary-cruise .item .item-body .list-specification .item-specification:not(:last-child) {
+    margin-bottom: .75rem;
+}
+
+#main .section-cabin .list-itinerary-cruise .item .item-body .list-specification .item-specification .icon {
+    font-size: 1.125rem;
+    width: 20px;
+}
+
+#main .section-cabin .list-itinerary-cruise .item .item-body .list-specification .item-specification .media-body {
+    padding: .125rem 0;
+    font-size: 1rem;
+}
+
+#main .section-cabin .list-itinerary-cruise .item .item-wrapper {
+    transition: all .2s linear;
+}
+
+#main .section-cabin .list-itinerary-cruise .item.disabled .item-wrapper {
+    opacity: .5;
+    pointer-events: none;
+    transform: scale(.95);
+}

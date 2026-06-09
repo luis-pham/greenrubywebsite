@@ -1,0 +1,153 @@
+#modal-cruise-itinerary .modal-header button.close{
+    color: black;
+}
+#modal-cruise-itinerary .modal-body .list-itinerary {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0.5rem 0;
+}
+
+#modal-cruise-itinerary .itinerary-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    padding: 16px 18px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+    align-items: center;
+}
+
+#modal-cruise-itinerary .itinerary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+/* Date block - more elegant */
+#modal-cruise-itinerary .itinerary-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    padding: 12px 10px;
+    min-width: 80px;
+    text-align: center;
+    border: 1px solid #cbd5e1;
+}
+
+#modal-cruise-itinerary .itinerary-date p {
+    margin-bottom: 0;
+}
+#modal-cruise-itinerary .itinerary-date .day {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1e40af;
+    line-height: 1;
+}
+
+#modal-cruise-itinerary .itinerary-date .month {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+#modal-cruise-itinerary .itinerary-date .year {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Info block */
+#modal-cruise-itinerary .itinerary-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#modal-cruise-itinerary .itinerary-info p {
+    margin: 0;
+}
+
+#modal-cruise-itinerary .itinerary-info .name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+#modal-cruise-itinerary .itinerary-info .name::before {
+    font-family: "Font Awesome 5 Pro";   /* or 6 Pro / Free depending on your kit */
+    font-weight: 900;
+    content: "\f3c5";                    /* fa-map-marker-alt */
+    margin-right: 8px;
+    color: #3b82f6;
+}
+
+#modal-cruise-itinerary .itinerary-info .start-time {
+    font-size: 0.95rem;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+}
+
+#modal-cruise-itinerary .itinerary-info .start-time::before {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    content: "\f017";                    /* fa-clock */
+    margin-right: 8px;
+    color: #6366f1;
+    font-size: 1.1rem;
+}
+
+/* Delete button */
+#modal-cruise-itinerary .itinerary-card a,
+#modal-cruise-itinerary .delete-btn {
+    color: #9ca3af;
+    font-size: 1.3rem;
+    padding: 6px;
+    border-radius: 8px;
+    transition: all 0.18s;
+    line-height: 1;
+}
+
+#modal-cruise-itinerary .itinerary-card a:hover,
+#modal-cruise-itinerary .delete-btn:hover {
+    color: #ef4444;
+    background: #fee2e2;
+}
+
+#modal-cruise-itinerary .form-add-itinerary{
+    position: relative;
+    gap: 16px;
+    padding: 16px 18px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+    align-items: center;
+}
+
+/* Empty state */
+#modal-cruise-itinerary .modal-body .list-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    color: #6b7280;
+    font-size: 1.1rem;
+    text-align: center;
+    gap: 12px;
+}
+
+#modal-cruise-itinerary .modal-footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

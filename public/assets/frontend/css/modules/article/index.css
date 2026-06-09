@@ -1,0 +1,182 @@
+#main #article-category .section-cover .page-cover .image-wrapper:before {
+    opacity: .5;
+}
+
+/* Section 3 */
+#article-category .section-3 .slide-1 .owl-theme .owl-nav.disabled+.owl-dots {
+    margin-top: 0;
+    position: absolute;
+}
+
+#article-category .section-3 .list-item .item .item-wrapper {
+    background: #083a2e;
+    color: #fff;
+    height: 100%;
+}
+
+#article-category .section-3 .list-item .item .image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#article-category .section-3 .list-item .item .image:after {
+    content: '';
+    padding-top: 59.7667638483965%;
+    display: block;
+}
+
+#article-category .section-3 .list-item .item .main-info {
+    padding: 1rem 1rem calc(1rem + 1rem) 1rem;
+    box-shadow: 0px 4px 24px 0px #0020180f;
+}
+
+#article-category .section-3 .slide-1 .owl-theme .owl-nav.disabled+.owl-dots {
+    bottom: 1rem;
+    left: 1rem;
+}
+
+#article-category .section-3 .list-item .item .main-info .title {
+    font-family: var(--font-display);
+    font-size: 1.625rem;
+    color: #c8a84b;
+    line-height: 1.2;
+}
+
+#article-category .section-3 .list-item .item .main-info .description {
+    font-size: 1rem;
+}
+
+@media (max-width: 991px) {
+    #article-category .section-3 {
+        padding-top: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #article-category .section-3 .list-item .item .main-info {
+        padding: 1.5rem 1.5rem calc(1.5rem + 1rem) 1.5rem;
+    }
+
+    #article-category .section-3 .slide-1 .owl-theme .owl-nav.disabled+.owl-dots {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    #article-category .section-3 .list-item .item {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #article-category .section-3 .list-item .item .item-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    #article-category .section-3 .list-item .item .image {
+        width: 65%;
+        max-width: 65%;
+    }
+
+    #article-category .section-3 .list-item .item .image:after {
+        padding-top: 62.11180124223602%;
+    }
+
+    #article-category .section-3 .list-item .item .main-info {
+        width: 35%;
+        max-width: 35%;
+        padding: 2rem 2rem calc(2rem + 1rem) 2rem;
+    }
+    
+    #article-category .section-3 .slide-1 .owl-theme .owl-nav.disabled+.owl-dots {
+        bottom: 2rem;
+        left: calc(65% + 2rem);
+    }
+
+}
+
+@media (min-width: 1200px) {
+    #article-category .section-3 .list-item .item .image {
+        width: 57.5%;
+        max-width: 57.5%;
+    }
+    
+    #article-category .section-3 .list-item .item .main-info {
+        width: 42.5%;
+        max-width: 42.5%;
+        padding: 3rem 3rem calc(3rem + 1rem) 3rem;
+    }
+
+    #article-category .section-3 .slide-1 .owl-theme .owl-nav.disabled+.owl-dots {
+        bottom: 3rem;
+        left: calc(57.5% + 3rem);
+    }
+}
+
+/* Section 4 */
+#article-category .section-4 .section-title {
+    margin-bottom: .5rem;
+}
+
+#article-category .section-4 .section-description {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    #article-category .section-4 .section-title {
+        margin-bottom: .75rem;
+    }
+
+    #article-category .section-4 .section-description {
+        margin-bottom: .875rem;
+        font-size: 2.125rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    #article-category .section-4 .section-description {
+        font-size: 3.125rem;
+    }
+}
+
+#article-category .section-4 .tab-filter .list-button {
+    gap: .5rem;
+}
+
+#article-category .section-4 .tab-filter .list-button .item button,
+#article-category .section-4 .tab-filter .list-button .item a {
+    min-width: unset;
+}
+
+#article-category .section-4 .list-article .row {
+    margin: -.75rem;
+}
+
+#article-category .section-4 .list-article .row [class*="col-"] {
+    padding: .75rem;
+}
+
+#article-category .section-4 .main-content .header {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    #article-category .section-4 .main-content .header {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #d6d3cc;
+    }
+}
+
+#article-category .section-4 .widget .input-group .form-control {
+    padding: .84375rem .75rem;
+    height: calc(1.5em + 1.6875rem + 2px);
+    font-size: 1rem;
+}
+
+#article-category .section-4 .widget .input-group .input-group-text {
+    padding: .75rem;
+    font-size: 1.375rem;
+    color: var(--color-forest);
+}

@@ -1,0 +1,655 @@
+#cruise-detail .section-cover .page-cover .image-wrapper::before {
+    opacity: 1;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.5) 45%,
+        rgba(0, 0, 0, 0.65) 100%
+    );
+}
+
+#cruise-detail .section-cover .page-cover .main-info .list-button {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#cruise-detail .section-cover .page-cover .list-button .item {
+    width: auto;
+}
+@media(min-width: 1200px){
+    #cruise-detail .section-cover .page-cover .image-wrapper:after{
+        padding-top: 41.167%;
+    }
+}
+
+#cruise-detail .section-info .container-fluid,
+#cruise-detail .section-itinerary .itinerary-detail .body{
+    position: relative;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body::after
+{
+    z-index: -1;
+    opacity: 0.03;
+    background: url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
+}
+
+#cruise-detail .section-info .container-fluid::after {
+    z-index: -1;
+    background: #f3f3f0 url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body::before{
+    background-color:#083A2E;
+    z-index: -1;
+}
+
+#cruise-detail .section-info .container-fluid::after,
+#cruise-detail .section-itinerary .itinerary-detail .body::before,
+#cruise-detail .section-itinerary .itinerary-detail .body::after
+{
+    content: "";
+    inset: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#cruise-detail .section-info .grid-info {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1.5rem;
+
+    margin-bottom: 3.5rem;
+}
+
+#cruise-detail .section-info .grid-info .item {
+    background-color: white;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1rem;
+    color:var(--color-body);
+    box-shadow: 0px 4px 24px 0px #0020180F;
+}
+
+#cruise-detail .section-info .grid-info .item p {
+    font-size: 6.375rem;
+    color: #c8a84b;
+    font-family: var(--font-display);
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+@media screen and (min-width : 1200px){
+    #cruise-detail .section-info .grid-info {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+
+@media screen and (max-width: 768px){
+    #cruise-detail .section-info .grid-info .item p {
+        font-size: 4.875rem;
+        margin-bottom: 1rem;
+    }
+    #cruise-detail .section-info .grid-info .item {
+        padding: 1rem;
+    }
+}
+
+#cruise-detail .section-info .green-technology-container {
+    max-width: 1000px;
+    margin-inline: auto;
+
+    text-align: center;
+}
+
+#cruise-detail .section-info .green-technology-container .icon {
+    width: 100px;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+}
+
+#cruise-detail .section-info .green-technology-container .name {
+    font-family: var(--font-display);
+    font-size: 3.125rem;
+    margin-bottom: 0.75rem;
+    color: #c8a84b;
+}
+
+@media screen and (max-width: 768px){
+    #cruise-detail .section-info .grid-info {
+        margin-bottom: 1.5rem;
+    }
+
+    #cruise-detail .section-info .grid-info .item p {
+        font-size: 3.875rem;
+    }
+
+    #cruise-detail .section-info .green-technology-container .icon {
+        width: 85px;
+    }
+
+    #cruise-detail .section-info .green-technology-container .name {
+        font-size: 2.125rem;
+    }
+}
+
+#cruise-detail .section-info .green-technology-container .description {
+    color:var(--color-body);
+}
+
+#cruise-detail .section-cabin-and-service .block-1 {
+    background-color:#0E1F2D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 1rem;
+    color: white;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .cabin-container {
+    margin-bottom: 1rem;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .header {
+    position: relative;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .header .title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #c8a84b;
+    display: inline-block;
+    width: calc(100% - 48px);
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .header .icon-wrapper {
+    position: absolute;
+    inset: 0;
+    background-color: #FFFFFF1A;
+    z-index: 1;
+    color: white;
+    text-align: end;
+    align-content: center;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .header .icon-wrapper .icon {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    background: #FFFFFF1A;
+    border: 1px solid #FFFFFF26;
+    align-content: center;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .accordion-item.item-collapse .header .icon-wrapper .icon {
+    transform: rotateZ(180deg);
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .accordion-item.item-collapse .body {
+    max-height: 0;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .body .item-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 0.625rem;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .body .item-grid .item {
+    padding: 0.5rem 0.75rem;
+    background-color:#FFFFFF1A;
+    border: 1px solid #FFFFFF26;
+    font-family: var(--font-display);
+    cursor: pointer;
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .body .item-grid .item.active-1,
+#cruise-detail .section-cabin-and-service .block-1 .body .item-grid .item.active-2{
+    background-color:#e2bc6f;
+    color: #083a2e;
+}
+
+@media (min-width: 768px){
+    #cruise-detail .section-cabin-and-service .block-1 .body .item-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+@media screen and (min-width: 992px){
+    #cruise-detail .section-cabin-and-service .block-1 .body .item-grid .item.active-1:not(.active-2) {
+        background-color: #FFFFFF1A;
+        color: revert;
+    }
+
+    #cruise-detail .section-cabin-and-service .block-1 {
+        padding: 3rem;
+    }
+
+    #cruise-detail .section-cabin-and-service .block-1 .cabin-container > *,
+    #cruise-detail .section-cabin-and-service .block-1 .service-container > *{
+        max-width: 652px;
+        margin-left: auto;
+    }
+
+    #cruise-detail .section-cabin-and-service .block-1 .cabin-container {
+        margin-bottom: 2rem;
+    }
+}
+@media screen and (min-width: 1600px){
+    #cruise-detail .section-cabin-and-service .block-1 .accordion-item.item-collapse .body {
+        max-height: revert;
+    }
+
+    #cruise-detail .section-cabin-and-service .block-1 .header {
+        padding: 0;
+    }
+
+    #cruise-detail .section-cabin-and-service .block-1 .header .icon-wrapper {
+        display: none;
+    }
+}
+
+#cruise-detail .section-cabin-and-service .block-2 .carousel-gallery .owl-carousel .owl-item .item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 268px;
+    width: 100%;
+    z-index: 2;
+    background: linear-gradient(360deg, #083A2E 0%, rgba(8, 58, 46, 0) 97.06%);
+}
+
+#cruise-detail .section-cabin-and-service .block-1 .carousel-gallery .owl-carousel .owl-item .item .description {
+    -webkit-line-clamp: 3;
+    font-size: 1rem;
+}
+
+#cruise-detail .section-cabin-and-service .block-2 .carousel-gallery .owl-carousel .owl-item .item .description {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    width: calc(100% - 3rem);
+    color: var(--color-cream);
+    z-index: 3;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+#cruise-detail .section-cabin-and-service .cabin-gallery-container,
+#cruise-detail .section-cabin-and-service .service-gallery-container {
+    position: relative;
+}
+
+#cruise-detail .section-cabin-and-service .gallery-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cruise-detail .section-cabin-and-service .gallery-loading .spinner {
+    width: 56px;
+    height: 56px;
+    border: 4px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: gallery-spin 0.8s linear infinite;
+}
+
+@keyframes gallery-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 576px){
+    #cruise-detail .section-cabin-and-service .carousel-gallery .owl-carousel .owl-item .item .image-wrapper::after {
+        padding-top: 80%;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 992px){
+    #cruise-detail .section-cabin-and-service .carousel-gallery .owl-carousel .owl-item .item .image-wrapper::after {
+        padding-top: 50%;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px){
+    #cruise-detail .section-cabin-and-service .carousel-gallery .owl-carousel .owl-item .item .image-wrapper::after {
+        padding-top: 107%;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px){
+    #cruise-detail .section-cabin-and-service .carousel-gallery .owl-carousel .owl-item .item .image-wrapper::after {
+        padding-top: 85%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #cruise-detail .section-cabin-and-service .carousel-gallery .owl-carousel .owl-item .item .description {
+        font-size: 1rem;
+    }
+}
+
+.section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+    .section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .button {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.375rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .button {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+    }
+    .section-cabin-and-service .carousel-gallery .slide-1 .owl-prev {
+        left: 24px;
+    }
+    .section-cabin-and-service .carousel-gallery .slide-1 .owl-next {
+        right: 24px;
+    }
+}
+
+.section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .owl-next .button,
+.section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .owl-prev .button {
+    background-color: #0e5f4b;
+}
+
+.section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .disabled {
+    opacity: unset;
+}
+
+.section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .disabled .button {
+    background-color: #ffffff4d;
+}
+
+.section-cabin-and-service .block-1 .carousel-gallery .thumbnail {
+    display: none !important;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail {
+    left: 12px;
+    right: 12px;
+    bottom: 82px;
+    width: calc(100% - 24px);
+    z-index: 2;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    user-select: none;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail::-webkit-scrollbar {
+    display: none;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail.is-dragging {
+    cursor: grabbing;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail {
+    gap: .5rem;
+    justify-content: center;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item {
+    flex: 0 0 auto;
+    width: 80px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item .image-wrapper:after {
+    padding-top: 53.84615384615385%;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item.active {
+    border-color: #c8a84b;
+}
+
+.section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+@media (min-width: 768px) {
+    .section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item {
+        width: 90px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail {
+        gap: .75rem;
+    }
+    .section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item {
+        width: 130px;
+    }
+}
+
+#cruise-detail .section-itinerary .list-filter{
+    text-align: center;
+    margin-bottom: 2rem;
+
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#cruise-detail .section-itinerary .list-filter .item {
+    color: white;
+    padding: 0.5rem 1rem;
+    background-color:#A9ABA6;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+#cruise-detail .section-itinerary .list-filter .item.active {
+    background-color:#c8a84b;
+    color: #000;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body {
+    padding: 2.25rem 2rem 1.5rem;
+    color: white;
+}
+
+@media screen and (max-width: 768px){
+    #cruise-detail .section-itinerary .itinerary-detail .body {
+        padding: 1.5rem 1rem;
+    }
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .name {
+    font-size: 1.625rem;
+    color: var(--color-gold);
+    font-family: var(--font-display);
+    font-weight: 700;
+
+    margin-bottom: 2.25rem;
+    text-align: center;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .image-wrapper {
+    margin-bottom: 0.75rem;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .image-wrapper::after {
+    padding-top: 56.25%;
+}
+
+@media screen and (min-width: 768px) {
+    #cruise-detail .section-itinerary .itinerary-detail .body .image-wrapper::after {
+        padding-top: 36.65%;
+    }
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer {
+    background: white;
+    padding: 1rem 0.75rem 1rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-destination-inner {
+    border-left: 1px dashed #c8a84b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.25rem;
+    padding-left: 1.5rem;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer .item {
+    color:#c8a84b;
+    font-family: var(--font-display);
+    font-weight: bold;
+    font-size: 1.375rem;
+
+    position: relative;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer .item::after {
+    content: "\e445";
+    font-family: 'Font Awesome 6 Free',serif;
+    font-weight: 900;
+    background: white;
+    position: absolute;
+    width: 36px;
+    text-align: center;
+    left: -1.5rem;
+    transform: translate(-50%,0);
+}
+
+@media screen and (min-width: 768px){
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer {
+        padding: 2.833rem 2rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-destination-inner {
+        border-top: 1px dashed #c8a84b;
+        border-left: none;
+        flex-direction: row;
+        padding-top: 1.75rem;
+        padding-left: 0;
+    }
+
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer .item::after {
+        top: calc(-100% - 1.75rem - 5px);
+        left: 50%;
+        transform: translate(-50%,50%);
+    }
+
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer .item:first-child::before,
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer .item:last-child::before
+    {
+        content: "";
+        width: 50%;
+        position: absolute;
+        top: calc(-1.75rem - 2px);
+        border: 2px solid white;
+    }
+
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-destination-outer .item:last-child::before {
+        left: 50%;
+    }
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .label{
+    font-weight: 700;
+    font-size: 1.375rem;
+    margin-bottom: 0.75rem;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .grid-activity {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap: 0.625rem;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .grid-activity .item {
+    background-color:#FFFFFF1A;
+    border: 1px solid #FFFFFF26;
+    font-size: 1rem;
+    align-content: center;
+    padding: 0.75rem;
+}
+
+@media screen and (min-width: 1600px){
+    #cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .grid-activity .item{
+        text-align: center;
+    }
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .grid-activity .item i{
+    color: #c8a84b;
+    margin-right: 0.75rem;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .footer {
+    padding-block: 1.25rem;
+    background-color:#0E1F2D;
+    color: white;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .footer p{
+    font-family: var(--font-display);
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .footer .price{
+    font-family: var(--font-display);
+    font-size: 2.125rem;
+    color: #c8a84b;
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .footer .btn {
+    padding: 0.75rem 3rem;
+}
+
+#cruise-detail .section-testimonial .container-fluid {
+    position: relative;
+}
+
+#cruise-detail .section-call-to-action .container-fluid{
+    background-position-y: center;
+}
+

@@ -1,0 +1,279 @@
+.article-content {
+    font-family: var(--font-body);
+    color: var(--color-body);
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content {
+        font-size: 19px;
+    }
+}
+
+.article-content *:last-child {
+    margin: 0px;
+}
+
+.article-content a {
+    color: var(--color-forest);
+}
+
+.article-content p {
+    line-height: 1.5;
+    margin: 0px 0px 15px 0px;
+    word-wrap: break-word;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    margin: 20px 0px 15px 0px;
+    font-family: var(--font-display);
+    font-weight: bold;
+    line-height: 1.5;
+    color: var(--color-forest);
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content h1 {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content h1 {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content h2 {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content h2 {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content h3 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content h3 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content h4 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content h4 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content h5 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content h5 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .article-content h6 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content h6 {
+        font-size: 18px;
+    }
+}
+
+.article-content table tr td {
+    min-width: 50px;
+    padding: 5px 10px;
+    border: 1px solid #e3e3e3;
+}
+
+.article-content ul {
+    list-style-position: inside;
+    padding-left: 0px;
+    margin: 0px 0px 15px 0px;
+}
+
+.article-content ul li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.article-content ol {
+    list-style-position: inside;
+    padding-left: 0px;
+    margin: 0px 0px 15px 0px;
+}
+
+.article-content ol li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+/* ========== Image ========== */
+.article-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-content video {
+    width: 100%;
+    height: auto;
+}
+
+.article-content audio {
+    width: 100%;
+}
+
+/* ========== Box Media ========== */
+.article-content .box-media {
+    display: block;
+}
+
+.article-content .box-media .content {
+    min-height: 60px;
+    display: block;
+}
+
+.article-content .box-media.align-left,
+.article-content .box-media.align-center,
+.article-content .box-media.align-right {
+    float: none;
+}
+
+.article-content .box-media .content img {
+    width: 100%;
+}
+
+.article-content .box-media .caption {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    padding: 5px 0px;
+}
+
+/* ========== Box Media Default ========== */
+.article-content .box-media-default {
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content .box-media-default {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+
+.article-content .box-media-default .caption {
+    width: 100%;
+}
+
+/* ========== Box Media Left ========== */
+.article-content .box-media-left {
+    float: left;
+    padding-right: 15px;
+    width: 50%;
+}
+
+.article-content .box-media-left .caption {
+    width: 100%;
+}
+
+/* ========== Box Media Right ========== */
+.article-content .box-media-right {
+    float: right;
+    margin-left: 15px;
+    width: 50%;
+}
+
+.article-content .box-media-right .caption {
+    width: 100%;
+}
+
+/* ========== Box Quote ========== */
+.article-content .box-quote {
+    position: relative;
+    display: block;
+    background: #ba866e;
+    padding: 15px 15px 15px 45px;
+    color: #fff;
+}
+
+.article-content .box-quote:after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 4px;
+    height: calc(100% - 30px);
+    background-color: #fff;
+}
+
+/* ========== Embed Iframe ========== */
+.article-content .embed-iframe {
+    position: relative;
+    height: 0;
+    margin-bottom: 15px;
+    padding-bottom: 100%;
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content .embed-iframe {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+
+.article-content .embed-iframe.iframe-4-3 {
+    padding-bottom: 75%;
+}
+
+.article-content .embed-iframe.iframe-16-9 {
+    padding-bottom: 56.25%;
+}
+
+@media only screen and (max-width: 575px) {
+    .article-content .embed-iframe.iframe-16-9 {
+        padding-bottom: 62.5%;
+    }
+}
+
+.article-content .embed-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

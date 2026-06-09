@@ -1,0 +1,180 @@
+@media (min-width: 1400px) {
+    #experience .section-experience .container-fluid {
+        min-height: 533px;
+    }
+}
+#experience .section-experience .section-description {
+    font-size: 2.125rem;
+}
+@media (min-width: 992px) {
+    #experience .section-experience .section-description {
+        font-size: 3.125rem;
+    }
+}
+#experience .section-experience .container-fluid {
+    position: relative;
+}
+
+#experience .section-experience .container-fluid:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    background: url('/assets/frontend/images/bg-grain.png') center no-repeat;
+    background-size: cover;
+    z-index: 1;
+    opacity: .05;
+    pointer-events: none;
+}
+
+#experience .section-experience:not(.bg-tender-white) .container-fluid {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#experience .section-experience .slide-1 .owl-carousel {
+    position: relative;
+}
+
+#experience .section-experience .slide-1 .owl-prev,
+#experience .section-experience .slide-1 .owl-next {
+    top: 25%;
+    transform: translateY(-50%);
+}
+
+/* 1. Ép các slide bằng nhau nhưng không làm biến dạng nội dung */
+#experience .section-experience .slide-1 .owl-stage {
+    display: flex !important;
+}
+
+#experience .section-experience .slide-1 .owl-item {
+    display: flex;
+    height: auto; /* Để stage quyết định chiều cao */
+}
+
+#experience .section-experience .slide-1 .owl-item .item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Keep inheriting section-itinerary styles, but avoid itinerary card padding
+   shrinking experience desktop cards in bundled CSS. */
+#experience .section-experience .itinerary-cruise .list-itinerary-cruise.row > [data-group] > .item {
+    padding: 0;
+    width: 100%;
+}
+
+#experience .section-experience .item-header {
+    flex: 0 0 auto; 
+    overflow: hidden;
+}
+
+#experience .section-experience .item-body {
+    flex: 1 1 auto; 
+    display: flex;
+    flex-direction: column;
+}
+
+#experience .section-experience .item-footer {
+    margin-top: auto;
+    flex: 0 0 auto;
+}
+
+#experience .section-experience .filter {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    #experience .section-experience .filter {
+        margin-bottom: 2.25rem;
+    }
+}
+
+#experience .section-experience .filter .list-item {
+    margin: -.5rem;
+}
+
+#experience .section-experience .filter .list-item .item {
+    padding: .5rem;
+}
+
+#experience .section-experience .filter .list-item .item button {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: .375rem .75rem;
+    background-color: #ffffff66;
+}
+
+#experience .section-experience.bg.bg-tender-white .filter .list-item .item button:not(.active) {
+    background-color: #a9aba6;
+}
+
+@media (min-width: 768px) {
+    #experience .section-experience .filter .list-item .item button {
+        min-width: 120px;
+    }
+}
+
+#experience .section-experience .filter .list-item .item button.active {
+    background-color: #c8a84b;
+}
+
+#experience .section-experience .list-itinerary-cruise .item .item-header .image-wrapper:after {
+    padding-top: 78.71720116618076%;
+}
+
+@media (min-width: 768px) {
+    #experience .section-experience .list-itinerary-cruise .item .item-header .image-wrapper:after {
+        padding-top: 123.4939759036145%;
+    }
+}
+
+#experience .section-experience .list-itinerary-cruise .item .item-body .sub-title {
+    font-size: 1rem;
+    line-height: 1.416666666666667;
+    color: var(--color-forest);
+}
+
+#experience .section-experience .list-itinerary-cruise .item .item-body .price {
+    margin-bottom: .75rem;
+    line-height: 1.4;
+}
+
+#experience .section-experience .list-itinerary-cruise .item .item-body .price .value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.125rem;
+    letter-spacing: -0.1px;
+    color: #c8a84b;
+}
+
+#experience .section-experience .item-body .title {
+    margin-bottom: 0.75rem;
+}
+
+#experience .section-experience .item-footer {
+    padding-top: 0.75rem;
+    
+}
+
+#experience .section-experience .item-body .sub-title .description {
+    color: var(--color-body);
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+#experience .section-experience .item-body .sub-title ul {
+    color: var(--color-body);
+    font-size: 1rem;
+    padding-left: 1.75rem;
+
+}
+
+/* 
+#experience .section-experience .slide-1 .item-body .sub-title {
+    min-height: 7.5rem; 
+} */
+

@@ -1,0 +1,90 @@
+@extends('backend::layouts.master')
+
+@php
+    $typeName = Route::current()->parameter('typeName');
+    $languageCode = Route::current()->parameter('languageCode');
+@endphp
+
+@section('content')
+    @include('backend::shared.message')
+    <h1 class="h3 mb-4 text-center">{{ $title }}</h1>
+    {{ Form::open(['route' => [Utilities::getRouteName('backend.category.update'), ['languageCode' => $languageCode, 'typeName' => $typeName, 'id' => $obj->id, 'lastUrl' => Request::get('lastUrl')]], 'id' => 'frm']) }}
+        <div class="row">
+            <div class="col-lg-8">    
+                <div class="card">
+                    <div class="card-header">
+                        <p class="h5 m-0">Thông tin chính</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Tên <span class="text-danger">*</span></label>
+                                <div class="col-md-8">
+                                    {{ Form::text('name', old('name', $obj->name), ['class' => 'form-control', 'placeholder' => 'Nhập tên...', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Slug <span class="text-danger">*</span></label>
+                                <div class="col-md-8">
+                                    {{ Form::text('slug', old('slug', $obj->slug), ['class' => 'form-control', 'placeholder' => 'Nhập slug...', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Chuyên mục cha</label>
+                                <div class="col-md-8">
+                                    <div class="select2">
+                                        {{ Form::select('parent_id', $listParent, old('parent_id', $obj->parent_id), ['class' => 'form-control', 'placeholder' => 'Chọn', 'autocomplete' => 'off']) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Biểu tượng</label>
+                                <div class="col-md-8">
+                                    {{ Form::text('icon', old('icon', $obj->icon), ['class' => 'form-control', 'placeholder' => 'Nhập biểu tượng...', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Mô tả</label>
+                                <div class="col-md-8">
+                                    {{ Form::textarea('description', old('description', $obj->description), ['rows'=> 5, 'class' => 'form-control', 'placeholder' => 'Nhập mô tả...', 'autocomplete' => 'off']) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="h5 m-0">Thông tin SEO</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label>Tiêu đề</label>
+                                {{ Form::text('seo_title', old('seo_title', $obj->seo_title), ['class' => 'form-control', 'placeholder' => 'Nhập tiêu đề...', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                {{ Form::text('seo_description', old('seo_description', $obj->seo_description), ['class' => 'form-control', 'placeholder' => 'Nhập mô tả...', 'maxlength' => 255, 'autocomplete' => 'off']) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{ Form::close() }}
+@endsection
+
+@section('footer')
+    <footer class="c-footer c-footer-sticky pl-0 pr-0">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-primary btn-sm" onclick="$('#frm').submit()">
+                <i class="fas fa-save"></i> Lưu lại
+            </button>
+            <a href="{{ Utilities::getGoBackUrl(route(Utilities::getRouteName('backend.category.index'), ['languageCode' => $languageCode, 'typeName' => $typeName])) }}" class="btn btn-light btn-sm">
+                <i class="fas fa-undo"></i> Quay lại
+            </a>
+        </div>
+    </footer>
+@endsection

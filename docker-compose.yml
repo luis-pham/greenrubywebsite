@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+    app:
+        container_name: green-ruby-cms
+        image: ${DOCKER_REGISTRY-}green-ruby/cms
+        restart: always
+        volumes:
+            - storage:/var/www/html/storage
+            - upload:/var/www/html/public/upload
+        environment:
+            - APP_ENV=production
+            - APP_DEBUG=false
+            - APP_URL=https://testing-greenruby.amitech.vn
+            - ASSET_URL=https://testing-greenruby.amitech.vn
+            - DB_HOST=192.168.31.221
+            - DB_DATABASE=green_ruby
+            - DB_USERNAME=hungnq
+            - DB_PASSWORD=hungnq1122
+            - FFMPEG_PATH=/usr/bin/ffmpeg
+            - FFPROBE_PATH=/usr/bin/ffprobe
+            - IMAGE_PROXY_CACHE_ENABLED=false
+            - IMAGE_PROXY_QUALITY=60
+        build:
+            context: .
+            dockerfile: Dockerfile
+            network: host
+        ports:
+            - "8082:80"
+        networks:
+            - amitech-dmz
+            - amitech-private
+networks:
+    amitech-dmz:
+        external: true
+        driver: bridge
+    amitech-private:
+        external: true
+        driver: bridge
+volumes:
+    storage:
+        driver: local
+    upload:
+        driver: local

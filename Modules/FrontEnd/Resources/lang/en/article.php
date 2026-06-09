@@ -1,0 +1,20 @@
+<?php
+return [
+    'page_cover_title' => 'Stories from the Bay',
+    'page_cover_description' => 'Guides, tales & green journeys - curated by Green Ruby Cruises',
+    'category_default_title' => 'Green Ruby Editorial',
+    'category_default_sub_title' => 'Latest Articles',
+    'article_popular' => 'Popular News',
+    'search_placeholder' => 'Search for content',
+    'button_learn_more' => 'Learn more',
+    'button_back' => 'Back to %s',
+    'share_this_article' => 'Share this article',
+    'section_call_to_action_title' => 'Ready to write your own story?',
+    'section_call_to_action_description' => 'Explore our itineraries and start your journey through the breathtaking landscapes of Ha Long Bay.',
+    'section_call_to_action_button_itineraries' => 'See Itineraries',
+    'section_call_to_action_button_contact' => 'Contact Us',
+    'section_call_to_action_2_title' => 'Ready for an Unforgettable Trip?',
+    'section_call_to_action_2_description' => 'Book today to receive special offers and secure a luxurious experience in Ha Long Bay.',
+    'section_article_related_title' => 'You Might Also Like',
+    'section_article_related_description' => 'Discover more stories from Ha Long Bay',
+];

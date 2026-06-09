@@ -1,0 +1,163 @@
+/* Ảnh đại diện cabin: override config CSS (max-width 200px) để hiển thị lớn hơn */
+#cabin-form .box-image-link .img-image-link {
+    max-width: 100%;
+    min-width: 200px;
+}
+
+@media (max-width: 1534px) {
+    #cabin-form .col-cabin-field {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+@media (min-width: 1535px) {
+    #cabin-form .col-cabin-field {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+#cabin-form .room-desc-display {
+    word-break: break-word;
+}
+#cabin-form .room-title-display {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+#cabin-show-card #selected-rooms .room-title-display {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+    margin-bottom: 0.25rem;
+}
+#cabin-show-card #selected-rooms .room-desc-display {
+    display: block;
+    word-break: break-word;
+}
+#cabin-form .amenity-pill .amenity-name,
+#cabin-form .audience-pill .audience-name-display {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+#cabin-form .audience-pill .audience-name-display {
+    cursor: default;
+    flex-grow: 1;
+}
+#cabin-form .cabin-pill-icon {
+    font-size: 1.25rem;
+    width: 1.5rem;
+    min-width: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+#cabin-form #price-table .th-duration,
+#cabin-form #price-table th:first-child {
+    width: 150px;
+}
+#cabin-form #price-table .td-duration,
+#cabin-form #price-table td:first-child {
+    width: 150px;
+}
+#cabin-form #price-table .price-input,
+#cabin-form #price-table .price-input-full {
+    width: 100%;
+}
+#cabin-index-card .cabin-summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+#cabin-index-card .cabin-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+#cabin-index-card .cabin-cruise-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+#cabin-index-card .cabin-index-thumb {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+}
+#cabin-index-card .cabin-index-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#cabin-index-card .cabin-index-badge {
+    top: 2px;
+    right: 2px;
+    font-size: 0.7rem;
+}
+#cabin-index-card #cabin-index-table th:first-child,
+#cabin-index-card #cabin-index-table td:first-child {
+    min-width: 220px;
+}
+#cabin-index-card #cabin-index-table th.cabin-col-type,
+#cabin-index-card #cabin-index-table td:nth-child(2) { min-width: 120px; }
+#cabin-index-card #cabin-index-table th.cabin-col-capacity,
+#cabin-index-card #cabin-index-table td:nth-child(3) { min-width: 90px; }
+#cabin-index-card #cabin-index-table th.cabin-col-area,
+#cabin-index-card #cabin-index-table td:nth-child(4) { min-width: 80px; }
+#cabin-index-card #cabin-index-table th.cabin-col-type { width: 150px; }
+#cabin-index-card #cabin-index-table th.cabin-col-capacity { width: 100px; }
+#cabin-index-card #cabin-index-table th.cabin-col-area { width: 100px; }
+#cabin-index-card #cabin-index-table th.cabin-col-price { width: 120px; min-width: 150px; }
+#cabin-index-card #cabin-index-table td:nth-child(5) { min-width: 150px; }
+#cabin-index-card #cabin-index-table td .cabin-price-value { white-space: nowrap; }
+#cabin-index-card #cabin-index-table th.cabin-col-cruise { width: 180px; min-width: 140px; }
+#cabin-index-card #cabin-index-table td:nth-child(6) { min-width: 140px; }
+#cabin-index-card #cabin-index-table th.cabin-col-actions { width: 110px; min-width: 100px; }
+#cabin-index-card #cabin-index-table td:nth-child(7) { min-width: 100px; }
+#cabin-show-card .cabin-show-image {
+    max-width: 300px;
+}
+#cabin-show-card .room-pill {
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8f9fa;
+}
+#cabin-show-card .amenity-pill,
+#cabin-show-card .audience-pill {
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8f9fa;
+}
+#cabin-show-card .amenity-pill .amenity-name,
+#cabin-show-card .audience-pill .audience-name-display {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+#cabin-show-card .audience-pill .audience-name-display {
+    cursor: default;
+    flex-grow: 1;
+}
+#cabin-show-card .cabin-pill-icon {
+    font-size: 1.25rem;
+    width: 1.5rem;
+    min-width: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}

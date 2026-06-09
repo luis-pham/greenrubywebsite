@@ -1,0 +1,5 @@
+@media (min-width: 1200px) {
+    #main #page-error .section-cover .page-cover .image-wrapper:after {
+        padding-top: 25%;
+    }
+}

@@ -1,0 +1,317 @@
+@import url('/assets/frontend/fonts/helvetica-neus/style.css');
+@import url('/assets/frontend/fonts/merriweather/style.css');
+
+body {
+    font-family: 'Helvetica Neus', sans-serif;
+    font-size: 16px;
+    color: #303030;
+}
+
+@media only screen and (min-width: 576px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body {
+        font-size: 17px;
+    }
+}
+
+body a {
+    color: #32c36c;
+}
+
+body p {
+    line-height: 1.5;
+    margin: 0px 0px 15px 0px;
+    word-wrap: break-word;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+    margin: 20px 0px 15px 0px;
+    font-family: 'Merriweather';
+    font-weight: bold;
+    line-height: 1.5;
+    color: #32c36c;
+}
+
+@media only screen and (min-width: 576px) {
+    body h1 {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body h1 {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    body h2 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body h2 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    body h3 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body h3 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    body h4 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body h4 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    body h5 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body h5 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    body h6 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    body h6 {
+        font-size: 16px;
+    }
+}
+
+body table tr td {
+    min-width: 50px;
+    padding: 5px 10px;
+    border: 1px solid #e3e3e3;
+}
+
+body ul {
+    list-style-position: inside;
+    padding-left: 0px;
+    margin: 0px 0px 15px 0px;
+}
+
+body ul li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+body ol {
+    list-style-position: inside;
+    padding-left: 0px;
+    margin: 0px 0px 15px 0px;
+}
+
+body ol li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+/* ========== Image ========== */
+body img {
+    max-width: 100%;
+    height: auto;
+}
+
+body video {
+    width: 100%;
+    height: auto;
+}
+
+body audio {
+    width: 100%;
+}
+
+/* ========== Box Media ========== */
+body .box-media {
+    display: block;
+}
+
+body .box-media .content {
+    min-height: 60px;
+    display: block;
+
+    /* Begin Edit */
+    position: relative;
+    border: 2px dashed #ff0000;    
+    /* End Edit */
+}
+
+body .box-media.align-left,
+body .box-media.align-center,
+body .box-media.align-right {
+    float: none;
+}
+
+/* Begin Edit */
+body .box-media .content:empty:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #666;
+    z-index: 1;
+}
+/* End Edit */
+
+body .box-media .content img {
+    width: 100%;
+}
+
+body .box-media .caption {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    padding: 5px 0px;
+}
+
+/* ========== Box Media Default ========== */
+body .box-media-default {
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 575px) {
+    body .box-media-default {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+
+/* Begin Edit */
+body .box-media-default .content:empty:before {
+    content: 'Ảnh/Video mặc định';
+}
+/* End Edit */
+
+body .box-media-default .caption {
+    width: 100%;
+}
+
+/* ========== Box Media Left ========== */
+body .box-media-left {
+    float: left;
+    padding-right: 15px;
+    width: 50%;
+}
+
+/* Begin Edit */
+body .box-media-left .content:empty:before {
+    content: 'Ảnh/Video trái';
+}
+/* End Edit */
+
+body .box-media-left .caption {
+    width: 100%;
+}
+
+/* ========== Box Media Right ========== */
+body .box-media-right {
+    float: right;
+    margin-left: 15px;
+    width: 50%;
+}
+
+/* Begin Edit */
+body .box-media-right .content:empty:before {
+    content: 'Ảnh/Video phải';
+}
+/* End Edit */
+
+body .box-media-right .caption {
+    width: 100%;
+}
+
+/* ========== Box Quote ========== */
+body .box-quote {
+    position: relative;
+    display: block;
+    background: #ba866e;
+    padding: 15px 15px 15px 45px;
+    color: #fff;
+}
+
+body .box-quote:after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 4px;
+    height: calc(100% - 30px);
+    background-color: #fff;
+}
+
+/* ========== Embed Iframe ========== */
+body .embed-iframe {
+	position: relative;
+	height: 0;
+    margin-bottom: 15px;
+    padding-bottom: 100%;
+}
+
+@media only screen and (max-width: 575px) {
+    body .embed-iframe {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+
+body .embed-iframe.iframe-4-3 {
+    padding-bottom: 75%;
+}
+
+body .embed-iframe.iframe-16-9 {
+	padding-bottom: 56.25%;
+}
+
+@media only screen and (max-width: 575px) {
+	body .embed-iframe.iframe-16-9 {
+		padding-bottom: 62.5%;
+	}
+}
+
+body .embed-iframe iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+body .embed-iframe .mce-preview-object {
+    position: unset;
+}

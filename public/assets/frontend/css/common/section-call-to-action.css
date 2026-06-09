@@ -1,0 +1,82 @@
+#main .section-call-to-action .container-fluid {
+    background: url('/assets/frontend/images/bg-section-call-to-action-mobile.jpg') center bottom no-repeat;
+    background-size: cover;
+}
+
+#main .section-call-to-action .section-description,
+#main .section-call-to-action .content {
+    margin-bottom: 1.5rem;
+}
+
+#main .section-call-to-action .content {
+    font-family: var(--font-display);
+    text-align: center;
+}
+
+#main .section-call-to-action .list-button {
+    display: grid;
+    grid-template-columns: max-content;
+    gap: .75rem;
+    justify-content: center;
+}
+
+@media (min-width: 576px) {
+    #main .section-call-to-action .container-fluid {
+        background: url('/assets/frontend/images/bg-section-call-to-action.jpg') center no-repeat;
+    }
+
+    #main .section-call-to-action .list-button {
+        grid-template-columns: auto auto;
+        justify-content: start;
+    }
+
+    #main .section-call-to-action .section-title,
+    #main .section-call-to-action .section-description,
+    #main .section-call-to-action .content {
+        text-align: left;
+    }
+
+    #main .section-call-to-action .section-description,
+    #main .section-call-to-action .content {
+        margin-bottom: 1rem;
+    }
+
+    #main .section-call-to-action .content {
+        padding: .3125rem 0;
+    }
+}
+
+@media (min-width: 768px) {
+    #main .section-call-to-action .section-wrapper {
+        width: 763px;
+        max-width: 100%;
+    }
+
+    #main .section-call-to-action .list-button {
+        gap: 1.5rem;
+    }
+}
+
+#main .section-call-to-action .list-button .item a.btn-success,
+#main .section-contact .list-btn a.btn-success {
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-cream-70);
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 12px 28px;
+    border: 0.5px solid rgba(240, 236, 228, 0.25);
+    box-shadow: none;
+}
+
+#main .section-call-to-action .list-button .item a.btn-success:hover,
+#main .section-call-to-action .list-button .item a.btn-success:focus,
+#main .section-contact .list-btn a.btn-success:hover,
+#main .section-contact .list-btn a.btn-success:focus {
+    background: transparent;
+    color: var(--color-cream-70);
+    border: 0.5px solid rgba(240, 236, 228, 0.25);
+    box-shadow: none;
+}

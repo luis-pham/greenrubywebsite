@@ -1,0 +1,47 @@
+.list-file {
+    margin: -5px;
+}
+
+.list-file [class^="col-"] {
+    padding: 5px;
+}
+
+.list-file .custom-control {
+    z-index: 1;
+    left: 5px;
+    top: 5px;
+    transform-origin: top left;
+    transform: scale(1.25);
+}
+
+.list-file .item {
+    border: 1px solid #e3e3e3;
+}
+
+.list-file .item .name {
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+.image-wrapper .icon {
+    top: 0;
+    left: 0;
+}
+
+.image-wrapper .icon i:before {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    font-size: 70px;
+    color: #dadada;
+}
+
+#modal-upload .dropzone {
+    border: 1px dashed #56cfe1;
+}

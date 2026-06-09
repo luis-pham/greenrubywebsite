@@ -1,0 +1,346 @@
+/* Declare Font */
+@import url('../fonts/inter/style.css');
+
+/* Override CoreUI */
+body {
+    font-family: 'Inter',-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+}
+
+button:focus {
+    outline: none;
+}
+
+.c-app {
+    background-color: #f3f3f4;
+}
+
+.c-sidebar {
+    background-color: #122f3b;
+}
+
+.c-sidebar-nav-link, .c-sidebar-nav-dropdown-toggle {
+    white-space: normal;
+}
+
+.c-sidebar-nav-icon {
+    line-height: 1.09375rem;
+}
+
+.c-icon:not(.c-icon-c-s):not(.c-icon-custom-size) {
+    line-height: 1.3rem;
+}
+
+.c-footer {
+    background: #fff;
+}
+
+.btn-warning,
+.btn-warning:hover,
+.btn-warning.disabled,
+.btn-warning:disabled {
+    color: #fff;
+}
+
+/* Extend CoreUI */
+.c-footer.c-footer-sticky {
+    position: sticky;
+    bottom: 0px;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .c-footer.c-footer-sticky > .container-fluid,
+    .c-footer.c-footer-sticky > .container-sm,
+    .c-footer.c-footer-sticky > .container-md,
+    .c-footer.c-footer-sticky > .container-lg,
+    .c-footer.c-footer-sticky > .container-xl {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+
+.c-dark-theme select.form-control option {
+    background: #23242d;
+}
+
+/* Override Select2 */
+.select2-selection__rendered {
+    line-height: 32px !important;
+}
+
+.select2-selection:not(.select2-selection--multiple) {
+    height: 36px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 34px !important;
+}
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid #d8dbe0;
+}
+
+.c-dark-theme .select2-container--default .select2-selection--single {
+    color: #e1e1e1;
+    background-color: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.15);
+}
+
+.c-dark-theme .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #e1e1e1;
+}
+
+.c-dark-theme .select2-dropdown,
+.c-dark-theme .select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: #23242d;
+}
+
+.c-dark-theme .select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: #0a0b18;
+}
+
+/* Override Dropzone */
+.dropzone {
+    background-color: #fff;
+    border: 1px dashed #1ab394;
+    padding: 20px 20px;
+    font-size: 16px;
+    min-height: 140px;
+}
+
+/* Override jQuery UI */
+.ui-sortable-handle {
+    cursor: move;
+ }
+
+ /* Override Tiny MCE */
+.tox i {
+    font-size: 20px !important;
+}
+
+.tox i:hover {
+    cursor: pointer !important;
+}
+
+.tox i.fab {
+    font-family: 'Font Awesome 5 Brands' !important;
+}
+
+.tox i.fal,
+.tox i.far {
+    font-family: 'Font Awesome 5 Pro' !important;
+}
+
+.tox i.fa,
+.tox i.fas {
+    font-family: 'Font Awesome 5 Pro' !important;
+    font-weight: 900;
+}
+
+/* Common */
+:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 575px) {
+    .table-responsive-sm .table-data {
+        width: 1000px;
+    }
+}
+
+.table-data .image-wrapper {
+    width: 60px;
+}
+
+/* Loading */
+.loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.loading .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loading .wrapper .icon {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+}
+
+body.show-loading {
+    overflow: hidden;
+}
+
+body.show-loading .loading {
+    display: block;
+}
+
+/* Page-loading overlay */
+.page-loading-overlay {
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Give Ellipsis */
+.give-ellipsis {
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.give-ellipsis.after-1-lines {
+    -webkit-line-clamp: 1;
+}
+
+.give-ellipsis.after-2-lines {
+    -webkit-line-clamp: 2;
+}
+
+.give-ellipsis.after-3-lines {
+    -webkit-line-clamp: 3;
+}
+
+.give-ellipsis.after-4-lines {
+    -webkit-line-clamp: 4;
+}
+
+.give-ellipsis.after-5-lines {
+    -webkit-line-clamp: 5;
+}
+
+/* Image Wrapper */
+.image-wrapper:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.image-wrapper.active:before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+}
+
+.image-wrapper.image-16-9:after {
+    padding-top: 56.25%;
+}
+
+.image-wrapper.image-3-2:after {
+    padding-top: 66.66667%;
+}
+
+.image-wrapper.image-4-3:after {
+    padding-top: 75%;
+}
+
+.image-wrapper img {
+    object-fit: cover;
+}
+
+/* Article Content */
+.c-dark-theme .article-content {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.c-dark-theme .article-content {
+    background-color: #fff;
+}
+
+/* Login */
+#login .logo {
+    width: 160px;
+}
+
+#login .page-title {
+    font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+    #login .logo {
+        width: 200px;
+    }
+
+    #login .page-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Page header (breadcrumb + action buttons) – responsive trên mobile */
+.page-header-row {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.page-header-breadcrumb {
+    min-width: 0;
+}
+.page-header-breadcrumb .breadcrumb {
+    flex-wrap: wrap;
+}
+.page-header-actions {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+@media (max-width: 767px) {
+    .page-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .page-header-breadcrumb {
+        order: 1;
+        font-size: 0.875rem;
+    }
+    .page-header-breadcrumb .breadcrumb {
+        font-size: inherit;
+    }
+    .page-header-actions {
+        order: 2;
+        justify-content: flex-start;
+    }
+}
+
+.select2-multiple + .select2 .select2-selection__rendered {
+    min-height: 45px;
+    position: relative;
+    padding-right: 10px;
+}
+
+.select2-multiple + .select2 .select2-selection__rendered .select2-selection__clear {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+}
+
+.select2-multiple + .select2 .select2-selection__choice {
+    margin-bottom: 5px;
+    margin-right: 10px;
+}

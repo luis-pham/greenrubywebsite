@@ -1,0 +1,43 @@
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Laravel — environment & secrets
+.env
+.env.*
+!.env.example
+
+# Docker production config (DB passwords — keep on server only)
+docker-compose-production.yml
+
+# PHP / Composer
+/vendor/
+.phpunit.result.cache
+.phpunit.cache
+Homestead.json
+Homestead.yaml
+
+# Node / front-end build
+/node_modules/
+npm-debug.log
+yarn-error.log
+/public/hot
+/public/mix-manifest.json
+/public/assets/frontend/dist/
+
+# User uploads & generated public storage
+/public/storage
+/public/upload
+
+# Laravel storage (runtime; structure kept via storage/*/.gitignore)
+/storage/*.key
+
+# Logs & debug
+*.log
+
+# Lock files: keep yarn.lock for Docker build (yarn install --frozen-lockfile)
+package-lock.json

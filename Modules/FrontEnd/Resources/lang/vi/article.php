@@ -1,0 +1,18 @@
+<?php
+return [
+    'page_cover_title' => 'Những câu chuyện từ vịnh',
+    'page_cover_description' => 'Hướng dẫn, câu chuyện và hành trình xanh - được tuyển chọn bởi Green Ruby Cruises',
+    'category_default_title' => 'Bài viết của Green Ruby',
+    'category_default_sub_title' => 'Bài viết mới',
+    'article_popular' => 'Bài viết phổ biến',
+    'search_placeholder' => 'Tìm kiếm nội dung',
+    'button_learn_more' => 'Tìm hiểu thêm',
+    'button_back' => 'Quay lại %s',
+    'share_this_article' => 'Chia sẻ bài viết',
+    'section_call_to_action_title' => 'Sẵn sàng viết câu chuyện của bạn?',
+    'section_call_to_action_description' => 'Khám phá lịch trình và bắt đầu hành trình qua những kỳ quan thiên nhiên của Vịnh Hạ Long.',
+    'section_call_to_action_button_itineraries' => 'Xem hành trình',
+    'section_call_to_action_button_contact' => 'Liên hệ',
+    'section_article_related_title' => 'Có thể bạn thích',
+    'section_article_related_description' => 'Khám phá thêm bài viết Vịnh Hạ Long',
+];

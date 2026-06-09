@@ -1,0 +1,25 @@
+<?php
+return [
+    'from' => 'Từ',
+    'person' => 'người',
+    'section-cover.btn-book' => 'Đặt Chuyến Đi',
+    'section-cover.btn-watch' => 'Xem Hành Trình',
+    'section-info.title' => 'Thông Số Kỹ Thuật Du Thuyền',
+    'section-info.description' => 'Khám phá những con số ấn tượng của :name',
+    'section-info.length' => 'CHIỀU DÀI (M)',
+    'section-info.cabin' => 'CABIN',
+    'section-info.guests' => 'SỨC CHỨA',
+    'section-info.year-of-manufacture' => 'NĂM SẢN XUẤT',
+
+    'section-vr-360.title' => 'Thư Viện Ảnh',
+    'section-vr-360.description' => 'Trải nghiệm tour du thuyền thực tế ảo - VR 360',
+    'section-cabin-and-service.cabin-container-title' => 'Không gian cao cấp với tiện nghi sang trọng - Tiêu chuẩn',
+    'section-cabin-and-service.service-container-title' => 'Dịch vụ cao cấp - Trải nghiệm xứng tầm',
+    'section-itinerary.title' => 'Hành Trình & Lịch Trình',
+    'section-itinerary.description' => 'Khám phá Vịnh Hạ Long với những lịch trình đặc biệt',
+    'section-itinerary.list-activity-container.key-features' => 'Trài Nghiệm',
+    'section-cabin.title' => 'Lưu Trú & Đặt Phòng',
+    'section-cabin.description' => 'Chọn nơi lưu trú hoàn hảo cho chuyến đi của bạn',
+    'section-call-to-action.content' => 'Đặt ngay hôm nay để nhận ưu đãi đặc biệt và trải nghiệm sang trọng tại Vịnh Hạ Long.',
+    'section-call-to-action.description' => 'Sẵn sàng cho một chuyến đi không thể quên?',
+];

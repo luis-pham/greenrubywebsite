@@ -1,0 +1,296 @@
+.modal-service .slide-1 .owl-nav .button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+    .modal-service .slide-1 .owl-nav .button {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.375rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal-service .slide-1 .owl-nav .button {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+    }
+
+    .modal-service .slide-1 .owl-prev {
+        left: 24px;
+    }
+
+    .modal-service .slide-1 .owl-next {
+        right: 24px;
+    }
+}
+
+.modal-service .slide-1 .owl-nav .owl-next .button,
+.modal-service .slide-1 .owl-nav .owl-prev .button {
+    background-color: #0e5f4b;
+}
+
+.modal-service .slide-1 .owl-nav .disabled {
+    opacity: unset;
+}
+
+.modal-service .slide-1 .owl-nav .disabled .button {
+    background-color: #ffffff4d;
+}
+
+.modal-service .modal-header,
+.modal-service .modal-footer {
+    padding: .75rem 1rem;
+}
+
+.modal-service .modal-header .close {
+    margin: -.75rem -1rem -.75rem auto;
+}
+
+@media (min-width: 768px) {
+    .modal-service .modal-xl {
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-service .modal-xl {
+        max-width: 950px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal-service .modal-xl {
+        max-width: 1000px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .modal-service .modal-header,
+    .modal-service .modal-footer {
+        padding: .75rem 1.5rem;
+    }
+
+    .modal-service .modal-body {
+        padding: 1.5rem;
+    }
+}
+
+.modal-service .modal-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: #c8a84b;
+}
+
+.modal-service .modal-body .image {
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 992px) {
+    .modal-service .modal-body .image {
+        width: 70%;
+        margin-bottom: 0;
+    }
+
+    .modal-service .modal-body .main-info {
+        width: 30%;
+        padding-left: 1.25rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .modal-service .modal-body .image {
+        width: 72%;
+    }
+
+    .modal-service .modal-body .main-info {
+        width: 28%;
+    }
+}
+
+.modal-service .modal-body .image .thumbnail {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+    z-index: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    user-select: none;
+}
+
+.modal-service .modal-body .image .thumbnail::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-service .modal-body .image .thumbnail.is-dragging {
+    cursor: grabbing;
+}
+
+.modal-service .modal-body .image .thumbnail .list-thumbnail {
+    gap: .5rem;
+}
+
+.modal-service .modal-body .image .thumbnail .list-thumbnail .item {
+    flex: 0 0 auto;
+    width: 80px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+.modal-service .modal-body .image .thumbnail .list-thumbnail .item .image-wrapper:after {
+    padding-top: 53.84615384615385%;
+}
+
+.modal-service .modal-body .image .thumbnail .list-thumbnail .item.active {
+    border-color: #c8a84b;
+}
+
+.modal-service .modal-body .image .thumbnail .list-thumbnail .item img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+@media (min-width: 768px) {
+    .modal-service .modal-body .image .thumbnail .list-thumbnail .item {
+        width: 90px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal-service .modal-body .image .thumbnail .list-thumbnail {
+        gap: .75rem;
+    }
+
+    .modal-service .modal-body .image .thumbnail .list-thumbnail .item {
+        width: 130px;
+    }
+}
+
+.modal-service .modal-body .main-info .main-info-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: #c8a84b;
+    line-height: 1.2;
+}
+
+.modal-service .modal-body .main-info .service-info-description
+ {
+
+    padding-top: .5rem;
+}
+
+.modal-service .modal-body .main-info .info-label {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #c8a84b;
+    margin-bottom: .25rem;
+}
+
+.modal-service .modal-body .main-info .service-description {
+    font-size: 1rem;
+    color: var(--color-body);
+}
+
+.modal-service .modal-body .main-info .service-price {
+    border-top: 1px dashed #D6D3CC;
+    border-bottom: 1px dashed #D6D3CC;
+    font-size: 1rem;
+    color: var(--color-body);
+    font-weight: 700;
+    padding-bottom: 0.75rem;
+}
+
+.modal-service .modal-body .main-info .service-price .value {
+    font-family: var(--font-display);
+    font-size: 2.125rem;
+    letter-spacing: -0.1px;
+    color: #c8a84b;
+}
+
+.modal-service .modal-body .main-info .service-type-label {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: .25rem .75rem;
+    border-radius: 5px;
+    background-color: #A9ABA6;
+    color: white;
+}
+
+.btn-loading-local {
+    position: relative;
+    pointer-events: none; 
+    color: transparent !important; 
+}
+
+.btn-loading-local::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    margin: -9px 0 0 -9px;
+    border: 2px solid #c8a84b;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin-local 0.8s linear infinite;
+}
+
+@keyframes spin-local {
+    to { transform: rotate(360deg); }
+}
+
+.btn-view-details-disabled {
+    pointer-events: none;
+}
+
+.give-ellipsis.btn-loading-title-local {
+    position: relative;
+    color: transparent !important;
+}
+
+.give-ellipsis.btn-loading-title-local::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    margin: -9px 0 0 -9px;
+    border: 2px solid #c8a84b;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin-local 0.8s linear infinite;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.image-wrapper.image-loading-dim {
+    position: relative;
+}
+
+.image-wrapper.image-loading-dim::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 1;
+    z-index: 3;
+    pointer-events: none;
+}
+

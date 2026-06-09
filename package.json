@@ -1,0 +1,26 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "nodemon --watch webpack.mix.js --ext js --exec \"yarn watch-poll\"",
+        "watch": "PATH=node_modules/.bin:$PATH mix watch",
+        "watch-poll": "PATH=node_modules/.bin:$PATH mix watch -- --watch-options-poll=1000",
+        "hot": "PATH=node_modules/.bin:$PATH mix watch --hot",
+        "prod": "PATH=node_modules/.bin:$PATH mix --production"
+    },
+    "devDependencies": {
+        "axios": "^0.19",
+        "cross-env": "^7.0",
+        "laravel-mix": "6.0",
+        "lodash": "^4.17.13",
+        "nodemon": "^3.1.14",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.15.2",
+        "sass-loader": "^8.0.0",
+        "webpack": "5.88.2",
+        "webpack-cli": "4.10.0"
+    },
+    "resolutions": {
+        "webpack": "5.88.2",
+        "webpack-cli": "4.10.0"
+    }
+}
