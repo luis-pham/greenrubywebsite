@@ -2347,14 +2347,34 @@ body.menu-mobile-show{
         overflow-x: hidden;
     }
 
-    /* Bottom safe area — màu footer */
     body {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Safe-area dưới footer — không đặt background trên body
+       (body bg làm z-index:-1 pseudo-elements bị mất) */
+    #footer {
         padding-bottom: env(safe-area-inset-bottom);
         background-color: #060f09;
     }
 
     #header > .container-fluid {
         padding-top: env(safe-area-inset-top);
+    }
+
+    /* Pseudo ::before/::after z-index:-1 — tạo stacking context */
+    #home .section-7 .container-fluid,
+    #main .section-testimonial .container-fluid {
+        isolation: isolate;
+    }
+
+    /* Tailored Experiences — nền tối vùng title + tabs */
+    #home .section-9 {
+        background-color: #0e1f2d;
+    }
+
+    #home .section-9 .list-item .item .main-info-wrapper {
+        isolation: isolate;
     }
 
     /* Hero owl carousel — tránh tràn ngang */
