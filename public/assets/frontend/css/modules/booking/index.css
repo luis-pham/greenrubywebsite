@@ -514,7 +514,7 @@
   isolation: isolate;
   z-index: 0;
   font-size: 1.375rem;
-  color: #c8a84b;
+  color: #C8A84B;
   font-family: Font Awesome 6 Free;
 }
 #booking-page .itinerary-card-content {
@@ -576,7 +576,7 @@
   font-weight: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  color: #000;
+  color: #0D2B1A;
   text-align: center;
   flex-shrink: 0;
 }
@@ -987,7 +987,7 @@
   z-index: 0;
   text-align: left;
   font-size: 1.375rem;
-  color: #c8a84b;
+  color: #C8A84B;
   font-family: var(--font-body);
   order: 3;
 }
@@ -1076,14 +1076,14 @@
 #booking-page .in-voyage-cabin-fare {
   margin: 0 0 0.5rem;
   font-size: 1rem;
-  color: #c8a84b;
+  color: #C8A84B;
   font-weight: 700;
   font-family: var(--font-body);
 }
 #booking-page .in-voyage-cabin-fare strong {
   font-size: 1rem;
   font-weight: 600;
-  color: #c8a84b;
+  color: #C8A84B;
 }
 #booking-page .in-voyage-remove-btn {
   display: inline-flex;
@@ -1244,7 +1244,7 @@
   line-height: 120%;
   font-weight: 400;
   font-family: inherit;
-  color: #c8a84b;
+  color: #C8A84B;
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
@@ -1337,7 +1337,7 @@
   letter-spacing: -0.1px;
   line-height: 120%;
   font-family: var(--font-display);
-  color: #c8a84b;
+  color: #C8A84B;
 }
 #booking-page .arrow-right-long2 {
   height: 1rem;
@@ -1762,14 +1762,14 @@
   font-weight: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  color: #000;
+  color: #0D2B1A;
   text-align: center;
 }
 #booking-page .button-icon-glyph {
   position: relative;
   font-size: 1.375rem;
   font-family: Font Awesome 6 Free;
-  color: #000;
+  color: #0D2B1A;
   text-align: left;
   flex-shrink: 0;
 }
@@ -1807,7 +1807,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 1.375rem;
-  color: #c8a84b;
+  color: #C8A84B;
 }
 #booking-page .summary-tagline {
   width: 33.875rem;
@@ -1830,7 +1830,7 @@
   position: relative;
   display: none;
   font-size: 0.875rem;
-  color: #c8a84b;
+  color: #C8A84B;
   font-family: Font Awesome 6 Free;
 }
 #booking-page .star-parent {
@@ -2240,7 +2240,7 @@
   font-weight: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  color: #000;
+  color: #0D2B1A;
   text-align: left;
   flex-shrink: 0;
 }
@@ -2279,7 +2279,7 @@
 }
 
 #booking-page .itinerary-timeline-wrap .fa-sailboat {
-  color: #c8a84b;
+  color: #C8A84B;
   font-size: 16.7px;
   width: 16.7px;
   height: 16.7px;
@@ -2289,7 +2289,7 @@
 }
 
 #booking-page .inclusions-parent .fa-check {
-  color: #c8a84b;
+  color: #C8A84B;
   font-size: 26px;
   width: 24px;
   height: 24px;
@@ -2535,7 +2535,7 @@
   line-height: 80px;
   letter-spacing: -0.1px;
   text-align: center;
-  color: #c8a84b;
+  color: #C8A84B;
 }
 
 #booking-page .complete-message {
@@ -2642,7 +2642,7 @@
 
 #booking-page .payment-inquiry-notice strong {
   color: var(--color-body);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 #booking-page .payment-row {

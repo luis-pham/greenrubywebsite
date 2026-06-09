@@ -135,7 +135,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     font-weight: 700;
     font-size: 2.125rem;
     letter-spacing: -0.1px;
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 /* Itinerary card redesign */
@@ -272,7 +272,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-book {
     background-color: #c8a84b;
     border: 1px solid #c8a84b;
-    color: #000 !important;
+    color: #0D2B1A !important;
     font-size: 15px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -289,5 +289,5 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-book:focus {
     background-color: #b8923e;
     border-color: #b8923e;
-    color: #000 !important;
+    color: #0D2B1A !important;
 }

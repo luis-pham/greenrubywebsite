@@ -95,7 +95,7 @@
 
 #itinerary .section-faq .grid-faq-inner .item .question{
     font-family: var(--font-display);
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1.375rem;
     color: #1c1f1e;
     margin-bottom: 0.75rem;
@@ -146,7 +146,7 @@
     font-weight: 700;
     font-size: 1.375rem;
     margin-bottom: 1.875rem;
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 #itinerary .section-contact .list-btn{

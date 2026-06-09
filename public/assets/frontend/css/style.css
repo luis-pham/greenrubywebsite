@@ -30,7 +30,16 @@
     --menu-mobile-z-index: 1001;
     --fabs-z-index: 1000;
     --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-body: var(--font-display);
+    --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+    /* Type scale */
+    --text-xs:   0.75rem;
+    --text-sm:   0.875rem;
+    --text-base: 1rem;
+    --text-md:   1.125rem;
+    --text-lg:   1.375rem;
+    --text-xl:   1.75rem;
+    --text-2xl:  2.5rem;
 
     /* Color tokens — Green Ruby Design System */
     --color-forest:        #0D2B1A;
@@ -104,6 +113,12 @@
     box-shadow: none !important;
 }
 
+/* Status bar top — màu navbar */
+html {
+    background-color: #0D2B1A;
+}
+
+/* Bottom safe area — màu footer */
 body {
     font-family: var(--font-body);
     font-size: clamp(1.125rem, 1.075rem + 0.15vw, 1.25rem);
@@ -111,6 +126,9 @@ body {
     line-height: 1.65;
     letter-spacing: 0;
     color: var(--color-body);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    background-color: #060f09;
 }
 
 a {
@@ -122,7 +140,7 @@ a {
 a:hover,
 a:active,
 a:focus {
-    color: #c8a84b;
+    color: #C8A84B;
     text-decoration: none;
 }
 
@@ -410,7 +428,7 @@ button {
 .list-itinerary-cruise .item .item-body .title {
     font-family: var(--font-display);
     font-size: 1.375rem;
-    color: #c8a84b;
+    color: #C8A84B;
     line-height: 1.3;
 }
 
@@ -470,7 +488,7 @@ button {
 .list-faq .item.expand .question {
     margin-bottom: .5rem;
     font-weight: 700;
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 .list-faq .item .answer {
@@ -547,7 +565,7 @@ button {
     font-family: var(--font-display);
     font-size: 1.375rem;
     line-height: 1.2;
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 .list-article .item .description {
@@ -647,7 +665,7 @@ button {
     font-family: var(--font-display);
     font-size: 1.125rem;
     line-height: 1.2;
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 /* Cookie Consent */
@@ -777,7 +795,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-warning:focus {
     background-color: #c8a84b;
     border: 1px solid #c8a84b;
-    color: #000;
+    color: #0D2B1A;
     box-shadow: none;
     font-family: var(--font-body);
     font-size: 15px;
@@ -794,14 +812,14 @@ h1, h2, h3, h4, h5, h6 {
 .btn-warning:focus {
     background-color: #b8923e;
     border-color: #b8923e;
-    color: #000;
+    color: #0D2B1A;
 }
 
 .btn-warning.disabled,
 .btn-warning:disabled {
     background-color: #c8a84b4d;
     border: none;
-    color: #000;
+    color: #0D2B1A;
 }
 
 .btn-sm.btn-warning,
@@ -1156,6 +1174,7 @@ h1, h2, h3, h4, h5, h6 {
 #header > .container-fluid {
     border-bottom: 1px solid #ffffff36;
     z-index: 2;
+    padding-top: calc(0px + env(safe-area-inset-top));
 }
 
 #header > .container-fluid:before {
@@ -1353,7 +1372,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #header .contact .list-item .item .icon,
 #header .contact .list-item .item .icon i {
-    color: #000 !important;
+    color: #0D2B1A !important;
 }
 
 #header .contact .list-item .item .icon {
@@ -1411,7 +1430,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .btn-book-now {
     padding: 14px 32px;
     background-color: #c8a84b;
-    color: #000 !important;
+    color: #0D2B1A !important;
     font-family: var(--font-body);
     font-size: 15px;
     font-weight: 500;
@@ -1423,7 +1442,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #header .btn-book-now .label,
 #header .btn-book-now i {
-    color: #000 !important;
+    color: #0D2B1A !important;
 }
 
 #header .btn-book-now .label {
@@ -1433,7 +1452,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .btn-book-now:hover,
 #header .btn-book-now:focus {
     background-color: #b8923e;
-    color: #000 !important;
+    color: #0D2B1A !important;
 }
 
 @media (min-width: 1400px) {
@@ -1629,7 +1648,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: .75rem;
     font-size: 1.375rem;
     font-weight: 700;
-    color: #c8a84b;
+    color: #C8A84B;
     line-height: 1.15;
     text-align: center;
 }
@@ -1741,7 +1760,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #c8a84b;
+    color: #C8A84B;
     font-weight: 500;
 }
 
@@ -1754,7 +1773,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer .footer-bar-contact-value a:hover {
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 #footer .footer-bar-book-btn {
@@ -1848,7 +1867,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer .footer-cert-badge-icon {
-    color: #c8a84b;
+    color: #C8A84B;
     font-size: 12px;
     flex-shrink: 0;
 }
@@ -1949,7 +1968,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer .footer-nav-link:hover {
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 #footer .footer-soon-badge {
@@ -1957,7 +1976,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     background: rgba(200, 168, 75, 0.15);
-    color: #c8a84b;
+    color: #C8A84B;
     padding: 1px 5px;
     border-radius: 3px;
     font-weight: 500;
@@ -1997,7 +2016,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer .footer-legal-link:hover {
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 #footer .footer-legal-sep {
@@ -2156,7 +2175,7 @@ body.menu-mobile-show{
 
 /*#menu-mobile .menu-mobile-inner .body .navigation .list-item .item.active > .item-body > *,*/
 #menu-mobile .menu-mobile-inner .body .navigation .list-item .item > .item-body:hover > *{
-    color: #c8a84b;
+    color: #C8A84B;
 }
 
 #menu-mobile .menu-mobile-inner .body .navigation .list-item .item.show > .item-body > i{
@@ -2193,7 +2212,7 @@ body.menu-mobile-show{
 
 #menu-mobile .menu-mobile-inner .footer .footer-inner .btn-book-now{
     border-top: 1px solid #E8DFCF;
-    color: #000;
+    color: #0D2B1A;
     padding: 14px 32px;
     font-size: 15px;
     font-weight: 500;
@@ -2317,16 +2336,73 @@ body.menu-mobile-show{
         gap: 0.75rem;
         align-items: center;
         flex-direction: row;
-        color: #000 !important;
+        color: #0D2B1A !important;
     }
 }
 
 #fabs .list-btn .btn-book-now,
 #fabs .list-btn .btn-book-now span,
 #fabs .list-btn .btn-book-now i {
-    color: #000 !important;
+    color: #0D2B1A !important;
 }
 
+/* ================================
+   FIX HORIZONTAL SCROLL MOBILE
+   ================================ */
 
+/* FIX 1: Owl Carousel overflow */
+@media (max-width: 1023px) {
+    #home .section-1 .owl-stage-outer,
+    .owl-stage-outer {
+        overflow: hidden !important;
+    }
+
+    .owl-stage {
+        max-width: 100vw;
+    }
+}
+
+/* FIX 2: Bootstrap negative margin rows */
+@media (max-width: 768px) {
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .container,
+    .container-fluid {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100vw !important;
+    }
+}
+
+/* FIX 3: Section breakout margins */
+@media (max-width: 1023px) {
+    .section-9 .slide-1 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .list-itinerary-cruise.row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* FIX 4: Global overflow lock */
+html {
+    overflow-x: hidden !important;
+}
+
+body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+}
+
+/* FIX 5: Safe area double padding */
+body {
+    padding-top: 0 !important;
+}
 
 

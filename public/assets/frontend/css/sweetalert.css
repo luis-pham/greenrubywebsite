@@ -19,7 +19,7 @@
   border-radius: 50%;
   border: none;
   background-color: #c8a84b;
-  color: #000;
+  color: #0D2B1A;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
@@ -53,7 +53,7 @@
   font-size: 20px;
   font-weight: 700;
   font-family: var(--font-display);
-  color: #c8a84b;
+  color: #C8A84B;
   text-align: center;
 }
 
