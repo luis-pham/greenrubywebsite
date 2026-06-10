@@ -27,6 +27,8 @@ return [
 
     'section-cabin.title' => 'Accommodation & Bookings',
     'section-cabin.description' => 'Choose the perfect place to stay for your trip',
+    'section-cabin.eyebrow' => 'Cabins & Suites',
+    'section-cabin.title_html' => 'Find Your <em>Perfect Cabin</em>',
 
     'section-call-to-action.content' => 'Book today to receive special offers and secure a luxurious experience in Ha Long Bay.',
     'section-call-to-action.description' => 'Ready for an unforgettable Trip?',

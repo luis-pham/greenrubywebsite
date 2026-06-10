@@ -1517,6 +1517,11 @@ h1, h2, h3, h4, h5, h6 {
         background: transparent;
     }
 
+    /* Cruise detail — header trong suốt, hero ảnh kéo lên phía sau logo */
+    #header:has(+ #main #cruise-detail .is-cruise-hero) > .container-fluid {
+        background: transparent;
+    }
+
     #header > .container-fluid:before {
         display: none;
     }

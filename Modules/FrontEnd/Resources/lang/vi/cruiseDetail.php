@@ -20,6 +20,8 @@ return [
     'section-itinerary.list-activity-container.key-features' => 'Trài Nghiệm',
     'section-cabin.title' => 'Lưu Trú & Đặt Phòng',
     'section-cabin.description' => 'Chọn nơi lưu trú hoàn hảo cho chuyến đi của bạn',
+    'section-cabin.eyebrow' => 'Phòng & Suite',
+    'section-cabin.title_html' => 'Tìm <em>Phòng Suite</em> Hoàn Hảo',
     'section-call-to-action.content' => 'Đặt ngay hôm nay để nhận ưu đãi đặc biệt và trải nghiệm sang trọng tại Vịnh Hạ Long.',
     'section-call-to-action.description' => 'Sẵn sàng cho một chuyến đi không thể quên?',
 ];

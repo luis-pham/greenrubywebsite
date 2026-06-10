@@ -12,6 +12,8 @@ use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppExpActivityService;
 use Modules\BackEnd\Services\AppGroupService;
 use Modules\BackEnd\Entities\AppGroup;
+use Modules\BackEnd\Entities\AppCruise;
+use Modules\BackEnd\Entities\AppExpActivity;
 class ExpActivityController extends Controller
 {
     private $baseView = 'backend::exp-activity.';
@@ -54,7 +56,20 @@ class ExpActivityController extends Controller
             ->orderBy('ord')
             ->get();
 
-        return view($this->baseView . __FUNCTION__, compact('title', 'listGroup', 'listSuitableAudience'));
+        $listCruise = AppCruise::where(
+            'language_id',
+            $language->id ?? config('app.language_id', 1)
+        )
+        ->orderBy('name')
+        ->get(['id', 'name']);
+
+        return view($this->baseView . __FUNCTION__, array_merge(
+            compact('title', 'listGroup', 'listSuitableAudience'),
+            [
+                'listCruise' => $listCruise,
+                'obj'        => new AppExpActivity(),
+            ]
+        ));
     }
 
     public function store(ExpActivityRequest $request)
@@ -68,6 +83,7 @@ class ExpActivityController extends Controller
                 'image_link',
                 'cover_link',
                 'group_id',
+                'cruise_id',
                 'duration',
                 'start_time',
                 'end_time',
@@ -150,7 +166,17 @@ class ExpActivityController extends Controller
         
         $galleryImages = AppExpActivityService::getActivityGallery($id);
 
-        return view($this->baseView . __FUNCTION__, compact('title', 'obj', 'listGroup', 'suitableAudiences', 'listSuitableAudience', 'galleryImages'));
+        $listCruise = AppCruise::where(
+            'language_id',
+            $language->id ?? config('app.language_id', 1)
+        )
+        ->orderBy('name')
+        ->get(['id', 'name']);
+
+        return view($this->baseView . __FUNCTION__, array_merge(
+            compact('title', 'obj', 'listGroup', 'suitableAudiences', 'listSuitableAudience', 'galleryImages'),
+            ['listCruise' => $listCruise]
+        ));
     }
 
     public function update(ExpActivityRequest $request, $id)
@@ -175,6 +201,7 @@ class ExpActivityController extends Controller
                 'image_link',
                 'cover_link',
                 'group_id',
+                'cruise_id',
                 'duration',
                 'start_time',
                 'end_time',

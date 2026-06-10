@@ -42,6 +42,14 @@ class AppCruise extends BaseModel
         return $this->belongsToMany(AppService::class,'app_cruise_service','cruise_id','service_id')->withPivot('ord')->orderByPivot('ord');
     }
 
+    public function expActivities()
+    {
+        return $this->hasMany(
+            AppExpActivity::class,
+            'cruise_id'
+        );
+    }
+
     public function itineraries(){
         return $this->belongsToMany(AppItinerary::class,'app_cruise_itinerary','cruise_id','itinerary_id')
             ->withPivot('start_at')

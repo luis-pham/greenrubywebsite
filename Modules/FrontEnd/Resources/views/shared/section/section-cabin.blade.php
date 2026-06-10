@@ -2,6 +2,8 @@
 $class = isset($class) ? $class : '';
 $title = isset($title) ? $title : '';
 $description = isset($description) ? $description : '';
+$eyebrow = $eyebrow ?? null;
+$titleHtml = $titleHtml ?? null;
 $list = isset($list) ? $list : [];
 $filters = isset($filters) && count($filters) > 0 ? $filters : [];
 $languageCode = Route::current()->parameter('languageCode');
@@ -12,11 +14,18 @@ $suitesGrid = $suitesGrid ?? false;
 <section class="{{ $class }} section-cabin bg bg-azure">
     <div class="container-fluid">
         <div class="container">
-            @if ($title)
-                <h2 class="section-title{{ $suitesGrid ? ' suite-section-eyebrow' : '' }}">{{ $title }}</h2>
+            @if ($eyebrow)
+                <p class="section-title">{{ $eyebrow }}</p>
             @endif
-            @if ($description)
-                <p class="section-description font-heading{{ $suitesGrid ? ' suite-section-title' : '' }}">{{ $description }}</p>
+            @if ($titleHtml)
+                <h2 class="section-description font-heading">{!! $titleHtml !!}</h2>
+            @else
+                @if ($title)
+                    <h2 class="section-title{{ $suitesGrid ? ' suite-section-eyebrow' : '' }}">{{ $title }}</h2>
+                @endif
+                @if ($description)
+                    <p class="section-description font-heading{{ $suitesGrid ? ' suite-section-title' : '' }}">{{ $description }}</p>
+                @endif
             @endif
             @if (count($filters) > 1)
                 <div class="tab-filter">

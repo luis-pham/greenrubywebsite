@@ -6,6 +6,9 @@
     $listBreadCrumb = $listBreadCrumb ?? [];
     $heroEyebrow = $heroEyebrow ?? null;
     $allowTitleHtml = $allowTitleHtml ?? false;
+    $cruiseHero = $cruiseHero ?? false;
+    $vesselLabel = $vesselLabel ?? '';
+    $shipHeroSub = $shipHeroSub ?? '';
 @endphp
 
 @if (!in_array(pathinfo($obj->link, PATHINFO_EXTENSION), config('backend.fileTypeVideo')))
@@ -47,19 +50,37 @@
             'listBreadcrumb' => $listBreadCrumb
         ])
     @endif
-    <div class="main-info mx-auto text-white text-center">
-        @if ($heroEyebrow)
+    <div class="main-info {{ $cruiseHero ? 'ship-hero-main-info' : 'mx-auto text-center' }} text-white">
+        @if ($cruiseHero)
+            <div class="ship-hero-eyebrow">
+                <span class="ship-eyebrow-line"></span>
+                <span class="ship-eyebrow-text">Green Ruby Cruises</span>
+            </div>
+        @elseif ($heroEyebrow)
             <p class="hero-eyebrow mb-0">{{ $heroEyebrow }}</p>
         @endif
-        <{{ $tagHeading }} class="title font-heading font-weight-bold text-break">{!! $allowTitleHtml ? $obj->title : e($obj->title) !!}</{{ $tagHeading }}>
-        @if (isset($obj->description) && $obj->description)
+        <{{ $tagHeading }} class="title font-heading {{ $cruiseHero ? '' : 'font-weight-bold' }} text-break">{!! $allowTitleHtml ? $obj->title : e($obj->title) !!}</{{ $tagHeading }}>
+        @if ($cruiseHero && $shipHeroSub)
+            <p class="ship-hero-sub">{{ $shipHeroSub }}</p>
+        @elseif (isset($obj->description) && $obj->description)
             <p class="description {{ $hasButton ? 'mb-4' : 'mb-0' }} text-break">{{ $obj->description }}</p>
         @endif
         @if ($hasButton)
             <div class="list-button d-flex align-items-center">
                 @for ($i = 0; $i < count($obj->listButton); $i++)
+                    @php
+                        $isWatchButton = str_contains($obj->listButton[$i]->class, 'btn-success');
+                    @endphp
                     <div class="item">
-                        <a href="{{ $obj->listButton[$i]->url }}" class="{{ $obj->listButton[$i]->class }} btn-rounded">{{ $obj->listButton[$i]->label }}</a>
+                        <a href="{{ $obj->listButton[$i]->url }}" class="{{ $obj->listButton[$i]->class }} btn-rounded">
+                            @if ($cruiseHero && $isWatchButton)
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
+                                </svg>
+                            @endif
+                            {{ $obj->listButton[$i]->label }}
+                        </a>
                     </div>
                 @endfor
             </div>
@@ -69,3 +90,6 @@
         @endif
     </div>
 </div>
+@if ($cruiseHero)
+    <div class="ship-hero-accent-line"></div>
+@endif

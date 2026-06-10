@@ -9,6 +9,7 @@ class AppExpActivity extends BaseModel
     protected $fillable = [
         'language_id',
         'group_id',
+        'cruise_id',
         'name',
         'summary',
         'content',
@@ -21,5 +22,12 @@ class AppExpActivity extends BaseModel
         'is_featured'
     ];
     protected $hidden = [];
-    
+
+    public function cruise()
+    {
+        return $this->belongsTo(
+            AppCruise::class,
+            'cruise_id'
+        );
+    }
 }

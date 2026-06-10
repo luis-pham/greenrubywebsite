@@ -13,6 +13,7 @@ use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppCabinService;
 use Modules\FrontEnd\Services\AppCruiseService;
 use Modules\FrontEnd\Services\AppItineraryService;
+use Modules\BackEnd\Entities\AppExpActivity;
 
 class CruiseController extends Controller
 {
@@ -83,6 +84,19 @@ class CruiseController extends Controller
 
         $listInclusiveService = $obj->cruiseServices;
 
+        $listExpActivity = AppExpActivity::where(
+            'language_id',
+            $obj->language_id ?? $language->id ?? 1
+        )
+        ->where(function($query) use ($obj) {
+            $query
+                ->where('cruise_id', $obj->id)
+                ->orWhereNull('cruise_id');
+        })
+        ->orderBy('cruise_id', 'desc')
+        ->orderBy('id', 'asc')
+        ->get();
+
         $menuUrlActive = '#';
 
         $config = Utilities::getAllConfig($language);
@@ -118,7 +132,8 @@ class CruiseController extends Controller
             'listCabin',
             'listInclusiveService',
             'listDurationFilter',
-            'groupItinerary'
+            'groupItinerary',
+            'listExpActivity'
         ));
     }
 }

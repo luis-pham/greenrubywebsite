@@ -99,6 +99,34 @@
                             <label>LOẠI HOẠT ĐỘNG</label>
                             {{ Form::select('group_id', $listGroup, null, ['class' => 'form-control', 'placeholder' => 'Chọn loại hoạt động...', 'autocomplete' => 'off']) }}
                         </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                Cruise
+                                <small class="text-muted">
+                                    (optional)
+                                </small>
+                            </label>
+                            <select name="cruise_id"
+                                class="form-control select2">
+                                <option value="">
+                                    — All cruises (shared) —
+                                </option>
+                                @foreach($listCruise ?? [] as $cruise)
+                                <option
+                                    value="{{ $cruise->id }}"
+                                    {{ old('cruise_id',
+                                        $obj->cruise_id ?? '')
+                                        == $cruise->id
+                                        ? 'selected' : '' }}>
+                                    {{ $cruise->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <span class="help-block">
+                                Để trống = hiển thị trên tất cả tàu.
+                                Chọn tàu cụ thể = chỉ hiện trên tàu đó.
+                            </span>
+                        </div>
                         <div class="form-group mt-2">
                             <label>NỔI BẬT</label>
                             <div class="col-form-label p-0">

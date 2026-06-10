@@ -50,6 +50,9 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
     Route::get('/api/services/getById', 'ServiceController@getById')->where('languageCode', $listLanguageCode)->name('frontend.api.service.getById');
     Route::get('/api/{languageCode}/services/getById', 'ServiceController@getById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.api.service.getById'));
 
+    Route::get('/api/exp-activities/getById', 'PublicDataController@expActivityGetById')->name('api.expActivity.getById');
+    Route::get('/api/{languageCode}/exp-activities/getById', 'PublicDataController@expActivityGetById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('api.expActivity.getById'));
+
     Route::post('/api/cookie/consent', 'CookieController@consent')->name('frontend.cookie.consent');
 
     Route::get('/itinerary','ItineraryController@index')->name('frontend.itinerary.index');

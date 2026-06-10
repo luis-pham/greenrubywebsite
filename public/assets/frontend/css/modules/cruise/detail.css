@@ -1,23 +1,450 @@
+/* Cruise hero — overlay */
 #cruise-detail .section-cover .page-cover .image-wrapper::before {
     opacity: 1;
     background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.35) 0%,
-        rgba(0, 0, 0, 0.5) 45%,
-        rgba(0, 0, 0, 0.65) 100%
+        to right,
+        rgba(5, 15, 8, 0.85) 0%,
+        rgba(5, 15, 8, 0.65) 30%,
+        rgba(5, 15, 8, 0.20) 60%,
+        rgba(5, 15, 8, 0.05) 100%
     );
 }
 
-#cruise-detail .section-cover .page-cover .main-info .list-button {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+/* Cruise hero — vessel badge removed */
+#cruise-detail .section-cover.is-cruise-hero .page-cover .container.ship-hero-badge-wrap {
+    display: none !important;
 }
 
-#cruise-detail .section-cover .page-cover .list-button .item {
+/* Cruise hero — desktop: vertically centered like homepage section-1 */
+#cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    margin-top: 0;
+    padding-bottom: 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+        left: max(15px, calc((100% - 540px) / 2 + 15px));
+        right: auto;
+        transform: translateY(-50%);
+        width: auto;
+        max-width: 520px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        display: block;
+        align-items: stretch;
+        justify-content: flex-start;
+        z-index: 10;
+    }
+}
+
+@media (min-width: 768px) {
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        left: max(15px, calc((100% - 720px) / 2 + 15px));
+    }
+}
+
+@media (min-width: 992px) {
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        left: max(15px, calc((100% - 960px) / 2 + 15px));
+    }
+}
+
+@media (min-width: 1200px) {
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        left: max(15px, calc((100% - 1140px) / 2 + 15px));
+    }
+}
+
+@media (min-width: 1280px) {
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        left: max(15px, calc((100% - 1200px) / 2 + 15px));
+    }
+}
+
+@media (min-width: 1600px) {
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        left: max(15px, calc((100% - 1430px) / 2 + 15px));
+    }
+}
+
+#cruise-detail .section-cover.is-cruise-hero .page-cover .ship-hero-badge {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: inline-flex;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info {
     width: auto;
+    max-width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+/* Cruise hero — vessel badge */
+#cruise-detail .ship-hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(5, 15, 8, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 0.5px solid rgba(200, 168, 75, 0.2);
+    padding: 6px 14px;
+    border-radius: 0;
+    pointer-events: none;
+}
+
+#cruise-detail .ship-hero-badge-line {
+    width: 16px;
+    height: 0.5px;
+    background: #C8A84B;
+    opacity: 0.6;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+#cruise-detail .ship-hero-badge-text {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(200, 168, 75, 0.65);
+    font-weight: 400;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    white-space: nowrap;
+}
+
+/* Cruise hero — eyebrow */
+#cruise-detail .ship-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+#cruise-detail .ship-eyebrow-line {
+    width: 20px;
+    height: 0.5px;
+    background: #C8A84B;
+    opacity: 0.6;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+#cruise-detail .ship-eyebrow-text {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(200, 168, 75, 0.7);
+    font-weight: 400;
+    font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* Cruise hero — title */
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: #f0ece4;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    text-align: left;
+    display: block;
+    overflow: visible;
+    text-overflow: unset;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title em,
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title span.num {
+    font-style: italic;
+    color: #C8A84B;
+}
+
+/* Cruise hero — subtitle */
+#cruise-detail .ship-hero-sub {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(240, 236, 228, 0.45);
+    font-style: italic;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+    text-align: left;
+}
+
+/* Cruise hero — buttons */
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button {
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    gap: 14px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item {
+    width: auto;
+    padding: 0;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded {
+    background: #C8A84B;
+    color: #0D2B1A;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    min-width: unset;
+    line-height: 1.4;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:hover,
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:focus {
+    background: #b8923e;
+    color: #0D2B1A;
+    border: none;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded {
+    background: transparent;
+    color: rgba(240, 236, 228, 0.6);
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 13px 32px;
+    border: 0.5px solid rgba(240, 236, 228, 0.2);
+    border-radius: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: unset;
+    box-shadow: none;
+    line-height: 1.4;
+}
+
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:hover,
+#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:focus {
+    background: transparent;
+    color: rgba(240, 236, 228, 0.85);
+    border-color: rgba(240, 236, 228, 0.35);
+}
+
+/* Cruise hero — bottom accent */
+#cruise-detail .ship-hero-accent-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #C8A84B, transparent);
+    opacity: 0.35;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Cruise hero mobile/tablet (≤1023px) — match homepage section-1 */
+@media (max-width: 1023px) {
+    #main #cruise-detail .section-cover.is-cruise-hero {
+        margin-top: calc(-72px - env(safe-area-inset-top, 0px)) !important;
+        padding: 0 !important;
+        position: relative;
+        z-index: 1;
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover::after {
+        display: none;
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .image-wrapper:after {
+        display: none;
+        padding-top: 0;
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .image-wrapper {
+        flex-shrink: 0;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .image-wrapper img {
+        position: static !important;
+        width: 100%;
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .image-wrapper::before {
+        height: 140px;
+        width: 100%;
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+    }
+
+    #cruise-detail .section-cover.is-cruise-hero .page-cover .container.hero-content {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        margin-top: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: #0D2B1A;
+        padding: 20px 20px 28px 20px !important;
+        display: block;
+        align-items: stretch;
+        justify-content: flex-start;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info {
+        max-width: none;
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    #cruise-detail .ship-hero-accent-line {
+        display: none;
+    }
+
+    #cruise-detail .ship-hero-eyebrow {
+        margin-bottom: 10px;
+        gap: 8px;
+        padding: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    #cruise-detail .ship-eyebrow-text {
+        font-size: 12px;
+    }
+
+    #cruise-detail .ship-eyebrow-line {
+        width: 18px;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title {
+        font-size: 30px;
+        font-weight: 300 !important;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        max-width: 340px;
+    }
+
+    #cruise-detail .ship-hero-sub {
+        font-size: 16px;
+        color: var(--color-cream-50);
+        line-height: 1.7;
+        font-weight: 300;
+        font-style: normal;
+        margin-bottom: 20px;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        max-width: 330px;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded {
+        display: block;
+        width: 100% !important;
+        text-align: center;
+        border-radius: 0;
+        padding: 13px !important;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 500;
+        background: #C8A84B;
+        color: #0D2B1A !important;
+        border: none;
+        margin: 0 0 8px 0 !important;
+        min-width: 0;
+        opacity: 1;
+        box-shadow: none;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:hover,
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:focus {
+        background: #b8923e;
+        color: #0D2B1A !important;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded {
+        display: block;
+        width: 100% !important;
+        text-align: center;
+        justify-content: center;
+        border-radius: 0;
+        padding: 12px !important;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 400;
+        background: transparent;
+        color: rgba(240, 236, 228, 0.6) !important;
+        border: 0.5px solid rgba(240, 236, 228, 0.2);
+        margin: 0 !important;
+        min-width: 0;
+        box-shadow: none;
+        opacity: 1;
+    }
+
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:hover,
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:focus {
+        background: transparent;
+        color: rgba(240, 236, 228, 0.8) !important;
+        border-color: rgba(240, 236, 228, 0.35);
+    }
 }
 @media(min-width: 1200px){
     #cruise-detail .section-cover .page-cover .image-wrapper:after{
@@ -25,32 +452,214 @@
     }
 }
 
-#cruise-detail .section-info .container-fluid,
-#cruise-detail .section-itinerary .itinerary-detail .body{
+#cruise-detail .section-cabin .section-description em {
+    font-style: italic;
+    color: #C8A84B;
+}
+
+/* Cabin types — 2×2 suites grid (matches homepage section-6) */
+#cruise-detail .section-cabin .slide-1 {
+    margin: -.375rem;
+}
+
+#cruise-detail .section-cabin .suites-grid.list-itinerary-cruise .item {
+    padding: .375rem;
+}
+
+@media (min-width: 768px) {
+    #cruise-detail .section-cabin .slide-1 {
+        margin: -.75rem;
+    }
+
+    #cruise-detail .section-cabin .suites-grid.list-itinerary-cruise .item {
+        padding: .75rem;
+    }
+}
+
+#cruise-detail .section-cabin .suites-grid .item .item-header .image-wrapper:after {
+    padding-top: 66.66667%;
+}
+
+@media (max-width: 1023px) {
+    /* Cabin cards — border/shadow giống homepage Private Sanctuaries */
+    #cruise-detail .list-itinerary-cruise .item .item-wrapper {
+        box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018) !important;
+    }
+
+    #cruise-detail .list-itinerary-cruise .item .item-body,
+    #cruise-detail .list-itinerary-cruise .item .item-footer {
+        border-color: rgba(14, 95, 75, 0.03) !important;
+    }
+
+    /* Cabin carousel — hero-style nav arrows (giống homepage section-6) */
+    #cruise-detail .section-cabin .slide-1 .owl-carousel {
+        position: relative;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-theme .owl-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        pointer-events: none;
+        z-index: 8;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-prev,
+    #cruise-detail .section-cabin .slide-1 .owl-next {
+        pointer-events: auto;
+        z-index: 9;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-nav .button {
+        width: 44px;
+        height: 44px;
+        line-height: 1;
+        font-size: 1.125rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(13, 43, 26, 0.35);
+        border: 1px solid rgba(200, 168, 75, 0.4);
+        border-radius: 0;
+        color: #f0ece4;
+        transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-nav .button:hover {
+        background: rgba(13, 43, 26, 0.55);
+        border-color: #C8A84B;
+        color: #C8A84B;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-nav .disabled .button {
+        opacity: 0.35;
+        cursor: default;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-prev {
+        left: 16px;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-next {
+        right: 16px;
+    }
+
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-stage-outer {
+        overflow: hidden;
+    }
+
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-item .item {
+        width: 100%;
+    }
+
+    #cruise-detail .section-cabin .suite-card-image-wrap {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #cruise-detail .section-cabin .suite-size-badge {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    #cruise-detail .section-cabin .suite-featured .suite-card-image-wrap::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #C8A84B;
+        z-index: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-nav {
+        display: none;
+    }
+
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-stage-outer {
+        overflow: visible;
+    }
+
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-stage {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        width: 100% !important;
+        transform: none !important;
+    }
+
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-item {
+        width: 100% !important;
+        float: none;
+        padding: 0;
+    }
+
+    #cruise-detail .section-cabin .suite-card-image-wrap {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #cruise-detail .section-cabin .suite-card-image-wrap .image-wrapper {
+        overflow: hidden;
+    }
+
+    #cruise-detail .section-cabin .suite-size-badge {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        font-family: var(--font-display);
+        font-size: 24px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    #cruise-detail .section-cabin .suite-featured .suite-card-image-wrap::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #C8A84B;
+        z-index: 2;
+    }
+}
+
+#cruise-detail .section-itinerary .itinerary-detail .body {
     position: relative;
 }
 
-#cruise-detail .section-itinerary .itinerary-detail .body::after
-{
+#cruise-detail .section-itinerary .itinerary-detail .body::after {
     z-index: -1;
     opacity: 0.03;
     background: url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
 }
 
-#cruise-detail .section-info .container-fluid::after {
-    z-index: -1;
-    background: #f3f3f0 url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
-}
-
-#cruise-detail .section-itinerary .itinerary-detail .body::before{
-    background-color:#083A2E;
+#cruise-detail .section-itinerary .itinerary-detail .body::before {
+    background-color: #083A2E;
     z-index: -1;
 }
 
-#cruise-detail .section-info .container-fluid::after,
 #cruise-detail .section-itinerary .itinerary-detail .body::before,
-#cruise-detail .section-itinerary .itinerary-detail .body::after
-{
+#cruise-detail .section-itinerary .itinerary-detail .body::after {
     content: "";
     inset: 0;
     display: block;
@@ -59,87 +668,336 @@
     height: 100%;
 }
 
-#cruise-detail .section-info .grid-info {
+/* Cruise specs + eco combined section */
+#cruise-detail .ship-specs-section {
+    background: #f2ede4;
+    padding: 72px 48px;
+    position: relative;
+    overflow: visible;
+}
+
+#cruise-detail .ship-specs-topo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+#cruise-detail .combined-header {
+    margin-bottom: 48px;
+    padding-bottom: 36px;
+    border-bottom: 0.5px solid rgba(13, 43, 26, 0.08);
+}
+
+#cruise-detail .ship-specs-section .combined-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(13, 43, 26, 0.4);
+    font-weight: 400;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+}
+
+#cruise-detail .combined-ey-line {
+    width: 20px;
+    height: 0.5px;
+    background: rgba(13, 43, 26, 0.3);
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+#cruise-detail .combined-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: #0D2B1A;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+#cruise-detail .combined-title em {
+    font-style: italic;
+    color: #C8A84B;
+    display: block;
+}
+
+#cruise-detail .ship-specs-section .ship-stats-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 1.5rem;
-
-    margin-bottom: 3.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 0;
 }
 
-#cruise-detail .section-info .grid-info .item {
-    background-color: white;
-    text-align: center;
-    padding: 2rem;
-    font-size: 1rem;
-    color:var(--color-body);
-    box-shadow: 0px 4px 24px 0px #0020180F;
+#cruise-detail .ship-specs-section .ship-stat-card {
+    background: #fff;
+    border: 0.5px solid rgba(13, 43, 26, 0.07);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: none;
 }
 
-#cruise-detail .section-info .grid-info .item p {
-    font-size: 6.375rem;
+#cruise-detail .ship-specs-section .ship-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #C8A84B;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#cruise-detail .ship-specs-section .ship-stat-card:hover::before {
+    opacity: 1;
+}
+
+#cruise-detail .ship-specs-section .ship-stat-card .ship-stat-label {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(13, 43, 26, 0.4);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-family: var(--font-body);
+    display: block;
+}
+
+#cruise-detail .ship-specs-section .ship-stat-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 48px;
+    font-weight: 300;
     color: #C8A84B;
-    font-family: var(--font-display);
-    margin-bottom: 2rem;
     line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
 }
 
-@media screen and (min-width : 1200px){
-    #cruise-detail .section-info .grid-info {
-        grid-template-columns: repeat(4,1fr);
-    }
+#cruise-detail .ship-specs-section .ship-stat-card .ship-stat-desc {
+    font-size: var(--text-sm);
+    color: rgba(13, 43, 26, 0.45);
+    font-weight: 300;
+    line-height: 1.6;
+    font-family: var(--font-body);
+    margin-bottom: 0;
 }
 
-@media screen and (max-width: 768px){
-    #cruise-detail .section-info .grid-info .item p {
-        font-size: 4.875rem;
-        margin-bottom: 1rem;
-    }
-    #cruise-detail .section-info .grid-info .item {
-        padding: 1rem;
-    }
+#cruise-detail .combined-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
 }
 
-#cruise-detail .section-info .green-technology-container {
-    max-width: 1000px;
-    margin-inline: auto;
-
-    text-align: center;
+#cruise-detail .combined-divider-line {
+    flex: 1;
+    height: 0.5px;
+    background: rgba(13, 43, 26, 0.08);
 }
 
-#cruise-detail .section-info .green-technology-container .icon {
-    width: 100px;
-    object-fit: cover;
-    margin-bottom: 0.75rem;
+#cruise-detail .ship-specs-section .combined-divider-text {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(13, 43, 26, 0.35);
+    font-weight: 400;
+    font-family: var(--font-body);
+    white-space: nowrap;
 }
 
-#cruise-detail .section-info .green-technology-container .name {
-    font-family: var(--font-display);
-    font-size: 3.125rem;
-    margin-bottom: 0.75rem;
+#cruise-detail .ship-eco-card {
+    background: #0D2B1A;
+    border: 0.5px solid rgba(13, 43, 26, 0.8);
+    padding: 24px 20px 28px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#cruise-detail .eco-card-stat {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 36px;
+    font-weight: 300;
     color: #C8A84B;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
 }
 
-@media screen and (max-width: 768px){
-    #cruise-detail .section-info .grid-info {
-        margin-bottom: 1.5rem;
-    }
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-stat-label {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(200, 168, 75, 0.5);
+    font-weight: 500;
+    margin-bottom: 14px;
+    font-family: var(--font-body);
+}
 
-    #cruise-detail .section-info .grid-info .item p {
-        font-size: 3.875rem;
-    }
+#cruise-detail .eco-card-divider {
+    height: 0.5px;
+    background: rgba(200, 168, 75, 0.1);
+    margin-bottom: 14px;
+}
 
-    #cruise-detail .section-info .green-technology-container .icon {
-        width: 85px;
-    }
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon {
+    width: 48px;
+    height: 48px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 14px;
+    position: static;
+    flex-shrink: 0;
+}
 
-    #cruise-detail .section-info .green-technology-container .name {
-        font-size: 2.125rem;
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon svg {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: block;
+}
+
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon svg [stroke="#0D2B1A"] {
+    stroke: rgba(240, 236, 228, 0.45);
+}
+
+@media (min-width: 769px) {
+    #cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon,
+    #cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon svg {
+        width: 56px;
+        height: 56px;
     }
 }
 
-#cruise-detail .section-info .green-technology-container .description {
-    color:var(--color-body);
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    color: #f0ece4;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-desc {
+    font-size: var(--text-base);
+    color: var(--color-cream-70);
+    line-height: 1.7;
+    font-weight: 300;
+    font-family: var(--font-body);
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    #cruise-detail .ship-specs-section {
+        padding: 48px 20px;
+    }
+
+    #cruise-detail .combined-title {
+        font-size: 30px;
+    }
+
+    #cruise-detail .combined-header {
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+    }
+
+    #cruise-detail .ship-specs-section .ship-stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #cruise-detail .ship-specs-section .ship-stat-number {
+        font-size: 40px;
+    }
+
+    /* Eco Technology — carousel trên mobile */
+    #cruise-detail .ship-eco-slide.slide-1 {
+        margin: 0 -.25rem;
+    }
+
+    #cruise-detail .ship-eco-grid.owl-carousel {
+        display: block;
+    }
+
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-stage-outer {
+        overflow: hidden;
+    }
+
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-item .ship-eco-card {
+        width: 100%;
+        margin: 0 .25rem;
+    }
+
+    #cruise-detail .ship-eco-slide .owl-theme .owl-dots {
+        margin-top: 1.25rem;
+    }
+}
+
+@media (max-width: 767px) {
+    #cruise-detail .section-cabin .slide-1 .owl-prev {
+        left: 12px;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-next {
+        right: 12px;
+    }
+
+    #cruise-detail .section-cabin .slide-1 .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-nav,
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-dots {
+        display: none;
+    }
+
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-stage-outer {
+        overflow: visible;
+        height: auto !important;
+    }
+
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-stage {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+    }
+
+    #cruise-detail .ship-eco-grid.owl-carousel .owl-item {
+        width: 100% !important;
+        height: auto !important;
+        float: none;
+        padding: 0;
+    }
+
+    /* Suites 2×2 — tránh owl collapse height đè lên section phía trên */
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-stage-outer,
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-stage,
+    #cruise-detail .section-cabin .suites-grid.owl-carousel .owl-item {
+        height: auto !important;
+    }
 }
 
 #cruise-detail .section-cabin-and-service .block-1 {

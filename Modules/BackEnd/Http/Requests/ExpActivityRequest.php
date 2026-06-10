@@ -11,6 +11,7 @@ class ExpActivityRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'group_id' => 'required|exists:app_group,id',
+            'cruise_id' => 'nullable|integer',
             'summary' => 'required|max:300',
             'content' => 'nullable',
             'image_link' => 'nullable|string',

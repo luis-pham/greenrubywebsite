@@ -1,4 +1,57 @@
 $(document).ready(function(){
+    const resetEcoCarouselDesktopLayout = function ($target) {
+        $target.find('.owl-item, .owl-stage-outer, .owl-stage').css('height', 'auto');
+    };
+
+    const syncEcoCarouselMobileHeights = function (event) {
+        const $target = $(event.target);
+
+        if ($(window).width() >= 1024) {
+            resetEcoCarouselDesktopLayout($target);
+            return;
+        }
+
+        let maxHeight = 0;
+        $target.find('.ship-eco-card').each(function () {
+            const height = $(this).outerHeight();
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+        });
+        $target.find('.owl-item').css({ height: maxHeight + 'px' });
+        $target.trigger('refresh.owl.carousel');
+    };
+
+    const $ecoCarousel = $('#cruise-detail .ship-eco-grid.owl-carousel');
+    if ($ecoCarousel.length) {
+        $ecoCarousel.owlCarousel({
+            loop: false,
+            dots: true,
+            nav: false,
+            items: 1,
+            margin: 16,
+            autoplay: false,
+            smartSpeed: 400,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    margin: 16,
+                    dots: true,
+                    nav: false
+                },
+                1024: {
+                    items: 1,
+                    margin: 0,
+                    dots: false,
+                    nav: false
+                }
+            },
+            onInitialized: syncEcoCarouselMobileHeights,
+            onResized: syncEcoCarouselMobileHeights
+        });
+    }
+
     $('.section-itinerary .list-filter .item').on('click',function(){
         const selected = $(this).data('duration');
         if($(this).hasClass('active')) return;

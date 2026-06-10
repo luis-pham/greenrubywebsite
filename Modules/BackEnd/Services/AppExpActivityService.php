@@ -27,6 +27,7 @@ class AppExpActivityService
             $obj = new AppExpActivity();
             $obj->language_id = $languageId;
             $obj->group_id = array_key_exists('group_id', $data) ? $data['group_id'] : null;
+            $obj->cruise_id = $data['cruise_id'] ?? null;
             $obj->name = array_key_exists('name', $data) ? $data['name'] : null;
             $obj->summary = array_key_exists('summary', $data) ? $data['summary'] : null;
             $obj->content = array_key_exists('content', $data) ? $data['content'] : null;
@@ -81,6 +82,7 @@ class AppExpActivityService
             $obj = self::find($data['id'], $languageId);
             if ($obj) {
                 $obj->group_id = array_key_exists('group_id', $data) ? $data['group_id'] : $obj->group_id;
+                $obj->cruise_id = $data['cruise_id'] ?? null;
                 $obj->name = array_key_exists('name', $data) ? $data['name'] : $obj->name;
                 $obj->summary = array_key_exists('summary', $data) ? $data['summary'] : $obj->summary;
                 $obj->content = array_key_exists('content', $data) ? $data['content'] : $obj->content;

@@ -10,6 +10,7 @@ use Modules\BackEnd\Services\AppItineraryService;
 use Modules\BackEnd\Services\AppExpActivityService;
 use Modules\BackEnd\Services\AppGroupService;
 use Modules\BackEnd\Helpers\Utilities;
+use Modules\BackEnd\Entities\AppExpActivity;
 use Modules\FrontEnd\Helpers\FeUtils;
 
 class PublicDataController extends Controller
@@ -195,5 +196,37 @@ class PublicDataController extends Controller
             ],
             'data' => $data,
         ], 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function expActivityGetById(Request $request)
+    {
+        $id = $request->get('id');
+        $obj = AppExpActivity::find($id);
+
+        if (!$obj) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+
+        $files = AppExpActivityService::getActivityGallery($id);
+        $files = collect($files)->map(function ($f) {
+            return [
+                'url' => FeUtils::getImageLink($f->link),
+                'ord' => $f->ord ?? 0,
+            ];
+        });
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id'      => $obj->id,
+                'name'    => $obj->name,
+                'summary' => $obj->summary,
+                'content' => $obj->content,
+                'image'   => FeUtils::getImageLink($obj->image_link),
+                'files'   => $files,
+            ]
+        ]);
     }
 }
