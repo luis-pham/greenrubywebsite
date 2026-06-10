@@ -61,6 +61,8 @@ class FeUtils
             $params['cr'] = true;
         }
 
+        $params['q'] = max(1, min(100, (int) env('IMAGE_PROXY_QUALITY', 100)));
+
         return route('frontend.image.thumbnail', $params);
     }
 

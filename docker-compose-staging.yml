@@ -19,8 +19,8 @@ services:
             - DB_PASSWORD=hungnq1122
             - FFMPEG_PATH=/usr/bin/ffmpeg
             - FFPROBE_PATH=/usr/bin/ffprobe
-            - IMAGE_PROXY_CACHE_ENABLED=false
-            - IMAGE_PROXY_QUALITY=60
+            - IMAGE_PROXY_CACHE_ENABLED=true
+            - IMAGE_PROXY_QUALITY=100
         build:
             context: .
             dockerfile: Dockerfile
