@@ -11,9 +11,9 @@ class ImageController extends Controller
     public function thumbnail(Request $request)
     {
         $link = $request->route('link');
-        $width = $request->get('w');
-        $height = $request->get('h');
-        $crop = $request->get('cr');
+        $reqWidth = $request->get('w') ? (int) $request->get('w') : null;
+        $reqHeight = $request->get('h') ? (int) $request->get('h') : null;
+        $crop = filter_var($request->get('cr'), FILTER_VALIDATE_BOOLEAN);
 
         try {
             $publicRelativePath = ltrim((string)$link, '/');
@@ -33,18 +33,17 @@ class ImageController extends Controller
                 ]);
             }
 
-            $quality = (int) env('IMAGE_PROXY_QUALITY', 90);
+            $quality = (int) env('IMAGE_PROXY_QUALITY', 100);
             $quality = max(1, min(100, $quality));
             $outputFormat = 'webp';
             $crFlag = $crop ? 1 : 0;
             $cacheKey = sha1(
-                $publicRelativePath . '|' . (string)$width . '|' . (string)$height . '|' . (string)$crFlag . '|' . $outputFormat . '|' . (string)$quality
+                $publicRelativePath . '|' . (string)$reqWidth . '|' . (string)$reqHeight . '|' . (string)$crFlag . '|' . $outputFormat . '|' . (string)$quality
             );
             $thumbDir = storage_path('app/thumbnail');
-            $thumbExt = $outputFormat;
-            $thumbPath = $thumbDir . DIRECTORY_SEPARATOR . $cacheKey . '.' . $thumbExt;
+            $thumbPath = $thumbDir . DIRECTORY_SEPARATOR . $cacheKey . '.' . $outputFormat;
 
-            $cacheEnabled = filter_var(env('IMAGE_PROXY_CACHE_ENABLED', false), FILTER_VALIDATE_BOOLEAN);
+            $cacheEnabled = filter_var(env('IMAGE_PROXY_CACHE_ENABLED', true), FILTER_VALIDATE_BOOLEAN);
             if ($cacheEnabled && File::exists($thumbPath) && is_file($thumbPath)) {
                 $mimeType = File::mimeType($thumbPath) ?: 'image/webp';
                 return response()->file($thumbPath, [
@@ -53,27 +52,27 @@ class ImageController extends Controller
             }
 
             $image = ImageFacade::make($filePath);
-            $width = $width && $width < $image->width() ? $width : null;
-            $height = $height && $height < $image->height() ? $height : null;
-            
-            if (!$crop) {
-                if ($width && !$height) {
-                    $ratio = $image->height() / $image->width();
-                    $height = (int)($width * $ratio);
-                } else if (!$width && $height) {
-                    $ratio = $image->width() / $image->height();
-                    $width = (int)($height * $ratio);
+
+            if ($reqWidth || $reqHeight) {
+                $noUpscale = function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                };
+
+                if ($crop && $reqWidth && $reqHeight) {
+                    $image->fit($reqWidth, $reqHeight, function ($constraint) {
+                        $constraint->upsize();
+                    });
+                } elseif ($reqWidth && $reqHeight) {
+                    $image->resize($reqWidth, $reqHeight, $noUpscale);
+                } elseif ($reqWidth) {
+                    $image->resize($reqWidth, null, $noUpscale);
+                } else {
+                    $image->resize(null, $reqHeight, $noUpscale);
                 }
             }
-            
-            if (!$width || $width > $image->width()) {
-                $width = $image->width();
-            }
-            if (!$height || $height > $image->height()) {
-                $height = $image->height();
-            }
 
-            $final = $image->fit($width, $height)->encode($outputFormat, $quality);
+            $final = $image->encode($outputFormat, $quality);
 
             if ($cacheEnabled) {
                 if (!File::exists($thumbDir)) {

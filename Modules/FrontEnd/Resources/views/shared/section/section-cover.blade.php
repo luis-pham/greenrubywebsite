@@ -4,6 +4,7 @@
     $listBreadCrumb = $listBreadCrumb ?? [];
     $heroEyebrow = $heroEyebrow ?? null;
     $allowTitleHtml = $allowTitleHtml ?? false;
+    $imageConfig = $imageConfig ?? [];
 @endphp
 
 @if (count($list) > 0)
@@ -22,6 +23,7 @@
                                         'isPriorityMedia' => $i === 0,
                                         'heroEyebrow' => $heroEyebrow,
                                         'allowTitleHtml' => $allowTitleHtml,
+                                        'imageConfig' => $imageConfig,
                                     ])
                                 </div>
                             @endfor
@@ -36,6 +38,7 @@
                         'isPriorityMedia' => true,
                         'heroEyebrow' => $heroEyebrow,
                         'allowTitleHtml' => $allowTitleHtml,
+                        'imageConfig' => $imageConfig,
                     ])
                 @endif
             </div>

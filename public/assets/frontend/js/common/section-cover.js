@@ -2,10 +2,15 @@ $(document).ready(function () {
     // Slide page cover
     let slidePageCover = $('#main .section-cover .slide-1 .owl-carousel');
     if (slidePageCover.length > 0) {
+        let isHomeHero = slidePageCover.closest('#home .section-1.section-cover').length > 0;
         let slidePageCoverConfig = {
             loop: false,
             dots: true,
-            nav: false,
+            nav: isHomeHero,
+            navText: [
+                '<div class="button" aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></div>',
+                '<div class="button" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>'
+            ],
             items: 1,
             margin: 0,
             autoplay: false,
@@ -55,6 +60,11 @@ $(document).ready(function () {
             slidePageCover.find('video').each(function () {
                 this.loop = false;
             });
+
+            if (isHomeHero) {
+                slidePageCover.find('.owl-prev').attr('aria-label', 'Previous slide');
+                slidePageCover.find('.owl-next').attr('aria-label', 'Next slide');
+            }
 
             let currentItem = slidePageCover.find('.owl-item.active').first();
             let video = currentItem.find('video').get(0);
