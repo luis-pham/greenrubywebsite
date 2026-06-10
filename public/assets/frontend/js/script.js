@@ -430,6 +430,31 @@ function initEllipsisTooltip(container = $('body')) {
     });
 }
 
+var fnAlignCarouselNavToImage = function ($carousel) {
+    if (!$carousel || !$carousel.length) {
+        return;
+    }
+
+    let $header = $carousel.find('.owl-item:not(.cloned) .item-header').first();
+    let $nav = $carousel.find('.owl-nav');
+    if (!$header.length || !$nav.length) {
+        return;
+    }
+
+    let carouselTop = $carousel.offset().top;
+    let headerTop = $header.offset().top;
+    let headerHeight = $header.outerHeight();
+
+    if (!headerHeight) {
+        return;
+    }
+
+    $nav.css({
+        top: (headerTop - carouselTop) + 'px',
+        height: headerHeight + 'px'
+    });
+};
+
 var fnListItemCarouselOnInit = function (event) {
     let target = $(event.target);
     let item = $('.item', target);
@@ -444,6 +469,14 @@ var fnListItemCarouselOnInit = function (event) {
         $(this).addClass('h-100');
     });
     $('.owl-item', target).css({ height: maxHeight + 'px' });
+
+    let isHomeCuratedJourneys = target.closest('#home .section-4').length > 0;
+    let isHomeSuitesMobile = target.closest('#home .section-6').length > 0 && $(window).width() < 1024;
+    if (isHomeCuratedJourneys || isHomeSuitesMobile) {
+        fnAlignCarouselNavToImage(target);
+        target.find('.owl-prev').attr('aria-label', 'Previous slide');
+        target.find('.owl-next').attr('aria-label', 'Next slide');
+    }
 
     initEllipsisTooltip(target);
 };

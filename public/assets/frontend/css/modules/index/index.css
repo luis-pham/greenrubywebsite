@@ -893,6 +893,164 @@
     color: var(--color-muted);
 }
 
+/* Section 4 — Curated Journeys: hero-style carousel nav (all breakpoints) */
+#home .section-4.section-itinerary .slide-1 .owl-carousel {
+    position: relative;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-theme .owl-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    pointer-events: none;
+    z-index: 8;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-prev,
+#home .section-4.section-itinerary .slide-1 .owl-next {
+    pointer-events: auto;
+    z-index: 9;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-nav .button {
+    width: 44px;
+    height: 44px;
+    line-height: 1;
+    font-size: 1.125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 43, 26, 0.35);
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    border-radius: 0;
+    color: #f0ece4;
+    transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-nav .button:hover {
+    background: rgba(13, 43, 26, 0.55);
+    border-color: #C8A84B;
+    color: #C8A84B;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-nav .disabled .button {
+    opacity: 0.35;
+    cursor: default;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-prev {
+    left: 16px;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-next {
+    right: 16px;
+}
+
+@media (min-width: 1024px) {
+    #home .section-4.section-itinerary .slide-1 .owl-prev {
+        left: 24px;
+    }
+
+    #home .section-4.section-itinerary .slide-1 .owl-next {
+        right: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    #home .section-4.section-itinerary .slide-1 .owl-prev {
+        left: 12px;
+    }
+
+    #home .section-4.section-itinerary .slide-1 .owl-next {
+        right: 12px;
+    }
+
+    #home .section-4.section-itinerary .slide-1 .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+/* Section 6 — Private Sanctuaries: hero-style nav on mobile carousel only */
+@media (max-width: 1023px) {
+    #home .section-6.section-cabin .slide-1 .owl-carousel {
+        position: relative;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-theme .owl-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        pointer-events: none;
+        z-index: 8;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-prev,
+    #home .section-6.section-cabin .slide-1 .owl-next {
+        pointer-events: auto;
+        z-index: 9;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-nav .button {
+        width: 44px;
+        height: 44px;
+        line-height: 1;
+        font-size: 1.125rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(13, 43, 26, 0.35);
+        border: 1px solid rgba(200, 168, 75, 0.4);
+        border-radius: 0;
+        color: #f0ece4;
+        transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-nav .button:hover {
+        background: rgba(13, 43, 26, 0.55);
+        border-color: #C8A84B;
+        color: #C8A84B;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-nav .disabled .button {
+        opacity: 0.35;
+        cursor: default;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-prev {
+        left: 16px;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-next {
+        right: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    #home .section-6.section-cabin .slide-1 .owl-prev {
+        left: 12px;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-next {
+        right: 12px;
+    }
+
+    #home .section-6.section-cabin .slide-1 .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
 /* Section 5 */
 #home .section-5 .cruise.ship-card:nth-child(odd) .ship-text {
     background-color: #0e1f2d;
@@ -1380,7 +1538,7 @@
 
 #home .section-7 .list-item .item .item-wrapper .image:after {
     content: '';
-    padding-top: 78.71720116618076%;
+    padding-top: 66.66667%;
     display: block;
 }
 
@@ -1581,7 +1739,7 @@
 }
 
 #home .section-9 .list-item .item .image-wrapper:after {
-    padding-top: 142.6666666666667%;
+    padding-top: 66.66667%;
 }
 
 @media (min-width: 768px) {
@@ -1896,6 +2054,123 @@
     }
 }
 
+/* Section 6 — suite card badges, category, specs */
+.section-cabin .item-header {
+    position: relative;
+}
+
+.suite-badge-deck {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(13, 43, 26, 0.75);
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(240, 236, 228, 0.7);
+    font-weight: 400;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.suite-badge-ai {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(13, 43, 26, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(240, 236, 228, 0.18);
+    padding: 5px 8px;
+    font-size: 7px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(240, 236, 228, 0.9);
+    font-weight: 500;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: 0;
+    line-height: 1;
+}
+
+.suite-badge-ai svg {
+    stroke: rgba(240, 236, 228, 0.9);
+    flex-shrink: 0;
+}
+
+.suite-badge-featured {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: #C8A84B;
+    padding: 4px 10px;
+    font-size: 7px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0D2B1A;
+    font-weight: 600;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.suite-card-category {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C8A84B;
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.suite-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 0.5px solid rgba(13, 43, 26, 0.07);
+    border-bottom: 0.5px solid rgba(13, 43, 26, 0.07);
+    margin: 14px 0 0;
+    gap: 0;
+}
+
+.suite-spec-item {
+    padding: 10px 0;
+    text-align: center;
+    border-right: 0.5px solid rgba(13, 43, 26, 0.06);
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 0;
+}
+
+.suite-spec-item:last-child {
+    border-right: none;
+}
+
+.suite-spec-item svg {
+    color: rgba(13, 43, 26, 0.3);
+    flex-shrink: 0;
+}
+
+.suite-spec-text {
+    font-size: 9px !important;
+    color: rgba(13, 43, 26, 0.5) !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    margin: 0 !important;
+}
+
 /* Section 6 — card spacing matches Curated Journeys (section-itinerary) */
 #home .section-6.section-cabin .slide-1 {
     margin: -.375rem;
@@ -2004,41 +2279,6 @@
         line-height: 1;
         pointer-events: none;
         z-index: 2;
-    }
-
-    #home .section-6.section-cabin .suite-specs {
-        display: flex;
-        gap: 0;
-        border-top: 1px solid #0e5f4b1a;
-        border-bottom: 1px solid #0e5f4b1a;
-        margin: 0 0 .75rem;
-    }
-
-    #home .section-6.section-cabin .suite-specs .suite-spec-item {
-        flex: 1;
-        padding: .5rem 0;
-        text-align: center;
-        border-right: 1px solid #0e5f4b1a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: .25rem;
-        margin-bottom: 0;
-        color: var(--color-body);
-    }
-
-    #home .section-6.section-cabin .suite-specs .suite-spec-item:last-child {
-        border-right: none;
-    }
-
-    #home .section-6.section-cabin .suite-specs .suite-spec-item .icon {
-        margin-right: 0 !important;
-        flex-shrink: 0;
-    }
-
-    #home .section-6.section-cabin .suite-specs .suite-spec-item .media-body {
-        padding: .125rem 0;
-        flex: 0 1 auto;
     }
 
     #home .section-6.section-cabin .suite-featured .suite-card-image-wrap::before {
@@ -2180,4 +2420,104 @@
         text-align: center !important;
         display: block !important;
     }
+}
+
+/* === BADGE DECK — góc trên trái === */
+.suite-badge-deck {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    pointer-events: none;
+
+    /* Visual */
+    background: rgba(13, 43, 26, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 0.5px solid rgba(240, 236, 228, 0.15);
+    padding: 5px 10px;
+
+    /* Typography */
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(240, 236, 228, 0.75);
+    line-height: 1;
+
+    /* Sharp corners */
+    border-radius: 0;
+}
+
+/* === BADGE AI CONCIERGE — góc trên phải === */
+.suite-badge-ai {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    pointer-events: none;
+
+    /* Visual — frosted dark glass */
+    background: rgba(13, 43, 26, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(240, 236, 228, 0.18);
+    padding: 5px 8px;
+
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    /* Typography */
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(240, 236, 228, 0.9);
+    line-height: 1;
+
+    /* Sharp corners */
+    border-radius: 0;
+}
+
+.suite-badge-ai svg {
+    width: 9px;
+    height: 9px;
+    stroke: rgba(240, 236, 228, 0.9);
+    flex-shrink: 0;
+}
+
+/* === BADGE LARGEST SUITE — góc dưới trái === */
+.suite-badge-featured {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    z-index: 3;
+    pointer-events: none;
+
+    /* Visual */
+    background: #C8A84B;
+    padding: 5px 10px;
+
+    /* Typography */
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #0D2B1A;
+    line-height: 1;
+
+    /* Sharp corners */
+    border-radius: 0;
+}
+
+/* === ĐẢM BẢO IMAGE WRAPPER CÓ POSITION RELATIVE === */
+.suite-card-image-wrap,
+.item-header.suite-card-image-wrap {
+    position: relative;
+    overflow: hidden;
 }

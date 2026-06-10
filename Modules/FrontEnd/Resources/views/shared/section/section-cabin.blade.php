@@ -39,43 +39,59 @@ $suitesGrid = $suitesGrid ?? false;
                             @php
                                 $isSuiteFeatured = stripos((string) $list[$i]->name, 'Opera House') !== false
                                     || (int) ($list[$i]->area ?? 0) === 120;
-                                $listSpecification = [];
-                                $room = '';
-                                // if (isset($list[$i]->room_count) && count($list[$i]->room_count) > 0) {
-                                //     for ($j = 0; $j < count($list[$i]->room_count); $j++) {
-                                //         $room .= $list[$i]->room_count[$j]->count_room . ' ' . $list[$i]->room_count[$j]->title;
-                                //         if ($j < count($list[$i]->room_count) - 1) {
-                                //             $room .= ', ';
-                                //         }
-                                //     }
-                                // }
-                                if (isset($list[$i]->room) && count($list[$i]->room) > 0) {
-                                    $room = $list[$i]->room->implode('title', ', ');
-                                }
-                                if ($room) {
-                                    $listSpecification[] = [
-                                        'icon' => 'fa-solid fa-inbox',
-                                        'title' => $room
-                                    ];
-                                }
-                                if ($list[$i]->view) {
-                                    $listSpecification[] = [
-                                        'icon' => 'fa-solid fa-eye',
-                                        'title' => $list[$i]->view
-                                    ];
-                                }
-                                if ($list[$i]->area) {
-                                    $listSpecification[] = [
-                                        'icon' => 'fa-solid fa-arrows-up-down-left-right',
-                                        'title' => $list[$i]->area . 'm²'
-                                    ];
-                                }
-                                if ($list[$i]->capacity) {
-                                    $listSpecification[] = [
-                                        'icon' => 'fa-solid fa-user',
-                                        'title' => $list[$i]->capacity . ' ' . (__($list[$i]->capacity <= 1 ? 'frontend::common.guest' : 'frontend::common.guest_plural'))
-                                    ];
-                                }
+
+                                $cabinName = $list[$i]->name ?? '';
+                                $cabinArea = $list[$i]->area ?? '';
+
+                                $specMap = [
+                                    'Serenity Deluxe' => [
+                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
+                                        ['icon' => 'home',     'text' => 'Main Deck'],
+                                        ['icon' => 'bath',     'text' => 'Bathtub'],
+                                        ['icon' => 'maximize', 'text' => $cabinArea . ' m²'],
+                                    ],
+                                    'Ocean Breeze Premium' => [
+                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
+                                        ['icon' => 'home',     'text' => 'Upper Deck'],
+                                        ['icon' => 'bath',     'text' => 'Bathtub'],
+                                        ['icon' => 'maximize', 'text' => $cabinArea . ' m²'],
+                                    ],
+                                    'Royal Romance Suite' => [
+                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
+                                        ['icon' => 'home',     'text' => 'Upper Deck'],
+                                        ['icon' => 'bath',     'text' => 'Jacuzzi'],
+                                        ['icon' => 'bell',     'text' => 'Butler'],
+                                    ],
+                                    'Imperial Suite' => [
+                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
+                                        ['icon' => 'bath',     'text' => 'Jacuzzi Balcony'],
+                                        ['icon' => 'coffee',   'text' => 'In-room Dining'],
+                                        ['icon' => 'bell',     'text' => 'Butler'],
+                                    ],
+                                ];
+
+                                $specs = $specMap[$cabinName] ?? [
+                                    ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
+                                    ['icon' => 'maximize', 'text' => $cabinArea . ' m²'],
+                                    ['icon' => 'users',    'text' => ($list[$i]->capacity ?? '') . ' Guests'],
+                                    ['icon' => 'home',     'text' => 'On Board'],
+                                ];
+
+                                $categoryMap = [
+                                    'Serenity Deluxe'        => 'Deluxe Cabin',
+                                    'Ocean Breeze Premium'   => 'Premium Cabin',
+                                    'Royal Romance Suite'    => 'Suite',
+                                    'Imperial Suite'         => 'Signature Suite',
+                                ];
+                                $cabinCategory = $categoryMap[$cabinName] ?? 'Cabin';
+
+                                $deckMap = [
+                                    'Serenity Deluxe'        => 'Main Deck',
+                                    'Ocean Breeze Premium'   => 'Upper Deck',
+                                    'Royal Romance Suite'    => 'Upper Deck · Front',
+                                    'Imperial Suite'         => 'Upper Deck · Rear',
+                                ];
+                                $deckLabel = $deckMap[$cabinName] ?? '';
                             @endphp
                             <div class="item d-flex h-100" data-cabin-class="{{ $list[$i]->cabin_class }}">
                                 <div class="item-wrapper d-flex flex-column w-100 bg-white{{ $suitesGrid ? ' suite-card' : '' }}{{ $suitesGrid && $isSuiteFeatured ? ' suite-featured' : '' }}">
@@ -88,29 +104,75 @@ $suitesGrid = $suitesGrid ?? false;
                                                 'ratio' => $suitesGrid ? '3-2' : null,
                                             ])
                                         </a>
+                                        @if($deckLabel)
+                                            <span class="suite-badge-deck">{{ $deckLabel }}</span>
+                                        @endif
+                                        <span class="suite-badge-ai">
+                                            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                <circle cx="12" cy="12" r="3"/>
+                                                <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+                                            </svg>
+                                            AI Concierge
+                                        </span>
+                                        @if(str_contains($cabinName, 'Imperial') || (int) ($list[$i]->area ?? 0) === 120)
+                                            <span class="suite-badge-featured">Largest Suite</span>
+                                        @endif
                                         @if ($suitesGrid && $list[$i]->area)
                                             <span class="suite-size-badge">{{ $list[$i]->area }}m²</span>
                                         @endif
                                     </div>
                                     <div class="item-body{{ $suitesGrid ? ' suite-card-content' : '' }}">
+                                        <p class="suite-card-category">{{ $cabinCategory }}</p>
                                         <h3 class="title mb-2 font-heading give-ellipsis after-2-lines{{ $suitesGrid ? ' suite-card-name' : '' }}">
                                             <a href="javascript:;" class="btn-view-cabin-details text-reset" data-id="{{ $list[$i]->id }}">{{ $list[$i]->name }}</a>
                                         </h3>
-                                        <p class="description text-break give-ellipsis after-2-lines{{ $suitesGrid ? ' suite-card-desc' : '' }}">{{ $list[$i]->summary }}</p>
-                                        @if (count($listSpecification) > 0)
-                                            <div class="list-specification mb-3{{ $suitesGrid ? ' suite-specs' : '' }}">
-                                                @for ($j = 0; $j < count($listSpecification); $j++)
-                                                    <div class="item-specification media{{ $suitesGrid ? ' suite-spec-item' : '' }}">
-                                                        <div class="icon mr-2">
-                                                            <i class="{{ $listSpecification[$j]['icon'] }}"></i>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p class="mb-0 suite-spec-text">{{ $listSpecification[$j]['title'] }}</p>
-                                                        </div>
+                                        <p class="description suite-card-desc text-break give-ellipsis after-2-lines">{{ Str::limit($list[$i]->summary ?? '', 110) }}</p>
+                                        <div class="list-specification suite-specs">
+                                            @foreach($specs as $spec)
+                                                <div class="item-specification suite-spec-item">
+                                                    @if($spec['icon'] === 'eye')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                                            <circle cx="12" cy="12" r="3"/>
+                                                        </svg>
+                                                    @elseif($spec['icon'] === 'home')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                                                        </svg>
+                                                    @elseif($spec['icon'] === 'bath')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                                                        </svg>
+                                                    @elseif($spec['icon'] === 'bell')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                                            <path d="M13.73 21a2 2 0 01-3.46 0"/>
+                                                        </svg>
+                                                    @elseif($spec['icon'] === 'coffee')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <path d="M18 8h1a4 4 0 010 8h-1"/>
+                                                            <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                                                        </svg>
+                                                    @elseif($spec['icon'] === 'maximize')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <polyline points="15 3 21 3 21 9"/>
+                                                            <polyline points="9 21 3 21 3 15"/>
+                                                            <line x1="21" y1="3" x2="14" y2="10"/>
+                                                            <line x1="3" y1="21" x2="10" y2="14"/>
+                                                        </svg>
+                                                    @elseif($spec['icon'] === 'users')
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                                            <circle cx="9" cy="7" r="4"/>
+                                                            <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/>
+                                                        </svg>
+                                                    @endif
+                                                    <div class="media-body">
+                                                        <p class="suite-spec-text">{{ $spec['text'] }}</p>
                                                     </div>
-                                                @endfor
-                                            </div>
-                                        @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                     <div class="item-footer">
                                         <hr />

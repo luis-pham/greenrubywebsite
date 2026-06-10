@@ -11,8 +11,8 @@ $(document).ready(function () {
         dots: true,
         nav: true,
         navText: [
-            '<div class="button"><i class="fa-solid fa-chevron-left"></i></div>',
-            '<div class="button"><i class="fa-solid fa-chevron-right"></i></div>'
+            '<div class="button" aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></div>',
+            '<div class="button" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>'
         ],
         items: 1,
         margin: isSuitesGrid ? 16 : 24,
