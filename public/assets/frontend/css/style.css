@@ -43,12 +43,12 @@
     --text-section-title: 3.125rem;
 
     /* Color tokens — Green Ruby Design System */
-    --color-forest:        #0e5f4b;
+    --color-forest:        #0c3d31;
     --color-gold:          #C8A84B;
     --color-cream:         #f0ece4;
     --color-white:         #ffffff;
 
-    /* Text color system (5 semantic roles) — chữ giữ #0D2B1A, UI dùng #0e5f4b */
+    /* Text color system (5 semantic roles) — chữ giữ #0D2B1A, UI dùng #0c3d31 */
     --color-text-on-light:       #0D2B1A;
     --color-text-on-dark:        #f0ece4;
     --color-text-accent:         #C8A84B;
@@ -75,7 +75,7 @@
     --color-cream-soft: #f3f3f0;
 
     /* Legacy aliases (dùng để migrate dần) */
-    --color-forest-teal: #0e5f4b;
+    --color-forest-teal: var(--color-forest);
     --color-gold-warm:   #C8A84B;
 
     /* Spacing scale */
@@ -492,7 +492,7 @@ button {
 
 /* List Itinerary Cruise */
 .list-itinerary-cruise .item .item-wrapper {
-    box-shadow: 0px 4px 24px 0px #0e5f4b0f;
+    box-shadow: 0px 4px 24px 0px #0c3d310f;
 }
 
 .list-itinerary-cruise .item .item-header .image-wrapper:after {
@@ -501,7 +501,7 @@ button {
 
 .list-itinerary-cruise .item .item-body,
 .list-itinerary-cruise .item .item-footer {
-    border: 1px solid #0e5f4b1a;
+    border: 1px solid #0c3d311a;
 }
 
 .list-itinerary-cruise .item .item-body {
@@ -545,7 +545,7 @@ button {
 
 .list-faq .item {
     padding: 1rem;
-    border: 1px solid #0e5f4b1a;
+    border: 1px solid #0c3d311a;
 }
 
 .list-faq .item.expand {
@@ -924,7 +924,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-success.focus,
 .btn-success:focus {
     background-color: var(--color-forest);
-    border: 1px solid #0e5f4b;
+    border: 1px solid var(--color-forest);
     color: var(--color-text-on-dark);
     box-shadow: none;
 }
@@ -933,12 +933,12 @@ h1, h2, h3, h4, h5, h6 {
 .btn-success.focus,
 .btn-success:focus {
     background-color: var(--color-forest);
-    border: 1px solid #0e5f4b;
+    border: 1px solid var(--color-forest);
 }
 
 .btn-success.disabled,
 .btn-success:disabled {
-    background-color: rgba(14, 95, 75, 0.3);
+    background-color: rgba(12, 61, 49, 0.3);
     border: none;
     color: var(--color-text-on-dark);
 }
@@ -1041,7 +1041,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-tooltip .tooltip-inner {
     background-color: #ffffff;
     color: var(--color-text-on-light);
-    box-shadow: 4px 0px 20px 0px #0e5f4b0F;
+    box-shadow: 4px 0px 20px 0px #0c3d310f;
     max-width: 300px;
     font-style: italic;
     font-size: 1rem;
@@ -1304,7 +1304,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .menu-ext {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     border: 1px solid #c8a84b;
     color: var(--color-text-on-dark);
     min-width: 180px;
@@ -1600,7 +1600,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     #header > .container-fluid {
-        background: #0e5f4b;
+        background: var(--color-forest);
         border-bottom: none;
         padding-left: 0;
         padding-right: 0;
@@ -1807,7 +1807,7 @@ h1, h2, h3, h4, h5, h6 {
     7. FOOTER
 =============================================================*/
 #footer .container-fluid {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #footer .container-fluid:before {
@@ -1815,7 +1815,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer .footer-bar {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #footer .footer-bar-top {
@@ -2418,7 +2418,7 @@ body.menu-mobile-show{
 }
 
 #fabs .list-btn .btn-chat-with-ai {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #fabs .list-btn .btn-navigate-to-top {
@@ -2459,7 +2459,7 @@ body.menu-mobile-show{
     }
 
     #fabs .list-btn .btn-direct-chat{
-        background-color: #0e5f4b;
+        background-color: var(--color-forest);
     }
 
     #fabs .list-btn .btn-navigate-to-top {
@@ -2488,7 +2488,7 @@ body.menu-mobile-show{
 @media (max-width: 1023px) {
     /* Status bar top — màu navbar */
     html {
-        background-color: #0e5f4b;
+        background-color: var(--color-forest);
         overflow-x: hidden;
     }
 
@@ -2500,7 +2500,7 @@ body.menu-mobile-show{
        (body bg làm z-index:-1 pseudo-elements bị mất) */
     #footer {
         padding-bottom: env(safe-area-inset-bottom);
-        background-color: #0e5f4b;
+        background-color: var(--color-forest);
     }
 
     #header > .container-fluid {
@@ -2536,7 +2536,7 @@ body.menu-mobile-show{
 
     #home .list-itinerary-cruise .item .item-body,
     #home .list-itinerary-cruise .item .item-footer {
-        border-color: rgba(14, 95, 75, 0.03) !important;
+        border-color: rgba(12, 61, 49, 0.03) !important;
     }
 }
 

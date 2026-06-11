@@ -14,7 +14,7 @@
 }
 
 #main .section-testimonial .container-fluid:before {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     z-index: -1;
 }
 

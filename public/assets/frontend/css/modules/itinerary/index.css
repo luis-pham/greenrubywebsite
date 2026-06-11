@@ -24,7 +24,7 @@
 }
 
 #itinerary .section-service .container-fluid::before{
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     z-index: -1;
 }
 
@@ -95,7 +95,7 @@
 #itinerary .section-faq .grid-faq-inner .item{
     padding: 2rem;
     background-color: white;
-    box-shadow: 0 4px 24px 0 #0e5f4b0F;
+    box-shadow: 0 4px 24px 0 #0c3d310f;
     text-align: center;
 }
 

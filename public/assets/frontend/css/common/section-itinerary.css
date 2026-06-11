@@ -148,7 +148,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     top: 12px;
     left: 12px;
     z-index: 2;
-    background: rgba(14, 95, 75, 0.75);
+    background: rgba(12, 61, 49, 0.75);
     backdrop-filter: blur(4px);
     padding: 5px 12px;
     font-size: 10px;
@@ -165,7 +165,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     bottom: 12px;
     right: 12px;
     z-index: 2;
-    background: rgba(14, 95, 75, 0.75);
+    background: rgba(12, 61, 49, 0.75);
     backdrop-filter: blur(4px);
     padding: 5px 10px;
     font-size: 10px;
@@ -213,10 +213,10 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     letter-spacing: 0.06em;
     color: var(--color-text-on-light);
     font-weight: 300;
-    background: rgba(14, 95, 75, 0.04);
+    background: rgba(12, 61, 49, 0.04);
     padding: 4px 8px;
     font-family: var(--font-body);
-    border: 0.5px solid rgba(14, 95, 75, 0.08);
+    border: 0.5px solid rgba(12, 61, 49, 0.08);
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-price {
@@ -225,7 +225,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     flex-wrap: wrap;
     gap: 4px;
     padding-top: 12px;
-    border-top: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-top: 0.5px solid rgba(12, 61, 49, 0.07);
     margin-bottom: 12px;
 }
 
@@ -253,7 +253,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-card-actions {
     padding-top: 12px;
-    border-top: 0.5px dashed rgba(14, 95, 75, 0.1);
+    border-top: 0.5px dashed rgba(12, 61, 49, 0.1);
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-view {

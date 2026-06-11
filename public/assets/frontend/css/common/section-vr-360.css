@@ -3,7 +3,7 @@
 }
 
 .section-vr-360 .container-fluid::before{
-    background-image: linear-gradient(to bottom,#0e5f4b 0%, #0e5f4b 63.5%, #F3F3F0 63.5%, #F3F3F0 100%);
+    background-image: linear-gradient(to bottom,var(--color-forest) 0%, var(--color-forest) 63.5%, #F3F3F0 63.5%, #F3F3F0 100%);
     z-index: -1;
 }
 
@@ -60,7 +60,7 @@
 .section-vr-360 .vr-container-outer .vr-container-inner .item {
     display: grid;
     grid-template-rows: 1fr;
-    background:#0e5f4b;
+    background:var(--color-forest);
 }
 
 .section-vr-360 .vr-container-outer .vr-container-inner .item:has(.title) {

@@ -5,7 +5,7 @@
 
 /* ── Hero ──────────────────────────────────────────────── */
 #main #article.page-privacy-policy .privacy-hero {
-    background: #0e5f4b;
+    background: var(--color-forest);
     margin-top: -91px;
     padding: calc(91px + 56px) 48px 56px;
     position: relative;
@@ -78,7 +78,7 @@
     top: 0;
     z-index: 10;
     background: var(--color-cream-bg);
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.08);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.08);
 }
 
 #article.page-privacy-policy .privacy-jumpnav-inner {
@@ -159,8 +159,8 @@
     align-items: center;
     gap: 6px;
     padding: 5px 12px;
-    background: rgba(14, 95, 75, 0.03);
-    border: 0.5px solid rgba(14, 95, 75, 0.08);
+    background: rgba(12, 61, 49, 0.03);
+    border: 0.5px solid rgba(12, 61, 49, 0.08);
     font-family: var(--font-body);
     font-size: 14px;
     color: var(--color-text-muted-on-light);
@@ -171,7 +171,7 @@
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background: rgba(14, 95, 75, 0.15);
+    background: rgba(12, 61, 49, 0.15);
     flex-shrink: 0;
 }
 
@@ -196,7 +196,7 @@
 #article.page-privacy-policy .privacy-section {
     margin-bottom: 48px;
     padding-bottom: 48px;
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
     scroll-margin-top: 100px;
 }
 
@@ -308,7 +308,7 @@
 
 /* ── Contact box ─────────────────────────────────────────── */
 #article.page-privacy-policy .privacy-contact-box {
-    background: #0e5f4b;
+    background: var(--color-forest);
     padding: 32px 40px;
     margin-top: 48px;
     display: flex;

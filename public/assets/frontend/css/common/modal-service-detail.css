@@ -32,7 +32,7 @@
 
 .modal-service .slide-1 .owl-nav .owl-next .button,
 .modal-service .slide-1 .owl-nav .owl-prev .button {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 .modal-service .slide-1 .owl-nav .disabled {

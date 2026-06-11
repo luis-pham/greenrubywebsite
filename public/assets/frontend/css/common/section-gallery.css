@@ -50,7 +50,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-color:#0e5f4bB2;
+    background-color:#0c3d31b2;
 }
 
 .section-gallery .gallery-container.gallery-grid-layout .overflow.gallery-image-wrapper:nth-child(6)::after {

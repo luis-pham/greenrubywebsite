@@ -61,8 +61,8 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    background: rgba(14, 95, 75, 0.02);
-    border: 0.5px solid rgba(14, 95, 75, 0.07);
+    background: rgba(12, 61, 49, 0.02);
+    border: 0.5px solid rgba(12, 61, 49, 0.07);
 }
 
 /* Category groups — inside single panel, divided by lines */
@@ -71,7 +71,7 @@
 }
 
 .onboard-cat-group:not(:first-child) {
-    border-top: 0.5px solid rgba(14, 95, 75, 0.08);
+    border-top: 0.5px solid rgba(12, 61, 49, 0.08);
 }
 
 .onboard-cat-label {
@@ -93,7 +93,7 @@
 .onboard-cat-item {
     padding: 8px 12px;
     background: #fff;
-    border: 0.5px solid rgba(14, 95, 75, 0.07);
+    border: 0.5px solid rgba(12, 61, 49, 0.07);
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s;
 }
@@ -137,7 +137,7 @@
 .onboard-main-img {
     position: relative;
     overflow: hidden;
-    background: #0e5f4b;
+    background: var(--color-forest);
     width: 100%;
     aspect-ratio: 3 / 2;
     flex-shrink: 0;
@@ -243,7 +243,7 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    background: #0e5f4b;
+    background: var(--color-forest);
     border: 1.5px solid transparent;
     display: block;
 }
@@ -261,7 +261,7 @@
 }
 
 .onboard-thumb--more {
-    background: rgba(14, 95, 75, 0.85);
+    background: rgba(12, 61, 49, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -279,7 +279,7 @@
 
 .onboard-svc-group {
     background: #fff;
-    border: 0.5px solid rgba(14, 95, 75, 0.07);
+    border: 0.5px solid rgba(12, 61, 49, 0.07);
     padding: 24px 20px;
 }
 
@@ -311,7 +311,7 @@
     align-items: flex-start;
     gap: 10px;
     padding: 10px 0;
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.06);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.06);
 }
 
 .onboard-svc-item:last-child {
@@ -321,7 +321,7 @@
 .onboard-svc-icon {
     width: 26px;
     height: 26px;
-    border: 0.5px solid rgba(14, 95, 75, 0.1);
+    border: 0.5px solid rgba(12, 61, 49, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -364,9 +364,9 @@
 }
 
 .onboard-svc-badge--free {
-    background: rgba(14, 95, 75, 0.03);
+    background: rgba(12, 61, 49, 0.03);
     color: var(--color-text-muted-on-light);
-    border: 0.5px solid rgba(14, 95, 75, 0.1);
+    border: 0.5px solid rgba(12, 61, 49, 0.1);
 }
 
 .onboard-svc-badge--suite {
@@ -376,9 +376,9 @@
 }
 
 .onboard-svc-badge--paid {
-    background: rgba(14, 95, 75, 0.03);
+    background: rgba(12, 61, 49, 0.03);
     color: var(--color-text-muted-on-light);
-    border: 0.5px solid rgba(14, 95, 75, 0.1);
+    border: 0.5px solid rgba(12, 61, 49, 0.1);
 }
 
 /* Responsive */

@@ -48,7 +48,7 @@
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-time {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 /* Mặc định: mobile */
@@ -387,7 +387,7 @@
 }
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper-inner-2 .section-content-exp-wrapper-inner-2-content {
     padding: 2rem 1rem;
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 @media (min-width: 992px) {

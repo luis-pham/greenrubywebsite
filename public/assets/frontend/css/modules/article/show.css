@@ -78,7 +78,7 @@
     padding: .75rem;
     margin-bottom: 1.5rem;
     background-color: #f5fbfa;
-    border: 1px dashed #0e5f4b;
+    border: 1px dashed var(--color-forest);
 }
 
 #article .section-2 .main-content .article-body .description.article-content {
@@ -141,7 +141,7 @@
 
 /* Section 3 */
 #article .section-3 .container-fluid {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #article .section-3 .btn-view-details {

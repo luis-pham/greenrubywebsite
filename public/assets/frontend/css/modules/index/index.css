@@ -231,7 +231,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(14, 95, 75, 0.35);
+    background: rgba(12, 61, 49, 0.35);
     border: 1px solid rgba(200, 168, 75, 0.4);
     border-radius: 0;
     color: var(--color-text-on-dark);
@@ -239,7 +239,7 @@
 }
 
 #home .section-1.section-cover .page-cover .slide-1 .owl-nav .button:hover {
-    background: rgba(14, 95, 75, 0.55);
+    background: rgba(12, 61, 49, 0.55);
     border-color: #C8A84B;
     color: var(--color-text-accent);
 }
@@ -362,7 +362,7 @@
         gap: 5px;
         padding: 10px 0;
         margin: 0;
-        background: #0e5f4b;
+        background: var(--color-forest);
     }
 
     #home .section-1.section-cover .page-cover .slide-1 .owl-dots .owl-dot span {
@@ -386,7 +386,7 @@
         margin-top: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        background: #0e5f4b;
+        background: var(--color-forest);
         padding: 20px 18px 24px;
         text-align: left;
     }
@@ -556,7 +556,7 @@
     align-items: center;
     width: 100%;
     padding: 16px 28px;
-    border-right: 0.5px solid rgba(14, 95, 75, 0.08);
+    border-right: 0.5px solid rgba(12, 61, 49, 0.08);
     box-sizing: border-box;
 }
 
@@ -569,7 +569,7 @@
 }
 
 #home .section-2 .info-bar .info-item:hover {
-    background-color: rgba(14, 95, 75, 0.04);
+    background-color: rgba(12, 61, 49, 0.04);
 }
 
 #home .section-2 .info-bar .info-item .list-value {
@@ -614,7 +614,7 @@
 }
 
 #home .section-2 .info-bar .info-left.icon-wrap svg {
-    stroke: #0e5f4b;
+    stroke: var(--color-forest);
     opacity: 0.5;
 }
 
@@ -748,7 +748,7 @@
         gap: 12px;
         padding: 14px 18px;
         border-right: none;
-        border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
+        border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
         width: 100% !important;
     }
 
@@ -850,6 +850,56 @@
     text-align: center;
 }
 
+/* Tab filter pills — standard: Curated Journeys (section-4, 7, 9) */
+#main #home :is(
+    .section-4.section-itinerary,
+    .section-7,
+    .section-9
+) .tab-filter .list-button .item button,
+#main #home :is(
+    .section-4.section-itinerary,
+    .section-7,
+    .section-9
+) .tab-filter .list-button .item a {
+    padding: 0.375rem 0.875rem;
+    border: none;
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+@media (min-width: 768px) {
+    #main #home :is(
+        .section-4.section-itinerary,
+        .section-7,
+        .section-9
+    ) .tab-filter .list-button .item button,
+    #main #home :is(
+        .section-4.section-itinerary,
+        .section-7,
+        .section-9
+    ) .tab-filter .list-button .item a {
+        min-width: 120px;
+    }
+}
+
+/* Transparent inactive — Curated Journeys style (section-4, section-7) */
+#main #home :is(.section-4.section-itinerary, .section-7) .tab-filter .list-button.transparent .item button:not(.active),
+#main #home :is(.section-4.section-itinerary, .section-7) .tab-filter .list-button.transparent .item a:not(.active) {
+    background-color: #ffffff66;
+    color: #fff;
+}
+
+#main #home :is(.section-4.section-itinerary, .section-7) .tab-filter .list-button .item button.active,
+#main #home :is(.section-4.section-itinerary, .section-7) .tab-filter .list-button .item a.active {
+    background-color: #C8A84B;
+    color: #fff;
+}
+
 /* Section 3 */
 #home .section-3 .slide-1 .owl-nav .button {
     width: 32px;
@@ -914,7 +964,7 @@
 #home .section-3 .list-item .item .item-wrapper,
 #home .section-3 .eco-card {
     padding: 2.5rem 2rem;
-    box-shadow: 0px 4px 12px 0px #0e5f4b0f;
+    box-shadow: 0px 4px 12px 0px #0c3d310f;
     border-top: 2px solid #C8A84B;
 }
 
@@ -935,7 +985,7 @@
     line-height: 1;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 0.5px solid rgba(14, 95, 75, 0.1);
+    border-top: 0.5px solid rgba(12, 61, 49, 0.1);
     text-align: center;
 }
 
@@ -997,7 +1047,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(14, 95, 75, 0.35);
+    background: rgba(12, 61, 49, 0.35);
     border: 1px solid rgba(200, 168, 75, 0.4);
     border-radius: 0;
     color: var(--color-text-on-dark);
@@ -1005,7 +1055,7 @@
 }
 
 #home .section-4.section-itinerary .slide-1 .owl-nav .button:hover {
-    background: rgba(14, 95, 75, 0.55);
+    background: rgba(12, 61, 49, 0.55);
     border-color: #C8A84B;
     color: var(--color-text-accent);
 }
@@ -1081,7 +1131,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: rgba(14, 95, 75, 0.35);
+        background: rgba(12, 61, 49, 0.35);
         border: 1px solid rgba(200, 168, 75, 0.4);
         border-radius: 0;
         color: var(--color-text-on-dark);
@@ -1089,7 +1139,7 @@
     }
 
     #home .section-6.section-cabin .slide-1 .owl-nav .button:hover {
-        background: rgba(14, 95, 75, 0.55);
+        background: rgba(12, 61, 49, 0.55);
         border-color: #C8A84B;
         color: var(--color-text-accent);
     }
@@ -1126,11 +1176,11 @@
 
 /* Section 5 */
 #home .section-5 .cruise.ship-card:nth-child(odd) .ship-text {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #home .section-5 .cruise.ship-card:nth-child(even) .ship-text {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #home .section-5 .cruise.ship-card .ship-image-wrap {
@@ -1376,11 +1426,11 @@
     }
 
     #home .section-5 .cruise.ship-card:nth-child(odd) {
-        --ship-bg: #0e5f4b;
+        --ship-bg: var(--color-forest);
     }
 
     #home .section-5 .cruise.ship-card:nth-child(even) {
-        --ship-bg: #0e5f4b;
+        --ship-bg: var(--color-forest);
     }
 
     /* THAY ĐỔI 2: image trên, content dưới */
@@ -1409,7 +1459,7 @@
         padding-top: 0;
         background: linear-gradient(
             to top,
-            var(--ship-bg, #0e5f4b),
+            var(--ship-bg, var(--color-forest)),
             transparent
         );
         pointer-events: none;
@@ -1423,7 +1473,7 @@
         max-width: 100% !important;
         flex: 0 0 auto;
         padding: 0 !important;
-        background-color: var(--ship-bg, #0e5f4b) !important;
+        background-color: var(--ship-bg, var(--color-forest)) !important;
         display: block;
     }
 
@@ -1575,7 +1625,7 @@
 }
 
 #home .section-7 .container-fluid:before {
-    background-image: linear-gradient(to bottom, #0e5f4b 75%, var(--color-cream-bg) 50%);
+    background-image: linear-gradient(to bottom, var(--color-forest) 75%, var(--color-cream-bg) 50%);
     z-index: -1;
     height: 100%;
 }
@@ -1586,30 +1636,6 @@
     z-index: -1;
     opacity: .05;
     height: 75%;
-}
-
-/* Section 7 — filter pills: gold outline, active = gold fill */
-#home .section-7 .tab-filter .list-button .item button,
-#home .section-7 .tab-filter .list-button .item a {
-    background: transparent !important;
-    color: var(--color-text-on-dark) !important;
-    border: 1px solid #C8A84B !important;
-    border-radius: 0;
-    transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear;
-}
-
-#home .section-7 .tab-filter .list-button .item button.active,
-#home .section-7 .tab-filter .list-button .item a.active,
-#home .section-7 .tab-filter .list-button .item .active {
-    background: #C8A84B !important;
-    color: var(--color-text-on-light) !important;
-    border-color: #C8A84B !important;
-}
-
-#home .section-7 .tab-filter .list-button .item button:not(.active):hover,
-#home .section-7 .tab-filter .list-button .item a:not(.active):hover {
-    background: rgba(200, 168, 75, 0.12) !important;
-    color: var(--color-text-on-dark) !important;
 }
 
 #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer-link {
@@ -1638,17 +1664,6 @@
     background: transparent;
 }
 
-@media (max-width: 575px) {
-    #home .section-7 .tab-filter .list-button {
-        gap: .75rem;
-    }
-
-    #home .section-7 .tab-filter .list-button .item button,
-    #home .section-7 .tab-filter .list-button .item a {
-        font-size: 1rem;
-    }
-}
-
 #home .section-7 .list-item .item .item-wrapper {
     background: #fff;
 }
@@ -1667,7 +1682,7 @@
 
 #home .section-7 .list-item .item .item-wrapper .main-info {
     padding: 1rem;
-    box-shadow: 0px 4px 24px 0px #0e5f4b0f;
+    box-shadow: 0px 4px 24px 0px #0c3d310f;
 }
 
 #home .section-7 .list-item .item .item-wrapper .main-info .main-info-body {
@@ -1837,7 +1852,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(14, 95, 75, 0.35);
+    background: rgba(12, 61, 49, 0.35);
     border: 1px solid rgba(200, 168, 75, 0.4);
     border-radius: 0;
     color: var(--color-text-on-dark);
@@ -1845,7 +1860,7 @@
 }
 
 #home .section-9 .slide-1 .owl-nav .button:hover {
-    background: rgba(14, 95, 75, 0.55);
+    background: rgba(12, 61, 49, 0.55);
     border-color: #C8A84B;
     color: var(--color-text-accent);
 }
@@ -1959,16 +1974,21 @@
     cursor: default;
 }
 
-/* Section 9 — Tailored Experiences: không nền tối, chữ trên nền sáng */
-#home .section-9 .section-description,
-#home .section-9 .tab-filter .list-button .item button,
-#home .section-9 .tab-filter .list-button .item a {
+/* Section 9 — Tailored Experiences */
+#home .section-9 .section-description {
     color: var(--color-text-on-light);
+}
+
+#home .section-9 .tab-filter .list-button .item button:not(.active),
+#home .section-9 .tab-filter .list-button .item a:not(.active) {
+    background-color: #a9aba6;
+    color: #fff;
 }
 
 #home .section-9 .tab-filter .list-button .item button.active,
 #home .section-9 .tab-filter .list-button .item a.active {
-    color: var(--color-text-on-light);
+    background-color: #C8A84B;
+    color: #fff;
 }
 
 @media (max-width: 1023px) {
@@ -1988,8 +2008,6 @@
         z-index: 1;
     }
 
-    #home .section-9 .btn,
-    #home .section-9 button,
     #home .section-9 .list-item .item .main-info .list-button .btn {
         font-size: 12px;
     }
@@ -2064,7 +2082,7 @@
 
 #home .section-11 .award {
     padding: 3rem 1rem;
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #home .section-11 .award .section-title {
@@ -2178,7 +2196,7 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    background: rgba(14, 95, 75, 0.75);
+    background: rgba(12, 61, 49, 0.75);
     backdrop-filter: blur(4px);
     padding: 4px 10px;
     font-size: 8px;
@@ -2195,7 +2213,7 @@
     position: absolute;
     top: 12px;
     right: 12px;
-    background: rgba(14, 95, 75, 0.55);
+    background: rgba(12, 61, 49, 0.55);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 0.5px solid rgba(240, 236, 228, 0.18);
@@ -2256,8 +2274,8 @@
 .suite-specs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 0.5px solid rgba(14, 95, 75, 0.07);
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-top: 0.5px solid rgba(12, 61, 49, 0.07);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
     margin: 14px 0 0;
     gap: 0;
 }
@@ -2265,7 +2283,7 @@
 .suite-spec-item {
     padding: 10px 0;
     text-align: center;
-    border-right: 0.5px solid rgba(14, 95, 75, 0.06);
+    border-right: 0.5px solid rgba(12, 61, 49, 0.06);
     display: flex;
     flex-direction: column !important;
     align-items: center;
@@ -2449,8 +2467,8 @@
         align-items: center;
         gap: 12px;
         padding: 14px 18px;
-        border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
-        border-right: 0.5px solid rgba(14, 95, 75, 0.07) !important;
+        border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
+        border-right: 0.5px solid rgba(12, 61, 49, 0.07) !important;
         width: 50% !important;
         max-width: 50% !important;
         flex: 0 0 50% !important;
@@ -2554,7 +2572,7 @@
     pointer-events: none;
 
     /* Visual */
-    background: rgba(14, 95, 75, 0.72);
+    background: rgba(12, 61, 49, 0.72);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border: 0.5px solid rgba(240, 236, 228, 0.15);
@@ -2582,7 +2600,7 @@
     pointer-events: none;
 
     /* Visual — frosted dark glass */
-    background: rgba(14, 95, 75, 0.55);
+    background: rgba(12, 61, 49, 0.55);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 0.5px solid rgba(240, 236, 228, 0.18);

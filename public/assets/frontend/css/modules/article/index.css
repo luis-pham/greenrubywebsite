@@ -11,7 +11,7 @@
 
 /* ── Hero (match FAQ) ──────────────────────────────────── */
 #main #article-category .article-hero {
-    background: #0e5f4b;
+    background: var(--color-forest);
     margin-top: -91px;
     padding: calc(91px + 56px) 48px 56px;
     position: relative;
@@ -134,7 +134,7 @@
 }
 
 #article-category .section-3 .list-item .item .item-wrapper {
-    background: #0e5f4b;
+    background: var(--color-forest);
     color: var(--color-text-on-dark);
     height: 100%;
 }
@@ -153,7 +153,7 @@
 
 #article-category .section-3 .list-item .item .main-info {
     padding: 1rem 1rem calc(1rem + 1rem) 1rem;
-    box-shadow: 0px 4px 24px 0px #0e5f4b0f;
+    box-shadow: 0px 4px 24px 0px #0c3d310f;
 }
 
 #article-category .section-3 .slide-1 .owl-theme .owl-nav.disabled+.owl-dots {

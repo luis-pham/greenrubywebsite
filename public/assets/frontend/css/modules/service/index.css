@@ -130,7 +130,7 @@
 }
 
 #service .section-3 .container-fluid:before {
-    background-image: linear-gradient(to bottom, #0c3d31 25%, #f3f3f0 25%);
+    background-image: linear-gradient(to bottom, var(--color-forest) 25%, #f3f3f0 25%);
     z-index: -1;
     height: 100%;
 }
@@ -161,7 +161,7 @@
 
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info {
     padding: 1.25rem 0.75rem;
-    box-shadow: 0px 4px 24px 0px #0e5f4b0f;
+    box-shadow: 0px 4px 24px 0px #0c3d310f;
 }
 
 
@@ -190,12 +190,12 @@
     padding: 1rem 1rem;
 } */
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .info-cabin {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     margin-bottom: 0.75rem;
     padding: 1rem 1rem;
 }
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .info-amenity {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     padding: 1rem 1rem;
 }
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .info-cabin .icon,
@@ -246,7 +246,7 @@
     }
 
     #service .section-3 .container-fluid:before {
-        background-image: linear-gradient(to bottom, #0c3d31 50%, #f3f3f0 50%);
+        background-image: linear-gradient(to bottom, var(--color-forest) 50%, #f3f3f0 50%);
 
     }
     #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info {
@@ -337,7 +337,7 @@
 #service .section-3 .section-content-sustainability .list-item .item .item-wrapper {
     padding: 2.5rem 2rem;
     min-height: 280px;
-    box-shadow: 0px 4px 12px 0px #0e5f4b0f;
+    box-shadow: 0px 4px 12px 0px #0c3d310f;
 }
 
 #service .section-3 .section-content-sustainability .list-item .item .icon {
@@ -514,11 +514,11 @@
 
 #service .section-4 .cruise > div:nth-child(1),
 #service .section-4 .cruise > div:nth-child(4) {
-    background-color: #0e5f4b; 
+    background-color: var(--color-forest); 
 }
 
 #service .section-4 .cruise > div:nth-child(3) {
-    background-color: #0e5f4b; 
+    background-color: var(--color-forest); 
 }
 
 #service .section-4 .cruise .main-info.proposal,

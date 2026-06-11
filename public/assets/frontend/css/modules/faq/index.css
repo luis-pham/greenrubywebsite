@@ -11,7 +11,7 @@
 
 /* ── Hero (match legal) ────────────────────────────────── */
 #main #faq-category .faq-hero {
-    background: #0e5f4b;
+    background: var(--color-forest);
     margin-top: -91px;
     padding: calc(91px + 56px) 48px 56px;
     position: relative;
@@ -129,7 +129,7 @@
     top: 0;
     z-index: 10;
     background: var(--color-cream-bg);
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.08);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.08);
 }
 
 #faq-category .faq-jumpnav-inner {
@@ -220,7 +220,7 @@
 
 #faq-category .faq-pagination {
     padding: 24px 48px 32px;
-    border-top: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-top: 0.5px solid rgba(12, 61, 49, 0.07);
 }
 
 /* ── Accordion (match legal) ───────────────────────────── */
@@ -231,7 +231,7 @@
 #faq-category .list-faq .item {
     padding: 0;
     border: none;
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
     background: #fff;
     margin-bottom: 0;
 }
@@ -327,7 +327,7 @@
     width: 32px;
     height: 32px;
     line-height: 1;
-    border: 0.5px solid rgba(14, 95, 75, 0.1);
+    border: 0.5px solid rgba(12, 61, 49, 0.1);
     border-radius: 0;
     display: flex;
     align-items: center;

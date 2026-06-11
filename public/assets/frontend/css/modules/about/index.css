@@ -16,7 +16,7 @@
 
 /* ── SECTION 1: HERO ──────────────────────────────────── */
 #about .about-hero.section-cover {
-    background: #0e5f4b;
+    background: var(--color-forest);
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -302,7 +302,7 @@
 }
 
 #about .about-eco .about-topo ellipse {
-    stroke: #0e5f4b;
+    stroke: var(--color-forest);
 }
 
 #about .about-eco-panel {
@@ -333,7 +333,7 @@
 }
 
 #about .about-eco-card {
-    background: #0e5f4b;
+    background: var(--color-forest);
     border: 0.5px solid rgba(200, 168, 75, 0.15);
     padding: 28px 24px;
 }
@@ -445,7 +445,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 0.5px solid rgba(14, 95, 75, 0.06);
+    border: 0.5px solid rgba(12, 61, 49, 0.06);
 }
 
 #about .about-community-item-title {
@@ -523,7 +523,7 @@
 
 #about .about-impact-stat {
     background: #fff;
-    border: 0.5px solid rgba(14, 95, 75, 0.07);
+    border: 0.5px solid rgba(12, 61, 49, 0.07);
     padding: 32px 24px;
 }
 
@@ -559,7 +559,7 @@
 }
 
 #about .about-cert-bar .container-fluid {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #about .about-cert-panel {
@@ -700,7 +700,7 @@
 }
 
 #about .about-cta-buttons .btn-warning {
-    background: #0e5f4b;
+    background: var(--color-forest);
     color: var(--color-text-on-dark);
     font-size: 10px;
     letter-spacing: 0.18em;
@@ -721,7 +721,7 @@
     text-transform: uppercase;
     font-weight: 400;
     padding: 11px 24px;
-    border: 0.5px solid rgba(14, 95, 75, 0.15);
+    border: 0.5px solid rgba(12, 61, 49, 0.15);
     border-radius: 0;
     font-family: var(--font-body);
     box-shadow: none;

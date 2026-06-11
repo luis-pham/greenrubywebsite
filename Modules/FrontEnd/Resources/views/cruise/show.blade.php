@@ -78,11 +78,11 @@
 
         <section class="section-info ship-specs-section">
             <svg class="ship-specs-topo" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <ellipse cx="1200" cy="100" rx="320" ry="200" fill="none" stroke="#0e5f4b" stroke-width="1"/>
-                <ellipse cx="1200" cy="100" rx="240" ry="148" fill="none" stroke="#0e5f4b" stroke-width="1"/>
-                <ellipse cx="1200" cy="100" rx="160" ry="96" fill="none" stroke="#0e5f4b" stroke-width="1"/>
-                <ellipse cx="200" cy="600" rx="280" ry="180" fill="none" stroke="#0e5f4b" stroke-width="1"/>
-                <ellipse cx="200" cy="600" rx="200" ry="130" fill="none" stroke="#0e5f4b" stroke-width="1"/>
+                <ellipse cx="1200" cy="100" rx="320" ry="200" fill="none" stroke="#0c3d31" stroke-width="1"/>
+                <ellipse cx="1200" cy="100" rx="240" ry="148" fill="none" stroke="#0c3d31" stroke-width="1"/>
+                <ellipse cx="1200" cy="100" rx="160" ry="96" fill="none" stroke="#0c3d31" stroke-width="1"/>
+                <ellipse cx="200" cy="600" rx="280" ry="180" fill="none" stroke="#0c3d31" stroke-width="1"/>
+                <ellipse cx="200" cy="600" rx="200" ry="130" fill="none" stroke="#0c3d31" stroke-width="1"/>
             </svg>
             <div class="container position-relative">
                 <div class="combined-header">

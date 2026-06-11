@@ -16,7 +16,7 @@
 
 /* ── Hero ─────────────────────────────────────────────── */
 #contact .contact-hero.section-cover {
-    background: #0e5f4b;
+    background: var(--color-forest);
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -217,19 +217,19 @@
     align-items: flex-start;
     gap: 14px;
     padding: 16px 0;
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
     margin-bottom: 0;
 }
 
 #contact .section-contact .main-info .contact .item:first-child {
-    border-top: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-top: 0.5px solid rgba(12, 61, 49, 0.07);
 }
 
 #contact .contact-item-icon {
     width: 32px;
     height: 32px;
     flex-shrink: 0;
-    border: 0.5px solid rgba(14, 95, 75, 0.12);
+    border: 0.5px solid rgba(12, 61, 49, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -275,14 +275,14 @@
 /* ── Form ─────────────────────────────────────────────── */
 #contact .form-contact {
     background: #fff;
-    border: 0.5px solid rgba(14, 95, 75, 0.08);
+    border: 0.5px solid rgba(12, 61, 49, 0.08);
     padding: 36px 32px;
 }
 
 #contact .contact-form-header {
     margin-bottom: 24px;
     padding-bottom: 20px;
-    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.07);
 }
 
 #contact .contact-form-title {
@@ -318,7 +318,7 @@
 #contact .form-contact .contact-form-textarea {
     width: 100%;
     padding: 11px 14px;
-    border: 0.5px solid rgba(14, 95, 75, 0.15);
+    border: 0.5px solid rgba(12, 61, 49, 0.15);
     border-radius: 0;
     font-size: 13px;
     color: var(--color-text-on-light);
@@ -347,7 +347,7 @@
 
 #contact .form-contact .btn-submit {
     width: 100%;
-    background: #0e5f4b;
+    background: var(--color-forest);
     color: var(--color-text-on-dark);
     font-size: 10px;
     letter-spacing: 0.18em;

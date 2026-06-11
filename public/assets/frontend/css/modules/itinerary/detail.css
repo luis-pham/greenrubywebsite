@@ -83,7 +83,7 @@
 #itinerary-detail .section-info .container-info .cruise-info{
     display: grid;
     grid-template-columns: repeat(4,auto);
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     padding: 2rem;
     gap: 2rem;
 }
@@ -103,7 +103,7 @@
 }
 
 #itinerary-detail .section-info .price-box {
-    background-color:#0e5f4b;
+    background-color:var(--color-forest);
     padding: 2rem;
     gap: 2rem;
 }
@@ -226,7 +226,7 @@
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail .header::after {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     z-index: -1;
 }
 
@@ -374,7 +374,7 @@
 }
 
 #itinerary-detail .section-cabin .container-fluid::before{
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     z-index: -1;
 }
 

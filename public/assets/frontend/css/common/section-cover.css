@@ -23,7 +23,7 @@
 #main .section-cover.is-loading .slide-1:after {
     content: '';
     display: block;
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 #main .section-cover:not(.is-loading) .slide-1after {
