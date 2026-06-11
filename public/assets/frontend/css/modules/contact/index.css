@@ -16,7 +16,7 @@
 
 /* ── Hero ─────────────────────────────────────────────── */
 #contact .contact-hero.section-cover {
-    background: #0D2B1A;
+    background: #0e5f4b;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -75,7 +75,7 @@
     font-size: 10px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     margin-bottom: 14px;
     font-weight: 400;
     font-family: var(--font-body);
@@ -85,7 +85,7 @@
     font-family: var(--font-display);
     font-size: 52px;
     font-weight: 300;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     line-height: 1.1;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
@@ -96,12 +96,12 @@
 
 #contact .contact-hero .main-info .title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #contact .contact-hero .main-info .description {
     font-size: 14px;
-    color: var(--color-cream-50);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     max-width: 440px;
     margin: 0 auto 32px;
@@ -135,7 +135,7 @@
 
 #contact .contact-hero .list-button .btn-warning {
     background: #C8A84B;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -148,7 +148,7 @@
 
 #contact .contact-hero .list-button .btn-success {
     background: transparent;
-    color: var(--color-cream-70);
+    color: var(--color-text-muted-on-dark);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -163,7 +163,7 @@
 #contact .contact-hero .list-button .btn-success:focus {
     background: transparent;
     border-color: rgba(240, 236, 228, 0.5);
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
 }
 
 @media (max-width: 575.98px) {
@@ -179,7 +179,7 @@
 
 /* ── Main section — full width như footer ─────────────── */
 #contact .section-contact.bg .container-fluid {
-    background-color: #f8f5ef;
+    background-color: var(--color-cream-bg);
 }
 
 #contact .section-contact .contact-main-grid {
@@ -212,7 +212,7 @@
     font-family: var(--font-display);
     font-size: 40px;
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.1;
     margin-bottom: 10px;
     letter-spacing: -0.01em;
@@ -221,12 +221,12 @@
 
 #contact .contact-left-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #contact .contact-left-tagline {
     font-size: 14px;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 300;
     line-height: 1.7;
     font-family: var(--font-body);
@@ -245,26 +245,26 @@
     align-items: flex-start;
     gap: 14px;
     padding: 16px 0;
-    border-bottom: 0.5px solid rgba(13, 43, 26, 0.07);
+    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
     margin-bottom: 0;
 }
 
 #contact .section-contact .main-info .contact .item:first-child {
-    border-top: 0.5px solid rgba(13, 43, 26, 0.07);
+    border-top: 0.5px solid rgba(14, 95, 75, 0.07);
 }
 
 #contact .contact-item-icon {
     width: 32px;
     height: 32px;
     flex-shrink: 0;
-    border: 0.5px solid rgba(13, 43, 26, 0.12);
+    border: 0.5px solid rgba(14, 95, 75, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 2px;
     background: none;
     border-radius: 0;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-size: 13px;
 }
 
@@ -274,7 +274,7 @@
     width: auto;
     height: auto;
     font-size: 13px;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
 }
 
 #contact .contact-item-body {
@@ -286,7 +286,7 @@
     font-size: 8px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 500;
     margin-bottom: 3px;
     display: block;
@@ -295,7 +295,7 @@
 
 #contact .contact-item-value {
     font-size: 13px;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 300;
     font-family: var(--font-body);
 }
@@ -303,27 +303,27 @@
 /* ── Form ─────────────────────────────────────────────── */
 #contact .form-contact {
     background: #fff;
-    border: 0.5px solid rgba(13, 43, 26, 0.08);
+    border: 0.5px solid rgba(14, 95, 75, 0.08);
     padding: 36px 32px;
 }
 
 #contact .contact-form-header {
     margin-bottom: 24px;
     padding-bottom: 20px;
-    border-bottom: 0.5px solid rgba(13, 43, 26, 0.07);
+    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
 }
 
 #contact .contact-form-title {
     font-family: var(--font-display);
     font-size: 24px;
     font-weight: 400;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     margin-bottom: 6px;
 }
 
 #contact .contact-form-sub {
     font-size: 14px;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 300;
     line-height: 1.6;
     font-family: var(--font-body);
@@ -334,7 +334,7 @@
     font-size: 9px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 500;
     margin-bottom: 6px;
     display: block;
@@ -346,10 +346,10 @@
 #contact .form-contact .contact-form-textarea {
     width: 100%;
     padding: 11px 14px;
-    border: 0.5px solid rgba(13, 43, 26, 0.15);
+    border: 0.5px solid rgba(14, 95, 75, 0.15);
     border-radius: 0;
     font-size: 13px;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 300;
     background: #fafaf8;
     font-family: var(--font-body);
@@ -375,8 +375,8 @@
 
 #contact .form-contact .btn-submit {
     width: 100%;
-    background: #0D2B1A;
-    color: #f0ece4;
+    background: #0e5f4b;
+    color: var(--color-text-on-dark);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -391,7 +391,7 @@
 
 #contact .form-contact .btn-submit:hover {
     background: #C8A84B;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
 }
 
 #contact .form-contact .btn-submit.disabled {
@@ -401,7 +401,7 @@
 
 #contact .contact-form-note {
     font-size: 10px;
-    color: var(--color-subtle);
+    color: var(--color-text-muted-on-light);
     margin-top: 10px;
     text-align: center;
     font-weight: 300;

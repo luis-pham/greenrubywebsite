@@ -112,7 +112,7 @@
                 </svg>
                 <div class="container-fluid px-0">
                     <div class="container gallery-video-panel">
-                        <p class="gallery-section-eyebrow gallery-eyebrow-gold">Immersive Experiences</p>
+                        <p class="section-eyebrow section-eyebrow--gold">Immersive Experiences</p>
                         <h2 class="gallery-video-title">Step Aboard <em>Virtually.</em></h2>
                         <div class="gallery-video-grid">
                             @foreach($vrGalleries as $item)

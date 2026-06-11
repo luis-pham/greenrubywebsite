@@ -118,7 +118,7 @@
             <div class="container-fluid px-0">
                 <div class="container about-story-grid">
                     <div class="about-story-copy">
-                        <p class="about-section-eyebrow">Our Story</p>
+                        <p class="section-eyebrow">Our Story</p>
                         @if ($aboutUsEcoTitle)
                             <p class="about-story-kicker">{{ $aboutUsEcoTitle }}</p>
                         @endif
@@ -152,7 +152,7 @@
             </svg>
             <div class="container-fluid px-0">
                 <div class="container about-eco-panel">
-                    <p class="about-section-eyebrow about-section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
                     <h2 class="about-eco-title">Technology That <em>Proves It.</em></h2>
                     @if (count($listSustainability ?? []) > 0)
                         <div class="about-eco-grid">
@@ -180,7 +180,7 @@
                 <div class="container about-community-panel">
                     <div class="about-community-header">
                         @if ($aboutUsEnviromentTitle)
-                            <p class="about-section-eyebrow">{{ $aboutUsEnviromentTitle }}</p>
+                            <p class="section-eyebrow">{{ $aboutUsEnviromentTitle }}</p>
                         @endif
                         @if ($aboutUsEnviromentDescription)
                             <h2 class="about-community-title">{!! $communityTitleHtml !!}</h2>
@@ -212,7 +212,7 @@
         <section class="section-5 bg bg-azure about-impact">
             <div class="container-fluid px-0">
                 <div class="container about-impact-panel">
-                    <p class="about-section-eyebrow">Our Positive Impact</p>
+                    <p class="section-eyebrow">Our Positive Impact</p>
                     @if ($aboutUsStatisticTitle)
                         <h2 class="about-impact-title">{{ $aboutUsStatisticTitle }}</h2>
                     @endif

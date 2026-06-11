@@ -20,7 +20,7 @@
         font-size: 3.125rem;
     }
     #service .section-1 .container-fluid .page-cover .image-wrapper::before{
-        opacity: 0.7;
+        opacity: 0.42;
     }
     #service .section-1 .container-fluid .page-cover .main-info .title {
         font-size: 3.375rem;
@@ -66,7 +66,7 @@
 }
 
 #service .section-2.bg.bg-azure .container-fluid {
-    background-color: #f3f3f0;
+    background-color: var(--color-cream-soft);
 }
 .section-2 .list-itinerary-cruise .item .item-body .list-amenity .item-amenity .image-wrapper {
     width: 20px;
@@ -78,7 +78,7 @@
 #service .section-2 .list-itinerary-cruise .item .item-footer .sub-title {
     font-size: 1rem;
     line-height: 1.416666666666667;
-    color: var(--color-forest);
+    color: var(--color-text-on-light);
 }
 
 #service .section-2 .list-itinerary-cruise .item .item-footer .price {
@@ -91,7 +91,7 @@
     font-family: var(--font-display);
     font-size: 2.125rem;
     letter-spacing: -0.1px;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 
@@ -181,7 +181,7 @@
 
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info {
     padding: 1.25rem 0.75rem;
-    box-shadow: 0px 4px 24px 0px #0020180f;
+    box-shadow: 0px 4px 24px 0px #0e5f4b0f;
 }
 
 
@@ -189,7 +189,7 @@
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .title {
     font-family: var(--font-display);
     font-size: 1.25rem;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
     line-height: 1.2;
 }
 
@@ -202,7 +202,7 @@
 
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .description {
     font-size: 1rem;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     margin-bottom: 1.25rem;
 }
 
@@ -210,12 +210,12 @@
     padding: 1rem 1rem;
 } */
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .info-cabin {
-    background-color: #083a2e;
+    background-color: #0e5f4b;
     margin-bottom: 0.75rem;
     padding: 1rem 1rem;
 }
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .info-amenity {
-    background-color: #083a2e;
+    background-color: #0e5f4b;
     padding: 1rem 1rem;
 }
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .info-cabin .icon,
@@ -231,7 +231,7 @@
 
 #service .section-3 .section-content-service .list-service .item .item-wrapper .main-info .main-info-footer .description {
     font-size: 1rem;
-    color: #D6D3CC;
+    color: var(--color-text-muted-on-light);
 }
 
 #service .section-3 .section-content-service .list-service .item .item-wrapper .image {
@@ -357,7 +357,7 @@
 #service .section-3 .section-content-sustainability .list-item .item .item-wrapper {
     padding: 2.5rem 2rem;
     min-height: 280px;
-    box-shadow: 0px 4px 12px 0px #0020180f;
+    box-shadow: 0px 4px 12px 0px #0e5f4b0f;
 }
 
 #service .section-3 .section-content-sustainability .list-item .item .icon {
@@ -377,7 +377,7 @@
 #service .section-3 .section-content-sustainability .list-item .item .description {
     font-size: 1rem;
     line-height: 1.5;
-    color: var(--color-muted);
+    color: var(--color-text-muted-on-light);
 }
 
 /* Section 4 */
@@ -429,7 +429,7 @@
 #service .section-4 .cruise .main-info .specification .item .title {
     font-family: var(--font-display);
     font-size: 1.25rem;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
     line-height: 1.2;
 }
 
@@ -441,7 +441,7 @@
 
 #service .section-4 .cruise .main-info .specification .item .description {
     font-size: 1rem;
-    color: #D6D3CC;
+    color: var(--color-text-muted-on-light);
 }
 
 /* Biến thể proposal */
@@ -473,10 +473,10 @@
 
 
 #service .section-4 .cruise .main-info.proposal .item i {
-    background-color: #E2BC6F;
+    background-color: var(--color-gold);
     border-radius: 50%;
     padding:15px;
-    color: var(--color-forest);
+    color: var(--color-text-on-light);
     font-size: 32px;
 }
 
@@ -493,14 +493,14 @@
     }
 }
 #service .section-4 .cruise .main-request .main-request-content form label {
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 #service .section-4 .cruise .main-request .main-request-content form input,
 #service .section-4 .cruise .main-request .main-request-content form select {
     background-color: #263542;
     border: 1px solid #46535e;
-    color: white;
+    color: var(--color-text-on-dark);
     border-radius: 0;
     height: 50px;
 }
@@ -514,7 +514,7 @@
 }
 #service .section-4 .cruise .main-request .main-request-content form select option {
     background-color: #263542;
-    color: white;
+    color: var(--color-text-on-dark);
 }
 #service .section-4 .cruise .main-request .main-request-content form select option[value=""] {
     color: #9aa8b2;
@@ -538,11 +538,11 @@
 
 #service .section-4 .cruise > div:nth-child(1),
 #service .section-4 .cruise > div:nth-child(4) {
-    background-color: #0e1f2d; 
+    background-color: #0e5f4b; 
 }
 
 #service .section-4 .cruise > div:nth-child(3) {
-    background-color: #083a2e; 
+    background-color: #0e5f4b; 
 }
 
 #service .section-4 .cruise .main-info.proposal,
@@ -574,7 +574,7 @@
 
 #service .section-4 .cruise .main-info .description {
     font-size: 1rem;
-    color: var(--color-cream);
+    color: var(--color-text-on-dark);
 }
 
 /* Ảnh bên phải */
@@ -675,7 +675,7 @@
 
 #service .quote-success-content {
     border: none;
-    border-radius: 12px;
+    border-radius: 0;
     padding: 3rem 2.5rem 2.5rem;
     text-align: center;
     position: relative;
@@ -706,7 +706,7 @@
     width: 4.5rem;
     height: 4.5rem;
     border-radius: 50%;
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -714,12 +714,12 @@
 }
 
 #service .quote-success-icon i {
-    color: #fff;
+    color: var(--color-text-on-dark);
     font-size: 1.875rem;
 }
 
 #service .quote-success-title {
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 700;
     font-size: 1.375rem;
     line-height: 1.4;

@@ -29,19 +29,19 @@
   position: relative;
   font-size: 1.062rem;
   font-family: Font Awesome 6 Free;
-  color: #fff;
+  color: var(--color-text-on-dark);
   text-align: left;
 }
 #booking-page .booking-progress-bar {
   align-self: stretch;
-  background-color: #083a2e;
+  background-color: #0e5f4b;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2.062rem 1.875rem;
   text-align: left;
   font-size: 1.375rem;
-  color: #083a2e;
+  color: var(--color-text-on-light);
   font-family: Font Awesome 6 Free;
 }
 #booking-page .booking-progress-track {
@@ -108,7 +108,7 @@
   line-height: 120%;
   font-weight: 400;
   font-family: var(--font-display);
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 #booking-page .line-wrapper {
   flex: 0.9186;
@@ -166,7 +166,7 @@
   line-height: 120%;
   font-weight: 400;
   font-family: var(--font-display);
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 #booking-page .booking-progress-divider-mid {
   height: 0.125rem;
@@ -215,7 +215,7 @@
   gap: 1.5rem;
   text-align: left;
   font-size: 1.625rem;
-  color: #083a2e;
+  color: var(--color-text-on-light);
   font-family: var(--font-display);
 }
 #booking-page .booking-steps-column {
@@ -235,7 +235,7 @@
   gap: 0.062rem;
   text-align: left;
   font-size: 1.625rem;
-  color: #083a2e;
+  color: var(--color-text-on-light);
   font-family: var(--font-display);
 }
 #booking-page .itinerary-step-header {
@@ -290,7 +290,7 @@
   line-height: 120%;
   font-weight: 700;
   font-family: inherit;
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 #booking-page .itinerary-step-body {
   align-self: stretch;
@@ -302,7 +302,7 @@
   padding: 0.937rem 1rem 1rem;
   gap: 1rem;
   font-size: 1rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-family: var(--font-body);
 }
 #booking-page .content-row {
@@ -458,7 +458,7 @@
 #booking-page .amenity-card-photo.amenity-selected,
 #booking-page .amenity-card-drone.amenity-selected {
   background-color: #0e5f4b;
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 #booking-page .amenity-card-transfer.amenity-selected .amenity-card-content,
 #booking-page .amenity-card-spa.amenity-selected .amenity-card-content-alt,
@@ -480,7 +480,7 @@
 #booking-page .amenity-card-welcome.amenity-selected .quantity-group .mmddyyyy,
 #booking-page .amenity-card-photo.amenity-selected .quantity-group .mmddyyyy,
 #booking-page .amenity-card-drone.amenity-selected .quantity-group .mmddyyyy {
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 #booking-page .ha-long-bay-wonder-discovery-parent {
   width: 100%;
@@ -514,7 +514,7 @@
   isolation: isolate;
   z-index: 0;
   font-size: 1.375rem;
-  color: #C8A84B;
+  color: var(--color-text-accent);
   font-family: Font Awesome 6 Free;
 }
 #booking-page .itinerary-card-content {
@@ -576,7 +576,7 @@
   font-weight: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  color: #0D2B1A;
+  color: var(--color-text-on-light);
   text-align: center;
   flex-shrink: 0;
 }
@@ -595,7 +595,7 @@
   padding: 0.125rem 0rem 0rem;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--color-forest);
+  color: var(--color-text-on-light);
 }
 #booking-page .itinerary-chip-text {
   position: relative;
@@ -624,7 +624,7 @@
 #booking-page .itinerary-timeline-wrap {
   align-self: stretch;
   box-shadow: 0px 4px 24px rgba(0, 32, 24, 0.06);
-  background-color: #0e1f2d;
+  background-color: #0e5f4b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -799,7 +799,7 @@
   font-size: 1rem;
   line-height: 1.312rem;
   font-family: var(--font-body);
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 #booking-page .inclusions-row-one {
   align-self: stretch;
@@ -837,18 +837,18 @@
 
 #booking-page .booking-progress-payment .check i.fa-credit-card {
   font-size: 1.375rem;
-  color: #083a2e;
+  color: var(--color-text-on-light);
 }
 
 #booking-page .progress-step-group.booking-progress-active .credit-card .check i.fa-credit-card {
-  color: #083a2e;
+  color: var(--color-text-on-light);
 }
 #booking-page .inclusion-item-text {
   position: relative;
   font-size: 1rem;
   line-height: 1.312rem;
   font-family: var(--font-body);
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 #booking-page .check-group {
   flex: 1;
@@ -987,7 +987,7 @@
   z-index: 0;
   text-align: left;
   font-size: 1.375rem;
-  color: #C8A84B;
+  color: var(--color-text-accent);
   font-family: var(--font-body);
   order: 3;
 }
@@ -1011,7 +1011,7 @@
   flex-shrink: 0;
   text-align: center;
   font-size: 1rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 #in-voyage-empty {
   padding: 0 17px;
@@ -1063,35 +1063,35 @@
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-forest);
+  color: var(--color-text-on-light);
   line-height: 1.2;
 }
 #booking-page .in-voyage-cabin-desc {
   margin: 0 0 0.5rem;
   font-size: 0.938rem;
   line-height: 1.35;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-family: var(--font-body);
 }
 #booking-page .in-voyage-cabin-fare {
   margin: 0 0 0.5rem;
   font-size: 1rem;
-  color: #C8A84B;
+  color: var(--color-text-accent);
   font-weight: 700;
   font-family: var(--font-body);
 }
 #booking-page .in-voyage-cabin-fare strong {
   font-size: 1rem;
   font-weight: 600;
-  color: #C8A84B;
+  color: var(--color-text-accent);
 }
 #booking-page .in-voyage-remove-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.375rem 0.75rem;
-  background-color: #0e1f2d;
-  color: #fff;
+  background-color: #0e5f4b;
+  color: var(--color-text-on-dark);
   border: none;
   font-size: 1rem;
   font-family: var(--font-body);
@@ -1118,7 +1118,7 @@
 #booking-page .in-voyage-guest-field label {
   font-size: 1rem;
   font-family: var(--font-body);
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-weight: 600;
 }
 #booking-page .in-voyage-qty-control {
@@ -1133,7 +1133,7 @@
   height: 2rem;
   border: none;
   background-color: transparent;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-size: 1.125rem;
   cursor: pointer;
   display: flex;
@@ -1149,7 +1149,7 @@
   text-align: center;
   font-size: 1rem;
   font-family: var(--font-body);
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 #booking-page .in-voyage-indicator {
   width: 0.812rem;
@@ -1174,7 +1174,7 @@
   align-items: flex-start;
   text-align: left;
   font-size: 1.375rem;
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-family: Font Awesome 6 Free;
 }
 #booking-page .cabin-card-image-left {
@@ -1200,7 +1200,7 @@
   cursor: pointer;
 }
 #booking-page .chevron-left i {
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-size: 1.375rem;
 }
 #booking-page .cabin-card-left.cabin-nav-at-start .chevron-left {
@@ -1226,7 +1226,7 @@
   gap: 1.656rem;
   max-height: none;
   font-size: 1rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-family: var(--font-display);
 }
 #booking-page .cabin-card-content {
@@ -1244,7 +1244,7 @@
   line-height: 120%;
   font-weight: 400;
   font-family: inherit;
-  color: #C8A84B;
+  color: var(--color-text-accent);
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
@@ -1337,7 +1337,7 @@
   letter-spacing: -0.1px;
   line-height: 120%;
   font-family: var(--font-display);
-  color: #C8A84B;
+  color: var(--color-text-accent);
 }
 #booking-page .arrow-right-long2 {
   height: 1rem;
@@ -1409,7 +1409,7 @@
   align-items: flex-start;
   text-align: left;
   font-size: 1rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-family: var(--font-display);
 }
 
@@ -1443,7 +1443,7 @@
   justify-content: center;
 }
 #booking-page .cabin-card-right .chevron-left-icon i {
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-size: 1.375rem;
 }
 #booking-page .cabin-card-right.cabin-nav-at-end .chevron-left-icon {
@@ -1473,7 +1473,7 @@
   z-index: 0;
   text-align: left;
   font-size: 1.625rem;
-  color: #083a2e;
+  color: var(--color-text-on-light);
   font-family: var(--font-display);
 }
 #booking-page .amenities-step-header-bg {
@@ -1515,7 +1515,7 @@
   margin-top: -0.063rem;
   position: relative;
   font-size: 1.687rem;
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-family: Font Awesome 6 Free;
 }
 #booking-page .services-row-1-parent {
@@ -1538,7 +1538,7 @@
   box-sizing: border-box;
   gap: 0.75rem;
   min-width: 17rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 #booking-page .amenity-icon-wrap {
   height: 3.75rem;
@@ -1567,7 +1567,7 @@
   letter-spacing: -0.1px;
   line-height: 120%;
   font-family: var(--font-display);
-  color: var(--color-forest);
+  color: var(--color-text-on-light);
   display: inline-block;
   white-space: nowrap;
   vertical-align: bottom;
@@ -1618,7 +1618,7 @@
   box-sizing: border-box;
   gap: 0.75rem;
   min-width: 17.375rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 #booking-page .amenity-card-content-alt {
   width: 12.938rem;
@@ -1673,7 +1673,7 @@
   align-items: flex-start;
   gap: 0.5rem;
   font-size: 1rem;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-family: var(--font-body);
 }
 #booking-page .amenity-title-wide {
@@ -1682,7 +1682,7 @@
   letter-spacing: -0.1px;
   line-height: 120%;
   font-family: var(--font-display);
-  color: var(--color-forest);
+  color: var(--color-text-on-light);
 }
 #booking-page .plus-container {
   width: 6.063rem;
@@ -1762,20 +1762,20 @@
   font-weight: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  color: #0D2B1A;
+  color: var(--color-text-on-light);
   text-align: center;
 }
 #booking-page .button-icon-glyph {
   position: relative;
   font-size: 1.375rem;
   font-family: Font Awesome 6 Free;
-  color: #0D2B1A;
+  color: var(--color-text-on-light);
   text-align: left;
   flex-shrink: 0;
 }
 #booking-page .summary-panel {
   flex: 0.9525;
-  background-color: #0e1f2d;
+  background-color: #0e5f4b;
   box-sizing: border-box;
   min-width: 19.375rem;
   max-width: 35.563rem;
@@ -1794,7 +1794,7 @@
   gap: 0.75rem;
   text-align: left;
   font-size: 1rem;
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-family: var(--font-body);
   min-width: 0;
   max-width: 100%;
@@ -1807,7 +1807,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   font-size: 1.375rem;
-  color: #C8A84B;
+  color: var(--color-text-accent);
 }
 #booking-page .summary-tagline {
   width: 33.875rem;
@@ -1822,7 +1822,7 @@
   line-height: 120%;
   font-weight: 700;
   font-family: var(--font-display);
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 #booking-page .summary-rating-row {
   width: 31.5rem;
@@ -1830,7 +1830,7 @@
   position: relative;
   display: none;
   font-size: 0.875rem;
-  color: #C8A84B;
+  color: var(--color-text-accent);
   font-family: Font Awesome 6 Free;
 }
 #booking-page .star-parent {
@@ -1897,14 +1897,14 @@
   font-size: 1rem;
   line-height: 1.062rem;
   text-align: center;
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-family: var(--font-body);
 }
 #booking-page .rating-gap {
   color: #1c1f1e;
 }
 #booking-page .rating-reviews-text {
-  color: #a9aba6;
+  color: var(--color-text-muted-on-light);
 }
 #booking-page .summary-voyage-card-wrap {
   width: 100%;
@@ -1916,7 +1916,7 @@
   padding: 0.625rem 0.943rem;
   max-width: 32.562rem;
   font-size: 1.125rem;
-  color: var(--color-gold);
+  color: var(--color-text-accent);
   font-family: var(--font-display);
 }
 #booking-page .summary-voyage-card {
@@ -1980,7 +1980,7 @@
   font-size: 1rem;
   line-height: 1.312rem;
   font-family: var(--font-body);
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 #booking-page .summary-meta-row {
   width: 100%;
@@ -2009,7 +2009,7 @@
   min-height: 2.625rem;
   padding: 0.531rem 0.693rem;
   box-sizing: border-box;
-  color: #d6d3cc;
+  color: var(--color-text-muted-on-light);
 }
 #booking-page .mmddyyyy-wrapper {
   flex: 1;
@@ -2052,7 +2052,7 @@
   line-height: 1.312rem;
   font-family: var(--font-body);
   font-size: 1rem;
-  color: #d6d3cc;
+  color: var(--color-text-muted-on-light);
 }
 #booking-page .label-check-in-parent3 {
   width: 100%;
@@ -2099,14 +2099,14 @@
   background-color: transparent;
   position: relative;
   line-height: 1.312rem;
-  color: #fff;
+  color: var(--color-text-on-dark);
   text-align: left;
   display: inline-block;
 }
 #booking-page .summary-price-value {
   position: relative;
   line-height: 1.312rem;
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 #booking-page .summary-amenities-wrap {
   align-self: stretch;
@@ -2196,7 +2196,7 @@
   align-items: flex-start;
   gap: 0.375rem;
   max-width: 16.5rem;
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 #booking-page .label-check-container {
   width: 100%;
@@ -2240,7 +2240,7 @@
   font-weight: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
-  color: #0D2B1A;
+  color: var(--color-text-on-light);
   text-align: left;
   flex-shrink: 0;
 }
@@ -2249,7 +2249,7 @@
   font-size: 2.125rem;
   line-height: 1.312rem;
   font-family: var(--font-body);
-  color: #083a2e;
+  color: var(--color-text-on-light);
   text-align: left;
   flex-shrink: 0;
 }
@@ -2268,7 +2268,7 @@
 }
 
 #booking-page .progress-step-icon-active i.fa-pen {
-  color: #083A2E;
+  color: var(--color-text-on-light);
   font-size: 1.375rem;
   width: 20px;
   height: 20px;
@@ -2279,7 +2279,7 @@
 }
 
 #booking-page .itinerary-timeline-wrap .fa-sailboat {
-  color: #C8A84B;
+  color: var(--color-text-accent);
   font-size: 16.7px;
   width: 16.7px;
   height: 16.7px;
@@ -2289,7 +2289,7 @@
 }
 
 #booking-page .inclusions-parent .fa-check {
-  color: #C8A84B;
+  color: var(--color-text-accent);
   font-size: 26px;
   width: 24px;
   height: 24px;
@@ -2376,7 +2376,7 @@
   gap: 1rem;
   font-size: 1rem;
   font-family: var(--font-body);
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   background-color: #f3f3f0;
 }
 
@@ -2413,7 +2413,7 @@
 #booking-page .guest-details-body .label-check {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 
 #booking-page .guest-details-actions {
@@ -2432,7 +2432,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-family: var(--font-body);
   font-size: 1.125rem;
   width: 13.375rem;
@@ -2510,7 +2510,7 @@
   height: 100px;
   border-radius: 999px;
   background-color: #0e5f4b;
-  color: #fff;
+  color: var(--color-text-on-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2535,7 +2535,7 @@
   line-height: 80px;
   letter-spacing: -0.1px;
   text-align: center;
-  color: #C8A84B;
+  color: var(--color-text-accent);
 }
 
 #booking-page .complete-message {
@@ -2544,7 +2544,7 @@
   font-size: 18px;
   line-height: 23px;
   letter-spacing: 0;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   text-align: center;
 }
 
@@ -2558,7 +2558,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  color: #fff;
+  color: var(--color-text-on-dark);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 20px;
@@ -2601,7 +2601,7 @@
   flex-direction: column;
   font-size: 1rem;
   font-family: var(--font-body);
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 
 #booking-page .payment-body-methods {
@@ -2613,7 +2613,7 @@
 #booking-page .payment-currency-notice {
   font-size: 16px;
   line-height: 1.4;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-style: italic;
   font-family: var(--font-body);
 }
@@ -2636,12 +2636,12 @@
   margin: 0;
   font-size: 18px;
   line-height: 1.5;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-family: var(--font-body);
 }
 
 #booking-page .payment-inquiry-notice strong {
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-weight: 700;
 }
 
@@ -2670,7 +2670,7 @@
 
 #booking-page .payment-option-primary {
   background-color: #0e5f4b;
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 
 #booking-page .payment-option-icon {
@@ -2685,7 +2685,7 @@
 }
 
 #booking-page .payment-option-icon i {
-  color: #ffffff;
+  color: var(--color-text-on-dark);
   font-size: 26px;
   width: 24px;
   height: 24px;
@@ -2708,11 +2708,11 @@
   line-height: 21px;
   letter-spacing: 0;
   vertical-align: middle;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 
 #booking-page .payment-body-methods .payment-option-primary .payment-option-title {
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 
 #booking-page .payment-row-top .payment-option-icon {
@@ -2751,11 +2751,11 @@
   line-height: 21px;
   letter-spacing: 0;
   vertical-align: middle;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 
 #booking-page .payment-option-primary .payment-option-subtitle {
-  color: #fff;
+  color: var(--color-text-on-dark);
 }
 
 #booking-page .progress-step-group.booking-progress-active {
@@ -2767,7 +2767,7 @@
 }
 
 #booking-page .progress-step-group.booking-progress-active .booking-progress-label {
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 
 #booking-page .booking-progress-complete.booking-progress-active {
@@ -2779,7 +2779,7 @@
 }
 
 #booking-page .booking-progress-complete.booking-progress-active .booking-progress-label {
-  color: var(--color-gold);
+  color: var(--color-text-accent);
 }
 
 #booking-page .booking-progress-divider.booking-progress-active,
@@ -2810,8 +2810,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #0e1f2d;
-  color: #fff;
+  background: #0e5f4b;
+  color: var(--color-text-on-dark);
   padding: 1.5rem 2rem;
   border-radius: 0.5rem;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
@@ -2900,13 +2900,13 @@
     height: 3rem;
     border-radius: 80px;
     background-color: #0e5f4b;
-    color: #fff;
+    color: var(--color-text-on-dark);
     cursor: pointer;
     flex-shrink: 0;
   }
   #booking-page .cabin-card-left .cabin-nav-next-mobile i {
     font-size: 1.375rem;
-    color: #fff;
+    color: var(--color-text-on-dark);
   }
   #booking-page .cabin-card-left.cabin-nav-at-end .cabin-nav-next-mobile {
     opacity: 0.4;

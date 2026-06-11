@@ -15,7 +15,13 @@
 }
 
 #itinerary-detail .section-cover .page-cover .image-wrapper::before{
-    opacity: 0.7;
+    opacity: 0.5;
+}
+
+@media (min-width: 992px) {
+    #itinerary-detail .section-cover .page-cover .image-wrapper::before{
+        opacity: 0.42;
+    }
 }
 
 #itinerary-detail .section-info .container {
@@ -77,41 +83,41 @@
 #itinerary-detail .section-info .container-info .cruise-info{
     display: grid;
     grid-template-columns: repeat(4,auto);
-    background-color: #083a2e;
+    background-color: #0e5f4b;
     padding: 2rem;
     gap: 2rem;
 }
 
 #itinerary-detail .section-info .container-info .cruise-info .box .label{
-    color: var(--color-cream);
+    color: var(--color-text-on-dark);
     font-size: 1rem;
     margin-bottom: 0.75rem;
 }
 
 #itinerary-detail .section-info .container-info .cruise-info .box .value{
     font-family: var(--font-display);
-    color: var(--color-gold);
+    color: var(--color-text-accent);
     font-weight: 700;
     font-size: 1.625rem;
     margin-bottom: 0;
 }
 
 #itinerary-detail .section-info .price-box {
-    background-color:#0E1F2D;
+    background-color:#0e5f4b;
     padding: 2rem;
     gap: 2rem;
 }
 
 #itinerary-detail .section-info .price-box .text {
     font-family: var(--font-display);
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 #itinerary-detail .section-info .price-box .price {
     font-family: var(--font-display);
     font-weight:  700;
     font-size: 2.125rem;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
 }
 
 @media screen and (max-width: 1200px){
@@ -156,7 +162,7 @@
 }
 
 #itinerary-detail .section-info .list-container .header {
-    color: white;
+    color: var(--color-text-on-dark);
     padding: 1rem 1.09375rem;
     font-family: var(--font-display);
     font-size: 1.625rem;
@@ -199,7 +205,7 @@
 }
 
 #itinerary-detail .section-info .list-container.list-exclusive-service-container .header{
-    background-color:#1F3F4A;
+    background-color:var(--color-body);
 }
 
 #itinerary-detail .section-info .list-container.list-activity-container .header{
@@ -220,7 +226,7 @@
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail .header::after {
-    background-color: #083A2E;
+    background-color: #0e5f4b;
     z-index: -1;
 }
 
@@ -245,19 +251,19 @@
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail .header span{
-    color: white;
+    color: var(--color-text-on-dark);
     font-size: 1.625rem;
     font-weight: 700;
     font-family: var(--font-display);
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail .header i{
-    color: white;
+    color: var(--color-text-on-dark);
     transition: transform ;
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail.expand .header span{
-    color: var(--color-gold);
+    color: var(--color-text-accent);
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail.expand .header i {
@@ -275,7 +281,7 @@
 
 #itinerary-detail .section-detail .list-detail .item-detail .list-wrapper{
     padding: 1.5rem;
-    background-color: #f3f3f0;
+    background-color: var(--color-cream-soft);
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail .body .list{
@@ -299,7 +305,7 @@
 
 #itinerary-detail .section-detail .list-detail .item-detail .body .list .item .time{
     grid-area: time;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.375rem;
@@ -358,7 +364,7 @@
 }
 
 #itinerary-detail .section-cabin .section-description {
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 #itinerary-detail .section-cabin .container-fluid::after {
@@ -368,7 +374,7 @@
 }
 
 #itinerary-detail .section-cabin .container-fluid::before{
-    background-color: #083A2E;
+    background-color: #0e5f4b;
     z-index: -1;
 }
 
@@ -395,7 +401,7 @@
 }
 
 #itinerary-detail .section-policy .grid-policy {
-    background: #e2bc6f;
+    background: var(--color-gold);
     gap: 2rem;
 }
 
@@ -409,16 +415,15 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.625rem;
-    color: #083a2e
-}
+    color: var(--color-text-on-light)}
 
 #itinerary-detail .section-policy .grid-policy .item .icon{
     width: 2.25rem;
     height: 2.25rem;
-    background-color:#0E5F4B;
+    background-color:var(--color-forest);
     border-radius: 50%;
 
-    color: white;
+    color: var(--color-text-on-dark);
     text-align: center;
     align-content: center;
 }
@@ -449,8 +454,7 @@
 }
 
 .air-datepicker-body--day-name {
-    color: #A9ABA6
-}
+    color: var(--color-text-muted-on-light)}
 
 .air-datepicker-cell.-day- {
     border-radius: 50% !important;
@@ -461,20 +465,20 @@
 }
 
 .air-datepicker-cell.-day-:not(.-other-month-){
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 
 .air-datepicker-cell.highlighted {
-    background: #0E5F4B !important;
+    background: var(--color-forest) !important;
 }
 
 .air-datepicker-cell.-current- {
-    background: #c8a84b;
+    background: #C8A84B;
 }
 
 .air-datepicker-cell.highlighted,
 .air-datepicker-cell.-current- {
-    color: white !important;
+    color: var(--color-text-on-dark) !important;
     cursor: pointer;
 }
 
@@ -492,5 +496,5 @@
 .air-datepicker .adp-legend .adp-legend__dot {
     width: 13px;
     height: 13px;
-    background-color: #0E5F4B;
+    background-color: var(--color-forest);
 }

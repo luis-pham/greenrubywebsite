@@ -7,7 +7,7 @@
 }
 @media (min-width: 992px) {
     #experience-detail .section-1 .container-fluid .page-cover .image-wrapper::before{
-        opacity: 0.7;
+        opacity: 0.42;
     }
     #experience-detail .section-2 {
         padding-bottom: 3rem;
@@ -61,11 +61,11 @@
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-duration {
-    background-color: #0E5F4B;
+    background-color: var(--color-forest);
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-time {
-    background-color: #0E1F2D;
+    background-color: #0e5f4b;
 }
 
 /* Mặc định: mobile */
@@ -125,13 +125,13 @@
     margin: 0;
     font-size: 1.125rem;
     font-weight: 700;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-duration .item-duration-content .content,
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-time .item-time-content .content {
     margin: 0;
-    color: #FFFFFF;
+    color: var(--color-text-on-dark);
     font-size: 1rem;
     font-weight: 400;
     padding-top: 0.25rem;
@@ -140,10 +140,10 @@
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-duration i,
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-time i {
     font-size: 1.375rem;
-    color: white;
+    color: var(--color-text-on-dark);
     padding: 1.125rem;
     border-radius: 50%;
-    background-color: #c8a84b;
+    background-color: #C8A84B;
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-duration .item-duration-content,
@@ -167,7 +167,7 @@
     margin: 0;
     font-size: 1rem;
     font-weight: 400;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 
 /* section-content-2 */
@@ -206,18 +206,18 @@
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-3 .section-content-notes .item-wrapper .item-note {
     padding: 0.75rem 0.75rem;
-    background-color: #F3F3F0;
+    background-color: var(--color-cream-soft);
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-3 .section-content-notes .item-note i {
     font-size: 1.375rem;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     padding-right: 0.75rem;
 }
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-3 .section-content-notes .item-note p {
     margin: 0;
     font-size: 1rem;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 /* section-content-4 */
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-4{
@@ -243,7 +243,7 @@
     margin-right: 0.5rem;
     padding: 0.5rem 0.75rem;
     background-color: #A9ABA6;
-    color: #FFFFFF;
+    color: var(--color-text-on-dark);
 }
 
 /* section-content-button */
@@ -274,7 +274,7 @@
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-button .button-group .button-primary {
     text-align: center;
     padding: 14px 32px;
-    background-color: #c8a84b;
+    background-color: #C8A84B;
     font-family: var(--font-body);
     font-size: 15px;
     font-weight: 500;
@@ -282,12 +282,12 @@
     text-transform: uppercase;
     border-radius: 0;
     line-height: 1.4;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
 }
 
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-button .button-group .button-secondary span {
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-size: 1rem;
     text-align: end;
     font-weight: 700;
@@ -303,7 +303,7 @@
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-button .button-group .button-secondary .social .icon .icon-wrapper {
-    background-color: #c8a84b;
+    background-color: #C8A84B;
     width: 30px;
     height: 30px;
     font-size: 1.25rem;
@@ -318,7 +318,7 @@
 }
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-button .button-group .button-secondary .social .icon.icon-email .icon-wrapper {
-    background-color: #c8a84b;
+    background-color: #C8A84B;
 }
 
 @media (min-width: 992px) {
@@ -349,7 +349,7 @@
     /* padding-top: 0.75rem; */
     /* padding-bottom: 0.75rem; */
     padding: 1rem;
-    background-color: #F3F3F0;
+    background-color: var(--color-cream-soft);
 }
 
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper .section-eyebrow {
@@ -388,7 +388,7 @@
     margin: 0;
     font-weight: 600;
     font-size: 1rem;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper .item-exp .item-exp-content ul {
@@ -397,7 +397,7 @@
 }
 
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper .item-exp .item-exp-content ul li{
-    color: #A9ABA6;
+    color: var(--color-text-muted-on-light);
     font-size: 1rem;
 }
 
@@ -407,7 +407,7 @@
 }
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper-inner-2 .section-content-exp-wrapper-inner-2-content {
     padding: 2rem 1rem;
-    background-color: #0E1F2D;
+    background-color: #0e5f4b;
 }
 
 @media (min-width: 992px) {
@@ -432,7 +432,7 @@
     margin-bottom: 1.5rem;
     font-size: 1.125rem;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--color-text-on-dark);
 }
 
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper-inner-2 .group-button {
@@ -441,10 +441,10 @@
 }
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper-inner-2 .group-button .button-primary {
     padding: 1rem 1rem;
-    background-color: #0E5F4B;
+    background-color: var(--color-forest);
     font-weight: 700;
     font-size: 1.25rem;
-    color: #FFFFFF;
+    color: var(--color-text-on-dark);
     text-align: center;
     border-radius: 60px;
 }
@@ -452,14 +452,14 @@
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper-inner-2 .group-button .button-secondary {
     margin-top: 1rem;
     padding: 14px 32px;
-    background-color: #c8a84b;
+    background-color: #C8A84B;
     font-family: var(--font-body);
     font-weight: 500;
     font-size: 15px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     line-height: 1.4;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     text-align: center;
     border-radius: 0;
 }

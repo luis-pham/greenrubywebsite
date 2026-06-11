@@ -3,10 +3,10 @@
     opacity: 1;
     background: linear-gradient(
         to right,
-        rgba(5, 15, 8, 0.85) 0%,
-        rgba(5, 15, 8, 0.65) 30%,
-        rgba(5, 15, 8, 0.20) 60%,
-        rgba(5, 15, 8, 0.05) 100%
+        rgba(5, 15, 8, 0.55) 0%,
+        rgba(5, 15, 8, 0.40) 30%,
+        rgba(5, 15, 8, 0.12) 60%,
+        rgba(5, 15, 8, 0.02) 100%
     );
 }
 
@@ -124,7 +124,7 @@
     font-size: 8px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(200, 168, 75, 0.65);
+    color: var(--color-text-accent);
     font-weight: 400;
     font-family: 'DM Sans', system-ui, sans-serif;
     white-space: nowrap;
@@ -151,7 +151,7 @@
     font-size: 9px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(200, 168, 75, 0.7);
+    color: var(--color-text-accent);
     font-weight: 400;
     font-family: 'DM Sans', system-ui, sans-serif;
 }
@@ -159,9 +159,9 @@
 /* Cruise hero — title */
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 64px;
+    font-size: 86px;
     font-weight: 300;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     line-height: 1;
     letter-spacing: -0.02em;
     margin-bottom: 6px;
@@ -176,15 +176,15 @@
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title em,
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title span.num {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 /* Cruise hero — subtitle */
 #cruise-detail .ship-hero-sub {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 18px;
+    font-size: var(--text-md);
     font-weight: 300;
-    color: rgba(240, 236, 228, 0.45);
+    color: var(--color-text-muted-on-dark);
     font-style: italic;
     margin-bottom: 28px;
     letter-spacing: 0.02em;
@@ -209,7 +209,7 @@
 
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded {
     background: #C8A84B;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-size: 15px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -225,13 +225,13 @@
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:hover,
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:focus {
     background: #b8923e;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     border: none;
 }
 
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded {
     background: transparent;
-    color: rgba(240, 236, 228, 0.6);
+    color: var(--color-text-muted-on-dark);
     font-size: 15px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -251,7 +251,7 @@
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:hover,
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:focus {
     background: transparent;
-    color: rgba(240, 236, 228, 0.85);
+    color: var(--color-text-on-dark);
     border-color: rgba(240, 236, 228, 0.35);
 }
 
@@ -325,7 +325,7 @@
         margin-top: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        background: #0D2B1A;
+        background: #0e5f4b;
         padding: 20px 20px 28px 20px !important;
         display: block;
         align-items: stretch;
@@ -350,7 +350,7 @@
     }
 
     #cruise-detail .ship-eyebrow-text {
-        font-size: 12px;
+        font-size: var(--text-xs);
     }
 
     #cruise-detail .ship-eyebrow-line {
@@ -358,7 +358,7 @@
     }
 
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title {
-        font-size: 30px;
+        font-size: 40px;
         font-weight: 300 !important;
         line-height: 1.1;
         letter-spacing: -0.01em;
@@ -369,8 +369,8 @@
     }
 
     #cruise-detail .ship-hero-sub {
-        font-size: 16px;
-        color: var(--color-cream-50);
+        font-size: var(--text-base);
+        color: var(--color-text-muted-on-dark);
         line-height: 1.7;
         font-weight: 300;
         font-style: normal;
@@ -405,7 +405,7 @@
         text-transform: uppercase;
         font-weight: 500;
         background: #C8A84B;
-        color: #0D2B1A !important;
+        color: var(--color-text-on-light) !important;
         border: none;
         margin: 0 0 8px 0 !important;
         min-width: 0;
@@ -416,7 +416,7 @@
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:hover,
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-warning.btn-rounded:focus {
         background: #b8923e;
-        color: #0D2B1A !important;
+        color: var(--color-text-on-light) !important;
     }
 
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded {
@@ -431,7 +431,7 @@
         text-transform: uppercase;
         font-weight: 400;
         background: transparent;
-        color: rgba(240, 236, 228, 0.6) !important;
+        color: var(--color-text-muted-on-dark) !important;
         border: 0.5px solid rgba(240, 236, 228, 0.2);
         margin: 0 !important;
         min-width: 0;
@@ -442,7 +442,7 @@
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:hover,
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button .item a.btn-success.btn-rounded:focus {
         background: transparent;
-        color: rgba(240, 236, 228, 0.8) !important;
+        color: var(--color-text-muted-on-dark) !important;
         border-color: rgba(240, 236, 228, 0.35);
     }
 }
@@ -455,7 +455,7 @@
 #cruise-detail .section-cabin .section-description em,
 #cruise-detail .section-itinerary .section-description em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 /* Cabin types — 2×2 suites grid (matches homepage section-6) */
@@ -519,21 +519,21 @@
         width: 44px;
         height: 44px;
         line-height: 1;
-        font-size: 1.125rem;
+        font-size: var(--text-md);
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: rgba(13, 43, 26, 0.35);
+        background: rgba(14, 95, 75, 0.35);
         border: 1px solid rgba(200, 168, 75, 0.4);
         border-radius: 0;
-        color: #f0ece4;
+        color: var(--color-text-on-dark);
         transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
     }
 
     #cruise-detail .section-cabin .slide-1 .owl-nav .button:hover {
-        background: rgba(13, 43, 26, 0.55);
+        background: rgba(14, 95, 75, 0.55);
         border-color: #C8A84B;
-        color: #C8A84B;
+        color: var(--color-text-accent);
     }
 
     #cruise-detail .section-cabin .slide-1 .owl-nav .disabled .button {
@@ -569,7 +569,7 @@
         font-family: var(--font-display);
         font-size: 20px;
         font-weight: 300;
-        color: rgba(255, 255, 255, 0.65);
+        color: var(--color-text-muted-on-dark);
         line-height: 1;
         pointer-events: none;
         z-index: 2;
@@ -626,7 +626,7 @@
         font-family: var(--font-display);
         font-size: 24px;
         font-weight: 300;
-        color: rgba(255, 255, 255, 0.65);
+        color: var(--color-text-muted-on-dark);
         line-height: 1;
         pointer-events: none;
         z-index: 2;
@@ -655,7 +655,7 @@
 }
 
 #cruise-detail .section-itinerary .itinerary-detail .body::before {
-    background-color: #083A2E;
+    background-color: #0e5f4b;
     z-index: -1;
 }
 
@@ -671,7 +671,7 @@
 
 /* Cruise specs + eco combined section */
 #cruise-detail .ship-specs-section {
-    background: #f8f5ef;
+    background: var(--color-cream-bg);
     padding: 72px 48px;
     position: relative;
     overflow: visible;
@@ -690,7 +690,7 @@
 #cruise-detail .combined-header {
     margin-bottom: 48px;
     padding-bottom: 36px;
-    border-bottom: 0.5px solid rgba(13, 43, 26, 0.08);
+    border-bottom: 0.5px solid rgba(14, 95, 75, 0.08);
 }
 
 #cruise-detail .ship-specs-section .combined-header .section-eyebrow,
@@ -708,9 +708,9 @@
 
 #cruise-detail .combined-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 40px;
+    font-size: var(--text-2xl);
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 0;
@@ -719,7 +719,7 @@
 
 #cruise-detail .combined-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     display: block;
 }
 
@@ -732,7 +732,7 @@
 
 #cruise-detail .ship-specs-section .ship-stat-card {
     background: #fff;
-    border: 0.5px solid rgba(13, 43, 26, 0.07);
+    border: 0.5px solid rgba(14, 95, 75, 0.07);
     padding: 24px 20px;
     display: flex;
     flex-direction: column;
@@ -760,10 +760,10 @@
 }
 
 #cruise-detail .ship-specs-section .ship-stat-card .ship-stat-label {
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(13, 43, 26, 0.4);
+    color: var(--color-text-muted-on-light);
     font-weight: 500;
     margin-bottom: 8px;
     font-family: var(--font-body);
@@ -774,7 +774,7 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 48px;
     font-weight: 300;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     line-height: 1;
     letter-spacing: -0.02em;
     margin-bottom: 6px;
@@ -782,7 +782,7 @@
 
 #cruise-detail .ship-specs-section .ship-stat-card .ship-stat-desc {
     font-size: var(--text-sm);
-    color: rgba(13, 43, 26, 0.45);
+    color: var(--color-text-muted-on-light);
     font-weight: 300;
     line-height: 1.6;
     font-family: var(--font-body);
@@ -799,22 +799,22 @@
 #cruise-detail .combined-divider-line {
     flex: 1;
     height: 0.5px;
-    background: rgba(13, 43, 26, 0.08);
+    background: rgba(14, 95, 75, 0.08);
 }
 
 #cruise-detail .ship-specs-section .combined-divider-text {
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(13, 43, 26, 0.35);
+    color: var(--color-text-muted-on-light);
     font-weight: 400;
     font-family: var(--font-body);
     white-space: nowrap;
 }
 
 #cruise-detail .ship-eco-card {
-    background: #0D2B1A;
-    border: 0.5px solid rgba(13, 43, 26, 0.8);
+    background: #0e5f4b;
+    border: 0.5px solid rgba(14, 95, 75, 0.8);
     padding: 24px 20px 28px;
     position: relative;
     overflow: hidden;
@@ -826,17 +826,17 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 36px;
     font-weight: 300;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     line-height: 1;
     letter-spacing: -0.02em;
     margin-bottom: 4px;
 }
 
 #cruise-detail .ship-specs-section .ship-eco-card .eco-card-stat-label {
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(200, 168, 75, 0.5);
+    color: var(--color-text-accent);
     font-weight: 500;
     margin-bottom: 14px;
     font-family: var(--font-body);
@@ -867,7 +867,7 @@
     display: block;
 }
 
-#cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon svg [stroke="#0D2B1A"] {
+#cruise-detail .ship-specs-section .ship-eco-card .eco-card-icon svg [stroke="#0e5f4b"] {
     stroke: rgba(240, 236, 228, 0.45);
 }
 
@@ -883,14 +883,14 @@
     font-family: var(--font-display);
     font-size: var(--text-lg);
     font-weight: 400;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     margin-bottom: 8px;
     line-height: 1.2;
 }
 
 #cruise-detail .ship-specs-section .ship-eco-card .eco-card-desc {
     font-size: var(--text-base);
-    color: var(--color-cream-70);
+    color: var(--color-text-muted-on-dark);
     line-height: 1.7;
     font-weight: 300;
     font-family: var(--font-body);
@@ -916,7 +916,7 @@
     }
 
     #cruise-detail .ship-specs-section .ship-stat-number {
-        font-size: 40px;
+        font-size: var(--text-2xl);
     }
 
     /* Eco Technology — carousel trên mobile */
@@ -954,7 +954,7 @@
     #cruise-detail .section-cabin .slide-1 .owl-nav .button {
         width: 36px;
         height: 36px;
-        font-size: 1rem;
+        font-size: var(--text-base);
     }
 }
 
@@ -994,12 +994,12 @@
 }
 
 #cruise-detail .section-cabin-and-service .block-1 {
-    background-color:#0E1F2D;
+    background-color:#0e5f4b;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3rem 1rem;
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 #cruise-detail .section-cabin-and-service .block-1 .cabin-container {
@@ -1013,9 +1013,9 @@
 }
 
 #cruise-detail .section-cabin-and-service .block-1 .header .title {
-    font-size: 1.375rem;
+    font-size: var(--text-lg);
     font-weight: 700;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     display: inline-block;
     width: calc(100% - 48px);
 }
@@ -1025,7 +1025,7 @@
     inset: 0;
     background-color: #FFFFFF1A;
     z-index: 1;
-    color: white;
+    color: var(--color-text-on-dark);
     text-align: end;
     align-content: center;
 }
@@ -1072,8 +1072,8 @@
 
 #cruise-detail .section-cabin-and-service .block-1 .body .item-grid .item.active-1,
 #cruise-detail .section-cabin-and-service .block-1 .body .item-grid .item.active-2{
-    background-color:#e2bc6f;
-    color: #083a2e;
+    background-color:var(--color-gold);
+    color: var(--color-text-on-light);
 }
 
 @media (min-width: 768px){
@@ -1122,12 +1122,12 @@
     height: 268px;
     width: 100%;
     z-index: 2;
-    background: linear-gradient(360deg, #083A2E 0%, rgba(8, 58, 46, 0) 97.06%);
+    background: linear-gradient(360deg, #0e5f4b 0%, rgba(8, 58, 46, 0) 97.06%);
 }
 
 #cruise-detail .section-cabin-and-service .block-1 .carousel-gallery .owl-carousel .owl-item .item .description {
     -webkit-line-clamp: 3;
-    font-size: 1rem;
+    font-size: var(--text-base);
 }
 
 #cruise-detail .section-cabin-and-service .block-2 .carousel-gallery .owl-carousel .owl-item .item .description {
@@ -1135,10 +1135,10 @@
     bottom: 1.5rem;
     left: 50%;
     width: calc(100% - 3rem);
-    color: var(--color-cream);
+    color: var(--color-text-on-dark);
     z-index: 3;
     transform: translateX(-50%);
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 700;
 }
 
@@ -1201,7 +1201,7 @@
 
 @media screen and (min-width: 992px) {
     #cruise-detail .section-cabin-and-service .carousel-gallery .owl-carousel .owl-item .item .description {
-        font-size: 1rem;
+        font-size: var(--text-base);
     }
 }
 
@@ -1209,7 +1209,7 @@
     width: 32px;
     height: 32px;
     line-height: 32px;
-    font-size: 1.125rem;
+    font-size: var(--text-md);
 }
 
 @media (min-width: 768px) {
@@ -1217,7 +1217,7 @@
         width: 40px;
         height: 40px;
         line-height: 40px;
-        font-size: 1.375rem;
+        font-size: var(--text-lg);
     }
 }
 
@@ -1237,7 +1237,7 @@
 
 .section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .owl-next .button,
 .section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .owl-prev .button {
-    background-color: #0e5f4b;
+    background-color: var(--color-forest);
 }
 
 .section-cabin-and-service .carousel-gallery .slide-1 .owl-nav .disabled {
@@ -1293,7 +1293,7 @@
 }
 
 .section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item.active {
-    border-color: #c8a84b;
+    border-color: #C8A84B;
 }
 
 .section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item img {
@@ -1327,21 +1327,21 @@
 }
 
 #cruise-detail .section-itinerary .list-filter .item {
-    color: white;
+    color: var(--color-text-on-dark);
     padding: 0.5rem 1rem;
     background-color:#A9ABA6;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: var(--text-base);
 }
 
 #cruise-detail .section-itinerary .list-filter .item.active {
-    background-color:#c8a84b;
-    color: #0D2B1A;
+    background-color: #C8A84B;
+    color: var(--color-text-on-light);
 }
 
 #cruise-detail .section-itinerary .itinerary-detail .body {
     padding: 2.25rem 2rem 1.5rem;
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 @media screen and (max-width: 768px){
@@ -1352,7 +1352,7 @@
 
 #cruise-detail .section-itinerary .itinerary-detail .body .name {
     font-size: 1.625rem;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
     font-family: var(--font-display);
     font-weight: 700;
 
@@ -1393,7 +1393,7 @@
     color:#C8A84B;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.375rem;
+    font-size: var(--text-lg);
 
     position: relative;
 }
@@ -1447,7 +1447,7 @@
 
 #cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .label{
     font-weight: 700;
-    font-size: 1.375rem;
+    font-size: var(--text-lg);
     margin-bottom: 0.75rem;
 }
 
@@ -1460,7 +1460,7 @@
 #cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .grid-activity .item {
     background-color:#FFFFFF1A;
     border: 1px solid #FFFFFF26;
-    font-size: 1rem;
+    font-size: var(--text-base);
     align-content: center;
     padding: 0.75rem;
 }
@@ -1472,14 +1472,14 @@
 }
 
 #cruise-detail .section-itinerary .itinerary-detail .body .list-activity-container .grid-activity .item i{
-    color: #C8A84B;
+    color: var(--color-text-accent);
     margin-right: 0.75rem;
 }
 
 #cruise-detail .section-itinerary .itinerary-detail .footer {
     padding-block: 1.25rem;
-    background-color:#0E1F2D;
-    color: white;
+    background-color:#0e5f4b;
+    color: var(--color-text-on-dark);
 }
 
 #cruise-detail .section-itinerary .itinerary-detail .footer p{
@@ -1489,7 +1489,7 @@
 #cruise-detail .section-itinerary .itinerary-detail .footer .price{
     font-family: var(--font-display);
     font-size: 2.125rem;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #cruise-detail .section-itinerary .itinerary-detail .footer .btn {

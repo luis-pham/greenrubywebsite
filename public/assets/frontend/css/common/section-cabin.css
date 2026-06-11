@@ -1,5 +1,5 @@
 #main .section-cabin .list-itinerary-cruise .item .item-body .list-specification .item-specification {
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 
 #main .section-cabin .list-itinerary-cruise .item .item-body .list-specification .item-specification:not(:last-child) {

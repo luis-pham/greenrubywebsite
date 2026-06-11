@@ -105,6 +105,16 @@ $suitesGrid = $suitesGrid ?? false;
                                     'Imperial Suite'         => 'Upper Deck · Rear',
                                 ];
                                 $deckLabel = $deckMap[$cabinName] ?? '';
+
+                                $suiteSummaryMap = [
+                                    'Serenity Deluxe'      => 'Ocean-view cabin with bathtub on Main Deck.',
+                                    'Ocean Breeze Premium' => 'Upper Deck premium with bathtub and bay views.',
+                                    'Royal Romance Suite'  => 'Suite with jacuzzi, butler, and panoramic views.',
+                                    'Imperial Suite'       => 'Our largest suite with jacuzzi balcony and butler.',
+                                ];
+                                $suiteSummary = $suitesGrid
+                                    ? ($suiteSummaryMap[$cabinName] ?? '')
+                                    : Str::limit($list[$i]->summary ?? '', 110);
                             @endphp
                             <div class="item d-flex h-100" data-cabin-class="{{ $list[$i]->cabin_class }}">
                                 <div class="item-wrapper d-flex flex-column w-100 bg-white{{ $suitesGrid ? ' suite-card' : '' }}{{ $suitesGrid && $isSuiteFeatured ? ' suite-featured' : '' }}">
@@ -139,7 +149,7 @@ $suitesGrid = $suitesGrid ?? false;
                                         <h3 class="title mb-2 font-heading give-ellipsis after-2-lines{{ $suitesGrid ? ' suite-card-name' : '' }}">
                                             <a href="javascript:;" class="btn-view-cabin-details text-reset" data-id="{{ $list[$i]->id }}">{{ $list[$i]->name }}</a>
                                         </h3>
-                                        <p class="description suite-card-desc text-break give-ellipsis after-2-lines">{{ Str::limit($list[$i]->summary ?? '', 110) }}</p>
+                                        <p class="description suite-card-desc text-break">{{ $suitesGrid ? $suiteSummary : Str::limit($list[$i]->summary ?? '', 110) }}</p>
                                         <div class="list-specification suite-specs">
                                             @foreach($specs as $spec)
                                                 <div class="item-specification suite-spec-item">

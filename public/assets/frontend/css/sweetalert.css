@@ -18,8 +18,8 @@
   height: 56px;
   border-radius: 50%;
   border: none;
-  background-color: #c8a84b;
-  color: #0D2B1A;
+  background-color: #C8A84B;
+  color: var(--color-text-on-light);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
@@ -39,7 +39,7 @@
   font-size: 30px;
   font-weight: 700;
   line-height: 56px;
-  color: #ffffff;
+  color: var(--color-text-on-dark);
 }
 
 .swal2-icon .swal2-icon-content {
@@ -53,14 +53,14 @@
   font-size: 20px;
   font-weight: 700;
   font-family: var(--font-display);
-  color: #C8A84B;
+  color: var(--color-text-accent);
   text-align: center;
 }
 
 .swal2-html-container {
   margin: 0;
   padding: 0 0 0 0;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
   font-size: 16px;
   line-height: 1.6;
   font-family: var(--font-body);
@@ -70,7 +70,7 @@
 .swal2-close {
   top: 14px;
   right: 18px;
-  color: #262626;
+  color: var(--color-text-on-light);
   font-size: 24px;
 }
 
@@ -93,13 +93,13 @@
 }
 
 .swal2-confirm:hover {
-  background-color: #083a2e !important;
+  background-color: #0e5f4b !important;
 }
 
 .swal2-cancel {
   background-color: #ffffff !important;
   border: 1px solid #d6d3cc;
-  color: var(--color-body);
+  color: var(--color-text-on-light);
 }
 
 .swal2-styled:focus {

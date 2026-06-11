@@ -63,7 +63,7 @@
 #main .section-itinerary .list-itinerary-cruise .item .item-body .sub-title {
     font-size: 1rem;
     line-height: 1.416666666666667;
-    color: var(--color-forest);
+    color: var(--color-text-on-light);
     margin: -.25rem;
 }
 
@@ -135,7 +135,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     font-weight: 700;
     font-size: 2.125rem;
     letter-spacing: -0.1px;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 /* Itinerary card redesign */
@@ -148,13 +148,13 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     top: 12px;
     left: 12px;
     z-index: 2;
-    background: rgba(13, 43, 26, 0.75);
+    background: rgba(14, 95, 75, 0.75);
     backdrop-filter: blur(4px);
     padding: 5px 12px;
     font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 500;
     font-family: var(--font-body);
     pointer-events: none;
@@ -165,13 +165,13 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     bottom: 12px;
     right: 12px;
     z-index: 2;
-    background: rgba(13, 43, 26, 0.75);
+    background: rgba(14, 95, 75, 0.75);
     backdrop-filter: blur(4px);
     padding: 5px 10px;
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-cream-70);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     font-family: var(--font-body);
     pointer-events: none;
@@ -181,7 +181,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 500;
     margin-bottom: 6px;
     font-family: var(--font-body);
@@ -191,7 +191,7 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     font-family: var(--font-display);
     font-size: 20px;
     font-weight: 400;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.2;
     margin-bottom: 10px;
     letter-spacing: 0.01em;
@@ -211,12 +211,12 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
 #main .section-itinerary .list-itinerary-cruise .item .itin-chip {
     font-size: 11px;
     letter-spacing: 0.06em;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 300;
-    background: rgba(13, 43, 26, 0.04);
+    background: rgba(14, 95, 75, 0.04);
     padding: 4px 8px;
     font-family: var(--font-body);
-    border: 0.5px solid rgba(13, 43, 26, 0.08);
+    border: 0.5px solid rgba(14, 95, 75, 0.08);
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-price {
@@ -225,13 +225,13 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     flex-wrap: wrap;
     gap: 4px;
     padding-top: 12px;
-    border-top: 0.5px solid rgba(13, 43, 26, 0.07);
+    border-top: 0.5px solid rgba(14, 95, 75, 0.07);
     margin-bottom: 12px;
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-price-from {
     font-size: 14px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 300;
     font-family: var(--font-body);
 }
@@ -240,25 +240,25 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1;
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-price-unit {
     font-size: 14px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 300;
     font-family: var(--font-body);
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-card-actions {
     padding-top: 12px;
-    border-top: 0.5px dashed rgba(13, 43, 26, 0.1);
+    border-top: 0.5px dashed rgba(14, 95, 75, 0.1);
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-view {
     font-size: 1rem;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 300;
     background: none;
     border: none;
@@ -270,9 +270,9 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-book {
-    background-color: #c8a84b;
+    background-color: #C8A84B;
     border: 1px solid #c8a84b;
-    color: #0D2B1A !important;
+    color: var(--color-text-on-light) !important;
     font-size: 15px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -289,5 +289,5 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-book:focus {
     background-color: #b8923e;
     border-color: #b8923e;
-    color: #0D2B1A !important;
+    color: var(--color-text-on-light) !important;
 }

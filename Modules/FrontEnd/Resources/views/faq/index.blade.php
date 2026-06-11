@@ -16,10 +16,10 @@
                 <ellipse cx="200" cy="210" rx="185" ry="105" fill="none" stroke="white" stroke-width="1"/>
             </svg>
             <div class="faq-hero-inner">
-                <div class="faq-hero-eyebrow">
-                    <span class="faq-hero-eyebrow-line"></span>
+                <div class="section-eyebrow section-eyebrow--gold">
+                    <span class="eyebrow-line"></span>
                     {{ __('frontend::faq.hero_eyebrow') }}
-                    <span class="faq-hero-eyebrow-line"></span>
+                    <span class="eyebrow-line"></span>
                 </div>
                 <h1 class="faq-hero-title font-heading">{!! __('frontend::faq.hero_title') !!}</h1>
                 <p class="faq-hero-subtitle mb-0">{{ __('frontend::faq.hero_subtitle') }}</p>

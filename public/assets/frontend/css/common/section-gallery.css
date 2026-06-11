@@ -50,12 +50,12 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-color:#083A2EB2;
+    background-color:#0e5f4bB2;
 }
 
 .section-gallery .gallery-container.gallery-grid-layout .overflow.gallery-image-wrapper:nth-child(6)::after {
     content: "+"attr(data-remaining)"";
-    color: white;
+    color: var(--color-text-on-dark);
     position: absolute;
     inset: 0;
     font-size: 3.375rem;

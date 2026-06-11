@@ -5,7 +5,7 @@
 
 /* ── Hero ──────────────────────────────────────────────── */
 #main #article.page-privacy-policy .privacy-hero {
-    background: #0D2B1A;
+    background: #0e5f4b;
     margin-top: -91px;
     padding: calc(91px + 56px) 48px 56px;
     position: relative;
@@ -50,7 +50,7 @@
     font-size: 9px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 400;
     margin-bottom: 12px;
     display: flex;
@@ -72,7 +72,7 @@
     font-family: var(--font-display);
     font-size: 48px;
     font-weight: 300;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 8px;
@@ -80,13 +80,13 @@
 
 #article.page-privacy-policy .privacy-hero-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #article.page-privacy-policy .privacy-hero-sub {
     font-family: var(--font-body);
     font-size: 12px;
-    color: var(--color-cream-35);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     max-width: 440px;
     margin-left: auto;
@@ -105,8 +105,8 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #f8f5ef;
-    border-bottom: 0.5px solid rgba(13, 43, 26, 0.08);
+    background: var(--color-cream-bg);
+    border-bottom: 0.5px solid rgba(14, 95, 75, 0.08);
 }
 
 #article.page-privacy-policy .privacy-jumpnav-inner {
@@ -131,7 +131,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 400;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     cursor: pointer;
     border-bottom: 2px solid transparent;
     border-left: none;
@@ -149,7 +149,7 @@
 
 #article.page-privacy-policy .privacy-jtab.item.active,
 #article.page-privacy-policy .privacy-jtab.item:hover {
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     border-bottom-color: #C8A84B;
     background: none;
 }
@@ -187,11 +187,11 @@
     align-items: center;
     gap: 6px;
     padding: 5px 12px;
-    background: rgba(13, 43, 26, 0.03);
-    border: 0.5px solid rgba(13, 43, 26, 0.08);
+    background: rgba(14, 95, 75, 0.03);
+    border: 0.5px solid rgba(14, 95, 75, 0.08);
     font-family: var(--font-body);
     font-size: 14px;
-    color: rgba(13, 43, 26, 0.55);
+    color: var(--color-text-muted-on-light);
     font-weight: 400;
 }
 
@@ -199,13 +199,13 @@
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background: rgba(13, 43, 26, 0.15);
+    background: rgba(14, 95, 75, 0.15);
     flex-shrink: 0;
 }
 
 /* ── Intro box ───────────────────────────────────────────── */
 #article.page-privacy-policy .privacy-intro-box {
-    background: #f8f5ef;
+    background: var(--color-cream-bg);
     border-left: 2px solid #C8A84B;
     padding: 16px 20px;
     margin-bottom: 40px;
@@ -214,7 +214,7 @@
 #article.page-privacy-policy .privacy-intro-box p {
     font-family: var(--font-body);
     font-size: 19px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     line-height: 1.75;
     font-weight: 400;
     margin: 0;
@@ -224,7 +224,7 @@
 #article.page-privacy-policy .privacy-section {
     margin-bottom: 48px;
     padding-bottom: 48px;
-    border-bottom: 0.5px solid rgba(13, 43, 26, 0.07);
+    border-bottom: 0.5px solid rgba(14, 95, 75, 0.07);
     scroll-margin-top: 100px;
 }
 
@@ -237,7 +237,7 @@
     font-size: 16px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 500;
     margin-bottom: 10px;
 }
@@ -246,7 +246,7 @@
     font-family: var(--font-display);
     font-size: 26px;
     font-weight: 400;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     margin-bottom: 14px;
     line-height: 1.2;
 }
@@ -255,14 +255,14 @@
     font-family: var(--font-display);
     font-size: 17px;
     font-weight: 400;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     margin: 20px 0 8px;
 }
 
 #article.page-privacy-policy .privacy-sec-body {
     font-family: var(--font-body);
     font-size: 19px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     line-height: 1.8;
     font-weight: 400;
     margin-bottom: 12px;
@@ -277,7 +277,7 @@
 #article.page-privacy-policy .privacy-sec-list li {
     font-family: var(--font-body);
     font-size: 18px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     line-height: 1.75;
     font-weight: 400;
     padding: 4px 0 4px 14px;
@@ -295,7 +295,7 @@
 }
 
 #article.page-privacy-policy .privacy-sec-list li strong {
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 500;
 }
 
@@ -310,20 +310,20 @@
 #article.page-privacy-policy .privacy-highlight-box p {
     font-family: var(--font-body);
     font-size: 18px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     line-height: 1.7;
     font-weight: 400;
     margin: 0;
 }
 
 #article.page-privacy-policy .privacy-highlight-box strong {
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 500;
 }
 
 /* ── Link ────────────────────────────────────────────────── */
 #article.page-privacy-policy .privacy-link {
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-weight: 400;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -331,12 +331,12 @@
 }
 
 #article.page-privacy-policy .privacy-link:hover {
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 /* ── Contact box ─────────────────────────────────────────── */
 #article.page-privacy-policy .privacy-contact-box {
-    background: #0D2B1A;
+    background: #0e5f4b;
     padding: 32px 40px;
     margin-top: 48px;
     display: flex;
@@ -350,20 +350,20 @@
     font-family: var(--font-display);
     font-size: 22px;
     font-weight: 300;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     margin-bottom: 4px;
     line-height: 1.2;
 }
 
 #article.page-privacy-policy .privacy-contact-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #article.page-privacy-policy .privacy-contact-sub {
     font-family: var(--font-body);
     font-size: 12px;
-    color: var(--color-cream-35);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     margin: 0;
 }
@@ -386,14 +386,14 @@
     font-size: 8px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(200, 168, 75, 0.5);
+    color: var(--color-text-accent);
     font-weight: 400;
 }
 
 #article.page-privacy-policy .privacy-contact-val {
     font-family: var(--font-body);
     font-size: 12px;
-    color: var(--color-cream-50);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
 }
 

@@ -1,7 +1,8 @@
-#about .about-section-eyebrow {
+#about .about-section-eyebrow,
+#about .section-eyebrow {
     justify-content: flex-start;
     text-align: left;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 .about-topo {
@@ -17,7 +18,7 @@
 
 /* ── SECTION 1: HERO ──────────────────────────────────── */
 #about .about-hero.section-cover {
-    background: #0D2B1A;
+    background: #0e5f4b;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -41,7 +42,7 @@
     font-size: 9px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     font-weight: 400;
     margin-bottom: 14px;
     font-family: var(--font-body);
@@ -63,7 +64,7 @@
     font-family: var(--font-display);
     font-size: 54px;
     font-weight: 300;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 14px;
@@ -74,12 +75,12 @@
 
 #about .about-hero .main-info .title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #about .about-hero .main-info .description {
-    font-size: 14px;
-    color: var(--color-cream-50);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     max-width: 480px;
     margin: 0 auto 36px;
@@ -105,7 +106,7 @@
 
 #about .about-hero .list-button .btn-warning {
     background: #C8A84B;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -120,7 +121,7 @@
 
 #about .about-hero .list-button .btn-success {
     background: transparent;
-    color: rgba(240, 236, 228, 0.6);
+    color: var(--color-text-muted-on-dark);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -137,7 +138,7 @@
 #about .about-hero .list-button .btn-success:focus {
     background: transparent;
     border-color: rgba(240, 236, 228, 0.45);
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
 }
 
 @media (max-width: 575.98px) {
@@ -220,7 +221,7 @@
 
 #about .about-story.bg .container-fluid {
     padding: 0;
-    background-color: #f8f5ef;
+    background-color: var(--color-cream-bg);
 }
 
 #about .about-story .about-story-grid {
@@ -235,16 +236,16 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     margin-bottom: 8px;
     font-family: var(--font-body);
 }
 
 #about .about-story-title {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: var(--text-2xl);
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 14px;
@@ -253,13 +254,13 @@
 
 #about .about-story-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #about .about-story-body {
     font-family: var(--font-body);
-    font-size: 14px;
-    color: #0D2B1A;
+    font-size: var(--text-sm);
+    color: var(--color-text-on-light);
     line-height: 1.8;
     font-weight: 300;
     text-align: left;
@@ -293,9 +294,9 @@
     padding-left: 16px;
     margin: 20px 0;
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: var(--text-md);
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.5;
     font-style: italic;
 }
@@ -323,11 +324,11 @@
 }
 
 #about .about-eco .container-fluid {
-    background-color: #f8f5ef;
+    background-color: var(--color-cream-bg);
 }
 
 #about .about-eco .about-topo ellipse {
-    stroke: #0D2B1A;
+    stroke: #0e5f4b;
 }
 
 #about .about-eco-panel {
@@ -337,9 +338,9 @@
 
 #about .about-eco-title {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: var(--text-2xl);
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 48px;
@@ -348,7 +349,7 @@
 
 #about .about-eco-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #about .about-eco-grid {
@@ -358,7 +359,7 @@
 }
 
 #about .about-eco-card {
-    background: #0D2B1A;
+    background: #0e5f4b;
     border: 0.5px solid rgba(200, 168, 75, 0.15);
     padding: 28px 24px;
 }
@@ -371,7 +372,7 @@
     font-size: 8px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(200, 168, 75, 0.35);
+    color: var(--color-text-accent);
     margin-bottom: 14px;
     font-weight: 400;
     font-family: var(--font-body);
@@ -381,13 +382,13 @@
     font-family: var(--font-display);
     font-size: 20px;
     font-weight: 400;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     margin-bottom: 8px;
 }
 
 #about .about-eco-card-desc {
     font-size: 11px;
-    color: rgba(240, 236, 228, 0.4);
+    color: var(--color-text-muted-on-dark);
     line-height: 1.7;
     font-weight: 300;
     margin-bottom: 0;
@@ -413,7 +414,7 @@
 }
 
 #about .about-community .container-fluid {
-    background-color: #f8f5ef;
+    background-color: var(--color-cream-bg);
 }
 
 #about .about-community-header {
@@ -422,9 +423,9 @@
 
 #about .about-community-title {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: var(--text-2xl);
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.2;
     letter-spacing: -0.01em;
     max-width: 600px;
@@ -434,7 +435,7 @@
 
 #about .about-community-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #about .about-community-rows {
@@ -470,21 +471,21 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 0.5px solid rgba(13, 43, 26, 0.06);
+    border: 0.5px solid rgba(14, 95, 75, 0.06);
 }
 
 #about .about-community-item-title {
     font-family: var(--font-display);
     font-size: 24px;
     font-weight: 400;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     margin-bottom: 12px;
     line-height: 1.2;
 }
 
 #about .about-community-item-desc {
-    font-size: 14px;
-    color: #0D2B1A;
+    font-size: var(--text-sm);
+    color: var(--color-text-on-light);
     line-height: 1.75;
     font-weight: 300;
     margin-bottom: 0;
@@ -518,25 +519,26 @@
 }
 
 #about .about-impact .container-fluid {
-    background-color: #f8f5ef;
+    background-color: var(--color-cream-bg);
 }
 
-#about .about-impact .about-section-eyebrow {
+#about .about-impact .about-section-eyebrow,
+#about .about-impact .section-eyebrow {
     justify-content: center;
 }
 
 #about .about-impact-title {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: var(--text-2xl);
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     margin-bottom: 12px;
     letter-spacing: -0.01em;
 }
 
 #about .about-impact-sub {
-    font-size: 14px;
-    color: #0D2B1A;
+    font-size: var(--text-sm);
+    color: var(--color-text-on-light);
     font-weight: 300;
     margin-bottom: 48px;
     font-family: var(--font-body);
@@ -551,7 +553,7 @@
 
 #about .about-impact-stat {
     background: #fff;
-    border: 0.5px solid rgba(13, 43, 26, 0.07);
+    border: 0.5px solid rgba(14, 95, 75, 0.07);
     padding: 32px 24px;
 }
 
@@ -559,14 +561,14 @@
     font-family: var(--font-display);
     font-size: 52px;
     font-weight: 300;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     line-height: 1;
     margin-bottom: 8px;
 }
 
 #about .about-impact-stat-label {
     font-size: 11px;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 300;
     letter-spacing: 0.04em;
     font-family: var(--font-body);
@@ -587,7 +589,7 @@
 }
 
 #about .about-cert-bar .container-fluid {
-    background-color: #0D2B1A;
+    background-color: #0e5f4b;
 }
 
 #about .about-cert-panel {
@@ -611,20 +613,20 @@
 
 #about .about-cert-title {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: var(--text-xl);
     font-weight: 300;
-    color: #f0ece4;
+    color: var(--color-text-on-dark);
     margin-bottom: 6px;
 }
 
 #about .about-cert-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #about .about-cert-sub {
-    font-size: 12px;
-    color: rgba(240, 236, 228, 0.4);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     font-family: var(--font-body);
     margin-bottom: 0;
@@ -657,7 +659,7 @@
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-gold-60);
+    color: var(--color-text-accent);
     font-weight: 400;
     font-family: var(--font-body);
 }
@@ -669,7 +671,7 @@
 }
 
 #about .about-cta .container-fluid {
-    background-color: #f8f5ef;
+    background-color: var(--color-cream-bg);
 }
 
 #about .about-cta .about-cta-grid {
@@ -683,7 +685,7 @@
     font-family: var(--font-display);
     font-size: 36px;
     font-weight: 300;
-    color: #0D2B1A;
+    color: var(--color-text-on-light);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 12px;
@@ -692,12 +694,12 @@
 
 #about .about-cta-title em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 #about .about-cta-desc {
-    font-size: 14px;
-    color: #0D2B1A;
+    font-size: var(--text-sm);
+    color: var(--color-text-on-light);
     line-height: 1.75;
     font-weight: 300;
     margin-bottom: 10px;
@@ -709,7 +711,7 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-muted);
+    color: var(--color-text-muted-on-light);
     margin-bottom: 24px;
     font-family: var(--font-body);
     text-align: left;
@@ -728,8 +730,8 @@
 }
 
 #about .about-cta-buttons .btn-warning {
-    background: #0D2B1A;
-    color: #f0ece4;
+    background: #0e5f4b;
+    color: var(--color-text-on-dark);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -743,13 +745,13 @@
 
 #about .about-cta-buttons .btn-success {
     background: transparent;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 400;
     padding: 11px 24px;
-    border: 0.5px solid rgba(13, 43, 26, 0.15);
+    border: 0.5px solid rgba(14, 95, 75, 0.15);
     border-radius: 0;
     font-family: var(--font-body);
     box-shadow: none;

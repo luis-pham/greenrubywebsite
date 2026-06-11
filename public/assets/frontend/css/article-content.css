@@ -1,6 +1,6 @@
 .article-content {
     font-family: var(--font-body);
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 
 @media only screen and (min-width: 576px) {
@@ -20,7 +20,7 @@
 }
 
 .article-content a {
-    color: var(--color-forest);
+    color: var(--color-text-on-light);
 }
 
 .article-content p {
@@ -39,7 +39,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.5;
-    color: var(--color-forest);
+    color: var(--color-text-on-light);
 }
 
 @media only screen and (min-width: 576px) {
@@ -228,7 +228,7 @@
     display: block;
     background: #ba866e;
     padding: 15px 15px 15px 45px;
-    color: #fff;
+    color: var(--color-text-on-dark);
 }
 
 .article-content .box-quote:after {

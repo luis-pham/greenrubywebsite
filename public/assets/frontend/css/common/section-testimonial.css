@@ -14,7 +14,7 @@
 }
 
 #main .section-testimonial .container-fluid:before {
-    background-color: #0e1f2d;
+    background-color: #0e5f4b;
     z-index: -1;
 }
 
@@ -32,12 +32,12 @@
     padding: 1rem;
     background-color: #ffffff1a;
     border: 1px solid #ffffff26;
-    border-radius: 1.25rem;
+    border-radius: 0;
 }
 
 #main .section-testimonial .list-item .item .icon-qoute {
     margin-bottom: .75rem;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
     font-size: 1.313rem;
     line-height: 1.263157894736842;
 }
@@ -55,7 +55,7 @@
     font-size: 1.063rem;
     font-weight: 500;
     line-height: 1.45;
-    color: var(--color-gold);
+    color: var(--color-text-accent);
 }
 
 #main .section-testimonial .list-filter {

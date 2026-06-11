@@ -1,5 +1,11 @@
 #main #article .section-cover .page-cover .image-wrapper:before {
-    opacity: .5;
+    opacity: .4;
+}
+
+@media (min-width: 992px) {
+    #main #article .section-cover .page-cover .image-wrapper:before {
+        opacity: .32;
+    }
 }
 
 @media (min-width: 768px) {
@@ -135,7 +141,7 @@
 
 /* Section 3 */
 #article .section-3 .container-fluid {
-    background-color: #083a2e;
+    background-color: #0e5f4b;
 }
 
 #article .section-3 .btn-view-details {

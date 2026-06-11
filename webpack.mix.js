@@ -90,6 +90,7 @@ mix.styles([
     'public/assets/frontend/css/modules/booking/index.css',
     'public/assets/frontend/css/modules/contact/index.css',
     'public/assets/frontend/css/modules/cruise/detail.css',
+    'public/assets/frontend/css/modules/cruise/onboard.css',
     'public/assets/frontend/css/modules/error/index.css',
     'public/assets/frontend/css/modules/experience/index.css',
     'public/assets/frontend/css/modules/experience/show.css',

@@ -84,7 +84,7 @@
 .modal-service .modal-title {
     font-family: var(--font-display);
     font-size: 1.375rem;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 .modal-service .modal-body .image {
@@ -153,7 +153,7 @@
 }
 
 .modal-service .modal-body .image .thumbnail .list-thumbnail .item.active {
-    border-color: #c8a84b;
+    border-color: #C8A84B;
 }
 
 .modal-service .modal-body .image .thumbnail .list-thumbnail .item img {
@@ -180,7 +180,7 @@
 .modal-service .modal-body .main-info .main-info-title {
     font-family: var(--font-display);
     font-size: 1.125rem;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     line-height: 1.2;
 }
 
@@ -195,20 +195,20 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .05em;
-    color: #C8A84B;
+    color: var(--color-text-accent);
     margin-bottom: .25rem;
 }
 
 .modal-service .modal-body .main-info .service-description {
     font-size: 1rem;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
 }
 
 .modal-service .modal-body .main-info .service-price {
     border-top: 1px dashed #D6D3CC;
     border-bottom: 1px dashed #D6D3CC;
     font-size: 1rem;
-    color: var(--color-body);
+    color: var(--color-text-on-light);
     font-weight: 700;
     padding-bottom: 0.75rem;
 }
@@ -217,7 +217,7 @@
     font-family: var(--font-display);
     font-size: 2.125rem;
     letter-spacing: -0.1px;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 .modal-service .modal-body .main-info .service-type-label {
@@ -228,7 +228,7 @@
     padding: .25rem .75rem;
     border-radius: 5px;
     background-color: #A9ABA6;
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 .btn-loading-local {

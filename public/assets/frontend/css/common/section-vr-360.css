@@ -3,7 +3,7 @@
 }
 
 .section-vr-360 .container-fluid::before{
-    background-image: linear-gradient(to bottom,#083A2E 0%, #083A2E 63.5%, #F3F3F0 63.5%, #F3F3F0 100%);
+    background-image: linear-gradient(to bottom,#0e5f4b 0%, #0e5f4b 63.5%, #F3F3F0 63.5%, #F3F3F0 100%);
     z-index: -1;
 }
 
@@ -23,17 +23,17 @@
 }
 
 .section-vr-360 .section-description {
-    color: white;
+    color: var(--color-text-on-dark);
 }
 
 .section-vr-360 .vr-heading em {
     font-style: italic;
-    color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
 .vr-subtitle {
     font-size: var(--text-md);
-    color: rgba(240, 236, 228, 0.4);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     font-family: var(--font-body);
     margin: 8px auto 0;
@@ -60,7 +60,7 @@
 .section-vr-360 .vr-container-outer .vr-container-inner .item {
     display: grid;
     grid-template-rows: 1fr;
-    background:#083A2E;
+    background:#0e5f4b;
 }
 
 .section-vr-360 .vr-container-outer .vr-container-inner .item:has(.title) {
@@ -76,12 +76,12 @@
     font-family: var(--font-display);
     font-weight: 700;
     color:var(--color-gold);
-    font-size: 1.125rem;
+    font-size: var(--text-md);
     margin-bottom: 0.5rem;
 }
 
 .section-vr-360 .vr-container-inner .item .description {
-    font-size: 1rem;
+    font-size: var(--text-base);
     color:white;
 }
 
@@ -114,7 +114,7 @@
 .section-vr-360 .vr-carousel.owl-carousel .owl-nav .owl-next
 {
     border-radius: 80px;
-    background-color:#0E5F4B;
+    background-color:var(--color-forest);
     width: 2rem;
     height: 2rem;
     align-content: center;
@@ -200,7 +200,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(200,168,75,0.4);
+    color: var(--color-text-accent);
     position: relative;
     margin-bottom: 4px;
 }
@@ -221,7 +221,7 @@
         'Cormorant Garamond', serif);
     font-size: var(--text-xl, 1.75rem);
     font-weight: 300;
-    color: rgba(240,236,228,0.35);
+    color: var(--color-text-muted-on-dark);
     font-style: italic;
     letter-spacing: 0.02em;
     text-align: center;
@@ -231,7 +231,7 @@
     font-size: var(--text-xs, 0.75rem);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(200,168,75,0.35);
+    color: var(--color-text-accent);
     font-weight: 400;
     font-family: var(--font-body,
         'DM Sans', system-ui, sans-serif);
@@ -247,7 +247,7 @@
     border: 0.5px solid
         rgba(200,168,75,0.2);
     font-size: var(--text-xs, 0.75rem);
-    color: rgba(240,236,228,0.4);
+    color: var(--color-text-muted-on-dark);
     font-weight: 300;
     letter-spacing: 0.04em;
     text-decoration: none;
@@ -259,7 +259,7 @@
 
 .vr-notify-btn:hover {
     background: rgba(200,168,75,0.1);
-    color: rgba(240,236,228,0.6);
+    color: var(--color-text-muted-on-dark);
 }
 
 .vr-notify-dot {
@@ -273,7 +273,7 @@
 
 .vr-notify-arrow {
     margin-left: 4px;
-    color: rgba(200,168,75,0.4);
+    color: var(--color-text-accent);
 }
 
 /* Bottom label */
@@ -285,7 +285,7 @@
     font-size: 8px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(200,168,75,0.2);
+    color: var(--color-text-accent);
     font-family: var(--font-body,
         'DM Sans', system-ui, sans-serif);
     white-space: nowrap;
