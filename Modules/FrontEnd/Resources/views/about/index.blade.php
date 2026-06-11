@@ -247,8 +247,8 @@
             </div>
         </section>
 
-        {{-- SECTION 7: CERTIFICATION BAR --}}
-        <section id="green-globe" class="about-cert-bar">
+        {{-- SECTION 7: CERTIFICATION BAR (hidden) --}}
+        <section id="green-globe" class="about-cert-bar d-none" hidden aria-hidden="true">
             <div class="container-fluid px-0">
                 <div class="container about-cert-panel">
                     <div class="about-cert-left">

@@ -38,24 +38,29 @@
     display: block;
 }
 
-/* Experience layout */
+/* Layout */
 .onboard-exp-layout {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 3px;
+    align-items: stretch;
 }
 
 .onboard-exp-left {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-}
-
-/* Category groups */
-.onboard-cat-group {
+    gap: 0;
     background: rgba(13, 43, 26, 0.02);
     border: 0.5px solid rgba(13, 43, 26, 0.07);
+}
+
+/* Category groups — inside single panel, divided by lines */
+.onboard-cat-group {
     padding: 16px 16px 12px;
+}
+
+.onboard-cat-group:not(:first-child) {
+    border-top: 0.5px solid rgba(13, 43, 26, 0.08);
 }
 
 .onboard-cat-label {
@@ -109,27 +114,31 @@
     color: var(--color-gold);
 }
 
-/* Image panel */
+/* Right panel — flex column, stretch full height */
 .onboard-exp-right {
     display: flex;
     flex-direction: column;
     gap: 3px;
+    min-height: 0;
 }
 
+/* Main image — flex:1 fill remaining height */
 .onboard-main-img {
-    min-height: 300px;
+    flex: 1;
+    min-height: 0;
     position: relative;
     overflow: hidden;
-    background: var(--color-forest);
+    background: #0D2B1A;
 }
 
+/* Image fill container */
 .onboard-img-el {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    position: absolute;
-    inset: 0;
 }
 
 .onboard-img-overlay {
@@ -209,30 +218,34 @@
     background: rgba(5, 15, 8, 0.75);
 }
 
-/* Thumbnails */
+/* Thumbnails — fixed height, no flex-grow */
 .onboard-thumbs {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 3px;
+    flex-shrink: 0;
 }
 
 .onboard-thumb {
-    height: 60px;
+    height: 64px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    background: var(--color-forest);
+    background: #0D2B1A;
     border: 1.5px solid transparent;
+    display: block;
 }
 
 .onboard-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .onboard-thumb.active {
-    border-color: var(--color-gold);
+    border-color: #C8A84B;
 }
 
 .onboard-thumb--more {
@@ -363,6 +376,11 @@
 
     .onboard-exp-right {
         order: -1;
+        min-height: 320px;
+    }
+
+    .onboard-main-img {
+        min-height: 260px;
     }
 
     .onboard-svc-grid {
@@ -382,26 +400,4 @@
     .onboard-thumbs {
         grid-template-columns: repeat(4, 1fr);
     }
-}
-
-.onboard-exp-layout {
-    align-items: stretch;
-}
-
-.onboard-exp-right {
-    align-self: stretch;
-}
-
-.onboard-main-img {
-    min-height: unset !important;
-    height: 100% !important;
-    position: relative;
-}
-
-.onboard-img-el {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
