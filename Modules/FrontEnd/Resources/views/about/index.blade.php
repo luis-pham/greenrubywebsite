@@ -156,7 +156,7 @@
             </svg>
             <div class="container-fluid px-0">
                 <div class="container about-eco-panel">
-                    <p class="about-section-eyebrow about-section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
+                    <p class="about-section-eyebrow">{{ __('frontend::about.section_3_title') }}</p>
                     <h2 class="about-eco-title">Technology That <em>Proves It.</em></h2>
                     @if (count($listSustainability ?? []) > 0)
                         <div class="about-eco-grid">

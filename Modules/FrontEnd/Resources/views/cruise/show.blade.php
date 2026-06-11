@@ -176,8 +176,13 @@
         <section class="section-itinerary bg">
             <div class="container-fluid">
                  <div class="container">
-                     <h2 class="section-title">{{__('frontend::cruiseDetail.section-itinerary.title')}}</h2>
-                     <p class="section-description font-heading">{{__('frontend::cruiseDetail.section-itinerary.description')}}</p>
+                     <p class="section-title itinerary-eyebrow">
+                         Journeys & Itineraries
+                     </p>
+                     <h2 class="section-description font-heading itinerary-heading">
+                         Explore Ha Long Bay
+                         <em>Your Way.</em>
+                     </h2>
                      <div class="list-filter">
                          @foreach($listDurationFilter as $idx => $duration)
                              <a href="javascript:" class="item {{$idx === 0 ? 'active' : ''}}" data-duration="{{$duration}}">
@@ -234,7 +239,7 @@
         <section
             class="section-cabin-and-service"
             id="onboard"
-            style="background:#f2ede4; padding:72px 0;">
+            style="background:#f8f5ef; padding:72px 0;">
 
             <div class="container">
 
