@@ -231,51 +231,262 @@
             </div>
         </section>
 
-        <section class="section-cabin-and-service bg">
-            <div class="container-fluid p-0">
-                <div class="row no-gutters">
-                    <div class="col-12 col-lg-6 block-1">
-                        <div class="cabin-container accordion-item">
-                            <div class="header">
-                                <span class="title">{{__('frontend::cruiseDetail.section-cabin-and-service.cabin-container-title')}}</span>
-                                <div class="icon-wrapper">
-                                    <i class="icon fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="body">
-                                <div class="item-grid grid-cabin">
-                                    @foreach($listOtherCabin as $cabin)
-                                        <div class="item {{$loop->index === 0 ? 'active-1 active-2' : ''}}" data-id="{{$cabin->id}}">
-                                            <span class="name">{{$cabin->name}}</span>
+        <section
+            class="section-cabin-and-service"
+            id="onboard"
+            style="background:#f2ede4; padding:72px 0;">
+
+            <div class="container">
+
+                <div style="margin-bottom:28px;">
+                    <p class="section-title" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <span style="width:20px; height:0.5px; background:#C8A84B; opacity:0.5; display:inline-block;"></span>
+                        What Awaits You
+                    </p>
+                    <h2 style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:300; color:var(--color-forest); line-height:1.1; letter-spacing:-0.01em;">
+                        Onboard
+                        <em style="font-style:italic; color:var(--color-gold);">
+                            {{ $obj->name ?? 'Green Ruby' }}
+                        </em>
+                    </h2>
+                </div>
+
+                <div class="onboard-main-tabs">
+                    <button class="onboard-main-tab active" data-tab="experience">
+                        Onboard Experience
+                    </button>
+                    <button class="onboard-main-tab" data-tab="services">
+                        Services
+                    </button>
+                </div>
+
+                <div id="onboard-tab-experience" class="onboard-tab-panel">
+                    <div class="onboard-exp-layout">
+
+                        <div class="onboard-exp-left">
+
+                            @php
+                                $grouped = $listOtherCabin->groupBy(fn($c) => $c->group->category_key ?? 'other');
+                                $categoryLabels = [
+                                    'dining'   => 'Dining & Social',
+                                    'pools'    => 'Pools & Outdoors',
+                                    'wellness' => 'Wellness & Activities',
+                                    'events'   => 'Events',
+                                    'other'    => 'More',
+                                ];
+                                $categoryOrder = ['dining', 'pools', 'wellness', 'events', 'other'];
+                                $firstItemDone = false;
+                            @endphp
+
+                            @foreach($categoryOrder as $catKey)
+                                @php
+                                    $items = $grouped->get($catKey, collect());
+                                    $actItems = $catKey === 'wellness'
+                                        ? (isset($listExpActivity)
+                                            ? $listExpActivity->filter(fn($a) => $a->cruise_id !== null)
+                                            : collect())
+                                        : collect();
+                                    $totalItems = $items->count() + $actItems->count();
+                                @endphp
+
+                                @if($totalItems > 0)
+                                <div class="onboard-cat-group">
+                                    <p class="onboard-cat-label">
+                                        {{ $categoryLabels[$catKey] ?? $catKey }}
+                                    </p>
+                                    <div class="onboard-cat-items">
+
+                                        @foreach($items as $item)
+                                        <div
+                                            class="onboard-cat-item{{ !$firstItemDone ? ' active' : '' }}"
+                                            data-id="{{ $item->id }}"
+                                            data-type="facility"
+                                            data-title="{{ $item->name }}"
+                                            data-desc="{{ $item->summary }}">
+                                            <p class="onboard-item-name">{{ $item->name }}</p>
+                                            <p class="onboard-item-desc">{{ Str::limit($item->summary, 45) }}</p>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <div class="cabin-gallery-container position-relative d-lg-none"></div>
-                            </div>
-                        </div>
-                        <div class="service-container accordion-item item-collapse">
-                            <div class="header">
-                                <span class="title">{{__('frontend::cruiseDetail.section-cabin-and-service.service-container-title')}}</span>
-                                <div class="icon-wrapper">
-                                    <i class="icon fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="body">
-                                <div class="item-grid grid-service">
-                                    @foreach($listInclusiveService as $service)
-                                        <div class="item {{$loop->index === 0 ? 'active-1' : ''}}" data-id="{{$service->id}}">
-                                            <span class="name">{{$service->name}}</span>
+                                        @php
+                                            if (!$firstItemDone) {
+                                                $firstItemDone = true;
+                                            }
+                                        @endphp
+                                        @endforeach
+
+                                        @foreach($actItems as $item)
+                                        <div
+                                            class="onboard-cat-item{{ !$firstItemDone ? ' active' : '' }}"
+                                            data-id="{{ $item->id }}"
+                                            data-type="activity"
+                                            data-title="{{ $item->name }}"
+                                            data-desc="{{ $item->summary }}">
+                                            <p class="onboard-item-name">{{ $item->name }}</p>
+                                            <p class="onboard-item-desc">{{ Str::limit($item->summary, 45) }}</p>
                                         </div>
-                                    @endforeach
+                                        @php
+                                            if (!$firstItemDone) {
+                                                $firstItemDone = true;
+                                            }
+                                        @endphp
+                                        @endforeach
+
+                                    </div>
                                 </div>
-                                <div class="service-gallery-container d-lg-none"></div>
-                            </div>
+                                @endif
+                            @endforeach
+
                         </div>
-                    </div>
-                    <div class="col-12 col-lg-6 block-2 d-none d-lg-block">
-                        <div class="cabin-gallery-container service-gallery-container"></div>
+
+                        @php
+                            $firstFacility = $listOtherCabin->first();
+                            $firstImgSrc = $firstFacility
+                                ? FeUtils::getImageLink($firstFacility->image_link)
+                                : '';
+                        @endphp
+
+                        <div class="onboard-exp-right">
+                            <div class="onboard-main-img">
+                                <img
+                                    id="onboard-main-img-src"
+                                    src="{{ $firstImgSrc }}"
+                                    alt=""
+                                    class="onboard-img-el"/>
+                                <div class="onboard-img-overlay"></div>
+                                <div class="onboard-img-counter">
+                                    <span id="onboard-img-current">1</span>
+                                    /
+                                    <span id="onboard-img-total">1</span>
+                                </div>
+                                <div class="onboard-img-nav">
+                                    <button class="onboard-img-btn" id="onboard-prev" type="button">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 15l-6-6-6 6"/>
+                                        </svg>
+                                    </button>
+                                    <button class="onboard-img-btn" id="onboard-next" type="button">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M6 9l6 6 6-6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="onboard-img-caption">
+                                    <p class="onboard-cap-title" id="onboard-cap-title">
+                                        {{ $listOtherCabin->first()?->name ?? '' }}
+                                    </p>
+                                    <p class="onboard-cap-desc" id="onboard-cap-desc">
+                                        {{ $listOtherCabin->first()?->summary ?? '' }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="onboard-thumbs" id="onboard-thumbs"></div>
+                        </div>
+
                     </div>
                 </div>
+
+                <div id="onboard-tab-services" class="onboard-tab-panel" style="display:none;">
+                    <div class="onboard-svc-grid">
+
+                        <div class="onboard-svc-group">
+                            <p class="onboard-svc-label">Always Included</p>
+                            <p class="onboard-svc-sublabel">Complimentary for all guests</p>
+                            <div class="onboard-svc-items">
+
+                                @php
+                                    $includedSvcs = [
+                                        ['name' => 'Welcome Drink', 'desc' => 'Refreshing drink & cold towel on arrival', 'svg' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>'],
+                                        ['name' => 'Fine Dining', 'desc' => 'Breakfast, lunch & dinner included', 'svg' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>'],
+                                        ['name' => 'Daily Housekeeping', 'desc' => 'Cabin cleaning & evening turndown', 'svg' => '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'],
+                                        ['name' => '24h Concierge', 'desc' => 'Guest assistance throughout the journey', 'svg' => '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/>'],
+                                        ['name' => 'Halal Kitchen', 'desc' => 'Dedicated Halal meals available', 'svg' => '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/>'],
+                                        ['name' => 'Safety & Security', 'desc' => '24h security & full safety systems', 'svg' => '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/>'],
+                                    ];
+                                @endphp
+
+                                @foreach($includedSvcs as $s)
+                                <div class="onboard-svc-item">
+                                    <div class="onboard-svc-icon">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                            {!! $s['svg'] !!}
+                                        </svg>
+                                    </div>
+                                    <div class="onboard-svc-content">
+                                        <p class="onboard-svc-name">{{ $s['name'] }}</p>
+                                        <p class="onboard-svc-desc">{{ $s['desc'] }}</p>
+                                        <span class="onboard-svc-badge onboard-svc-badge--free">Complimentary</span>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+
+                        <div class="onboard-svc-group">
+                            <p class="onboard-svc-label">Suite Exclusive</p>
+                            <p class="onboard-svc-sublabel">Complimentary for suite guests</p>
+                            <div class="onboard-svc-items">
+
+                                @php
+                                    $suiteSvcs = [
+                                        ['name' => 'Butler Service', 'desc' => 'Personal assistant throughout your stay', 'badge' => 'Royal Romance + Imperial', 'svg' => '<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0116 0v2"/>'],
+                                        ['name' => 'Private Dining', 'desc' => 'Exclusive dining for couples & families', 'badge' => 'Royal Romance + Imperial', 'svg' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>'],
+                                        ['name' => 'In-room Dining', 'desc' => 'Meals served directly to your suite', 'badge' => 'Imperial Suite only', 'svg' => '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/>'],
+                                    ];
+                                @endphp
+
+                                @foreach($suiteSvcs as $s)
+                                <div class="onboard-svc-item">
+                                    <div class="onboard-svc-icon">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                            {!! $s['svg'] !!}
+                                        </svg>
+                                    </div>
+                                    <div class="onboard-svc-content">
+                                        <p class="onboard-svc-name">{{ $s['name'] }}</p>
+                                        <p class="onboard-svc-desc">{{ $s['desc'] }}</p>
+                                        <span class="onboard-svc-badge onboard-svc-badge--suite">{{ $s['badge'] }}</span>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+
+                        <div class="onboard-svc-group">
+                            <p class="onboard-svc-label">On Request</p>
+                            <p class="onboard-svc-sublabel">Available at additional charge</p>
+                            <div class="onboard-svc-items">
+
+                                @php
+                                    $paidSvcs = [
+                                        ['name' => 'Spa & Wellness', 'desc' => 'Massage and wellness treatments', 'svg' => '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>'],
+                                        ['name' => 'Transfer Service', 'desc' => 'Airport, hotel & terminal transfers', 'svg' => '<path d="M12 2C8 2 4 5.5 4 10c0 6 8 12 8 12s8-6 8-12c0-4.5-4-8-8-8z"/><circle cx="12" cy="10" r="2"/>'],
+                                        ['name' => 'Event & Celebration', 'desc' => 'Birthdays, anniversaries, proposals', 'svg' => '<path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>'],
+                                        ['name' => 'Honeymoon Decoration', 'desc' => 'Romantic cabin decoration packages', 'svg' => '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>'],
+                                    ];
+                                @endphp
+
+                                @foreach($paidSvcs as $s)
+                                <div class="onboard-svc-item">
+                                    <div class="onboard-svc-icon">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                            {!! $s['svg'] !!}
+                                        </svg>
+                                    </div>
+                                    <div class="onboard-svc-content">
+                                        <p class="onboard-svc-name">{{ $s['name'] }}</p>
+                                        <p class="onboard-svc-desc">{{ $s['desc'] }}</p>
+                                        <span class="onboard-svc-badge onboard-svc-badge--paid">Charged separately</span>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -297,6 +508,10 @@
 
     </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/modules/cruise/onboard.css') }}">
+@endpush
 
 @push('scripts')
     <script type="application/ld+json">
@@ -331,6 +546,7 @@
         !!}
     </script>
     <script type="text/javascript">
+        window.langCode = @json($languageCode ?? '');
         let apiAppCabin = {
             getById: '{{ route(Utilities::getRouteName('frontend.api.cabin.getById'), ['languageCode' => $languageCode]) }}'
         };
@@ -338,4 +554,5 @@
             getById: "{{ route(Utilities::getRouteName('frontend.api.service.getById'), ['languageCode' => $languageCode]) }}"
         };
     </script>
+    <script src="{{ asset('assets/frontend/js/modules/cruise/onboard.js') }}"></script>
 @endpush
