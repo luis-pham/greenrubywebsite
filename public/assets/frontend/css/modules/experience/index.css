@@ -13,9 +13,24 @@
     font-style: italic;
     color: var(--color-text-accent);
 }
-#experience .section-5 .section-description em {
-    font-style: italic;
-    color: var(--color-text-accent);
+
+/* Centered section eyebrows — block flex so margin-inline: auto centers */
+#main #experience .section-eyebrow:has(+ .section-description) {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+#main #experience :is(
+    .section-2 .slide-1,
+    .section-experience .filter,
+    .section-experience .itinerary-cruise,
+    .section-experience .slide-1,
+    .section-gallery .slide-1,
+    .section-5 .slide-1,
+    .section-5 .section-content-sustainability
+) {
+    text-align: left;
 }
 
 @media (min-width: 992px) {
@@ -114,86 +129,4 @@
         display: none !important;
     }
 }
-
-/* Section 5 */
-#experience .section-5.bg.bg-azure .container-fluid {
-    background-color: var(--color-cream-soft);
-}
-
-#experience .section-5 .section-description {
-    margin-bottom: 1.25rem;
-}
-/* #experience .section-5 .section-content-sustainability {
-    margin-top: 4rem;
-} */
-
-#experience .section-5 .section-content-sustainability .section-description {
-    margin-bottom: 2rem;
-}
-
-@media (min-width: 992px) {
-    #experience .section-5 .section-description {
-        margin-bottom: 2.25rem;
-    }
-}
-
-@media (min-width: 1400px) {
-    #experience .section-5 .section-content-sustainability .section-description {
-        margin-bottom: 3rem;
-    }
-}
-
-#experience .section-5 .section-content-sustainability .slide-1 {
-    margin: .75rem;
-}
-
-#experience .section-5 .section-content-sustainability .slide-1 .owl-theme .owl-dots {
-    margin-top: 0.25rem;
-}
-
-/* Đảm bảo các slide có chiều cao bằng nhau trên mọi kích thước màn hình */
-#experience .section-5 .section-content-sustainability .slide-1 .owl-stage {
-    display: flex;
-    display: -webkit-flex;
-}
-
-#experience .section-5 .section-content-sustainability .slide-1 .owl-item {
-    display: flex;
-    flex: 1 0 auto;
-}
-
-#experience .section-5 .section-content-sustainability .slide-1 .owl-item .item {
-    width: 100%;
-    display: flex;
-}
-
-#experience .section-5 .section-content-sustainability .list-item .item {
-    padding: .75rem;
-}
-
-#experience .section-5 .section-content-sustainability .list-item .item .item-wrapper {
-    padding: 2.5rem 2rem;
-    min-height: 260px;
-    box-shadow: 0px 4px 12px 0px #0c3d310f;
-}
-
-#experience .section-5 .section-content-sustainability .list-item .item .icon {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-}
-
-#experience .section-5 .section-content-sustainability .list-item .item .title {
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    /* line-height: 1.5; */
-    /* min-height: calc(1.25rem * 1.5 * 2); */
-}
-
-#experience .section-5 .section-content-sustainability .list-item .item .description {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--color-text-muted-on-light);
-}
-
 

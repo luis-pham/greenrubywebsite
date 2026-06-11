@@ -326,16 +326,66 @@
     color: var(--color-text-accent);
 }
 
-#about .about-eco-grid {
-    display: grid;
+#about .about-eco-grid-desktop {
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
+}
+
+#about .about-eco .slide-1 {
+    position: relative;
+    margin: 0;
+}
+
+#about .about-eco .slide-1 .owl-carousel {
+    position: relative;
+}
+
+#about .about-eco .slide-1 .owl-stage {
+    display: flex;
+}
+
+#about .about-eco .slide-1 .owl-item {
+    display: flex;
+    height: auto;
+}
+
+#about .about-eco .slide-1 .owl-item .item {
+    display: flex;
+    width: 100%;
+}
+
+#about .about-eco .slide-1 .owl-theme .owl-dots {
+    margin-top: 1.5rem;
+}
+
+#about .about-eco .slide-1 .owl-prev,
+#about .about-eco .slide-1 .owl-next {
+    top: 35%;
+    transform: translateY(-50%);
+}
+
+#about .about-eco .slide-1 .owl-nav .button {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 1.125rem;
+}
+
+#about .about-eco .slide-1 .owl-nav .owl-next .button,
+#about .about-eco .slide-1 .owl-nav .owl-prev .button {
+    color: var(--color-text-on-light);
+    background-color: rgba(12, 61, 49, 0.08);
+}
+
+#about .about-eco-grid-mobile .item {
+    height: 100%;
 }
 
 #about .about-eco-card {
     background: var(--color-forest);
     border: 0.5px solid rgba(200, 168, 75, 0.15);
     padding: 28px 24px;
+    height: 100%;
 }
 
 #about .about-eco-card .image-wrapper {
@@ -367,18 +417,6 @@
     font-weight: 300;
     margin-bottom: 0;
     font-family: var(--font-body);
-}
-
-@media (max-width: 768px) {
-    #about .about-eco-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 575.98px) {
-    #about .about-eco-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* ── SECTION 4: COMMUNITY ───────────────────────────────── */

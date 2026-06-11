@@ -692,6 +692,19 @@
     margin-inline: 0;
 }
 
+#cruise-detail .section-vr-360 .container-fluid {
+    position: relative;
+    overflow: hidden;
+}
+
+#cruise-detail .section-vr-360 .vr-heading {
+    color: var(--color-text-on-dark);
+}
+
+#cruise-detail .section-vr-360 .vr-subtitle {
+    margin-bottom: 1.5rem;
+}
+
 #cruise-detail .ship-specs-section .ship-stats-grid,
 #cruise-detail .ship-specs-section .combined-divider,
 #cruise-detail .ship-specs-section .ship-eco-slide,

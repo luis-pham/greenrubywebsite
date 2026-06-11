@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="container">
             <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
-            <p class="section-description font-heading">{!! $description !!}</p>
+            <p class="section-description font-heading">{!! safe_html($description) !!}</p>
             <div class="slide-1">
                 <div class="gallery-container gallery-grid-layout">
                     @php

@@ -87,12 +87,15 @@
                     </div>
                     Đổi mật khẩu
                 </a>
-                <a class="dropdown-item" href="{{ route('backend.auth.logout') }}">
-                    <div class="c-icon mr-2">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </div>
-                    Đăng xuất
-                </a>
+                <form method="POST" action="{{ route('backend.auth.logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="dropdown-item border-0 bg-transparent w-100 text-left">
+                        <div class="c-icon mr-2">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        Đăng xuất
+                    </button>
+                </form>
             </div>
         </li>
     </ul>

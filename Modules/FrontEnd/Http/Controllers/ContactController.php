@@ -55,9 +55,9 @@ class ContactController
         } catch (\Exception $e) {
             Logging::logError($e->getMessage());
             return response()->json([
-                'status' => 'success',
+                'status' => 'error',
                 'message' => __('frontend::contact.request-error')
-            ]);
+            ], 500);
         }
     }
 }

@@ -15,6 +15,19 @@ class AuthController extends Controller
         return \Auth::guard('admin');
     }
 
+    protected function safeInternalPath(?string $url): ?string
+    {
+        if (!$url || !\Str::of($url)->startsWith('/') || \Str::of($url)->startsWith('//')) {
+            return null;
+        }
+
+        if (str_contains($url, '..')) {
+            return null;
+        }
+
+        return $url;
+    }
+
     public function index()
     {
         \SEO::setTitle('Đăng nhập');
@@ -29,8 +42,8 @@ class AuthController extends Controller
             'password' => $request->input('password')
         ];
 
-        $lastUrl = $request->query('lastUrl');
-        if ($lastUrl && \Str::of($lastUrl)->startsWith('/')) {
+        $lastUrl = $this->safeInternalPath($request->query('lastUrl'));
+        if ($lastUrl) {
             $route = route('backend.auth.login', ['lastUrl' => $lastUrl]);
         } else {
             $route = route('backend.auth.login');
@@ -60,16 +73,16 @@ class AuthController extends Controller
 
             Logging::logInfo('Đăng nhập thành công.', 'username = ' . $data['username']);
 
-            if ($lastUrl && \Str::of($lastUrl)->startsWith('/')) {
+            if ($lastUrl) {
                 return redirect()->to($lastUrl);
-            } else {
-                return redirect()->route('backend.index');
             }
-        } else {
-            Logging::logError('Đăng nhập sai mật khẩu.', 'username = ' . $data['username']);
 
-            return redirect($route)->withErrors('Tên đăng nhập hoặc Mật khẩu không đúng!');
+            return redirect()->route('backend.index');
         }
+
+        Logging::logError('Đăng nhập sai mật khẩu.', 'username = ' . $data['username']);
+
+        return redirect($route)->withErrors('Tên đăng nhập hoặc Mật khẩu không đúng!');
     }
 
     public function logout()

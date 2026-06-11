@@ -352,7 +352,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
     protected function httpClient()
     {
         $client = Http::getFacadeRoot();
-        return config('app.env') !== 'production' ? $client->withoutVerifying() : $client;
+        return config('services.payment.disable_tls_verify') ? $client->withoutVerifying() : $client;
     }
 
     protected function extractCaptureStatus(array $orderData): ?string

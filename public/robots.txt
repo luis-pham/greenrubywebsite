@@ -1,4 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /admincp/
+Disallow: /api/
 
 Sitemap: https://greenrubycruises.com/sitemap.xml

@@ -44,8 +44,8 @@
                             <div class="grid-faq-inner owl-carousel owl-theme">
                                 @foreach( $listFaq as $faq)
                                     <div class="item">
-                                        <div class="question">{!! $faq->question !!}</div>
-                                        <div class="answer">{!! $faq->answer !!}</div>
+                                        <div class="question">{!! safe_html($faq->question) !!}</div>
+                                        <div class="answer">{!! safe_html($faq->answer) !!}</div>
                                     </div>
                                 @endforeach
                             </div>

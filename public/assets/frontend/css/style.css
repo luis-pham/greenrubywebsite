@@ -41,6 +41,8 @@
     --text-xl:   1.75rem;
     --text-2xl:  2.5rem;
     --text-section-title: 3.125rem;
+    --text-hero-title-mobile: 30px;
+    --text-section-title-mobile: var(--text-hero-title-mobile);
 
     /* Color tokens — Green Ruby Design System */
     --color-forest:        #0c3d31;
@@ -97,6 +99,12 @@
     --bp-lg:  992px;
     --bp-xl:  1200px;
     --bp-2xl: 1400px;
+}
+
+@media (max-width: 1023px) {
+    :root {
+        --text-section-title: var(--text-section-title-mobile);
+    }
 }
 
 /* Digits 0-9 use Georgia so "1" does not look like a Roman numeral in Cormorant */
@@ -369,11 +377,15 @@ button {
 #main section .section-eyebrow:has(+ .section-title),
 #main section .section-eyebrow:has(+ h2.section-title),
 #main section .section-eyebrow:has(+ h1.section-title) {
+    display: flex;
+    width: fit-content;
     margin-inline: auto;
 }
 
 /* Left-aligned headers — eyebrow text lines up with title (no pseudo-line offset) */
 #main section :is(.combined-header, .ship-hero-main-info) .section-eyebrow {
+    display: inline-flex;
+    width: auto;
     margin-inline: 0;
 }
 
@@ -1345,6 +1357,14 @@ h1, h2, h3, h4, h5, h6 {
     #header .btn-toggle-menu-ext {
         margin-right: 2rem;
     }
+
+    #header .btn-toggle-menu-ext .menu-ext > li:nth-child(-n+5) {
+        display: none;
+    }
+
+    #header .navigation > ul > li:nth-child(-n+5) {
+        display: list-item;
+    }
 }
 
 /* Navigation */
@@ -1404,10 +1424,6 @@ h1, h2, h3, h4, h5, h6 {
 
     #header .navigation > ul > li {
         padding: .5rem 1rem;
-    }
-
-    #header .navigation > ul > li:nth-child(-n+5) {
-        display: list-item;
     }
 
     html[lang="vi"] #header .navigation > ul {

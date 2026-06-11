@@ -163,7 +163,6 @@ class FileController extends Controller
 
             return response()->json([
                 'msg' => 'fail',
-                'err' => $e->getMessage()
             ]);
         }
     }

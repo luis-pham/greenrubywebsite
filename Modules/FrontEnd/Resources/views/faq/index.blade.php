@@ -27,14 +27,14 @@
         </section>
 
         @if (count($listGroup) > 0)
-            <div id="{{ $sectionFilterId }}" class="faq-jumpnav-wrap">
+            <div id="{{ $sectionFilterId }}" class="gallery-filter-sticky">
                 <div class="container-fluid px-0">
-                    <div class="faq-jumpnav-inner">
+                    <div class="gallery-filter-inner">
                         <div class="container">
-                            <nav class="faq-jumpnav list-filter" aria-label="{{ __('frontend::faq.section_2_title') }}">
-                                <a href="{{ route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}#section-filter" class="faq-jtab item {{ !isset($group) ? 'active' : '' }}">{{ __('frontend::common.all') }}</a>
+                            <nav class="gallery-filter-bar list-filter" aria-label="{{ __('frontend::faq.section_2_title') }}">
+                                <a href="{{ route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}#section-filter" class="item gallery-filter-tab {{ !isset($group) ? 'active' : '' }}">{{ __('frontend::common.all') }}</a>
                                 @for ($i = 0; $i < count($listGroup); $i++)
-                                    <a href="{{ route(Utilities::getRouteName('frontend.faq.category'), ['languageCode' => $languageCode, 'slug' => $listGroup[$i]->slug]) }}#section-filter-{{ $listGroup[$i]->slug }}" class="faq-jtab item {{ isset($group) && $group->id == $listGroup[$i]->id ? 'active' : '' }}">{{ $listGroup[$i]->name }}</a>
+                                    <a href="{{ route(Utilities::getRouteName('frontend.faq.category'), ['languageCode' => $languageCode, 'slug' => $listGroup[$i]->slug]) }}#section-filter-{{ $listGroup[$i]->slug }}" class="item gallery-filter-tab {{ isset($group) && $group->id == $listGroup[$i]->id ? 'active' : '' }}">{{ $listGroup[$i]->name }}</a>
                                 @endfor
                             </nav>
                         </div>
@@ -55,7 +55,7 @@
                                             <div class="question faq-accordion-header" role="button" tabindex="0" aria-expanded="false">
                                                 <div class="faq-accordion-left">
                                                     <span class="faq-accordion-category">{{ $listFaq[$i]->group_name }}</span>
-                                                    <div class="faq-accordion-title article-content">{!! $listFaq[$i]->question !!}</div>
+                                                    <div class="faq-accordion-title article-content">{!! safe_html($listFaq[$i]->question) !!}</div>
                                                 </div>
                                                 <div class="faq-accordion-toggle" aria-hidden="true">
                                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -63,7 +63,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <div class="answer faq-accordion-body article-content">{!! $listFaq[$i]->answer !!}</div>
+                                            <div class="answer faq-accordion-body article-content">{!! safe_html($listFaq[$i]->answer) !!}</div>
                                         </div>
                                     </li>
                                 @endfor

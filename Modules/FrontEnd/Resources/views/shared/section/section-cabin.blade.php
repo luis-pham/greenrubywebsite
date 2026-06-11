@@ -18,7 +18,7 @@ $suitesGrid = $suitesGrid ?? false;
                 <p class="section-eyebrow section-eyebrow--gold">{{ $eyebrow }}</p>
             @endif
             @if ($titleHtml)
-                <h2 class="section-description font-heading">{!! $titleHtml !!}</h2>
+                <h2 class="section-description font-heading">{!! safe_html($titleHtml) !!}</h2>
             @else
                 @if ($title)
                     @if ($suitesGrid)

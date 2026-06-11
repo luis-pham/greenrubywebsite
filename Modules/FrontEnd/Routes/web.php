@@ -85,8 +85,8 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
 
     Route::get('contact','ContactController@index')->name('frontend.contact.index');
     Route::get('/{languageCode}/lien-he','ContactController@index')->where('languageCode',$listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.contact.index'));
-    Route::post('/contact','ContactController@request')->name('frontend.contact.request');
-    Route::post('/{languageCode}/lien-he','ContactController@request')->where('languageCode',$listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.contact.request'));
+    Route::post('/contact', 'ContactController@request')->middleware('throttle:5,1')->name('frontend.contact.request');
+    Route::post('/{languageCode}/lien-he', 'ContactController@request')->middleware('throttle:5,1')->where('languageCode',$listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.contact.request'));
 
     Route::redirect('/experience', '/experiences', 301);
     Route::get('/experiences', 'ExperienceController@index')->name('frontend.experience.index');
@@ -140,12 +140,4 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
     Route::get('/payment-methods', 'PageController@paymentMethods')->name('frontend.page.payment-methods');
     Route::get('/{languageCode}/phuong-thuc-thanh-toan', 'PageController@paymentMethods')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.page.payment-methods'));
 
-    Route::get('/{path}', function($path) {
-        $filePath = public_path($path);
-        if (!file_exists($filePath) || !is_file($filePath)) {
-            return abort(404);
-        }
-
-        return response()->file($filePath);
-    })->where('path', '.*');
 });

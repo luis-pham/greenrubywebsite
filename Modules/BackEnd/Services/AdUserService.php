@@ -24,7 +24,7 @@ class AdUserService
             $obj->avatar = array_key_exists('avatar', $data) ? $data['avatar'] : null;
             $obj->cover = array_key_exists('cover', $data) ? $data['cover'] : null;
             $obj->theme = array_key_exists('theme', $data) ? $data['theme'] : null;
-            $obj->status = array_key_exists('status', $data) ? $data['status'] : null;
+            $obj->status = config('backend.userStatus.unactive');
             $obj->save();
 
             for ($i = 0; $i < count($dataDetail); $i++) {

@@ -67,4 +67,8 @@ return [
         'webhook_secret' => env('SEPAY_WEBHOOK_SECRET'),
     ],
 
+    'payment' => [
+        'disable_tls_verify' => env('PAYMENT_DISABLE_TLS_VERIFY', false),
+    ],
+
 ];

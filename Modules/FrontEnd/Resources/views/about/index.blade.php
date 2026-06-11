@@ -115,10 +115,10 @@
                             <p class="about-story-kicker">{{ $aboutUsEcoTitle }}</p>
                         @endif
                         @if ($aboutUsEcoDescription)
-                            <h2 class="about-story-title">{!! $storyTitleHtml !!}</h2>
+                            <h2 class="about-story-title">{!! safe_html($storyTitleHtml) !!}</h2>
                         @endif
                         @if ($aboutUsEcoContent)
-                            <div class="about-story-body">{!! $aboutUsEcoContent !!}</div>
+                            <div class="about-story-body">{!! safe_html($aboutUsEcoContent) !!}</div>
                         @endif
                     </div>
                     @if ($aboutUsEcoFeaturedImage)
@@ -147,9 +147,9 @@
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
                     <h2 class="about-eco-title">Technology That <em>Proves It.</em></h2>
                     @if (count($listSustainability ?? []) > 0)
-                        <div class="about-eco-grid">
+                        <div class="about-eco-grid-desktop d-none d-lg-grid">
                             @foreach ($listSustainability as $sustainability)
-                                <div class="about-eco-card">
+                                <div class="about-eco-card h-100">
                                     <p class="eco-card-num">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }} — {{ $sustainability->title }}</p>
                                     @include('frontend::shared.image-wrapper', [
                                         'link' => $sustainability->link,
@@ -160,6 +160,24 @@
                                     <p class="about-eco-card-desc">{{ $sustainability->description }}</p>
                                 </div>
                             @endforeach
+                        </div>
+                        <div class="slide-1 d-lg-none">
+                            <div class="about-eco-grid-mobile owl-carousel owl-theme">
+                                @foreach ($listSustainability as $sustainability)
+                                    <div class="item">
+                                        <div class="about-eco-card h-100">
+                                            <p class="eco-card-num">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }} — {{ $sustainability->title }}</p>
+                                            @include('frontend::shared.image-wrapper', [
+                                                'link' => $sustainability->link,
+                                                'alt' => $sustainability->title,
+                                                'imageConfig' => ['w' => 332, 'h' => 410],
+                                            ])
+                                            <h3 class="about-eco-card-title">{{ $sustainability->title }}</h3>
+                                            <p class="about-eco-card-desc">{{ $sustainability->description }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -175,7 +193,7 @@
                             <p class="section-eyebrow">{{ $aboutUsEnviromentTitle }}</p>
                         @endif
                         @if ($aboutUsEnviromentDescription)
-                            <h2 class="about-community-title">{!! $communityTitleHtml !!}</h2>
+                            <h2 class="about-community-title">{!! safe_html($communityTitleHtml) !!}</h2>
                         @endif
                     </div>
                     @if (count($listEnviroment ?? []) > 0)

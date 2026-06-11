@@ -132,7 +132,7 @@
                                             <li class="item">
                                                 <img
                                                     src="{{FeUtils::getThumbnail(['link' => $note->image_link,'w' => 24,'h' => 24])}}"/>
-                                                {!! $note->content !!}
+                                                {!! safe_html($note->content) !!}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -240,69 +240,60 @@
         $itinerary = $obj->itinerary;
         $itineraryDays = $itinerary->itineraryDays;
         $destinations = json_decode($itinerary->destination, true) ?? [];
-        $startDate = Carbon::parse($itinerary->created_at)->toDateString();
-        $name = html_entity_decode($itinerary->name, ENT_QUOTES, 'UTF-8');
-        $description = html_entity_decode($itinerary->description, ENT_QUOTES, 'UTF-8');
-
         $startDate = $obj->start_at;
+        $schemaData = [
+            '@context' => 'https://schema.org',
+            '@type' => 'TouristTrip',
+            'name' => html_entity_decode($itinerary->name, ENT_QUOTES, 'UTF-8'),
+            'description' => html_entity_decode($itinerary->description, ENT_QUOTES, 'UTF-8'),
+            'itinerary' => [
+                '@type' => 'ItemList',
+                'itemListElement' => $itineraryDays->map(function ($day) use ($obj, $destinations) {
+                    $idx = $day->day - 1;
+                    $dayDate = Carbon::parse($obj->start)->addDays($day->day - 1)->toDateString();
+                    $location = count($destinations) > $idx ? html_entity_decode($destinations[$idx], ENT_QUOTES, 'UTF-8') : '';
+
+                    return [
+                        '@type' => 'ListItem',
+                        'position' => $day->day,
+                        'name' => 'Day ' . $day->day,
+                        'item' => [
+                            '@type' => 'Event',
+                            'name' => 'Day ' . $day->day,
+                            'startDate' => $dayDate,
+                            'location' => [
+                                '@type' => 'Place',
+                                'name' => $location,
+                            ],
+                            'subEvent' => $day->itineraryDayDetails->map(function ($detail) use ($dayDate, $location) {
+                                return [
+                                    '@type' => 'Event',
+                                    'name' => html_entity_decode($detail->title, ENT_QUOTES, 'UTF-8'),
+                                    'description' => html_entity_decode($detail->description, ENT_QUOTES, 'UTF-8'),
+                                    'startTime' => $detail->time,
+                                    'startDate' => $dayDate,
+                                    'location' => [
+                                        '@type' => 'Place',
+                                        'name' => $location,
+                                    ],
+                                ];
+                            })->values()->all(),
+                        ],
+                    ];
+                })->values()->all(),
+            ],
+            'touristDestination' => collect($destinations)->map(function ($dest) {
+                return [
+                    '@type' => 'TouristDestination',
+                    'name' => html_entity_decode($dest, ENT_QUOTES, 'UTF-8'),
+                ];
+            })->values()->all(),
+            'duration' => 'P' . $itinerary->duration . 'D',
+            'startDate' => $startDate,
+        ];
     @endphp
 
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "TouristTrip",
-        "name": "{!! $name !!}",
-        "description": "{!! $description !!}",
-        "itinerary": {
-            "@type": "ItemList",
-            "itemListElement": [
-                @foreach($itineraryDays as $idx => $day)
-                    @php
-                        $dayDate = Carbon::parse($obj->start)->addDays($day->day - 1)->toDateString();
-                        $location = count($destinations) > $idx ? $destinations[$idx] : "";
-                    @endphp
-                {
-                    "@type": "ListItem",
-                    "position": {{ $day->day }},
-                    "name": "Day {{ $day->day }}",
-                    "item": {
-                        "@type": "Event",
-                        "name": "Day {{ $day->day }}",
-                        "startDate": "{{$dayDate}}",
-                        "location": {
-                            "@type": "Place",
-                            "name": "{!! html_entity_decode($location, ENT_QUOTES, 'UTF-8') !!}"
-                        },
-                        "subEvent": [
-                            @foreach($day->itineraryDayDetails as $detail)
-                            {
-                                "@type": "Event",
-                                "name": "{!! html_entity_decode($detail->title, ENT_QUOTES, 'UTF-8') !!}",
-                                "description": "{!! html_entity_decode($detail->description, ENT_QUOTES, 'UTF-8') !!}",
-                                "startTime": "{{ $detail->time }}",
-                                "startDate": "{{$dayDate}}",
-                                "location": {
-                                    "@type": "Place",
-                                    "name": "{!! html_entity_decode($location, ENT_QUOTES, 'UTF-8') !!}"
-                                }
-                            }{{ !$loop->last ? ',' : '' }}
-                            @endforeach
-                        ]
-                    }
-                }{{ !$loop->last ? ',' : '' }}
-                @endforeach
-            ]
-        },
-        "touristDestination": [
-            @foreach($destinations as $dest)
-            {
-                "@type": "TouristDestination",
-                "name": "{!! html_entity_decode($dest, ENT_QUOTES, 'UTF-8') !!}"
-            }{{ !$loop->last ? ',' : '' }}
-            @endforeach
-        ],
-        "duration": "P{{ $itinerary->duration }}D",
-        "startDate": "{{ $startDate }}"
-    }
+        {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
 @endpush

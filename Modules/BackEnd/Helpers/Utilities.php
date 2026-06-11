@@ -104,7 +104,7 @@ class Utilities
 
         $uploadPath = sprintf('%s/%s', $baseUploadPath, $surfixUploadPath);
         if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
+            mkdir($uploadPath, 0755, true);
         }
 
         $fileNameTmp = '';

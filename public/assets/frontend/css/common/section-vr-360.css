@@ -45,6 +45,13 @@
     position: relative;
     max-width: 1000px;
     margin-inline: auto;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .section-vr-360 .vr-container-outer {
+        margin-bottom: 2.25rem;
+    }
 }
 
 .section-vr-360 .vr-container-outer::before{
@@ -293,8 +300,20 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Placeholder: bỏ absolute + padding hack — tránh overflow đè section phía dưới */
+    .section-vr-360 .vr-container-outer:has(.vr-placeholder)::before {
+        display: none;
+    }
+
+    .section-vr-360 .vr-container-outer:has(.vr-placeholder) .vr-container-inner {
+        position: relative;
+        inset: auto;
+    }
+
     .vr-placeholder {
         aspect-ratio: 4 / 3;
+        width: 100%;
+        height: auto;
     }
 
     .vr-heading {

@@ -9,9 +9,6 @@
     $listBanner[0]->description = __("frontend::experience.section_1_description");
     $listBanner[0]->link = asset('assets/frontend/images/modules/experience/exp-cover.jpg');
 
-    $listSustainability = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_SUSTAINABILITY])
-        ? $pageConfig[PageConfigKeyConsts::EXPERIENCE_SUSTAINABILITY]
-        : [];    
     $listGallery = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_GALLERY])
         ? $pageConfig[PageConfigKeyConsts::EXPERIENCE_GALLERY]
         : [];    
@@ -89,34 +86,6 @@
 
 
         @include('frontend::shared.section.section-testimonial', ['class' => 'section-4'])
-
-
-        <section class="section-5 bg bg-azure">
-            <div class="container-fluid">
-                <div class="container">
-                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experience.section_5_title') }}</p>
-                    <p class="section-description font-heading">{!! __('frontend::experience.section_5_description') !!}</p>
-                    <div class="section-content-sustainability">
-                        @if (count($listSustainability) > 0)
-                        <div class="slide-1">
-                            <div class="list-item owl-carousel owl-theme">
-                                @for ($i = 0; $i < count($listSustainability); $i++)
-                                    <div class="item d-flex h-100 text-center">
-                                        <div class="item-wrapper d-flex flex-column align-content-between w-100 bg-white">
-                                            <img src="{{ asset(FeUtils::getThumbnail(['link' => $listSustainability[$i]->link, 'w' => 80, 'h' => 80])) }}" alt="{{ $listSustainability[$i]->title }}" class="icon mb-4 mx-auto" />
-                                            <h3 class="title mb-2 font-weight-bold give-ellipsis after-2-lines">{{ $listSustainability[$i]->title }}</h3>
-                                            <p class="description mb-0 text-break give-ellipsis after-3-lines">{{ $listSustainability[$i]->description }}</p>
-                                        </div>
-                                    </div>
-                                @endfor
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
         @include('frontend::shared.section.section-call-to-action', [
             'class' => 'section-6',

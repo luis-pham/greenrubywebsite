@@ -30,7 +30,7 @@ class AppExpActivityService
             $obj->cruise_id = $data['cruise_id'] ?? null;
             $obj->name = array_key_exists('name', $data) ? $data['name'] : null;
             $obj->summary = array_key_exists('summary', $data) ? $data['summary'] : null;
-            $obj->content = array_key_exists('content', $data) ? $data['content'] : null;
+            $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : null;
             $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : null;
             $obj->cover_link = array_key_exists('cover_link', $data) ? $data['cover_link'] : null;
             $obj->duration = array_key_exists('duration', $data) ? $data['duration'] : null;
@@ -85,7 +85,7 @@ class AppExpActivityService
                 $obj->cruise_id = $data['cruise_id'] ?? null;
                 $obj->name = array_key_exists('name', $data) ? $data['name'] : $obj->name;
                 $obj->summary = array_key_exists('summary', $data) ? $data['summary'] : $obj->summary;
-                $obj->content = array_key_exists('content', $data) ? $data['content'] : $obj->content;
+                $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : $obj->content;
                 $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : $obj->image_link;
                 $obj->cover_link = array_key_exists('cover_link', $data) ? $data['cover_link'] : $obj->cover_link;
                 $obj->duration = array_key_exists('duration', $data) ? $data['duration'] : $obj->duration;

@@ -32,10 +32,10 @@
                     <div class="main-content">
                         <article class="article-body">
                             <div class="description article-content">
-                                {!! $obj->lead !!}
+                                {!! safe_html($obj->lead) !!}
                             </div>
                             <div class="content article-content">
-                                {!! $obj->content !!}
+                                {!! safe_html($obj->content) !!}
                             </div>
                         </article>
                         <div class="article-footer">

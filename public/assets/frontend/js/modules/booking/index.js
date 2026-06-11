@@ -614,6 +614,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 card.style.display = '';
                 card.setAttribute('data-amenity-name', svc.name || '');
+                card.setAttribute('data-amenity-id', String(svc.id || ''));
                 var unitPrice = svc.price;
                 if (unitPrice === null || unitPrice === undefined) {
                     unitPrice = 0;
@@ -755,6 +756,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 line.appendChild(nameDiv);
                 line.appendChild(qtyWrap);
                 line.appendChild(totalDiv);
+                if (card.getAttribute('data-amenity-id')) {
+                    line.setAttribute('data-amenity-id', card.getAttribute('data-amenity-id'));
+                }
 
                 summaryList.appendChild(line);
             });
@@ -1745,13 +1749,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function pollPaymentStatus(internalTxId) {
+    function getStoredPaymentAccess() {
+        if (typeof window === 'undefined' || !window.sessionStorage) {
+            return { tx: null, token: null };
+        }
+        try {
+            return {
+                tx: window.sessionStorage.getItem('bookingCurrentPaymentTx'),
+                token: window.sessionStorage.getItem('bookingCurrentPaymentToken')
+            };
+        } catch (e) {
+            return { tx: null, token: null };
+        }
+    }
+
+    function storePaymentAccess(tx, token) {
+        if (typeof window === 'undefined' || !window.sessionStorage) {
+            return;
+        }
+        try {
+            if (tx) {
+                window.sessionStorage.setItem('bookingCurrentPaymentTx', tx);
+            }
+            if (token) {
+                window.sessionStorage.setItem('bookingCurrentPaymentToken', token);
+            }
+        } catch (e) { }
+    }
+
+    function clearStoredPaymentAccess() {
+        if (typeof window === 'undefined' || !window.sessionStorage) {
+            return;
+        }
+        try {
+            window.sessionStorage.removeItem('bookingCurrentPaymentTx');
+            window.sessionStorage.removeItem('bookingCurrentPaymentToken');
+        } catch (e) { }
+    }
+
+    function pollPaymentStatus(internalTxId, statusToken) {
         var maxAttempts = 30;
         var interval = 2000;
         var attempts = 0;
+        var tokenQuery = statusToken ? ('&token=' + encodeURIComponent(statusToken)) : '';
 
         function poll() {
-            fetch('/api/payment/status?internal_tx_id=' + encodeURIComponent(internalTxId), {
+            fetch('/api/payment/status?internal_tx_id=' + encodeURIComponent(internalTxId) + tokenQuery, {
                 headers: { 'Accept': 'application/json' }
             }).then(function (r) { return r.json(); }).then(function (data) {
                 attempts++;
@@ -1801,22 +1844,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Clear any stored payment session when we return from gateway with an explicit result
-        if (typeof window !== 'undefined' && window.sessionStorage) {
-            try {
-                window.sessionStorage.removeItem('bookingCurrentPaymentTx');
-            } catch (e) { }
-        }
+        clearStoredPaymentAccess();
 
         showCompletePanel('pending');
 
-        var url;
+        var statusToken = q.token || null;
         if (q.result === 'success') {
-            pollPaymentStatus(q.tx);
+            pollPaymentStatus(q.tx, statusToken);
             return;
         }
 
-        url = '/api/payment/status?tx=' + encodeURIComponent(q.tx) + '&result=' + encodeURIComponent(q.result);
+        var url = '/api/payment/status?tx=' + encodeURIComponent(q.tx) + '&result=' + encodeURIComponent(q.result);
+        if (statusToken) {
+            url += '&token=' + encodeURIComponent(statusToken);
+        }
 
         fetch(url, {
             headers: { 'Accept': 'application/json' }
@@ -1844,27 +1885,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // If user navigates back from payment gateway (Back button / history),
     // treat it as a cancelled/failed payment and close the previous session.
     function cancelStalePaymentWhenBackFromGateway() {
-        if (typeof window === 'undefined' || !window.sessionStorage) return;
+        var stored = getStoredPaymentAccess();
+        var storedTx = stored.tx;
+        var storedToken = stored.token;
+        if (!storedTx || !storedToken) return;
 
-        var storedTx = null;
-        try {
-            storedTx = window.sessionStorage.getItem('bookingCurrentPaymentTx');
-        } catch (e) {
-            storedTx = null;
-        }
-        if (!storedTx) return;
-
-        // If URL already has a payment result, let the normal handler above take care of it
         var q = getQuery();
         if (q && q.result) {
-            try {
-                window.sessionStorage.removeItem('bookingCurrentPaymentTx');
-            } catch (e) { }
+            clearStoredPaymentAccess();
             return;
         }
 
-        fetch('/api/payment/status?internal_tx_id=' + encodeURIComponent(storedTx) + '&result=cancel', {
-            headers: { 'Accept': 'application/json' }
+        fetch('/api/payment/cancel', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                internal_tx_id: storedTx,
+                token: storedToken
+            })
         }).then(function () {
             showCompletePanel('error');
         }).catch(function () {
@@ -1873,9 +1914,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (paymentLoadingOverlay) {
                 paymentLoadingOverlay.classList.remove('is-visible');
             }
-            try {
-                window.sessionStorage.removeItem('bookingCurrentPaymentTx');
-            } catch (e) { }
+            clearStoredPaymentAccess();
         });
     }
 
@@ -2170,6 +2209,7 @@ document.addEventListener('DOMContentLoaded', function () {
             subtotalAmenities += unitPrice * qty;
             amenities.push({
                 amenity_name: nameEl ? nameEl.textContent.trim() : '',
+                amenity_id: line.getAttribute('data-amenity-id') ? parseInt(line.getAttribute('data-amenity-id'), 10) || null : null,
                 unit_price: unitPrice,
                 quantity: qty,
                 total_price: unitPrice
@@ -2511,10 +2551,8 @@ document.addEventListener('DOMContentLoaded', function () {
             var res = _.res;
             var data = _.data;
             if (res.ok && data && data.success && data.payment_url) {
-                if (typeof window !== 'undefined' && window.sessionStorage && data.internal_tx_id) {
-                    try {
-                        window.sessionStorage.setItem('bookingCurrentPaymentTx', data.internal_tx_id);
-                    } catch (e) { }
+                if (data.internal_tx_id) {
+                    storePaymentAccess(data.internal_tx_id, data.status_token || null);
                 }
                 window.location.href = data.payment_url;
                 return;

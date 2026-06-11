@@ -334,7 +334,7 @@
             <div class="container-fluid px-0 pb-0 position-relative">
                 <div class="container">
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::homepage.section_7_title') }}</p>
-                    <p class="section-description font-heading text-white">{{ __('frontend::homepage.section_7_description') }}</p>
+                    <p class="section-description font-heading text-white">{!! __('frontend::homepage.section_7_description') !!}</p>
                     @if (count($listService) > 1)
                         <div class="tab-filter">
                             <div class="list-button d-flex flex-wrap justify-content-center transparent">
@@ -419,7 +419,7 @@
             <div class="container-fluid px-0 position-relative">
                 <div class="container">
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::homepage.section_9_title') }}</p>
-                    <p class="section-description font-heading">{{ __('frontend::homepage.section_9_description') }}</p>
+                    <p class="section-description font-heading">{!! __('frontend::homepage.section_9_description') !!}</p>
                 </div>
                 @if (count($listExpActivity) > 1)
                     @if (count($listExpActivityFilter) > 1)
@@ -580,8 +580,8 @@
                                 <li class="item">
                                     <div class="item-wrapper position-relative">
                                         <div class="group-name d-inline-block mb-3 mb-xl-2 text-uppercase">{{ $listFaq[$i]->group_name }}</div>
-                                        <div class="question article-content">{!! $listFaq[$i]->question !!}</div>
-                                        <div class="answer article-content">{!! $listFaq[$i]->answer !!}</div>
+                                        <div class="question article-content">{!! safe_html($listFaq[$i]->question) !!}</div>
+                                        <div class="answer article-content">{!! safe_html($listFaq[$i]->answer) !!}</div>
                                         <button type="button" class="btn-toggle border-0 rounded-circle" title="Toggle FAQ">
                                             <i class="fa-solid fa-plus"></i>
                                         </button>

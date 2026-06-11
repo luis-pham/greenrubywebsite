@@ -78,6 +78,7 @@ mix.styles([
     'public/assets/frontend/css/common/section-cabin.css',
     'public/assets/frontend/css/common/section-call-to-action.css',
     'public/assets/frontend/css/common/section-cover.css',
+    'public/assets/frontend/css/common/gallery-filter.css',
     'public/assets/frontend/css/common/section-gallery.css',
     'public/assets/frontend/css/common/section-itinerary.css',
     'public/assets/frontend/css/common/section-testimonial.css',

@@ -20,8 +20,8 @@ class AppArticleService
         $obj->category_id = array_key_exists('category_id', $data) ? $data['category_id'] : null;
         $obj->title = array_key_exists('title', $data) ? $data['title'] : null;
         $obj->sub_title = array_key_exists('sub_title', $data) ? $data['sub_title'] : null;
-        $obj->lead = array_key_exists('lead', $data) ? $data['lead'] : null;
-        $obj->content = array_key_exists('content', $data) ? $data['content'] : null;
+        $obj->lead = array_key_exists('lead', $data) ? \App\Support\HtmlSanitizer::clean($data['lead']) : null;
+        $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : null;
         $obj->publish_date = array_key_exists('publish_date', $data) ? $data['publish_date'] : null;
         $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : null;
         $obj->is_featured = array_key_exists('is_featured', $data) ? $data['is_featured'] : null;
@@ -40,8 +40,8 @@ class AppArticleService
             $obj->category_id = array_key_exists('category_id', $data) ? $data['category_id'] : $obj->category_id;
             $obj->title = array_key_exists('title', $data) ? $data['title'] : $obj->title;
             $obj->sub_title = array_key_exists('sub_title', $data) ? $data['sub_title'] : $obj->sub_title;
-            $obj->lead = array_key_exists('lead', $data) ? $data['lead'] : $obj->lead;
-            $obj->content = array_key_exists('content', $data) ? $data['content'] : $obj->content;
+            $obj->lead = array_key_exists('lead', $data) ? \App\Support\HtmlSanitizer::clean($data['lead']) : $obj->lead;
+            $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : $obj->content;
             $obj->publish_date = array_key_exists('publish_date', $data) ? $data['publish_date'] : $obj->publish_date;
             $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : $obj->image_link;
             $obj->is_featured = array_key_exists('is_featured', $data) ? $data['is_featured'] : $obj->is_featured;

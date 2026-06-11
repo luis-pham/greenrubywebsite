@@ -22,7 +22,7 @@
                 <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
             @endif
             @if ($subTitle)
-                <p class="section-description font-heading {{ $backgroundImage ? 'text-white' : '' }}">{!! $subTitle !!}</p>
+                <p class="section-description font-heading {{ $backgroundImage ? 'text-white' : '' }}">{!! safe_html($subTitle) !!}</p>
             @endif
             <div class="tab-filter">
                 <div class="list-button d-flex flex-wrap justify-content-center {{ $backgroundImage ? 'transparent' : '' }}">

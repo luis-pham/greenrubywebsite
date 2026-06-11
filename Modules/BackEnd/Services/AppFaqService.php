@@ -18,8 +18,8 @@ class AppFaqService
         $obj = new AppFaq();
         $obj->language_id = $languageId;
         $obj->group_id = array_key_exists('group_id', $data) ? $data['group_id'] : null;
-        $obj->question = array_key_exists('question', $data) ? $data['question'] : null;
-        $obj->answer = array_key_exists('answer', $data) ? $data['answer'] : null;
+        $obj->question = array_key_exists('question', $data) ? \App\Support\HtmlSanitizer::clean($data['question']) : null;
+        $obj->answer = array_key_exists('answer', $data) ? \App\Support\HtmlSanitizer::clean($data['answer']) : null;
         $obj->ord = array_key_exists('ord', $data) ? $data['ord'] : null;
         $obj->save();
 
@@ -31,8 +31,8 @@ class AppFaqService
         $obj = self::find($data['id'], $languageId);
         if ($obj) {
             $obj->group_id = array_key_exists('group_id', $data) ? $data['group_id'] : $obj->group_id;
-            $obj->question = array_key_exists('question', $data) ? $data['question'] : $obj->question;
-            $obj->answer = array_key_exists('answer', $data) ? $data['answer'] : $obj->answer;
+            $obj->question = array_key_exists('question', $data) ? \App\Support\HtmlSanitizer::clean($data['question']) : $obj->question;
+            $obj->answer = array_key_exists('answer', $data) ? \App\Support\HtmlSanitizer::clean($data['answer']) : $obj->answer;
             $obj->save();
         }
     }

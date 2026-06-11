@@ -18,7 +18,7 @@ use Modules\BackEnd\Constants\PageConfigConsts;
 
 Route::prefix('admincp')->middleware('guest:admin')->group(function () {
     Route::get('/login', 'AuthController@index')->name('backend.auth.index');
-    Route::post('/login', 'AuthController@login')->name('backend.auth.login');
+    Route::post('/login', 'AuthController@login')->middleware('throttle:5,1')->name('backend.auth.login');
 });
 
 Route::prefix('admincp')->middleware('auth:admin')->group(function () {
@@ -30,7 +30,7 @@ Route::prefix('admincp')->middleware('auth:admin')->group(function () {
     Route::post('/personal/change-password', 'PersonalController@changePasswordUpdate')->name('backend.personal.changePasswordUpdate');
     Route::post('/personal/update-theme', 'PersonalController@updateTheme')->name('backend.personal.updateTheme');
 
-    Route::get('/logout', 'AuthController@logout')->name('backend.auth.logout');
+    Route::post('/logout', 'AuthController@logout')->name('backend.auth.logout');
 
     Route::get('/user', 'UserController@index')->name('backend.user.index')->middleware('can:user-read');
     Route::get('/user/show/{id}', 'UserController@show')->name('backend.user.show')->middleware('can:user-read');
@@ -39,7 +39,7 @@ Route::prefix('admincp')->middleware('auth:admin')->group(function () {
     Route::get('/user/edit/{id}', 'UserController@edit')->name('backend.user.edit')->middleware('can:user-update');
     Route::post('/user/update/{id}', 'UserController@update')->name('backend.user.update')->middleware('can:user-update');
     Route::post('/user/destroy', 'UserController@destroy')->name('backend.user.destroy')->middleware('can:user-delete');
-    Route::get('/user/info/{id}', 'UserController@info')->name('backend.user.info');
+    Route::get('/user/info/{id}', 'UserController@info')->name('backend.user.info')->middleware('can:user-read');
 
     Route::get('/file', 'FileController@index')->name('backend.file.index')->middleware('can:file-read');
     Route::get('/file/show/{id}', 'FileController@show')->name('backend.file.show')->middleware('can:file-read');
@@ -141,22 +141,22 @@ Route::prefix('admincp')->middleware(['auth:admin', 'language.backend'])->group(
     Route::post('/{languageCode}/faq/destroy', 'FaqController@destroy')->name(Utilities::bindRouteNameMultiLanguage('backend.faq.destroy'))->where('languageCode', $listLanguageCode)->middleware('can:faq-delete');
     Route::post('/{languageCode}/faq/order-update', 'FaqController@orderUpdate')->name(Utilities::bindRouteNameMultiLanguage('backend.faq.orderUpdate'))->where('languageCode', $listLanguageCode)->middleware('can:faq-order');
 
-    Route::get('/booking-manager', 'BookingController@index')->name('backend.booking.index');
-    Route::get('/booking-manager/show/{id}', 'BookingController@show')->name('backend.booking.show');
-    Route::get('/booking-manager/detail/{id}', 'BookingController@detailModal')->name('backend.booking.detail');
-    Route::post('/booking-manager/confirm/{id}', 'BookingController@confirm')->name('backend.booking.confirm');
-    Route::post('/booking-manager/cancel/{id}', 'BookingController@cancel')->name('backend.booking.cancel');
-    Route::post('/booking-manager/destroy', 'BookingController@destroy')->name('backend.booking.destroy');
-    Route::post('/booking-manager/quote-destroy', 'BookingController@destroyQuote')->name('backend.booking.quoteDestroy');
-    Route::post('/booking-manager/quote-status/{id}', 'BookingController@quoteStatus')->name('backend.booking.quoteStatus');
-    Route::get('/{languageCode}/booking-manager', 'BookingController@index')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.index'))->where('languageCode', $listLanguageCode);
-    Route::get('/{languageCode}/booking-manager/show/{id}', 'BookingController@show')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.show'))->where('languageCode', $listLanguageCode);
-    Route::get('/{languageCode}/booking-manager/detail/{id}', 'BookingController@detailModal')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.detail'))->where('languageCode', $listLanguageCode);
-    Route::post('/{languageCode}/booking-manager/confirm/{id}', 'BookingController@confirm')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.confirm'))->where('languageCode', $listLanguageCode);
-    Route::post('/{languageCode}/booking-manager/cancel/{id}', 'BookingController@cancel')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.cancel'))->where('languageCode', $listLanguageCode);
-    Route::post('/{languageCode}/booking-manager/destroy', 'BookingController@destroy')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.destroy'))->where('languageCode', $listLanguageCode);
-    Route::post('/{languageCode}/booking-manager/quote-destroy', 'BookingController@destroyQuote')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.quoteDestroy'))->where('languageCode', $listLanguageCode);
-    Route::post('/{languageCode}/booking-manager/quote-status/{id}', 'BookingController@quoteStatus')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.quoteStatus'))->where('languageCode', $listLanguageCode);
+    Route::get('/booking-manager', 'BookingController@index')->name('backend.booking.index')->middleware('can:booking-manager-read');
+    Route::get('/booking-manager/show/{id}', 'BookingController@show')->name('backend.booking.show')->middleware('can:booking-manager-read');
+    Route::get('/booking-manager/detail/{id}', 'BookingController@detailModal')->name('backend.booking.detail')->middleware('can:booking-manager-read');
+    Route::post('/booking-manager/confirm/{id}', 'BookingController@confirm')->name('backend.booking.confirm')->middleware('can:booking-manager-update');
+    Route::post('/booking-manager/cancel/{id}', 'BookingController@cancel')->name('backend.booking.cancel')->middleware('can:booking-manager-update');
+    Route::post('/booking-manager/destroy', 'BookingController@destroy')->name('backend.booking.destroy')->middleware('can:booking-manager-delete');
+    Route::post('/booking-manager/quote-destroy', 'BookingController@destroyQuote')->name('backend.booking.quoteDestroy')->middleware('can:booking-manager-delete');
+    Route::post('/booking-manager/quote-status/{id}', 'BookingController@quoteStatus')->name('backend.booking.quoteStatus')->middleware('can:booking-manager-update');
+    Route::get('/{languageCode}/booking-manager', 'BookingController@index')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.index'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-read');
+    Route::get('/{languageCode}/booking-manager/show/{id}', 'BookingController@show')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.show'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-read');
+    Route::get('/{languageCode}/booking-manager/detail/{id}', 'BookingController@detailModal')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.detail'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-read');
+    Route::post('/{languageCode}/booking-manager/confirm/{id}', 'BookingController@confirm')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.confirm'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-update');
+    Route::post('/{languageCode}/booking-manager/cancel/{id}', 'BookingController@cancel')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.cancel'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-update');
+    Route::post('/{languageCode}/booking-manager/destroy', 'BookingController@destroy')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.destroy'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-delete');
+    Route::post('/{languageCode}/booking-manager/quote-destroy', 'BookingController@destroyQuote')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.quoteDestroy'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-delete');
+    Route::post('/{languageCode}/booking-manager/quote-status/{id}', 'BookingController@quoteStatus')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.quoteStatus'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-update');
 
     Route::get('/cabin-manager', 'CabinController@index')->name('backend.cabin.index')->middleware('can:cabin-manager-read');
     Route::get('/cabin-manager/show/{id}', 'CabinController@show')->name('backend.cabin.show')->middleware('can:cabin-manager-read');

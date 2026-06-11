@@ -388,6 +388,163 @@
     height: 100%;
 }
 
+/* Private Sanctuaries — 2×2 suites grid (matches homepage section-6) */
+#itinerary-detail .section-cabin .slide-1 {
+    margin: -.375rem;
+}
+
+#itinerary-detail .section-cabin .suites-grid.list-itinerary-cruise .item {
+    padding: .375rem;
+}
+
+@media (min-width: 768px) {
+    #itinerary-detail .section-cabin .slide-1 {
+        margin: -.75rem;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.list-itinerary-cruise .item {
+        padding: .75rem;
+    }
+}
+
+#itinerary-detail .section-cabin .suites-grid .item .item-header .image-wrapper:after {
+    padding-top: 66.66667%;
+}
+
+@media (max-width: 1023px) {
+    #itinerary-detail .section-cabin .list-itinerary-cruise .item .item-wrapper {
+        box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018) !important;
+    }
+
+    #itinerary-detail .section-cabin .list-itinerary-cruise .item .item-body,
+    #itinerary-detail .section-cabin .list-itinerary-cruise .item .item-footer {
+        border-color: rgba(12, 61, 49, 0.03) !important;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-nav,
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-dots {
+        display: none !important;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-stage-outer {
+        overflow: visible;
+        height: auto !important;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-stage {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        width: 100% !important;
+        transform: none !important;
+        height: auto !important;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-item {
+        width: 100% !important;
+        float: none;
+        padding: 0;
+        height: auto !important;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-item .item {
+        width: 100%;
+        height: auto !important;
+    }
+
+    #itinerary-detail .section-cabin .suite-card-image-wrap {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #itinerary-detail .section-cabin .suite-size-badge {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 300;
+        color: var(--color-text-muted-on-dark);
+        line-height: 1;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    #itinerary-detail .section-cabin .suite-featured .suite-card-image-wrap::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #C8A84B;
+        z-index: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-nav {
+        display: none;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-stage-outer {
+        overflow: visible;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-stage {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        width: 100% !important;
+        transform: none !important;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-item {
+        width: 100% !important;
+        float: none;
+        padding: 0;
+    }
+
+    #itinerary-detail .section-cabin .suite-card-image-wrap {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #itinerary-detail .section-cabin .suite-card-image-wrap .image-wrapper {
+        overflow: hidden;
+    }
+
+    #itinerary-detail .section-cabin .suite-size-badge {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        font-family: var(--font-display);
+        font-size: 24px;
+        font-weight: 300;
+        color: var(--color-text-muted-on-dark);
+        line-height: 1;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    #itinerary-detail .section-cabin .suite-featured .suite-card-image-wrap::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #C8A84B;
+        z-index: 2;
+    }
+
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-stage-outer,
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-stage,
+    #itinerary-detail .section-cabin .suites-grid.owl-carousel .owl-item {
+        height: auto !important;
+    }
+}
+
 #itinerary-detail .section-testimonial .container-fluid {
     position: relative;
 }

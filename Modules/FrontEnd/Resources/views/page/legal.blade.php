@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                                 <div class="legal-accordion-body article-content">
-                                    {!! $item['content'] !!}
+                                    {!! safe_html($item['content']) !!}
                                 </div>
                             </div>
                         @endforeach

@@ -423,7 +423,7 @@
 
     #home .section-1.section-cover .page-cover .main-info .title {
         font-family: var(--font-display);
-        font-size: 30px;
+        font-size: var(--text-hero-title-mobile);
         font-weight: 300 !important;
         color: var(--color-text-on-dark);
         line-height: 1.1;
@@ -825,8 +825,15 @@
     text-align: center;
 }
 
-#main #home .section-eyebrow {
-    margin-inline: 0;
+/* Eyebrow trước title/description: flex + margin auto để căn giữa (text-align parent không căn được display:flex) */
+#main #home .section-eyebrow:has(+ .section-description),
+#main #home .section-eyebrow:has(+ h2.section-description),
+#main #home .section-eyebrow:has(+ .section-title),
+#main #home .section-eyebrow:has(+ h2.section-title),
+#main #home .section-eyebrow:has(+ h1.section-title) {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
 }
 
 #main #home :is(
@@ -938,7 +945,7 @@
     font-style: normal;
 }
 
-#home .section-3 .section-description em {
+#home .section-description em {
     font-style: italic;
     color: var(--color-text-accent);
 }
@@ -1009,11 +1016,6 @@
 #home .section-3 .list-item .item .description {
     font-size: 1rem;
     color: #3d4a44;
-}
-
-#home .section-4.section-itinerary .section-description em {
-    font-style: italic;
-    color: var(--color-text-accent);
 }
 
 /* Section 4 — Curated Journeys: hero-style carousel nav (all breakpoints) */
@@ -2501,7 +2503,15 @@
         z-index: auto !important;
     }
 
-    #home .section-3 .section-eyebrow,
+    #home .section-3 .section-eyebrow {
+        display: flex !important;
+        width: fit-content !important;
+        margin-inline: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: static !important;
+    }
+
     #home .section-3 .section-description {
         display: block !important;
         visibility: visible !important;

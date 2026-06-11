@@ -56,7 +56,7 @@
         @elseif ($heroEyebrow)
             <p class="hero-eyebrow mb-0">{{ $heroEyebrow }}</p>
         @endif
-        <{{ $tagHeading }} class="title font-heading {{ $cruiseHero ? '' : 'font-weight-bold' }} text-break">{!! $allowTitleHtml ? $obj->title : e($obj->title) !!}</{{ $tagHeading }}>
+        <{{ $tagHeading }} class="title font-heading {{ $cruiseHero ? '' : 'font-weight-bold' }} text-break">{!! $allowTitleHtml ? safe_html($obj->title) : e($obj->title) !!}</{{ $tagHeading }}>
         @if ($cruiseHero && $shipHeroSub)
             <p class="ship-hero-sub">{{ $shipHeroSub }}</p>
         @elseif (isset($obj->description) && $obj->description)
@@ -83,7 +83,7 @@
             </div>
         @endif
         @if (isset($obj->extraContent) && $obj->extraContent)
-            {!! $obj->extraContent !!}
+            {!! safe_html($obj->extraContent) !!}
         @endif
     </div>
 </div>

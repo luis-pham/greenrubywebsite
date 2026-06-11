@@ -20,7 +20,7 @@ if (!isset($list)) {
                 <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
             @endif
             @if ($description)
-                <p class="section-description font-heading">{{ $description }}</p>
+                <p class="section-description font-heading">{!! safe_html($description) !!}</p>
             @endif
             @if (count($list) > 0)
                 @php

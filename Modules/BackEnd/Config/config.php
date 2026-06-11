@@ -8,7 +8,7 @@ return [
     'displayTimeFormat' => 'H:i',
     'paginationLimit' => 20,
     'fileUploadMaxSize' => 204800,
-    'fileTypeImage' => ['jpg', 'jpeg', 'gif', 'png', 'svg'],
+    'fileTypeImage' => ['jpg', 'jpeg', 'gif', 'png'],
     'fileTypeAudio' => ['mp3', 'mid', 'amr', 'wav', 'wma'],
     'fileTypeVideo' => ['mp4', 'avi', 'wmv'],
     'fileTypeOther' => ['zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'csv'],

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Payments\PaymentManager;
+use App\Support\SafeRedirect;
 use Modules\BackEnd\Entities\AdLanguage;
 
 class PaymentController extends Controller
@@ -53,6 +54,7 @@ class PaymentController extends Controller
             'booking.cabins.*.cabin_id' => 'sometimes|nullable|integer',
             'booking.amenities' => 'sometimes|array',
             'booking.amenities.*.amenity_name' => 'sometimes|string',
+            'booking.amenities.*.amenity_id' => 'sometimes|nullable|integer',
             'booking.amenities.*.unit_price' => 'sometimes|numeric|min:0',
             'booking.amenities.*.quantity' => 'sometimes|integer|min:0',
             'booking.amenities.*.total_price' => 'sometimes|numeric|min:0',
@@ -217,6 +219,7 @@ class PaymentController extends Controller
             'booking.cabins.*.cabin_id' => 'sometimes|nullable|integer',
             'booking.amenities' => 'sometimes|array',
             'booking.amenities.*.amenity_name' => 'sometimes|string',
+            'booking.amenities.*.amenity_id' => 'sometimes|nullable|integer',
             'booking.amenities.*.unit_price' => 'sometimes|numeric|min:0',
             'booking.amenities.*.quantity' => 'sometimes|integer|min:0',
             'booking.amenities.*.total_price' => 'sometimes|numeric|min:0',
@@ -266,10 +269,11 @@ class PaymentController extends Controller
             }
 
             $description = $data['description'] ?? 'Payment';
-            $returnBase = $data['return_base'] ?? null;
+            $returnBase = SafeRedirect::normalize($data['return_base'] ?? null);
             $internalTxId = uniqid('tx_', true);
+            $statusToken = $this->generateStatusToken($internalTxId);
 
-            [$successUrl, $cancelUrl] = $this->buildCallbackUrls($request, $method, $internalTxId, $returnBase);
+            [$successUrl, $cancelUrl] = $this->buildCallbackUrls($request, $method, $internalTxId, $returnBase, $statusToken);
 
             DB::beginTransaction();
             try {
@@ -380,6 +384,7 @@ class PaymentController extends Controller
                 'internal_tx_id' => $result->internalTxId,
                 'provider_tx_id' => $result->providerTxId,
                 'payment_url' => $result->paymentUrl,
+                'status_token' => $statusToken,
             ]);
         } catch (\Throwable $e) {
             Log::error('Payment init error', ['exception' => $e]);
@@ -399,7 +404,7 @@ class PaymentController extends Controller
             return response()->json([
                 'success' => false,
                 'code' => 'payment_init_error',
-                'message' => $e->getMessage() ?: 'Khởi tạo thanh toán thất bại.',
+                'message' => 'Khởi tạo thanh toán thất bại.',
             ], 500);
         }
     }
@@ -424,17 +429,8 @@ class PaymentController extends Controller
             ], 404);
         }
 
-        $resultParam = $request->query('result');
-        if ($resultParam === 'cancel' && $payment->status === Payment::statusPending()) {
-            $payment->update([
-                'status' => Payment::statusCanceled(),
-                'error_code' => 'user_cancelled',
-                'error_message' => 'User cancelled or payment failed (fallback from status API)',
-                'completed_at' => now(),
-            ]);
-            $payment->refresh();
-            Log::info('Payment status fallback: updated to canceled', ['tx' => $internalTxId]);
-        }
+        $statusToken = $request->query('token');
+        $canViewBooking = $this->isValidStatusToken($internalTxId, $statusToken);
 
         if ($payment->status === Payment::statusPending()) {
             try {
@@ -454,49 +450,51 @@ class PaymentController extends Controller
         }
 
         $bookingPayload = null;
-        $booking = Booking::with(['cabins', 'amenities'])->where('payment_id', $payment->id)->first();
-        if ($booking) {
-            $currency = $booking->currency ?? 'usd';
-            $bookingPayload = [
-                'code' => $booking->code,
-                'full_name' => $booking->full_name,
-                'email' => $booking->email,
-                'phone' => $booking->phone,
-                'departure_date' => $booking->departure_date ? $booking->departure_date->toDateString() : null,
-                'itinerary_id' => $booking->itinerary_id,
-                'itinerary_name' => $booking->itinerary_name,
-                'cruise_name' => $booking->cruise_name,
-                'itinerary_duration_label' => $booking->itinerary_duration_label,
-                'destination' => $booking->destination,
-                'guests_total' => $booking->guests_total,
-                'currency' => $currency,
-                'subtotal_cabins' => $this->fromStorageAmount($booking->subtotal_cabins, $currency),
-                'subtotal_amenities' => $this->fromStorageAmount($booking->subtotal_amenities, $currency),
-                'discount_amount' => $this->fromStorageAmount($booking->discount_amount, $currency),
-                'tax_amount' => $this->fromStorageAmount($booking->tax_amount, $currency),
-                'total_amount' => $this->fromStorageAmount($booking->total_amount, $currency),
-                'cabins' => $booking->cabins->map(function (BookingCabin $cabin) use ($currency) {
-                    return [
-                        'cabin_name' => $cabin->cabin_name,
-                        'cabin_description' => $cabin->cabin_description,
-                        'unit_price' => $this->fromStorageAmount($cabin->unit_price, $currency),
-                        'quantity' => $cabin->quantity,
-                        'adults' => $cabin->adults,
-                        'children_6_12' => $cabin->children_6_12,
-                        'children_2_5' => $cabin->children_2_5,
-                        'infants' => $cabin->infants,
-                        'total_price' => $this->fromStorageAmount($cabin->total_price, $currency),
-                    ];
-                })->values()->all(),
-                'amenities' => $booking->amenities->map(function (BookingAmenity $amenity) use ($currency) {
-                    return [
-                        'amenity_name' => $amenity->amenity_name,
-                        'unit_price' => $this->fromStorageAmount($amenity->unit_price, $currency),
-                        'quantity' => $amenity->quantity,
-                        'total_price' => $this->fromStorageAmount($amenity->total_price, $currency),
-                    ];
-                })->values()->all(),
-            ];
+        if ($canViewBooking) {
+            $booking = Booking::with(['cabins', 'amenities'])->where('payment_id', $payment->id)->first();
+            if ($booking) {
+                $currency = $booking->currency ?? 'usd';
+                $bookingPayload = [
+                    'code' => $booking->code,
+                    'full_name' => $booking->full_name,
+                    'email' => $booking->email,
+                    'phone' => $booking->phone,
+                    'departure_date' => $booking->departure_date ? $booking->departure_date->toDateString() : null,
+                    'itinerary_id' => $booking->itinerary_id,
+                    'itinerary_name' => $booking->itinerary_name,
+                    'cruise_name' => $booking->cruise_name,
+                    'itinerary_duration_label' => $booking->itinerary_duration_label,
+                    'destination' => $booking->destination,
+                    'guests_total' => $booking->guests_total,
+                    'currency' => $currency,
+                    'subtotal_cabins' => $this->fromStorageAmount($booking->subtotal_cabins, $currency),
+                    'subtotal_amenities' => $this->fromStorageAmount($booking->subtotal_amenities, $currency),
+                    'discount_amount' => $this->fromStorageAmount($booking->discount_amount, $currency),
+                    'tax_amount' => $this->fromStorageAmount($booking->tax_amount, $currency),
+                    'total_amount' => $this->fromStorageAmount($booking->total_amount, $currency),
+                    'cabins' => $booking->cabins->map(function (BookingCabin $cabin) use ($currency) {
+                        return [
+                            'cabin_name' => $cabin->cabin_name,
+                            'cabin_description' => $cabin->cabin_description,
+                            'unit_price' => $this->fromStorageAmount($cabin->unit_price, $currency),
+                            'quantity' => $cabin->quantity,
+                            'adults' => $cabin->adults,
+                            'children_6_12' => $cabin->children_6_12,
+                            'children_2_5' => $cabin->children_2_5,
+                            'infants' => $cabin->infants,
+                            'total_price' => $this->fromStorageAmount($cabin->total_price, $currency),
+                        ];
+                    })->values()->all(),
+                    'amenities' => $booking->amenities->map(function (BookingAmenity $amenity) use ($currency) {
+                        return [
+                            'amenity_name' => $amenity->amenity_name,
+                            'unit_price' => $this->fromStorageAmount($amenity->unit_price, $currency),
+                            'quantity' => $amenity->quantity,
+                            'total_price' => $this->fromStorageAmount($amenity->total_price, $currency),
+                        ];
+                    })->values()->all(),
+                ];
+            }
         }
 
         return response()->json([
@@ -508,6 +506,48 @@ class PaymentController extends Controller
             'error_code' => $payment->error_code,
             'error_message' => $payment->error_message,
             'booking' => $bookingPayload,
+        ]);
+    }
+
+    public function cancel(Request $request)
+    {
+        $data = $request->validate([
+            'internal_tx_id' => 'required|string',
+            'token' => 'required|string',
+        ]);
+
+        $internalTxId = $data['internal_tx_id'];
+        if (!$this->isValidStatusToken($internalTxId, $data['token'])) {
+            return response()->json([
+                'success' => false,
+                'code' => 'invalid_token',
+                'message' => 'Token không hợp lệ.',
+            ], 403);
+        }
+
+        $payment = Payment::where('internal_tx_id', $internalTxId)->first();
+        if (!$payment) {
+            return response()->json([
+                'success' => false,
+                'code' => 'not_found',
+                'message' => 'Không tìm thấy giao dịch.',
+            ], 404);
+        }
+
+        if ($payment->status === Payment::statusPending()) {
+            $payment->update([
+                'status' => Payment::statusCanceled(),
+                'error_code' => 'user_cancelled',
+                'error_message' => 'User cancelled payment session',
+                'completed_at' => now(),
+            ]);
+            Log::info('Payment cancelled via API', ['tx' => $internalTxId]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'internal_tx_id' => $payment->internal_tx_id,
+            'status' => $payment->fresh()->status,
         ]);
     }
 
@@ -605,13 +645,18 @@ class PaymentController extends Controller
         return $code === 'vi' ? 'vnd' : 'usd';
     }
 
-    protected function buildCallbackUrls(Request $request, string $method, string $internalTxId, ?string $returnBase): array
+    protected function buildCallbackUrls(Request $request, string $method, string $internalTxId, ?string $returnBase, string $statusToken): array
     {
         $host = $request->getSchemeAndHttpHost();
         $path = '/api/payment/callback/' . $method;
         $base = rtrim($host, '/') . $path;
         $query = 'tx=' . urlencode($internalTxId) . '&method=' . urlencode($method);
-        $redirect = $returnBase ? '&redirect=' . urlencode($returnBase) : '';
+        $redirect = '';
+        if ($returnBase) {
+            $sep = strpos($returnBase, '?') !== false ? '&' : '?';
+            $redirectTarget = $returnBase . $sep . 'token=' . urlencode($statusToken);
+            $redirect = '&redirect=' . urlencode($redirectTarget);
+        }
         return [
             $base . '?result=success&' . $query . $redirect,
             $base . '?result=cancel&' . $query . $redirect,
@@ -695,14 +740,9 @@ class PaymentController extends Controller
             }
         }
 
-        $subtotalAmenities = 0.0;
-        foreach ($amenities as $row) {
-            $lineTotal = isset($row['total_price']) ? (float) $row['total_price'] : 0.0;
-            $qty = isset($row['quantity']) ? (int) $row['quantity'] : 1;
-            if ($qty < 1) {
-                $qty = 1;
-            }
-            $subtotalAmenities += $lineTotal * $qty;
+        [$subtotalAmenities, $usedAmenityDb] = $this->calculateAmenitiesTotalFromDb($amenities);
+        if (!$usedAmenityDb) {
+            $subtotalAmenities = 0.0;
         }
 
         $total = $subtotalCabins + $subtotalAmenities;
@@ -813,6 +853,62 @@ class PaymentController extends Controller
         return [$subtotalCabins, true];
     }
 
+    protected function calculateAmenitiesTotalFromDb(array $amenities): array
+    {
+        $amenityIds = [];
+        foreach ($amenities as $row) {
+            $id = $row['amenity_id'] ?? null;
+            if ($id !== null && $id !== '' && is_numeric($id)) {
+                $amenityIds[] = (int) $id;
+            }
+        }
+
+        $amenityIds = array_values(array_unique($amenityIds));
+        if (empty($amenityIds)) {
+            return [0.0, false];
+        }
+
+        $prices = DB::table('app_service')
+            ->whereIn('id', $amenityIds)
+            ->pluck('price', 'id');
+
+        if ($prices->isEmpty()) {
+            return [0.0, false];
+        }
+
+        $subtotalAmenities = 0.0;
+        foreach ($amenities as $row) {
+            $id = $row['amenity_id'] ?? null;
+            $qty = isset($row['quantity']) ? (int) $row['quantity'] : 0;
+            if ($qty < 1 || $id === null || !is_numeric($id)) {
+                continue;
+            }
+
+            $amenityId = (int) $id;
+            if (!$prices->has($amenityId)) {
+                continue;
+            }
+
+            $subtotalAmenities += (float) $prices[$amenityId] * $qty;
+        }
+
+        return [$subtotalAmenities, true];
+    }
+
+    protected function generateStatusToken(string $internalTxId): string
+    {
+        return hash_hmac('sha256', $internalTxId, (string) config('app.key'));
+    }
+
+    protected function isValidStatusToken(string $internalTxId, ?string $token): bool
+    {
+        if (!$token) {
+            return false;
+        }
+
+        return hash_equals($this->generateStatusToken($internalTxId), $token);
+    }
+
     protected function resolveItineraryDurationFromBooking(array $bookingData): ?int
     {
         $rawId = $bookingData['itinerary_id'] ?? null;
@@ -890,9 +986,18 @@ class PaymentController extends Controller
 
     protected function redirectToReturnUrl(string $redirectUrl, string $result, string $tx, string $method)
     {
-        $sep = strpos($redirectUrl, '?') !== false ? '&' : '?';
-        $target = rtrim($redirectUrl, '?&') . $sep . 'result=' . urlencode($result) . '&tx=' . urlencode($tx) . '&method=' . urlencode($method);
-        return redirect()->away($target);
+        $safeUrl = SafeRedirect::normalize($redirectUrl);
+        if (!$safeUrl) {
+            return response()->json([
+                'success' => false,
+                'code' => 'invalid_redirect',
+                'message' => 'URL chuyển hướng không hợp lệ.',
+            ], 400);
+        }
+
+        $sep = strpos($safeUrl, '?') !== false ? '&' : '?';
+        $target = rtrim($safeUrl, '?&') . $sep . 'result=' . urlencode($result) . '&tx=' . urlencode($tx) . '&method=' . urlencode($method);
+        return redirect()->to($target);
     }
 
     protected function toStorageAmount(float $amount, string $currency): int

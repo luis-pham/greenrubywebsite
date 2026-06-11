@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="page-wrapper">
                     <div class="main-content">
-                        <article class="article-content">{!! $pageContent !!}</article>
+                        <article class="article-content">{!! safe_html($pageContent) !!}</article>
                         <div class="article-footer">
                             <div class="article-footer-left">
                                 <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="btn-back d-block d-md-inline-block btn btn-lg btn-warning">

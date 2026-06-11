@@ -1,0 +1,66 @@
+/* Shared gallery-style filter bar — gallery, services, FAQ */
+.gallery-filter-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-cream-bg);
+    border-bottom: 0.5px solid rgba(12, 61, 49, 0.08);
+}
+
+.gallery-filter-inner {
+    padding: 0 48px;
+}
+
+.gallery-filter-bar.list-filter {
+    background: transparent;
+    padding: 0;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    margin-bottom: 0;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.gallery-filter-bar .gallery-filter-tab.item {
+    padding: 16px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--color-text-on-light);
+    cursor: pointer;
+    border: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    background: none;
+    text-decoration: none;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    line-height: inherit;
+    display: inline-block;
+}
+
+.gallery-filter-bar .gallery-filter-tab.item:first-child {
+    padding-left: 0;
+}
+
+.gallery-filter-bar .gallery-filter-tab.item.active,
+.gallery-filter-bar .gallery-filter-tab.item:hover {
+    color: var(--color-text-on-light);
+    border-bottom-color: var(--color-gold);
+    background: none;
+    text-decoration: none;
+}
+
+.gallery-filter-bar .gallery-filter-tab.item.active {
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .gallery-filter-inner {
+        padding: 0 20px;
+    }
+}

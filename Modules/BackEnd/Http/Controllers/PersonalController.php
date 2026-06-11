@@ -128,7 +128,6 @@ class PersonalController extends Controller
 
             return response()->json([
                 'msg' => 'fail',
-                'err' => $e->getMessage()
             ]);
         }
     }

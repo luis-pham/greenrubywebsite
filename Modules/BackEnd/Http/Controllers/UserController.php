@@ -58,8 +58,9 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         try {
-            $data = $request->all();
+            $data = $request->only(['username', 'password', 'fullname', 'email', 'avatar', 'cover', 'theme']);
             $data['password'] = \Hash::make($data['password']);
+            $data['status'] = config('backend.userStatus.unactive');
 
             $dataDetail = [];
             if (array_key_exists('role_id', $data)) {

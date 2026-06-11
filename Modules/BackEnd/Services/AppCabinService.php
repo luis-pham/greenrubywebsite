@@ -36,7 +36,7 @@ class AppCabinService
             $obj->cruise_id = array_key_exists('cruise_id', $data) ? $data['cruise_id'] : null;
             $obj->name = array_key_exists('name', $data) ? $data['name'] : null;
             $obj->summary = array_key_exists('summary', $data) ? $data['summary'] : null;
-            $obj->content = array_key_exists('content', $data) ? $data['content'] : null;
+            $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : null;
             $obj->image_link = array_key_exists('image_link', $data) && !empty($data['image_link']) ? $data['image_link'] : null;
             $obj->view = array_key_exists('view', $data) ? $data['view'] : null;
             $obj->cabin_class = array_key_exists('cabin_class', $data) ? $data['cabin_class'] : null;
@@ -154,7 +154,7 @@ class AppCabinService
                 $obj->cruise_id = array_key_exists('cruise_id', $data) ? $data['cruise_id'] : $obj->cruise_id;
                 $obj->name = array_key_exists('name', $data) ? $data['name'] : $obj->name;
                 $obj->summary = array_key_exists('summary', $data) ? $data['summary'] : $obj->summary;
-                $obj->content = array_key_exists('content', $data) ? $data['content'] : $obj->content;
+                $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : $obj->content;
                 $obj->image_link = array_key_exists('image_link', $data) && !empty($data['image_link']) ? $data['image_link'] : (array_key_exists('image_link', $data) && $data['image_link'] === '' ? null : $obj->image_link);
                 $obj->view = array_key_exists('view', $data) ? $data['view'] : $obj->view;
                 $obj->cabin_class = array_key_exists('cabin_class', $data) ? $data['cabin_class'] : $obj->cabin_class;

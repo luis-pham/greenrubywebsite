@@ -13,7 +13,7 @@
         <div class="container">
             @if ($eyebrow && $titleHtml)
                 <p class="section-eyebrow section-eyebrow--gold">{{ $eyebrow }}</p>
-                <h2 class="section-description font-heading vr-heading">{!! $titleHtml !!}</h2>
+                <h2 class="section-description font-heading vr-heading">{!! safe_html($titleHtml) !!}</h2>
                 @if ($subtitle)
                     <p class="vr-subtitle">{{ $subtitle }}</p>
                 @endif

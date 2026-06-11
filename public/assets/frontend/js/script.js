@@ -475,7 +475,10 @@ var fnListItemCarouselOnInit = function (event) {
     let isCruiseSuitesMobile = target.closest('#cruise-detail .section-cabin').length > 0
         && target.hasClass('suites-grid')
         && $(window).width() < 1024;
-    if (isHomeCuratedJourneys || isHomeSuitesMobile || isCruiseSuitesMobile) {
+    let isItinerarySuitesMobile = target.closest('#itinerary-detail .section-cabin').length > 0
+        && target.hasClass('suites-grid')
+        && $(window).width() < 1024;
+    if (isHomeCuratedJourneys || isHomeSuitesMobile || isCruiseSuitesMobile || isItinerarySuitesMobile) {
         fnAlignCarouselNavToImage(target);
         target.find('.owl-prev').attr('aria-label', 'Previous slide');
         target.find('.owl-next').attr('aria-label', 'Next slide');

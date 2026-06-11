@@ -30,6 +30,33 @@
                 <p class="article-hero-subtitle mb-0">{{ __('frontend::article.hero_subtitle') }}</p>
             </div>
         </section>
+
+        @if (count($listCategoryChild) > 0)
+            <div id="section-article-filter" class="gallery-filter-sticky">
+                <div class="container-fluid px-0">
+                    <div class="gallery-filter-inner">
+                        <div class="container">
+                            <nav class="gallery-filter-bar list-filter" aria-label="{{ __('frontend::article.category_default_sub_title') }}">
+                                @if (!isset($category))
+                                    <a href="{{ route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]) }}" class="item gallery-filter-tab active">{{ __('frontend::common.all') }}</a>
+                                @elseif (isset($categoryParent) && $categoryParent)
+                                    @php
+                                        $categoryUrl = $categoryParent->slug != 'root'
+                                            ? route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $categoryParent->slug])
+                                            : route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]);
+                                    @endphp
+                                    <a href="{{ $categoryUrl }}" class="item gallery-filter-tab {{ isset($category) && $category && $category->id == $categoryParent->id ? 'active' : '' }}">{{ __('frontend::common.all') }}</a>
+                                @endif
+                                @for ($i = 0; $i < count($listCategoryChild); $i++)
+                                    <a href="{{ route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $listCategoryChild[$i]->slug]) }}" class="item gallery-filter-tab {{ isset($category) && $category && $category->id == $listCategoryChild[$i]->id ? 'active' : '' }}">{{ $listCategoryChild[$i]->name }}</a>
+                                @endfor
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <section class="section-2 d-block d-lg-none pb-0">
             <div class="container">
                 @include('frontend::article.shared.widget-search', ['searchUrl' => $searchUrl])
@@ -80,33 +107,8 @@
                         @if (isset($category) && $category)
                             <h1 class="section-title text-lg-left">{{ $category->name }}</h1>
                         @endif
-                        <div class="header d-block d-xl-flex justify-content-lg-between align-items-lg-center">
-                            <p class="section-description mb-xl-0 font-heading text-lg-left">{{ __('frontend::article.category_default_sub_title') }}</p>
-                            @if (count($listCategoryChild) > 0)
-                                <div class="tab-filter mb-0">
-                                    <div class="list-button d-flex flex-wrap justify-content-center justify-content-lg-start">
-                                        @if (!isset($category))
-                                            <div class="item">
-                                                <a href="{{ route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]) }}" class="d-inline-block font-weight-bold text-white active">{{ __('frontend::common.all') }}</a>
-                                            </div>
-                                        @elseif (isset($categoryParent) && $categoryParent)
-                                            @php
-                                                $categoryUrl =  $categoryParent->slug != 'root'
-                                                    ? route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $categoryParent->slug])
-                                                    : route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]);
-                                            @endphp
-                                            <div class="item">
-                                                <a href="{{ $categoryUrl }}" class="d-inline-block font-weight-bold text-white {{ isset($category) && $category && $category->id == $categoryParent->id ? 'active' : '' }}">{{ __('frontend::common.all') }}</a>
-                                            </div>
-                                        @endif
-                                        @for ($i = 0; $i < count($listCategoryChild); $i++)
-                                            <div class="item">
-                                                <a href="{{ route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $listCategoryChild[$i]->slug]) }}" class="d-inline-block font-weight-bold text-white {{ isset($category) && $category && $category->id == $listCategoryChild[$i]->id ? 'active' : '' }}">{{ $listCategoryChild[$i]->name }}</a>
-                                            </div>
-                                        @endfor
-                                    </div>
-                                </div>
-                            @endif
+                        <div class="header">
+                            <p class="section-description mb-0 font-heading text-lg-left">{{ __('frontend::article.category_default_sub_title') }}</p>
                         </div>
                         @if (count($listArticle) > 0)
                             <div class="{{ $totalPage > 1 ? 'mb-4' : '' }}">

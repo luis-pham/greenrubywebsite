@@ -13,6 +13,7 @@
 #main #article-category .article-hero {
     background: var(--color-forest);
     margin-top: -91px;
+    margin-bottom: 0;
     padding: calc(91px + 56px) 48px 56px;
     position: relative;
     overflow: hidden;
@@ -259,15 +260,6 @@
     }
 }
 
-#article-category .section-4 .tab-filter .list-button {
-    gap: .5rem;
-}
-
-#article-category .section-4 .tab-filter .list-button .item button,
-#article-category .section-4 .tab-filter .list-button .item a {
-    min-width: unset;
-}
-
 #article-category .section-4 .list-article .row {
     margin: -.75rem;
 }
@@ -282,7 +274,7 @@
 
 @media (min-width: 992px) {
     #article-category .section-4 .main-content .header {
-        padding-bottom: 1.5rem;
+        padding-bottom: 1rem;
         border-bottom: 1px solid #d6d3cc;
     }
 }
