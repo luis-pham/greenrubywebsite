@@ -39,8 +39,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ __('backend::cabin.label_name') }} <span class="text-danger">*</span></label>
-                                    {{ Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => __('backend::cabin.placeholder_name'), 'maxlength' => 100, 'autocomplete' => 'off']) }}
+                                    <label class="facility-dynamic-label" data-label-key="label_name">{{ __('backend::cabin.label_name') }} <span class="text-danger facility-required-star">*</span></label>
+                                    {{ Form::text('name', old('name'), ['class' => 'form-control facility-dynamic-placeholder', 'data-placeholder-key' => 'placeholder_name', 'placeholder' => __('backend::cabin.placeholder_name'), 'maxlength' => 100, 'autocomplete' => 'off']) }}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -55,11 +55,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="view-cabin-class-row">
+                        <div class="row facility-profile-section" id="facility-section-view" data-section="view">
                             <div class="col-md-6" id="view-input-wrapper">
                                 <div class="form-group">
-                                    <label>{{ __('backend::cabin.label_view') }} <span class="text-danger">*</span></label>
-                                    {{ Form::text('view', old('view'), ['class' => 'form-control', 'placeholder' => __('backend::cabin.placeholder_view'), 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                                    <label class="facility-dynamic-label" data-label-key="label_view">{{ __('backend::cabin.label_view') }} <span class="text-danger facility-required-star">*</span></label>
+                                    {{ Form::text('view', old('view'), ['class' => 'form-control facility-dynamic-placeholder', 'data-placeholder-key' => 'placeholder_view', 'placeholder' => __('backend::cabin.placeholder_view'), 'maxlength' => 50, 'autocomplete' => 'off']) }}
                                 </div>
                             </div>
                             @php
@@ -67,7 +67,7 @@
                                 $selectedGroupSlug = $selectedGroup ? ($selectedGroup->slug ?? '') : '';
                                 $showCabinClass = in_array(strtolower($selectedGroupSlug), ['phong-o', 'phong_o', 'accommodation']);
                             @endphp
-                            <div class="col-md-6" id="cabin-class-wrapper" style="{{ $showCabinClass ? '' : 'display:none;' }}">
+                            <div class="col-md-6 facility-profile-section" id="facility-section-cabin-class" data-section="cabin_class" style="{{ $showCabinClass ? '' : 'display:none;' }}">
                                 <div class="form-group">
                                     <label>{{ __('backend::cabin.label_cabin_class') }}</label>
                                     @php
@@ -82,17 +82,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>{{ __('backend::cabin.label_summary') }} <span class="text-danger">*</span></label>
-                            {{ Form::textarea('summary', old('summary'), ['class' => 'form-control', 'placeholder' => __('backend::cabin.placeholder_summary'), 'rows' => 2, 'maxlength' => 200, 'autocomplete' => 'off']) }}
+                            <label class="facility-dynamic-label" data-label-key="label_summary">{{ __('backend::cabin.label_summary') }} <span class="text-danger facility-required-star">*</span></label>
+                            {{ Form::textarea('summary', old('summary'), ['class' => 'form-control facility-dynamic-placeholder', 'data-placeholder-key' => 'placeholder_summary', 'placeholder' => __('backend::cabin.placeholder_summary'), 'rows' => 2, 'maxlength' => 200, 'autocomplete' => 'off']) }}
                         </div>
                         <div class="form-group mb-0">
-                            <label>{{ __('backend::cabin.label_content') }}</label>
-                            {{ Form::textarea('content', old('content'), ['class' => 'form-control tinymce', 'placeholder' => __('backend::cabin.placeholder_content'), 'rows' => 2, 'autocomplete' => 'off']) }}
+                            <label class="facility-dynamic-label" data-label-key="label_content">{{ __('backend::cabin.label_content') }}</label>
+                            {{ Form::textarea('content', old('content'), ['class' => 'form-control tinymce facility-dynamic-placeholder', 'data-placeholder-key' => 'placeholder_content', 'placeholder' => __('backend::cabin.placeholder_content'), 'rows' => 2, 'autocomplete' => 'off']) }}
                         </div>
                     </div>
                 </div>
 
-                <div class="card mb-3">
+                <div class="card mb-3 facility-profile-section" id="facility-section-price" data-section="price">
                     <div class="card-header">
                         <h6 class="m-0"><i class="fas fa-table"></i> {{ __('backend::cabin.section_price') }}</h6>
                     </div>
@@ -117,8 +117,8 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row" id="facility-row-rooms-amenities">
+                    <div class="col-md-6 facility-profile-section" id="facility-section-rooms" data-section="rooms">
                         <div class="card mb-3">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 facility-profile-section" id="facility-section-amenities" data-section="amenities">
                         <div class="card mb-3">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -154,7 +154,7 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h6 class="m-0"><i class="fas fa-cogs"></i> {{ __('backend::cabin.section_operations') }}</h6>
+                        <h6 class="m-0 facility-dynamic-section-title" data-section-key="section_operations"><i class="fas fa-cogs"></i> {{ __('backend::cabin.section_operations') }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -162,21 +162,21 @@
                             {{ Form::select('cruise_id', $listCruise, old('cruise_id'), ['class' => 'form-control', 'placeholder' => __('backend::cabin.placeholder_select_cruise'), 'autocomplete' => 'off']) }}
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-6 col-cabin-field">
+                            <div class="col-12 col-md-6 facility-profile-section" id="facility-section-capacity" data-section="capacity">
                                 <div class="form-group">
-                                    <label>{{ __('backend::cabin.label_capacity_max') }} <span class="text-danger">*</span></label>
+                                    <label class="facility-dynamic-label" data-label-key="label_capacity_max">{{ __('backend::cabin.label_capacity_max') }} <span class="text-danger facility-required-star">*</span></label>
                                     {{ Form::number('capacity', old('capacity'), ['class' => 'form-control', 'id' => 'capacity-input', 'placeholder' => '0', 'min' => 1, 'max' => 10, 'autocomplete' => 'off']) }}
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 col-cabin-field">
+                            <div class="col-12 col-md-6 facility-profile-section" id="facility-section-area" data-section="area">
                                 <div class="form-group">
-                                    <label>{{ __('backend::cabin.label_area_m2') }} <span class="text-danger">*</span></label>
+                                    <label class="facility-dynamic-label" data-label-key="label_area_m2">{{ __('backend::cabin.label_area_m2') }} <span class="text-danger facility-required-star">*</span></label>
                                     {{ Form::number('area', old('area'), ['class' => 'form-control', 'placeholder' => '0', 'step' => '0.01', 'min' => 1, 'max' => 10000, 'autocomplete' => 'off']) }}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group facility-profile-section" id="facility-section-over-capacity" data-section="over_capacity">
                             <label>{{ __('backend::cabin.label_over_capacity_title') }}</label>
                             <div class="row">
                                 <div class="col-6 col-md-3 col-cabin-field">
@@ -206,7 +206,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-0 facility-profile-section" id="facility-section-discount" data-section="discount">
                             <label>{{ __('backend::cabin.label_discount') }}</label>
                             {{ Form::number('discount_percent', old('discount_percent', 0), ['class' => 'form-control', 'placeholder' => '0', 'min' => 0, 'max' => 100, 'autocomplete' => 'off']) }}
                         </div>
@@ -224,7 +224,7 @@
 
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h6 class="m-0"><i class="fas fa-images"></i> {{ __('backend::cabin.section_gallery') }}</h6>
+                        <h6 class="m-0 facility-dynamic-section-title" data-section-key="section_gallery"><i class="fas fa-images"></i> {{ __('backend::cabin.section_gallery') }}</h6>
                     </div>
                     <div class="card-body">
                         @php
@@ -277,7 +277,7 @@
                     </div>
                 </div>
 
-                <div class="card mb-3">
+                <div class="card mb-3 facility-profile-section" id="facility-section-audience" data-section="audience">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h6 class="m-0"><i class="fas fa-users"></i> {{ __('backend::cabin.section_audience') }}</h6>
@@ -370,7 +370,8 @@
             langAudienceName: @json(__('backend::cabin.placeholder_audience_name')),
             langDelete: @json(__('backend::cabin.btn_delete')),
             langGuestLabels: @json($langGuestLabels),
-            langOverCapacityTotal: @json(__('backend::cabin.validation_over_capacity_total', ['capacity' => '__CAP__']))
+            langOverCapacityTotal: @json(__('backend::cabin.validation_over_capacity_total', ['capacity' => '__CAP__'])),
+            facilityProfile: @json($facilityProfileConfig ?? [])
         };
     </script>
     <script src="{{ asset('/assets/backend/plugins/fancybox/jquery.fancybox.min.js') }}"></script>

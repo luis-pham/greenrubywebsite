@@ -9,6 +9,7 @@ use Modules\BackEnd\Http\Requests\CabinRequest;
 use Modules\BackEnd\Helpers\LanguageUtils;
 use Modules\BackEnd\Helpers\Logging;
 use Modules\BackEnd\Helpers\Utilities;
+use Modules\BackEnd\Helpers\FacilityProfileUtils;
 use Modules\BackEnd\Services\AppCabinService;
 use Modules\BackEnd\Services\AppCruiseService;
 use Modules\BackEnd\Entities\AppAmenity;
@@ -73,7 +74,9 @@ class CabinController extends Controller
             ->orderBy('ord')
             ->get();
 
-        return view($this->baseView . __FUNCTION__, compact('title', 'listCruise', 'listCabinType', 'listAmenity', 'listAudience'));
+        $facilityProfileConfig = FacilityProfileUtils::getJsConfig();
+
+        return view($this->baseView . __FUNCTION__, compact('title', 'listCruise', 'listCabinType', 'listAmenity', 'listAudience', 'facilityProfileConfig'));
     }
 
     public function store(CabinRequest $request)
@@ -226,8 +229,9 @@ class CabinController extends Controller
         }
 
         $cabinGallery = AppCabinService::getCabinGallery($obj->id);
+        $facilityProfileConfig = FacilityProfileUtils::getJsConfig();
 
-        return view($this->baseView . __FUNCTION__, compact('title', 'obj', 'listCruise', 'listCabinType', 'listAmenity', 'selectedAmenityIds', 'rooms', 'prices', 'audiences', 'listAudience', 'cabinGallery'));
+        return view($this->baseView . __FUNCTION__, compact('title', 'obj', 'listCruise', 'listCabinType', 'listAmenity', 'selectedAmenityIds', 'rooms', 'prices', 'audiences', 'listAudience', 'cabinGallery', 'facilityProfileConfig'));
     }
 
     public function update(CabinRequest $request, $id)

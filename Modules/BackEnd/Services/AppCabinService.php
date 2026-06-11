@@ -168,8 +168,8 @@ class AppCabinService
                 $obj->ord = array_key_exists('ord', $data) ? $data['ord'] : $obj->ord;
                 $obj->save();
 
-                AppCabinRoom::where('cabin_id', $obj->id)->delete();
                 if (array_key_exists('room_title', $data)) {
+                    AppCabinRoom::where('cabin_id', $obj->id)->delete();
                     for ($i = 0; $i < count($data['room_title']); $i++) {
                         if (!trim($data['room_title'][$i])) {
                             continue;
@@ -183,38 +183,41 @@ class AppCabinService
                     }
                 }
 
-                AppCabinAmenity::where('cabin_id', $obj->id)->delete();
-                if (array_key_exists('amenity_ids', $data)) {
-                    for ($i = 0; $i < count($data['amenity_ids']); $i++) {
-                        if (!$data['amenity_ids'][$i]) {
-                            continue;
+                if (array_key_exists('amenity_ids', $data) || array_key_exists('amenity_name', $data)) {
+                    AppCabinAmenity::where('cabin_id', $obj->id)->delete();
+
+                    if (array_key_exists('amenity_ids', $data)) {
+                        for ($i = 0; $i < count($data['amenity_ids']); $i++) {
+                            if (!$data['amenity_ids'][$i]) {
+                                continue;
+                            }
+                            $pivot = new AppCabinAmenity();
+                            $pivot->cabin_id = $obj->id;
+                            $pivot->amenity_id = $data['amenity_ids'][$i];
+                            $pivot->ord = $i + 1;
+                            $pivot->save();
                         }
-                        $pivot = new AppCabinAmenity();
-                        $pivot->cabin_id = $obj->id;
-                        $pivot->amenity_id = $data['amenity_ids'][$i];
-                        $pivot->ord = $i + 1;
-                        $pivot->save();
                     }
-                }
 
-                if (array_key_exists('amenity_name', $data)) {
-                    for ($i = 0; $i < count($data['amenity_name']); $i++) {
-                        if (!trim($data['amenity_name'][$i])) {
-                            continue;
+                    if (array_key_exists('amenity_name', $data)) {
+                        for ($i = 0; $i < count($data['amenity_name']); $i++) {
+                            if (!trim($data['amenity_name'][$i])) {
+                                continue;
+                            }
+                            $amenity = new AppAmenity();
+                            $amenity->language_id = $languageId;
+                            $amenity->name = $data['amenity_name'][$i];
+                            $amenity->description = array_key_exists('amenity_description', $data) && array_key_exists($i, $data['amenity_description']) ? $data['amenity_description'][$i] : null;
+                            $amenity->icon = array_key_exists('amenity_icon', $data) && array_key_exists($i, $data['amenity_icon']) ? $data['amenity_icon'][$i] : null;
+                            $amenity->ord = 0;
+                            $amenity->save();
+
+                            $pivot = new AppCabinAmenity();
+                            $pivot->cabin_id = $obj->id;
+                            $pivot->amenity_id = $amenity->id;
+                            $pivot->ord = 0;
+                            $pivot->save();
                         }
-                        $amenity = new AppAmenity();
-                        $amenity->language_id = $languageId;
-                        $amenity->name = $data['amenity_name'][$i];
-                        $amenity->description = array_key_exists('amenity_description', $data) && array_key_exists($i, $data['amenity_description']) ? $data['amenity_description'][$i] : null;
-                        $amenity->icon = array_key_exists('amenity_icon', $data) && array_key_exists($i, $data['amenity_icon']) ? $data['amenity_icon'][$i] : null;
-                        $amenity->ord = 0;
-                        $amenity->save();
-
-                        $pivot = new AppCabinAmenity();
-                        $pivot->cabin_id = $obj->id;
-                        $pivot->amenity_id = $amenity->id;
-                        $pivot->ord = 0;
-                        $pivot->save();
                     }
                 }
 
@@ -236,8 +239,8 @@ class AppCabinService
                     }
                 }
 
-                AppCabinSuitableAudience::where('cabin_id', $obj->id)->delete();
                 if (array_key_exists('audience_group_ids', $data) && is_array($data['audience_group_ids'])) {
+                    AppCabinSuitableAudience::where('cabin_id', $obj->id)->delete();
                     for ($i = 0; $i < count($data['audience_group_ids']); $i++) {
                         $groupId = $data['audience_group_ids'][$i];
                         if (!$groupId) {

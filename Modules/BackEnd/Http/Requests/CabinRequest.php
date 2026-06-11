@@ -4,6 +4,7 @@ namespace Modules\BackEnd\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Modules\BackEnd\Helpers\CruiseUtils;
+use Modules\BackEnd\Helpers\FacilityProfileUtils;
 
 class CabinRequest extends FormRequest
 {
@@ -22,6 +23,11 @@ class CabinRequest extends FormRequest
         return __('backend::cabin.guest_count', ['n' => $guest]);
     }
 
+    protected function getFacilityProfile()
+    {
+        return FacilityProfileUtils::getProfileByGroupId($this->input('group_id'));
+    }
+
     protected function prepareForValidation()
     {
         $this->merge([
@@ -38,6 +44,12 @@ class CabinRequest extends FormRequest
             'audience_name' => $this->normalizeStringArray($this->input('audience_name', [])),
             'audience_icon' => $this->normalizeStringArray($this->input('audience_icon', [])),
         ]);
+
+        $profile = $this->getFacilityProfile();
+        if ($profile && $profile !== FacilityProfileUtils::PROFILE_CABIN) {
+            $defaults = FacilityProfileUtils::applyDefaultValues($this->all(), $profile);
+            $this->merge($defaults);
+        }
     }
 
     protected function normalizeString($value)
@@ -78,27 +90,59 @@ class CabinRequest extends FormRequest
 
     public function rules(Request $request)
     {
+        $profile = $this->getFacilityProfile() ?: FacilityProfileUtils::PROFILE_CABIN;
+
         $rules = [
             'name' => 'required|max:100',
             'group_id' => 'required|integer|exists:app_group,id',
             'cruise_id' => 'required|exists:app_cruise,id',
             'summary' => 'required|max:200',
-            'view' => 'required|max:50',
-            'capacity' => 'required|numeric|min:1|max:10',
-            'over_capacity_adult' => 'nullable|integer|min:0|max:50|lte:capacity',
-            'over_capacity_child_6_12' => 'nullable|integer|min:0|max:50|lte:capacity',
-            'over_capacity_child_2_5' => 'nullable|integer|min:0|max:50|lte:capacity',
-            'over_capacity_infant' => 'nullable|integer|min:0|max:50|lte:capacity',
-            'area' => 'required|numeric|min:1|max:10000',
+            'content' => 'nullable',
             'discount_percent' => 'nullable|numeric|min:0|max:100',
-            'ord' => 'nullable|integer'
+            'ord' => 'nullable|integer',
         ];
 
-        $capacity = (int) $this->input('capacity', 0);
-        if ($capacity > 0) {
-            foreach (array_keys(CruiseUtils::getListDuration()) as $duration) {
-                for ($guest = 1; $guest <= $capacity; $guest++) {
-                    $rules["price.{$duration}.{$guest}"] = 'required|numeric|min:0.01|max:10000000000';
+        if (FacilityProfileUtils::requiresView($profile)) {
+            $rules['view'] = 'required|max:50';
+        } else {
+            $rules['view'] = 'nullable|max:50';
+        }
+
+        if (FacilityProfileUtils::requiresCapacity($profile)) {
+            if ($profile === FacilityProfileUtils::PROFILE_EVENT) {
+                $rules['capacity'] = 'required|numeric|min:1|max:500';
+            } else {
+                $rules['capacity'] = 'required|numeric|min:1|max:10';
+            }
+        } else {
+            $rules['capacity'] = 'nullable|numeric|min:1|max:500';
+        }
+
+        if (FacilityProfileUtils::requiresArea($profile)) {
+            $rules['area'] = 'required|numeric|min:1|max:10000';
+        } else {
+            $rules['area'] = 'nullable|numeric|min:1|max:10000';
+        }
+
+        if ($profile === FacilityProfileUtils::PROFILE_CABIN) {
+            $rules['over_capacity_adult'] = 'nullable|integer|min:0|max:50|lte:capacity';
+            $rules['over_capacity_child_6_12'] = 'nullable|integer|min:0|max:50|lte:capacity';
+            $rules['over_capacity_child_2_5'] = 'nullable|integer|min:0|max:50|lte:capacity';
+            $rules['over_capacity_infant'] = 'nullable|integer|min:0|max:50|lte:capacity';
+        } else {
+            $rules['over_capacity_adult'] = 'nullable|integer|min:0|max:50';
+            $rules['over_capacity_child_6_12'] = 'nullable|integer|min:0|max:50';
+            $rules['over_capacity_child_2_5'] = 'nullable|integer|min:0|max:50';
+            $rules['over_capacity_infant'] = 'nullable|integer|min:0|max:50';
+        }
+
+        if (FacilityProfileUtils::requiresPrice($profile)) {
+            $capacity = (int) $this->input('capacity', 0);
+            if ($capacity > 0) {
+                foreach (array_keys(CruiseUtils::getListDuration()) as $duration) {
+                    for ($guest = 1; $guest <= $capacity; $guest++) {
+                        $rules["price.{$duration}.{$guest}"] = 'required|numeric|min:0.01|max:10000000000';
+                    }
                 }
             }
         }
@@ -146,30 +190,33 @@ class CabinRequest extends FormRequest
             'ord.integer' => __('backend::cabin.validation_ord_integer'),
         ];
 
-        $capacity = (int) $this->input('capacity', 0);
-        if ($capacity > 0) {
-            $durationLabels = CruiseUtils::getListDuration();
-            foreach (array_keys($durationLabels) as $duration) {
-                $durationLabel = $durationLabels[$duration];
-                for ($guest = 1; $guest <= $capacity; $guest++) {
-                    $guestLabel = self::getGuestLabel($guest);
-                    $key = "price.{$duration}.{$guest}";
-                    $messages["{$key}.required"] = __('backend::cabin.validation_price_required', [
-                        'duration' => $durationLabel,
-                        'guest' => $guestLabel,
-                    ]);
-                    $messages["{$key}.numeric"] = __('backend::cabin.validation_price_numeric', [
-                        'duration' => $durationLabel,
-                        'guest' => $guestLabel,
-                    ]);
-                    $messages["{$key}.min"] = __('backend::cabin.validation_price_min', [
-                        'duration' => $durationLabel,
-                        'guest' => $guestLabel,
-                    ]);
-                    $messages["{$key}.max"] = __('backend::cabin.validation_price_max', [
-                        'duration' => $durationLabel,
-                        'guest' => $guestLabel,
-                    ]);
+        $profile = $this->getFacilityProfile() ?: FacilityProfileUtils::PROFILE_CABIN;
+        if (FacilityProfileUtils::requiresPrice($profile)) {
+            $capacity = (int) $this->input('capacity', 0);
+            if ($capacity > 0) {
+                $durationLabels = CruiseUtils::getListDuration();
+                foreach (array_keys($durationLabels) as $duration) {
+                    $durationLabel = $durationLabels[$duration];
+                    for ($guest = 1; $guest <= $capacity; $guest++) {
+                        $guestLabel = self::getGuestLabel($guest);
+                        $key = "price.{$duration}.{$guest}";
+                        $messages["{$key}.required"] = __('backend::cabin.validation_price_required', [
+                            'duration' => $durationLabel,
+                            'guest' => $guestLabel,
+                        ]);
+                        $messages["{$key}.numeric"] = __('backend::cabin.validation_price_numeric', [
+                            'duration' => $durationLabel,
+                            'guest' => $guestLabel,
+                        ]);
+                        $messages["{$key}.min"] = __('backend::cabin.validation_price_min', [
+                            'duration' => $durationLabel,
+                            'guest' => $guestLabel,
+                        ]);
+                        $messages["{$key}.max"] = __('backend::cabin.validation_price_max', [
+                            'duration' => $durationLabel,
+                            'guest' => $guestLabel,
+                        ]);
+                    }
                 }
             }
         }
@@ -177,4 +224,3 @@ class CabinRequest extends FormRequest
         return $messages;
     }
 }
-

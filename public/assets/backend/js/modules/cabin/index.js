@@ -24,8 +24,20 @@
     var priceData = config.priceData || [];
     var initialCapacity = config.initialCapacity;
     var isEdit = config.isEdit === true;
+    var facilityProfileConfig = config.facilityProfile || {};
+    var slugToProfile = facilityProfileConfig.slugToProfile || {};
+    var profileSections = facilityProfileConfig.profileSections || {};
+    var profileLabels = facilityProfileConfig.profileLabels || {};
+    var defaultProfile = facilityProfileConfig.defaultProfile || 'onboard';
     var currentPriceData = {};
     var MAX_PRICE = 10000000000;
+
+    var ALL_OPTIONAL_SECTIONS = ['view', 'cabin_class', 'price', 'rooms', 'amenities', 'capacity', 'area', 'over_capacity', 'discount', 'audience'];
+    var REQUIRED_BY_PROFILE = {
+        cabin: ['view', 'capacity', 'area', 'price'],
+        onboard: [],
+        event: ['capacity', 'area']
+    };
 
     if (priceData && priceData.length > 0) {
         for (var i = 0; i < priceData.length; i++) {
@@ -58,23 +70,137 @@
         renderRoom('', '');
     });
 
-    // Show cabin_class only when cabin type is accommodation (slug: phong-o / accommodation)
-    function toggleCabinClassVisibility() {
-        var $groupSelect = $cabinForm.find('select[name="group_id"]');
-        var $selected = $groupSelect.find('option:selected');
-        var slug = ($selected.data('slug') || '').toString().toLowerCase().replace(/\s+/g, '-');
-        var isAccommodation = (slug === 'phong-o' || slug === 'phong_o' || slug === 'accommodation');
-        if (isAccommodation) {
-            $('#cabin-class-wrapper').show();
-            $('#view-input-wrapper').removeClass('col-md-12').addClass('col-md-6');
+    function normalizeSlug(slug) {
+        return (slug || '').toString().toLowerCase().replace(/[\s_]+/g, '-');
+    }
+
+    function getSelectedSlug() {
+        var $selected = $cabinForm.find('select[name="group_id"] option:selected');
+        return normalizeSlug($selected.data('slug'));
+    }
+
+    function getProfileFromSlug(slug) {
+        if (!slug) {
+            return defaultProfile;
+        }
+        return slugToProfile[slug] || defaultProfile;
+    }
+
+    function getCurrentProfile() {
+        return getProfileFromSlug(getSelectedSlug());
+    }
+
+    function isSectionVisible(profile, section) {
+        var visible = profileSections[profile] || [];
+        return visible.indexOf(section) !== -1;
+    }
+
+    function setSectionEnabled($section, enabled) {
+        if (!$section.length) {
+            return;
+        }
+        $section.find(':input').each(function () {
+            var $input = $(this);
+            if ($input.is('[type="hidden"]') && $section.attr('data-section') === 'price') {
+                return;
+            }
+            $input.prop('disabled', !enabled);
+        });
+    }
+
+    function updateDynamicLabels(profile) {
+        var labels = profileLabels[profile] || profileLabels.cabin || {};
+        $cabinForm.find('.facility-dynamic-label').each(function () {
+            var $label = $(this);
+            var key = $label.data('label-key');
+            if (!key || !labels[key]) {
+                return;
+            }
+            var fieldKey = '';
+            if (key === 'label_view') { fieldKey = 'view'; }
+            else if (key === 'label_capacity_max') { fieldKey = 'capacity'; }
+            else if (key === 'label_area_m2') { fieldKey = 'area'; }
+            var required = key === 'label_name' || key === 'label_summary'
+                || (fieldKey && (REQUIRED_BY_PROFILE[profile] || []).indexOf(fieldKey) !== -1);
+            var star = required ? ' <span class="text-danger facility-required-star">*</span>' : '';
+            $label.html($('<div>').text(labels[key]).html() + star);
+        });
+        $cabinForm.find('.facility-dynamic-placeholder').each(function () {
+            var $input = $(this);
+            var key = $input.data('placeholder-key');
+            if (key && labels[key]) {
+                $input.attr('placeholder', labels[key]);
+            }
+        });
+        $cabinForm.find('.facility-dynamic-section-title').each(function () {
+            var $title = $(this);
+            var key = $title.data('section-key');
+            if (!key || !labels[key]) {
+                return;
+            }
+            var icon = $title.find('i').prop('outerHTML') || '';
+            $title.html(icon + ' ' + $('<div>').text(labels[key]).html());
+        });
+    }
+
+    function toggleCabinClassLayout(profile) {
+        var showClass = profile === 'cabin' && isSectionVisible(profile, 'cabin_class');
+        var $classWrapper = $('#facility-section-cabin-class');
+        var $viewWrapper = $('#view-input-wrapper');
+        if (showClass) {
+            $classWrapper.show();
+            $viewWrapper.removeClass('col-md-12').addClass('col-md-6');
         } else {
-            $('#cabin-class-wrapper').hide();
-            $('#view-input-wrapper').removeClass('col-md-6').addClass('col-md-12');
+            $classWrapper.hide();
+            $viewWrapper.removeClass('col-md-6').addClass('col-md-12');
             $cabinForm.find('select[name="cabin_class"]').val('');
         }
     }
-    $cabinForm.on('change', 'select[name="group_id"]', toggleCabinClassVisibility);
-    toggleCabinClassVisibility();
+
+    function applyFacilityProfile() {
+        var profile = getCurrentProfile();
+        var slug = getSelectedSlug();
+
+        updateDynamicLabels(profile);
+
+        ALL_OPTIONAL_SECTIONS.forEach(function (section) {
+            var $section = $('[data-section="' + section + '"]');
+            var visible = isSectionVisible(profile, section);
+            if (visible) {
+                $section.show();
+                setSectionEnabled($section, true);
+            } else {
+                $section.hide();
+                setSectionEnabled($section, false);
+            }
+        });
+
+        var $roomsAmenitiesRow = $('#facility-row-rooms-amenities');
+        if ($roomsAmenitiesRow.length) {
+            var showRow = isSectionVisible(profile, 'rooms') || isSectionVisible(profile, 'amenities');
+            if (showRow) {
+                $roomsAmenitiesRow.show();
+            } else {
+                $roomsAmenitiesRow.hide();
+            }
+        }
+
+        toggleCabinClassLayout(profile);
+
+        var $capacityInput = $('#capacity-input');
+        if ($capacityInput.length) {
+            $capacityInput.attr('max', profile === 'event' ? 500 : 10);
+        }
+
+        if (isSectionVisible(profile, 'price')) {
+            updatePriceTable();
+        }
+
+        $cabinForm.attr('data-facility-profile', profile);
+        $cabinForm.attr('data-facility-slug', slug);
+    }
+
+    $cabinForm.on('change', 'select[name="group_id"]', applyFacilityProfile);
 
     $cabinForm.on('click', '.btn-remove-room-pill', function (e) {
         e.stopPropagation();
@@ -674,9 +800,10 @@
 
     $(document).ready(function () {
         repopulateFromOld();
+        applyFacilityProfile();
         if (isEdit) {
             syncPriceDataFromTable();
-        } else {
+        } else if (isSectionVisible(getCurrentProfile(), 'price')) {
             setTimeout(function () {
                 updatePriceTable();
             }, 100);

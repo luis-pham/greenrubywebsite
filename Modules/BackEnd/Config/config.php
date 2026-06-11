@@ -75,6 +75,28 @@ return [
         'exclusive' => 2,
     ],
     'listAccommodationSlug' => ['accommodation','phong-o','cabin'],
+    'facilityProfileSlugs' => [
+        'accommodation' => 'cabin',
+        'phong-o' => 'cabin',
+        'cabin' => 'cabin',
+        'restaurant' => 'onboard',
+        'nha-hang' => 'onboard',
+        'bar' => 'onboard',
+        'quay-bar' => 'onboard',
+        'gym' => 'onboard',
+        'phong-gym' => 'onboard',
+        'swimming-pool' => 'onboard',
+        'be-boi' => 'onboard',
+        'library' => 'onboard',
+        'thu-vien' => 'onboard',
+        'event-room' => 'event',
+        'phong-su-kien' => 'event',
+    ],
+    'facilityProfileSections' => [
+        'cabin' => ['view', 'cabin_class', 'price', 'rooms', 'amenities', 'capacity', 'area', 'over_capacity', 'discount', 'audience'],
+        'onboard' => [],
+        'event' => ['capacity', 'area'],
+    ],
     'itineraryBay' => [
         1 => 'Vịnh Hạ Long',
         2 => 'Vịnh Lan Hạ'
