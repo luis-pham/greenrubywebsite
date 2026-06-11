@@ -30,4 +30,9 @@ class AppExpActivity extends BaseModel
             'cruise_id'
         );
     }
+
+    public function group()
+    {
+        return $this->belongsTo(AppGroup::class, 'group_id');
+    }
 }

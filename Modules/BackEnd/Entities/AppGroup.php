@@ -10,6 +10,7 @@ class AppGroup extends BaseModel
         'language_id',
         'name',
         'slug',
+        'category_key',
         'description',
         'image_link',
         'seo_title',

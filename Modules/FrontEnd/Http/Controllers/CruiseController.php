@@ -82,9 +82,14 @@ class CruiseController extends Controller
             }
         }
 
+        if (isset($listCabin) && count($listCabin) > 0) {
+            $listCabin->load('group');
+        }
+
         $listInclusiveService = $obj->cruiseServices;
 
-        $listExpActivity = AppExpActivity::where(
+        $listExpActivity = AppExpActivity::with('group')
+        ->where(
             'language_id',
             $obj->language_id ?? $language->id ?? 1
         )

@@ -38,6 +38,24 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-md-4 col-form-label">
+                                    Category Key
+                                    <small class="text-muted d-block">(multilingual mapping — không đổi theo ngôn ngữ)</small>
+                                </label>
+                                <div class="col-md-8">
+                                    <select name="category_key" class="form-control">
+                                        <option value="">— None —</option>
+                                        <option value="dining" {{ old('category_key', '') == 'dining' ? 'selected' : '' }}>Dining & Social</option>
+                                        <option value="pools" {{ old('category_key', '') == 'pools' ? 'selected' : '' }}>Pools & Outdoors</option>
+                                        <option value="wellness" {{ old('category_key', '') == 'wellness' ? 'selected' : '' }}>Wellness & Activities</option>
+                                        <option value="events" {{ old('category_key', '') == 'events' ? 'selected' : '' }}>Events</option>
+                                    </select>
+                                    <span class="help-block text-muted">
+                                        Dùng để gom nhóm facility/activity trên trang cruise detail. Để trống nếu không cần hiển thị trong section Onboard Experience.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-md-4 col-form-label">Mô tả</label>
                                 <div class="col-md-8">
                                     {{ Form::textarea('description', null, ['rows'=> 5, 'class' => 'form-control', 'placeholder' => 'Nhập mô tả...', 'autocomplete' => 'off']) }}

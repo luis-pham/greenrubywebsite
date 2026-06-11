@@ -27,6 +27,7 @@ class AppGroupService
         $obj->language_id = $languageId;
         $obj->name = array_key_exists('name', $data) ? $data['name'] : null;
         $obj->slug = array_key_exists('slug', $data) ? $data['slug'] : null;
+        $obj->category_key = $data['category_key'] ?? null;
         $obj->description = array_key_exists('description', $data) ? $data['description'] : null;
         $obj->tab = array_key_exists('tab', $data) ? $data['tab'] : null;
         $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : null;
@@ -44,6 +45,7 @@ class AppGroupService
         if ($obj) {
             $obj->name = array_key_exists('name', $data) ? $data['name'] : $obj->name;
             $obj->slug = array_key_exists('slug', $data) ? $data['slug'] : $obj->slug;
+            $obj->category_key = $data['category_key'] ?? null;
             $obj->description = array_key_exists('description', $data) ? $data['description'] : $obj->description;
             $obj->tab = array_key_exists('tab', $data) ? $data['tab'] : $obj->tab;
             $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : $obj->image_link;

@@ -32,6 +32,11 @@ class AppCabin extends BaseModel
         return $this->belongsTo(AppCruise::class, 'cruise_id', 'id');
     }
 
+    public function group()
+    {
+        return $this->belongsTo(AppGroup::class, 'group_id');
+    }
+
     public function cabinPrices()
     {
         return $this->hasMany(AppCabinPrice::class, 'cabin_id', 'id');

@@ -25,6 +25,7 @@ class GroupRequest extends FormRequest
                     }
                 }
             ],
+            'category_key' => 'nullable|string|max:50',
         ];
     }
 
