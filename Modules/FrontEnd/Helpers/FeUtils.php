@@ -178,6 +178,45 @@ class FeUtils
         }
     }
 
+    public static function normalizeMenuPath($path)
+    {
+        if ($path === null || $path === '') {
+            return '';
+        }
+
+        $path = '/' . trim($path, '/');
+        if ($path === '//') {
+            return '/';
+        }
+
+        static $aliases = [
+            '/service' => '/services',
+            '/experience' => '/experiences',
+        ];
+
+        return $aliases[$path] ?? $path;
+    }
+
+    public static function isMenuItemActive($menuUrlActive, $itemUrl)
+    {
+        if (!isset($menuUrlActive) || !$menuUrlActive || !$itemUrl) {
+            return false;
+        }
+
+        $activePath = self::normalizeMenuPath(self::getAbsoluteUrl($menuUrlActive) ?? '');
+        $itemPath = self::normalizeMenuPath(self::getAbsoluteUrl($itemUrl) ?? '');
+
+        if ($activePath === $itemPath) {
+            return true;
+        }
+
+        if ($itemPath !== '/' && str_starts_with($activePath, $itemPath . '/')) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static function bindWebsiteTitle($title, $description)
     {
         if ($description) {

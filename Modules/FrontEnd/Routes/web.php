@@ -88,14 +88,18 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
     Route::post('/contact','ContactController@request')->name('frontend.contact.request');
     Route::post('/{languageCode}/lien-he','ContactController@request')->where('languageCode',$listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.contact.request'));
 
-    Route::get('/experience', 'ExperienceController@index')->name('frontend.experience.index');
+    Route::redirect('/experience', '/experiences', 301);
+    Route::get('/experiences', 'ExperienceController@index')->name('frontend.experience.index');
     Route::get('/{languageCode}/hoat-dong-trai-nghiem', 'ExperienceController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.experience.index'));
 
     Route::redirect('/service', '/services', 301);
     Route::get('/services', 'ServiceController@index')->name('frontend.service.index');
     Route::get('/{languageCode}/dich-vu', 'ServiceController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.service.index'));
 
-    Route::get('/experience/{slug}-{id}.html', 'ExperienceController@show')->where('slug', '[A-Za-z0-9_\-]+')->name('frontend.experience.show');
+    Route::get('/experience/{slug}-{id}.html', function (string $slug, $id) {
+        return redirect()->route('frontend.experience.show', ['slug' => $slug, 'id' => $id], 301);
+    })->where('slug', '[A-Za-z0-9_\-]+');
+    Route::get('/experiences/{slug}-{id}.html', 'ExperienceController@show')->where('slug', '[A-Za-z0-9_\-]+')->name('frontend.experience.show');
     Route::get('/{languageCode}/hoat-dong-trai-nghiem/{slug}-{id}.html', 'ExperienceController@show')->where('languageCode', $listLanguageCode)->where('slug', '[A-Za-z0-9_\-]+')->name(Utilities::bindRouteNameMultiLanguage('frontend.experience.show'));
 
     Route::get('/about-us', 'AboutController@index')->name('frontend.about.index');

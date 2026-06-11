@@ -23,7 +23,7 @@
 
             @if ($subTitle)
                 <p class="section-description font-heading {{ $backgroundImage ? 'text-white' : '' }}">
-                    {{ $subTitle }}
+                    {!! $subTitle !!}
                 </p>
             @endif
 

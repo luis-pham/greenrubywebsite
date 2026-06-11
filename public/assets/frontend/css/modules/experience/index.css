@@ -8,17 +8,37 @@
 #experience .section-2 .section-description {
     font-size: 2.125rem;
 }
+
+#experience .section-2 .section-description em {
+    font-style: italic;
+    color: #C8A84B;
+}
 #experience .section-3 .section-description {
     font-size: 2.125rem;
 }
+
+#experience .section-3 .section-description em {
+    font-style: italic;
+    color: #C8A84B;
+}
 #experience .section-gallery .section-description {
     font-size: 2.125rem;
+}
+
+#experience .section-gallery .section-description em {
+    font-style: italic;
+    color: #C8A84B;
 }
 #experience .section-4 .section-description {
     font-size: 2.125rem;
 }
 #experience .section-5 .section-description {
     font-size: 2.125rem;
+}
+
+#experience .section-5 .section-description em {
+    font-style: italic;
+    color: #C8A84B;
 }
 
 @media (min-width: 992px) {

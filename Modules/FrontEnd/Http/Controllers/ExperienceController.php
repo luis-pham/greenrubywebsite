@@ -118,6 +118,8 @@ class ExperienceController extends Controller{
         \TwitterCard::setUrl($url);
         \TwitterCard::setImage($obj->cover_link ? \URL::to('/') . $obj->cover_link : \URL::to('/') . config('frontend.organizationLogoSocial.url'));
 
-        return view($this->baseView . __FUNCTION__, compact('obj', 'listExperience', 'galleryImages', 'suitableAudiences', 'pageConfig'));
+        $menuUrlActive = route(Utilities::getRouteName('frontend.experience.index'), ['languageCode' => $languageCode]);
+
+        return view($this->baseView . __FUNCTION__, compact('obj', 'listExperience', 'galleryImages', 'suitableAudiences', 'pageConfig', 'menuUrlActive'));
     }
 }

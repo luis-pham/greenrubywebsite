@@ -22,8 +22,16 @@
                         <ul class="d-flex flex-nowrap mb-0 list-unstyled">
                             @for ($i = 0; $i < count($listMenuPrimary); $i++)
                                 @php
-                                    $isActive = isset($menuUrlActive) && FeUtils::getAbsoluteUrl($menuUrlActive) == FeUtils::getAbsoluteUrl($listMenuPrimary[$i]->url);
                                     $hasChild = count($listMenuPrimary[$i]->child) > 0;
+                                    $isActive = FeUtils::isMenuItemActive($menuUrlActive ?? null, $listMenuPrimary[$i]->url);
+                                    if (!$isActive && $hasChild) {
+                                        foreach ($listMenuPrimary[$i]->child as $childMenuItem) {
+                                            if (FeUtils::isMenuItemActive($menuUrlActive ?? null, $childMenuItem->url)) {
+                                                $isActive = true;
+                                                break;
+                                            }
+                                        }
+                                    }
                                 @endphp
                                 <li class="position-relative {{ $hasChild ? 'has-child' : '' }} {{ $isActive ? 'active' : '' }}">
                                     <a href="{{ $listMenuPrimary[$i]->url }}" class="d-flex align-items-center font-weight-bold text-center text-uppercase" target="{{ $listMenuPrimary[$i]->target }}">

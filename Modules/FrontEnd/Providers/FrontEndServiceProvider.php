@@ -9,6 +9,7 @@ use Modules\BackEnd\Services\AdLanguageService;
 use Modules\BackEnd\Services\AppMenuFrontEndService;
 use Modules\BackEnd\Services\AppTestimonialService;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
+use Modules\FrontEnd\Helpers\FeUtils;
 
 class FrontEndServiceProvider extends ServiceProvider
 {
@@ -204,6 +205,8 @@ class FrontEndServiceProvider extends ServiceProvider
                 }
             }
 
+            $list[$i]->url = $this->canonicalizeMenuUrl($list[$i]->url);
+
             if (!$list[$i]->parent_id) {
                 continue;
             }
@@ -268,6 +271,21 @@ class FrontEndServiceProvider extends ServiceProvider
         }
 
         return $maxLevel - $obj->level + 1;
+    }
+
+    private function canonicalizeMenuUrl($url)
+    {
+        $path = FeUtils::getAbsoluteUrl($url);
+        if (!$path) {
+            return $url;
+        }
+
+        $normalized = FeUtils::normalizeMenuPath($path);
+        if ($normalized === $path) {
+            return $url;
+        }
+
+        return str_replace($path, $normalized, $url);
     }
 
     private function getMenuChild($list, $obj)

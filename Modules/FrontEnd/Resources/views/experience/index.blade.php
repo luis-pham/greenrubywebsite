@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <div class="container">
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experience.section_2_title') }}</p>
-                    <p class="section-description font-heading">{{ __('frontend::experience.section_2_description') }}</p>
+                    <p class="section-description font-heading">{!! __('frontend::experience.section_2_description') !!}</p>
                     @if (count($listExperience) > 0)
                         <div class="slide-1">
                             <div class="list-itinerary-cruise owl-carousel owl-theme">
@@ -95,7 +95,7 @@
             <div class="container-fluid">
                 <div class="container">
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experience.section_5_title') }}</p>
-                    <p class="section-description font-heading">{{ __('frontend::experience.section_5_description') }}</p>
+                    <p class="section-description font-heading">{!! __('frontend::experience.section_5_description') !!}</p>
                     <div class="section-content-sustainability">
                         @if (count($listSustainability) > 0)
                         <div class="slide-1">

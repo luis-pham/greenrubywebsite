@@ -21,8 +21,16 @@
                         <ul class="list-unstyled list-item">
                             @for ($i = 0; $i < count($listMenuPrimary); $i++)
                                 @php
-                                    $isActive = isset($menuUrlActive) && FeUtils::getAbsoluteUrl($menuUrlActive) == FeUtils::getAbsoluteUrl($listMenuPrimary[$i]->url);
                                     $hasChild = count($listMenuPrimary[$i]->child) > 0;
+                                    $isActive = FeUtils::isMenuItemActive($menuUrlActive ?? null, $listMenuPrimary[$i]->url);
+                                    if (!$isActive && $hasChild) {
+                                        foreach ($listMenuPrimary[$i]->child as $childMenuItem) {
+                                            if (FeUtils::isMenuItemActive($menuUrlActive ?? null, $childMenuItem->url)) {
+                                                $isActive = true;
+                                                break;
+                                            }
+                                        }
+                                    }
                                 @endphp
                                 <li class="item {{ $hasChild ? 'has-child' : '' }} {{ $isActive ? 'active' : '' }}">
                                     <a href="{{ $listMenuPrimary[$i]->url }}" class="item-body d-flex align-items-center text-uppercase justify-content-between" target="{{ $listMenuPrimary[$i]->target }}">
@@ -39,9 +47,9 @@
                                             <ul class="list-item menu-child menu-lv1 list-unstyled">
                                                 @for ($j = 0; $j < count($listMenuPrimary[$i]->child); $j++)
                                                     @php
-                                                        $isActive = isset($menuUrlActive) && FeUtils::getAbsoluteUrl($menuUrlActive) == FeUtils::getAbsoluteUrl($listMenuPrimary[$i]->url);
+                                                        $isChildActive = FeUtils::isMenuItemActive($menuUrlActive ?? null, $listMenuPrimary[$i]->child[$j]->url);
                                                     @endphp
-                                                    <li class="item">
+                                                    <li class="item {{ $isChildActive ? 'active' : '' }}">
                                                         <a class="item-body d-flex align-items-center justify-content-between" href="{{ $listMenuPrimary[$i]->child[$j]->url }}" target="{{ $listMenuPrimary[$i]->child[$j]->target }}">
                                                             <span>{{ FeUtils::formatGreenRubyMenuName($listMenuPrimary[$i]->child[$j]->name) }}</span>
                                                         </a>
