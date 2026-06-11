@@ -503,7 +503,7 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/modules/cruise/onboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/modules/cruise/onboard.css') }}?v={{ filemtime(public_path('assets/frontend/css/modules/cruise/onboard.css')) }}">
 @endpush
 
 @push('scripts')
@@ -547,5 +547,5 @@
             getById: "{{ route(Utilities::getRouteName('frontend.api.service.getById'), ['languageCode' => $languageCode]) }}"
         };
     </script>
-    <script src="{{ asset('assets/frontend/js/modules/cruise/onboard.js') }}" defer></script>
+    <script src="{{ asset('assets/frontend/js/modules/cruise/onboard.js') }}?v={{ filemtime(public_path('assets/frontend/js/modules/cruise/onboard.js')) }}" defer></script>
 @endpush
