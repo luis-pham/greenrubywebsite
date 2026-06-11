@@ -1,5 +1,6 @@
 <?php
 return [
+    'hero_subtitle' => 'Built on one belief: luxury should leave the world better than it found it.',
     'button_explore_itinerary' => 'Explore Itineraries',
     'button_our_service' => 'Our Service',
     'section_3_title' => 'The Value of Sustainability',

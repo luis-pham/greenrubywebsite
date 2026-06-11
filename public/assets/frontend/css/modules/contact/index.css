@@ -72,41 +72,19 @@
 }
 
 #contact .contact-hero-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-text-accent);
     margin-bottom: 14px;
-    font-weight: 400;
-    font-family: var(--font-body);
 }
 
 #contact .contact-hero .main-info .title {
-    font-family: var(--font-display);
-    font-size: 52px;
-    font-weight: 300;
-    color: var(--color-text-on-dark);
-    line-height: 1.1;
     margin-bottom: 12px;
-    letter-spacing: -0.01em;
     display: block;
     overflow: visible;
     -webkit-line-clamp: unset;
 }
 
-#contact .contact-hero .main-info .title em {
-    font-style: italic;
-    color: var(--color-text-accent);
-}
-
 #contact .contact-hero .main-info .description {
-    font-size: 14px;
-    color: var(--color-text-muted-on-dark);
-    font-weight: 300;
     max-width: 440px;
     margin: 0 auto 32px;
-    line-height: 1.7;
-    font-family: var(--font-body);
     display: block;
     overflow: visible;
     -webkit-line-clamp: unset;
@@ -167,10 +145,6 @@
 }
 
 @media (max-width: 575.98px) {
-    #contact .contact-hero .main-info .title {
-        font-size: 36px;
-    }
-
     #contact .contact-hero .main-info .list-button {
         flex-direction: column;
         gap: 8px;
@@ -202,15 +176,13 @@
 }
 
 /* ── Left column ──────────────────────────────────────── */
-#contact .contact-left .section-eyebrow {
-    justify-content: flex-start;
+#contact .contact-left {
     text-align: left;
-    width: auto;
 }
 
 #contact .contact-left-title {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     line-height: 1.1;

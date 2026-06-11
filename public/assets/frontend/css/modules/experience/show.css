@@ -32,33 +32,16 @@
     padding:0;
 }
 
-#experience-detail .section-2 .section-content-wrapper .section-eyebrow,
-#experience-detail .section-2 .section-content-exp-wrapper .section-eyebrow {
-    justify-content: flex-start;
+#experience-detail .section-2 .section-content-wrapper-inner-1 {
+    text-align: center;
+}
+
+#experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-2,
+#experience-detail .section-2 .section-content-exp-wrapper {
     text-align: left;
 }
 
-#experience-detail .section-2 .section-content-wrapper .section-eyebrow,
-#experience-detail .section-2 .section-content-wrapper .section-description {
-    text-align: start;
-}
-
-#experience-detail .section-2 .section-content-wrapper-inner-1 .section-eyebrow,
-#experience-detail .section-2 .section-content-wrapper-inner-1 .section-description {
-    text-align: center;
-    justify-content: center;
-}
-
 /* section-content-1*/
-
-#experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-description {
-    font-size: 2.125rem;
-}
-@media (min-width: 992px) {
-    #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-description {
-        font-size: 3.125rem;
-    }
-}
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content .item-duration {
     background-color: var(--color-forest);
@@ -106,11 +89,10 @@
         padding-right: 15px;
     }
 
-    #experience-detail .section-2 .section-content-wrapper-inner-1 .section-eyebrow,
-    #experience-detail .section-2 .section-content-wrapper-inner-1 .section-description {
-        text-align: start;
-        justify-content: flex-start;
+    #experience-detail .section-2 .section-content-wrapper-inner-1 {
+        text-align: left;
     }
+
     #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content {
         flex-direction: row;    
     }
@@ -354,8 +336,6 @@
 
 #experience-detail .section-2 .section-content-exp .section-content-exp-wrapper .section-eyebrow {
     margin: 0 0 12px;
-    justify-content: flex-start;
-    text-align: start;
     padding-right: 0.75rem;
 }
 

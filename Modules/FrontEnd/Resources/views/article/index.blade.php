@@ -12,15 +12,24 @@
 @endphp
 
 @section('content')
-    <div id="article-category">
-        @include('frontend::shared.section.section-cover', [
-            'class' => 'section-1 section-cover-sm',
-            'list' => [(object)[
-                "title" => __('frontend::article.page_cover_title'),
-                "link" => asset("/assets/frontend/images/modules/article/page-cover.jpg"),
-                "description" => __('frontend::article.page_cover_description')
-            ]]
-        ])
+    <div id="article-category" class="page-article">
+        <section class="section-1 article-hero position-relative">
+            <svg class="article-hero-topo" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <ellipse cx="1200" cy="50" rx="300" ry="170" fill="none" stroke="white" stroke-width="1"/>
+                <ellipse cx="1200" cy="50" rx="225" ry="120" fill="none" stroke="white" stroke-width="1"/>
+                <ellipse cx="200" cy="210" rx="260" ry="150" fill="none" stroke="white" stroke-width="1"/>
+                <ellipse cx="200" cy="210" rx="185" ry="105" fill="none" stroke="white" stroke-width="1"/>
+            </svg>
+            <div class="article-hero-inner">
+                <div class="section-eyebrow section-eyebrow--gold">
+                    <span class="eyebrow-line"></span>
+                    {{ __('frontend::article.hero_eyebrow') }}
+                    <span class="eyebrow-line"></span>
+                </div>
+                <h1 class="article-hero-title font-heading">{!! __('frontend::article.hero_title') !!}</h1>
+                <p class="article-hero-subtitle mb-0">{{ __('frontend::article.hero_subtitle') }}</p>
+            </div>
+        </section>
         <section class="section-2 d-block d-lg-none pb-0">
             <div class="container">
                 @include('frontend::article.shared.widget-search', ['searchUrl' => $searchUrl])
@@ -64,11 +73,13 @@
                 </div>
             </section>
         @endif
-        <section class="section-4 section-article">
+        <section id="section-article" class="section-4 section-article">
             <div class="container">
                 <div class="page-wrapper">
                     <div class="main-content">
-                        <h1 class="section-title text-lg-left">{{ isset($category) && $category ? $category->name : __('frontend::article.category_default_title') }}</h1>
+                        @if (isset($category) && $category)
+                            <h1 class="section-title text-lg-left">{{ $category->name }}</h1>
+                        @endif
                         <div class="header d-block d-xl-flex justify-content-lg-between align-items-lg-center">
                             <p class="section-description mb-xl-0 font-heading text-lg-left">{{ __('frontend::article.category_default_sub_title') }}</p>
                             @if (count($listCategoryChild) > 0)

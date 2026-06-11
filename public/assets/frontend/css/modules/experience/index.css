@@ -1,65 +1,24 @@
 #experience .section-1 .container-fluid .page-cover .image-wrapper::before{
     opacity: 0.3;
 }
-#experience .section-1 .title {
-    font-size: 2.125rem;
-}
-
-#experience .section-2 .section-description {
-    font-size: 2.125rem;
-}
-
 #experience .section-2 .section-description em {
     font-style: italic;
     color: var(--color-text-accent);
 }
-#experience .section-3 .section-description {
-    font-size: 2.125rem;
-}
-
 #experience .section-3 .section-description em {
     font-style: italic;
     color: var(--color-text-accent);
 }
-#experience .section-gallery .section-description {
-    font-size: 2.125rem;
-}
-
 #experience .section-gallery .section-description em {
     font-style: italic;
     color: var(--color-text-accent);
 }
-#experience .section-4 .section-description {
-    font-size: 2.125rem;
-}
-#experience .section-5 .section-description {
-    font-size: 2.125rem;
-}
-
 #experience .section-5 .section-description em {
     font-style: italic;
     color: var(--color-text-accent);
 }
 
 @media (min-width: 992px) {
-    #experience .section-5 .section-description {
-        font-size: 3.125rem;
-    }
-    #experience .section-4 .section-description {
-        font-size: 3.125rem;
-    }
-    #experience .section-gallery .section-description {
-        font-size: 3.125rem;
-    }
-    #experience .section-2 .section-description {
-        font-size: 3.125rem;
-    }
-    #experience .section-3 .section-description {
-        font-size: 3.125rem;
-    }
-    #experience .section-1 .title {
-        font-size: 3.375rem;
-    }
     #experience .section-1 .container-fluid .page-cover .image-wrapper::before{
         opacity: 0.32;
     }

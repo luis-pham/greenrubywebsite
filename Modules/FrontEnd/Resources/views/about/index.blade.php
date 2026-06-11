@@ -100,15 +100,7 @@
                 <div class="main-info mx-auto text-white text-center">
                     <p class="section-eyebrow section-eyebrow--gold">About Green Ruby Cruises</p>
                     <h1 class="title font-heading">Where Luxury Has <em>a Conscience.</em></h1>
-                    <p class="description">Built from the belief that true luxury respects nature. Green Ruby was founded to offer unforgettable journeys through Ha Long Bay while leaving it better than we found it.</p>
-                    <div class="list-button d-flex align-items-center">
-                        <div class="item">
-                            <a href="{{ $itineraryUrl }}" class="btn-rounded btn-warning">{{ __('frontend::about.button_explore_itinerary') }}</a>
-                        </div>
-                        <div class="item">
-                            <a href="{{ $sustainabilityUrl }}" class="btn-rounded btn-success">{{ __('frontend::about.button_our_service') }}</a>
-                        </div>
-                    </div>
+                    <p class="description">{{ __('frontend::about.hero_subtitle') }}</p>
                 </div>
             </div>
         </section>

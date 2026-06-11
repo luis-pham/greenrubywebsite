@@ -3,14 +3,6 @@
         min-height: 533px;
     }
 }
-#experience .section-experience .section-description {
-    font-size: 2.125rem;
-}
-@media (min-width: 992px) {
-    #experience .section-experience .section-description {
-        font-size: 3.125rem;
-    }
-}
 #experience .section-experience .container-fluid {
     position: relative;
 }

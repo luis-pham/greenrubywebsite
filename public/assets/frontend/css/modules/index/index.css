@@ -1,10 +1,3 @@
-/* Homepage section eyebrows — About gold style, centered layout unchanged */
-#main #home .section-eyebrow {
-    justify-content: center;
-    text-align: center;
-    line-height: 1.4;
-}
-
 /* Section 1 */
 #home .section-1.section-cover .page-cover {
     position: relative;
@@ -97,8 +90,23 @@
 }
 
 @media (min-width: 1024px) {
+    /* Sub hero — match cruise detail .ship-hero-sub */
     #home .section-1.section-cover .page-cover .main-info .description {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: var(--text-lg);
+        font-weight: 300;
         color: var(--color-text-on-dark);
+        font-style: italic;
+        margin-bottom: 28px;
+        letter-spacing: 0.02em;
+        text-align: left;
+        text-shadow: none;
+        display: block;
+        overflow: visible;
+        text-overflow: unset;
+        line-clamp: unset;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
     }
 
     #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer-link {
@@ -804,6 +812,44 @@
     }
 }
 
+/* Centered section eyebrows — follow section title via parent text-align */
+#main #home :is(
+    .section-3 > .container-fluid > .container,
+    .section-4.section-itinerary > .container-fluid > .container,
+    .section-6.section-cabin > .container-fluid > .container,
+    .section-7 > .container-fluid > .container,
+    .section-8.section-amenity > .container-fluid > .container,
+    .section-9 > .container-fluid > .container,
+    .section-13 > .container-fluid > .container
+) {
+    text-align: center;
+}
+
+#main #home .section-eyebrow {
+    margin-inline: 0;
+}
+
+#main #home :is(
+    .section-3 .slide-1,
+    .section-4.section-itinerary .tab-filter,
+    .section-4.section-itinerary .slide-1,
+    .section-6.section-cabin .tab-filter,
+    .section-6.section-cabin .slide-1,
+    .section-6.section-cabin .suites-grid,
+    .section-7 .tab-filter,
+    .section-7 .list-item,
+    .section-8.section-amenity .list-item,
+    .section-9 .tab-filter,
+    .section-9 .slide-1,
+    .section-13 .list-faq
+) {
+    text-align: left;
+}
+
+#main #home .section-13 .text-center {
+    text-align: center;
+}
+
 /* Section 3 */
 #home .section-3 .slide-1 .owl-nav .button {
     width: 32px;
@@ -1130,7 +1176,7 @@
 }
 
 #home .section-5 .cruise.ship-card .ship-bay {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--color-text-muted-on-dark);
     font-weight: 300;
     letter-spacing: 0.04em;

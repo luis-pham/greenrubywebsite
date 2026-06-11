@@ -1,5 +1,9 @@
 <?php
 return [
+    'hero_eyebrow' => 'Editorial',
+    'hero_title' => 'Stories from the Bay<br><em>Green Ruby Journal.</em>',
+    'hero_subtitle' => 'Guides, tales & green journeys — curated by Green Ruby Cruises.',
+    'button_browse_articles' => 'Browse Articles ↓',
     'page_cover_title' => 'Stories from the Bay',
     'page_cover_description' => 'Guides, tales & green journeys - curated by Green Ruby Cruises',
     'category_default_title' => 'Green Ruby Editorial',

@@ -273,4 +273,174 @@
     box-shadow: none;
 }
 
+/* ============================================================
+   HERO TYPOGRAPHY — unified (match homepage section-1)
+   ============================================================ */
+
+#main .section-cover .page-cover .main-info .title,
+#main .section-cover .main-info .title,
+#main .about-hero .main-info .title,
+#main .gallery-hero .main-info .title,
+#main .contact-hero .main-info .title,
+#main .faq-hero-title,
+#main .legal-hero-title,
+#main .privacy-hero-title,
+#main .article-hero-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    color: var(--color-text-on-dark);
+}
+
+#main .section-cover .page-cover .main-info .title em,
+#main .section-cover .main-info .title em,
+#main .about-hero .main-info .title em,
+#main .gallery-hero .main-info .title em,
+#main .contact-hero .main-info .title em,
+#main .faq-hero-title em,
+#main .legal-hero-title em,
+#main .privacy-hero-title em,
+#main .article-hero-title em {
+    font-style: italic;
+    color: var(--color-text-accent);
+}
+
+#main .section-cover .page-cover .main-info .title {
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 1024px) {
+    #main .about-hero-eyebrow,
+    #main .gallery-hero-eyebrow,
+    #main .contact-hero-eyebrow,
+    #main .legal-hero-eyebrow,
+    #main .privacy-hero-eyebrow,
+    #main .ship-hero-eyebrow .ship-eyebrow-text {
+        font-family: var(--font-body);
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--color-text-accent);
+        font-weight: 400;
+    }
+
+    #main .section-cover .page-cover .main-info .description,
+    #main .section-cover .main-info .description,
+    #main .section-cover .ship-hero-sub,
+    #main .about-hero .main-info .description,
+    #main .gallery-hero .main-info .description,
+    #main .contact-hero .main-info .description,
+    #main .faq-hero-subtitle,
+    #main .legal-hero-subtitle,
+    #main .privacy-hero-sub,
+    #main .article-hero-subtitle {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 300;
+        color: var(--color-text-on-dark);
+        font-style: italic;
+        margin-bottom: 28px;
+        letter-spacing: 0.02em;
+        line-height: 1.4375;
+        display: block;
+        overflow: visible;
+        text-overflow: unset;
+        line-clamp: unset;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
+    }
+
+    #main .about-hero .main-info .title,
+    #main .gallery-hero .main-info .title,
+    #main .contact-hero .main-info .title,
+    #main .faq-hero-title,
+    #main .legal-hero-title,
+    #main .privacy-hero-title,
+    #main .article-hero-title {
+        font-size: 2.625rem;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+    }
+}
+
+@media (min-width: 1400px) {
+    #main .about-hero .main-info .title,
+    #main .gallery-hero .main-info .title,
+    #main .contact-hero .main-info .title,
+    #main .faq-hero-title,
+    #main .legal-hero-title,
+    #main .privacy-hero-title,
+    #main .article-hero-title {
+        font-size: 4.55rem;
+        line-height: 1.1;
+    }
+}
+
+@media (max-width: 1023px) {
+    #main .section-cover .page-cover .main-info .title,
+    #main .section-cover .main-info .title,
+    #main .about-hero .main-info .title,
+    #main .gallery-hero .main-info .title,
+    #main .contact-hero .main-info .title,
+    #main .faq-hero-title,
+    #main .legal-hero-title,
+    #main .privacy-hero-title,
+    #main .article-hero-title {
+        font-size: 30px;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+        font-weight: 300;
+        text-shadow: none;
+        display: block;
+        overflow: visible;
+        text-overflow: unset;
+        line-clamp: unset;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
+    }
+
+    #main .section-cover .page-cover .main-info .description,
+    #main .section-cover .main-info .description,
+    #main .section-cover .ship-hero-sub,
+    #main .about-hero .main-info .description,
+    #main .gallery-hero .main-info .description,
+    #main .contact-hero .main-info .description,
+    #main .faq-hero-subtitle,
+    #main .legal-hero-subtitle,
+    #main .privacy-hero-sub,
+    #main .article-hero-subtitle {
+        font-family: var(--font-body);
+        font-size: 16px;
+        font-style: normal;
+        color: var(--color-text-muted-on-dark);
+        line-height: 1.7;
+        font-weight: 300;
+        margin-bottom: 20px;
+        display: block;
+        overflow: visible;
+        text-overflow: unset;
+        line-clamp: unset;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
+    }
+
+    #main .section-cover .hero-eyebrow,
+    #main .about-hero-eyebrow,
+    #main .gallery-hero-eyebrow,
+    #main .contact-hero-eyebrow,
+    #main .faq-hero .section-eyebrow,
+    #main .article-hero .section-eyebrow,
+    #main .legal-hero-eyebrow,
+    #main .privacy-hero-eyebrow,
+    #main .ship-hero-eyebrow .ship-eyebrow-text {
+        font-family: var(--font-body);
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--color-text-accent);
+        font-weight: 400;
+    }
+}
+
 

@@ -86,11 +86,8 @@
             </svg>
             <div class="container position-relative">
                 <div class="combined-header">
-                    <p class="section-eyebrow section-eyebrow--gold text-left">Ship Specifications & Eco Technology</p>
-                    <h2 class="combined-title">
-                        The Numbers Behind
-                        <em>{{ $specsVesselName }}</em>
-                    </h2>
+                    <p class="section-eyebrow section-eyebrow--gold">Ship Specifications & Eco Technology</p>
+                    <h2 class="combined-title">The Numbers Behind <em>{{ $specsVesselName }}</em></h2>
                 </div>
                 <div class="grid-info ship-stats-grid">
                     <div class="item ship-stat-card">
@@ -235,14 +232,9 @@
 
             <div class="container">
 
-                <div style="margin-bottom:28px;">
-                    <p class="section-eyebrow section-eyebrow--gold text-left">What Awaits You</p>
-                    <h2 style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:300; color:var(--color-forest); line-height:1.1; letter-spacing:-0.01em;">
-                        Onboard
-                        <em style="font-style:italic; color:var(--color-gold);">
-                            {{ $obj->name ?? 'Green Ruby' }}
-                        </em>
-                    </h2>
+                <div class="onboard-section-header">
+                    <p class="section-eyebrow section-eyebrow--gold">What Awaits You</p>
+                    <h2 class="combined-title">Onboard <em>{{ $obj->name ?? 'Green Ruby' }}</em></h2>
                 </div>
 
                 <div class="onboard-main-tabs">

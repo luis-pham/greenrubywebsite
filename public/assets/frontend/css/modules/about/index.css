@@ -1,7 +1,5 @@
-#about .about-section-eyebrow,
-#about .section-eyebrow {
-    justify-content: flex-start;
-    text-align: left;
+#main #about .about-section-eyebrow,
+#main #about .section-eyebrow {
     color: var(--color-text-accent);
 }
 
@@ -39,17 +37,7 @@
 }
 
 #about .about-hero-eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-text-accent);
-    font-weight: 400;
     margin-bottom: 14px;
-    font-family: var(--font-body);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
 }
 
 #about .about-hero-eyebrow-line {
@@ -61,31 +49,15 @@
 }
 
 #about .about-hero .main-info .title {
-    font-family: var(--font-display);
-    font-size: 54px;
-    font-weight: 300;
-    color: var(--color-text-on-dark);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
     margin-bottom: 14px;
     display: block;
     overflow: visible;
     -webkit-line-clamp: unset;
 }
 
-#about .about-hero .main-info .title em {
-    font-style: italic;
-    color: var(--color-text-accent);
-}
-
 #about .about-hero .main-info .description {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted-on-dark);
-    font-weight: 300;
     max-width: 480px;
     margin: 0 auto 36px;
-    line-height: 1.75;
-    font-family: var(--font-body);
     display: block;
     overflow: visible;
     -webkit-line-clamp: unset;
@@ -142,10 +114,6 @@
 }
 
 @media (max-width: 575.98px) {
-    #about .about-hero .main-info .title {
-        font-size: 36px;
-    }
-
     #about .about-hero .main-info .list-button {
         flex-direction: column;
         gap: 8px;
@@ -232,6 +200,12 @@
     align-items: center;
 }
 
+#about .about-story-copy,
+#about .about-eco-panel,
+#about .about-community-header {
+    text-align: left;
+}
+
 #about .about-story-kicker {
     font-size: 11px;
     letter-spacing: 0.14em;
@@ -243,7 +217,7 @@
 
 #about .about-story-title {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     line-height: 1.1;
@@ -338,7 +312,7 @@
 
 #about .about-eco-title {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     line-height: 1.1;
@@ -423,7 +397,7 @@
 
 #about .about-community-title {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     line-height: 1.2;
@@ -522,14 +496,10 @@
     background-color: var(--color-cream-bg);
 }
 
-#about .about-impact .about-section-eyebrow,
-#about .about-impact .section-eyebrow {
-    justify-content: center;
-}
 
 #about .about-impact-title {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     margin-bottom: 12px;
@@ -683,7 +653,7 @@
 
 #about .about-cta-title {
     font-family: var(--font-display);
-    font-size: 36px;
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     line-height: 1.1;

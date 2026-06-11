@@ -1,5 +1,9 @@
 <?php
 return [
+    'hero_eyebrow' => 'Bài viết',
+    'hero_title' => 'Những câu chuyện từ vịnh<br><em>Tạp chí Green Ruby.</em>',
+    'hero_subtitle' => 'Hướng dẫn, câu chuyện và hành trình xanh — được tuyển chọn bởi Green Ruby Cruises.',
+    'button_browse_articles' => 'Xem bài viết ↓',
     'page_cover_title' => 'Những câu chuyện từ vịnh',
     'page_cover_description' => 'Hướng dẫn, câu chuyện và hành trình xanh - được tuyển chọn bởi Green Ruby Cruises',
     'category_default_title' => 'Bài viết của Green Ruby',

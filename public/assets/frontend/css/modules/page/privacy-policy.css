@@ -46,12 +46,6 @@
 }
 
 #article.page-privacy-policy .privacy-hero-eyebrow {
-    font-family: var(--font-body);
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-text-accent);
-    font-weight: 400;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -69,35 +63,13 @@
 }
 
 #article.page-privacy-policy .privacy-hero-title {
-    font-family: var(--font-display);
-    font-size: 48px;
-    font-weight: 300;
-    color: var(--color-text-on-dark);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
     margin-bottom: 8px;
 }
 
-#article.page-privacy-policy .privacy-hero-title em {
-    font-style: italic;
-    color: var(--color-text-accent);
-}
-
 #article.page-privacy-policy .privacy-hero-sub {
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: var(--color-text-muted-on-dark);
-    font-weight: 300;
     max-width: 440px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.7;
-}
-
-@media (max-width: 768px) {
-    #article.page-privacy-policy .privacy-hero-title {
-        font-size: 36px;
-    }
 }
 
 /* ── Jump nav (gallery filter style) ───────────────────── */

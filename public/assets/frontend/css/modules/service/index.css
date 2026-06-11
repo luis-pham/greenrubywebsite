@@ -1,29 +1,9 @@
 #service .section-1 .container-fluid .page-cover .image-wrapper::before{
     opacity: 0.3;
 }
-#service .section-1 .container-fluid .page-cover .main-info .title {
-    font-size: 2.125rem;
-}
-
-#service .section-2 .section-description {
-    font-size: 2.125rem;
-}
-#service .section-3 .section-description {
-    font-size: 2.125rem;
-}
 @media (min-width: 992px) {
-    #service .section-3 .section-description {
-        font-size: 3.125rem;
-    }
-
-    #service .section-2 .section-description {
-        font-size: 3.125rem;
-    }
     #service .section-1 .container-fluid .page-cover .image-wrapper::before{
         opacity: 0.42;
-    }
-    #service .section-1 .container-fluid .page-cover .main-info .title {
-        font-size: 3.375rem;
     }
 }
 
@@ -395,16 +375,12 @@
 }
 
 #service .section-4 .cruise .main-info .section-description {
-    font-size: 2.125rem;
     margin-bottom: 0.75rem;
     font-weight: 400;
 }
 @media (min-width: 992px) {
     #service .section-4 .cruise .main-info .section-eyebrow {
         margin-bottom: 0.75rem;
-    }
-    #service .section-4 .cruise .main-info .section-description {
-        font-size: 3.125rem;
     }
 }
 #service .section-4 .cruise .main-info .specification .list-item {

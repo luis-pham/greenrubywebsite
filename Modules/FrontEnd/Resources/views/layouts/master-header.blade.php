@@ -1,5 +1,8 @@
 @php
     $languageCode = Route::current()->parameter('languageCode');
+    $headerLogo = !empty($config['website-logo-negative'])
+        ? $config['website-logo-negative']
+        : ($config['website-logo'] ?? null);
 @endphp
 <header id="header">
     <div class="container-fluid position-relative">
@@ -80,13 +83,13 @@
                 @endif
             </div>
             <div class="header-center justify-content-center">
-                @if (array_key_exists('website-logo', $config) && $config['website-logo'])
+                @if ($headerLogo)
                     @php
                         $isHome = FeUtils::isHome();
                     @endphp
                     @if ($isHome) <h1 class="mb-0"> @endif
                         <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
-                            <img src="{{ Utilities::getFileLink($config['website-logo']) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
+                            <img src="{{ Utilities::getFileLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
                         </a>
                     @if ($isHome) </h1> @endif
                 @endif
@@ -133,9 +136,9 @@
         </div>
         <div class="header-mobile d-flex d-md-none align-items-center justify-content-between position-relative text-white">
             <div class="header-left">
-                @if (array_key_exists('website-logo', $config) && $config['website-logo'])
+                @if ($headerLogo)
                     <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
-                        <img src="{{ FeUtils::getImageLink($config['website-logo']) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
+                        <img src="{{ FeUtils::getImageLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
                     </a>
                 @endif
             </div>

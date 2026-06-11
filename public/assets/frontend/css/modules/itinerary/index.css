@@ -142,7 +142,7 @@
 }
 
 #itinerary .section-contact .section-title{
-    font-size: 2.125rem;
+    font-size: var(--text-section-title);
     color: var(--color-text-on-dark);
     margin-bottom: 1rem;
     font-weight: 400;
@@ -168,7 +168,7 @@
 
 @media (min-width: 768px) {
     #itinerary .section-contact .section-title{
-        font-size: 3.125rem;
+        font-size: var(--text-section-title);
     }
 
     #itinerary .section-faq .grid-faq-inner:not(.owl-loaded) {

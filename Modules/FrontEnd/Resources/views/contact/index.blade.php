@@ -1,9 +1,6 @@
 @extends('frontend::layouts.master')
 @php
     $languageCode = Route::current()->parameter('languageCode');
-
-    $itineraryUrl = route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
-    $serviceUrl = route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.service.index'), ['languageCode' => $languageCode]);
 @endphp
 @section('content')
     <div id="contact">
@@ -19,14 +16,6 @@
                     <p class="section-eyebrow section-eyebrow--gold">Contact Us</p>
                     <h1 class="title font-heading">Let's Plan Your <em>Perfect Voyage.</em></h1>
                     <p class="description">Our team is ready to help you find the right itinerary, cabin, and date for your Green Ruby experience.</p>
-                    <div class="list-button d-flex align-items-center">
-                        <div class="item">
-                            <a href="{{ $itineraryUrl }}" class="btn-rounded btn-warning">{{ __('frontend::contact.explore-itineraries') }}</a>
-                        </div>
-                        <div class="item">
-                            <a href="{{ $serviceUrl }}" class="btn-rounded btn-success">{{ __('frontend::contact.our-services') }}</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

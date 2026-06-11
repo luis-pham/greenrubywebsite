@@ -40,6 +40,7 @@
     --text-lg:   1.375rem;
     --text-xl:   1.75rem;
     --text-2xl:  2.5rem;
+    --text-section-title: 3.125rem;
 
     /* Color tokens — Green Ruby Design System */
     --color-forest:        #0e5f4b;
@@ -329,7 +330,7 @@ button {
     text-transform: uppercase;
 }
 
-/* Shared section eyebrow (matches About "The Value of Sustainability") */
+/* Shared section eyebrow — typography only; alignment follows section title/parent */
 .section-eyebrow,
 .about-section-eyebrow {
     font-size: 12px;
@@ -339,9 +340,10 @@ button {
     font-weight: 400;
     margin-bottom: 12px;
     font-family: var(--font-body);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
+    vertical-align: top;
 }
 
 .section-eyebrow--gold,
@@ -361,16 +363,23 @@ button {
     flex-shrink: 0;
 }
 
-#main section .section-eyebrow {
-    justify-content: center;
-    text-align: center;
-    width: 100%;
+/* Centered section titles — eyebrow follows the same axis (when parent is not left-aligned) */
+#main section .section-eyebrow:has(+ .section-description),
+#main section .section-eyebrow:has(+ h2.section-description),
+#main section .section-eyebrow:has(+ .section-title),
+#main section .section-eyebrow:has(+ h2.section-title),
+#main section .section-eyebrow:has(+ h1.section-title) {
+    margin-inline: auto;
 }
 
-.section-eyebrow.text-left,
-#main section .section-eyebrow.text-left {
-    justify-content: flex-start;
-    text-align: left;
+/* Left-aligned headers — eyebrow text lines up with title (no pseudo-line offset) */
+#main section :is(.combined-header, .ship-hero-main-info) .section-eyebrow {
+    margin-inline: 0;
+}
+
+#main section :is(.combined-header, .ship-hero-main-info) .section-eyebrow::before,
+#main section :is(.combined-header, .ship-hero-main-info) .section-eyebrow::after {
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -1746,24 +1755,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* @deprecated — dùng .section-eyebrow thay thế. Xóa sau Q1 2027 */
+#main section .section-description,
+#main section .combined-title {
+    font-size: var(--text-section-title);
+}
+
 #main section .section-description {
     margin-bottom: 2.25rem;
     text-align: center;
-    font-size: 2.375rem;
     line-height: 1.2;
-}
-
-/* @deprecated — dùng .section-eyebrow thay thế. Xóa sau Q1 2027 */
-@media (min-width: 768px) {
-    #main section .section-description {
-        font-size: 2.625rem;
-    }
-}
-
-@media (min-width: 1400px) {
-    #main section .section-description {
-        font-size: 3.125rem;
-    }
 }
 
 /* Tab Filter */
@@ -1862,7 +1862,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-body);
     font-size: 16px;
     font-weight: 300;
-    color: var(--color-text-muted-on-dark);
+    color: var(--color-text-on-dark);
     line-height: 1.4;
 }
 

@@ -23,10 +23,6 @@
                 </div>
                 <h1 class="faq-hero-title font-heading">{!! __('frontend::faq.hero_title') !!}</h1>
                 <p class="faq-hero-subtitle mb-0">{{ __('frontend::faq.hero_subtitle') }}</p>
-                <div class="faq-hero-btns">
-                    <button type="button" class="faq-btn-gold btn-chat-with-ai">{{ __('frontend::faq.button_chat_with_ai') }}</button>
-                    <a href="#section-faq" class="faq-btn-ghost text-reset">{{ __('frontend::faq.button_browse_faq') }}</a>
-                </div>
             </div>
         </section>
 

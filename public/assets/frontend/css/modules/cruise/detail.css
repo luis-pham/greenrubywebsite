@@ -97,6 +97,16 @@
     text-align: left;
 }
 
+/* Hero eyebrow — align with left title (no decorative offset) */
+#cruise-detail .ship-hero-main-info .section-eyebrow {
+    margin-inline: 0;
+}
+
+#cruise-detail .ship-hero-main-info .section-eyebrow::before,
+#cruise-detail .ship-hero-main-info .section-eyebrow::after {
+    display: none;
+}
+
 /* Cruise hero — vessel badge */
 #cruise-detail .ship-hero-badge {
     display: flex;
@@ -148,22 +158,11 @@
 }
 
 #cruise-detail .ship-eyebrow-text {
-    font-size: 9px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--color-text-accent);
-    font-weight: 400;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    white-space: nowrap;
 }
 
 /* Cruise hero — title */
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 86px;
-    font-weight: 300;
-    color: var(--color-text-on-dark);
-    line-height: 1;
-    letter-spacing: -0.02em;
     margin-bottom: 6px;
     text-align: left;
     display: block;
@@ -173,7 +172,6 @@
     -webkit-box-orient: unset;
 }
 
-#cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title em,
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title span.num {
     font-style: italic;
     color: var(--color-text-accent);
@@ -181,21 +179,7 @@
 
 /* Cruise hero — subtitle */
 #cruise-detail .ship-hero-sub {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: var(--text-md);
-    font-weight: 300;
-    color: var(--color-text-muted-on-dark);
-    font-style: italic;
-    margin-bottom: 28px;
-    letter-spacing: 0.02em;
     text-align: left;
-}
-
-@media (min-width: 1024px) {
-    #cruise-detail .ship-hero-sub,
-    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .description {
-        color: var(--color-text-on-dark);
-    }
 }
 
 /* Cruise hero — buttons */
@@ -365,23 +349,12 @@
     }
 
     #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .title {
-        font-size: 40px;
-        font-weight: 300 !important;
-        line-height: 1.1;
-        letter-spacing: -0.01em;
-        margin-bottom: 8px;
         padding: 0 !important;
         margin-left: 0 !important;
         max-width: 340px;
     }
 
     #cruise-detail .ship-hero-sub {
-        font-size: var(--text-base);
-        color: var(--color-text-muted-on-dark);
-        line-height: 1.7;
-        font-weight: 300;
-        font-style: normal;
-        margin-bottom: 20px;
         padding: 0 !important;
         margin-left: 0 !important;
         max-width: 330px;
@@ -698,36 +671,66 @@
     margin-bottom: 48px;
     padding-bottom: 36px;
     border-bottom: 0.5px solid rgba(14, 95, 75, 0.08);
+    text-align: center;
 }
 
-#cruise-detail .ship-specs-section .combined-header .section-eyebrow,
-#cruise-detail .section-cabin-and-service .section-eyebrow {
-    justify-content: flex-start;
-    text-align: left;
-    width: auto;
+#cruise-detail .combined-header .section-eyebrow {
+    margin-inline: 0;
 }
 
-#cruise-detail .ship-hero-main-info .section-eyebrow {
-    justify-content: flex-start;
+/* Centered section headers — eyebrow follows title via parent text-align */
+#cruise-detail .ship-specs-section > .container,
+#cruise-detail .section-cabin > .container-fluid > .container,
+#cruise-detail .section-itinerary > .container-fluid > .container,
+#cruise-detail .section-vr-360 > .container-fluid > .container {
+    text-align: center;
+}
+
+#cruise-detail .section-cabin .section-eyebrow,
+#cruise-detail .section-itinerary .section-eyebrow,
+#cruise-detail .section-vr-360 .section-eyebrow {
+    margin-inline: 0;
+}
+
+#cruise-detail .ship-specs-section .ship-stats-grid,
+#cruise-detail .ship-specs-section .combined-divider,
+#cruise-detail .ship-specs-section .ship-eco-slide,
+#cruise-detail .section-cabin .tab-filter,
+#cruise-detail .section-cabin .slide-1,
+#cruise-detail .section-cabin .suites-grid,
+#cruise-detail .section-itinerary .list-filter,
+#cruise-detail .section-itinerary .itinerary-detail {
     text-align: left;
-    width: auto;
+}
+
+#cruise-detail .onboard-section-header {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+#cruise-detail .onboard-section-header .section-eyebrow {
+    margin-inline: 0;
+}
+
+#cruise-detail .section-cabin-and-service .onboard-tab-panel {
+    text-align: left;
 }
 
 #cruise-detail .combined-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: var(--text-2xl);
+    font-size: var(--text-section-title);
     font-weight: 300;
     color: var(--color-text-on-light);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin-bottom: 0;
-    text-align: left;
+    text-align: center;
 }
 
 #cruise-detail .combined-title em {
     font-style: italic;
     color: var(--color-text-accent);
-    display: block;
+    display: inline;
 }
 
 #cruise-detail .ship-specs-section .ship-stats-grid {
@@ -770,7 +773,7 @@
     font-size: var(--text-xs);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-text-muted-on-light);
+    color: var(--color-text-on-light);
     font-weight: 500;
     margin-bottom: 8px;
     font-family: var(--font-body);
@@ -789,7 +792,7 @@
 
 #cruise-detail .ship-specs-section .ship-stat-card .ship-stat-desc {
     font-size: var(--text-sm);
-    color: var(--color-text-muted-on-light);
+    color: var(--color-text-on-light);
     font-weight: 300;
     line-height: 1.6;
     font-family: var(--font-body);
@@ -910,7 +913,7 @@
     }
 
     #cruise-detail .combined-title {
-        font-size: 30px;
+        font-size: var(--text-section-title);
     }
 
     #cruise-detail .combined-header {

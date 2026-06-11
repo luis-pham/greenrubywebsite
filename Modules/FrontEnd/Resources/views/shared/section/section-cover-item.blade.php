@@ -52,7 +52,7 @@
     @endif
     <div class="main-info {{ $cruiseHero ? 'ship-hero-main-info' : 'mx-auto text-center' }} text-white">
         @if ($cruiseHero)
-            <p class="section-eyebrow section-eyebrow--gold text-left">{{ $vesselLabel ?: 'Green Ruby Cruises' }}</p>
+            <p class="section-eyebrow section-eyebrow--gold">{{ $vesselLabel ?: 'Green Ruby Cruises' }}</p>
         @elseif ($heroEyebrow)
             <p class="hero-eyebrow mb-0">{{ $heroEyebrow }}</p>
         @endif

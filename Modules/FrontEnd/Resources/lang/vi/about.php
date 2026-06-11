@@ -1,5 +1,6 @@
 <?php
 return [
+    'hero_subtitle' => 'Xây dựng trên một niềm tin: sự sang trọng phải để lại thế giới tốt đẹp hơn khi mình đến.',
     'button_explore_itinerary' => 'Khám phá hành trình',
     'button_our_service' => 'Dịch vụ của chúng tôi',
     'section_3_title' => 'Giá trị của sự bền vững',
