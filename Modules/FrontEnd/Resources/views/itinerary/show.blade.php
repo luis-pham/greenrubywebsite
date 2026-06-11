@@ -146,7 +146,7 @@
         <section class="section-detail bg">
             <div class="container-fluid">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::itineraryDetail.section-details-title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::itineraryDetail.section-details-title') }}</p>
                     <p class="section-description font-heading">{{$obj->itinerary->name}}</p>
                     <div class="list-detail">
                         @foreach($obj->itinerary->itineraryDays as $day)
@@ -164,13 +164,16 @@
             'title' => 'Private Sanctuaries',
             'description' => 'Luxury Suites',
             'list' => $listAccommodationCabin,
+            'suitesGrid' => true,
             'isShowBookNow' => false
         ])
 
         @include('frontend::shared.section.section-gallery',[
             'title' => __('frontend::itineraryDetail.section-gallery-title'),
             'description' =>__('frontend::itineraryDetail.section-gallery-description'),
-            'list' => $obj->itinerary->galleryImages
+            'list' => $obj->itinerary->galleryImages,
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
+            'tagHeading' => 'p',
         ])
 
         @include('frontend::shared.section.section-testimonial',[

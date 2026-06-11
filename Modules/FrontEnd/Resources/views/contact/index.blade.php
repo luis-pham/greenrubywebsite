@@ -16,7 +16,7 @@
             </svg>
             <div class="container hero-content">
                 <div class="main-info mx-auto text-white text-center">
-                    <p class="contact-hero-eyebrow">Contact Us</p>
+                    <p class="section-eyebrow section-eyebrow--gold">Contact Us</p>
                     <h1 class="title font-heading">Let's Plan Your <em>Perfect Voyage.</em></h1>
                     <p class="description">Our team is ready to help you find the right itinerary, cabin, and date for your Green Ruby experience.</p>
                     <div class="list-button d-flex align-items-center">
@@ -35,10 +35,7 @@
             <div class="container-fluid px-0">
                 <div class="container contact-main-grid">
                     <div class="main-info contact-left">
-                        <div class="contact-left-eyebrow">
-                            <span class="contact-left-eyebrow-line"></span>
-                            Get in Touch
-                        </div>
+                        <p class="section-eyebrow section-eyebrow--gold text-left">Get in Touch</p>
                         <h2 class="contact-left-title">We're Here <em>to Help.</em></h2>
                         <p class="contact-left-tagline">Questions about itineraries, cabin availability, or special requests — reach us directly.</p>
                         <div class="contact">

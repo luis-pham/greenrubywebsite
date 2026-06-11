@@ -15,14 +15,14 @@ return [
     'section-info.guests' => 'GUESTS',
     'section-info.year-of-manufacture' => 'YEAR OF MANUFACTURE',
 
-    'section-vr-360.title' => 'Image Library',
-    'section-vr-360.description' => 'Take a virtual reality cruise tour - VR 360',
+    'section-vr-360.eyebrow' => 'Immersive Experience',
+    'section-vr-360.title_html' => 'Step Aboard <em>Virtually.</em>',
 
     'section-cabin-and-service.cabin-container-title' => 'A premium space with luxury - Standard amenities',
     'section-cabin-and-service.service-container-title' => 'Premium service - A truly worthy experience',
 
-    'section-itinerary.title' => 'Journeys and Itineraries',
-    'section-itinerary.description' => 'Explore Ha Long Bay with special itineraries',
+    'section-itinerary.title' => 'Journeys & Itineraries',
+    'section-itinerary.description' => 'Explore Ha Long Bay <em>Your Way.</em>',
     'section-itinerary.list-activity-container.key-features' => 'Key Features',
 
     'section-cabin.title' => 'Accommodation & Bookings',

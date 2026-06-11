@@ -46,11 +46,7 @@
             </svg>
             <div class="container hero-content">
                 <div class="main-info mx-auto text-white text-center">
-                    <div class="gallery-hero-eyebrow">
-                        <span class="gallery-eyebrow-line"></span>
-                        Visual Journey
-                        <span class="gallery-eyebrow-line"></span>
-                    </div>
+                    <p class="section-eyebrow section-eyebrow--gold">Visual Journey</p>
                     <h1 class="title font-heading">Life Aboard <em>Green Ruby.</em></h1>
                     <p class="description">Discover moments aboard and beyond — in photos, films, and 360° views of Ha Long &amp; Lan Ha Bay.</p>
                 </div>
@@ -150,7 +146,7 @@
         <section class="gallery-memories section-experience">
             <div class="container-fluid px-0">
                 <div class="container gallery-memories-panel">
-                    <p class="gallery-section-eyebrow">Signature Moments</p>
+                    <p class="section-eyebrow section-eyebrow--gold text-left">Signature Moments</p>
                     <h2 class="gallery-memories-title">From Sunrise Calm <em>to Sunset Glow.</em></h2>
                     <div class="gallery-memories-grid list-experience">
                         @foreach($listExperience as $e)

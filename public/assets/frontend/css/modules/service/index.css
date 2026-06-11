@@ -390,7 +390,7 @@
    padding: 0.75rem 1rem;
 }
 
-#service .section-4 .cruise .main-info .section-title {
+#service .section-4 .cruise .main-info .section-eyebrow {
     margin-bottom: 0.5rem;
 }
 
@@ -400,7 +400,7 @@
     font-weight: 400;
 }
 @media (min-width: 992px) {
-    #service .section-4 .cruise .main-info .section-title {
+    #service .section-4 .cruise .main-info .section-eyebrow {
         margin-bottom: 0.75rem;
     }
     #service .section-4 .cruise .main-info .section-description {
@@ -446,11 +446,11 @@
 
 /* Biến thể proposal */
 
-#service .section-4 .cruise .main-info.proposal .section-title {
+#service .section-4 .cruise .main-info.proposal .section-eyebrow {
     margin-bottom: 0.5rem;
 }
 @media (min-width: 992px) {
-    #service .section-4 .cruise .main-info.proposal .section-title {
+    #service .section-4 .cruise .main-info.proposal .section-eyebrow {
         margin-bottom: 0.75rem;
     }
 }

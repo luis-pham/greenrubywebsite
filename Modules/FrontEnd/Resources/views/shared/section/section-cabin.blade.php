@@ -15,13 +15,17 @@ $suitesGrid = $suitesGrid ?? false;
     <div class="container-fluid">
         <div class="container">
             @if ($eyebrow)
-                <p class="section-title">{{ $eyebrow }}</p>
+                <p class="section-eyebrow section-eyebrow--gold">{{ $eyebrow }}</p>
             @endif
             @if ($titleHtml)
                 <h2 class="section-description font-heading">{!! $titleHtml !!}</h2>
             @else
                 @if ($title)
-                    <h2 class="section-title{{ $suitesGrid ? ' suite-section-eyebrow' : '' }}">{{ $title }}</h2>
+                    @if ($suitesGrid)
+                        <p class="section-eyebrow section-eyebrow--gold">{{ $title }}</p>
+                    @else
+                        <h2 class="section-title">{{ $title }}</h2>
+                    @endif
                 @endif
                 @if ($description)
                     <p class="section-description font-heading{{ $suitesGrid ? ' suite-section-title' : '' }}">{{ $description }}</p>

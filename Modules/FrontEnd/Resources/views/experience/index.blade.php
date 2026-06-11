@@ -33,7 +33,7 @@
         <section class="section-2 bg bg-azure">
             <div class="container-fluid">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::experience.section_2_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experience.section_2_title') }}</p>
                     <p class="section-description font-heading">{{ __('frontend::experience.section_2_description') }}</p>
                     @if (count($listExperience) > 0)
                         <div class="slide-1">
@@ -74,14 +74,17 @@
             'subTitle' => __('frontend::experience.section_3_description'),
             'list' => $listExperience,
             'tabButtons' => $tabButtons,
-            'tagHeading' => 'h2',
+            'tagHeading' => 'p',
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
         ])
 
         @include('frontend::shared.section.section-gallery',[
             'title' => __('frontend::experience.section_gallery_title'),
             'description' =>__('frontend::experience.section_gallery_description'),
             'list' => $listGallery,
-            'bgClass' => 'bg-white'
+            'bgClass' => 'bg-white',
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
+            'tagHeading' => 'p',
         ])
 
 
@@ -91,7 +94,7 @@
         <section class="section-5 bg bg-azure">
             <div class="container-fluid">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::experience.section_5_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experience.section_5_title') }}</p>
                     <p class="section-description font-heading">{{ __('frontend::experience.section_5_description') }}</p>
                     <div class="section-content-sustainability">
                         @if (count($listSustainability) > 0)

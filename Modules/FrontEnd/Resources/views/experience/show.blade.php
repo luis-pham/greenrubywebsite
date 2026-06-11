@@ -37,7 +37,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                     <div class="row no-gutters">
                         <div class="section-content-wrapper col-12 col-lg-8">
                             <div class="section-content-wrapper-inner-1">
-                                <h2 class="section-title">{{ __('frontend::experienceDetail.section_2_title') }}</h2>
+                                <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experienceDetail.section_2_title') }}</p>
                                 <p class="section-description font-heading">{{ __('frontend::experienceDetail.section_2_description') }}</p>
                                 <div class="section-content d-flex">
                                     <div class="item-duration d-flex align-items-center w-100">
@@ -62,7 +62,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                                 </div>                      
                             </div>
                             <div class="section-content-wrapper-inner-2">
-                                <h2 class="section-title">{{ __('frontend::experienceDetail.section_3_title') }}</h2>
+                                <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::experienceDetail.section_3_title') }}</p>
                                 <div class="section-content-gallery">
                                     @if(!empty($galleryImages) && count($galleryImages) > 0)
                                   
@@ -105,7 +105,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                             </div>
                             <div class="section-content-wrapper-inner-3">
                                 
-                                <h2 class="section-title">{{ __('frontend::experienceDetail.section_4_title') }}</h2>
+                                <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::experienceDetail.section_4_title') }}</p>
                                 <div class="section-content-notes">
                                     @php
                                         $notes = json_decode($obj->note, true);
@@ -123,7 +123,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                                 </div>
                             </div>
                             <div class="section-content-wrapper-inner-4">
-                                <h2 class="section-title">{{ __('frontend::experienceDetail.section_5_title') }}</h2>
+                                <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::experienceDetail.section_5_title') }}</p>
                                 <div class="section-content-suitable">
                                     <ul>
                                         @foreach($suitableAudiences as $suitableAudience)
@@ -171,7 +171,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                         </div>
                         <div class="section-content-exp col-12 col-lg-4">
                             <div class="section-content-exp-wrapper">
-                                <h2 class="section-title">{{ __('frontend::experienceDetail.section_6_title') }}</h2>
+                                <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::experienceDetail.section_6_title') }}</p>
                                 @foreach ($listExperience as $experience)
                                     <div class="item-exp-wrapper">
                                         <div class="item-exp d-flex ">
@@ -204,7 +204,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                             
                             <div class="section-content-exp-wrapper-inner-2">
                                 <div class="section-content-exp-wrapper-inner-2-content">
-                                    <h2 class="section-title">{{ __('frontend::experienceDetail.section_7_title') }}</h2>
+                                    <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::experienceDetail.section_7_title') }}</p>
                                     <p class="description">{{ __('frontend::experienceDetail.section_7_description') }}</p>
                                     <div class="group-button d-flex flex-column justify-content-between">
                                         <a href="{{ route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]) }}" class="button-primary">

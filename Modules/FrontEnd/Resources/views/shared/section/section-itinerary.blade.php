@@ -10,6 +10,7 @@
     $backgroundImage = isset($backgroundImage) ? $backgroundImage : null;
     $backgroundBottom = isset($backgroundBottom) ? $backgroundBottom : '#fff';
     $tagHeading = isset($tagHeading) ? $tagHeading : 'p';
+    $titleClass = $titleClass ?? 'section-title';
 
     $languageCode = Route::current()->parameter('languageCode');
 @endphp
@@ -18,7 +19,7 @@
     <div class="container-fluid px-0" @if ($backgroundImage) style="background-image: linear-gradient(to bottom, #00000080 50%, {{ $backgroundBottom }} 50%), url('{{ FeUtils::getImageLink($backgroundImage) }}');" @endif>
         <div class="container">
             @if ($title)
-                <{{ $tagHeading }} class="section-title">{{ $title }}</{{ $tagHeading }}>
+                <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
             @endif
             @if ($subTitle)
                 <p class="section-description font-heading {{ $backgroundImage ? 'text-white' : '' }}">{{ $subTitle }}</p>

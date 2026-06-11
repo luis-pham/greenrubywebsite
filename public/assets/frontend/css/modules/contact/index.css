@@ -202,27 +202,10 @@
 }
 
 /* ── Left column ──────────────────────────────────────── */
-#contact .contact-left-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #C8A84B;
-    margin-bottom: 14px;
-    font-weight: 400;
-    font-family: var(--font-body);
-    display: flex;
-    align-items: center;
-}
-
-#contact .contact-left-eyebrow-line {
-    width: 20px;
-    height: 0.5px;
-    background: #C8A84B;
-    opacity: 0.6;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
-    flex-shrink: 0;
+#contact .contact-left .section-eyebrow {
+    justify-content: flex-start;
+    text-align: left;
+    width: auto;
 }
 
 #contact .contact-left-title {

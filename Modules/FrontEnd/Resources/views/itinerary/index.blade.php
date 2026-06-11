@@ -23,18 +23,21 @@
             'title' => __('frontend::itineraryIndex.section_itinerary_title'),
             'subTitle' => __('frontend::itineraryIndex.section_itinerary_description'),
             'list' => $listItinerary,
-            'tagHeading' => 'h2'
+            'tagHeading' => 'p',
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
         ])
         @include('frontend::shared.section.section-amenity',[
             'class' => 'section-service',
             'list' => $listInclusiveService,
             'title' => __('frontend::itineraryIndex.section_service_title'),
-            'description' => __('frontend::itineraryIndex.section_service_description')
+            'description' => __('frontend::itineraryIndex.section_service_description'),
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
+            'tagHeading' => 'p',
         ])
         <section class="section-faq bg bg-tender-white">
             <div class="container-fluid">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::itineraryIndex.section_faq_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::itineraryIndex.section_faq_title') }}</p>
                     <p class="section-description font-heading">{{ __('frontend::itineraryIndex.section_faq_description') }}</p>
                     <div class="slide-1">
                         <div class="grid-faq-outer">

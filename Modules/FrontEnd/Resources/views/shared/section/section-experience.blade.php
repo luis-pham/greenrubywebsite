@@ -6,6 +6,7 @@
     $tabButtons = isset($tabButtons) ? $tabButtons : [];
     $backgroundImage = isset($backgroundImage) ? $backgroundImage : null;
     $tagHeading = isset($tagHeading) ? $tagHeading : 'p';
+    $titleClass = $titleClass ?? 'section-title';
     $languageCode = Route::current()->parameter('languageCode');
 @endphp
 
@@ -17,7 +18,7 @@
     >
         <div class="container"> 
             @if ($title)
-                <{{ $tagHeading }} class="section-title">{{ $title }}</{{ $tagHeading }}>
+                <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
             @endif
 
             @if ($subTitle)

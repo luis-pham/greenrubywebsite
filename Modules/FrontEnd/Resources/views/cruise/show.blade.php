@@ -86,10 +86,7 @@
             </svg>
             <div class="container position-relative">
                 <div class="combined-header">
-                    <div class="combined-eyebrow">
-                        <span class="combined-ey-line"></span>
-                        Ship Specifications & Eco Technology
-                    </div>
+                    <p class="section-eyebrow section-eyebrow--gold text-left">Ship Specifications & Eco Technology</p>
                     <h2 class="combined-title">
                         The Numbers Behind
                         <em>{{ $specsVesselName }}</em>
@@ -176,13 +173,8 @@
         <section class="section-itinerary bg">
             <div class="container-fluid">
                  <div class="container">
-                     <p class="section-title itinerary-eyebrow">
-                         Journeys & Itineraries
-                     </p>
-                     <h2 class="section-description font-heading itinerary-heading">
-                         Explore Ha Long Bay
-                         <em>Your Way.</em>
-                     </h2>
+                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::cruiseDetail.section-itinerary.title') }}</p>
+                     <p class="section-description font-heading">{!! __('frontend::cruiseDetail.section-itinerary.description') !!}</p>
                      <div class="list-filter">
                          @foreach($listDurationFilter as $idx => $duration)
                              <a href="javascript:" class="item {{$idx === 0 ? 'active' : ''}}" data-duration="{{$duration}}">
@@ -244,10 +236,7 @@
             <div class="container">
 
                 <div style="margin-bottom:28px;">
-                    <p class="section-title" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                        <span style="width:20px; height:0.5px; background:#C8A84B; opacity:0.5; display:inline-block;"></span>
-                        What Awaits You
-                    </p>
+                    <p class="section-eyebrow section-eyebrow--gold text-left">What Awaits You</p>
                     <h2 style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:300; color:var(--color-forest); line-height:1.1; letter-spacing:-0.01em;">
                         Onboard
                         <em style="font-style:italic; color:var(--color-gold);">
@@ -495,8 +484,9 @@
 
         @include('frontend::shared.section.section-vr-360',[
             'list' => $obj->listVr,
-            'title' => __('frontend::cruiseDetail.section-vr-360.title'),
-            'description' => __('frontend::cruiseDetail.section-vr-360.description')
+            'eyebrow' => __('frontend::cruiseDetail.section-vr-360.eyebrow'),
+            'titleHtml' => __('frontend::cruiseDetail.section-vr-360.title_html'),
+            'subtitle' => 'A 360° tour of ' . ($obj->name ?? 'Green Ruby') . ' — coming October 2026.',
         ])
 
         @include('frontend::shared.section.section-testimonial',[

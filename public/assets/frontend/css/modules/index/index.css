@@ -1,3 +1,10 @@
+/* Homepage section eyebrows — About gold style, centered layout unchanged */
+#main #home .section-eyebrow {
+    justify-content: center;
+    text-align: center;
+    line-height: 1.4;
+}
+
 /* Section 1 */
 #home .section-1.section-cover .page-cover {
     position: relative;
@@ -2360,7 +2367,7 @@
         z-index: auto !important;
     }
 
-    #home .section-3 .section-title.eyebrow,
+    #home .section-3 .section-eyebrow,
     #home .section-3 .section-description {
         display: block !important;
         visibility: visible !important;

@@ -193,7 +193,7 @@
         <section class="section-3 bg">
             <div class="container-fluid position-relative px-0">
                 <div class="container">
-                    <p class="section-title eyebrow">{{ __('frontend::homepage.section_3_eyebrow') }}</p>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::homepage.section_3_eyebrow') }}</p>
                     <h2 class="section-description font-heading">{!! __('frontend::homepage.section_3_heading') !!}</h2>
                     @php
                         $ecoCards = __('frontend::homepage.eco_cards');
@@ -253,7 +253,8 @@
             'list' => $listCruiseItinerary,
             'backgroundImage' => asset('/assets/frontend/images/modules/index/bg-section-4.webp'),
             'backgroundBottom' => '#f3f3f0',
-            'tagHeading' => 'h2'
+            'tagHeading' => 'p',
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
         ])
         <section id="section-cruise" class="section-5 p-0">
             <div class="container-fluid px-0">
@@ -332,7 +333,7 @@
         <section class="section-7 bg">
             <div class="container-fluid px-0 pb-0 position-relative">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::homepage.section_7_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::homepage.section_7_title') }}</p>
                     <p class="section-description font-heading text-white">{{ __('frontend::homepage.section_7_description') }}</p>
                     @if (count($listService) > 1)
                         <div class="tab-filter">
@@ -411,12 +412,14 @@
         @include('frontend::shared.section.section-amenity', [
             'class' => 'section-8',
             'title' => __('frontend::homepage.section_8_title'),
-            'description' => __('frontend::homepage.section_8_description')
+            'description' => __('frontend::homepage.section_8_description'),
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
+            'tagHeading' => 'p',
         ])
         <section class="section-9 bg">
             <div class="container-fluid px-0 position-relative">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::homepage.section_9_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::homepage.section_9_title') }}</p>
                     <p class="section-description font-heading text-white">{{ __('frontend::homepage.section_9_description') }}</p>
                 </div>
                 @if (count($listExpActivity) > 1)
@@ -570,7 +573,7 @@
         <section class="section-13 bg bg-tender-white">
             <div class="container-fluid">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::homepage.section_13_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::homepage.section_13_title') }}</p>
                     <p class="section-description font-heading">{{ __('frontend::homepage.section_13_description') }}</p>
                     @if (count($listFaq) > 0)
                         <ul class="list-faq list-unstyled">

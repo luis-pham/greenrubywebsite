@@ -98,11 +98,7 @@
             </svg>
             <div class="container hero-content">
                 <div class="main-info mx-auto text-white text-center">
-                    <div class="about-hero-eyebrow">
-                        <span class="about-hero-eyebrow-line"></span>
-                        About Green Ruby Cruises
-                        <span class="about-hero-eyebrow-line"></span>
-                    </div>
+                    <p class="section-eyebrow section-eyebrow--gold">About Green Ruby Cruises</p>
                     <h1 class="title font-heading">Where Luxury Has <em>a Conscience.</em></h1>
                     <p class="description">Built from the belief that true luxury respects nature. Green Ruby was founded to offer unforgettable journeys through Ha Long Bay while leaving it better than we found it.</p>
                     <div class="list-button d-flex align-items-center">
@@ -156,7 +152,7 @@
             </svg>
             <div class="container-fluid px-0">
                 <div class="container about-eco-panel">
-                    <p class="about-section-eyebrow">{{ __('frontend::about.section_3_title') }}</p>
+                    <p class="about-section-eyebrow about-section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
                     <h2 class="about-eco-title">Technology That <em>Proves It.</em></h2>
                     @if (count($listSustainability ?? []) > 0)
                         <div class="about-eco-grid">

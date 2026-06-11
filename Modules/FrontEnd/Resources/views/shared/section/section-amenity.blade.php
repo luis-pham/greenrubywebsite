@@ -5,6 +5,8 @@ use Modules\BackEnd\Services\AppAmenityService;
 $class = isset($class) ? $class : '';
 $title = isset($title) ? $title : '';
 $description = isset($description) ? $description : '';
+$titleClass = $titleClass ?? 'section-title';
+$tagHeading = $tagHeading ?? 'h2';
 if (!isset($list)) {
     $currentLanguage = FeLanguageUtils::getCurrentLanguage();
     $list = AppAmenityService::getAll($currentLanguage->id);
@@ -15,7 +17,7 @@ if (!isset($list)) {
     <div class="container-fluid">
         <div class="container">
             @if ($title)
-                <h2 class="section-title">{{ $title }}</h2>
+                <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
             @endif
             @if ($description)
                 <p class="section-description font-heading">{{ $description }}</p>

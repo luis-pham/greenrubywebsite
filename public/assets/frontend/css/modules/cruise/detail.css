@@ -452,7 +452,8 @@
     }
 }
 
-#cruise-detail .section-cabin .section-description em {
+#cruise-detail .section-cabin .section-description em,
+#cruise-detail .section-itinerary .section-description em {
     font-style: italic;
     color: #C8A84B;
 }
@@ -692,25 +693,17 @@
     border-bottom: 0.5px solid rgba(13, 43, 26, 0.08);
 }
 
-#cruise-detail .ship-specs-section .combined-eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(13, 43, 26, 0.4);
-    font-weight: 400;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
+#cruise-detail .ship-specs-section .combined-header .section-eyebrow,
+#cruise-detail .section-cabin-and-service .section-eyebrow {
+    justify-content: flex-start;
+    text-align: left;
+    width: auto;
 }
 
-#cruise-detail .combined-ey-line {
-    width: 20px;
-    height: 0.5px;
-    background: rgba(13, 43, 26, 0.3);
-    display: inline-block;
-    flex-shrink: 0;
+#cruise-detail .ship-hero-main-info .section-eyebrow {
+    justify-content: flex-start;
+    text-align: left;
+    width: auto;
 }
 
 #cruise-detail .combined-title {
@@ -1509,58 +1502,4 @@
 
 #cruise-detail .section-call-to-action .container-fluid{
     background-position-y: center;
-}
-
-/* ================================
-   ITINERARY SECTION HEADER
-   (cruise detail only)
-   ================================ */
-
-#cruise-detail .section-itinerary .itinerary-eyebrow {
-    font-size: var(--text-xs, 0.75rem);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #C8A84B;
-    font-weight: 400;
-    font-family: var(--font-body,
-        'DM Sans', system-ui, sans-serif);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-style: normal;
-}
-
-#cruise-detail .section-itinerary .itinerary-eyebrow::before {
-    content: '';
-    width: 20px;
-    height: 0.5px;
-    background: #C8A84B;
-    opacity: 0.5;
-    flex-shrink: 0;
-    display: inline-block;
-}
-
-#cruise-detail .section-itinerary .itinerary-heading {
-    font-family: var(--font-display,
-        'Cormorant Garamond', serif);
-    font-size: var(--text-2xl, 2.5rem);
-    font-weight: 300;
-    color: #0D2B1A;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin-bottom: 28px;
-    text-transform: none;
-    font-style: normal;
-}
-
-#cruise-detail .section-itinerary .itinerary-heading em {
-    font-style: italic;
-    color: #C8A84B;
-}
-
-@media (max-width: 768px) {
-    #cruise-detail .section-itinerary .itinerary-heading {
-        font-size: var(--text-xl, 1.75rem);
-    }
 }

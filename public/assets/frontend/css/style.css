@@ -288,6 +288,50 @@ button {
     text-transform: uppercase;
 }
 
+/* Shared section eyebrow (matches About "The Value of Sustainability") */
+.section-eyebrow,
+.about-section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-body);
+    font-weight: 400;
+    margin-bottom: 12px;
+    font-family: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-eyebrow--gold,
+.about-section-eyebrow--gold {
+    color: #C8A84B;
+}
+
+.section-eyebrow::before,
+.section-eyebrow::after,
+.about-section-eyebrow::before,
+.about-section-eyebrow::after {
+    content: '';
+    width: 20px;
+    height: 0.5px;
+    background: currentColor;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+#main section .section-eyebrow {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.section-eyebrow.text-left,
+#main section .section-eyebrow.text-left {
+    justify-content: flex-start;
+    text-align: left;
+}
+
 @media (max-width: 768px) {
     h1 {
         font-weight: 400;

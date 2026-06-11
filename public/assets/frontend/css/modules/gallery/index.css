@@ -341,8 +341,11 @@
     padding: 64px 0;
 }
 
-#gallery .gallery-video .gallery-section-eyebrow {
+#gallery .gallery-video .section-eyebrow,
+#gallery .gallery-memories .section-eyebrow {
     justify-content: flex-start;
+    text-align: left;
+    width: auto;
 }
 
 #gallery .gallery-video-title {

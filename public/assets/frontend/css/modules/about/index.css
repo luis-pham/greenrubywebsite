@@ -1,29 +1,7 @@
-/* ── Global About eyebrow ─────────────────────────────── */
-.about-section-eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--color-body);
-    font-weight: 400;
-    margin-bottom: 12px;
-    font-family: var(--font-body);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.about-section-eyebrow--gold {
+#about .about-section-eyebrow {
+    justify-content: flex-start;
+    text-align: left;
     color: #C8A84B;
-}
-
-.about-section-eyebrow::before,
-.about-section-eyebrow::after {
-    content: '';
-    width: 20px;
-    height: 0.5px;
-    background: currentColor;
-    opacity: 0.5;
-    flex-shrink: 0;
 }
 
 .about-topo {

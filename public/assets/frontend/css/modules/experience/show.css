@@ -32,26 +32,24 @@
     padding:0;
 }
 
-#experience-detail .section-2 .section-content-wrapper .section-title,
-#experience-detail .section-2 .section-content-exp-wrapper .section-title {
-    color: #C8A84B;
-    font-family: var(--font-display);
-    font-size: 1.625rem;
-    font-weight: 700;
+#experience-detail .section-2 .section-content-wrapper .section-eyebrow,
+#experience-detail .section-2 .section-content-exp-wrapper .section-eyebrow {
+    justify-content: flex-start;
+    text-align: left;
 }
-#experience-detail .section-2 .section-content-wrapper .section-title,
+
+#experience-detail .section-2 .section-content-wrapper .section-eyebrow,
 #experience-detail .section-2 .section-content-wrapper .section-description {
     text-align: start;
 }
-#experience-detail .section-2 .section-content-wrapper-inner-1 .section-title,
-#experience-detail .section-2 .section-content-wrapper-inner-1 .section-description{
+
+#experience-detail .section-2 .section-content-wrapper-inner-1 .section-eyebrow,
+#experience-detail .section-2 .section-content-wrapper-inner-1 .section-description {
     text-align: center;
+    justify-content: center;
 }
 
 /* section-content-1*/
-#experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-title {
-    font-size: 1.375rem;
-}
 
 #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-description {
     font-size: 2.125rem;
@@ -108,9 +106,10 @@
         padding-right: 15px;
     }
 
-    #experience-detail .section-2 .section-content-wrapper-inner-1 .section-title,
-    #experience-detail .section-2 .section-content-wrapper-inner-1 .section-description{
+    #experience-detail .section-2 .section-content-wrapper-inner-1 .section-eyebrow,
+    #experience-detail .section-2 .section-content-wrapper-inner-1 .section-description {
         text-align: start;
+        justify-content: flex-start;
     }
     #experience-detail .section-2 .section-content-wrapper .section-content-wrapper-inner-1 .section-content {
         flex-direction: row;    
@@ -353,9 +352,9 @@
     background-color: #F3F3F0;
 }
 
-#experience-detail .section-2 .section-content-exp .section-content-exp-wrapper .section-title {
-    margin: 0;
-    font-size: 1.125rem;
+#experience-detail .section-2 .section-content-exp .section-content-exp-wrapper .section-eyebrow {
+    margin: 0 0 12px;
+    justify-content: flex-start;
     text-align: start;
     padding-right: 0.75rem;
 }

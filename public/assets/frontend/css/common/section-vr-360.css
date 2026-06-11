@@ -26,6 +26,21 @@
     color: white;
 }
 
+.section-vr-360 .vr-heading em {
+    font-style: italic;
+    color: #C8A84B;
+}
+
+.vr-subtitle {
+    font-size: var(--text-md);
+    color: rgba(240, 236, 228, 0.4);
+    font-weight: 300;
+    font-family: var(--font-body);
+    margin: 8px auto 0;
+    max-width: 420px;
+    text-align: center;
+}
+
 .section-vr-360 .vr-container-outer {
     position: relative;
     max-width: 1000px;
@@ -132,64 +147,6 @@
     .section-vr-360 .vr-carousel .owl-nav .owl-next{
         right: 1.5rem;
     }
-}
-
-/* ================================
-   VR SECTION REDESIGN
-   ================================ */
-
-/* Header */
-.vr-header {
-    margin-bottom: 28px;
-}
-
-.vr-eyebrow {
-    font-size: var(--text-xs, 0.75rem);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #C8A84B;
-    font-weight: 400;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body,
-        'DM Sans', system-ui, sans-serif);
-}
-
-.vr-eyebrow-line {
-    width: 20px;
-    height: 0.5px;
-    background: #C8A84B;
-    opacity: 0.5;
-    display: inline-block;
-    flex-shrink: 0;
-}
-
-.vr-heading {
-    font-family: var(--font-display,
-        'Cormorant Garamond', serif);
-    font-size: var(--text-2xl, 2.5rem);
-    font-weight: 300;
-    color: #f0ece4;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin-bottom: 6px;
-}
-
-.vr-heading em {
-    font-style: italic;
-    color: #C8A84B;
-}
-
-.vr-subtitle {
-    font-size: var(--text-md, 1.125rem);
-    color: rgba(240,236,228,0.4);
-    font-weight: 300;
-    font-family: var(--font-body,
-        'DM Sans', system-ui, sans-serif);
-    max-width: 420px;
-    line-height: 1.6;
 }
 
 /* Placeholder frame */

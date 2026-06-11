@@ -65,7 +65,7 @@
         <section class="section-2 bg bg-azure">
             <div class="container-fluid">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::service.section_2_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::service.section_2_title') }}</p>
                     <p class="section-description font-heading">{{ __('frontend::service.section_2_description') }}</p>
                     @if (count($listService) > 0)
                         <div class="list-itinerary-cruise row mt-4 d-none d-lg-flex {{ App::getLocale() == 'vi' ? 'is-vi' : '' }}">
@@ -153,7 +153,7 @@
         <section class="section-3 section-itinerary bg">
             <div class="container-fluid px-0 position-relative">
                 <div class="container">
-                    <h2 class="section-title">{{ __('frontend::service.section_3_title') }}</h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::service.section_3_title') }}</p>
                     <p class="section-description font-heading text-white">{{ __('frontend::service.section_3_description') }}</p>
                     
                     <div class="section-content-service">
@@ -247,7 +247,7 @@
                 <div class="cruise row no-gutters">
                     <div class="main-info col-lg-6">
                         <div class="main-info-wrapper text-white">
-                            <p class="section-title text-left">{{ $weddingTitle }}</p>
+                            <p class="section-eyebrow section-eyebrow--gold text-left">{{ $weddingTitle }}</p>
                             <h3 class="section-description font-heading text-left text-white">{{ $weddingDescription }}</h3>
                             <div class="">
                                 <p class="description give-ellipsis after-4-lines">{{ $weddingContent }}</p>
@@ -278,7 +278,7 @@
                     <div class="image col-lg-6" style="background-image: url({{ asset(FeUtils::getThumbnail(['link' => $weddingFeaturedImage, 'w' => 960, 'h' => 750])) }})"></div>
                     <div class="main-info proposal col-lg-6">
                         <div class="main-info-wrapper text-white">
-                            <p class="section-title text-left">{{ $quoteRequestTitle }}</p>
+                            <p class="section-eyebrow section-eyebrow--gold text-left">{{ $quoteRequestTitle }}</p>
                             <h3 class="section-description font-heading text-left text-white">{{ $quoteRequestDescription }}</h3>
                             <div class="">
                                 <p class="description give-ellipsis after-4-lines">{{ $quoteRequestContent }}</p>
@@ -348,7 +348,9 @@
         @include('frontend::shared.section.section-amenity', [
             'class' => 'section-7',
             'title' => __('frontend::service.section_7_title'),
-            'description' => __('frontend::service.section_7_description')
+            'description' => __('frontend::service.section_7_description'),
+            'titleClass' => 'section-eyebrow section-eyebrow--gold',
+            'tagHeading' => 'p',
         ])
 
         @include('frontend::shared.modal-service-detail')

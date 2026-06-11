@@ -122,13 +122,14 @@
     min-height: 0;
 }
 
-/* Main image — flex:1 fill remaining height */
+/* Main image — 3:2 album ratio */
 .onboard-main-img {
-    flex: 1;
-    min-height: 0;
     position: relative;
     overflow: hidden;
     background: #0D2B1A;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    flex-shrink: 0;
 }
 
 /* Image fill container */
@@ -227,7 +228,7 @@
 }
 
 .onboard-thumb {
-    height: 64px;
+    aspect-ratio: 3 / 2;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -376,11 +377,6 @@
 
     .onboard-exp-right {
         order: -1;
-        min-height: 320px;
-    }
-
-    .onboard-main-img {
-        min-height: 260px;
     }
 
     .onboard-svc-grid {

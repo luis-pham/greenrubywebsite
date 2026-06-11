@@ -3,11 +3,13 @@
     $description = $description ?? "";
     $list = $list ?? [];
     $bgClass = $bgClass ?? 'bg-tender-white';
+    $titleClass = $titleClass ?? 'section-title';
+    $tagHeading = $tagHeading ?? 'h2';
 @endphp
 <section class="section-gallery bg {{ $bgClass }}">
     <div class="container-fluid">
         <div class="container">
-            <h2 class="section-title">{{ $title }}</h2>
+            <{{ $tagHeading }} class="{{ $titleClass }}">{{ $title }}</{{ $tagHeading }}>
             <p class="section-description font-heading">{{ $description }}</p>
             <div class="slide-1">
                 <div class="gallery-container gallery-grid-layout">

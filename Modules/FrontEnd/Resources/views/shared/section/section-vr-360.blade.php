@@ -2,29 +2,24 @@
     $class = $class ?? '';
     $title = $title ?? '';
     $description = $description ?? '';
+    $eyebrow = $eyebrow ?? null;
+    $titleHtml = $titleHtml ?? null;
+    $subtitle = $subtitle ?? null;
     $showTitleAndDescription = $showTitleAndDescription ?? false;
     $list = $list ?? [];
 @endphp
 <section class="{{$class}} section-vr-360 bg">
     <div class="container-fluid">
         <div class="container">
-            @if(!str_contains($class, 'gallery'))
-                <div class="vr-header">
-                    <p class="vr-eyebrow">
-                        <span class="vr-eyebrow-line"></span>
-                        Immersive Experience
-                    </p>
-                    <h2 class="vr-heading">
-                        Step Aboard <em>Virtually.</em>
-                    </h2>
-                    <p class="vr-subtitle">
-                        A 360° tour of Ha Long Bay —
-                        coming October 2026.
-                    </p>
-                </div>
+            @if ($eyebrow && $titleHtml)
+                <p class="section-eyebrow section-eyebrow--gold">{{ $eyebrow }}</p>
+                <h2 class="section-description font-heading vr-heading">{!! $titleHtml !!}</h2>
+                @if ($subtitle)
+                    <p class="vr-subtitle">{{ $subtitle }}</p>
+                @endif
             @else
-                <h2 class="section-title">{{$title}}</h2>
-                <p class="section-description font-heading">{{$description}}</p>
+                <h2 class="section-title">{{ $title }}</h2>
+                <p class="section-description font-heading">{{ $description }}</p>
             @endif
             <div class="vr-container-outer">
                 <div class="vr-container-inner">
