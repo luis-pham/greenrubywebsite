@@ -96,6 +96,21 @@
     opacity: 1;
 }
 
+@media (min-width: 1024px) {
+    #home .section-1.section-cover .page-cover .main-info .description {
+        color: var(--color-text-on-dark);
+    }
+
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer-link {
+        border-color: var(--color-text-muted-on-dark);
+    }
+
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer-link:hover,
+    #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer-link:focus {
+        border-color: var(--color-text-accent);
+    }
+}
+
 #home .section-1.section-cover .page-cover .main-info .list-button {
     display: flex;
     flex-direction: row;

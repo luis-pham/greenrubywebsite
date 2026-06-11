@@ -191,6 +191,13 @@
     text-align: left;
 }
 
+@media (min-width: 1024px) {
+    #cruise-detail .ship-hero-sub,
+    #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .description {
+        color: var(--color-text-on-dark);
+    }
+}
+
 /* Cruise hero — buttons */
 #cruise-detail .section-cover .page-cover .main-info.ship-hero-main-info .list-button {
     justify-content: flex-start;
