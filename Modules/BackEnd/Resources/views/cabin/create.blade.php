@@ -336,6 +336,10 @@
             }
             $audienceMap[$g->id] = ['name' => $g->name ?? '', 'icon' => $icon ?? ''];
         }
+        $groupProfileMap = [];
+        foreach ($listCabinType as $cabinType) {
+            $groupProfileMap[(string) $cabinType->id] = \Modules\BackEnd\Helpers\FacilityProfileUtils::getProfileBySlug($cabinType->slug ?? '');
+        }
         $langGuestLabels = [
             1 => __('backend::cabin.guest_single'),
             2 => __('backend::cabin.guest_double'),
@@ -371,7 +375,8 @@
             langDelete: @json(__('backend::cabin.btn_delete')),
             langGuestLabels: @json($langGuestLabels),
             langOverCapacityTotal: @json(__('backend::cabin.validation_over_capacity_total', ['capacity' => '__CAP__'])),
-            facilityProfile: @json($facilityProfileConfig ?? [])
+            facilityProfile: @json($facilityProfileConfig ?? \Modules\BackEnd\Helpers\FacilityProfileUtils::getJsConfig()),
+            groupProfileMap: @json($groupProfileMap)
         };
     </script>
     <script src="{{ asset('/assets/backend/plugins/fancybox/jquery.fancybox.min.js') }}"></script>
@@ -380,5 +385,5 @@
     <script src="{{ asset('/assets/backend/plugins/mustache/mustache.js') }}"></script>
     <script src="{{ asset('/assets/backend/plugins/mustache/jquery.mustache.js') }}"></script>
     <script src="{{ asset('/assets/backend/js/modules/shared/gallery.js') }}"></script>
-    <script src="{{ asset('/assets/backend/js/modules/cabin/index.js') }}"></script>
+    <script src="{{ asset('/assets/backend/js/modules/cabin/index.js') }}?v=0494035"></script>
 @endsection

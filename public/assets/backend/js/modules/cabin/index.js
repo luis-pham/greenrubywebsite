@@ -24,11 +24,34 @@
     var priceData = config.priceData || [];
     var initialCapacity = config.initialCapacity;
     var isEdit = config.isEdit === true;
-    var facilityProfileConfig = config.facilityProfile || {};
+    var facilityProfileConfig = config.facilityProfile;
+    if (!facilityProfileConfig || Array.isArray(facilityProfileConfig)) {
+        facilityProfileConfig = {};
+    }
     var slugToProfile = facilityProfileConfig.slugToProfile || {};
     var profileSections = facilityProfileConfig.profileSections || {};
     var profileLabels = facilityProfileConfig.profileLabels || {};
+    var groupProfileMap = config.groupProfileMap || {};
     var defaultProfile = facilityProfileConfig.defaultProfile || 'onboard';
+    if (!profileSections.cabin || !profileSections.cabin.length) {
+        profileSections = {
+            cabin: ['view', 'cabin_class', 'price', 'rooms', 'amenities', 'capacity', 'area', 'over_capacity', 'discount', 'audience'],
+            onboard: [],
+            event: ['capacity', 'area']
+        };
+    }
+    var SECTION_SELECTORS = {
+        view: '#facility-section-view',
+        cabin_class: '#facility-section-cabin-class',
+        price: '#facility-section-price',
+        rooms: '#facility-section-rooms',
+        amenities: '#facility-section-amenities',
+        capacity: '#facility-section-capacity',
+        area: '#facility-section-area',
+        over_capacity: '#facility-section-over-capacity',
+        discount: '#facility-section-discount',
+        audience: '#facility-section-audience'
+    };
     var currentPriceData = {};
     var MAX_PRICE = 10000000000;
 
@@ -76,7 +99,11 @@
 
     function getSelectedSlug() {
         var $selected = $cabinForm.find('select[name="group_id"] option:selected');
-        return normalizeSlug($selected.data('slug'));
+        var slug = $selected.attr('data-slug');
+        if (!slug) {
+            slug = $selected.data('slug');
+        }
+        return normalizeSlug(slug);
     }
 
     function getProfileFromSlug(slug) {
@@ -87,7 +114,19 @@
     }
 
     function getCurrentProfile() {
+        var groupId = String($cabinForm.find('select[name="group_id"]').val() || '');
+        if (groupId && groupProfileMap[groupId]) {
+            return groupProfileMap[groupId];
+        }
         return getProfileFromSlug(getSelectedSlug());
+    }
+
+    function getSectionElement(section) {
+        var $el = $cabinForm.find('[data-section="' + section + '"]');
+        if (!$el.length && SECTION_SELECTORS[section]) {
+            $el = $cabinForm.find(SECTION_SELECTORS[section]);
+        }
+        return $el;
     }
 
     function isSectionVisible(profile, section) {
@@ -164,7 +203,7 @@
         updateDynamicLabels(profile);
 
         ALL_OPTIONAL_SECTIONS.forEach(function (section) {
-            var $section = $('[data-section="' + section + '"]');
+            var $section = getSectionElement(section);
             var visible = isSectionVisible(profile, section);
             if (visible) {
                 $section.show();
@@ -200,7 +239,7 @@
         $cabinForm.attr('data-facility-slug', slug);
     }
 
-    $cabinForm.on('change', 'select[name="group_id"]', applyFacilityProfile);
+    $cabinForm.on('change', 'select[name="group_id"], #group-id-select', applyFacilityProfile);
 
     $cabinForm.on('click', '.btn-remove-room-pill', function (e) {
         e.stopPropagation();
