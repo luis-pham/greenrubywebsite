@@ -75,7 +75,7 @@
 }
 
 .onboard-cat-item {
-    padding: 10px 12px;
+    padding: 8px 12px;
     background: #fff;
     border: 0.5px solid rgba(13, 43, 26, 0.07);
     cursor: pointer;
@@ -98,23 +98,15 @@
 
 .onboard-item-name {
     font-family: var(--font-display);
-    font-size: var(--text-md);
+    font-size: var(--text-base);
     font-weight: 400;
     color: var(--color-forest);
     line-height: 1.2;
-    margin-bottom: 2px;
+    margin-bottom: 0;
 }
 
 .onboard-cat-item.active .onboard-item-name {
     color: var(--color-gold);
-}
-
-.onboard-item-desc {
-    font-size: var(--text-xs);
-    color: var(--color-muted);
-    font-weight: 300;
-    line-height: 1.4;
-    font-family: var(--font-body);
 }
 
 /* Image panel */
@@ -390,4 +382,26 @@
     .onboard-thumbs {
         grid-template-columns: repeat(4, 1fr);
     }
+}
+
+.onboard-exp-layout {
+    align-items: stretch;
+}
+
+.onboard-exp-right {
+    align-self: stretch;
+}
+
+.onboard-main-img {
+    min-height: unset !important;
+    height: 100% !important;
+    position: relative;
+}
+
+.onboard-img-el {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

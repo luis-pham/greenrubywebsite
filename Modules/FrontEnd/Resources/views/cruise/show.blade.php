@@ -304,7 +304,6 @@
                                             data-title="{{ $item->name }}"
                                             data-desc="{{ $item->summary }}">
                                             <p class="onboard-item-name">{{ $item->name }}</p>
-                                            <p class="onboard-item-desc">{{ Str::limit($item->summary, 45) }}</p>
                                         </div>
                                         @php
                                             if (!$firstItemDone) {
@@ -321,7 +320,6 @@
                                             data-title="{{ $item->name }}"
                                             data-desc="{{ $item->summary }}">
                                             <p class="onboard-item-name">{{ $item->name }}</p>
-                                            <p class="onboard-item-desc">{{ Str::limit($item->summary, 45) }}</p>
                                         </div>
                                         @php
                                             if (!$firstItemDone) {
@@ -554,5 +552,5 @@
             getById: "{{ route(Utilities::getRouteName('frontend.api.service.getById'), ['languageCode' => $languageCode]) }}"
         };
     </script>
-    <script src="{{ asset('assets/frontend/js/modules/cruise/onboard.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/modules/cruise/onboard.js') }}" defer></script>
 @endpush
