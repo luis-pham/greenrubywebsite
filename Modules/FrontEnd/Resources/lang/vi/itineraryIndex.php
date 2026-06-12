@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'section_cover_title' => 'Các Hành Trình Của Chúng Tôi',
-    'section_cover_description' => "Khám phá những hành trình được tuyển chọn kỹ lưỡng khắp Vịnh Hạ Long và Vịnh Lan Hạ.",
+    'section_cover_title' => 'Hành Trình Tuyển Chọn',
+    'section_cover_description' => 'Vịnh Hạ Long & Vịnh Lan Hạ · 2 Ngày hoặc 3 Ngày',
 
     'section_itinerary_title' => 'Giá trị bền vững',
     'section_itinerary_description' => 'Giá trị bền vững',

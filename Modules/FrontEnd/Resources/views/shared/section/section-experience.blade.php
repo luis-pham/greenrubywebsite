@@ -84,7 +84,7 @@
                                                         @endforeach
                                                     @endif
                                                     @if (!empty($activity->duration))
-                                                        <li>{{ $activity->duration }} phút</li>
+                                                        <li>{{ $activity->duration }} {{ __('frontend::experienceDetail.time_minutes') }}</li>
                                                     @endif   
                                                 </ul>
                                             @endif
@@ -148,7 +148,7 @@
                                                         <li>{{ is_array($notes) ? implode(', ', $notes) : '' }}</li>
                                                     @endif
                                                     @if (!empty($activity->duration))
-                                                        <li>{{ $activity->duration }} phút</li>
+                                                        <li>{{ $activity->duration }} {{ __('frontend::experienceDetail.time_minutes') }}</li>
                                                     @endif   
                                                 </ul>
                                         </div>                        

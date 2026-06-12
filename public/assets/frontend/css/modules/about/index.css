@@ -327,8 +327,15 @@
 }
 
 #about .about-eco-grid-desktop {
+    display: none;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
+}
+
+@media (min-width: 992px) {
+    #about .about-eco-grid-desktop {
+        display: grid;
+    }
 }
 
 #about .about-eco .slide-1 {
@@ -738,8 +745,8 @@
 }
 
 #about .about-cta-buttons .btn-warning {
-    background: var(--color-forest);
-    color: var(--color-text-on-dark);
+    background: #C8A84B;
+    color: var(--color-text-on-light);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;

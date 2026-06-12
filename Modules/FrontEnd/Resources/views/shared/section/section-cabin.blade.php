@@ -220,7 +220,6 @@ $suitesGrid = $suitesGrid ?? false;
                         @endfor
                     </div>
                 </div>
-                @include('frontend::shared.modal-cabin-details')
             @endif
         </div>
     </div>

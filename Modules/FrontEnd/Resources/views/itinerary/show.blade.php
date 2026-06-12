@@ -60,41 +60,81 @@
             <div class="container-fluid">
                 <div class="container">
                     <div class="container-info">
-                        <div class="cruise-info">
-                            <div class="box">
-                                <p class="label">{{ __('frontend::itineraryDetail.section-info-duration') }}</p>
-                                <p class="value">{{FeCruiseUtils::formatDisplayDurationName($obj->itinerary->duration)}}</p>
+                        <div class="info-bar-detail">
+                            <div class="info-bar-detail-wrapper">
+
+                                <div class="info-item-detail">
+                                    <div class="info-wrapper-detail">
+                                        <div class="icon-wrap-detail">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8A84B" stroke-width="1.25" stroke-linecap="round" aria-hidden="true">
+                                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                            </svg>
+                                        </div>
+                                        <div class="info-right-detail">
+                                            <span class="detail-label">{{ __('frontend::itineraryDetail.section-info-duration') }}</span>
+                                            <span class="detail-title">{{ FeCruiseUtils::formatDisplayDurationName($obj->itinerary->duration) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-item-detail">
+                                    <div class="info-wrapper-detail">
+                                        <div class="icon-wrap-detail">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8A84B" stroke-width="1.25" stroke-linecap="round" aria-hidden="true">
+                                                <path d="M12 2C8 2 4 5.5 4 10c0 6 8 12 8 12s8-6 8-12c0-4.5-4-8-8-8z"/>
+                                                <circle cx="12" cy="10" r="2"/>
+                                            </svg>
+                                        </div>
+                                        <div class="info-right-detail">
+                                            <span class="detail-label">{{ __('frontend::itineraryDetail.section-info-departure') }}</span>
+                                            <span class="detail-title">{{ FeCruiseUtils::getItineraryDeparture($obj->itinerary->destination) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-item-detail">
+                                    <div class="info-wrapper-detail">
+                                        <div class="icon-wrap-detail">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8A84B" stroke-width="1.25" stroke-linecap="round" aria-hidden="true">
+                                                <path d="M3 17h18M5 17V9a2 2 0 012-2h10a2 2 0 012 2v8"/>
+                                                <path d="M9 17V12h6v5"/>
+                                                <path d="M12 7V5"/>
+                                            </svg>
+                                        </div>
+                                        <div class="info-right-detail">
+                                            <span class="detail-label">{{ __('frontend::itineraryDetail.section-info-cruise') }}</span>
+                                            <span class="detail-title">{{ $obj->cruise->name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-item-detail info-item-detail--price">
+                                    <div class="info-wrapper-detail">
+                                        <div class="info-right-detail">
+                                            <span class="detail-label">{{ __('frontend::itineraryDetail.from') }}</span>
+                                            <span class="detail-title detail-price">{{ FeUtils::formatDisplayCurrency($obj->price) }}<span class="detail-per"> / {{ __('frontend::itineraryDetail.person') }}</span></span>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'itinerary_id' => $obj->itinerary_id, 'cruise_id' => $obj->cruise_id]) }}"
+                                       class="btn-book-detail">
+                                        {{ __('frontend::common.book_now') }}
+                                        <i class="ml-2 fas fa-calendar-check" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+
                             </div>
-                            <div class="box">
-                                <p class="label">{{ __('frontend::itineraryDetail.section-info-departure') }}</p>
-                                <p class="value">{{FeCruiseUtils::getItineraryDeparture($obj->itinerary->destination)}}</p>
-                            </div>
-                            <div class="box">
-                                <p class="label">{{ __('frontend::itineraryDetail.section-info-cruise') }}</p>
-                                <p class="value">{{$obj->cruise->name}}</p>
-                            </div>
-                            <div class="box">
-                                <p class="label">{{ __('frontend::itineraryDetail.section-info-guests') }}</p>
-                                <p class="value">{{__('frontend::itineraryDetail.max')}} {{$obj->guests}}</p>
-                            </div>
-                        </div>
-                        <div class="price-box d-flex justify-content-center align-items-center flex-column flex-xl-row">
-                            <p class="text mb-0 mb-xl-2">
-                                {{ __('frontend::itineraryDetail.from') }} <b
-                                    class="price">{{FeUtils::formatDisplayCurrency($obj->price)}}
-                                    /</b>{{ __('frontend::itineraryDetail.person') }}
-                            </p>
-                            <a
-                                href="{{route(Utilities::getRouteName('frontend.booking'),['languageCode' => $languageCode,'itinerary_id' => $obj->itinerary_id,'cruise_id' => $obj->cruise_id])}}"
-                                class="btn btn-warning px-3 py-2">
-                                {{ __('frontend::common.book_now') }} <i class="ml-2 fas fa-calendar-check"></i>
-                            </a>
                         </div>
                     </div>
                     <div class="slide-1">
                         <div class="service-important-note-container owl-carousel owl-theme">
                             <div class="list-container list-inclusive-service-container">
-                                <div class="header m-0">{{__('frontend::itineraryDetail.section-info-inclusion')}}</div>
+                                <div class="header m-0 header--included">
+                                    <i class="ti ti-circle-check" aria-hidden="true"></i>
+                                    <span>{{__('frontend::itineraryDetail.section-info-inclusion')}}</span>
+                                </div>
                                 <div class="body">
                                     <ul class="list">
                                         @foreach($obj->inclusiveServices as $service)
@@ -107,7 +147,10 @@
                                 </div>
                             </div>
                             <div class="list-container list-exclusive-service-container">
-                                <div class="header m-0">{{__('frontend::itineraryDetail.section-info-exclusion')}}</div>
+                                <div class="header m-0 header--excluded">
+                                    <i class="ti ti-circle-minus" aria-hidden="true"></i>
+                                    <span>{{__('frontend::itineraryDetail.section-info-exclusion')}}</span>
+                                </div>
                                 <div class="body">
                                     <ul class="list">
                                         @foreach($obj->exclusiveServices as $service)
@@ -121,8 +164,10 @@
                                 </div>
                             </div>
                             <div class="list-container list-activity-container">
-                                <div
-                                    class="header m-0">{{__('frontend::itineraryDetail.section-info-important-notes')}}</div>
+                                <div class="header m-0 header--notes">
+                                    <i class="ti ti-info-circle" aria-hidden="true"></i>
+                                    <span>{{__('frontend::itineraryDetail.section-info-important-notes')}}</span>
+                                </div>
                                 <div class="body">
                                     <ul class="list m-0">
                                         @foreach($obj->importantNote ?? [] as $note)
@@ -181,8 +226,8 @@
         ])
 
         @include('frontend::shared.section.section-call-to-action',[
-            'description' => __('frontend::itineraryDetail.section-booking-and-availability-title',['name' => FeCruiseUtils::formatDisplayItineraryBay($obj->itinerary->bay)]),
-            'content' => __('frontend::itineraryDetail.section-booking-and-availability-description'),
+            'description' => 'The bay is waiting. Your cabin is ready.',
+            'content' => FeCruiseUtils::getItineraryDeparture($obj->itinerary->destination) . ' · ' . $obj->cruise->name . ' · Departing from Tuần Châu',
             'buttons' => $listCallToActionBtn
         ])
 

@@ -1,7 +1,7 @@
 <?php
 return [
-    'section_cover_title' => 'Our Cruise Itineraries',
-    'section_cover_description' => "Discover curated journeys across Ha Long & Lan Ha Bays",
+    'section_cover_title' => 'Curated Journeys',
+    'section_cover_description' => 'Ha Long Bay & Lan Ha Bay · 2 Days or 3 Days',
     'section_itinerary_title' => 'The Value of Sustainability',
     'section_itinerary_description' => 'The Value of Sustainability',
     'section_service_title' => 'All-Inclusive Essentials',

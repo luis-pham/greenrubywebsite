@@ -43,6 +43,7 @@
     @include('frontend::layouts.master-menu-mobile')
     @include('frontend::layouts.master-fabs')
     @include('frontend::layouts.master-cookie-consent')
+    @include('frontend::shared.modal-cabin-details')
 
     <div id="loading" class="loading">
         <div class="wrapper">

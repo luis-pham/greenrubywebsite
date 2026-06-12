@@ -43,45 +43,39 @@
             </div>
         @endif
 
-        <section id="section-faq" class="section-2 faq-body">
-            <div class="container">
-                <div class="faq-sections-wrapper">
-                    <div class="faq-accordion">
-                        @if (count($listFaq) > 0)
-                            <ul class="list-faq list-unstyled {{ $totalPage > 1 ? 'mb-0' : 'mb-0' }}">
-                                @for ($i = 0; $i < count($listFaq); $i++)
-                                    <li class="item faq-accordion-item">
-                                        <div class="item-wrapper">
-                                            <div class="question faq-accordion-header" role="button" tabindex="0" aria-expanded="false">
-                                                <div class="faq-accordion-left">
-                                                    <span class="faq-accordion-category">{{ $listFaq[$i]->group_name }}</span>
-                                                    <div class="faq-accordion-title article-content">{!! safe_html($listFaq[$i]->question) !!}</div>
-                                                </div>
-                                                <div class="faq-accordion-toggle" aria-hidden="true">
-                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                        <path d="M6 9l6 6 6-6"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div class="answer faq-accordion-body article-content">{!! safe_html($listFaq[$i]->answer) !!}</div>
-                                        </div>
-                                    </li>
-                                @endfor
-                            </ul>
-                            @if ($totalPage > 1)
-                                <div class="faq-pagination">
-                                    @include('frontend::shared.pagination', [
-                                        'baseUrl' => !isset($group)
-                                            ? route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode])
-                                            : route(Utilities::getRouteName('frontend.faq.category'), ['languageCode' => $languageCode, 'slug' => $group->slug]),
-                                        'totalPage' => $totalPage
-                                    ])
-                                </div>
-                            @endif
-                        @else
-                            <p class="faq-empty text-center mb-0">{{ !$keyword ? __('frontend::common.no_data') : __('frontend::common.search_result_not_found') }}</p>
+        <section id="section-faq" class="section-2 faq-body bg bg-tender-white">
+            <div class="container-fluid">
+                <div class="container">
+                    @if (count($listFaq) > 0)
+                        <ul class="list-faq list-unstyled mb-0">
+                            @for ($i = 0; $i < count($listFaq); $i++)
+                                <li class="item">
+                                    <div class="item-wrapper position-relative">
+                                        @if (!empty($listFaq[$i]->group_name))
+                                            <div class="group-name d-inline-block mb-3 mb-xl-2 text-uppercase">{{ $listFaq[$i]->group_name }}</div>
+                                        @endif
+                                        <div class="question article-content">{!! safe_html($listFaq[$i]->question) !!}</div>
+                                        <div class="answer article-content">{!! safe_html($listFaq[$i]->answer) !!}</div>
+                                        <button type="button" class="btn-toggle border-0 rounded-circle" title="Toggle FAQ">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </li>
+                            @endfor
+                        </ul>
+                        @if ($totalPage > 1)
+                            <div class="faq-pagination text-center">
+                                @include('frontend::shared.pagination', [
+                                    'baseUrl' => !isset($group)
+                                        ? route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode])
+                                        : route(Utilities::getRouteName('frontend.faq.category'), ['languageCode' => $languageCode, 'slug' => $group->slug]),
+                                    'totalPage' => $totalPage
+                                ])
+                            </div>
                         @endif
-                    </div>
+                    @else
+                        <p class="faq-empty text-center mb-0">{{ !$keyword ? __('frontend::common.no_data') : __('frontend::common.search_result_not_found') }}</p>
+                    @endif
                 </div>
             </div>
         </section>

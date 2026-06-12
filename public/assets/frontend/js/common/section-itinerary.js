@@ -38,17 +38,25 @@ $(document).ready(function () {
     };
     slideItinerary.owlCarousel(slideItineraryConfig);
 
-    let btnTabFilter = $('.tab-filter .list-button .item button', sectionItinerary);
+    let btnTabFilter = $('#main #itinerary .gallery-filter-bar button[data-bay], #main .section-itinerary .tab-filter .list-button .item button');
     btnTabFilter.on('click', function () {
         let btn = $(this);
         if (btn.hasClass('active')) {
             return;
         }
 
-        let section = btn.closest('section');
-        let btnFilter = $('.tab-filter .list-button .item button', section);
-        btnFilter.removeClass('active');
+        let filterScope = btn.closest('#itinerary');
+        if (!filterScope.length) {
+            filterScope = btn.closest('section.section-itinerary');
+        }
+        filterScope.find('.gallery-filter-bar button[data-bay], .tab-filter .list-button .item button').removeClass('active');
         btn.addClass('active');
+
+        let section = btn.closest('section.section-itinerary');
+        if (!section.length) {
+            section = btn.closest('#itinerary').find('.section-itinerary').first();
+        }
+        listItinerary = $('.list-itinerary-cruise', section);
 
         let bay = btn.attr('data-bay');
         if (!Validate.prototype.isNullOrWhiteSpace(bay)) {

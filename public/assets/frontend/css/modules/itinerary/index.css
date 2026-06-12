@@ -1,14 +1,75 @@
+#itinerary .section-cover {
+    height: 380px;
+    margin-bottom: 0;
+}
+
+/* Filter sát hero — gallery chuẩn, căn giữa */
+#main #itinerary .section-itinerary.bg {
+    padding: 0;
+}
+
+#main #itinerary .section-itinerary.bg.bg-tender-white .container-fluid {
+    background-color: var(--color-cream-bg);
+}
+
+#main #itinerary .section-itinerary.bg .container-fluid {
+    padding-top: 0;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#itinerary .gallery-filter-sticky .container-fluid {
+    padding: 0;
+}
+
+#itinerary .gallery-filter-inner .container {
+    display: flex;
+    justify-content: center;
+}
+
+#itinerary .gallery-filter-bar.list-filter {
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
+}
+
+#itinerary .gallery-filter-bar .gallery-filter-tab.item {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    padding: 16px 20px;
+}
+
+#itinerary .gallery-filter-bar .gallery-filter-tab.item:first-child {
+    padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+    #itinerary .gallery-filter-bar .gallery-filter-tab.item:first-child {
+        padding-left: 16px;
+    }
+}
+
+@media (min-width: 1400px) {
+    #main #itinerary .section-itinerary > .container-fluid {
+        min-height: 0;
+    }
+}
+
+#itinerary .section-cover .overlay,
+#itinerary .section-cover .page-cover .image-wrapper::before {
+    background: rgba(10, 28, 18, 0.55);
+    opacity: 1;
+}
+
 #itinerary .section-cover .page-cover .main-info{
     width: 100%;
 }
 
-#itinerary .section-cover .page-cover .image-wrapper::before{
-    opacity: 0.4;
-}
-
 @media (min-width: 992px) {
-    #itinerary .section-cover .page-cover .image-wrapper::before{
-        opacity: 0.32;
+    #itinerary .section-cover .page-cover .image-wrapper::before {
+        opacity: 1;
     }
 }
 
@@ -73,97 +134,82 @@
     margin-bottom: 0;
 }
 
-#itinerary .section-faq .grid-faq-outer {
-    position: relative;
-    height: 100%;
+#main #itinerary section.section-faq.bg.bg-tender-white,
+#main #itinerary section.section-faq.bg.bg-tender-white .container-fluid {
+    background-color: var(--color-cream-bg);
 }
 
-#itinerary .section-faq .grid-faq-inner:not(.owl-loaded){
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+#main #itinerary section.section-faq.bg.bg-tender-white .container-fluid {
+    background-image: none;
 }
 
-#itinerary .section-faq .grid-faq-inner.owl-carousel .owl-stage{
-    display: flex;
-}
-
-#itinerary .section-faq .grid-faq-inner.owl-carousel .owl-stage .owl-item .item{
-    height: 100%;
-}
-
-#itinerary .section-faq .grid-faq-inner .item{
-    padding: 2rem;
-    background-color: white;
-    box-shadow: 0 4px 24px 0 #0c3d310f;
+#itinerary .section-faq > .container-fluid > .container {
     text-align: center;
 }
 
-#itinerary .section-faq .grid-faq-inner .item .question{
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.375rem;
-    color: #1c1f1e;
-    margin-bottom: 0.75rem;
+#itinerary .section-faq .section-eyebrow:has(+ .section-description) {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
 }
 
-#itinerary .section-faq .grid-faq-inner .item .answer{
-    font-size: 1rem;
-    color: var(--color-text-muted-on-light);
+#itinerary .section-faq .list-faq {
+    text-align: left;
 }
 
-#itinerary .section-faq .grid-faq-inner .item p{
-    margin-bottom: 0;
+#itinerary .section-faq .text-center {
+    text-align: center;
 }
 
-#itinerary .section-contact .container-fluid{
-    position: relative;
+@media (min-width: 768px) {
+    #itinerary .section-faq > .container-fluid > .container {
+        width: 60%;
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
+#main #itinerary section.section-contact.bg.bg-tender-white,
+#main #itinerary section.section-contact.bg.bg-tender-white .container-fluid {
+    background-color: var(--color-cream-bg);
+}
+
+#itinerary .section-contact .container-fluid {
+    position: static;
+    background-image: none;
+}
+
+#itinerary .section-contact .container-fluid::before,
 #itinerary .section-contact .container-fluid::after {
-    z-index: -1;
-    opacity: 0.3;
-    background: url(/assets/frontend/images/modules/itinerary/section-contact-bg.png) center center / cover no-repeat;
+    display: none;
 }
 
-#itinerary .section-contact .container-fluid::before{
-    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.64) 100%);
-    z-index: -1;
-}
-
-#itinerary .section-contact .container-fluid::after,
-#itinerary .section-contact .container-fluid::before{
-    content: "";
-    inset: 0;
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-#itinerary .section-contact .section-title{
+#itinerary .section-contact .section-title {
     font-size: var(--text-section-title);
-    color: var(--color-text-on-dark);
+    color: var(--color-text-on-light);
     margin-bottom: 1rem;
     font-weight: 400;
 }
 
-#itinerary .section-contact .section-description{
-    font-weight: 700;
+#itinerary .section-contact .section-description {
+    font-weight: 400;
     font-size: 1.375rem;
     margin-bottom: 1.875rem;
-    color: var(--color-text-accent);
+    color: var(--color-text-muted-on-light);
 }
 
 #itinerary .section-contact .list-btn{
    gap: 0.75rem;
 }
 
-@media (min-width: 1200px) {
-    #itinerary .section-faq .grid-faq-inner:not(.owl-loaded) {
-        grid-template-columns: repeat(3,1fr);
-        gap: 1.5rem;
-    }
+#itinerary .section-contact .list-btn a.btn-success,
+#itinerary .section-contact .list-btn a.btn-success:hover,
+#itinerary .section-contact .list-btn a.btn-success:focus {
+    background: transparent;
+    color: var(--color-text-on-light);
+    border: 1px solid var(--color-text-on-light);
+    box-shadow: none;
 }
 
 @media (min-width: 768px) {
@@ -171,11 +217,114 @@
         font-size: var(--text-section-title);
     }
 
-    #itinerary .section-faq .grid-faq-inner:not(.owl-loaded) {
-        grid-template-columns: 1fr 1fr;
-    }
-
     #itinerary .section-contact .list-btn{
         gap: 1.5rem;
+    }
+}
+
+/* 2D1N vs 3D2N compare block + itinerary cards — cùng nền cream-bg */
+#itinerary .itin-compare {
+    background: transparent;
+    padding: var(--space-8) 0 var(--space-6);
+}
+
+#itinerary .section-itinerary .slide-1 {
+    padding-bottom: var(--space-8);
+}
+
+@media (min-width: 992px) {
+    #itinerary .itin-compare {
+        padding-bottom: calc(var(--space-6) * 2);
+    }
+}
+
+.itin-compare-label {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    border-left: 2px solid var(--color-gold);
+    padding-left: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.itin-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.itin-cmp-card {
+    border: 1px solid rgba(12, 61, 49, 0.12);
+    padding: var(--space-6);
+    position: relative;
+    background: #fff;
+}
+
+.itin-cmp-card--popular {
+    border: 2px solid var(--color-gold);
+}
+
+.itin-cmp-popular-badge {
+    position: absolute;
+    top: -11px;
+    left: var(--space-4);
+    background: var(--color-gold);
+    color: var(--color-text-on-light);
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px var(--space-3);
+    font-weight: 500;
+}
+
+.itin-cmp-dur {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-text-on-light);
+    margin-bottom: var(--space-2);
+}
+
+.itin-cmp-tag {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: var(--space-4);
+}
+
+.itin-cmp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.itin-cmp-list li {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: #5a6b62;
+    line-height: 1.65;
+    padding: var(--space-1) 0 var(--space-1) var(--space-5);
+    position: relative;
+}
+
+.itin-cmp-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--color-gold);
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .itin-compare-grid {
+        grid-template-columns: 1fr;
     }
 }

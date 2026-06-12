@@ -191,7 +191,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                                                     @endif
                                                     @if(!empty($experience->duration))
                                                     <li>
-                                                        <span>{{ $experience->duration }} minutes</span>
+                                                        <span>{{ $experience->duration }} {{ __('frontend::experienceDetail.time_minutes') }}</span>
                                                     </li>
                                                     @endif
                                                     

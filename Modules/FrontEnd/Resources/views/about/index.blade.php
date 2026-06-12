@@ -147,7 +147,7 @@
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
                     <h2 class="about-eco-title">Technology That <em>Proves It.</em></h2>
                     @if (count($listSustainability ?? []) > 0)
-                        <div class="about-eco-grid-desktop d-none d-lg-grid">
+                        <div class="about-eco-grid-desktop">
                             @foreach ($listSustainability as $sustainability)
                                 <div class="about-eco-card h-100">
                                     <p class="eco-card-num">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }} — {{ $sustainability->title }}</p>

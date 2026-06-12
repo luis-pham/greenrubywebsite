@@ -812,6 +812,14 @@
     }
 }
 
+/* All-Inclusive & FAQ — cream background */
+#main #home section.section-8.section-amenity.bg.bg-tender-white,
+#main #home section.section-8.section-amenity.bg.bg-tender-white .container-fluid,
+#main #home section.section-13.bg.bg-tender-white,
+#main #home section.section-13.bg.bg-tender-white .container-fluid {
+    background-color: var(--color-cream-bg);
+}
+
 /* Centered section eyebrows — follow section title via parent text-align */
 #main #home :is(
     .section-3 > .container-fluid > .container,
@@ -855,6 +863,16 @@
 
 #main #home .section-13 .text-center {
     text-align: center;
+}
+
+/* FAQ — thu hẹp 40% chiều rộng, căn giữa */
+@media (min-width: 768px) {
+    #home .section-13 > .container-fluid > .container {
+        width: 60%;
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* Tab filter pills — standard: Curated Journeys (section-4, 7, 9) */

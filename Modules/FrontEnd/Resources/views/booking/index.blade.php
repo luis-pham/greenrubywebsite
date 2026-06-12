@@ -524,7 +524,6 @@
             @include('frontend::booking.partials.payment')
             @include('frontend::booking.partials.complete')
             @include('frontend::booking.partials.summary')
-            @include('frontend::shared.modal-cabin-details')
         </div>
 
         @include('frontend::booking.partials.payment-loading')
