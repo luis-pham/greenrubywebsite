@@ -11,19 +11,30 @@ $(document).ready(function () {
     modal.on('hidden.bs.modal', function() {
         $('.modal-title', modal).text('');
         let slideImage = $('.slide-1 .list-image', modal);
-        if (slideImage.data('owl.carousel')) {
+        if (slideImage.length && slideImage.data('owl.carousel')) {
             slideImage.trigger('destroy.owl.carousel');
         }
-        $('.image', modal).html('');
+        $('.image', modal).empty();
         $('.list-amenity', modal).remove();
+    });
+
+    $(document).on('click mousedown', '.btn-view-cabin-details', function(e) {
+        e.stopPropagation();
     });
 
     $(document).on('click', '.btn-view-cabin-details', async function(e) {
         e.preventDefault();
+        e.stopPropagation();
+
+        if (typeof apiCabin === 'undefined' || !apiCabin.getById) {
+            console.error('Cabin API is not configured.');
+            return;
+        }
 
         let btn = $(this);
         let id = btn.attr('data-id');
         if (Validate.prototype.isNullOrWhiteSpace(id)) {
+            console.error('Cabin id is missing on view button.');
             return;
         }
 
@@ -43,34 +54,26 @@ $(document).ready(function () {
         let data = null;
 
         try {
-            await $.ajax({
+            data = await $.ajax({
                 url: apiCabin.getById,
                 type: 'GET',
                 data: {
                     id: id
-                },
-                success: function(response) {
-                    if (response.msg == 'success') {
-                        data = response.data;
-                    } else {
-                        console.error(response.err || 'Failed to load cabin details.');
-                    }
-                },
-                error: function(xhr) {
-                    console.error('Cabin details request failed.', xhr.status, xhr.responseText);
-                },
-                complete: function() {
-                    titleEllipsis && titleEllipsis.length && titleEllipsis.removeClass('btn-loading-title-local');
-                    imageWrapper && imageWrapper.length && imageWrapper.removeClass('image-loading-dim');
-                    btn.removeClass('btn-loading-local btn-view-details-disabled');
                 }
+            }).then(function(response) {
+                if (response && response.msg === 'success') {
+                    return response.data;
+                }
+
+                throw new Error((response && response.err) || 'Failed to load cabin details.');
             });
         } catch (err) {
             console.error('Cabin details request failed.', err);
-            btn.removeClass('btn-loading-local btn-view-details-disabled');
+            alert('Unable to load cabin details. Please try again.');
+        } finally {
             titleEllipsis && titleEllipsis.length && titleEllipsis.removeClass('btn-loading-title-local');
             imageWrapper && imageWrapper.length && imageWrapper.removeClass('image-loading-dim');
-            return;
+            btn.removeClass('btn-loading-local btn-view-details-disabled');
         }
 
         if (data == null) {
@@ -81,10 +84,24 @@ $(document).ready(function () {
 
         let modalBody = $('.modal-body', modal);
         $('.list-amenity', modalBody).remove();
+        $('.image', modalBody).empty();
+
+        modal.modal('show');
 
         let files = Array.isArray(data.file) ? data.file : [];
-        let carouselGallery = new CarouselGallery($('.image', modalBody), files);
-        carouselGallery.init();
+        if (files.length === 0 && !Validate.prototype.isNullOrWhiteSpace(data.image_link)) {
+            files = [{
+                link: data.image_link,
+                name: data.name || ''
+            }];
+        }
+
+        try {
+            let carouselGallery = new CarouselGallery($('.image', modalBody), files);
+            carouselGallery.init();
+        } catch (err) {
+            console.error('Cabin gallery init failed.', err);
+        }
 
         let amenities = Array.isArray(data.amenity) ? data.amenity : [];
         if (amenities.length > 0) {
@@ -107,7 +124,5 @@ $(document).ready(function () {
             html += '</div>';
             $('.main-info-title', modalBody).after(html);
         }
-
-        modal.modal('show');
     });
 });

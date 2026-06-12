@@ -2332,6 +2332,18 @@
     margin: 0 !important;
 }
 
+/* Section 6 — keep footer actions above owl nav/dots on mobile carousel */
+#home .section-6.section-cabin .item-footer {
+    position: relative;
+    z-index: 11;
+}
+
+#home .section-6.section-cabin .item-footer .btn-view-cabin-details {
+    position: relative;
+    z-index: 12;
+    pointer-events: auto;
+}
+
 /* Section 6 — card spacing matches Curated Journeys (section-itinerary) */
 #home .section-6.section-cabin .slide-1 {
     margin: -.375rem;

@@ -13,6 +13,7 @@ services:
             - APP_DEBUG=false
             - APP_URL=https://testing-greenruby.amitech.vn
             - ASSET_URL=https://testing-greenruby.amitech.vn
+            - TRUSTED_PROXIES=*
             - DB_HOST=192.168.31.221
             - DB_DATABASE=green_ruby
             - DB_USERNAME=hungnq
