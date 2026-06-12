@@ -147,12 +147,12 @@ $(document).ready(function(){
     const $sectionDetail = $('.section-detail');
     function initSectionDetail(){
         const $listItem = $sectionDetail.find('.item-detail');
-        $listItem.each(function(){
+        $listItem.each(function(index){
             const $item = $(this);
-            $item.on('click','.header',function(){
-                const $item = $(this).closest('.item-detail');
-                $item.toggleClass('expand');
-            })
+            $item.toggleClass('expand', index === 0);
+            $item.on('click', '.header', function(){
+                $(this).closest('.item-detail').toggleClass('expand');
+            });
         });
     }
     initSectionDetail();

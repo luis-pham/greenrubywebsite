@@ -197,7 +197,7 @@
 }
 
 #contact .contact-left-tagline {
-    font-size: 14px;
+    font-size: var(--text-base);
     color: var(--color-text-on-light);
     font-weight: 300;
     line-height: 1.7;

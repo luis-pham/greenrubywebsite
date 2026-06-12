@@ -812,12 +812,16 @@
     }
 }
 
-/* All-Inclusive & FAQ — cream background */
+/* All-Inclusive — cream background */
 #main #home section.section-8.section-amenity.bg.bg-tender-white,
-#main #home section.section-8.section-amenity.bg.bg-tender-white .container-fluid,
+#main #home section.section-8.section-amenity.bg.bg-tender-white .container-fluid {
+    background-color: var(--color-cream-bg);
+}
+
+/* FAQ — white background */
 #main #home section.section-13.bg.bg-tender-white,
 #main #home section.section-13.bg.bg-tender-white .container-fluid {
-    background-color: var(--color-cream-bg);
+    background-color: #fff;
 }
 
 /* Centered section eyebrows — follow section title via parent text-align */
@@ -1034,89 +1038,6 @@
 #home .section-3 .list-item .item .description {
     font-size: 1rem;
     color: #3d4a44;
-}
-
-/* Section 4 — Curated Journeys: hero-style carousel nav (all breakpoints) */
-#home .section-4.section-itinerary .slide-1 .owl-carousel {
-    position: relative;
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-theme .owl-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    pointer-events: none;
-    z-index: 8;
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-prev,
-#home .section-4.section-itinerary .slide-1 .owl-next {
-    pointer-events: auto;
-    z-index: 9;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-nav .button {
-    width: 44px;
-    height: 44px;
-    line-height: 1;
-    font-size: 1.125rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(12, 61, 49, 0.35);
-    border: 1px solid rgba(200, 168, 75, 0.4);
-    border-radius: 0;
-    color: var(--color-text-on-dark);
-    transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-nav .button:hover {
-    background: rgba(12, 61, 49, 0.55);
-    border-color: #C8A84B;
-    color: var(--color-text-accent);
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-nav .disabled .button {
-    opacity: 0.35;
-    cursor: default;
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-prev {
-    left: 16px;
-}
-
-#home .section-4.section-itinerary .slide-1 .owl-next {
-    right: 16px;
-}
-
-@media (min-width: 1024px) {
-    #home .section-4.section-itinerary .slide-1 .owl-prev {
-        left: 24px;
-    }
-
-    #home .section-4.section-itinerary .slide-1 .owl-next {
-        right: 24px;
-    }
-}
-
-@media (max-width: 767px) {
-    #home .section-4.section-itinerary .slide-1 .owl-prev {
-        left: 12px;
-    }
-
-    #home .section-4.section-itinerary .slide-1 .owl-next {
-        right: 12px;
-    }
-
-    #home .section-4.section-itinerary .slide-1 .owl-nav .button {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-    }
 }
 
 /* Section 6 — Private Sanctuaries: hero-style nav on mobile carousel only */

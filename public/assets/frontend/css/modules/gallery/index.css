@@ -435,7 +435,7 @@
 }
 
 #gallery .gallery-memory-desc {
-    font-size: 11px;
+    font-size: var(--text-base);
     color: var(--color-text-on-light);
     line-height: 1.6;
     font-weight: 300;

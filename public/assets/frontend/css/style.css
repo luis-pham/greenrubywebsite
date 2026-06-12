@@ -1637,6 +1637,11 @@ h1, h2, h3, h4, h5, h6 {
         background: transparent;
     }
 
+    /* Itinerary list — header trong suốt, hero ảnh kéo lên phía sau logo */
+    #header:has(+ #main #itinerary .section-cover) > .container-fluid {
+        background: transparent;
+    }
+
     #header > .container-fluid:before {
         display: none;
     }
@@ -2530,7 +2535,8 @@ body.menu-mobile-show{
 
     /* Pseudo ::before/::after z-index:-1 — tạo stacking context */
     #home .section-7 .container-fluid,
-    #main .section-testimonial .container-fluid {
+    #main .section-testimonial .container-fluid,
+    #itinerary-detail .section-cabin .container-fluid {
         isolation: isolate;
     }
 

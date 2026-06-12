@@ -19,7 +19,7 @@ return [
     'section-cabin-description' => 'Luxury suites',
 
     'section-gallery-title' => 'Experience Gallery',
-    'section-gallery-description' => 'See what awaits you on this unforgettable journey',
+    'section-gallery-description' => 'Inside Your Voyage',
 
     'section-booking-and-availability-title' => 'The bay is waiting. Your cabin is ready.',
     'section-booking-and-availability-description' => 'Book now to secure your spot on this unforgettable journey through one of the world\'s most beautiful natural wonders. Limited cabins available.',

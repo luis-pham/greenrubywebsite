@@ -669,8 +669,6 @@
 
 #cruise-detail .combined-header {
     margin-bottom: 48px;
-    padding-bottom: 36px;
-    border-bottom: 0.5px solid rgba(12, 61, 49, 0.08);
     text-align: center;
 }
 
@@ -692,17 +690,45 @@
     margin-inline: 0;
 }
 
-#cruise-detail .section-vr-360 .container-fluid {
-    position: relative;
-    overflow: hidden;
+#main #cruise-detail section.section-vr-360.bg,
+#main #cruise-detail section.section-vr-360.bg .container-fluid {
+    background-color: #fff;
 }
 
+#cruise-detail .section-vr-360 .container-fluid {
+    position: relative;
+}
+
+#cruise-detail .section-vr-360 .container-fluid::before,
+#cruise-detail .section-vr-360 .container-fluid::after {
+    display: none;
+}
+
+#cruise-detail .section-vr-360 .section-description,
 #cruise-detail .section-vr-360 .vr-heading {
-    color: var(--color-text-on-dark);
+    color: var(--color-text-on-light);
 }
 
 #cruise-detail .section-vr-360 .vr-subtitle {
+    color: var(--color-text-muted-on-light);
     margin-bottom: 1.5rem;
+}
+
+#cruise-detail .section-vr-360 .vr-coming-title {
+    color: var(--color-text-on-light);
+}
+
+#cruise-detail .section-vr-360 .vr-notify-btn {
+    color: var(--color-text-muted-on-light);
+}
+
+#cruise-detail .section-vr-360 .vr-notify-btn:hover {
+    color: var(--color-text-on-light);
+}
+
+#cruise-detail .section-vr-360 .vr-placeholder {
+    background: rgba(12, 61, 49, 0.03);
+    border-color: rgba(12, 61, 49, 0.12);
 }
 
 #cruise-detail .ship-specs-section .ship-stats-grid,
@@ -804,7 +830,7 @@
 }
 
 #cruise-detail .ship-specs-section .ship-stat-card .ship-stat-desc {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--color-text-on-light);
     font-weight: 300;
     line-height: 1.6;
@@ -931,7 +957,6 @@
 
     #cruise-detail .combined-header {
         margin-bottom: 32px;
-        padding-bottom: 24px;
     }
 
     #cruise-detail .ship-specs-section .ship-stats-grid {

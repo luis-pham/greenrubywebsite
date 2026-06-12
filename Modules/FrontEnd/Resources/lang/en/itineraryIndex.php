@@ -9,7 +9,7 @@ return [
     'section_faq_title' => 'Quick answer to common queries',
     'section_faq_description' => 'Frequently Asked Questions',
     'section_contact_title' => 'Need help choosing your itinerary?',
-    'section_contact_description' => 'Our cruise specialists are here to help you find the perfect journey',
+    'section_contact_description' => "Talk to us — we'll match you with the right voyage.",
     'section_contact_button_chat_with_us' => 'Chat with Us',
     'section_contact_button_contact_sales' => 'Contact sales',
 ];

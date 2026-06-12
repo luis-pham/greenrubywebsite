@@ -478,7 +478,6 @@
             'list' => $obj->listVr,
             'eyebrow' => __('frontend::cruiseDetail.section-vr-360.eyebrow'),
             'titleHtml' => __('frontend::cruiseDetail.section-vr-360.title_html'),
-            'subtitle' => 'A 360° tour of ' . ($obj->name ?? 'Green Ruby') . ' — coming October 2026.',
         ])
 
         @include('frontend::shared.section.section-testimonial',[

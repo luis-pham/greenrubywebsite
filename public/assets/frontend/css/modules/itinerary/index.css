@@ -1,6 +1,139 @@
+/* Hero — giống trang itinerary detail (#itinerary-detail) */
 #itinerary .section-cover {
-    height: 380px;
     margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    #itinerary .section-cover .page-cover .main-info {
+        width: 100%;
+    }
+}
+
+#itinerary .section-cover .page-cover .main-info .title,
+#itinerary .section-cover .page-cover .main-info .description {
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+    #main #itinerary .section-cover .page-cover .main-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    #main #itinerary .section-cover .page-cover .main-info .title,
+    #main #itinerary .section-cover .page-cover .main-info .description {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+#itinerary .section-cover .page-cover .image-wrapper::before {
+    opacity: 0.5;
+}
+
+@media (min-width: 992px) {
+    #itinerary .section-cover .page-cover .image-wrapper::before {
+        opacity: 0.42;
+    }
+}
+
+@media (min-width: 1920px) {
+    #itinerary .section-cover .page-cover .image-wrapper::after {
+        padding-top: 24.271%;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1920px) {
+    #itinerary .section-cover .page-cover .image-wrapper::after {
+        padding-top: calc(35.271% - 11% * tan(atan2(100vw - 1200px, 720px)));
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    #itinerary .section-cover .page-cover .image-wrapper::after {
+        padding-top: calc(65% - 25% * tan(atan2(100vw - 768px, 432px)));
+    }
+}
+
+@media (max-width: 1023px) {
+    #main #itinerary .section-cover {
+        margin-top: calc(-72px - env(safe-area-inset-top, 0px)) !important;
+        padding: 0 !important;
+        position: relative;
+        z-index: 1;
+    }
+
+    #itinerary .section-cover .page-cover {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #itinerary .section-cover .page-cover .image-wrapper::after {
+        display: none;
+        padding-top: 0;
+    }
+
+    #itinerary .section-cover .page-cover .image-wrapper {
+        flex-shrink: 0;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #itinerary .section-cover .page-cover .image-wrapper img {
+        position: static !important;
+        width: 100%;
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+    }
+
+    #itinerary .section-cover .page-cover .image-wrapper::before {
+        display: block;
+        height: 140px;
+        width: 100%;
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+    }
+
+    #itinerary .section-cover .page-cover .container.hero-content {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        margin-top: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: var(--color-forest);
+        padding: 20px 18px 24px;
+        text-align: left;
+    }
+
+    #itinerary .section-cover .page-cover .main-info {
+        max-width: none;
+        width: 100%;
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    #itinerary .section-cover .page-cover .main-info .title {
+        max-width: 340px;
+        text-align: left !important;
+    }
+
+    #itinerary .section-cover .page-cover .main-info .description {
+        max-width: 330px;
+        text-align: left !important;
+    }
 }
 
 /* Filter sát hero — gallery chuẩn, căn giữa */
@@ -33,22 +166,6 @@
 @media (min-width: 1400px) {
     #main #itinerary .section-itinerary > .container-fluid {
         min-height: 0;
-    }
-}
-
-#itinerary .section-cover .overlay,
-#itinerary .section-cover .page-cover .image-wrapper::before {
-    background: rgba(10, 28, 18, 0.55);
-    opacity: 1;
-}
-
-#itinerary .section-cover .page-cover .main-info{
-    width: 100%;
-}
-
-@media (min-width: 992px) {
-    #itinerary .section-cover .page-cover .image-wrapper::before {
-        opacity: 1;
     }
 }
 
@@ -115,7 +232,7 @@
 
 #main #itinerary section.section-faq.bg.bg-tender-white,
 #main #itinerary section.section-faq.bg.bg-tender-white .container-fluid {
-    background-color: var(--color-cream-bg);
+    background-color: #fff;
 }
 
 #main #itinerary section.section-faq.bg.bg-tender-white .container-fluid {
@@ -151,7 +268,7 @@
 
 #main #itinerary section.section-contact.bg.bg-tender-white,
 #main #itinerary section.section-contact.bg.bg-tender-white .container-fluid {
-    background-color: var(--color-cream-bg);
+    background-color: #fff;
 }
 
 #itinerary .section-contact .container-fluid {
@@ -165,21 +282,33 @@
 }
 
 #itinerary .section-contact .section-title {
-    font-size: var(--text-section-title);
-    color: var(--color-text-on-light);
-    margin-bottom: 1rem;
-    font-weight: 400;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-text-accent);
+    margin-bottom: 0.75rem;
 }
 
 #itinerary .section-contact .section-description {
+    font-family: var(--font-display);
     font-weight: 400;
-    font-size: 1.375rem;
-    margin-bottom: 1.875rem;
-    color: var(--color-text-muted-on-light);
+    font-size: var(--text-section-title);
+    line-height: 1.2;
+    margin-bottom: 2.25rem;
+    color: var(--color-text-on-light);
 }
 
-#itinerary .section-contact .list-btn{
-   gap: 0.75rem;
+#itinerary .section-contact .list-btn {
+    gap: 0.75rem;
+}
+
+@media (max-width: 767px) {
+    #itinerary .section-contact .list-btn a.btn-warning,
+    #itinerary .section-contact .list-btn a.btn-success {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        padding: 12px 14px;
+        white-space: nowrap;
+    }
 }
 
 #itinerary .section-contact .list-btn a.btn-success,
@@ -192,11 +321,7 @@
 }
 
 @media (min-width: 768px) {
-    #itinerary .section-contact .section-title{
-        font-size: var(--text-section-title);
-    }
-
-    #itinerary .section-contact .list-btn{
+    #itinerary .section-contact .list-btn {
         gap: 1.5rem;
     }
 }
@@ -284,7 +409,7 @@
 
 .itin-cmp-list li {
     font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: #5a6b62;
     line-height: 1.65;
     padding: var(--space-1) 0 var(--space-1) var(--space-5);

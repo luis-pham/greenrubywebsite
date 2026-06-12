@@ -197,7 +197,8 @@
                         @foreach($obj->itinerary->itineraryDays as $day)
                             @include('frontend::itinerary.partials.itineraryDayDetails',[
                                 'day' => $day,
-                                'listDetail' => $day->itineraryDayDetails
+                                'listDetail' => $day->itineraryDayDetails,
+                                'expanded' => $loop->first,
                             ])
                         @endforeach
                     </div>

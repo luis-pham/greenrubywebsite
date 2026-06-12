@@ -7,7 +7,9 @@
     $listBanner[0] = new stdClass();
     $listBanner[0]->title = __('frontend::itineraryIndex.section_cover_title');
     $listBanner[0]->description = __("frontend::itineraryIndex.section_cover_description");
-    $listBanner[0]->link = asset('assets/frontend/images/modules/itinerary/banner.png');
+    $listBanner[0]->link = !empty($listItinerary) && !empty($listItinerary[0]->image_link)
+        ? $listItinerary[0]->image_link
+        : asset('assets/frontend/images/modules/itinerary/banner.png');
 
 @endphp
 
@@ -16,7 +18,8 @@
         @include('frontend::shared.section.section-cover',[
             'class' => 'section-cover-sm',
             'list' => $listBanner,
-            'tagHeading' => 'h1'
+            'tagHeading' => 'h1',
+            'imageConfig' => ['w' => 1920, 'h' => 466],
         ])
         @include('frontend::shared.section.section-itinerary',[
             'class' => 'bg-tender-white',
@@ -59,7 +62,7 @@
             <div class="container-fluid">
                 <div class="container">
                     <p class="section-title font-heading">{{ __('frontend::itineraryIndex.section_contact_title') }}</p>
-                    <p class="section-description">{{ __('frontend::itineraryIndex.section_contact_description') }}</p>
+                    <p class="section-description font-heading">{{ __('frontend::itineraryIndex.section_contact_description') }}</p>
                     <div class="d-flex justify-content-center align-items-center list-btn">
                         <a class="btn-rounded btn-warning btn-chat-with-ai" href="javascript:">{{__('frontend::itineraryIndex.section_contact_button_chat_with_us')}}</a>
                         <a class="btn-rounded btn-success" href="{{route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.contact.index'),['languageCode' => $languageCode])}}">{{__('frontend::itineraryIndex.section_contact_button_contact_sales')}}</a>

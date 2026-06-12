@@ -401,9 +401,11 @@
     text-decoration: none;
 }
 
-#itinerary-detail .btn-book-detail:hover {
-    background: var(--color-text-on-light);
-    color: var(--color-gold);
+#itinerary-detail .btn-book-detail:hover,
+#itinerary-detail .btn-book-detail:focus {
+    background-color: #b8923e;
+    border-color: #b8923e;
+    color: var(--color-text-on-light);
 }
 
 @media screen and (max-width: 1200px) {
@@ -517,7 +519,7 @@
 #itinerary-detail .section-info .list-container .body .list .item p,
 #itinerary-detail .section-info .list-container .body .list .item li {
     font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: #3d4a44;
     line-height: 1.55;
     margin-bottom: 0;
@@ -677,6 +679,7 @@
 #itinerary-detail .section-cabin .container-fluid {
     background: transparent !important;
     position: relative;
+    isolation: isolate;
 }
 
 #itinerary-detail .section-cabin .section-description {

@@ -233,7 +233,7 @@
 
 #about .about-story-body {
     font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--color-text-on-light);
     line-height: 1.8;
     font-weight: 300;
@@ -418,7 +418,7 @@
 }
 
 #about .about-eco-card-desc {
-    font-size: 11px;
+    font-size: var(--text-sm);
     color: var(--color-text-muted-on-dark);
     line-height: 1.7;
     font-weight: 300;
@@ -503,7 +503,7 @@
 }
 
 #about .about-community-item-desc {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--color-text-on-light);
     line-height: 1.75;
     font-weight: 300;
@@ -713,7 +713,7 @@
 }
 
 #about .about-cta-desc {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--color-text-on-light);
     line-height: 1.75;
     font-weight: 300;

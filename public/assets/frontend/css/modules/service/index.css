@@ -223,10 +223,10 @@
 
 #service .service-card-desc {
     font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: 300;
     line-height: 1.6;
-    color: var(--color-text-muted-on-light);
+    color: var(--color-text-on-light);
     margin: 0;
 }
 

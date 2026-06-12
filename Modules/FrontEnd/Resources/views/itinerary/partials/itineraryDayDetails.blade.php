@@ -2,7 +2,7 @@
     use Modules\FrontEnd\Helpers\DateUtils;
     $listDetail = $listDetail ?? [];
 @endphp
-<div class="item-detail expand">
+<div class="item-detail{{ !empty($expanded) ? ' expand' : '' }}">
     <div class="header">
         <span>{{__('frontend::common.day')}} {{$day->day}}</span>
         <i class="fas fa-chevron-right"></i>
