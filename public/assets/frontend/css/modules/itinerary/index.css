@@ -23,32 +23,11 @@
     padding: 0;
 }
 
-#itinerary .gallery-filter-inner .container {
-    display: flex;
-    justify-content: center;
-}
-
-#itinerary .gallery-filter-bar.list-filter {
-    justify-content: center;
-    width: auto;
-    max-width: 100%;
-}
-
 #itinerary .gallery-filter-bar .gallery-filter-tab.item {
     font-size: 14px;
     font-weight: 400;
     line-height: 1.2;
     padding: 16px 20px;
-}
-
-#itinerary .gallery-filter-bar .gallery-filter-tab.item:first-child {
-    padding-left: 20px;
-}
-
-@media (max-width: 768px) {
-    #itinerary .gallery-filter-bar .gallery-filter-tab.item:first-child {
-        padding-left: 16px;
-    }
 }
 
 @media (min-width: 1400px) {
