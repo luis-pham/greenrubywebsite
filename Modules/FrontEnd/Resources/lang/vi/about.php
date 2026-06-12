@@ -13,6 +13,7 @@ return [
     'section_6_description' => 'Tự hào được công nhận về dịch vụ khách sạn bền vững tại Vịnh Hạ Long',
     'button_see_itineraries' => 'Xem các hành trình',
     'button_contact_us' => 'Liên hệ với chúng tôi',
+    'ready_to_sail_content' => 'Khám phá hành trình và cùng chúng tôi lan tỏa thay đổi. Trải nghiệm du thuyền sang trọng bền vững, gìn giữ vẻ đẹp Vịnh Hạ Long.',
     'wastewater_treated' => 'Nước thải được xử lý',
     'tons_of_co2_reduced_annually' => 'Lượng CO₂ cắt giảm hàng năm',
     'renewable_solar_power' => 'Năng lượng mặt trời tái tạo',

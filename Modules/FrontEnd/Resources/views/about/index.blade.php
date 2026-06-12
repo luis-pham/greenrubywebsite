@@ -66,10 +66,6 @@
     $aboutUsReadyToSailDescription = isset($pageConfig[PageConfigKeyConsts::ABOUT_US_READY_TO_SAIL_DESCRIPTION])
         ? $pageConfig[PageConfigKeyConsts::ABOUT_US_READY_TO_SAIL_DESCRIPTION]
         : '';
-    $aboutUsReadyToSailContent = isset($pageConfig[PageConfigKeyConsts::ABOUT_US_READY_TO_SAIL_CONTENT])
-        ? $pageConfig[PageConfigKeyConsts::ABOUT_US_READY_TO_SAIL_CONTENT]
-        : '';
-
     $ctaImageLink = $aboutUsEcoFeaturedImage;
     if (!$ctaImageLink && count($listBanner) > 0) {
         $ctaImageLink = $listBanner[0]->link ?? '';
@@ -200,12 +196,14 @@
                         <div class="about-community-rows">
                             @foreach ($listEnviroment as $item)
                                 <div class="about-community-row">
-                                    <img
-                                        class="about-community-image"
-                                        src="{{ asset(FeUtils::getThumbnail(['link' => $item->link, 'w' => 807, 'h' => 388])) }}"
-                                        alt="{{ $item->title ?? '' }}"
-                                        loading="lazy"
-                                    />
+                                    <div class="about-community-media">
+                                        <img
+                                            class="about-community-image"
+                                            src="{{ asset(FeUtils::getThumbnail(['link' => $item->link, 'w' => 807, 'h' => 388])) }}"
+                                            alt="{{ $item->title ?? '' }}"
+                                            loading="lazy"
+                                        />
+                                    </div>
                                     <div class="about-community-content">
                                         <h3 class="about-community-item-title">{{ $item->title ?? '' }}</h3>
                                         <div class="about-community-item-desc">{!! nl2br(e($item->description ?? '')) !!}</div>
@@ -225,9 +223,6 @@
                     <p class="section-eyebrow">Our Positive Impact</p>
                     @if ($aboutUsStatisticTitle)
                         <h2 class="about-impact-title">{{ $aboutUsStatisticTitle }}</h2>
-                    @endif
-                    @if ($aboutUsStatisticDescription)
-                        <p class="about-impact-sub">{{ $aboutUsStatisticDescription }}</p>
                     @endif
                     <div class="about-impact-grid">
                         @if ($aboutUsStatisticWastewaterTreated)
@@ -285,11 +280,11 @@
                 <div class="container about-cta-grid">
                     <div class="about-cta-copy">
                         <h2 class="about-cta-title">Be Part of <em>the Change.</em></h2>
-                        <p class="about-cta-desc">{{ $aboutUsReadyToSailContent }}</p>
+                        <p class="about-cta-desc">{{ __('frontend::about.ready_to_sail_content') }}</p>
                         @if ($aboutUsReadyToSailDescription)
                             <p class="about-cta-kicker">{{ $aboutUsReadyToSailDescription }}</p>
                         @endif
-                        <div class="about-cta-buttons list-button">
+                        <div class="about-cta-buttons list-button d-flex flex-wrap justify-content-center">
                             <div class="item">
                                 <a href="{{ $itineraryUrl }}" class="btn-warning btn-rounded">{{ __('frontend::about.button_see_itineraries') }}</a>
                             </div>
@@ -298,16 +293,6 @@
                             </div>
                         </div>
                     </div>
-                    @if ($ctaImageLink)
-                        <div class="about-cta-media">
-                            <img
-                                class="about-cta-image"
-                                src="{{ asset(FeUtils::getThumbnail(['link' => $ctaImageLink, 'w' => 900, 'h' => 600])) }}"
-                                alt="{{ $aboutUsReadyToSailDescription ?: 'Green Ruby Cruises' }}"
-                                loading="lazy"
-                            />
-                        </div>
-                    @endif
                 </div>
             </div>
         </section>
