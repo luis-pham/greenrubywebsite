@@ -56,4 +56,28 @@ class FeCruiseUtils
             return '';
         }
     }
+
+    public static function isGreenRuby2(?string $name): bool
+    {
+        return str_contains((string) $name, '2') || str_contains((string) $name, 'II');
+    }
+
+    public static function getDisplayShipSpecs(bool $isGreenRuby2): array
+    {
+        if ($isGreenRuby2) {
+            return [
+                'length' => '110',
+                'cabins' => '46',
+                'guests' => '136',
+                'year' => '2027',
+            ];
+        }
+
+        return [
+            'length' => '110',
+            'cabins' => '46',
+            'guests' => '136',
+            'year' => '2026',
+        ];
+    }
 }

@@ -26,7 +26,7 @@ return [
     'ship_specs.eco.solar_stat' => '~25%',
     'ship_specs.eco.solar_stat_label' => 'ĐIỆN NĂNG TRÊN TÀU TỪ MẶT TRỜI',
     'ship_specs.eco.solar_title' => 'Hệ Thống Năng Lượng Mặt Trời',
-    'ship_specs.eco.solar_desc' => 'Pin mặt trời trên boong cung cấp ~25% điện năng trên tàu, giảm tải máy phát và cắt giảm phát thải CO₂ trên vịnh.',
+    'ship_specs.eco.solar_desc' => 'Pin mặt trời trên boong cung cấp ~25% điện năng trên tàu, giảm dùng nhiên liệu và CO₂ trên vịnh.',
     'ship_specs.eco.discharge_label' => 'xả thải chưa xử lý',
     'ship_specs.eco.wastewater_title' => 'Xử Lý Nước Thải',
     'ship_specs.eco.wastewater_desc' => 'Hệ thống tiên tiến trên tàu đảm bảo không xả thải chưa xử lý ra hệ sinh thái vịnh.',

@@ -49,12 +49,17 @@
     display: block;
 }
 
-/* Layout */
+/* Layout — 50/50 from tablet landscape up; stacked below 1024px */
 .onboard-exp-layout {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1fr;
     gap: 3px;
     align-items: stretch;
+}
+
+.onboard-exp-left,
+.onboard-exp-right {
+    min-width: 0;
 }
 
 /* Left menu — background giống section-vr-360 (Immersive Experience) */

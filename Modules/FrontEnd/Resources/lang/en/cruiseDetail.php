@@ -30,7 +30,7 @@ return [
     'ship_specs.eco.solar_stat' => '~25%',
     'ship_specs.eco.solar_stat_label' => 'OF ONBOARD POWER FROM SOLAR',
     'ship_specs.eco.solar_title' => 'Solar Power System',
-    'ship_specs.eco.solar_desc' => 'Rooftop solar panels supply ~25% of onboard power, reducing generator load and cutting CO₂ emissions over the bay.',
+    'ship_specs.eco.solar_desc' => 'Rooftop solar supplies ~25% of onboard power, reducing fuel use and CO₂ over the bay.',
     'ship_specs.eco.discharge_label' => 'untreated discharge',
     'ship_specs.eco.wastewater_title' => 'Wastewater Treatment',
     'ship_specs.eco.wastewater_desc' => 'Advanced onboard system ensures zero untreated discharge into the bay ecosystem.',

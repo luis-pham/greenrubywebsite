@@ -1,26 +1,67 @@
+/* Carousel nav — hero-style (giống cruise section-cabin / homepage hero) */
+.modal-cabin .slide-1 .owl-carousel {
+    position: relative;
+}
+
+.modal-cabin .slide-1 .owl-theme .owl-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    pointer-events: none;
+    z-index: 8;
+}
+
+.modal-cabin .slide-1 .owl-prev,
+.modal-cabin .slide-1 .owl-next {
+    pointer-events: auto;
+    z-index: 9;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .modal-cabin .slide-1 .owl-nav .button {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
+    width: 44px;
+    height: 44px;
+    line-height: 1;
     font-size: 1.125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 61, 49, 0.35);
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    border-radius: 0;
+    color: var(--color-text-on-dark);
+    transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
 }
 
-@media (min-width: 768px) {
-    .modal-cabin .slide-1 .owl-nav .button {
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        font-size: 1.375rem;
-    }
+.modal-cabin .slide-1 .owl-nav .button:hover {
+    background: rgba(12, 61, 49, 0.55);
+    border-color: #C8A84B;
+    color: var(--color-text-accent);
 }
 
-@media (min-width: 1200px) {
-    .modal-cabin .slide-1 .owl-nav .button {
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
-    }
+.modal-cabin .slide-1 .owl-nav .disabled {
+    opacity: unset;
+}
 
+.modal-cabin .slide-1 .owl-nav .disabled .button {
+    opacity: 0.35;
+    cursor: default;
+    background: rgba(12, 61, 49, 0.35);
+}
+
+.modal-cabin .slide-1 .owl-prev {
+    left: 16px;
+}
+
+.modal-cabin .slide-1 .owl-next {
+    right: 16px;
+}
+
+@media (min-width: 1024px) {
     .modal-cabin .slide-1 .owl-prev {
         left: 24px;
     }
@@ -30,17 +71,20 @@
     }
 }
 
-.modal-cabin .slide-1 .owl-nav .owl-next .button,
-.modal-cabin .slide-1 .owl-nav .owl-prev .button {
-    background-color: var(--color-forest);
-}
+@media (max-width: 767px) {
+    .modal-cabin .slide-1 .owl-prev {
+        left: 12px;
+    }
 
-.modal-cabin .slide-1 .owl-nav .disabled {
-    opacity: unset;
-}
+    .modal-cabin .slide-1 .owl-next {
+        right: 12px;
+    }
 
-.modal-cabin .slide-1 .owl-nav .disabled .button {
-    background-color: #ffffff4d;
+    .modal-cabin .slide-1 .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
 }
 
 .modal-cabin .modal-header,

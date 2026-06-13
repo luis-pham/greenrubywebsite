@@ -280,9 +280,10 @@
                             $cruiseName = !empty($listCruise[$i]->name)
                                 ? $listCruise[$i]->name
                                 : ($cruiseDefaultNames[$i] ?? '');
-                            $statLength = $listCruise[$i]->dimension_length ?? '';
-                            $statCabins = 46;
-                            $statGuests = $listCruise[$i]->capacity ?? '';
+                            $shipSpecs = FeCruiseUtils::getDisplayShipSpecs(FeCruiseUtils::isGreenRuby2($listCruise[$i]->name ?? ''));
+                            $statLength = $shipSpecs['length'];
+                            $statCabins = $shipSpecs['cabins'];
+                            $statGuests = $shipSpecs['guests'];
                         @endphp
                         <div class="cruise ship-card row no-gutters">
                             <div class="ship-image-wrap image col-lg-6" style="background-image: url({{ FeUtils::getThumbnail(['link' => $listCruise[$i]->image_link, 'w' => 960, 'h' => 490]) }})"></div>

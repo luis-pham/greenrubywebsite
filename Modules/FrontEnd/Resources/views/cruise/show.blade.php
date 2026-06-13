@@ -3,7 +3,7 @@
 @php
     $languageCode = Route::current()->parameter('languageCode');
     $cruiseDisplayName = FeUtils::formatGreenRubyMenuName($obj->name);
-    $isGreenRuby2 = str_contains((string) ($obj->name ?? ''), '2');
+    $isGreenRuby2 = FeCruiseUtils::isGreenRuby2($obj->name ?? '');
     $vesselLabel = $isGreenRuby2
         ? __('frontend::cruiseDetail.hero.vessel_gr2')
         : __('frontend::cruiseDetail.hero.vessel_gr1');
@@ -56,6 +56,7 @@
     $listAccommodationCabinId = $listAccommodationCabin->map(fn($c) => $c->id);
     $listOtherCabin = $listCabin->filter(fn($cabin) => !$listAccommodationCabinId->contains($cabin->id));
     $specsVesselName = $isGreenRuby2 ? 'Green Ruby 2' : 'Green Ruby 1';
+    $shipSpecs = FeCruiseUtils::getDisplayShipSpecs($isGreenRuby2);
     $statDescMap = [
         'length' => __('frontend::cruiseDetail.ship_specs.stat.length_desc'),
         'cabin' => __('frontend::cruiseDetail.ship_specs.stat.cabin_desc'),
@@ -94,22 +95,22 @@
                 <div class="grid-info ship-stats-grid">
                     <div class="item ship-stat-card">
                         <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.length_label') }}</p>
-                        <p class="length ship-stat-number">{{ $obj->dimension_length }}</p>
+                        <p class="length ship-stat-number">{{ $shipSpecs['length'] }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['length'] }}</p>
                     </div>
                     <div class="item ship-stat-card">
                         <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.cabins_label') }}</p>
-                        <p class="length ship-stat-number">46</p>
+                        <p class="length ship-stat-number">{{ $shipSpecs['cabins'] }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['cabin'] }}</p>
                     </div>
                     <div class="item ship-stat-card">
                         <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.guests_label') }}</p>
-                        <p class="length ship-stat-number">{{ $obj->capacity }}</p>
+                        <p class="length ship-stat-number">{{ $shipSpecs['guests'] }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['guests'] }}</p>
                     </div>
                     <div class="item ship-stat-card">
                         <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.year_label') }}</p>
-                        <p class="length ship-stat-number">{{ $obj->year_built }}</p>
+                        <p class="length ship-stat-number">{{ $shipSpecs['year'] }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['year'] }}</p>
                     </div>
                 </div>
@@ -166,7 +167,6 @@
             'titleHtml' => __('frontend::cruiseDetail.section-cabin.title_html'),
             'list' => $listAccommodationCabin,
             'suitesGrid' => true,
-            'isShowBookNow' => false
         ])
 
         <section class="section-itinerary bg">
@@ -515,10 +515,10 @@
                     'name'  => 'Green Ruby',
                 ],
                 'additionalProperty' => [
-                    ['@type' => 'PropertyValue', 'name' => 'Capacity',     'value' => $obj->capacity . ' guests'],
+                    ['@type' => 'PropertyValue', 'name' => 'Capacity',     'value' => $shipSpecs['guests'] . ' guests'],
                     ['@type' => 'PropertyValue', 'name' => 'Total Floors', 'value' => (string) $obj->total_floor],
-                    ['@type' => 'PropertyValue', 'name' => 'Length',       'value' => $obj->dimension_length . ' meters'],
-                    ['@type' => 'PropertyValue', 'name' => 'Year Built',   'value' => (string) $obj->year_built],
+                    ['@type' => 'PropertyValue', 'name' => 'Length',       'value' => $shipSpecs['length'] . ' meters'],
+                    ['@type' => 'PropertyValue', 'name' => 'Year Built',   'value' => (string) $shipSpecs['year']],
                 ]
             ],
             $obj->star_rating ? [

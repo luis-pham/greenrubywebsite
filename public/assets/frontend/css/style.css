@@ -1435,6 +1435,26 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Experiences: hide from desktop nav on laptop, show on wide screens */
+@media (max-width: 1440px) {
+    #header .header-desktop .navigation > ul > li:has(> a[href*="/experiences"]),
+    #header .header-desktop .navigation > ul > li:has(> a[href*="hoat-dong-trai-nghiem"]) {
+        display: none !important;
+    }
+
+    #header .header-desktop .btn-toggle-menu-ext .menu-ext > li:has(> a[href*="/experiences"]),
+    #header .header-desktop .btn-toggle-menu-ext .menu-ext > li:has(> a[href*="hoat-dong-trai-nghiem"]) {
+        display: list-item !important;
+    }
+}
+
+@media (min-width: 1441px) {
+    #header .header-desktop .navigation > ul > li:has(> a[href*="/experiences"]),
+    #header .header-desktop .navigation > ul > li:has(> a[href*="hoat-dong-trai-nghiem"]) {
+        display: list-item !important;
+    }
+}
+
 /* Language */
 #header .language {
     min-width: 60px;
