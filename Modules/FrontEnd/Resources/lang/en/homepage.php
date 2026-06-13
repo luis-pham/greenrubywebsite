@@ -11,13 +11,15 @@ return [
     '2_cruise_ships' => '2 Cruise Ships',
     '2_heritage_bay' => '2 Heritage Bay',
     '2_itineraries' => '2 Itineraries',
+    '4_itineraries' => '4 Itineraries',
+    'info_bar_journeys_detail' => '2 bays · 2D1N / 3D2N',
     'eco-luxury' => 'Eco-Luxury',
     'fleet' => 'Fleet',
     'destinations' => 'Destinations',
     'journeys' => 'Journeys',
     'commitment' => 'Commitment',
     'bay' => ':name Bay',
-    'hybrid'=> ['Hybrid', 'Solar Powered'],
+    'hybrid'=> ['Solar-Assisted', 'Seawater Cooling'],
 
     'cruise_ship' => 'Cruise Ship',
     'itinerary' => 'Itinerary',
@@ -32,10 +34,10 @@ return [
     'section_3_description' => 'The Value of Sustainability',
     'eco_cards' => [
         [
-            'title' => 'Hybrid Propulsion',
-            'description' => 'Advanced hybrid-electric engine reduces fuel consumption across every voyage — not just at anchor.',
-            'stat_number' => '−40%',
-            'stat_label' => 'CO₂ vs. diesel fleet',
+            'title' => 'Solar-Assisted Power',
+            'description' => 'Rooftop solar shares the load with our generators — less fuel burned, less CO₂ over the bay.',
+            'stat_number' => '~25%',
+            'stat_label' => 'OF ONBOARD POWER FROM SOLAR',
         ],
         [
             'title' => 'Zero Plastic Water',

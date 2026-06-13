@@ -1,4 +1,22 @@
 $(document).ready(function () {
+    // Section 2 - Our Story carousel (itinerary hero images)
+    var $storyCarousel = $('#about .about-story-carousel.owl-carousel');
+    if ($storyCarousel.length && $.fn.owlCarousel) {
+        $storyCarousel.owlCarousel({
+            loop: false,
+            dots: $storyCarousel.find('.item').length > 1,
+            nav: $storyCarousel.find('.item').length > 1,
+            navText: [
+                '<div class="button"><i class="fa-solid fa-chevron-left"></i></div>',
+                '<div class="button"><i class="fa-solid fa-chevron-right"></i></div>'
+            ],
+            items: 1,
+            margin: 0,
+            autoplay: false,
+            smartSpeed: 400
+        });
+    }
+
     // Section 3 - sustainability mobile carousel
     var $ecoCarousel = $('#about .section-3 .about-eco-grid-mobile.owl-carousel');
     if ($ecoCarousel.length && $.fn.owlCarousel) {

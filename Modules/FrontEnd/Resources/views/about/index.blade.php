@@ -117,13 +117,22 @@
                             <div class="about-story-body">{!! safe_html($aboutUsEcoContent) !!}</div>
                         @endif
                     </div>
-                    @if ($aboutUsEcoFeaturedImage)
+                    @if (count($listStoryImages ?? []) > 0)
                         <div class="about-story-media">
-                            <img
-                                class="about-story-image"
-                                src="{{ asset(FeUtils::getThumbnail(['link' => $aboutUsEcoFeaturedImage, 'w' => 1000, 'h' => 562])) }}"
-                                alt="{{ $aboutUsEcoFeaturedImageAlt ?? $aboutUsEcoTitle }}"
-                            />
+                            <div class="slide-1 about-story-slide">
+                                <div class="about-story-carousel owl-carousel owl-theme">
+                                    @foreach ($listStoryImages as $storyImage)
+                                        <div class="item">
+                                            @include('frontend::shared.image-wrapper', [
+                                                'link' => $storyImage->link,
+                                                'alt' => $storyImage->alt ?: $aboutUsEcoTitle,
+                                                'ratio' => '16-9',
+                                                'imageConfig' => ['w' => 960, 'h' => 540],
+                                            ])
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -150,7 +159,8 @@
                                     @include('frontend::shared.image-wrapper', [
                                         'link' => $sustainability->link,
                                         'alt' => $sustainability->title,
-                                        'imageConfig' => ['w' => 332, 'h' => 410],
+                                        'ratio' => '3-2',
+                                        'imageConfig' => ['w' => 498, 'h' => 332],
                                     ])
                                     <h3 class="about-eco-card-title">{{ $sustainability->title }}</h3>
                                     <p class="about-eco-card-desc">{{ $sustainability->description }}</p>
@@ -166,7 +176,8 @@
                                             @include('frontend::shared.image-wrapper', [
                                                 'link' => $sustainability->link,
                                                 'alt' => $sustainability->title,
-                                                'imageConfig' => ['w' => 332, 'h' => 410],
+                                                'ratio' => '3-2',
+                                                'imageConfig' => ['w' => 498, 'h' => 332],
                                             ])
                                             <h3 class="about-eco-card-title">{{ $sustainability->title }}</h3>
                                             <p class="about-eco-card-desc">{{ $sustainability->description }}</p>

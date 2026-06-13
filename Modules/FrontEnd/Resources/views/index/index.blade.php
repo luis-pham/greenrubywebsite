@@ -5,10 +5,8 @@
     $disableDefaultAppJs = true;
     $languageCode = Route::current()->parameter('languageCode');
 
-    $listDuration = FeCruiseUtils::getListDuration();
     $listBay = FeCruiseUtils::getListBay();
     $listBayName = count($listBay) > 1 ? implode(' & ', $listBay) : $listBay[1];
-    $listDurationName = count($listDuration) > 1 ? implode(' & ', $listDuration) : $listDuration[1];
     $listCruiseName = FeUtils::formatGreenRubyCruiseNames($listCruiseName);
 
     $listBanner = isset($pageConfig[PageConfigKeyConsts::HOMEPAGE_BANNER])
@@ -155,12 +153,8 @@
                                         </div>
                                         <div class="info-right d-flex flex-column">
                                             <span class="label">{{ __('frontend::homepage.journeys') }}</span>
-                                            <span class="title font-weight-bold">{{ __('frontend::homepage.2_itineraries') }}</span>
-                                            <ul class="list-value">
-                                                @foreach($listDuration as $item)
-                                                    <li class="value">{{ $item }}</li>
-                                                @endforeach
-                                            </ul>
+                                            <span class="title font-weight-bold">{{ __('frontend::homepage.4_itineraries') }}</span>
+                                            <span class="value">{{ __('frontend::homepage.info_bar_journeys_detail') }}</span>
                                         </div>
                                     </div>
                                 </div>

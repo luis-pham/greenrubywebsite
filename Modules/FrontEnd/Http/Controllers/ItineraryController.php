@@ -73,6 +73,16 @@ class ItineraryController extends Controller
 
         $menuUrlActive = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
 
+        $listHeroBannerImages = AppCruiseItineraryService::getHeroBannerImages($language->id, 2);
+        $listBanner = [];
+        foreach ($listHeroBannerImages as $index => $image) {
+            $banner = new \stdClass();
+            $banner->link = $image->link;
+            $banner->title = $index === 0 ? __('frontend::itineraryIndex.section_cover_title') : '';
+            $banner->description = $index === 0 ? __('frontend::itineraryIndex.section_cover_description') : '';
+            $listBanner[] = $banner;
+        }
+
         $config = Utilities::getAllConfig($language);
         $title = FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']);
 
@@ -94,7 +104,7 @@ class ItineraryController extends Controller
         \TwitterCard::setUrl(route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]));
         \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
 
-        return view($this->baseView . __FUNCTION__, compact('menuUrlActive','listItinerary','listInclusiveService','listFaq'));
+        return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'listItinerary', 'listInclusiveService', 'listFaq', 'listBanner'));
     }
 
     public function show(Request $request) {

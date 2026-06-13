@@ -10,12 +10,14 @@ return [
     '2_cruise_ships' => '2 Du thuyền',
     '2_destinations' => '2 Điểm đến',
     '2_itineraries' => '2 Hành trình',
+    '4_itineraries' => '4 Hành trình',
+    'info_bar_journeys_detail' => '2 vịnh · 2N1Đ / 3N2Đ',
     'eco-luxury' => 'Eco-Luxury',
     'fleet' => 'Tàu',
     'destinations' => 'Điểm đến',
     'journeys' => 'Hành trình',
     'commitment' => 'Cam kết',
-    'hybrid'=> ['Hybrid', 'Năng lượng'],
+    'hybrid'=> ['Năng lượng mặt trời hỗ trợ', 'Làm mát bằng nước biển'],
     'journeys' => 'Hành trình',
     'bay' => 'Vịnh :name',
     
@@ -32,10 +34,10 @@ return [
     'section_3_description' => 'Giá trị của sự bền vững',
     'eco_cards' => [
         [
-            'title' => 'Động cơ Hybrid',
-            'description' => 'Hệ thống động cơ hybrid-điện tiên tiến giúp giảm tiêu thụ nhiên liệu trong suốt hành trình — không chỉ khi neo đậu.',
-            'stat_number' => '−40%',
-            'stat_label' => 'CO₂ so với đội tàu diesel',
+            'title' => 'Năng lượng mặt trời hỗ trợ',
+            'description' => 'Pin mặt trời san sẻ tải với máy phát — ít nhiên liệu hơn, ít CO₂ thải xuống vịnh hơn.',
+            'stat_number' => '~25%',
+            'stat_label' => 'ĐIỆN NĂNG TRÊN TÀU TỪ MẶT TRỜI',
         ],
         [
             'title' => 'Nước không nhựa',

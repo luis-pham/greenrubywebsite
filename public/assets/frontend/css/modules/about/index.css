@@ -200,6 +200,139 @@
     align-items: center;
 }
 
+#about .about-story-copy {
+    min-width: 0;
+}
+
+#about .about-story-media {
+    width: 100%;
+    min-width: 0;
+    position: relative;
+}
+
+#about .about-story-slide {
+    position: relative;
+    width: 100%;
+}
+
+#about .about-story-carousel.owl-carousel {
+    width: 100%;
+}
+
+#about .about-story-carousel:not(.owl-loaded) {
+    overflow: hidden;
+}
+
+#about .about-story-carousel:not(.owl-loaded) > .item:not(:first-child) {
+    display: none;
+}
+
+#about .about-story-carousel .owl-stage-outer {
+    overflow: hidden;
+}
+
+#about .about-story-carousel .owl-item,
+#about .about-story-carousel .item {
+    width: 100%;
+    height: auto !important;
+}
+
+#about .about-story-carousel .item .image-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Carousel nav — hero-style (giống section-itinerary / homepage) */
+#about .about-story-slide .owl-carousel {
+    position: relative;
+}
+
+#about .about-story-slide .owl-theme .owl-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 2.5rem);
+    margin: 0;
+    pointer-events: none;
+    z-index: 8;
+}
+
+#about .about-story-slide .owl-theme .owl-nav [class*="owl-"] {
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+#about .about-story-slide .owl-prev,
+#about .about-story-slide .owl-next {
+    pointer-events: auto;
+    z-index: 9;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#about .about-story-slide .owl-nav .button {
+    width: 44px;
+    height: 44px;
+    line-height: 1;
+    font-size: 1.125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 61, 49, 0.35);
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    border-radius: 0;
+    color: var(--color-text-on-dark);
+    box-shadow: none;
+    transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+}
+
+#about .about-story-slide .owl-nav .button:hover {
+    background: rgba(12, 61, 49, 0.55);
+    border-color: #C8A84B;
+    color: var(--color-text-accent);
+}
+
+#about .about-story-slide .owl-nav .disabled .button {
+    opacity: 0.35;
+    cursor: default;
+}
+
+#about .about-story-slide .owl-prev {
+    left: 16px;
+}
+
+#about .about-story-slide .owl-next {
+    right: 16px;
+}
+
+@media (min-width: 1024px) {
+    #about .about-story-slide .owl-prev {
+        left: 24px;
+    }
+
+    #about .about-story-slide .owl-next {
+        right: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    #about .about-story-slide .owl-prev {
+        left: 12px;
+    }
+
+    #about .about-story-slide .owl-next {
+        right: 12px;
+    }
+
+    #about .about-story-slide .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
 #about .about-story-copy,
 #about .about-eco-panel,
 #about .about-community-header {
@@ -273,13 +406,6 @@
     color: var(--color-text-on-light);
     line-height: 1.5;
     font-style: italic;
-}
-
-#about .about-story-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
 }
 
 @media (max-width: 768px) {
@@ -397,6 +523,7 @@
 
 #about .about-eco-card .image-wrapper {
     margin-bottom: 14px;
+    overflow: hidden;
 }
 
 #about .eco-card-num {

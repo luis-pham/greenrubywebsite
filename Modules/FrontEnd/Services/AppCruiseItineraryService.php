@@ -7,6 +7,7 @@ use Modules\BackEnd\Entities\AppCabin;
 use Modules\BackEnd\Entities\AppCruise;
 use Modules\BackEnd\Entities\AppCruiseItinerary;
 use Modules\BackEnd\Entities\AppItinerary;
+use Modules\FrontEnd\Helpers\FeUtils;
 
 class AppCruiseItineraryService
 {
@@ -141,5 +142,35 @@ class AppCruiseItineraryService
             $query = $query->whereIn('app_cruise_itinerary.cruise_id', $listCruiseId);
         }
         return $query->get();
+    }
+
+    public static function getHeroBannerImages($languageId, int $limit = 2)
+    {
+        $defaultLink = asset('assets/frontend/images/modules/itinerary/banner.png');
+        $itineraries = self::getScheduledItineraries($languageId);
+        $images = [];
+
+        foreach ($itineraries as $item) {
+            if (count($images) >= $limit) {
+                break;
+            }
+
+            $link = FeUtils::getImageLink($item->image_link ?? '');
+            if ($link) {
+                $images[] = (object) [
+                    'link' => $link,
+                    'alt' => $item->name ?? '',
+                ];
+            }
+        }
+
+        if (count($images) === 0) {
+            $images[] = (object) [
+                'link' => $defaultLink,
+                'alt' => '',
+            ];
+        }
+
+        return $images;
     }
 }

@@ -2,15 +2,6 @@
 
 @php
     $languageCode = Route::current()->parameter('languageCode');
-
-    $listBanner = [];
-    $listBanner[0] = new stdClass();
-    $listBanner[0]->title = __('frontend::itineraryIndex.section_cover_title');
-    $listBanner[0]->description = __("frontend::itineraryIndex.section_cover_description");
-    $listBanner[0]->link = !empty($listItinerary) && !empty($listItinerary[0]->image_link)
-        ? $listItinerary[0]->image_link
-        : asset('assets/frontend/images/modules/itinerary/banner.png');
-
 @endphp
 
 @section('content')
