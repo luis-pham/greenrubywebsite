@@ -84,14 +84,9 @@
             </div>
             <div class="header-center justify-content-center">
                 @if ($headerLogo)
-                    @php
-                        $isHome = FeUtils::isHome();
-                    @endphp
-                    @if ($isHome) <h1 class="mb-0"> @endif
-                        <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
-                            <img src="{{ Utilities::getFileLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
-                        </a>
-                    @if ($isHome) </h1> @endif
+                    <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
+                        <img src="{{ Utilities::getFileLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
+                    </a>
                 @endif
             </div>
             <div class="header-right justify-content-end">

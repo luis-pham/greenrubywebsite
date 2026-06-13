@@ -94,8 +94,8 @@
             </svg>
             <div class="container hero-content">
                 <div class="main-info mx-auto text-white text-center">
-                    <p class="section-eyebrow section-eyebrow--gold">About Green Ruby Cruises</p>
-                    <h1 class="title font-heading">Where Luxury Has <em>a Conscience.</em></h1>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::about.hero_eyebrow') }}</p>
+                    <h1 class="title font-heading">{!! __('frontend::about.hero_title_html') !!}</h1>
                     <p class="description">{{ __('frontend::about.hero_subtitle') }}</p>
                 </div>
             </div>
@@ -106,7 +106,7 @@
             <div class="container-fluid px-0">
                 <div class="container about-story-grid">
                     <div class="about-story-copy">
-                        <p class="section-eyebrow">Our Story</p>
+                        <p class="section-eyebrow">{{ __('frontend::about.story_eyebrow') }}</p>
                         @if ($aboutUsEcoTitle)
                             <p class="about-story-kicker">{{ $aboutUsEcoTitle }}</p>
                         @endif
@@ -150,7 +150,7 @@
             <div class="container-fluid px-0">
                 <div class="container about-eco-panel">
                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::about.section_3_title') }}</p>
-                    <h2 class="about-eco-title">Technology That <em>Proves It.</em></h2>
+                    <h2 class="about-eco-title">{!! __('frontend::about.eco_title_html') !!}</h2>
                     @if (count($listSustainability ?? []) > 0)
                         <div class="about-eco-grid-desktop">
                             @foreach ($listSustainability as $sustainability)
@@ -231,7 +231,7 @@
         <section class="section-5 bg bg-azure about-impact">
             <div class="container-fluid px-0">
                 <div class="container about-impact-panel">
-                    <p class="section-eyebrow">Our Positive Impact</p>
+                    <p class="section-eyebrow">{{ __('frontend::about.impact_eyebrow') }}</p>
                     @if ($aboutUsStatisticTitle)
                         <h2 class="about-impact-title">{{ $aboutUsStatisticTitle }}</h2>
                     @endif
@@ -264,21 +264,21 @@
             <div class="container-fluid px-0">
                 <div class="container about-cert-panel">
                     <div class="about-cert-left">
-                        <h3 class="about-cert-title">Verified <em>Standards</em></h3>
-                        <p class="about-cert-sub">Credentials you can trust — not claims we invented.</p>
+                        <h3 class="about-cert-title">{!! __('frontend::about.cert_title_html') !!}</h3>
+                        <p class="about-cert-sub">{{ __('frontend::about.cert_sub') }}</p>
                     </div>
                     <div class="about-cert-badges">
                         <div class="about-cert-badge">
                             <div class="about-cert-dot"></div>
-                            <span class="about-cert-text">Green Globe · In Progress</span>
+                            <span class="about-cert-text">{{ __('frontend::about.cert_green_globe') }}</span>
                         </div>
                         <div class="about-cert-badge">
                             <div class="about-cert-dot"></div>
-                            <span class="about-cert-text">EU Green Claims · Compliant</span>
+                            <span class="about-cert-text">{{ __('frontend::about.cert_eu_green') }}</span>
                         </div>
                         <div class="about-cert-badge">
                             <div class="about-cert-dot"></div>
-                            <span class="about-cert-text">GSTC · Recognised Standard</span>
+                            <span class="about-cert-text">{{ __('frontend::about.cert_gstc') }}</span>
                         </div>
                     </div>
                 </div>
@@ -290,7 +290,7 @@
             <div class="container-fluid px-0">
                 <div class="container about-cta-grid">
                     <div class="about-cta-copy">
-                        <h2 class="about-cta-title">Be Part of <em>the Change.</em></h2>
+                        <h2 class="about-cta-title">{!! __('frontend::about.cta_title_html') !!}</h2>
                         <p class="about-cta-desc">{{ __('frontend::about.ready_to_sail_content') }}</p>
                         @if ($aboutUsReadyToSailDescription)
                             <p class="about-cta-kicker">{{ $aboutUsReadyToSailDescription }}</p>

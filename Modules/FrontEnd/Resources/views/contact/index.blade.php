@@ -13,9 +13,9 @@
             </svg>
             <div class="container hero-content">
                 <div class="main-info mx-auto text-white text-center">
-                    <p class="section-eyebrow section-eyebrow--gold">Contact Us</p>
-                    <h1 class="title font-heading">Let's Plan Your <em>Perfect Voyage.</em></h1>
-                    <p class="description">Our team is ready to help you find the right itinerary, cabin, and date for your Green Ruby experience.</p>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::contact.hero.eyebrow') }}</p>
+                    <h1 class="title font-heading">{!! __('frontend::contact.hero.title_html') !!}</h1>
+                    <p class="description">{{ __('frontend::contact.hero.description') }}</p>
                 </div>
             </div>
         </section>
@@ -24,9 +24,9 @@
             <div class="container-fluid px-0">
                 <div class="container contact-main-grid">
                     <div class="main-info contact-left">
-                        <p class="section-eyebrow section-eyebrow--gold text-left">Get in Touch</p>
-                        <h2 class="contact-left-title">We're Here <em>to Help.</em></h2>
-                        <p class="contact-left-tagline">Questions about itineraries, cabin availability, or special requests — reach us directly.</p>
+                        <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::contact.left.eyebrow') }}</p>
+                        <h2 class="contact-left-title">{!! __('frontend::contact.left.title_html') !!}</h2>
+                        <p class="contact-left-tagline">{{ __('frontend::contact.left.tagline') }}</p>
                         <div class="contact">
                             <div class="item">
                                 <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
@@ -38,14 +38,14 @@
                             <div class="item">
                                 <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
                                 <div class="contact-item-body">
-                                    <span class="contact-item-label">Whatsapp</span>
+                                    <span class="contact-item-label">{{ __('frontend::contact.label.whatsapp') }}</span>
                                     <span class="contact-item-value">{{ $config['whatsapp'] ?? '' }}</span>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
                                 <div class="contact-item-body">
-                                    <span class="contact-item-label">Email</span>
+                                    <span class="contact-item-label">{{ __('frontend::contact.label.email') }}</span>
                                     <span class="contact-item-value">{{ $config['email'] ?? '' }}</span>
                                 </div>
                             </div>
@@ -60,8 +60,8 @@
                     </div>
                     <div class="form-contact">
                         <div class="contact-form-header">
-                            <h3 class="contact-form-title">Send Us a Message</h3>
-                            <p class="contact-form-sub">We typically respond within 2 hours during business hours.</p>
+                            <h3 class="contact-form-title">{{ __('frontend::contact.form.title') }}</h3>
+                            <p class="contact-form-sub">{{ __('frontend::contact.form.sub') }}</p>
                         </div>
                         {!!
                             Form::open([
@@ -120,12 +120,12 @@
                                 @enderror
                             </div>
                             <div class="col-12 form-group mb-0">
-                                <label class="col-form-label contact-form-label">I'm interested in</label>
+                                <label class="col-form-label contact-form-label">{{ __('frontend::contact.form.interest_label') }}</label>
                                 <input
                                     type="text"
                                     name="interest"
                                     class="form-control contact-form-input"
-                                    placeholder="e.g. 2D1N Ha Long Bay, Opera Suite..."
+                                    placeholder="{{ __('frontend::contact.form.interest_placeholder') }}"
                                 />
                             </div>
                             <div class="col-12 form-group mb-0">
@@ -146,8 +146,8 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-warning btn-submit" type="submit">Send Message →</button>
-                                <p class="contact-form-note">We respect your privacy. No spam, ever.</p>
+                                <button class="btn btn-warning btn-submit" type="submit">{{ __('frontend::contact.form.submit') }}</button>
+                                <p class="contact-form-note">{{ __('frontend::contact.form.privacy_note') }}</p>
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -191,9 +191,9 @@
                         if(res.status === 'success'){
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Success',
+                                title: '{{ __('frontend::contact.alert.success_title') }}',
                                 text: res.message,
-                                confirmButtonText: 'OK'
+                                confirmButtonText: '{{ __('frontend::contact.alert.ok') }}'
                             });
                             $('#frm')[0].reset();
                             $('.form-control').removeClass('is-invalid');
@@ -221,9 +221,9 @@
                         } else {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Error',
-                                text: res.message || 'Something went wrong',
-                                confirmButtonText: 'OK'
+                                title: '{{ __('frontend::contact.alert.error_title') }}',
+                                text: res.message || '{{ __('frontend::contact.request-error') }}',
+                                confirmButtonText: '{{ __('frontend::contact.alert.ok') }}'
                             });
                         }
                     },

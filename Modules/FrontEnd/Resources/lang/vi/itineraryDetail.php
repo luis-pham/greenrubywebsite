@@ -16,9 +16,11 @@ return [
     'section-cabin-description' => 'Phòng nghỉ cao cấp',
     'section-gallery-title' => 'Thư viện hình ảnh trải nghiệm',
     'section-gallery-description' => 'Khám phá những khoảnh khắc đáng nhớ trên hành trình tuyệt vời này',
-    'section-booking-and-availability-title' => 'Sẵn sàng cho hành trình :name của bạn?',
+    'section-booking-and-availability-title' => 'Vịnh đang chờ bạn. Cabin đã sẵn sàng.',
     'section-booking-and-availability-description' => 'Đặt ngay hôm nay để giữ chỗ trên chuyến du ngoạn khó quên qua một trong những kỳ quan thiên nhiên đẹp nhất thế giới. Số lượng phòng hạn chế.',
     'section-booking-and-availability-guarantee' => 'Cam kết giá tốt nhất',
     'section-booking-and-availability-cancellation' => 'Hủy miễn phí',
-    'section-booking-and-availability-support' => 'Hỗ trợ 24/7'
+    'section-booking-and-availability-support' => 'Hỗ trợ 24/7',
+
+    'section-booking-departing_from' => 'Khởi hành từ :port',
 ];

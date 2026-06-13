@@ -18,4 +18,16 @@ return [
     'wastewater_treated' => 'Wastewater Treated',
     'tons_of_co2_reduced_annually' => 'Tons of CO₂ Reduced Annually',
     'renewable_solar_power' => 'Renewable Solar Power',
+
+    'hero_eyebrow' => 'About Green Ruby Cruises',
+    'hero_title_html' => 'Where Luxury Has <em>a Conscience.</em>',
+    'story_eyebrow' => 'Our Story',
+    'eco_title_html' => 'Technology That <em>Proves It.</em>',
+    'impact_eyebrow' => 'Our Positive Impact',
+    'cert_title_html' => 'Verified <em>Standards</em>',
+    'cert_sub' => 'Credentials you can trust — not claims we invented.',
+    'cert_green_globe' => 'Green Globe · In Progress',
+    'cert_eu_green' => 'EU Green Claims · Compliant',
+    'cert_gstc' => 'GSTC · Recognised Standard',
+    'cta_title_html' => 'Be Part of <em>the Change.</em>',
 ];

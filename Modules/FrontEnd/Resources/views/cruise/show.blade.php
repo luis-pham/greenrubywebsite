@@ -4,10 +4,12 @@
     $languageCode = Route::current()->parameter('languageCode');
     $cruiseDisplayName = FeUtils::formatGreenRubyMenuName($obj->name);
     $isGreenRuby2 = str_contains((string) ($obj->name ?? ''), '2');
-    $vesselLabel = $isGreenRuby2 ? 'Vessel 02 · Lan Ha Bay' : 'Vessel 01 · Ha Long Bay';
+    $vesselLabel = $isGreenRuby2
+        ? __('frontend::cruiseDetail.hero.vessel_gr2')
+        : __('frontend::cruiseDetail.hero.vessel_gr1');
     $shipHeroSub = $isGreenRuby2
-        ? 'Where Ha Long ends, Lan Ha begins.'
-        : 'Where Ha Long Bay begins.';
+        ? __('frontend::cruiseDetail.hero.sub_gr2')
+        : __('frontend::cruiseDetail.hero.sub_gr1');
     $allowTitleHtml = false;
     if (preg_match('/^(Green Ruby)\s+(\d+)$/i', $cruiseDisplayName, $titleMatches)) {
         $cruiseTitleHtml = $titleMatches[1] . ' <em>' . $titleMatches[2] . '</em>';
@@ -55,12 +57,12 @@
     $listOtherCabin = $listCabin->filter(fn($cabin) => !$listAccommodationCabinId->contains($cabin->id));
     $specsVesselName = $isGreenRuby2 ? 'Green Ruby 2' : 'Green Ruby 1';
     $statDescMap = [
-        'length' => 'One of the longest eco-luxury vessels on Ha Long Bay',
-        'cabin' => 'Including 4 cabin types from 38m² to 120m²',
-        'guests' => 'Intimate capacity for a private bay experience',
+        'length' => __('frontend::cruiseDetail.ship_specs.stat.length_desc'),
+        'cabin' => __('frontend::cruiseDetail.ship_specs.stat.cabin_desc'),
+        'guests' => __('frontend::cruiseDetail.ship_specs.stat.guests_desc'),
         'year' => $isGreenRuby2
-            ? 'Launching 2027 on Lan Ha Bay, Cát Bà Biosphere Reserve'
-            : 'Launching October 2026 on UNESCO World Heritage waters',
+            ? __('frontend::cruiseDetail.ship_specs.stat.year_desc_gr2')
+            : __('frontend::cruiseDetail.ship_specs.stat.year_desc_gr1'),
     ];
 @endphp
 
@@ -86,73 +88,73 @@
             </svg>
             <div class="container position-relative">
                 <div class="combined-header">
-                    <p class="section-eyebrow section-eyebrow--gold">Ship Specifications & Eco Technology</p>
-                    <h2 class="combined-title">The Numbers Behind <em>{{ $specsVesselName }}</em></h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::cruiseDetail.ship_specs.eyebrow') }}</p>
+                    <h2 class="combined-title">{!! __('frontend::cruiseDetail.ship_specs.title_html', ['name' => $specsVesselName]) !!}</h2>
                 </div>
                 <div class="grid-info ship-stats-grid">
                     <div class="item ship-stat-card">
-                        <p class="ship-stat-label">Length</p>
+                        <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.length_label') }}</p>
                         <p class="length ship-stat-number">{{ $obj->dimension_length }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['length'] }}</p>
                     </div>
                     <div class="item ship-stat-card">
-                        <p class="ship-stat-label">Private Cabins</p>
+                        <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.cabins_label') }}</p>
                         <p class="length ship-stat-number">46</p>
                         <p class="ship-stat-desc">{{ $statDescMap['cabin'] }}</p>
                     </div>
                     <div class="item ship-stat-card">
-                        <p class="ship-stat-label">Max Guests</p>
+                        <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.guests_label') }}</p>
                         <p class="length ship-stat-number">{{ $obj->capacity }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['guests'] }}</p>
                     </div>
                     <div class="item ship-stat-card">
-                        <p class="ship-stat-label">Launch Year</p>
+                        <p class="ship-stat-label">{{ __('frontend::cruiseDetail.ship_specs.stat.year_label') }}</p>
                         <p class="length ship-stat-number">{{ $obj->year_built }}</p>
                         <p class="ship-stat-desc">{{ $statDescMap['year'] }}</p>
                     </div>
                 </div>
                 <div class="combined-divider">
                     <div class="combined-divider-line"></div>
-                    <span class="combined-divider-text">Eco Technology</span>
+                    <span class="combined-divider-text">{{ __('frontend::cruiseDetail.ship_specs.eco_divider') }}</span>
                     <div class="combined-divider-line"></div>
                 </div>
                 <div class="ship-eco-slide slide-1">
                     <div class="ship-eco-grid owl-carousel owl-theme">
                         <div class="ship-eco-card">
                             <div class="eco-card-num-row">
-                                <div class="eco-card-stat">−40%</div>
+                                <div class="eco-card-stat">{{ __('frontend::cruiseDetail.ship_specs.eco.solar_stat') }}</div>
                             </div>
-                            <div class="eco-card-stat-label">CO₂ vs diesel fleet</div>
+                            <div class="eco-card-stat-label">{{ __('frontend::cruiseDetail.ship_specs.eco.solar_stat_label') }}</div>
                             <div class="eco-card-divider"></div>
                             <div class="eco-card-icon">
                                 @include('frontend::shared.eco-icon', ['variant' => 0])
                             </div>
-                            <div class="eco-card-title">Solar Power System</div>
-                            <p class="eco-card-desc">Rooftop solar panels generate clean energy for lighting, water heating, and onboard systems.</p>
+                            <div class="eco-card-title">{{ __('frontend::cruiseDetail.ship_specs.eco.solar_title') }}</div>
+                            <p class="eco-card-desc">{{ __('frontend::cruiseDetail.ship_specs.eco.solar_desc') }}</p>
                         </div>
                         <div class="ship-eco-card">
                             <div class="eco-card-num-row">
                                 <div class="eco-card-stat">0</div>
                             </div>
-                            <div class="eco-card-stat-label">untreated discharge</div>
+                            <div class="eco-card-stat-label">{{ __('frontend::cruiseDetail.ship_specs.eco.discharge_label') }}</div>
                             <div class="eco-card-divider"></div>
                             <div class="eco-card-icon">
                                 @include('frontend::shared.eco-icon', ['variant' => 3])
                             </div>
-                            <div class="eco-card-title">Wastewater Treatment</div>
-                            <p class="eco-card-desc">Advanced onboard system ensures zero untreated discharge into the bay ecosystem.</p>
+                            <div class="eco-card-title">{{ __('frontend::cruiseDetail.ship_specs.eco.wastewater_title') }}</div>
+                            <p class="eco-card-desc">{{ __('frontend::cruiseDetail.ship_specs.eco.wastewater_desc') }}</p>
                         </div>
                         <div class="ship-eco-card">
                             <div class="eco-card-num-row">
                                 <div class="eco-card-stat">−40%</div>
                             </div>
-                            <div class="eco-card-stat-label">cooling energy saved</div>
+                            <div class="eco-card-stat-label">{{ __('frontend::cruiseDetail.ship_specs.eco.cooling_label') }}</div>
                             <div class="eco-card-divider"></div>
                             <div class="eco-card-icon">
                                 @include('frontend::shared.eco-icon', ['variant' => 2])
                             </div>
-                            <div class="eco-card-title">Seawater Chiller</div>
-                            <p class="eco-card-desc">Deep cold seawater replaces compressors for cabin cooling — unique to Green Ruby vessels.</p>
+                            <div class="eco-card-title">{{ __('frontend::cruiseDetail.ship_specs.eco.chiller_title') }}</div>
+                            <p class="eco-card-desc">{{ __('frontend::cruiseDetail.ship_specs.eco.chiller_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -233,16 +235,16 @@
             <div class="container">
 
                 <div class="onboard-section-header">
-                    <p class="section-eyebrow section-eyebrow--gold">What Awaits You</p>
-                    <h2 class="combined-title">Onboard <em>{{ $obj->name ?? 'Green Ruby' }}</em></h2>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::cruiseDetail.onboard.eyebrow') }}</p>
+                    <h2 class="combined-title">{!! __('frontend::cruiseDetail.onboard.title_html', ['name' => $obj->name ?? 'Green Ruby']) !!}</h2>
                 </div>
 
                 <div class="onboard-main-tabs">
                     <button class="onboard-main-tab active" data-tab="experience">
-                        Onboard Experience
+                        {{ __('frontend::cruiseDetail.onboard.tab_experience') }}
                     </button>
                     <button class="onboard-main-tab" data-tab="services">
-                        Services
+                        {{ __('frontend::cruiseDetail.onboard.tab_services') }}
                     </button>
                 </div>
 
@@ -254,11 +256,11 @@
                             @php
                                 $grouped = $listOtherCabin->groupBy(fn($c) => $c->group->category_key ?? 'other');
                                 $categoryLabels = [
-                                    'dining'   => 'Dining & Social',
-                                    'pools'    => 'Pools & Outdoors',
-                                    'wellness' => 'Wellness & Activities',
-                                    'events'   => 'Events',
-                                    'other'    => 'More',
+                                    'dining'   => __('frontend::cruiseDetail.onboard.cat.dining'),
+                                    'pools'    => __('frontend::cruiseDetail.onboard.cat.pools'),
+                                    'wellness' => __('frontend::cruiseDetail.onboard.cat.wellness'),
+                                    'events'   => __('frontend::cruiseDetail.onboard.cat.events'),
+                                    'other'    => __('frontend::cruiseDetail.onboard.cat.other'),
                                 ];
                                 $categoryOrder = ['dining', 'pools', 'wellness', 'events', 'other'];
                                 $firstItemDone = false;
@@ -372,32 +374,34 @@
                     <div class="onboard-svc-grid">
 
                         <div class="onboard-svc-group">
-                            <p class="onboard-svc-label">Always Included</p>
-                            <p class="onboard-svc-sublabel">Complimentary for all guests</p>
+                            <p class="onboard-svc-label">{{ __('frontend::cruiseDetail.onboard.included_label') }}</p>
+                            <p class="onboard-svc-sublabel">{{ __('frontend::cruiseDetail.onboard.included_sublabel') }}</p>
                             <div class="onboard-svc-items">
 
                                 @php
-                                    $includedSvcs = [
-                                        ['name' => 'Welcome Drink', 'desc' => 'Refreshing drink & cold towel on arrival', 'svg' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>'],
-                                        ['name' => 'Fine Dining', 'desc' => 'Breakfast, lunch & dinner included', 'svg' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>'],
-                                        ['name' => 'Daily Housekeeping', 'desc' => 'Cabin cleaning & evening turndown', 'svg' => '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'],
-                                        ['name' => '24h Concierge', 'desc' => 'Guest assistance throughout the journey', 'svg' => '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/>'],
-                                        ['name' => 'Halal Kitchen', 'desc' => 'Dedicated Halal meals available', 'svg' => '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/>'],
-                                        ['name' => 'Safety & Security', 'desc' => '24h security & full safety systems', 'svg' => '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/>'],
+                                    $includedSvcKeys = ['welcome_drink', 'fine_dining', 'housekeeping', 'concierge', 'halal', 'safety'];
+                                    $includedSvcSvg = [
+                                        'welcome_drink' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>',
+                                        'fine_dining' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>',
+                                        'housekeeping' => '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',
+                                        'concierge' => '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/>',
+                                        'halal' => '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/>',
+                                        'safety' => '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/>',
                                     ];
                                 @endphp
 
-                                @foreach($includedSvcs as $s)
+                                @foreach($includedSvcKeys as $svcKey)
+                                @php $svcPrefix = 'frontend::cruiseDetail.onboard.services.' . $svcKey; @endphp
                                 <div class="onboard-svc-item">
                                     <div class="onboard-svc-icon">
                                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                                            {!! $s['svg'] !!}
+                                            {!! $includedSvcSvg[$svcKey] !!}
                                         </svg>
                                     </div>
                                     <div class="onboard-svc-content">
-                                        <p class="onboard-svc-name">{{ $s['name'] }}</p>
-                                        <p class="onboard-svc-desc">{{ $s['desc'] }}</p>
-                                        <span class="onboard-svc-badge onboard-svc-badge--free">Complimentary</span>
+                                        <p class="onboard-svc-name">{{ __($svcPrefix . '.name') }}</p>
+                                        <p class="onboard-svc-desc">{{ __($svcPrefix . '.desc') }}</p>
+                                        <span class="onboard-svc-badge onboard-svc-badge--free">{{ __('frontend::cruiseDetail.onboard.badge_complimentary') }}</span>
                                     </div>
                                 </div>
                                 @endforeach
@@ -406,29 +410,31 @@
                         </div>
 
                         <div class="onboard-svc-group">
-                            <p class="onboard-svc-label">Suite Exclusive</p>
-                            <p class="onboard-svc-sublabel">Complimentary for suite guests</p>
+                            <p class="onboard-svc-label">{{ __('frontend::cruiseDetail.onboard.suite_label') }}</p>
+                            <p class="onboard-svc-sublabel">{{ __('frontend::cruiseDetail.onboard.suite_sublabel') }}</p>
                             <div class="onboard-svc-items">
 
                                 @php
-                                    $suiteSvcs = [
-                                        ['name' => 'Butler Service', 'desc' => 'Personal assistant throughout your stay', 'badge' => 'Royal Romance + Imperial', 'svg' => '<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0116 0v2"/>'],
-                                        ['name' => 'Private Dining', 'desc' => 'Exclusive dining for couples & families', 'badge' => 'Royal Romance + Imperial', 'svg' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>'],
-                                        ['name' => 'In-room Dining', 'desc' => 'Meals served directly to your suite', 'badge' => 'Imperial Suite only', 'svg' => '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/>'],
+                                    $suiteSvcKeys = ['butler', 'private_dining', 'in_room_dining'];
+                                    $suiteSvcSvg = [
+                                        'butler' => '<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0116 0v2"/>',
+                                        'private_dining' => '<path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>',
+                                        'in_room_dining' => '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/>',
                                     ];
                                 @endphp
 
-                                @foreach($suiteSvcs as $s)
+                                @foreach($suiteSvcKeys as $svcKey)
+                                @php $svcPrefix = 'frontend::cruiseDetail.onboard.services.' . $svcKey; @endphp
                                 <div class="onboard-svc-item">
                                     <div class="onboard-svc-icon">
                                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                                            {!! $s['svg'] !!}
+                                            {!! $suiteSvcSvg[$svcKey] !!}
                                         </svg>
                                     </div>
                                     <div class="onboard-svc-content">
-                                        <p class="onboard-svc-name">{{ $s['name'] }}</p>
-                                        <p class="onboard-svc-desc">{{ $s['desc'] }}</p>
-                                        <span class="onboard-svc-badge onboard-svc-badge--suite">{{ $s['badge'] }}</span>
+                                        <p class="onboard-svc-name">{{ __($svcPrefix . '.name') }}</p>
+                                        <p class="onboard-svc-desc">{{ __($svcPrefix . '.desc') }}</p>
+                                        <span class="onboard-svc-badge onboard-svc-badge--suite">{{ __($svcPrefix . '.badge') }}</span>
                                     </div>
                                 </div>
                                 @endforeach
@@ -437,30 +443,32 @@
                         </div>
 
                         <div class="onboard-svc-group">
-                            <p class="onboard-svc-label">On Request</p>
-                            <p class="onboard-svc-sublabel">Available at additional charge</p>
+                            <p class="onboard-svc-label">{{ __('frontend::cruiseDetail.onboard.paid_label') }}</p>
+                            <p class="onboard-svc-sublabel">{{ __('frontend::cruiseDetail.onboard.paid_sublabel') }}</p>
                             <div class="onboard-svc-items">
 
                                 @php
-                                    $paidSvcs = [
-                                        ['name' => 'Spa & Wellness', 'desc' => 'Massage and wellness treatments', 'svg' => '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>'],
-                                        ['name' => 'Transfer Service', 'desc' => 'Airport, hotel & terminal transfers', 'svg' => '<path d="M12 2C8 2 4 5.5 4 10c0 6 8 12 8 12s8-6 8-12c0-4.5-4-8-8-8z"/><circle cx="12" cy="10" r="2"/>'],
-                                        ['name' => 'Event & Celebration', 'desc' => 'Birthdays, anniversaries, proposals', 'svg' => '<path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>'],
-                                        ['name' => 'Honeymoon Decoration', 'desc' => 'Romantic cabin decoration packages', 'svg' => '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>'],
+                                    $paidSvcKeys = ['spa', 'transfer', 'event', 'honeymoon'];
+                                    $paidSvcSvg = [
+                                        'spa' => '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>',
+                                        'transfer' => '<path d="M12 2C8 2 4 5.5 4 10c0 6 8 12 8 12s8-6 8-12c0-4.5-4-8-8-8z"/><circle cx="12" cy="10" r="2"/>',
+                                        'event' => '<path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>',
+                                        'honeymoon' => '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>',
                                     ];
                                 @endphp
 
-                                @foreach($paidSvcs as $s)
+                                @foreach($paidSvcKeys as $svcKey)
+                                @php $svcPrefix = 'frontend::cruiseDetail.onboard.services.' . $svcKey; @endphp
                                 <div class="onboard-svc-item">
                                     <div class="onboard-svc-icon">
                                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                                            {!! $s['svg'] !!}
+                                            {!! $paidSvcSvg[$svcKey] !!}
                                         </svg>
                                     </div>
                                     <div class="onboard-svc-content">
-                                        <p class="onboard-svc-name">{{ $s['name'] }}</p>
-                                        <p class="onboard-svc-desc">{{ $s['desc'] }}</p>
-                                        <span class="onboard-svc-badge onboard-svc-badge--paid">Charged separately</span>
+                                        <p class="onboard-svc-name">{{ __($svcPrefix . '.name') }}</p>
+                                        <p class="onboard-svc-desc">{{ __($svcPrefix . '.desc') }}</p>
+                                        <span class="onboard-svc-badge onboard-svc-badge--paid">{{ __('frontend::cruiseDetail.onboard.badge_charged') }}</span>
                                     </div>
                                 </div>
                                 @endforeach

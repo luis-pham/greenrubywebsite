@@ -1,6 +1,7 @@
 <?php
 return [
     'hero_eyebrow' => 'Hạ Long · Vịnh Lan Hạ · Thành lập 2026',
+    'hero_title' => 'Du thuyền Eco-Luxury <em>Vịnh Hạ Long & Lan Hạ</em>',
     'button_book_your_trip' => 'Đặt chuyến đi của bạn',
     'button_discover_itinerary' => 'Khám phá hành trình',
     'button_explorer_the_cruise' => 'Khám phá thêm',

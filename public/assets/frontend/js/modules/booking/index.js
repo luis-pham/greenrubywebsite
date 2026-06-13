@@ -69,6 +69,17 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     })();
 
+    function bl(key, replace) {
+        var labels = window.bookingLabels || {};
+        var text = labels[key] || '';
+        if (replace && typeof replace === 'object') {
+            Object.keys(replace).forEach(function (k) {
+                text = text.split(':' + k).join(String(replace[k]));
+            });
+        }
+        return text;
+    }
+
     (function initDepartureDatePicker() {
         var page = document.getElementById('booking-page');
         var dateInputEl = document.getElementById('booking-departure-date');
@@ -464,16 +475,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(function (data) {
                     if (loading) loading.classList.remove('is-visible');
                     if (!data || !data.success) {
-                        var failedMessage = lang === 'vi' ? 'Không tải được dữ liệu' : 'Failed to load';
+                        var failedMessage = bl('failed_load');
                         setDisplayText(failedMessage);
                         return;
                     }
                     itineraryItems = Array.isArray(data.items) ? data.items : [];
                     if (list) {
                         if (itineraryItems.length === 0) {
-                            var emptyMessage = lang === 'vi' 
-                                ? 'Không có hành trình tham quan nào vào ngày khởi hành bạn đã chọn. Vui lòng chọn ngày khác.'
-                                : 'There is no sightseeing itinerary on your selected departure date. Please choose another date.';
+                            var emptyMessage = bl('empty_itinerary');
                             list.innerHTML = '<div class="voyage-dropdown-empty">' + emptyMessage + '</div>';
                             return;
                         }
@@ -531,8 +540,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(function (err) {
                     if (loading) loading.classList.remove('is-visible');
-                    var failedMessage = lang === 'vi' ? 'Không tải được dữ liệu' : 'Failed to load';
-                    var connectionError = lang === 'vi' ? 'Lỗi kết nối' : 'Connection error';
+                    var failedMessage = bl('failed_load');
+                    var connectionError = bl('connection_error');
                     setDisplayText(failedMessage);
                     if (list) list.innerHTML = '<div class="voyage-dropdown-empty">' + connectionError + '</div>';
                 });
@@ -558,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 page.removeAttribute('data-itinerary-id');
                 page.removeAttribute('data-cruise-id');
             }
-            var selectVoyageText = lang === 'vi' ? 'Chọn hành trình' : 'Select voyage';
+            var selectVoyageText = bl('select_voyage');
             setDisplayText(selectVoyageText);
             if (panel) {
                 panel.classList.remove('is-open');
@@ -745,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 qtyWrap.className = 'quantity-2';
                 var qtyText = document.createElement('div');
                 qtyText.className = 'mmddyyyy';
-                var qtyLabel = (window.__bookingLocale === 'vi') ? 'Số lượng: ' : 'Quantity: ';
+                var qtyLabel = bl('quantity');
                 qtyText.textContent = qtyLabel + qty;
                 qtyWrap.appendChild(qtyText);
 
@@ -947,16 +956,14 @@ document.addEventListener('DOMContentLoaded', function () {
         function formatDescription(cabin) {
             var parts = [];
             if (cabin.capacity && cabin.capacity > 0) {
-                var guestLabel = (window.__bookingLocale === 'vi') ? 'Tối đa ' + cabin.capacity + ' khách' : 'Max ' + cabin.capacity + ' Guests';
+                var guestLabel = bl('max_guests', { count: cabin.capacity });
                 parts.push(guestLabel);
             }
             if (cabin.view) {
                 parts.push(cabin.view);
             }
             if (cabin.area && cabin.area > 0) {
-                var areaLabel = (window.__bookingLocale === 'vi') 
-                    ? 'Diện tích phòng ' + cabin.area + 'm²'
-                    : 'room size ' + cabin.area + 'm²';
+                var areaLabel = bl('room_size', { area: cabin.area });
                 parts.push(areaLabel);
             }
             if (parts.length === 0 && cabin.summary) {
@@ -1394,9 +1401,9 @@ document.addEventListener('DOMContentLoaded', function () {
             guestsInput.value = '';
         } else {
             if (window.__bookingLocale === 'vi') {
-                guestsInput.value = total + ' khách';
+                guestsInput.value = bl('guests_count', { count: total });
             } else {
-                guestsInput.value = total + ' ' + (total === 1 ? 'person' : 'people');
+                guestsInput.value = total + ' ' + (total === 1 ? bl('person') : bl('people'));
             }
         }
     }
@@ -1405,9 +1412,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!inVoyageTitle || !inVoyageEmptyState || !inVoyageCabinsList) return;
 
         var n = addedCabinsList.length;
-        var titleText = (window.__bookingLocale === 'vi') 
-            ? 'Cabin trong hành trình (' + n + ')'
-            : 'In-Voyage Cabins (' + n + ')';
+        var titleText = bl('in_voyage_cabins', { count: n });
         inVoyageTitle.textContent = titleText;
 
         if (summaryCabinsBlock) {
@@ -1468,15 +1473,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 '    <div class="in-voyage-cabin-details">' +
                 '      <h4 class="in-voyage-cabin-name">' + (item.name || 'Cabin').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</h4>' +
                 '      <p class="in-voyage-cabin-desc">' + (descText || '-').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>' +
-                '      <p class="in-voyage-cabin-fare">' + (window.__bookingLocale === 'vi' ? 'Giá đã điều chỉnh: ' : 'Adjusted Fare: ') + '<strong>' + formatCabinPriceGlobal(item.price) + '</strong></p>' +
-                '      <button type="button" class="in-voyage-remove-btn" data-remove-id="' + item.id + '">' + (window.__bookingLocale === 'vi' ? 'Xóa' : 'Remove') + ' <i class="fa-solid fa-trash"></i></button>' +
+                '      <p class="in-voyage-cabin-fare">' + bl('adjusted_fare') + '<strong>' + formatCabinPriceGlobal(item.price) + '</strong></p>' +
+                '      <button type="button" class="in-voyage-remove-btn" data-remove-id="' + item.id + '">' + bl('remove') + ' <i class="fa-solid fa-trash"></i></button>' +
                 '    </div>' +
                 '  </div>' +
                 '  <div class="in-voyage-guests">' +
-                '    <div class="in-voyage-guest-field"><label>' + (window.__bookingLocale === 'vi' ? 'Người lớn' : 'Adults') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[0] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
-                '    <div class="in-voyage-guest-field"><label>' + (window.__bookingLocale === 'vi' ? '6-12 tuổi' : '6-12y') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[1] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
-                '    <div class="in-voyage-guest-field"><label>' + (window.__bookingLocale === 'vi' ? '2-5 tuổi' : '2-5y') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[2] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
-                '    <div class="in-voyage-guest-field"><label>' + (window.__bookingLocale === 'vi' ? 'Em bé' : 'Infant') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[3] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
+                '    <div class="in-voyage-guest-field"><label>' + bl('adults') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[0] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
+                '    <div class="in-voyage-guest-field"><label>' + bl('child_6_12') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[1] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
+                '    <div class="in-voyage-guest-field"><label>' + bl('child_2_5') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[2] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
+                '    <div class="in-voyage-guest-field"><label>' + bl('infant') + '</label><div class="in-voyage-qty-control"><button type="button" class="qty-minus">−</button><input type="text" value="' + guestsData[3] + '" readonly><button type="button" class="qty-plus">+</button></div></div>' +
                 '  </div>' +
                 '</div>';
 
@@ -2292,9 +2297,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var langAttr = document.getElementById('booking-page');
             var lang = langAttr ? (langAttr.getAttribute('data-lang') || 'all') : 'all';
             if (lang === 'vi') {
-                guestsInput.value = booking.guests_total + ' khách';
+                guestsInput.value = bl('guests_count', { count: booking.guests_total });
             } else if (lang === 'en') {
-                guestsInput.value = booking.guests_total + ' people';
+                guestsInput.value = booking.guests_total + ' ' + (booking.guests_total === 1 ? bl('person') : bl('people'));
             } else {
                 guestsInput.value = String(booking.guests_total);
             }
@@ -2327,15 +2332,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 var infants = parseInt(c.infants) || 0;
                 
                 if (window.__bookingLocale === 'vi') {
-                    if (adults > 0) guestParts.push(adults + ' Người lớn');
-                    if (children_6_12 > 0) guestParts.push(children_6_12 + ' Trẻ 6-12 tuổi');
-                    if (children_2_5 > 0) guestParts.push(children_2_5 + ' Trẻ 2-5 tuổi');
-                    if (infants > 0) guestParts.push(infants + ' Em bé');
+                    if (adults > 0) guestParts.push(adults + ' ' + bl('adult_plural'));
+                    if (children_6_12 > 0) guestParts.push(children_6_12 + ' ' + bl('child_6_12_label'));
+                    if (children_2_5 > 0) guestParts.push(children_2_5 + ' ' + bl('child_2_5_label'));
+                    if (infants > 0) guestParts.push(infants + ' ' + bl('infant_plural'));
                 } else {
-                    if (adults > 0) guestParts.push(adults + ' Adult' + (adults > 1 ? 's' : ''));
-                    if (children_6_12 > 0) guestParts.push(children_6_12 + ' Child 6-12');
-                    if (children_2_5 > 0) guestParts.push(children_2_5 + ' Child 2-5');
-                    if (infants > 0) guestParts.push(infants + ' Infant' + (infants > 1 ? 's' : ''));
+                    if (adults > 0) guestParts.push(adults + ' ' + (adults > 1 ? bl('adult_plural') : bl('adult_singular')));
+                    if (children_6_12 > 0) guestParts.push(children_6_12 + ' ' + bl('child_6_12_label'));
+                    if (children_2_5 > 0) guestParts.push(children_2_5 + ' ' + bl('child_2_5_label'));
+                    if (infants > 0) guestParts.push(infants + ' ' + (infants > 1 ? bl('infant_plural') : bl('infant_singular')));
                 }
                 
                 var guestSummary = guestParts.join(', ');
@@ -2401,7 +2406,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 qtyWrap.className = 'quantity-2';
                 var qtyText = document.createElement('div');
                 qtyText.className = 'mmddyyyy';
-                var qtyLabel = (window.__bookingLocale === 'vi') ? 'Số lượng: ' : 'Quantity: ';
+                var qtyLabel = bl('quantity');
                 qtyText.textContent = qtyLabel + (a.quantity != null ? a.quantity : 0);
                 qtyWrap.appendChild(qtyText);
 
@@ -2481,7 +2486,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (!bookingDataCheck.email || !bookingDataCheck.email.trim()) {
             var pageEl = document.getElementById('booking-page');
-            var msgEmail = (pageEl && pageEl.getAttribute('data-lang') === 'vi') ? 'Vui lòng nhập địa chỉ email để nhận xác nhận đặt phòng.' : 'Please enter your email address to receive booking confirmation.';
+            var msgEmail = bl('email_required');
             if (typeof swalAlert !== 'undefined') swalAlert.warning(msgEmail); else alert(msgEmail);
             return;
         }

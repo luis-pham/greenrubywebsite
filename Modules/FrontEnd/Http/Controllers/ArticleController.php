@@ -237,7 +237,7 @@ class ArticleController extends Controller
 
         \SEO::setTitle($title);
         \SEO::setDescription($obj->seo_description ? $obj->seo_description : strip_tags($obj->lead));
-        //\SEO::setCanonical($url);
+        \SEO::setCanonical($url);
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($title);

@@ -529,3 +529,35 @@
         @include('frontend::booking.partials.payment-loading')
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        window.bookingLabels = {!! json_encode([
+            'failed_load' => __('frontend::booking.js.failed_load'),
+            'connection_error' => __('frontend::booking.js.connection_error'),
+            'empty_itinerary' => __('frontend::booking.js.empty_itinerary'),
+            'select_voyage' => __('frontend::booking.js.select_voyage'),
+            'max_guests' => __('frontend::booking.js.max_guests'),
+            'room_size' => __('frontend::booking.js.room_size'),
+            'person' => __('frontend::booking.js.person'),
+            'people' => __('frontend::booking.js.people'),
+            'guests_count' => __('frontend::booking.js.guests_count'),
+            'in_voyage_cabins' => __('frontend::booking.js.in_voyage_cabins'),
+            'adjusted_fare' => __('frontend::booking.js.adjusted_fare'),
+            'remove' => __('frontend::booking.js.remove'),
+            'adults' => __('frontend::booking.js.adults'),
+            'child_6_12' => __('frontend::booking.js.child_6_12'),
+            'child_2_5' => __('frontend::booking.js.child_2_5'),
+            'infant' => __('frontend::booking.js.infant'),
+            'adult_plural' => __('frontend::booking.js.adult_plural'),
+            'adult_singular' => __('frontend::booking.js.adult_singular'),
+            'child_6_12_label' => __('frontend::booking.js.child_6_12_label'),
+            'child_2_5_label' => __('frontend::booking.js.child_2_5_label'),
+            'infant_plural' => __('frontend::booking.js.infant_plural'),
+            'infant_singular' => __('frontend::booking.js.infant_singular'),
+            'quantity' => __('frontend::booking.js.quantity'),
+            'email_required' => __('frontend::booking.js.email_required'),
+            'payment_redirect' => __('frontend::booking.js.payment_redirect'),
+        ], JSON_UNESCAPED_UNICODE) !!};
+    </script>
+@endpush

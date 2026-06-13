@@ -103,6 +103,7 @@ class ExperienceController extends Controller{
 
         \SEO::setTitle($title);
         \SEO::setDescription(strip_tags($obj->summary));
+        \SEO::setCanonical($url);
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($title);

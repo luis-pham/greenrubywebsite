@@ -229,6 +229,7 @@ class ItineraryController extends Controller
         \TwitterCard::setDescription($obj->seo_description ? $obj->seo_description : strip_tags($obj->lead));
         \TwitterCard::setUrl($url);
         \TwitterCard::setImage($obj->image_link ? \URL::to('/') . $obj->image_link : \URL::to('/') . config('frontend.organizationLogoSocial.url'));
+        \SEO::setCanonical($url);
 
         return view($this->baseView . __FUNCTION__,compact('menuUrlActive','obj','listTestimonial','listCabin','listBreadCrumb','itineraries'));
     }

@@ -46,9 +46,9 @@
             </svg>
             <div class="container hero-content">
                 <div class="main-info mx-auto text-white text-center">
-                    <p class="section-eyebrow section-eyebrow--gold">Visual Journey</p>
-                    <h1 class="title font-heading">Life Aboard <em>Green Ruby.</em></h1>
-                    <p class="description">Discover moments aboard and beyond — in photos, films, and 360° views of Ha Long &amp; Lan Ha Bay.</p>
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::gallery.hero.eyebrow') }}</p>
+                    <h1 class="title font-heading">{!! __('frontend::gallery.hero.title_html') !!}</h1>
+                    <p class="description">{{ __('frontend::gallery.hero.description') }}</p>
                 </div>
             </div>
         </section>
@@ -61,7 +61,7 @@
                         <div class="gallery-filter-inner">
                             <div class="container">
                                 <div class="gallery-filter-bar list-filter">
-                                    <a href="{{ route(Utilities::getRouteName('frontend.gallery.index'), ['languageCode' => $languageCode]) }}" class="item gallery-filter-tab {{ !$slug ? 'active' : '' }}">All</a>
+                                    <a href="{{ route(Utilities::getRouteName('frontend.gallery.index'), ['languageCode' => $languageCode]) }}" class="item gallery-filter-tab {{ !$slug ? 'active' : '' }}">{{ __('frontend::common.all') }}</a>
                                     @foreach($galleryFilters as $slugKey => $name)
                                         <a
                                             href="{{ route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.gallery.category'), ['languageCode' => $languageCode, 'slug' => $slugKey]) }}"
@@ -94,7 +94,7 @@
                     </div>
                     @if ($loadMoreUrl)
                         <div class="gallery-load-more-wrap">
-                            <a href="{{ $loadMoreUrl }}" class="gallery-load-more">Load More Photos</a>
+                            <a href="{{ $loadMoreUrl }}" class="gallery-load-more">{{ __('frontend::gallery.load_more') }}</a>
                         </div>
                     @endif
                 </div>
@@ -112,8 +112,8 @@
                 </svg>
                 <div class="container-fluid px-0">
                     <div class="container gallery-video-panel">
-                        <p class="section-eyebrow section-eyebrow--gold">Immersive Experiences</p>
-                        <h2 class="gallery-video-title">Step Aboard <em>Virtually.</em></h2>
+                        <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::gallery.video.eyebrow') }}</p>
+                        <h2 class="gallery-video-title">{!! __('frontend::gallery.video.title_html') !!}</h2>
                         <div class="gallery-video-grid">
                             @foreach($vrGalleries as $item)
                                 <div class="gallery-video-item item">
@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                     <div class="gallery-video-label">
-                                        <p class="video-tag">360° Experience</p>
+                                        <p class="video-tag">{{ __('frontend::gallery.video.tag') }}</p>
                                         <p class="gallery-video-item-title">{{ $item->name }}</p>
                                     </div>
                                 </div>
@@ -146,8 +146,8 @@
         <section class="gallery-memories section-experience">
             <div class="container-fluid px-0">
                 <div class="container gallery-memories-panel">
-                    <p class="section-eyebrow section-eyebrow--gold text-left">Signature Moments</p>
-                    <h2 class="gallery-memories-title">From Sunrise Calm <em>to Sunset Glow.</em></h2>
+                    <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::gallery.memories.eyebrow') }}</p>
+                    <h2 class="gallery-memories-title">{!! __('frontend::gallery.memories.title_html') !!}</h2>
                     <div class="gallery-memories-grid list-experience">
                         @foreach($listExperience as $e)
                             <div class="item gallery-memory-card memory-card">
@@ -160,7 +160,7 @@
                                     />
                                 </a>
                                 <div class="gallery-memory-content memory-content">
-                                    <p class="memory-tag">Experience</p>
+                                    <p class="memory-tag">{{ __('frontend::gallery.memories.tag') }}</p>
                                     <a href="{{ $e->url }}">
                                         <p class="gallery-memory-title">{{ $e->name }}</p>
                                     </a>

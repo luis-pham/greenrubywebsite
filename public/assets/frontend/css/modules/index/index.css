@@ -80,6 +80,7 @@
     text-shadow: 0 2px 30px rgba(0, 0, 0, 0.8);
     text-align: left;
     opacity: 1;
+    margin-top: 0;
 }
 
 #home .section-1.section-cover .page-cover .main-info .description {

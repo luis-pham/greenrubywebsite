@@ -17,4 +17,16 @@ return [
     'wastewater_treated' => 'Nước thải được xử lý',
     'tons_of_co2_reduced_annually' => 'Lượng CO₂ cắt giảm hàng năm',
     'renewable_solar_power' => 'Năng lượng mặt trời tái tạo',
+
+    'hero_eyebrow' => 'Về Green Ruby Cruises',
+    'hero_title_html' => 'Nơi Sang Trọng Có <em>Lương Tâm.</em>',
+    'story_eyebrow' => 'Câu Chuyện Của Chúng Tôi',
+    'eco_title_html' => 'Công Nghệ <em>Chứng Minh Điều Đó.</em>',
+    'impact_eyebrow' => 'Tác Động Tích Cực',
+    'cert_title_html' => 'Tiêu Chuẩn <em>Đã Xác Minh</em>',
+    'cert_sub' => 'Chứng nhận bạn có thể tin — không phải lời khoe chưa kiểm chứng.',
+    'cert_green_globe' => 'Green Globe · Đang tiến hành',
+    'cert_eu_green' => 'EU Green Claims · Tuân thủ',
+    'cert_gstc' => 'GSTC · Tiêu chuẩn được công nhận',
+    'cta_title_html' => 'Hãy Là Một Phần <em>Của Sự Thay Đổi.</em>',
 ];

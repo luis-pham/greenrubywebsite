@@ -56,65 +56,52 @@ $suitesGrid = $suitesGrid ?? false;
                                 $cabinName = $list[$i]->name ?? '';
                                 $cabinArea = $list[$i]->area ?? '';
 
-                                $specMap = [
-                                    'Serenity Deluxe' => [
-                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
-                                        ['icon' => 'home',     'text' => 'Main Deck'],
-                                        ['icon' => 'bath',     'text' => 'Bathtub'],
+                                $cabinSlugMap = [
+                                    'Serenity Deluxe' => 'serenity_deluxe',
+                                    'Ocean Breeze Premium' => 'ocean_breeze_premium',
+                                    'Royal Romance Suite' => 'royal_romance_suite',
+                                    'Imperial Suite' => 'imperial_suite',
+                                ];
+                                $cabinSlug = $cabinSlugMap[$cabinName] ?? null;
+                                $allSpecSets = trans('frontend::sectionCabin.spec_sets');
+                                $specSet = ($cabinSlug && is_array($allSpecSets)) ? ($allSpecSets[$cabinSlug] ?? null) : null;
+
+                                if (is_array($specSet) && count($specSet) > 0) {
+                                    $specs = [];
+                                    foreach ($specSet as $row) {
+                                        if (($row['label'] ?? '') === 'area') {
+                                            $specs[] = ['icon' => $row['icon'], 'text' => $cabinArea . ' m²'];
+                                        } elseif (($row['label'] ?? '') === 'ocean_view') {
+                                            $specs[] = ['icon' => $row['icon'], 'text' => $list[$i]->view ?: __('frontend::sectionCabin.labels.ocean_view')];
+                                        } else {
+                                            $specs[] = ['icon' => $row['icon'], 'text' => __('frontend::sectionCabin.labels.' . $row['label'])];
+                                        }
+                                    }
+                                } else {
+                                    $specs = [
+                                        ['icon' => 'eye', 'text' => $list[$i]->view ?: __('frontend::sectionCabin.labels.ocean_view')],
                                         ['icon' => 'maximize', 'text' => $cabinArea . ' m²'],
-                                    ],
-                                    'Ocean Breeze Premium' => [
-                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
-                                        ['icon' => 'home',     'text' => 'Upper Deck'],
-                                        ['icon' => 'bath',     'text' => 'Bathtub'],
-                                        ['icon' => 'maximize', 'text' => $cabinArea . ' m²'],
-                                    ],
-                                    'Royal Romance Suite' => [
-                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
-                                        ['icon' => 'home',     'text' => 'Upper Deck'],
-                                        ['icon' => 'bath',     'text' => 'Jacuzzi'],
-                                        ['icon' => 'bell',     'text' => 'Butler'],
-                                    ],
-                                    'Imperial Suite' => [
-                                        ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
-                                        ['icon' => 'bath',     'text' => 'Jacuzzi Balcony'],
-                                        ['icon' => 'coffee',   'text' => 'In-room Dining'],
-                                        ['icon' => 'bell',     'text' => 'Butler'],
-                                    ],
-                                ];
+                                        ['icon' => 'users', 'text' => __('frontend::sectionCabin.labels.guests', ['count' => $list[$i]->capacity ?? ''])],
+                                        ['icon' => 'home', 'text' => __('frontend::sectionCabin.labels.on_board')],
+                                    ];
+                                }
 
-                                $specs = $specMap[$cabinName] ?? [
-                                    ['icon' => 'eye',      'text' => $list[$i]->view ?: 'Ocean view'],
-                                    ['icon' => 'maximize', 'text' => $cabinArea . ' m²'],
-                                    ['icon' => 'users',    'text' => ($list[$i]->capacity ?? '') . ' Guests'],
-                                    ['icon' => 'home',     'text' => 'On Board'],
-                                ];
+                                $allCategories = trans('frontend::sectionCabin.categories');
+                                $cabinCategory = ($cabinSlug && is_array($allCategories) && isset($allCategories[$cabinSlug]))
+                                    ? $allCategories[$cabinSlug]
+                                    : __('frontend::sectionCabin.labels.cabin');
 
-                                $categoryMap = [
-                                    'Serenity Deluxe'        => 'Deluxe Cabin',
-                                    'Ocean Breeze Premium'   => 'Premium Cabin',
-                                    'Royal Romance Suite'    => 'Suite',
-                                    'Imperial Suite'         => 'Signature Suite',
-                                ];
-                                $cabinCategory = $categoryMap[$cabinName] ?? 'Cabin';
+                                $allDeckBadges = trans('frontend::sectionCabin.deck_badges');
+                                $deckLabelKey = ($cabinSlug && is_array($allDeckBadges)) ? ($allDeckBadges[$cabinSlug] ?? null) : null;
+                                $deckLabel = $deckLabelKey ? __('frontend::sectionCabin.labels.' . $deckLabelKey) : '';
 
-                                $deckMap = [
-                                    'Serenity Deluxe'        => 'Main Deck',
-                                    'Ocean Breeze Premium'   => 'Upper Deck',
-                                    'Royal Romance Suite'    => 'Upper Deck · Front',
-                                    'Imperial Suite'         => 'Upper Deck · Rear',
-                                ];
-                                $deckLabel = $deckMap[$cabinName] ?? '';
-
-                                $suiteSummaryMap = [
-                                    'Serenity Deluxe'      => 'Ocean-view cabin with bathtub on Main Deck.',
-                                    'Ocean Breeze Premium' => 'Upper Deck premium with bathtub and bay views.',
-                                    'Royal Romance Suite'  => 'Suite with jacuzzi, butler, and panoramic views.',
-                                    'Imperial Suite'       => 'Our largest suite with jacuzzi balcony and butler.',
-                                ];
-                                $suiteSummary = $suitesGrid
-                                    ? ($suiteSummaryMap[$cabinName] ?? '')
-                                    : Str::limit($list[$i]->summary ?? '', 110);
+                                $allSummaries = trans('frontend::sectionCabin.summaries');
+                                $suiteSummary = ($suitesGrid && $cabinSlug && is_array($allSummaries) && isset($allSummaries[$cabinSlug]))
+                                    ? $allSummaries[$cabinSlug]
+                                    : ($suitesGrid ? '' : Str::limit($list[$i]->summary ?? '', 110));
+                                if ($suitesGrid && !$suiteSummary) {
+                                    $suiteSummary = Str::limit($list[$i]->summary ?? '', 110);
+                                }
                             @endphp
                             <div class="item d-flex h-100" data-cabin-class="{{ $list[$i]->cabin_class }}">
                                 <div class="item-wrapper d-flex flex-column w-100 bg-white{{ $suitesGrid ? ' suite-card' : '' }}{{ $suitesGrid && $isSuiteFeatured ? ' suite-featured' : '' }}">
@@ -135,10 +122,10 @@ $suitesGrid = $suitesGrid ?? false;
                                                 <circle cx="12" cy="12" r="3"/>
                                                 <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
                                             </svg>
-                                            AI Concierge
+                                            {{ __('frontend::sectionCabin.badges.ai_concierge') }}
                                         </span>
                                         @if(str_contains($cabinName, 'Imperial') || (int) ($list[$i]->area ?? 0) === 120)
-                                            <span class="suite-badge-featured">Largest Suite</span>
+                                            <span class="suite-badge-featured">{{ __('frontend::sectionCabin.badges.largest_suite') }}</span>
                                         @endif
                                         @if ($suitesGrid && $list[$i]->area)
                                             <span class="suite-size-badge">{{ $list[$i]->area }}m²</span>

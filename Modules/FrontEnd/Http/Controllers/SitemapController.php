@@ -17,6 +17,7 @@ use Modules\FrontEnd\Services\AppCruiseService;
 use Modules\FrontEnd\Services\AppCruiseItineraryService;
 use Modules\FrontEnd\Services\GalleryService;
 use Modules\FrontEnd\Services\PageService;
+use Modules\BackEnd\Entities\AppCruise;
 
 class SitemapController extends Controller
 {
@@ -54,7 +55,7 @@ class SitemapController extends Controller
         }
 
         $listPageUpdatedAt = [];
-        foreach ([$article, $experience, $service, $itinerary] as $item) {
+        foreach ([$article, $experience, $service, $itinerary, $cruise] as $item) {
             if (!$item) {
                 continue;
             }
@@ -79,6 +80,7 @@ class SitemapController extends Controller
             'experience' => $experience,
             'service' => $service,
             'itinerary' => $itinerary,
+            'cruise' => $cruise,
             'gallery' => $gallery,
             'faq' => $faq,
             'categoryUpdatedAt' => $categoryUpdatedAt,
@@ -92,12 +94,22 @@ class SitemapController extends Controller
         $experience = AppExpActivityService::getLatestUpdate([]);
         $service = AppServiceService::getLatestUpdate([]);
         $itinerary = AppItineraryService::getLatestUpdate([]);
+        $cruise = AppCruiseService::getLatestUpdate([]);
         $gallery = GalleryService::getGalleryUpdatedAt([]);
         $faq = AppFaqService::getLatestUpdate([]);
         $legal = PageService::getLegalUpdatedAt([]);
         $about = PageService::getAboutUpdatedAt([]);
         $contact = PageService::getContactUpdatedAt([]);
         $pages = [];
+
+        $homepageLastmod = $cruise
+            ? Carbon::parse($cruise->updated_at ?: $cruise->created_at)->format('Y-m-d\TH:i:sP')
+            : Carbon::now()->format('Y-m-d\TH:i:sP');
+        $pages[] = [
+            'loc' => route('frontend.index'),
+            'lastmod' => $homepageLastmod,
+        ];
+
         if ($article) {
             $pages[] = [
                 'loc' => route('frontend.article.index'),
@@ -266,6 +278,24 @@ class SitemapController extends Controller
         ])->header('Content-Type', 'text/xml');
     }
 
+
+    public function cruise()
+    {
+        $defaultLanguage = AdLanguageService::getDefaultLanguage();
+        $listLanguage = $this->getAllLanguage();
+
+        $list = AppCruise::orderBy('id', 'asc')->get();
+        for ($i = 0; $i < count($list); $i++) {
+            $languageId = $list[$i]->language_id ?? $defaultLanguage->id;
+            $list[$i]->url = $defaultLanguage->id == $languageId
+                ? route('frontend.cruise.show', ['slug' => Utilities::convertToAlias($list[$i]->name), 'id' => $list[$i]->id])
+                : route(Utilities::bindRouteNameMultiLanguage('frontend.cruise.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => Utilities::convertToAlias($list[$i]->name), 'id' => $list[$i]->id]);
+        }
+
+        return response()->view($this->baseView . __FUNCTION__, [
+            'list' => $list,
+        ])->header('Content-Type', 'text/xml');
+    }
 
     public function gallery(){
         $defaultLanguage = AdLanguageService::getDefaultLanguage();

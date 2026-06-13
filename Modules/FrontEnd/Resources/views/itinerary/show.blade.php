@@ -207,8 +207,8 @@
         </section>
 
         @include('frontend::shared.section.section-cabin',[
-            'title' => 'Private Sanctuaries',
-            'description' => 'Luxury Suites',
+            'title' => __('frontend::itineraryDetail.section-cabin-title'),
+            'description' => __('frontend::itineraryDetail.section-cabin-description'),
             'list' => $listAccommodationCabin,
             'suitesGrid' => true,
             'isShowBookNow' => false
@@ -227,8 +227,8 @@
         ])
 
         @include('frontend::shared.section.section-call-to-action',[
-            'description' => 'The bay is waiting. Your cabin is ready.',
-            'content' => FeCruiseUtils::getItineraryDeparture($obj->itinerary->destination) . ' · ' . $obj->cruise->name . ' · Departing from Tuần Châu',
+            'description' => __('frontend::itineraryDetail.section-booking-and-availability-title'),
+            'content' => FeCruiseUtils::getItineraryDeparture($obj->itinerary->destination) . ' · ' . $obj->cruise->name . ' · ' . __('frontend::itineraryDetail.section-booking-departing_from', ['port' => 'Tuần Châu']),
             'buttons' => $listCallToActionBtn
         ])
 

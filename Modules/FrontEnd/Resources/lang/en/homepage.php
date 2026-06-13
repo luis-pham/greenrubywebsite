@@ -1,6 +1,7 @@
 <?php
 return [
     'hero_eyebrow' => 'Ha Long · Lan Ha Bay · Est. 2026',
+    'hero_title' => 'Ha Long Bay & Lan Ha Bay <em>Eco-Luxury Cruises</em>',
     'button_book_your_trip' => 'Book Your Trip',
     'button_discover_itinerary' => 'Discover Itinerary',
     'button_explorer_the_cruise' => 'Explore the Cruise',

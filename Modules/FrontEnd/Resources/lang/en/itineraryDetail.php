@@ -25,5 +25,7 @@ return [
     'section-booking-and-availability-description' => 'Book now to secure your spot on this unforgettable journey through one of the world\'s most beautiful natural wonders. Limited cabins available.',
     'section-booking-and-availability-guarantee' => 'Best Price Guarantee',
     'section-booking-and-availability-cancellation' => 'Free Cancellation',
-    'section-booking-and-availability-support' => '24/7 Support'
+    'section-booking-and-availability-support' => '24/7 Support',
+
+    'section-booking-departing_from' => 'Departing from :port',
 ];

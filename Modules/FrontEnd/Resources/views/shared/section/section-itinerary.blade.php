@@ -51,27 +51,27 @@
 
             <div class="itin-compare">
                 <div class="container">
-                    <div class="itin-compare-label">2D1N vs 3D2N — What's the difference?</div>
+                    <div class="itin-compare-label">{{ __('frontend::itineraryIndex.compare.label') }}</div>
                     <div class="itin-compare-grid">
                         <div class="itin-cmp-card">
-                            <div class="itin-cmp-dur">2 Days · 1 Night</div>
-                            <div class="itin-cmp-tag">Quick Escape</div>
+                            <div class="itin-cmp-dur">{{ __('frontend::itineraryIndex.compare.2d1n.duration') }}</div>
+                            <div class="itin-cmp-tag">{{ __('frontend::itineraryIndex.compare.2d1n.tag') }}</div>
                             <ul class="itin-cmp-list">
-                                <li>Arrive afternoon, depart before lunch next day</li>
-                                <li>Luon Cave kayak + Titop Island (Ha Long) or Dark &amp; Bright Cave + Ao Ech Lagoon (Lan Ha)</li>
-                                <li>Sunset happy hour, squid fishing, cooking class</li>
-                                <li>Ideal for tight schedules</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.2d1n.bullet_1') }}</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.2d1n.bullet_2') }}</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.2d1n.bullet_3') }}</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.2d1n.bullet_4') }}</li>
                             </ul>
                         </div>
                         <div class="itin-cmp-card itin-cmp-card--popular">
-                            <div class="itin-cmp-popular-badge">Most popular</div>
-                            <div class="itin-cmp-dur">3 Days · 2 Nights</div>
-                            <div class="itin-cmp-tag">Full Discovery</div>
+                            <div class="itin-cmp-popular-badge">{{ __('frontend::itineraryIndex.compare.3d2n.popular') }}</div>
+                            <div class="itin-cmp-dur">{{ __('frontend::itineraryIndex.compare.3d2n.duration') }}</div>
+                            <div class="itin-cmp-tag">{{ __('frontend::itineraryIndex.compare.3d2n.tag') }}</div>
                             <ul class="itin-cmp-list">
-                                <li>Full extra day on the water</li>
-                                <li>Fishing village visit + white sand beach swimming</li>
-                                <li>Private romantic dinner (sundeck / poolside / cabin)</li>
-                                <li>Best for first-time visitors &amp; honeymoon</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.3d2n.bullet_1') }}</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.3d2n.bullet_2') }}</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.3d2n.bullet_3') }}</li>
+                                <li>{{ __('frontend::itineraryIndex.compare.3d2n.bullet_4') }}</li>
                             </ul>
                         </div>
                     </div>
@@ -120,9 +120,9 @@
                                                 <a href="{{ $url }}" class="text-reset">{{ $list[$i]->name }}</a>
                                             </h3>
                                             <div class="itin-highlights">
-                                                <span class="itin-chip">Cave Exploration</span>
-                                                <span class="itin-chip">Kayaking</span>
-                                                <span class="itin-chip">All meals</span>
+                                                <span class="itin-chip">{{ __('frontend::itineraryIndex.chip.cave') }}</span>
+                                                <span class="itin-chip">{{ __('frontend::itineraryIndex.chip.kayaking') }}</span>
+                                                <span class="itin-chip">{{ __('frontend::itineraryIndex.chip.meals') }}</span>
                                             </div>
                                             @if ($list[$i]->price)
                                                 <div class="itin-price">
@@ -216,9 +216,9 @@
                                                 <a href="{{ $url }}" class="text-reset">{{ $list[$i]->name }}</a>
                                             </h3>
                                             <div class="itin-highlights">
-                                                <span class="itin-chip">Cave Exploration</span>
-                                                <span class="itin-chip">Kayaking</span>
-                                                <span class="itin-chip">All meals</span>
+                                                <span class="itin-chip">{{ __('frontend::itineraryIndex.chip.cave') }}</span>
+                                                <span class="itin-chip">{{ __('frontend::itineraryIndex.chip.kayaking') }}</span>
+                                                <span class="itin-chip">{{ __('frontend::itineraryIndex.chip.meals') }}</span>
                                             </div>
                                             @if ($list[$i]->price)
                                                 <div class="itin-price">

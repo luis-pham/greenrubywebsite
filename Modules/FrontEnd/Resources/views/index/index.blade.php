@@ -13,6 +13,10 @@
         ? $pageConfig[PageConfigKeyConsts::HOMEPAGE_BANNER]
         : [];
     for ($i = 0; $i < count($listBanner); $i++) {
+        if ($i === 0) {
+            $listBanner[$i]->title = __('frontend::homepage.hero_title');
+        }
+
         $listBanner[$i]->listButton = [];
 
         $btn = new \stdClass();
@@ -98,6 +102,7 @@
             'list' => $listBanner,
             'imageConfig' => ['w' => 1920, 'h' => 848],
             'heroEyebrow' => __('frontend::homepage.hero_eyebrow'),
+            'tagHeading' => 'h1',
             'allowTitleHtml' => true,
         ])
         <section class="section-2 bg">

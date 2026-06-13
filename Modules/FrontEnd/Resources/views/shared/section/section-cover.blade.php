@@ -22,7 +22,7 @@
                                     @include('frontend::shared.section.section-cover-item', [
                                         'obj' => $list[$i],
                                         'isVideoAutoPlay' => false,
-                                        'tagHeading' => $tagHeading,
+                                        'tagHeading' => ($tagHeading === 'h1' && $i > 0) ? 'h2' : $tagHeading,
                                         'isPriorityMedia' => $i === 0,
                                         'heroEyebrow' => $heroEyebrow,
                                         'allowTitleHtml' => $allowTitleHtml,
