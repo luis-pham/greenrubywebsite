@@ -62,6 +62,11 @@ class FeCruiseUtils
         return str_contains((string) $name, '2') || str_contains((string) $name, 'II');
     }
 
+    public static function getBayForCruise(?string $name): int
+    {
+        return self::isGreenRuby2($name) ? 2 : 1;
+    }
+
     public static function getDisplayShipSpecs(bool $isGreenRuby2): array
     {
         if ($isGreenRuby2) {

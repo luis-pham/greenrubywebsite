@@ -1298,19 +1298,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 992px) {
-    #header .btn-toggle-menu-ext .menu-ext > li:nth-child(-n+3) {
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--cruise,
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--itinerary,
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--services {
         display: none;
     }
 }
 
-@media (min-width: 1200px) {
-    #header .btn-toggle-menu-ext .menu-ext > li:nth-child(-n+4) {
-        display: none;
-    }
-}
-
-@media (min-width: 1600px) {
-    #header .btn-toggle-menu-ext .menu-ext > li:nth-child(-n+5) {
+@media (min-width: 1440px) {
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--home,
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--cruise,
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--itinerary,
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--services,
+    #header .btn-toggle-menu-ext .menu-ext > li.nav-item--experiences {
         display: none;
     }
 }
@@ -1357,14 +1357,6 @@ h1, h2, h3, h4, h5, h6 {
     #header .btn-toggle-menu-ext {
         margin-right: 2rem;
     }
-
-    #header .btn-toggle-menu-ext .menu-ext > li:nth-child(-n+5) {
-        display: none;
-    }
-
-    #header .navigation > ul > li:nth-child(-n+5) {
-        display: list-item;
-    }
 }
 
 /* Navigation */
@@ -1390,7 +1382,9 @@ h1, h2, h3, h4, h5, h6 {
         padding: 1rem .5rem;
     }
 
-    #header .navigation > ul > li:nth-child(-n+3) {
+    #header .navigation > ul > li.nav-item--cruise,
+    #header .navigation > ul > li.nav-item--itinerary,
+    #header .navigation > ul > li.nav-item--services {
         display: list-item;
     }
 
@@ -1407,8 +1401,14 @@ h1, h2, h3, h4, h5, h6 {
     #header .navigation {
         margin-right: 2rem;
     }
+}
 
-    #header .navigation > ul > li:nth-child(-n+4) {
+@media (min-width: 1440px) {
+    #header .navigation > ul > li.nav-item--home,
+    #header .navigation > ul > li.nav-item--cruise,
+    #header .navigation > ul > li.nav-item--itinerary,
+    #header .navigation > ul > li.nav-item--services,
+    #header .navigation > ul > li.nav-item--experiences {
         display: list-item;
     }
 }
@@ -1432,26 +1432,6 @@ h1, h2, h3, h4, h5, h6 {
 
     html[lang="vi"] #header .navigation > ul > li {
         padding: 1rem .5rem;
-    }
-}
-
-/* Experiences: hide from desktop nav on laptop, show on wide screens */
-@media (max-width: 1440px) {
-    #header .header-desktop .navigation > ul > li:has(> a[href*="/experiences"]),
-    #header .header-desktop .navigation > ul > li:has(> a[href*="hoat-dong-trai-nghiem"]) {
-        display: none !important;
-    }
-
-    #header .header-desktop .btn-toggle-menu-ext .menu-ext > li:has(> a[href*="/experiences"]),
-    #header .header-desktop .btn-toggle-menu-ext .menu-ext > li:has(> a[href*="hoat-dong-trai-nghiem"]) {
-        display: list-item !important;
-    }
-}
-
-@media (min-width: 1441px) {
-    #header .header-desktop .navigation > ul > li:has(> a[href*="/experiences"]),
-    #header .header-desktop .navigation > ul > li:has(> a[href*="hoat-dong-trai-nghiem"]) {
-        display: list-item !important;
     }
 }
 

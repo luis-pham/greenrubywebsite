@@ -52,25 +52,6 @@ $(document).ready(function(){
         });
     }
 
-    $('.section-itinerary .list-filter .item').on('click',function(){
-        const selected = $(this).data('duration');
-        if($(this).hasClass('active')) return;
-
-        $(this).addClass('active');
-        $(this).siblings().removeClass('active');
-
-        const $itineraryDetail = $('.section-itinerary').find('.itinerary-detail');
-        $itineraryDetail.each(function(){
-            const duration = $(this).data('duration');
-            if(duration === selected){
-                $(this).removeClass('d-none');
-            }
-            else{
-                $(this).addClass('d-none');
-            }
-        });
-    })
-
     const toggleGalleryLoading = ($container, isLoading) => {
         if (!$container || !$container.length) return;
 

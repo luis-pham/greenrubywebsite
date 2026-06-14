@@ -8,9 +8,31 @@ return [
     'section-info-departure' => 'XUẤT PHÁT',
     'section-info-cruise' => 'DU THUYỀN',
     'section-info-guests' => 'SỐ KHÁCH',
-    'section-info-inclusion' => 'Dịch vụ bao gồm ',
-    'section-info-exclusion' => 'Dịch vụ không bao gồm',
-    'section-info-important-notes' => 'Lưu ý quan trọng',
+    'section-info-inclusion' => 'BAO GỒM',
+    'section-info-exclusion' => 'KHÔNG BAO GỒM',
+    'section-info-important-notes' => 'LƯU Ý QUAN TRỌNG',
+
+    'inclusion_items' => [
+        'Vé tham quan các điểm theo chương trình',
+        'Phòng nghỉ riêng trên du thuyền',
+        'Tất cả các bữa ăn theo chương trình',
+        'Tàu day boat — Ngày 2 (chỉ áp dụng tour 3N2Đ)',
+        'Hướng dẫn viên tiếng Anh / tiếng Việt',
+        'Chèo kayak/thuyền tre, lớp nấu ăn & Thái Cực quyền buổi sáng',
+    ],
+
+    'exclusion_items' => [
+        'Đồ uống & chi phí cá nhân',
+        'Dịch vụ spa & massage',
+        'Xe đưa đón Hà Nội – Hạ Long (nếu có)',
+    ],
+
+    'important_note_items' => [
+        'Lịch trình có thể thay đổi do thời tiết hoặc điều kiện vận hành',
+        'Mang theo đồ bơi, dép đi biển, mũ, kem chống nắng & máy ảnh',
+        'Tuân thủ hướng dẫn an toàn của thuyền trưởng & hướng dẫn viên khi chèo kayak hoặc bơi',
+    ],
+
     'section-details-title' => 'Lịch trình chi tiết',
     'section-cabin-title' => 'Không gian riêng tư sang trọng',
     'section-cabin-description' => 'Phòng nghỉ cao cấp',

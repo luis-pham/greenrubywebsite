@@ -167,6 +167,8 @@
             'titleHtml' => __('frontend::cruiseDetail.section-cabin.title_html'),
             'list' => $listAccommodationCabin,
             'suitesGrid' => true,
+            'isShowBookNow' => true,
+            'cruiseId' => $obj->id,
         ])
 
         <section class="section-itinerary bg">
@@ -174,15 +176,9 @@
                  <div class="container">
                      <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::cruiseDetail.section-itinerary.title') }}</p>
                      <p class="section-description font-heading">{!! __('frontend::cruiseDetail.section-itinerary.description') !!}</p>
-                     <div class="list-filter">
-                         @foreach($listDurationFilter as $idx => $duration)
-                             <a href="javascript:" class="item {{$idx === 0 ? 'active' : ''}}" data-duration="{{$duration}}">
-                                 {{\Modules\FrontEnd\Helpers\FeCruiseUtils::formatDisplayDurationName($duration)}}
-                             </a>
-                         @endforeach
-                     </div>
+                     <div class="itinerary-list">
                      @foreach($groupItinerary as $itinerary)
-                         <div class="itinerary-detail {{ $loop->index !== 0 ? 'd-none' : '' }}" data-duration="{{$itinerary->duration}}">
+                         <div class="itinerary-detail" data-duration="{{$itinerary->duration}}">
                              <div class="body">
                                  <p class="name">{{$itinerary->name}}</p>
                                  <div class="image-wrapper position-relative">
@@ -223,6 +219,7 @@
                              </div>
                          </div>
                      @endforeach
+                     </div>
                  </div>
             </div>
         </section>

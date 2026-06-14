@@ -7,9 +7,6 @@
 @php
     $languageCode = Route::current()->parameter('languageCode');
 
-    $obj->inclusiveServices = $obj->itinerary->itineraryServices->filter(fn($s) => $s->type == config('backend.appServiceType.inclusive'));
-    $obj->exclusiveServices = $obj->itinerary->itineraryServices->filter(fn($s) => $s->type == config('backend.appServiceType.exclusive'));
-    $obj->importantNote = $obj->itinerary->important_note;
     $obj->guests = $listCabin->sum(fn($cabin) => $cabin->capacity);
     $listAccommodationCabin = $listCabin->filter(fn($cabin) => collect(config('backend.listAccommodationSlug'))->contains($cabin->slug) )->values();
 
@@ -137,10 +134,9 @@
                                 </div>
                                 <div class="body">
                                     <ul class="list">
-                                        @foreach($obj->inclusiveServices as $service)
-                                            <li class="item">
-                                                <img src="{{FeUtils::getThumbnail(['link' => $service->image_link,'w' => 24,'h' => 24])}}"/>
-                                                <p>{{$service->name}}</p>
+                                        @foreach(__('frontend::itineraryDetail.inclusion_items') as $item)
+                                            <li class="item item--text">
+                                                <p>{{ $item }}</p>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -149,15 +145,13 @@
                             <div class="list-container list-exclusive-service-container">
                                 <div class="header m-0 header--excluded">
                                     <i class="ti ti-circle-minus" aria-hidden="true"></i>
-                                    <span>{{__('frontend::itineraryDetail.section-info-exclusion')}}</span>
+                                    <span>{{ __('frontend::itineraryDetail.section-info-exclusion') }}</span>
                                 </div>
                                 <div class="body">
                                     <ul class="list">
-                                        @foreach($obj->exclusiveServices as $service)
-                                            <li class="item">
-                                                <img
-                                                    src="{{FeUtils::getThumbnail(['link' => $service->image_link,'w' => 24,'h' => 24])}}"/>
-                                                <p>{{$service->name}}</p>
+                                        @foreach(__('frontend::itineraryDetail.exclusion_items') as $item)
+                                            <li class="item item--text">
+                                                <p>{{ $item }}</p>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -166,18 +160,13 @@
                             <div class="list-container list-activity-container">
                                 <div class="header m-0 header--notes">
                                     <i class="ti ti-info-circle" aria-hidden="true"></i>
-                                    <span>{{__('frontend::itineraryDetail.section-info-important-notes')}}</span>
+                                    <span>{{ __('frontend::itineraryDetail.section-info-important-notes') }}</span>
                                 </div>
                                 <div class="body">
                                     <ul class="list m-0">
-                                        @foreach($obj->importantNote ?? [] as $note)
-                                            @php
-                                                $note = (object) $note
-                                            @endphp
-                                            <li class="item">
-                                                <img
-                                                    src="{{FeUtils::getThumbnail(['link' => $note->image_link,'w' => 24,'h' => 24])}}"/>
-                                                {!! safe_html($note->content) !!}
+                                        @foreach(__('frontend::itineraryDetail.important_note_items') as $item)
+                                            <li class="item item--text">
+                                                <p>{{ $item }}</p>
                                             </li>
                                         @endforeach
                                     </ul>

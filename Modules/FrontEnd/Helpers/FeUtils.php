@@ -217,6 +217,56 @@ class FeUtils
         return false;
     }
 
+    public static function getPrimaryMenuNavKey(?string $url): string
+    {
+        $path = self::normalizeMenuPath(self::getAbsoluteUrl($url) ?? '');
+
+        if (preg_match('#^/[a-z]{2}(/.*)?$#', $path, $matches)) {
+            $path = isset($matches[1]) && $matches[1] !== '' ? $matches[1] : '/';
+        }
+
+        if ($path === '/' || $path === '') {
+            return 'home';
+        }
+
+        if (str_starts_with($path, '/cruise') || str_starts_with($path, '/du-thuyen')) {
+            return 'cruise';
+        }
+
+        if (str_starts_with($path, '/itinerary') || str_starts_with($path, '/hanh-trinh')) {
+            return 'itinerary';
+        }
+
+        if (str_starts_with($path, '/services') || str_starts_with($path, '/dich-vu')) {
+            return 'services';
+        }
+
+        if (str_starts_with($path, '/experiences') || str_starts_with($path, '/hoat-dong-trai-nghiem')) {
+            return 'experiences';
+        }
+
+        return 'other';
+    }
+
+    public static function resolvePrimaryMenuNavKey($menuItem): string
+    {
+        $navKey = self::getPrimaryMenuNavKey($menuItem->url ?? null);
+
+        if ($navKey !== 'other') {
+            return $navKey;
+        }
+
+        $children = $menuItem->child ?? [];
+        if (count($children) > 0) {
+            $childKey = self::getPrimaryMenuNavKey($children[0]->url ?? null);
+            if ($childKey !== 'other') {
+                return $childKey;
+            }
+        }
+
+        return 'other';
+    }
+
     public static function bindWebsiteTitle($title, $description)
     {
         if ($description) {

@@ -472,6 +472,27 @@
         border-color: rgba(12, 61, 49, 0.03) !important;
     }
 
+    #cruise-detail .section-cabin .suite-card-actions {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    #cruise-detail .section-cabin .suite-card-actions .btn-book-now {
+        white-space: nowrap;
+    }
+
+    #cruise-detail .section-cabin .item-footer {
+        position: relative;
+        z-index: 11;
+    }
+
+    #cruise-detail .section-cabin .item-footer .btn-view-cabin-details,
+    #cruise-detail .section-cabin .item-footer .btn-book-now {
+        position: relative;
+        z-index: 12;
+        pointer-events: auto;
+    }
+
     /* Cabin carousel — hero-style nav arrows (giống homepage section-6) */
     #cruise-detail .section-cabin .slide-1 .owl-carousel {
         position: relative;
@@ -738,6 +759,7 @@
 #cruise-detail .section-cabin .slide-1,
 #cruise-detail .section-cabin .suites-grid,
 #cruise-detail .section-itinerary .list-filter,
+#cruise-detail .section-itinerary .itinerary-list,
 #cruise-detail .section-itinerary .itinerary-detail {
     text-align: left;
 }
@@ -1361,6 +1383,19 @@
     }
     .section-cabin-and-service .carousel-gallery .thumbnail .list-thumbnail .item {
         width: 130px;
+    }
+}
+
+#cruise-detail .section-itinerary .itinerary-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    #cruise-detail .section-itinerary .itinerary-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2.5rem;
     }
 }
 

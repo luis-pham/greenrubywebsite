@@ -165,22 +165,24 @@
     color: var(--color-text-accent);
 }
 
-/* Right panel — flex column, stretch full height */
+/* Right panel — flex column, stretch full height of left menu */
 .onboard-exp-right {
     display: flex;
     flex-direction: column;
     gap: 3px;
     min-height: 0;
+    height: 100%;
 }
 
-/* Main image — 3:2 album ratio */
+/* Main image — fills remaining height beside the menu on desktop */
 .onboard-main-img {
     position: relative;
     overflow: hidden;
     background: var(--color-forest);
     width: 100%;
     aspect-ratio: 3 / 2;
-    flex-shrink: 0;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 /* Image fill container */
@@ -422,6 +424,22 @@
 }
 
 /* Responsive */
+@media (min-width: 1024px) {
+    .onboard-exp-layout {
+        align-items: stretch;
+    }
+
+    .onboard-exp-left,
+    .onboard-exp-right {
+        height: 100%;
+    }
+
+    .onboard-main-img {
+        aspect-ratio: unset;
+        flex: 1 1 0;
+    }
+}
+
 @media (max-width: 1023px) {
     .onboard-exp-layout {
         grid-template-columns: 1fr;

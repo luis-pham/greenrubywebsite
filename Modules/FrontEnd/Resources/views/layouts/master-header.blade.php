@@ -3,6 +3,10 @@
     $headerLogo = !empty($config['website-logo-negative'])
         ? $config['website-logo-negative']
         : ($config['website-logo'] ?? null);
+    $primaryMenuNavKeys = [];
+    for ($menuIndex = 0; $menuIndex < count($listMenuPrimary); $menuIndex++) {
+        $primaryMenuNavKeys[$menuIndex] = FeUtils::resolvePrimaryMenuNavKey($listMenuPrimary[$menuIndex]);
+    }
 @endphp
 <header id="header">
     <div class="container-fluid position-relative">
@@ -15,7 +19,7 @@
                         </a>
                         <ul class="menu-ext list-unstyled mb-0 position-absolute">
                             @for ($i = 0; $i < count($listMenuPrimary); $i++)
-                                <li>
+                                <li class="nav-item nav-item--{{ $primaryMenuNavKeys[$i] }}">
                                     <a href="{{ $listMenuPrimary[$i]->url }}" target="{{ $listMenuPrimary[$i]->target }}">{{ FeUtils::formatGreenRubyMenuName($listMenuPrimary[$i]->name) }}</a>
                                 </li>
                             @endfor
@@ -36,7 +40,7 @@
                                         }
                                     }
                                 @endphp
-                                <li class="position-relative {{ $hasChild ? 'has-child' : '' }} {{ $isActive ? 'active' : '' }}">
+                                <li class="position-relative nav-item nav-item--{{ $primaryMenuNavKeys[$i] }} {{ $hasChild ? 'has-child' : '' }} {{ $isActive ? 'active' : '' }}">
                                     <a href="{{ $listMenuPrimary[$i]->url }}" class="d-flex align-items-center font-weight-bold text-center text-uppercase" target="{{ $listMenuPrimary[$i]->target }}">
                                         @if ($listMenuPrimary[$i]->icon)
                                             <i class="{{ $listMenuPrimary[$i]->icon }}"></i>

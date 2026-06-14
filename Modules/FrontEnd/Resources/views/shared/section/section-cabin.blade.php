@@ -9,6 +9,8 @@ $filters = isset($filters) && count($filters) > 0 ? $filters : [];
 $languageCode = Route::current()->parameter('languageCode');
 $isShowBookNow = $isShowBookNow ?? true;
 $suitesGrid = $suitesGrid ?? false;
+$cruiseId = $cruiseId ?? null;
+$itineraryId = $itineraryId ?? null;
 @endphp
 
 <section class="{{ $class }} section-cabin bg bg-azure">
@@ -191,9 +193,17 @@ $suitesGrid = $suitesGrid ?? false;
                                                 <a href="javascript:;" class="btn-view-cabin-details btn-view-details d-block" data-id="{{ $list[$i]->id }}">{{ __('frontend::common.button_view_cabin') }}</a>
                                             </div>
                                             @if($isShowBookNow)
+                                                @php
+                                                    $bookingParams = array_filter([
+                                                        'languageCode' => $languageCode,
+                                                        'cruise_id' => $cruiseId,
+                                                        'itinerary_id' => $itineraryId,
+                                                        'cabin_id' => $list[$i]->id,
+                                                    ], fn ($value) => $value !== null && $value !== '');
+                                                @endphp
                                                 <div>
                                                     <a
-                                                        href="{{ route(isset($languageCode) ? Utilities::getRouteName('frontend.booking') : 'frontend.booking', isset($languageCode) ? ['languageCode' => $languageCode, 'cabin_id' => $list[$i]->id] : ['cabin_id' => $list[$i]->id]) }}"
+                                                        href="{{ route(isset($languageCode) ? Utilities::getRouteName('frontend.booking') : 'frontend.booking', $bookingParams) }}"
                                                         class="btn-book-now btn btn-sm btn-warning"
                                                     >
                                                         {{ __('frontend::common.book_now') }} <i class="fa-solid fa-calendar-check ml-2"></i>

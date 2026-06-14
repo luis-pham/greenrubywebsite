@@ -504,6 +504,10 @@
     border-bottom: 1px solid rgba(13, 43, 26, 0.07);
 }
 
+#itinerary-detail .section-info .list-container .body .list .item.item--text {
+    padding-left: 20px;
+}
+
 #itinerary-detail .section-info .list-container .body .list .item img{
     width: 18px;
     height: 18px;

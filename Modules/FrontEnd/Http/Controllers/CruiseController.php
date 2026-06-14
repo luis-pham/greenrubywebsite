@@ -4,7 +4,6 @@ namespace Modules\FrontEnd\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Modules\BackEnd\Helpers\CruiseUtils;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppGroupService;
 use Modules\BackEnd\Services\AppTestimonialService;
@@ -42,9 +41,7 @@ class CruiseController extends Controller
 
         $listTestimonial = AppTestimonialService::getPaging([],$language->id);
 
-        $listDurationFilter = array_keys(CruiseUtils::getListDuration());
-
-        $groupItinerary = AppItineraryService::getEarliestItinerariesWithMinPriceAndOfBay($id);
+        $groupItinerary = AppItineraryService::getEarliestItinerariesWithMinPriceAndOfBay($id)->sortKeys();
 
         $listCabinType = AppGroupService::getAll(config('backend.groupType.cabin'),$language->id);
 
@@ -137,7 +134,6 @@ class CruiseController extends Controller
             'listTestimonial',
             'listCabin',
             'listInclusiveService',
-            'listDurationFilter',
             'groupItinerary',
             'listExpActivity'
         ));
