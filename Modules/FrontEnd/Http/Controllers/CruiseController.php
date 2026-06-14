@@ -30,12 +30,19 @@ class CruiseController extends Controller
             abort(404);
         else{
             $obj->slug = Utilities::convertToAlias($obj->name);
-            if($obj->slug !== $slug){
-                return redirect(route('frontend.cruise.show',[
-                    'languageCode' => $languageCode,
+            if ($obj->slug !== $slug) {
+                $showRouteName = $languageCode
+                    ? Utilities::bindRouteNameMultiLanguage('frontend.cruise.show')
+                    : 'frontend.cruise.show';
+                $redirectParams = [
                     'slug' => $obj->slug,
-                    'id' => $id
-                ]));
+                    'id' => $id,
+                ];
+                if ($languageCode) {
+                    $redirectParams['languageCode'] = $languageCode;
+                }
+
+                return redirect(route($showRouteName, $redirectParams));
             }
         }
 

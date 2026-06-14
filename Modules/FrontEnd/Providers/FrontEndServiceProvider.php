@@ -190,7 +190,7 @@ class FrontEndServiceProvider extends ServiceProvider
         for ($i = 0; $i < count($list); $i++) {
             $flag = false;
 
-            if (!(Str::startsWith($list[$i]->url, 'javascript:') || Str::startsWith($list[$i]->url, '#'))) {
+            if (!Str::startsWith($list[$i]->url, 'javascript:') && !Str::startsWith($list[$i]->url, '#')) {
                 $list[$i]->url = FeUtils::localizeMenuUrl($list[$i]->url, $language);
             }
 

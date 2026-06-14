@@ -8,6 +8,7 @@ use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AdConfigService;
 use Modules\BackEnd\Services\AppSeoKeywordService;
 use Modules\BackEnd\Services\SourceDataService;
+use Modules\FrontEnd\Services\AppCruiseService;
 use Modules\FrontEnd\Services\AppPageConfigService;
 
 class FeUtils
@@ -228,6 +229,11 @@ class FeUtils
             return $url;
         }
 
+        $resolvedCruiseUrl = self::resolveCruiseMenuUrl($url, $language);
+        if ($resolvedCruiseUrl !== null) {
+            return $resolvedCruiseUrl;
+        }
+
         $defaultLanguage = \Modules\BackEnd\Services\AdLanguageService::getDefaultLanguage();
         $isDefault = $language && $defaultLanguage && (int) $language->id === (int) $defaultLanguage->id;
 
@@ -237,7 +243,14 @@ class FeUtils
             return $url;
         }
 
-        $query = isset($parsed['query']) ? '?' . $parsed['query'] : '';
+        $query = '';
+        if (!empty($parsed['query'])) {
+            parse_str($parsed['query'], $queryParams);
+            unset($queryParams['languageCode']);
+            if (count($queryParams) > 0) {
+                $query = '?' . http_build_query($queryParams);
+            }
+        }
         $fragment = isset($parsed['fragment']) ? '#' . $parsed['fragment'] : '';
         $host = $parsed['host'] ?? null;
 
@@ -280,6 +293,54 @@ class FeUtils
         }
 
         return asset($newPath . $query . $fragment);
+    }
+
+    private static function resolveCruiseMenuUrl(string $url, $language): ?string
+    {
+        $path = self::getAbsoluteUrl($url);
+        if (!$path) {
+            return null;
+        }
+
+        $segments = array_values(array_filter(explode('/', trim(self::normalizeMenuPath($path), '/'))));
+        if (!empty($segments[0]) && preg_match('/^[a-z]{2}$/', $segments[0])) {
+            array_shift($segments);
+        }
+
+        $segment = $segments[0] ?? '';
+        if (!in_array($segment, ['cruise', 'du-thuyen'], true)) {
+            return null;
+        }
+
+        $filename = $segments[1] ?? '';
+        if (!preg_match('/-(\d+)\.html$/', $filename, $matches)) {
+            return null;
+        }
+
+        $id = (int) $matches[1];
+        if ($id <= 0) {
+            return null;
+        }
+
+        $cruise = AppCruiseService::findByIdJoin($id, $language->id);
+        if (!$cruise) {
+            return null;
+        }
+
+        $routeName = ($language && empty($language->is_default))
+            ? Utilities::bindRouteNameMultiLanguage('frontend.cruise.show')
+            : 'frontend.cruise.show';
+
+        $params = [
+            ' slug' => Utilities::convertToAlias($cruise->name),
+            'id' => $cruise->id,
+        ];
+
+        if ($language && empty($language->is_default)) {
+            $params['languageCode'] = $language->code;
+        }
+
+        return route($routeName, $params);
     }
 
     public static function isMenuItemActive($menuUrlActive, $itemUrl)
