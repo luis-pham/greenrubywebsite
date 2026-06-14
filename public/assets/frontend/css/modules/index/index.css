@@ -879,14 +879,16 @@
     }
 }
 
-/* Tab filter pills — standard: Curated Journeys (section-4, 7, 9) */
+/* Tab filter pills — standard: Curated Journeys (section-4, 6, 7, 9) */
 #main #home :is(
     .section-4.section-itinerary,
+    .section-6.section-cabin,
     .section-7,
     .section-9
 ) .tab-filter .list-button .item button,
 #main #home :is(
     .section-4.section-itinerary,
+    .section-6.section-cabin,
     .section-7,
     .section-9
 ) .tab-filter .list-button .item a {
@@ -904,11 +906,13 @@
 @media (min-width: 768px) {
     #main #home :is(
         .section-4.section-itinerary,
+        .section-6.section-cabin,
         .section-7,
         .section-9
     ) .tab-filter .list-button .item button,
     #main #home :is(
         .section-4.section-itinerary,
+        .section-6.section-cabin,
         .section-7,
         .section-9
     ) .tab-filter .list-button .item a {
@@ -1915,19 +1919,20 @@
     cursor: default;
 }
 
-/* Section 9 — Tailored Experiences */
+/* Section 6 — Private Sanctuaries & Section 9 — Tailored Experiences (light bg filter pills) */
+#home .section-6.section-cabin .section-description,
 #home .section-9 .section-description {
     color: var(--color-text-on-light);
 }
 
-#home .section-9 .tab-filter .list-button .item button:not(.active),
-#home .section-9 .tab-filter .list-button .item a:not(.active) {
+#home :is(.section-6.section-cabin, .section-9) .tab-filter .list-button .item button:not(.active),
+#home :is(.section-6.section-cabin, .section-9) .tab-filter .list-button .item a:not(.active) {
     background-color: #a9aba6;
     color: #fff;
 }
 
-#home .section-9 .tab-filter .list-button .item button.active,
-#home .section-9 .tab-filter .list-button .item a.active {
+#home :is(.section-6.section-cabin, .section-9) .tab-filter .list-button .item button.active,
+#home :is(.section-6.section-cabin, .section-9) .tab-filter .list-button .item a.active {
     background-color: #C8A84B;
     color: #fff;
 }

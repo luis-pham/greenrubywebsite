@@ -6,6 +6,7 @@ $eyebrow = $eyebrow ?? null;
 $titleHtml = $titleHtml ?? null;
 $list = isset($list) ? $list : [];
 $filters = isset($filters) && count($filters) > 0 ? $filters : [];
+$cruiseFilters = isset($cruiseFilters) && count($cruiseFilters) > 0 ? $cruiseFilters : [];
 $languageCode = Route::current()->parameter('languageCode');
 $isShowBookNow = $isShowBookNow ?? true;
 $suitesGrid = $suitesGrid ?? false;
@@ -33,7 +34,17 @@ $itineraryId = $itineraryId ?? null;
                     <p class="section-description font-heading{{ $suitesGrid ? ' suite-section-title' : '' }}">{!! safe_html($description) !!}</p>
                 @endif
             @endif
-            @if (count($filters) > 1)
+            @if (count($cruiseFilters) > 1)
+                <div class="tab-filter">
+                    <div class="list-button d-flex flex-wrap justify-content-center">
+                        @for ($i = 0; $i < count($cruiseFilters); $i++)
+                            <div class="item">
+                                <button type="button" class="font-weight-bold text-white border-0{{ $i === 0 ? ' active' : '' }}" data-cruise-id="{{ $cruiseFilters[$i]['id'] }}">{{ $cruiseFilters[$i]['label'] }}</button>
+                            </div>
+                        @endfor
+                    </div>
+                </div>
+            @elseif (count($filters) > 1)
                 <div class="tab-filter">
                     <div class="list-button d-flex flex-wrap justify-content-center">
                         <div class="item">
@@ -105,7 +116,7 @@ $itineraryId = $itineraryId ?? null;
                                     $suiteSummary = Str::limit($list[$i]->summary ?? '', 110);
                                 }
                             @endphp
-                            <div class="item d-flex h-100" data-cabin-class="{{ $list[$i]->cabin_class }}">
+                            <div class="item d-flex h-100" data-cabin-class="{{ $list[$i]->cabin_class }}" data-cruise-id="{{ $list[$i]->cruise_id ?? '' }}">
                                 <div class="item-wrapper d-flex flex-column w-100 bg-white{{ $suitesGrid ? ' suite-card' : '' }}{{ $suitesGrid && $isSuiteFeatured ? ' suite-featured' : '' }}">
                                     <div class="item-header{{ $suitesGrid ? ' suite-card-image-wrap' : '' }}">
                                         <a href="javascript:;" class="btn-view-cabin-details" data-id="{{ $list[$i]->id }}">

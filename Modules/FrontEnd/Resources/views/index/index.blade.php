@@ -323,12 +323,22 @@
                 @endif
             </div>
         </section>
+        @php
+            $section6CruiseFilters = [];
+            if (!empty($listAllCruise) && count($listAllCruise) >= 2) {
+                $section6CruiseFilters = [
+                    ['id' => $listAllCruise[0]->id, 'label' => __('frontend::homepage.section_5_vessel_01_name')],
+                    ['id' => $listAllCruise[1]->id, 'label' => __('frontend::homepage.section_5_vessel_02_name')],
+                ];
+            }
+        @endphp
         @include('frontend::shared.section.section-cabin', [
             'class' => 'section-6',
             'title' => __('frontend::homepage.section_6_title'),
             'description' => __('frontend::homepage.section_6_description'),
             'list' => $listCabin,
             'suitesGrid' => true,
+            'cruiseFilters' => $section6CruiseFilters,
         ])
         <section class="section-7 bg">
             <div class="container-fluid px-0 pb-0 position-relative">

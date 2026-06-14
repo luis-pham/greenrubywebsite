@@ -64,9 +64,49 @@ $(document).ready(function () {
             }
         }
     };
+    let btnCruiseFilterActive = $('.tab-filter .list-button .item button[data-cruise-id].active', sectionCabin);
+    if (btnCruiseFilterActive.length) {
+        let initialCruiseId = btnCruiseFilterActive.attr('data-cruise-id');
+        let initialHtml = '';
+        $(listCabinHtml).filter('.item').each(function () {
+            if ($(this).attr('data-cruise-id') == initialCruiseId) {
+                initialHtml += this.outerHTML;
+            }
+        });
+        listCabin.html(initialHtml);
+    }
+
     slideCabin.owlCarousel(slideCabinConfig);
 
-    let btnTabFilter = $('.tab-filter .list-button .item button', sectionCabin);
+    let btnCruiseFilter = $('.tab-filter .list-button .item button[data-cruise-id]', sectionCabin);
+    btnCruiseFilter.on('click', function () {
+        let btn = $(this);
+        if (btn.hasClass('active')) {
+            return;
+        }
+
+        let section = btn.closest('section');
+        let btnFilter = $('.tab-filter .list-button .item button[data-cruise-id]', section);
+        btnFilter.removeClass('active');
+        btn.addClass('active');
+
+        let cruiseId = btn.attr('data-cruise-id');
+        let carousel = $('.slide-1 .list-itinerary-cruise', section);
+
+        carousel.trigger('destroy.owl.carousel');
+
+        let html = '';
+        $(listCabinHtml).filter('.item').each(function () {
+            if ($(this).attr('data-cruise-id') == cruiseId) {
+                html += this.outerHTML;
+            }
+        });
+        carousel.html(html);
+
+        carousel.owlCarousel(slideCabinConfig);
+    });
+
+    let btnTabFilter = $('.tab-filter .list-button .item button[data-cabin-class]', sectionCabin);
     btnTabFilter.on('click', function () {
         let btn = $(this);
         if (btn.hasClass('active')) {
@@ -74,20 +114,20 @@ $(document).ready(function () {
         }
 
         let section = btn.closest('section');
-        let btnFilter = $('.tab-filter .list-button .item button', section);
+        let btnFilter = $('.tab-filter .list-button .item button[data-cabin-class]', section);
         btnFilter.removeClass('active');
         btn.addClass('active');
 
         let cabinClass = btn.attr('data-cabin-class');
+        let carousel = $('.slide-1 .list-itinerary-cruise', section);
 
-        slideCabin.find('.owl-item .item').each(function(){
+        carousel.find('.owl-item .item').each(function () {
             const $item = $(this);
             const itemCabinClass = $item.data('cabin-class');
 
-            if(cabinClass !== "" && itemCabinClass !== cabinClass){
+            if (cabinClass !== '' && itemCabinClass !== cabinClass) {
                 $item.addClass('disabled');
-            }
-            else{
+            } else {
                 $item.removeClass('disabled');
             }
         });
