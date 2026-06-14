@@ -4,7 +4,7 @@ $(document).ready(function () {
     // let listItineraryHtml = listItinerary.html();
 
     // Slide initerary
-    let slideItinerary = $('.slide-1 .owl-carousel', sectionItinerary);
+    let slideItinerary = $('#main .section-itinerary .slide-1 .owl-carousel').not('#cruise-detail .cruise-itinerary-carousel');
     let slideItineraryConfig = {
         loop: false,
         dots: true,

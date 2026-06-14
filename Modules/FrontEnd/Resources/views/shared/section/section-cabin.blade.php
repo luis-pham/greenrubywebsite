@@ -30,7 +30,7 @@ $itineraryId = $itineraryId ?? null;
                     @endif
                 @endif
                 @if ($description)
-                    <p class="section-description font-heading{{ $suitesGrid ? ' suite-section-title' : '' }}">{{ $description }}</p>
+                    <p class="section-description font-heading{{ $suitesGrid ? ' suite-section-title' : '' }}">{!! safe_html($description) !!}</p>
                 @endif
             @endif
             @if (count($filters) > 1)

@@ -52,6 +52,42 @@ $(document).ready(function(){
         });
     }
 
+    const $cruiseItineraryCarousel = $('#cruise-detail .cruise-itinerary-carousel');
+    if ($cruiseItineraryCarousel.length) {
+        $cruiseItineraryCarousel.owlCarousel({
+            loop: false,
+            dots: true,
+            nav: true,
+            navText: [
+                '<div class="button" aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></div>',
+                '<div class="button" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>'
+            ],
+            items: 1,
+            margin: 0,
+            autoplay: false,
+            smartSpeed: 400,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    dots: true,
+                    nav: true,
+                    margin: 0
+                },
+                992: {
+                    items: 2,
+                    dots: false,
+                    nav: false,
+                    margin: 0,
+                    mouseDrag: false,
+                    touchDrag: false
+                }
+            },
+            onInitialized: fnListItemCarouselOnInit,
+            onResized: fnListItemCarouselOnInit
+        });
+    }
+
     const toggleGalleryLoading = ($container, isLoading) => {
         if (!$container || !$container.length) return;
 

@@ -1305,7 +1305,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
     #header .btn-toggle-menu-ext .menu-ext > li.nav-item--home,
     #header .btn-toggle-menu-ext .menu-ext > li.nav-item--cruise,
     #header .btn-toggle-menu-ext .menu-ext > li.nav-item--itinerary,
@@ -1403,7 +1403,20 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 992px) and (max-width: 1599px) {
+    #header .header-desktop .navigation > ul > li.nav-item--home,
+    #header .header-desktop .navigation > ul > li.nav-item--experiences,
+    #header .header-desktop .navigation > ul > li.nav-item--other {
+        display: none !important;
+    }
+
+    #header .header-desktop .btn-toggle-menu-ext .menu-ext > li.nav-item--home,
+    #header .header-desktop .btn-toggle-menu-ext .menu-ext > li.nav-item--experiences {
+        display: list-item !important;
+    }
+}
+
+@media (min-width: 1600px) {
     #header .navigation > ul > li.nav-item--home,
     #header .navigation > ul > li.nav-item--cruise,
     #header .navigation > ul > li.nav-item--itinerary,

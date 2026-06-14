@@ -197,6 +197,91 @@ class FeUtils
         return $aliases[$path] ?? $path;
     }
 
+    public static function getLocalizedFrontendPathSegmentMap(): array
+    {
+        return [
+            'cruise' => 'du-thuyen',
+            'itinerary' => 'hanh-trinh',
+            'experiences' => 'hoat-dong-trai-nghiem',
+            'experience' => 'hoat-dong-trai-nghiem',
+            'services' => 'dich-vu',
+            'service' => 'dich-vu',
+            'gallery' => 'thu-vien',
+            'contact' => 'lien-he',
+            'about-us' => 'gioi-thieu',
+            'faq' => 'cau-hoi-thuong-gap',
+            'legal' => 'phap-ly',
+            'safety-policies' => 'chinh-sach-an-toan',
+            'terms-and-conditions' => 'dieu-khoan-dieu-kien',
+            'privacy-policy' => 'chinh-sach-bao-mat',
+            'payment-methods' => 'phuong-thuc-thanh-toan',
+        ];
+    }
+
+    public static function localizeMenuUrl(?string $url, $language): string
+    {
+        if ($url === null || $url === '') {
+            return '';
+        }
+
+        if (Str::startsWith($url, ['javascript:', '#'])) {
+            return $url;
+        }
+
+        $defaultLanguage = \Modules\BackEnd\Services\AdLanguageService::getDefaultLanguage();
+        $isDefault = $language && $defaultLanguage && (int) $language->id === (int) $defaultLanguage->id;
+
+        $parsed = parse_url($url);
+        $path = $parsed['path'] ?? '';
+        if ($path === '') {
+            return $url;
+        }
+
+        $query = isset($parsed['query']) ? '?' . $parsed['query'] : '';
+        $fragment = isset($parsed['fragment']) ? '#' . $parsed['fragment'] : '';
+        $host = $parsed['host'] ?? null;
+
+        if ($host && $host !== request()->getHost()) {
+            return $url;
+        }
+
+        $path = self::normalizeMenuPath($path);
+        $segments = array_values(array_filter(explode('/', trim($path, '/'))));
+
+        if (!empty($segments) && preg_match('/^[a-z]{2}$/', $segments[0])) {
+            array_shift($segments);
+        }
+
+        if (!$isDefault && $language && !empty($language->code)) {
+            $map = self::getLocalizedFrontendPathSegmentMap();
+
+            if (!empty($segments) && isset($map[$segments[0]])) {
+                $segments[0] = $map[$segments[0]];
+            }
+
+            if (($segments[0] ?? '') === 'gallery' && isset($segments[1]) && str_starts_with($segments[1], 'page-')) {
+                $segments[0] = 'thu-vien';
+                $segments[1] = 'trang-' . substr($segments[1], 5);
+            }
+
+            array_unshift($segments, $language->code);
+        }
+
+        $newPath = empty($segments) ? '/' : '/' . implode('/', $segments);
+
+        if ($host) {
+            $scheme = $parsed['scheme'] ?? 'https';
+
+            return $scheme . '://' . $host . $newPath . $query . $fragment;
+        }
+
+        if ($isDefault) {
+            return $newPath . $query . $fragment;
+        }
+
+        return asset($newPath . $query . $fragment);
+    }
+
     public static function isMenuItemActive($menuUrlActive, $itemUrl)
     {
         if (!isset($menuUrlActive) || !$menuUrlActive || !$itemUrl) {

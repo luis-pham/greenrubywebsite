@@ -173,54 +173,22 @@
 
         <section class="section-itinerary bg">
             <div class="container-fluid">
-                 <div class="container">
-                     <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::cruiseDetail.section-itinerary.title') }}</p>
-                     <p class="section-description font-heading">{!! __('frontend::cruiseDetail.section-itinerary.description') !!}</p>
-                     <div class="itinerary-list">
-                     @foreach($groupItinerary as $itinerary)
-                         <div class="itinerary-detail" data-duration="{{$itinerary->duration}}">
-                             <div class="body">
-                                 <p class="name">{{$itinerary->name}}</p>
-                                 <div class="image-wrapper position-relative">
-                                     <img src="{{FeUtils::getImageLink($itinerary->cover_link)}}" alt="{{$itinerary->name}}" class="position-absolute w-100 h-100"/>
-                                 </div>
-                                 <div class="list-destination-outer">
-                                     <div class="list-destination-inner">
-                                         @php
-                                             $destinations = json_decode($itinerary->destination);
-                                         @endphp
-                                         @foreach($destinations as $d)
-                                             <span class="item">{{$d}}</span>
-                                         @endforeach
-                                     </div>
-                                 </div>
-                                 <div class="list-activity-container">
-                                     <p class="label">{{__('frontend::cruiseDetail.section-itinerary.list-activity-container.key-features')}}</p>
-                                     <div class="grid-activity">
-                                         @foreach($itinerary->itineraryActivities as $a)
-                                             <div class="item"><i class="fas fa-check "></i>{{$a->name}}</div>
-                                         @endforeach
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="footer">
-                                 <div class="d-flex align-items-center align-items-md-baseline justify-content-center flex-column flex-md-row" style="gap:1.5rem">
-                                     <p class="mb-0">
-                                         {{__('frontend::cruiseDetail.from')}}<b class="price"> {{FeUtils::formatDisplayCurrency($itinerary->min_price)}}/ </b>{{__('frontend::cruiseDetail.person')}}
-                                     </p>
-                                     <a
-                                         class="btn btn-warning"
-                                         href="{{   route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.booking'),['itinerary_id' => $itinerary->id,'languageCode' => $languageCode]) }}"
-                                     >
-                                         {{__('frontend::common.book_now')}}
-                                         <i class="fas fa-calendar-check ml-2"></i>
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                     @endforeach
-                     </div>
-                 </div>
+                <div class="container">
+                    <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::cruiseDetail.section-itinerary.title') }}</p>
+                    <p class="section-description font-heading">{!! __('frontend::cruiseDetail.section-itinerary.description') !!}</p>
+                    @if ($groupItinerary->isNotEmpty())
+                        <div class="slide-1 cruise-itinerary-slide">
+                            <div class="list-itinerary-cruise cruise-itinerary-carousel owl-carousel owl-theme">
+                                @foreach ($groupItinerary as $itinerary)
+                                    @include('frontend::shared.section.partials.itinerary-card', [
+                                        'itinerary' => $itinerary,
+                                        'languageCode' => $languageCode,
+                                    ])
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                </div>
             </div>
         </section>
 

@@ -187,22 +187,11 @@ class FrontEndServiceProvider extends ServiceProvider
 
     private function processMenu($list, $language)
     {
-        $defaultLanguage = AdLanguageService::getDefaultLanguage();
-
         for ($i = 0; $i < count($list); $i++) {
             $flag = false;
 
-            if (!(Str::startsWith($list[$i]->url, 'http://') || Str::startsWith($list[$i]->url, 'https://'))) {
-                if (!Str::startsWith($list[$i]->url, 'javascript:') && !Str::startsWith($list[$i]->url, '#') && $defaultLanguage->id != $language->id) {
-                    if ($list[$i]->url == '/') {
-                        $list[$i]->url = '/' . $language->code;
-                    } else if (Str::startsWith($list[$i]->url, '/')) {
-                        $list[$i]->url = '/' . $language->code . $list[$i]->url;
-                    } else if (!Str::startsWith($list[$i]->url, '?')) {
-                        $list[$i]->url = '/' . $language->code . '/' . $list[$i]->url;
-                    }
-                    $list[$i]->url = asset($list[$i]->url);
-                }
+            if (!(Str::startsWith($list[$i]->url, 'javascript:') || Str::startsWith($list[$i]->url, '#'))) {
+                $list[$i]->url = FeUtils::localizeMenuUrl($list[$i]->url, $language);
             }
 
             $list[$i]->url = $this->canonicalizeMenuUrl($list[$i]->url);
