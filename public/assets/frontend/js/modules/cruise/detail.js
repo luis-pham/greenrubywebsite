@@ -74,8 +74,24 @@ $(document).ready(function(){
                     nav: true,
                     margin: 0
                 },
-                992: {
+                1024: {
                     items: 2,
+                    dots: false,
+                    nav: false,
+                    margin: 0,
+                    mouseDrag: false,
+                    touchDrag: false
+                },
+                1200: {
+                    items: 3,
+                    dots: false,
+                    nav: false,
+                    margin: 0,
+                    mouseDrag: false,
+                    touchDrag: false
+                },
+                1400: {
+                    items: 4,
                     dots: false,
                     nav: false,
                     margin: 0,

@@ -675,6 +675,20 @@
     }
 }
 
+
+/* Journeys carousel — mobile nav căn giữa theo vùng ảnh (fnAlignCarouselNavToImage) */
+@media (max-width: 1023px) {
+    #cruise-detail .section-cabin .cruise.Itinerary-slide .owl-carousel {
+        position: relative;
+    }
+
+    #cruise-detail .section-cabin .cruise.Itinerary-slide .owl-nav .owl-prev,
+    #cruise-detail .section-cabin .cruise.Itinerary-slide .owl-nav .owl-next {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
 /* Cruise specs + eco combined section */
 #cruise-detail .ship-specs-section {
     background: var(--color-cream-bg);

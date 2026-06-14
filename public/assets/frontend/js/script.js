@@ -471,6 +471,8 @@ var fnListItemCarouselOnInit = function (event) {
     $('.owl-item', target).css({ height: maxHeight + 'px' });
 
     let isHomeCuratedJourneys = target.closest('#home .section-4').length > 0;
+    let isCruiseItineraryCarousel = target.closest('#cruise-detail .section-itinerary').length > 0
+        && target.hasClass('cruise-itinerary-carousel');
     let isHomeSuitesMobile = target.closest('#home .section-6').length > 0 && $(window).width() < 1024;
     let isCruiseSuitesMobile = target.closest('#cruise-detail .section-cabin').length > 0
         && target.hasClass('suites-grid')
@@ -478,7 +480,7 @@ var fnListItemCarouselOnInit = function (event) {
     let isItinerarySuitesMobile = target.closest('#itinerary-detail .section-cabin').length > 0
         && target.hasClass('suites-grid')
         && $(window).width() < 1024;
-    if (isHomeCuratedJourneys || isHomeSuitesMobile || isCruiseSuitesMobile || isItinerarySuitesMobile) {
+    if (isHomeCuratedJourneys || isCruiseItineraryCarousel || isHomeSuitesMobile || isCruiseSuitesMobile || isItinerarySuitesMobile) {
         fnAlignCarouselNavToImage(target);
         target.find('.owl-prev').attr('aria-label', 'Previous slide');
         target.find('.owl-next').attr('aria-label', 'Next slide');

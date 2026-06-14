@@ -19,7 +19,7 @@ return [
     'renewable_solar_power' => 'Năng lượng mặt trời tái tạo',
 
     'hero_eyebrow' => 'Về Green Ruby Cruises',
-    'hero_title_html' => 'Nơi Sang Trọng Có <em>Lương Tâm.</em>',
+    'hero_title_html' => 'Nơi Sang trọng có <em>trách nhiệm</em>',
     'story_eyebrow' => 'Câu Chuyện Của Chúng Tôi',
     'eco_title_html' => 'Công Nghệ <em>Chứng Minh Điều Đó.</em>',
     'impact_eyebrow' => 'Tác Động Tích Cực',
