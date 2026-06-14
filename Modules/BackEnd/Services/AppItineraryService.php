@@ -106,14 +106,13 @@ class AppItineraryService
 
             if(!empty($listItineraryDay)){
                 collect($listItineraryDay)->each(function($day,$idx) use($itinerary){
-                    $day['day'] = $idx+1;
-                    $dayEntity = $itinerary->itineraryDays()->create($day);
+                    $dayEntity = $itinerary->itineraryDays()->create(['day' => $idx + 1]);
 
-                    $sorted = collect($day['itinerary_day_details'])->sortBy('time');
+                    $sorted = collect($day['itinerary_day_details'] ?? [])->sortBy('time')->values();
 
                     $sorted->each(function($detail,$idx) use($dayEntity){
-                        $detail['ord'] = $idx + 1;
-                        $dayEntity->itineraryDayDetails()->create($detail);
+                        $detailData = collect($detail)->only(['time', 'title', 'description'])->merge(['ord' => $idx + 1])->all();
+                        $dayEntity->itineraryDayDetails()->create($detailData);
                     });
                 });
             }
@@ -138,7 +137,7 @@ class AppItineraryService
         return DB::transaction(function () use ($id, $data) {
             $itinerary = AppItinerary::findOrFail($id);
 
-            $itinerary->update($data);
+            $itinerary->update(collect($data)->only($itinerary->getFillable())->all());
 
             $listServiceId = $data['listServiceId'] ?? [];
             $listActivityId = $data['listActivityId'] ?? [];
@@ -178,14 +177,18 @@ class AppItineraryService
                 $existingDayIds = [];
 
                 collect($listItineraryDay)->each(function($day, $idx) use($itinerary, &$existingDayIds){
-                    $dayData = array_merge($day, ['day' => $idx + 1]);
+                    $dayNumber = $idx + 1;
 
                     // Update or create day
                     if(isset($day['id'])) {
                         $dayEntity = $itinerary->itineraryDays()->find($day['id']);
-                        $dayEntity->update($dayData);
+                        if ($dayEntity) {
+                            $dayEntity->update(['day' => $dayNumber]);
+                        } else {
+                            $dayEntity = $itinerary->itineraryDays()->create(['day' => $dayNumber]);
+                        }
                     } else {
-                        $dayEntity = $itinerary->itineraryDays()->create($dayData);
+                        $dayEntity = $itinerary->itineraryDays()->create(['day' => $dayNumber]);
                     }
 
                     $existingDayIds[] = $dayEntity->id;
@@ -193,13 +196,23 @@ class AppItineraryService
 
                     $sorted = collect($day['itinerary_day_details'] ?? [])->sortBy('time')->values();
                     $sorted->each(function($detail, $idx) use($dayEntity, &$existingDetailIds){
-                        $detailData = array_merge($detail, ['ord' => $idx + 1]);
+                        $detailData = collect($detail)->only(['time', 'title', 'description'])->merge(['ord' => $idx + 1])->all();
+
+                        $detailId = $detail['id'] ?? null;
+                        if ($detailId === 'null' || $detailId === '') {
+                            $detailId = null;
+                        }
 
                         // Update or create detail
-                        if(isset($detail['id'])) {
-                            $detailEntity = $dayEntity->itineraryDayDetails()->find($detail['id']);
-                            $detailEntity->update($detailData);
-                            $existingDetailIds[] = $detailEntity->id;
+                        if ($detailId) {
+                            $detailEntity = $dayEntity->itineraryDayDetails()->find($detailId);
+                            if ($detailEntity) {
+                                $detailEntity->update($detailData);
+                                $existingDetailIds[] = $detailEntity->id;
+                            } else {
+                                $detailEntity = $dayEntity->itineraryDayDetails()->create($detailData);
+                                $existingDetailIds[] = $detailEntity->id;
+                            }
                         } else {
                             $detailEntity = $dayEntity->itineraryDayDetails()->create($detailData);
                             $existingDetailIds[] = $detailEntity->id;

@@ -97,7 +97,7 @@ class ItineraryController extends Controller
         try{
             $data = $request->validated();
             $data['language_id'] = $language->id;
-            $data['start_time'] = $data['itinerary_days'][0]['itinerary_day_details'][0]['time'];
+            $data['start_time'] = $this->resolveItineraryStartTime($data['itinerary_days'] ?? []);
 
             $id = AppItineraryService::create($data);
 
@@ -147,7 +147,7 @@ class ItineraryController extends Controller
         try{
             $data = $request->validated();
             $data['language_id'] = $language->id;
-            $data['start_time'] = $data['itinerary_days'][0]['itinerary_day_details'][0]['time'];
+            $data['start_time'] = $this->resolveItineraryStartTime($data['itinerary_days'] ?? []);
 
             AppItineraryService::update($id,$data);
 
@@ -181,5 +181,22 @@ class ItineraryController extends Controller
                 'err' => $e->getMessage()
             ]);
         }
+    }
+
+    private function resolveItineraryStartTime(array $itineraryDays): ?string
+    {
+        $firstDay = $itineraryDays[0] ?? null;
+        if (!$firstDay) {
+            return null;
+        }
+
+        $details = $firstDay['itinerary_day_details'] ?? [];
+        if (empty($details)) {
+            return null;
+        }
+
+        $firstDetail = collect($details)->sortBy('time')->first();
+
+        return is_array($firstDetail) ? ($firstDetail['time'] ?? null) : null;
     }
 }

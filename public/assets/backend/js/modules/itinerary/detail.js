@@ -11,6 +11,20 @@ function formatToHHmm(time) {
     return time.slice(0, 5); // "HH:mm:ss" → "HH:mm"
 }
 
+function reindexItineraryDayDetails(container) {
+    const dayIdx = container.closest('.card').index();
+    container.find('.item').each(function(detailIdx) {
+        $(this).find('[name]').each(function() {
+            const name = $(this).attr('name');
+            if (!name) return;
+            $(this).attr('name', name.replace(
+                /itinerary_days\[\d+\]\[itinerary_day_details\]\[\d+\]/,
+                `itinerary_days[${dayIdx}][itinerary_day_details][${detailIdx}]`
+            ));
+        });
+    });
+}
+
 $(document).ready(function(){
     const inputImportantNoteHtml = (
         inputClass = '',
@@ -94,7 +108,7 @@ $(document).ready(function(){
                 <input
                     type='hidden'
                     name='itinerary_days[${dayIdx}][itinerary_day_details][${detailIdx}][id]'
-                    value="${detail?.id ?? null}"
+                    value="${detail?.id ?? ''}"
                 />
                 <div class="time">
                     <p class="mb-1">Time</p>
@@ -222,7 +236,15 @@ $(document).ready(function(){
     });
 
     itineraryDayContainer.on('click','.btn-remove-item',function(){
+        const container = $(this).closest('.itinerary-day-detail-container');
         $(this).closest('.item').remove();
+        reindexItineraryDayDetails(container);
+    });
+
+    $('#frm').on('submit', function() {
+        itineraryDayContainer.find('.itinerary-day-detail-container').each(function() {
+            reindexItineraryDayDetails($(this));
+        });
     });
 
     renderItineraryDay(itineraryDayContainer,duration,listItineraryDay);
