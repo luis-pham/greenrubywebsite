@@ -3,11 +3,11 @@
 namespace Modules\FrontEnd\Helpers;
 
 use Illuminate\Support\Facades\Route;
-use Modules\BackEnd\Entities\AppArticle;
 use Modules\BackEnd\Entities\AppItinerary;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AdLanguageService;
 use Modules\BackEnd\Services\AppExpActivityService;
+use Modules\FrontEnd\Services\AppArticleService;
 use Modules\FrontEnd\Services\AppCruiseService;
 
 class FeHreflangUtils
@@ -148,19 +148,33 @@ class FeHreflangUtils
 
     private static function resolveArticleShow(array $params, $language): ?array
     {
-        if (empty($params['id'])) {
+        $sourceLanguage = FeLanguageUtils::getCurrentLanguage();
+        $sourceArticle = null;
+
+        if (!empty($params['categorySlug']) && !empty($params['articleSlug'])) {
+            $sourceArticle = AppArticleService::findByCategoryAndSlug(
+                $params['categorySlug'],
+                $params['articleSlug'],
+                $sourceLanguage->id
+            );
+        }
+
+        if (!$sourceArticle && !empty($params['id'])) {
+            $sourceArticle = AppArticleService::findJoin($params['id'], $sourceLanguage->id);
+        }
+
+        if (!$sourceArticle) {
             return null;
         }
 
-        $article = AppArticle::where('id', $params['id'])
-            ->where('language_id', $language->id)
-            ->first();
-
+        $article = AppArticleService::findJoin($sourceArticle->id, $language->id);
         if (!$article) {
             return null;
         }
 
-        $params['slug'] = Utilities::convertToAlias($article->title);
+        unset($params['id'], $params['slug']);
+        $params['categorySlug'] = $article->category_slug;
+        $params['articleSlug'] = FeArticleUtils::getArticleSlug($article);
 
         return $params;
     }

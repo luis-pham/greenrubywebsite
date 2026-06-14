@@ -112,7 +112,7 @@
                                 <td class="text-center">{{ Utilities::formatDisplayDateTime($list[$i]->publish_date) }}</td>
                                 <td class="text-center">{!! Utilities::formatDisplayArticleStatus($list[$i]->is_published) !!}</td>
                                 <td class="text-center">
-                                    <a href="{{ route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => Utilities::convertToAlias($list[$i]->title), 'id' => $list[$i]->id]) }}" class="btn btn-primary btn-sm {{ !$list[$i]->is_published ? 'disabled' : '' }}" title="Xem trước" target="_blank">
+                                    <a href="{{ \Modules\FrontEnd\Helpers\FeArticleUtils::getShowUrl($list[$i], $languageCode) }}" class="btn btn-primary btn-sm {{ !$list[$i]->is_published ? 'disabled' : '' }}" title="Xem trước" target="_blank">
                                         <i class="fal fa-globe"></i>
                                     </a>
                                     @can('article-update')

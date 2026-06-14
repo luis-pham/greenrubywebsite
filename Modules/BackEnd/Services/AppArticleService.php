@@ -6,6 +6,36 @@ use Modules\BackEnd\Entities\AppArticle;
 
 class AppArticleService
 {
+    public static function resolveUniqueSlug($slug, $categoryId, $languageId, $excludeId = null)
+    {
+        $slug = Utilities::convertToAlias($slug);
+        if ($slug === '') {
+            return $slug;
+        }
+
+        $baseSlug = $slug;
+        $counter = 2;
+        while (self::slugExists($slug, $categoryId, $languageId, $excludeId)) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
+    }
+
+    private static function slugExists($slug, $categoryId, $languageId, $excludeId = null)
+    {
+        $query = AppArticle::where('slug', $slug)
+            ->where('language_id', $languageId)
+            ->where('category_id', $categoryId);
+
+        if ($excludeId) {
+            $query->where('id', '!=', $excludeId);
+        }
+
+        return $query->exists();
+    }
+
     public static function find($id, $languageId)
     {
         return AppArticle::where('id', $id)
@@ -19,6 +49,11 @@ class AppArticleService
         $obj->language_id = $languageId;
         $obj->category_id = array_key_exists('category_id', $data) ? $data['category_id'] : null;
         $obj->title = array_key_exists('title', $data) ? $data['title'] : null;
+        $obj->slug = self::resolveUniqueSlug(
+            !empty($data['slug']) ? $data['slug'] : ($obj->title ?? ''),
+            $obj->category_id,
+            $languageId
+        );
         $obj->sub_title = array_key_exists('sub_title', $data) ? $data['sub_title'] : null;
         $obj->lead = array_key_exists('lead', $data) ? \App\Support\HtmlSanitizer::clean($data['lead']) : null;
         $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : null;
@@ -39,6 +74,11 @@ class AppArticleService
         if ($obj) {
             $obj->category_id = array_key_exists('category_id', $data) ? $data['category_id'] : $obj->category_id;
             $obj->title = array_key_exists('title', $data) ? $data['title'] : $obj->title;
+            $categoryId = array_key_exists('category_id', $data) ? $data['category_id'] : $obj->category_id;
+            $slugSource = array_key_exists('slug', $data) && $data['slug'] !== ''
+                ? $data['slug']
+                : (array_key_exists('title', $data) ? $data['title'] : $obj->title);
+            $obj->slug = self::resolveUniqueSlug($slugSource, $categoryId, $languageId, $obj->id);
             $obj->sub_title = array_key_exists('sub_title', $data) ? $data['sub_title'] : $obj->sub_title;
             $obj->lead = array_key_exists('lead', $data) ? \App\Support\HtmlSanitizer::clean($data['lead']) : $obj->lead;
             $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : $obj->content;
@@ -73,7 +113,7 @@ class AppArticleService
 
     public static function findJoin($id, $languageId)
     {
-        return AppArticle::select('app_article.*', DB::raw('app_category.name AS category_name'))
+        return AppArticle::select('app_article.*', DB::raw('app_category.name AS category_name, app_category.slug AS category_slug'))
             ->leftJoin('app_category', function($join) use ($languageId) {
                 $join->on('app_category.id', '=', 'app_article.category_id');
                 $join->where('app_category.slug', '!=', 'root');
@@ -88,7 +128,7 @@ class AppArticleService
     public static function getPaging($param, $languageId)
     {
         $list = new AppArticle();
-        $list = $list->select('app_article.*', DB::raw('app_category.name AS category_name, ad_user.fullname AS created_by_fullname'));
+        $list = $list->select('app_article.*', DB::raw('app_category.name AS category_name, app_category.slug AS category_slug, ad_user.fullname AS created_by_fullname'));
         $list = $list->leftJoin('app_category', function($join) use ($languageId) {
             $join->on('app_category.id', '=', 'app_article.category_id');
             $join->where('app_category.slug', '!=', 'root');

@@ -10,6 +10,7 @@ use Modules\BackEnd\Services\AppExpActivityService;
 use Modules\BackEnd\Services\AppServiceService;
 use Modules\BackEnd\Services\AppItineraryService;
 use Modules\BackEnd\Services\AppGroupService;
+use Modules\FrontEnd\Helpers\FeArticleUtils;
 use Modules\FrontEnd\Services\AppArticleService;
 use Modules\FrontEnd\Services\AppCategoryService;
 use Modules\FrontEnd\Services\AppFaqService;
@@ -177,9 +178,10 @@ class SitemapController extends Controller
         
         $list = AppArticleService::getPaging(['is_disabled_paginate' => true]);
         for ($i = 0; $i < count($list); $i++) {
-            $list[$i]->url = $defaultLanguage->id == $list[$i]->language_id
-                ? route('frontend.article.show', ['slug' => Utilities::convertToAlias($list[$i]->title), 'id' => $list[$i]->id])
-                : route(Utilities::bindRouteNameMultiLanguage('frontend.article.show'), ['languageCode' => $listLanguage[$list[$i]->language_id], 'slug' => Utilities::convertToAlias($list[$i]->title), 'id' => $list[$i]->id]);
+            $languageCode = $defaultLanguage->id == $list[$i]->language_id
+                ? null
+                : $listLanguage[$list[$i]->language_id];
+            $list[$i]->url = FeArticleUtils::getShowUrl($list[$i], $languageCode);
         }
 
         return response()->view($this->baseView . __FUNCTION__, [

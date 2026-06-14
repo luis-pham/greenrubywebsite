@@ -10,6 +10,7 @@ class AppArticle extends BaseModel
         'language_id',
         'category_id',
         'title',
+        'slug',
         'sub_title',
         'lead',
         'content',

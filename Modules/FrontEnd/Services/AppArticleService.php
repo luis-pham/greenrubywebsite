@@ -26,6 +26,19 @@ class AppArticleService
             ->first();
     }
 
+    public static function findByCategoryAndSlug($categorySlug, $articleSlug, $languageId)
+    {
+        return AppArticle::select('app_article.*', DB::raw('app_category.name AS category_name, app_category.slug AS category_slug'))
+            ->join('app_category', 'app_category.id', '=', 'app_article.category_id')
+            ->where('app_category.slug', $categorySlug)
+            ->where('app_category.type', config('backend.categoryType.article'))
+            ->where('app_category.language_id', $languageId)
+            ->where('app_article.slug', $articleSlug)
+            ->where('app_article.is_published', true)
+            ->where('app_article.language_id', $languageId)
+            ->first();
+    }
+
     public static function getPaging($param, $languageId = null)
     {
         $query = AppArticle::select('app_article.*', DB::raw('app_category.name AS category_name, app_category.slug AS category_slug'));

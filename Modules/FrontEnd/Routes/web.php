@@ -115,8 +115,21 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
     Route::get('/{languageCode}/cau-hoi-thuong-gap/{slug}', 'FaqController@category')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.faq.category'));
     Route::get('/{languageCode}/cau-hoi-thuong-gap/{slug}/trang-{page}', 'FaqController@category')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.faq.category.paginate'));
 
-    Route::get('/blog/{slug}-{id}.html', 'ArticleController@show')->where('slug', '[A-Za-z0-9_\-]+')->name('frontend.article.show');
-    Route::get('/{languageCode}/blog/{slug}-{id}.html', 'ArticleController@show')->where('languageCode', $listLanguageCode)->where('slug', '[A-Za-z0-9_\-]+')->name(Utilities::bindRouteNameMultiLanguage('frontend.article.show'));
+    Route::get('/blog/{categorySlug}/{articleSlug}.html', 'ArticleController@show')
+        ->where(['categorySlug' => '[A-Za-z0-9_\-]+', 'articleSlug' => '[A-Za-z0-9_\-]+'])
+        ->name('frontend.article.show');
+    Route::get('/{languageCode}/blog/{categorySlug}/{articleSlug}.html', 'ArticleController@show')
+        ->where('languageCode', $listLanguageCode)
+        ->where(['categorySlug' => '[A-Za-z0-9_\-]+', 'articleSlug' => '[A-Za-z0-9_\-]+'])
+        ->name(Utilities::bindRouteNameMultiLanguage('frontend.article.show'));
+
+    Route::get('/blog/{slug}-{id}.html', 'ArticleController@redirectLegacyShow')
+        ->where(['slug' => '[A-Za-z0-9_\-]+', 'id' => '[0-9]+'])
+        ->name('frontend.article.show.legacy');
+    Route::get('/{languageCode}/blog/{slug}-{id}.html', 'ArticleController@redirectLegacyShow')
+        ->where('languageCode', $listLanguageCode)
+        ->where(['slug' => '[A-Za-z0-9_\-]+', 'id' => '[0-9]+'])
+        ->name(Utilities::bindRouteNameMultiLanguage('frontend.article.show.legacy'));
 
     Route::get('/blog', 'ArticleController@index')->name('frontend.article.index');
     Route::get('/blog/page-{page}', 'ArticleController@index')->name('frontend.article.index.paginate');

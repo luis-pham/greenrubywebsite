@@ -31,6 +31,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Slug URL</label>
+                                <div class="col-md-9">
+                                    {{ Form::text('slug', old('slug', $obj->slug), ['class' => 'form-control', 'placeholder' => 'Tự sinh từ tiêu đề...', 'maxlength' => 255, 'autocomplete' => 'off']) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Tiêu đề phụ</label>
                                 <div class="col-md-9">
                                     {{ Form::text('sub_title', old('sub_title', $obj->sub_title), ['class' => 'form-control', 'placeholder' => 'Nhập tiêu đề phụ...', 'maxlength' => 255, 'autocomplete' => 'off']) }}
@@ -137,6 +143,9 @@
                 }
             });
             $('[name="content"]').textEditor({ height: 450 });
+            $('input[name="slug"]').genAlias({
+                ctrlName: $('input[name="title"]')
+            });
         });
     </script>
 @endsection

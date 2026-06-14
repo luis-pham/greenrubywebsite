@@ -7,6 +7,7 @@ use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppCategoryService;
 use Modules\FrontEnd\Constants\PageCodeConsts;
 use Modules\FrontEnd\Constants\PageConfigKeyConsts;
+use Modules\FrontEnd\Helpers\FeArticleUtils;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppArticleService;
@@ -181,23 +182,35 @@ class ArticleController extends Controller
         return view($this->baseView . 'index', compact('pageConfig', 'menuUrlActive', 'listBreadcrumb', 'categoryParent', 'category', 'listArticleFeatured', 'listCategoryChild', 'listArticle', 'totalPage'));
     }
 
+    public function redirectLegacyShow(Request $request, $slug, $id)
+    {
+        $languageCode = $request->route('languageCode');
+        $url = FeArticleUtils::resolveLegacyUrl($slug, $id, $languageCode);
+
+        if (!$url) {
+            return abort(404);
+        }
+
+        return redirect($url, 301);
+    }
+
     public function show(Request $request)
     {
         $language = FeLanguageUtils::getCurrentLanguage();
         $languageCode = $request->route('languageCode');
 
-        $slug = $request->route('slug');
-        $id = $request->route('id');
+        $categorySlug = $request->route('categorySlug');
+        $articleSlug = $request->route('articleSlug');
 
-        $obj = AppArticleService::findJoin($id, $language->id);
+        $obj = AppArticleService::findByCategoryAndSlug($categorySlug, $articleSlug, $language->id);
         if (!$obj) {
             return abort(404);
         }
 
-        $obj->slug = Utilities::convertToAlias($obj->title);
-        if ($obj->slug != $slug) {
-            $route = route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => $obj->slug, 'id' => $obj->id]);
-            return redirect($route, 301);
+        $canonicalCategorySlug = $obj->category_slug;
+        $canonicalArticleSlug = FeArticleUtils::getArticleSlug($obj);
+        if ($canonicalCategorySlug !== $categorySlug || $canonicalArticleSlug !== $articleSlug) {
+            return redirect(FeArticleUtils::getShowUrl($obj, $languageCode), 301);
         }
 
         $pageConfig = FeUtils::getPageConfigByCode(PageCodeConsts::ARTICLE, $language->id);
@@ -207,6 +220,8 @@ class ArticleController extends Controller
         $listArticleRelated = [];
         $menuUrlActive = '';
         $lastBreadcrumb = [];
+        $listCategoryChild = [];
+        $categoryParent = null;
         $category = AppCategoryService::find($obj->category_id, config('backend.categoryType.article'), $language->id);
         if ($category) {
             $listArticleRelated = AppArticleService::getPaging([
@@ -221,10 +236,19 @@ class ArticleController extends Controller
 
             $listCategory = FeAppCategoryService::getParent($obj->category_id, config('backend.categoryType.article'), $language->id);
             $lastBreadcrumb = $this->getBreadcrumbByCategory($listCategory, $languageCode);
+
+            $listCategoryChild = FeAppCategoryService::getByParentId($category->id, config('backend.categoryType.article'), $language->id);
+            $categoryParent = count($listCategoryChild) == 0
+                ? AppCategoryService::find($category->parent_id, config('backend.categoryType.article'), $language->id)
+                : $category;
+
+            if (count($listCategoryChild) == 0) {
+                $listCategoryChild = FeAppCategoryService::getByParentId($category->parent_id, config('backend.categoryType.article'), $language->id);
+            }
         }
         $lastBreadcrumb[] = [
             'name' => $obj->title,
-            'url' => route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => $obj->slug, 'id' => $obj->id])
+            'url' => FeArticleUtils::getShowUrl($obj, $languageCode)
         ];
         $listBreadcrumb = FeUtils::bindBreadcrumb($lastBreadcrumb, $languageCode);
 
@@ -233,7 +257,7 @@ class ArticleController extends Controller
         $config = Utilities::getAllConfig($language);
         $title = $obj->seo_title ? $obj->seo_title : $obj->title;
         $title = FeUtils::bindWebsiteTitle($title, $config['website-name']);
-        $url = route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => $obj->slug, 'id' => $obj->id]);
+        $url = FeArticleUtils::getShowUrl($obj, $languageCode);
 
         \SEO::setTitle($title);
         \SEO::setDescription($obj->seo_description ? $obj->seo_description : strip_tags($obj->lead));
@@ -253,7 +277,7 @@ class ArticleController extends Controller
         \TwitterCard::setUrl($url);
         \TwitterCard::setImage($obj->image_link ? \URL::to('/') . $obj->image_link : \URL::to('/') . config('frontend.organizationLogoSocial.url'));
 
-        return view($this->baseView . __FUNCTION__, compact('pageConfig', 'title', 'config', 'menuUrlActive', 'listBreadcrumb', 'obj', 'listArticleRelated','listBreadcrumb'));
+        return view($this->baseView . __FUNCTION__, compact('pageConfig', 'title', 'config', 'menuUrlActive', 'listBreadcrumb', 'obj', 'listArticleRelated', 'category', 'categoryParent', 'listCategoryChild'));
     }
 
     private function getBreadcrumbByCategory($listCategory, $languageCode)

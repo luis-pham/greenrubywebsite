@@ -1,41 +1,127 @@
-#main #article .section-cover .page-cover .image-wrapper:before {
-    opacity: .4;
-}
-
-@media (min-width: 992px) {
-    #main #article .section-cover .page-cover .image-wrapper:before {
-        opacity: .32;
-    }
-}
-
-@media (min-width: 768px) {
-    #main #article .section-cover .page-cover .main-info {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 1399px){
-    #main #article .section-cover.section-cover-sm .page-cover .main-info {
-        top: 140px;
-    }
-}
-
-#main #article .section-cover.section-cover-sm .page-cover .main-info .title,
-#main #article .section-cover.section-cover-sm .page-cover .main-info .description {
-    display: -webkit-box !important;
+/* ── Hero (match blog list) ─────────────────────────────── */
+#main #article .article-detail-hero {
+    background: var(--color-forest);
+    margin-top: -91px;
+    margin-bottom: 0;
+    padding: calc(91px + 56px) 48px 56px;
+    position: relative;
     overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    word-break: break-word !important;
-    -webkit-line-clamp: 2;
+    text-align: center;
+    z-index: 0;
 }
 
-#main #article .section-cover .page-cover .btn-category {
-    padding: .15625rem .75rem;
+@media (min-width: 1400px) {
+    #main #article .article-detail-hero {
+        margin-top: -121px;
+        padding: calc(121px + 56px) 48px 56px;
+    }
 }
 
-#main #article .section-cover .page-cover .publish-date {
+@media (max-width: 1023px) {
+    #main #article .article-detail-hero {
+        margin-top: -52px;
+        padding: calc(52px + 40px) 20px 40px;
+    }
+}
+
+#article .article-detail-hero .article-hero-topo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+#article .article-detail-hero .article-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#article .article-detail-hero .page-breadcrumb {
+    margin-bottom: 16px;
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb {
+    background-color: transparent;
+    padding-bottom: 0;
+    display: block;
+    justify-content: center;
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb .breadcrumb-item {
+    font-family: var(--font-display);
     font-size: 1rem;
+    display: inline;
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: '>';
+    color: var(--color-text-on-dark);
+    float: none;
+    padding-right: 0.25rem;
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb .breadcrumb-item a {
+    color: var(--color-text-on-dark);
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb .breadcrumb-item a:hover {
+    color: var(--color-text-accent);
+}
+
+#article .article-detail-hero .page-breadcrumb .breadcrumb .breadcrumb-item.active {
+    color: var(--color-text-muted-on-dark);
+}
+
+#main #article .article-detail-title {
+    font-family: var(--font-display);
+    font-size: 2.55rem;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text-on-dark);
+    margin-bottom: 8px;
+}
+
+#article .article-detail-hero .article-hero-subtitle {
+    max-width: 640px;
+    margin: 0 auto;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-text-on-dark);
+    line-height: 1.4375;
+}
+
+#article .article-detail-hero .publish-date {
+    font-size: 1rem;
+    color: var(--color-text-muted-on-dark);
+}
+
+@media (max-width: 1023px) {
+    #main #article .article-detail-title {
+        font-size: var(--text-hero-title-mobile);
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+    }
+
+    #article .article-detail-hero .article-hero-subtitle {
+        font-family: var(--font-body);
+        font-size: 16px;
+        font-style: normal;
+        color: var(--color-text-muted-on-dark);
+        line-height: 1.7;
+    }
 }
 
 /* Section 2 */

@@ -10,22 +10,32 @@
 
 @section('content')
     <div id="article">
-        @include('frontend::shared.section.section-cover', [
-            'class' => 'section-1 section-cover-sm',
-            'list' => [(object)[
-                "title" => $obj->title,
-                "link" => FeUtils::getImageLink($obj->image_link),
-                "description" => $obj->sub_title,
-                'extraContent' => '
-                    <div class="d-flex align-items-center justify-content-center mt-3 mt-md-2">
-                        <a href="' . route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $obj->category_slug]) . '" class="btn-category btn btn-sm btn-warning mr-4">' . $obj->category_name . '</a>
-                        <p class="publish-date mb-0"><i class="fa-solid fa-calendar mr-2"></i>' . Utilities::formatDisplayDateOnly($obj->publish_date) . ', ' . Utilities::formatDisplayTime($obj->publish_date) . '</p>
-                    </div>
-                '
-            ]],
-            'tagHeading' => 'h1',
-            'listBreadCrumb' => $listBreadcrumb
+        <section class="section-1 article-hero article-detail-hero position-relative">
+            <svg class="article-hero-topo" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <ellipse cx="1200" cy="50" rx="300" ry="170" fill="none" stroke="white" stroke-width="1"/>
+                <ellipse cx="1200" cy="50" rx="225" ry="120" fill="none" stroke="white" stroke-width="1"/>
+                <ellipse cx="200" cy="210" rx="260" ry="150" fill="none" stroke="white" stroke-width="1"/>
+                <ellipse cx="200" cy="210" rx="185" ry="105" fill="none" stroke="white" stroke-width="1"/>
+            </svg>
+            <div class="article-hero-inner">
+                @if (count($listBreadcrumb) > 0)
+                    @include('frontend::shared.breadcrumb', ['listBreadcrumb' => $listBreadcrumb])
+                @endif
+                <h1 class="article-hero-title article-detail-title font-heading">{{ $obj->title }}</h1>
+                @if ($obj->sub_title)
+                    <p class="article-hero-subtitle mb-0">{{ $obj->sub_title }}</p>
+                @endif
+                <p class="article-detail-meta publish-date mb-0 mt-3 mt-md-2"><i class="fa-solid fa-calendar mr-2"></i>{{ Utilities::formatDisplayDateOnly($obj->publish_date) }}, {{ Utilities::formatDisplayTime($obj->publish_date) }}</p>
+            </div>
+        </section>
+
+        @include('frontend::article.shared.category-filter', [
+            'listCategoryChild' => $listCategoryChild ?? [],
+            'category' => $category ?? null,
+            'categoryParent' => $categoryParent ?? null,
+            'languageCode' => $languageCode,
         ])
+
         <section class="section-2">
             <div class="container">
                 <div class="page-wrapper">
@@ -49,7 +59,7 @@
                                 <div class="d-flex align-items-center">
                                     <p class="label mb-0 mr-2 font-weight-bold">{{ __('frontend::article.share_this_article') }}:</p>
                                     @php
-                                        $url = route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => Utilities::convertToAlias($obj->title), 'id' => $obj->id]);
+                                        $url = \Modules\FrontEnd\Helpers\FeArticleUtils::getShowUrl($obj, $languageCode);
                                     @endphp
                                     <div class="social d-flex align-items-center">
                                         <a href="https://www.facebook.com/sharer.php?u={{ $url }}" class="d-block text-reset" target="_blank" rel="nofollow">
@@ -175,5 +185,4 @@
             }
         </script>
     @endif
-    @include('frontend::shared.breadcrumb', ['listBreadcrumb' => $listBreadcrumb, 'isVisible' => false])
 @endpush

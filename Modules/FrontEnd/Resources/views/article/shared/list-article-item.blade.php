@@ -1,7 +1,7 @@
 @php
     $languageCode = Route::current()->parameter('languageCode');
 
-    $url = route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => Utilities::convertToAlias($article->title), 'id' => $article->id]);
+    $url = \Modules\FrontEnd\Helpers\FeArticleUtils::getShowUrl($article, $languageCode);
     
     $imageLinkRouteParam = ['link' => $article->image_link];
     $imageConfig = $imageConfig ?? [];

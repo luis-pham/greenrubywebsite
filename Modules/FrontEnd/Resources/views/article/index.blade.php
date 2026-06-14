@@ -31,31 +31,12 @@
             </div>
         </section>
 
-        @if (count($listCategoryChild) > 0)
-            <div id="section-article-filter" class="gallery-filter-sticky">
-                <div class="container-fluid px-0">
-                    <div class="gallery-filter-inner">
-                        <div class="container">
-                            <nav class="gallery-filter-bar list-filter" aria-label="{{ __('frontend::article.category_default_sub_title') }}">
-                                @if (!isset($category))
-                                    <a href="{{ route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]) }}" class="item gallery-filter-tab active">{{ __('frontend::common.all') }}</a>
-                                @elseif (isset($categoryParent) && $categoryParent)
-                                    @php
-                                        $categoryUrl = $categoryParent->slug != 'root'
-                                            ? route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $categoryParent->slug])
-                                            : route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]);
-                                    @endphp
-                                    <a href="{{ $categoryUrl }}" class="item gallery-filter-tab {{ isset($category) && $category && $category->id == $categoryParent->id ? 'active' : '' }}">{{ __('frontend::common.all') }}</a>
-                                @endif
-                                @for ($i = 0; $i < count($listCategoryChild); $i++)
-                                    <a href="{{ route(Utilities::getRouteName('frontend.article.category'), ['languageCode' => $languageCode, 'slug' => $listCategoryChild[$i]->slug]) }}" class="item gallery-filter-tab {{ isset($category) && $category && $category->id == $listCategoryChild[$i]->id ? 'active' : '' }}">{{ $listCategoryChild[$i]->name }}</a>
-                                @endfor
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+        @include('frontend::article.shared.category-filter', [
+            'listCategoryChild' => $listCategoryChild,
+            'category' => $category ?? null,
+            'categoryParent' => $categoryParent ?? null,
+            'languageCode' => $languageCode,
+        ])
 
         <section class="section-2 d-block d-lg-none pb-0">
             <div class="container">
@@ -70,7 +51,7 @@
                             <div class="list-item owl-carousel owl-theme">
                                 @for ($i = 0; $i < count($listArticleFeatured); $i++)
                                     @php
-                                        $articleUrl = route(Utilities::getRouteName('frontend.article.show'), ['languageCode' => $languageCode, 'slug' => Utilities::convertToAlias($listArticleFeatured[$i]->title), 'id' => $listArticleFeatured[$i]->id]);
+                                        $articleUrl = \Modules\FrontEnd\Helpers\FeArticleUtils::getShowUrl($listArticleFeatured[$i], $languageCode);
                                     @endphp
                                     <div class="item">
                                         <div class="item-wrapper">
