@@ -332,7 +332,7 @@ class FeUtils
             : 'frontend.cruise.show';
 
         $params = [
-            ' slug' => Utilities::convertToAlias($cruise->name),
+            'slug' => Utilities::convertToAlias($cruise->name),
             'id' => $cruise->id,
         ];
 

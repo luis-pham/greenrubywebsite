@@ -3890,3 +3890,213 @@
         transform: translateY(-50%);
     }
 }
+
+/* ============================================
+   MOBILE BOOKING — redesign
+   Breakpoint: max-width 768px
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+
+  /* === STEP BAR === */
+  #booking-page .booking-progress-track-desktop {
+    display: none !important;
+  }
+
+  #booking-page .booking-progress-track-mobile {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 44px !important;
+    gap: 0 !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  #booking-page .booking-progress-bar {
+    padding: 0 1rem !important;
+  }
+
+  #booking-page .booking-progress-track-mobile .progress-step-icon-active {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    border-radius: 50% !important;
+    background-color: var(--color-gold) !important;
+    background-image: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #booking-page .booking-progress-track-mobile .progress-step-icon-active .progress-step-number {
+    color: #0D2B1A !important;
+    font-size: 9px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+  }
+
+  #booking-page .booking-progress-track-mobile .booking-progress-title {
+    display: block !important;
+    font-size: 9px !important;
+    letter-spacing: 1.5px !important;
+    color: #0D2B1A !important;
+    font-weight: 500 !important;
+    margin-left: 6px !important;
+    text-transform: uppercase !important;
+  }
+
+  /* === LAYOUT — 1 cột, sidebar xuống dưới === */
+  #booking-page .booking-main-content,
+  #booking-page .main-content-area {
+    flex-direction: column !important;
+    padding: 0 1rem !important;
+    gap: 0 !important;
+  }
+
+  #booking-page .step-1-section,
+  #booking-page .step-2-section,
+  #booking-page .step-3-section,
+  #booking-page .itinerary-step-section,
+  #booking-page .cabin-step-section,
+  #booking-page .amenities-step-section {
+    width: 100% !important;
+    padding: 1rem 0 !important;
+  }
+
+  #booking-page .summary-panel,
+  #booking-page .reservation-summary-section {
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: 100% !important;
+    order: 99 !important;
+    margin-top: 1rem !important;
+    border: 0.5px solid rgba(13, 43, 26, 0.1) !important;
+    background-color: #fff !important;
+  }
+
+  /* === SECTION LABELS === */
+  #booking-page .step-section-title {
+    font-size: 9px !important;
+    letter-spacing: 2.5px !important;
+  }
+
+  /* === CABIN CARDS — 1 cột === */
+  #booking-page .cabin-card-left,
+  #booking-page .cabin-card-right {
+    width: 100% !important;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  #booking-page .cabin-card-image-left,
+  #booking-page .cabin-card-image-right {
+    height: 160px !important;
+    width: 100% !important;
+  }
+
+  #booking-page .cabin-card-title,
+  #booking-page .cabin-card-title-text {
+    font-size: var(--text-md) !important;
+    color: var(--color-text-on-light) !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+
+  #booking-page .cabin-browse-carousel .owl-item {
+    width: 100% !important;
+  }
+
+  /* === AMENITY CARDS — compact === */
+  #booking-page .amenity-card-transfer,
+  #booking-page .amenity-card-spa,
+  #booking-page .amenity-card-welcome,
+  #booking-page .amenity-card-photo,
+  #booking-page .amenity-card-drone {
+    padding: var(--space-3) var(--space-4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  #booking-page .amenity-icon-wrap,
+  #booking-page .amenity-icon-wrap .pen {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  #booking-page .amenity-icon-wrap i,
+  #booking-page .amenity-icon-wrap .pen i {
+    color: var(--color-gold) !important;
+    font-size: 16px !important;
+  }
+
+  #booking-page .amenity-title {
+    font-size: var(--text-sm) !important;
+    color: var(--color-text-on-light) !important;
+  }
+
+  #booking-page .amenity-card-content .label-check {
+    font-size: var(--text-xs) !important;
+    color: #5a6b62 !important;
+  }
+
+  /* === CONTINUE BUTTON === */
+  #booking-page .continue-voyage-button,
+  #booking-page #button4 {
+    width: 100% !important;
+    margin: var(--space-4) 0 !important;
+    padding: var(--space-4) !important;
+    font-size: var(--text-xs) !important;
+    letter-spacing: 2px !important;
+  }
+
+  /* === EMPTY STATE === */
+  #booking-page .in-voyage-empty-state,
+  #booking-page .in-voyage-empty {
+    background-color: var(--color-cream-bg) !important;
+    border: 0.5px dashed rgba(13, 43, 26, 0.15) !important;
+    padding: var(--space-6) var(--space-4) !important;
+    text-align: center !important;
+    font-size: var(--text-sm) !important;
+    color: #a9aba6 !important;
+  }
+
+  #booking-page #in-voyage-title,
+  #booking-page .in-voyage-title-wrap h3 {
+    color: var(--color-text-on-light) !important;
+    font-size: var(--text-sm) !important;
+  }
+
+  /* === SUMMARY MOBILE === */
+  #booking-page .summary-panel-inner {
+    padding: var(--space-4) !important;
+    color: var(--color-text-on-light) !important;
+  }
+
+  #booking-page .summary-voyage-card-wrap {
+    background-color: var(--color-cream-bg) !important;
+    border-left: 2px solid var(--color-gold) !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+  }
+
+  #booking-page .estimated-total-button {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: var(--space-3) var(--space-4) !important;
+  }
+
+  #booking-page .total-amount {
+    font-family: var(--font-display) !important;
+    font-size: var(--text-xl) !important;
+    color: var(--color-text-on-light) !important;
+  }
+}
