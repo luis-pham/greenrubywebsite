@@ -7,6 +7,7 @@ $title = isset($title) ? $title : '';
 $description = isset($description) ? $description : '';
 $titleClass = $titleClass ?? 'section-title';
 $tagHeading = $tagHeading ?? 'h2';
+$iconTintOnLight = $iconTintOnLight ?? false;
 if (!isset($list)) {
     $currentLanguage = FeLanguageUtils::getCurrentLanguage();
     $list = AppAmenityService::getAll($currentLanguage->id);
@@ -36,7 +37,8 @@ if (!isset($list)) {
                                         @include('frontend::shared.image-wrapper', [
                                             'link' => $list[$i]->icon,
                                             'alt' => $list[$i]->name,
-                                            'imageConfig' => ['w' => 60, 'h' => 60]
+                                            'imageConfig' => ['w' => 60, 'h' => 60],
+                                            'iconTintOnLight' => $iconTintOnLight,
                                         ])
                                         <div class="media-body">
                                             <p class="title mb-2">{{ $list[$i]->name }}</p>
@@ -70,7 +72,8 @@ if (!isset($list)) {
                                             @include('frontend::shared.image-wrapper', [
                                                 'link' => $list[$i]->icon,
                                                 'alt' => $list[$i]->name,
-                                                'imageConfig' => ['w' => 60, 'h' => 60]
+                                                'imageConfig' => ['w' => 60, 'h' => 60],
+                                                'iconTintOnLight' => $iconTintOnLight,
                                             ])
                                             <div class="media-body">
                                                 <p class="title mb-2">{{ $list[$i]->name }}</p>

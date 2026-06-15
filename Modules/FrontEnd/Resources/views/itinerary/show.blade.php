@@ -200,7 +200,8 @@
             'description' => __('frontend::itineraryDetail.section-cabin-description'),
             'list' => $listAccommodationCabin,
             'suitesGrid' => true,
-            'isShowBookNow' => false
+            'cruiseId' => $obj->cruise_id,
+            'itineraryId' => $obj->itinerary_id,
         ])
 
         @include('frontend::shared.section.section-gallery',[

@@ -1650,17 +1650,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var progressComplete = document.getElementById('progress-step-complete');
     var progressSection = document.querySelector('#booking-page .booking-progress-section');
     var progressMobileTitle = document.getElementById('progress-mobile-title');
-    var progressMobileIcon = document.getElementById('progress-mobile-icon');
-
-    var mobileStepIcons = ['fas fa-pen', 'fa-solid fa-user', 'fa-solid fa-credit-card', 'fa-solid fa-check-double'];
+    var progressMobileNumber = document.getElementById('progress-mobile-number');
 
     function updateMobileProgressStep(stepNum) {
-        if (!progressSection || !progressMobileTitle || !progressMobileIcon) return;
+        if (!progressSection || !progressMobileTitle || !progressMobileNumber) return;
         var label = progressSection.getAttribute('data-step-' + stepNum);
         if (label) progressMobileTitle.textContent = label;
-        if (mobileStepIcons[stepNum - 1]) {
-            progressMobileIcon.className = mobileStepIcons[stepNum - 1];
-        }
+        progressMobileNumber.textContent = String(stepNum);
     }
 
     updateMobileProgressStep(1);

@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
+use Modules\FrontEnd\Services\AppCruiseItineraryService;
 
 class BookingController extends Controller
 {
@@ -41,8 +42,18 @@ class BookingController extends Controller
         \TwitterCard::setUrl(route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode]));
         \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
 
+        $listHeroBannerImages = AppCruiseItineraryService::getHeroBannerImages($language->id, 2);
+        $listBanner = [];
+        foreach ($listHeroBannerImages as $index => $image) {
+            $banner = new \stdClass();
+            $banner->link = $image->link;
+            $banner->title = $index === 0 ? __('frontend::booking.step1_title') : '';
+            $banner->description = $index === 0 ? __('frontend::booking.step1_subtitle') : '';
+            $listBanner[] = $banner;
+        }
+
         $languageCode = $languageCode ?? $language->code ?? 'vi';
-        return view($this->baseView . 'index', compact('menuUrlActive', 'languageCode'));
+        return view($this->baseView . 'index', compact('menuUrlActive', 'languageCode', 'listBanner'));
     }
 }
 

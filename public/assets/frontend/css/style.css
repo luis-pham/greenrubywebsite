@@ -251,6 +251,32 @@ body.show-loading .loading {
     z-index: 2;
 }
 
+/* Tint raster icons to --color-text-on-light */
+.image-wrapper.icon-on-light {
+    --icon-tint-inset: 0;
+}
+
+.image-wrapper.icon-on-light::before {
+    content: '';
+    position: absolute;
+    inset: var(--icon-tint-inset);
+    z-index: 3;
+    background-color: var(--color-text-on-light);
+    -webkit-mask-image: var(--icon-mask);
+    mask-image: var(--icon-mask);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    pointer-events: none;
+}
+
+.image-wrapper.icon-on-light img {
+    opacity: 0;
+}
+
 .image-wrapper-hover-zoom .image-wrapper {
     overflow: hidden;
 }

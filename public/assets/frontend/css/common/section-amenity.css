@@ -39,8 +39,8 @@
     margin-block: auto;
 }
 
-#main .section-amenity .list-item .item img{
-    padding: 0.75rem;
+#main .section-amenity .list-item .item .image-wrapper.icon-on-light {
+    --icon-tint-inset: 0.75rem;
 }
 
 #main .section-amenity .list-item .item .image-wrapper:after {

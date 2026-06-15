@@ -1,26 +1,7 @@
 @extends('frontend::layouts.master')
 
 @section('content')
-    <section class="section-cover section-booking-cover position-relative">
-        <div class="container-fluid px-0">
-            <div class="page-cover">
-                <div class="image-wrapper position-relative">
-                    <img src="{{ asset('/assets/frontend/images/booking-banner.svg') }}" alt="Booking banner" class="position-absolute w-100 h-100" />
-                </div>
-                <div class="container position-absolute">
-                    <div class="main-info mx-auto text-white text-center">
-                        <p class="title font-heading font-weight-bold">
-                            {{ __('frontend::booking.step1_title') }}
-                        </p>
-                        <p class="description mb-4">
-                            {{ __('frontend::booking.step1_subtitle') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <div id="booking">
     @php
         $bookingLanguageCode = $languageCode ?? null;
         $bookingItineraryShowTemplate = null;
@@ -527,6 +508,7 @@
         </div>
 
         @include('frontend::booking.partials.payment-loading')
+    </div>
     </div>
 @endsection
 

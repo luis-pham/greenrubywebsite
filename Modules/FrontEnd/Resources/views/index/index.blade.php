@@ -424,6 +424,7 @@
             'description' => __('frontend::homepage.section_8_description'),
             'titleClass' => 'section-eyebrow section-eyebrow--gold',
             'tagHeading' => 'p',
+            'iconTintOnLight' => true,
         ])
         <section class="section-9 bg">
             <div class="container-fluid px-0 position-relative">

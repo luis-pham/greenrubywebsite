@@ -94,6 +94,8 @@
 
 .modal-cabin .modal-header .close {
     margin: -.75rem -1rem -.75rem auto;
+    color: var(--color-text-on-light);
+    opacity: 1;
 }
 
 @media (min-width: 768px) {
@@ -239,10 +241,16 @@
 
 .modal-cabin .modal-body .main-info .list-amenity .item .image-wrapper {
     width: 20px;
+    flex-shrink: 0;
+}
+
+.modal-cabin .modal-body .main-info .list-amenity .item .image-wrapper.icon-on-light img {
+    object-fit: contain;
 }
 
 .modal-cabin .modal-body .main-info .list-amenity .item .title {
     font-size: 1rem;
+    color: var(--color-text-on-light);
 }
 
 .btn-loading-local {

@@ -16,10 +16,17 @@ if (array_key_exists('h', $imageConfig)) {
 if (array_key_exists('cr', $imageConfig)) {
     $imageLinkRouteParam['cr'] = $imageConfig['cr'];
 }
+
+$thumbnailSrc = FeUtils::getThumbnail($imageLinkRouteParam);
+$iconTintOnLight = !empty($iconTintOnLight);
+$wrapperClasses = trim((isset($ratio) ? 'image-' . $ratio : '') . ' position-relative' . ($iconTintOnLight ? ' icon-on-light' : ''));
 ?>
-<div class="image-wrapper {{ isset($ratio) ? 'image-' . $ratio : '' }} position-relative">
+<div
+    class="image-wrapper {{ $wrapperClasses }}"
+    @if ($iconTintOnLight) style="--icon-mask: url('{{ $thumbnailSrc }}');" @endif
+>
     <img
-        src="{{ FeUtils::getThumbnail($imageLinkRouteParam) }}"
+        src="{{ $thumbnailSrc }}"
         alt="{{ $alt }}"
         class="position-absolute w-100 h-100"
         loading="{{ $loading }}"

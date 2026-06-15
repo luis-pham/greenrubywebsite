@@ -111,7 +111,7 @@ $(document).ready(function () {
                     `<div class="item col-md-6 col-lg-12">
                         <div class="item-wrapper media">
                             <div class="mr-2">
-                                <div class="image-wrapper position-relative">
+                                <div class="image-wrapper icon-on-light position-relative" style="--icon-mask: url('${amenities[i].amenity_icon}');">
                                     <img src="${amenities[i].amenity_icon}" alt="${amenities[i].amenity_name}" class="position-absolute w-100 h-100" />
                                 </div>
                             </div>
