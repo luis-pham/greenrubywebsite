@@ -168,21 +168,26 @@
                 }
             }
         @endphp
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "NewsArticle",
-                "headline": "{{ $obj->title }}",
-                @if (count($listSize) > 0)
-                    "image": [
-                        "{!! FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => $listSize['1-1']['width'], 'h' => $listSize['1-1']['height']]) !!}",
-                        "{!! FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => $listSize['4-3']['width'], 'h' => $listSize['4-3']['height']]) !!}",
-                        "{!! FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => $listSize['16-9']['width'], 'h' => $listSize['16-9']['height']]) !!}"
-                    ],
-                @endif
-                "datePublished": "{{ Carbon\Carbon::parse($obj->publish_date)->format('Y-m-d\TH:i:sP') }}",
-                "dateModified": "{{ Carbon\Carbon::parse($obj->updated_at ?: $obj->created_at)->format('Y-m-d\TH:i:sP') }}"
+        @php
+            $articleSchema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'NewsArticle',
+                'headline' => $obj->title,
+                'datePublished' => \Carbon\Carbon::parse($obj->publish_date)->format('Y-m-d\TH:i:sP'),
+                'dateModified' => \Carbon\Carbon::parse($obj->updated_at ?: $obj->created_at)->format('Y-m-d\TH:i:sP'),
+                'publisher' => ['@id' => config('frontend.organizationSchemaId')],
+            ];
+            if (count($listSize) > 0) {
+                $articleSchema['image'] = [
+                    FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => $listSize['1-1']['width'], 'h' => $listSize['1-1']['height']]),
+                    FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => $listSize['4-3']['width'], 'h' => $listSize['4-3']['height']]),
+                    FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => $listSize['16-9']['width'], 'h' => $listSize['16-9']['height']]),
+                ];
             }
+        @endphp
+        <script type="application/ld+json">
+            {!! json_encode($articleSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
         </script>
+        @include('frontend::shared.structured-data-organization')
     @endif
 @endpush

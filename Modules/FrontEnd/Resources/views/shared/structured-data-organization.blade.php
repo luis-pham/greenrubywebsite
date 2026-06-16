@@ -5,13 +5,10 @@
     $language = FeLanguageUtils::getCurrentLanguage();
     $config = Utilities::getAllConfig($language);
 
-    $url = (isset($url) && !empty($url)) ? $url : url('/');
-
     $name = array_key_exists('website-name', $config) ? ($config['website-name'] ?? null) : null;
     $description = array_key_exists('website-description', $config) ? ($config['website-description'] ?? null) : null;
     $phone = array_key_exists('hotline', $config) ? ($config['hotline'] ?? null) : null;
     $email = array_key_exists('email', $config) ? ($config['email'] ?? null) : null;
-    $zalo = array_key_exists('zalo', $config) ? ($config['zalo'] ?? null) : null;
     $whatsapp = array_key_exists('whatsapp', $config) ? ($config['whatsapp'] ?? null) : null;
     $logo = array_key_exists('website-logo', $config) && !empty($config['website-logo'])
         ? asset(FeUtils::getImageLink($config['website-logo']))
@@ -24,14 +21,15 @@
         }
     }
 
-    $isValid = !empty($name) && !empty($url);
+    $isValid = !empty($name);
 
     if ($isValid) {
         $schemaData = [
             '@context' => 'https://schema.org',
             '@type'    => 'Organization',
+            '@id'      => config('frontend.organizationSchemaId'),
             'name'     => $name,
-            'url'      => $url,
+            'url'      => config('frontend.organizationCanonicalUrl'),
         ];
 
         if (!empty($logo)) {
@@ -51,23 +49,15 @@
             ];
             if (!empty($phone)) $cp['telephone'] = $phone;
             if (!empty($email)) $cp['email'] = $email;
-            
-            $contactPoints[] = $cp; // Đẩy vào mảng
-        }
 
-        if (!empty($zalo)) {
-            $contactPoints[] = [
-                '@type'       => 'ContactPoint',
-                'contactType' => 'Zalo Support',
-                'url'         => $zalo 
-            ];
+            $contactPoints[] = $cp;
         }
 
         if (!empty($whatsapp)) {
             $contactPoints[] = [
                 '@type'       => 'ContactPoint',
                 'contactType' => 'WhatsApp Support',
-                'telephone'   => $whatsapp 
+                'telephone'   => $whatsapp
             ];
         }
 

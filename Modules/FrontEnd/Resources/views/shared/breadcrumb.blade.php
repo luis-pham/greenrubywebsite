@@ -33,7 +33,7 @@
                 'position' => $i + 1,
                 'name' => $listBreadcrumb[$i]['name']
             ];
-            if ($i < count($listBreadcrumb) - 1) {
+            if (!empty($listBreadcrumb[$i]['url'])) {
                 $breadcrumbSeo['item'] = $listBreadcrumb[$i]['url'];
             }
             $listBreadcrumbSeo[] = $breadcrumbSeo;

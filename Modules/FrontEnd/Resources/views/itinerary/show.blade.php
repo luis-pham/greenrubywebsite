@@ -326,10 +326,12 @@
             })->values()->all(),
             'duration' => 'P' . $itinerary->duration . 'D',
             'startDate' => $startDate,
+            'provider' => ['@id' => config('frontend.organizationSchemaId')],
         ];
     @endphp
 
     <script type="application/ld+json">
         {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
+    @include('frontend::shared.structured-data-organization')
 @endpush

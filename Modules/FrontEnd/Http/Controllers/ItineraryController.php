@@ -176,17 +176,6 @@ class ItineraryController extends Controller
 //            if($item->thumbnail) $item->thumbnail = $this->bindImage($item->thumbnail);
 //            return $item;
 //        });
-        $lastBreadCrumb = [
-            [
-                'name' => __('frontend::common.itinerary'),
-                'url' => route(Utilities::getRouteName('frontend.itinerary.index'),['languageCode'=>$languageCode]),
-            ],
-            [
-                'name' => $obj->itinerary->name,
-            ]
-        ];
-        $listBreadCrumb = FeUtils::bindBreadcrumb($lastBreadCrumb, $languageCode);
-
         $menuUrlActive = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
 
         $config = Utilities::getAllConfig($language);
@@ -210,6 +199,18 @@ class ItineraryController extends Controller
             $urlParams['languageCode'] = $languageCode;
         }
         $url = route($showRouteName, $urlParams);
+
+        $lastBreadCrumb = [
+            [
+                'name' => __('frontend::common.itinerary'),
+                'url' => route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]),
+            ],
+            [
+                'name' => $obj->itinerary->name,
+                'url' => $url,
+            ],
+        ];
+        $listBreadCrumb = FeUtils::bindBreadcrumb($lastBreadCrumb, $languageCode);
 
         \SEO::setTitle($title);
         \SEO::setDescription($description);

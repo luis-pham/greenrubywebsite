@@ -2,6 +2,8 @@
 
 return [
     'name' => 'FrontEnd',
+    'organizationSchemaId' => 'https://greenrubycruises.com/#organization',
+    'organizationCanonicalUrl' => 'https://greenrubycruises.com',
     'organizationLogoSocial' => [
         'url' => '/assets/frontend/images/logo-social.jpg?v=0.0.1',
         'width' => 1200,

@@ -84,22 +84,25 @@
 
 @push('scripts')
     @include('frontend::shared.breadcrumb', ['listBreadcrumb' => $listBreadcrumb, 'isVisible' => false])
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                @foreach ($listFaq as $faq)
-                    {
-                        "@type": "Question",
-                        "name": "{!! html_entity_decode($faq->question, ENT_QUOTES, 'UTF-8') !!}",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "{!! html_entity_decode($faq->answer, ENT_QUOTES, 'UTF-8') !!}"
-                        }
-                    }{{ !$loop->last ? ',' : '' }}
-                @endforeach
-            ]
-        }
-    </script>
+    @if (count($listFaq) > 0)
+        @php
+            $faqSchema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'FAQPage',
+                'mainEntity' => collect($listFaq)->map(function ($faq) {
+                    return [
+                        '@type' => 'Question',
+                        'name' => strip_tags(html_entity_decode($faq->question, ENT_QUOTES, 'UTF-8')),
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text' => strip_tags(html_entity_decode($faq->answer, ENT_QUOTES, 'UTF-8')),
+                        ],
+                    ];
+                })->values()->all(),
+            ];
+        @endphp
+        <script type="application/ld+json">
+            {!! json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+        </script>
+    @endif
 @endpush

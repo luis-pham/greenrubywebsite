@@ -476,8 +476,7 @@
                 'description' => $obj->summary,
                 'image'       => asset(FeUtils::getImageLink($obj->image_link)),
                 'brand'       => [
-                    '@type' => 'Brand',
-                    'name'  => 'Green Ruby',
+                    '@id' => config('frontend.organizationSchemaId'),
                 ],
                 'additionalProperty' => [
                     ['@type' => 'PropertyValue', 'name' => 'Capacity',     'value' => $shipSpecs['guests'] . ' guests'],
@@ -498,6 +497,7 @@
             ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
         !!}
     </script>
+    @include('frontend::shared.structured-data-organization')
     <script type="text/javascript">
         window.langCode = @json($languageCode ?? '');
         let apiAppCabin = {
