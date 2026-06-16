@@ -35,23 +35,32 @@ class FeHreflangUtils
         }
 
         $baseName = preg_replace('/\|multi-language$/', '', $routeName);
+
+        if (!str_starts_with($baseName, 'frontend.')) {
+            return [];
+        }
+
+        return self::getAlternateLinksForRoute($baseName, $route->parameters());
+    }
+
+    public static function getAlternateLinksForRoute(string $baseRouteName, array $params = [], ?int $sourceLanguageId = null): array
+    {
+        $baseName = preg_replace('/\|multi-language$/', '', $baseRouteName);
         if (!str_starts_with($baseName, 'frontend.')) {
             return [];
         }
 
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $languages = AdLanguageService::getAll();
-        $currentParams = $route->parameters();
         $links = [];
 
         foreach ($languages as $language) {
-            $isDefault = (bool) $language->is_default;
-            $resolvedParams = self::resolveParams($baseName, $currentParams, $language);
+            $resolvedParams = self::resolveParams($baseName, $params, $language, $sourceLanguageId);
             if ($resolvedParams === null) {
                 continue;
             }
 
-            $name = $isDefault ? $baseName : Utilities::bindRouteNameMultiLanguage($baseName);
+            $name = $language->is_default ? $baseName : Utilities::bindRouteNameMultiLanguage($baseName);
 
             try {
                 $url = route($name, $resolvedParams);
@@ -72,7 +81,7 @@ class FeHreflangUtils
         return $links;
     }
 
-    private static function resolveParams(string $baseName, array $params, $language): ?array
+    private static function resolveParams(string $baseName, array $params, $language, ?int $sourceLanguageId = null): ?array
     {
         unset($params['languageCode']);
 
@@ -84,7 +93,7 @@ class FeHreflangUtils
             'frontend.cruise.show' => self::resolveCruiseShow($params, $language),
             'frontend.itinerary.show' => self::resolveItineraryShow($params, $language),
             'frontend.experience.show' => self::resolveExperienceShow($params, $language),
-            'frontend.article.show' => self::resolveArticleShow($params, $language),
+            'frontend.article.show' => self::resolveArticleShow($params, $language, $sourceLanguageId),
             default => $params,
         };
     }
@@ -146,9 +155,15 @@ class FeHreflangUtils
         return $params;
     }
 
-    private static function resolveArticleShow(array $params, $language): ?array
+    private static function resolveArticleShow(array $params, $language, ?int $sourceLanguageId = null): ?array
     {
-        $sourceLanguage = FeLanguageUtils::getCurrentLanguage();
+        $sourceLanguage = $sourceLanguageId
+            ? AdLanguageService::getAll()->firstWhere('id', $sourceLanguageId)
+            : FeLanguageUtils::getCurrentLanguage();
+
+        if (!$sourceLanguage) {
+            return null;
+        }
         $sourceArticle = null;
 
         if (!empty($params['categorySlug']) && !empty($params['articleSlug'])) {

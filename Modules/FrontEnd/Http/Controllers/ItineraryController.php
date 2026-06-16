@@ -12,7 +12,6 @@ use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppCabinService;
 use Modules\FrontEnd\Services\AppCruiseItineraryService;
-use Modules\FrontEnd\Services\AppCruiseService;
 use Modules\FrontEnd\Services\AppFaqService;
 use Modules\FrontEnd\Services\AppServiceService;
 
@@ -24,39 +23,7 @@ class ItineraryController extends Controller
         $language = FeLanguageUtils::getCurrentLanguage();
         $languageCode = $request->route('languageCode');
 
-        $listItinerary = AppCruiseItineraryService::getScheduledItineraries($language->id);
-
-        $listItineraryYetScheduled = [];
-
-        $listItinerary->each(function($item) use(&$listItineraryYetScheduled){
-           if(!$item->price){
-               $listItineraryYetScheduled[] = $item;
-           }
-        });
-
-        if(count($listItineraryYetScheduled) > 0){
-            $listCruise = AppCruiseService::getAll($language->id);
-            $listCruiseId = $listCruise->pluck('id')->toArray();
-            $listMinPrice = AppCabinService::getMinPriceByCruiseId($listCruiseId);
-
-            $cheapestByDuration = $listMinPrice->groupBy('duration')->map(function($group){
-                return $group->sortBy('min_price')->first();
-            });
-
-            foreach($listItineraryYetScheduled as $item){
-                $matchedPrice = $cheapestByDuration->where('duration', $item->duration)->first();
-                if($matchedPrice){
-                    $matchedCruise = $listCruise->where('id', $matchedPrice->cruise_id)->first();
-                    $item->price = $matchedPrice->min_price;
-                    $item->cruise_id = $matchedCruise->id;
-                    $item->cruise_name = $matchedCruise->name;
-                }
-
-                if(!$item->price || !$item->cruise_id || !$item->cruise_name){
-                    $listItinerary->filter(fn($i) => $i->id !== $item->id)->values();
-                }
-            }
-        }
+        $listItinerary = AppCruiseItineraryService::resolveItinerariesForListing($language->id);
 
         $listItinerary = $listItinerary->map(function($item){
             $item->image_link = FeUtils::getImageLink($item->image_link);

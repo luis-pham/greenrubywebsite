@@ -8,6 +8,8 @@ use Modules\BackEnd\Entities\AppCruise;
 use Modules\BackEnd\Entities\AppCruiseItinerary;
 use Modules\BackEnd\Entities\AppItinerary;
 use Modules\FrontEnd\Helpers\FeUtils;
+use Modules\FrontEnd\Services\AppCabinService;
+use Modules\FrontEnd\Services\AppCruiseService;
 
 class AppCruiseItineraryService
 {
@@ -77,6 +79,45 @@ class AppCruiseItineraryService
             ->orderBy('nearest_start_at')
             ->setBindings($bindings)
             ->get();
+    }
+
+    public static function resolveItinerariesForListing($languageId)
+    {
+        $listItinerary = self::getScheduledItineraries($languageId);
+
+        $listItineraryYetScheduled = [];
+
+        $listItinerary->each(function ($item) use (&$listItineraryYetScheduled) {
+            if (!$item->price) {
+                $listItineraryYetScheduled[] = $item;
+            }
+        });
+
+        if (count($listItineraryYetScheduled) > 0) {
+            $listCruise = AppCruiseService::getAll($languageId);
+            $listCruiseId = $listCruise->pluck('id')->toArray();
+            $listMinPrice = AppCabinService::getMinPriceByCruiseId($listCruiseId);
+
+            $cheapestByDuration = $listMinPrice->groupBy('duration')->map(function ($group) {
+                return $group->sortBy('min_price')->first();
+            });
+
+            foreach ($listItineraryYetScheduled as $item) {
+                $matchedPrice = $cheapestByDuration->where('duration', $item->duration)->first();
+                if ($matchedPrice) {
+                    $matchedCruise = $listCruise->where('id', $matchedPrice->cruise_id)->first();
+                    $item->price = $matchedPrice->min_price;
+                    $item->cruise_id = $matchedCruise->id;
+                    $item->cruise_name = $matchedCruise->name;
+                }
+
+                if (!$item->price || !$item->cruise_id || !$item->cruise_name) {
+                    $listItinerary->filter(fn ($i) => $i->id !== $item->id)->values();
+                }
+            }
+        }
+
+        return $listItinerary;
     }
 
     public static function findByIdsJoin($cruiseId,$itineraryId,$languageId){

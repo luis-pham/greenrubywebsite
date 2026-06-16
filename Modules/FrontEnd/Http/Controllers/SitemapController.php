@@ -11,6 +11,7 @@ use Modules\BackEnd\Services\AppServiceService;
 use Modules\BackEnd\Services\AppItineraryService;
 use Modules\BackEnd\Services\AppGroupService;
 use Modules\FrontEnd\Helpers\FeArticleUtils;
+use Modules\FrontEnd\Helpers\FeHreflangUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppArticleService;
 use Modules\FrontEnd\Services\AppCategoryService;
@@ -102,93 +103,63 @@ class SitemapController extends Controller
         $legal = PageService::getLegalUpdatedAt([]);
         $about = PageService::getAboutUpdatedAt([]);
         $contact = PageService::getContactUpdatedAt([]);
-        $pages = [];
+        $entries = [];
 
         $homepageLastmod = $cruise
             ? Carbon::parse($cruise->updated_at ?: $cruise->created_at)->format('Y-m-d\TH:i:sP')
             : Carbon::now()->format('Y-m-d\TH:i:sP');
 
-        foreach ($this->localizedHubUrls('frontend.index') as $entry) {
-            $pages[] = [
-                'loc' => $entry['loc'],
-                'lastmod' => $homepageLastmod,
-            ];
-        }
+        $entries = array_merge($entries, $this->buildHubEntries('frontend.index', $homepageLastmod, [], '1.0', 'weekly'));
 
         if ($article) {
             $lastmod = Carbon::parse($article->updated_at ?: $article->created_at)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.article.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.article.index', $lastmod));
         }
         if ($experience) {
             $lastmod = Carbon::parse($experience->updated_at ?: $experience->created_at)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.experience.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.experience.index', $lastmod));
         }
         if ($service) {
             $lastmod = Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.service.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.service.index', $lastmod));
         }
         if ($itinerary) {
             $lastmod = Carbon::parse($itinerary->updated_at ?: $itinerary->created_at)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.itinerary.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.itinerary.index', $lastmod));
         }
         if ($gallery) {
             $lastmod = Carbon::parse($gallery)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.gallery.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.gallery.index', $lastmod));
         }
         if ($faq) {
             $lastmod = Carbon::parse($faq->updated_at ?: $faq->created_at)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.faq.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.faq.index', $lastmod));
         }
         if ($legal) {
             $lastmod = Carbon::parse($legal)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.page.legal') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.page.legal', $lastmod));
             foreach ([
                 'frontend.page.safety-policies',
                 'frontend.page.terms-and-conditions',
                 'frontend.page.privacy-policy',
                 'frontend.page.payment-methods',
             ] as $routeName) {
-                foreach ($this->localizedHubUrls($routeName) as $entry) {
-                    $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-                }
+                $entries = array_merge($entries, $this->buildHubEntries($routeName, $lastmod));
             }
         }
         if ($about) {
             $lastmod = Carbon::parse($about)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.about.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.about.index', $lastmod));
         }
         if ($contact) {
             $lastmod = Carbon::parse($contact)->format('Y-m-d\TH:i:sP');
-            foreach ($this->localizedHubUrls('frontend.contact.index') as $entry) {
-                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
-            }
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.contact.index', $lastmod));
         }
 
-        foreach ($this->localizedHubUrls('frontend.booking') as $entry) {
-            $pages[] = [
-                'loc' => $entry['loc'],
-                'lastmod' => $homepageLastmod,
-            ];
-        }
+        $entries = array_merge($entries, $this->buildHubEntries('frontend.booking', $homepageLastmod));
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'pages' => $pages,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
     
@@ -196,23 +167,34 @@ class SitemapController extends Controller
     {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $listLanguage = $this->getAllLanguage();
-        
+        $entries = [];
+
         $list = AppArticleService::getPaging(['is_disabled_paginate' => true]);
-        $published = [];
         for ($i = 0; $i < count($list); $i++) {
             $languageCode = $defaultLanguage->id == $list[$i]->language_id
                 ? null
                 : ($listLanguage[$list[$i]->language_id] ?? null);
             try {
-                $list[$i]->url = FeArticleUtils::getShowUrl($list[$i], $languageCode);
-                $published[] = $list[$i];
+                $url = FeArticleUtils::getShowUrl($list[$i], $languageCode);
+                $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.article.show', [
+                    'categorySlug' => $list[$i]->category_slug,
+                    'articleSlug' => FeArticleUtils::getArticleSlug($list[$i]),
+                ], $list[$i]->language_id);
+
+                $entries[] = $this->makeUrlEntry(
+                    $url,
+                    Carbon::parse($list[$i]->updated_at ?: $list[$i]->created_at)->format('Y-m-d\TH:i:sP'),
+                    'monthly',
+                    '0.5',
+                    $alternates
+                );
             } catch (\Throwable) {
                 continue;
             }
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'list' => $published,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -220,47 +202,78 @@ class SitemapController extends Controller
     {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $listLanguage = $this->getAllLanguage();
-
         $type = $request->route('type');
-        
-        $listCategory = [];
-        
+        $entries = [];
+
         if ($type == 'article') {
             $list = AppCategoryService::getAll(config('backend.categoryType.article'));
             for ($i = 0; $i < count($list); $i++) {
                 $article = AppArticleService::getLatestUpdate([
                     'category_id' => $list[$i]->id
                 ]);
-                if ($article) {
-                    $list[$i]->url = $defaultLanguage->id == $list[$i]->language_id
-                        ? route('frontend.article.category', ['slug' => Utilities::convertToAlias($list[$i]->name)])
-                        : route(Utilities::bindRouteNameMultiLanguage('frontend.article.category'), ['languageCode' => $listLanguage[$list[$i]->language_id], 'slug' => Utilities::convertToAlias($list[$i]->name)]);
-                    $list[$i]->created_at = $article->created_at;
-                    $list[$i]->updated_at = $article->updated_at;
-                    $listCategory[] = $list[$i];
+                if (!$article) {
+                    continue;
                 }
+
+                $slug = Utilities::convertToAlias($list[$i]->name);
+                $languageId = $list[$i]->language_id;
+                $url = $defaultLanguage->id == $languageId
+                    ? route('frontend.article.category', ['slug' => $slug])
+                    : route(Utilities::bindRouteNameMultiLanguage('frontend.article.category'), ['languageCode' => $listLanguage[$languageId], 'slug' => $slug]);
+
+                $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.article.category', [
+                    'slug' => $slug,
+                ], $languageId);
+
+                $entries[] = $this->makeUrlEntry(
+                    $url,
+                    Carbon::parse($article->updated_at ?: $article->created_at)->format('Y-m-d\TH:i:sP'),
+                    'monthly',
+                    '0.6',
+                    $alternates
+                );
             }
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'listCategory' => $listCategory
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
-    public function experience(){
+    public function experience()
+    {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $listLanguage = $this->getAllLanguage();
+        $entries = [];
 
         $list = AppExpActivityService::getPaging(['is_disabled_paginate' => true]);
         for ($i = 0; $i < count($list); $i++) {
             $languageId = $list[$i]->language_id ?? $defaultLanguage->id;
-            $list[$i]->url = $defaultLanguage->id == $languageId
-                ? route('frontend.experience.show', ['slug' => Utilities::convertToAlias($list[$i]->name), 'id' => $list[$i]->id])
-                : route(Utilities::bindRouteNameMultiLanguage('frontend.experience.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => Utilities::convertToAlias($list[$i]->name), 'id' => $list[$i]->id]);
+            $slug = Utilities::convertToAlias($list[$i]->name);
+            try {
+                $url = $defaultLanguage->id == $languageId
+                    ? route('frontend.experience.show', ['slug' => $slug, 'id' => $list[$i]->id])
+                    : route(Utilities::bindRouteNameMultiLanguage('frontend.experience.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => $slug, 'id' => $list[$i]->id]);
+            } catch (\Throwable) {
+                continue;
+            }
+
+            $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.experience.show', [
+                'slug' => $slug,
+                'id' => $list[$i]->id,
+            ], $languageId);
+
+            $entries[] = $this->makeUrlEntry(
+                $url,
+                Carbon::parse($list[$i]->updated_at ?: $list[$i]->created_at)->format('Y-m-d\TH:i:sP'),
+                'monthly',
+                '0.6',
+                $alternates
+            );
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'list' => $list,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -268,7 +281,6 @@ class SitemapController extends Controller
     {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $service = AppServiceService::getLatestUpdate([], $defaultLanguage->id);
-        $list = [];
 
         if (!$service) {
             $service = (object) [
@@ -277,33 +289,57 @@ class SitemapController extends Controller
             ];
         }
 
-        $service->url = route('frontend.service.index');
-        $list[] = $service;
+        $lastmod = Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP');
+        $entries = $this->buildHubEntries('frontend.service.index', $lastmod);
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'list' => $list,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
-    public function itinerary(){
-        $defaultLanguage = AdLanguageService::getDefaultLanguage();
-        $listLanguage = $this->getAllLanguage();
+    public function itinerary()
+    {
+        $entries = [];
 
-        $sourceList = AppCruiseItineraryService::getScheduledItineraries($defaultLanguage->id);
-        $list = [];
-        for ($i = 0; $i < count($sourceList); $i++) {
-            if (empty($sourceList[$i]->cruise_id) || empty($sourceList[$i]->id)) {
-                continue;
+        foreach (AdLanguageService::getAll() as $language) {
+            $sourceList = AppCruiseItineraryService::resolveItinerariesForListing($language->id);
+
+            foreach ($sourceList as $item) {
+                if (empty($item->cruise_id) || empty($item->id)) {
+                    continue;
+                }
+
+                $slug = Utilities::convertToAlias($item->name);
+                $params = [
+                    'slug' => $slug,
+                    'cruise_id' => $item->cruise_id,
+                    'itinerary_id' => $item->id,
+                ];
+
+                try {
+                    $url = FeUtils::frontendRoute('frontend.itinerary.show', $params, $language->code);
+                } catch (\Throwable) {
+                    continue;
+                }
+
+                $alternates = FeHreflangUtils::getAlternateLinksForRoute(
+                    'frontend.itinerary.show',
+                    $params,
+                    $language->id
+                );
+
+                $entries[] = $this->makeUrlEntry(
+                    $url,
+                    Carbon::parse($item->updated_at ?: $item->created_at)->format('Y-m-d\TH:i:sP'),
+                    'monthly',
+                    '0.7',
+                    $alternates
+                );
             }
-            $languageId = $sourceList[$i]->language_id ?? $defaultLanguage->id;
-            $sourceList[$i]->url = $defaultLanguage->id == $languageId
-                ? route('frontend.itinerary.show', ['slug' => Utilities::convertToAlias($sourceList[$i]->name), 'cruise_id' => $sourceList[$i]->cruise_id, 'itinerary_id' => $sourceList[$i]->id])
-                : route(Utilities::bindRouteNameMultiLanguage('frontend.itinerary.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => Utilities::convertToAlias($sourceList[$i]->name), 'cruise_id' => $sourceList[$i]->cruise_id, 'itinerary_id' => $sourceList[$i]->id]);
-            $list[] = $sourceList[$i];
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'list' => $list,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -312,72 +348,143 @@ class SitemapController extends Controller
     {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $listLanguage = $this->getAllLanguage();
+        $entries = [];
 
         $list = AppCruise::orderBy('id', 'asc')->get();
         for ($i = 0; $i < count($list); $i++) {
             $languageId = $list[$i]->language_id ?? $defaultLanguage->id;
-            $list[$i]->url = $defaultLanguage->id == $languageId
-                ? route('frontend.cruise.show', ['slug' => Utilities::convertToAlias($list[$i]->name), 'id' => $list[$i]->id])
-                : route(Utilities::bindRouteNameMultiLanguage('frontend.cruise.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => Utilities::convertToAlias($list[$i]->name), 'id' => $list[$i]->id]);
+            $slug = Utilities::convertToAlias($list[$i]->name);
+            try {
+                $url = $defaultLanguage->id == $languageId
+                    ? route('frontend.cruise.show', ['slug' => $slug, 'id' => $list[$i]->id])
+                    : route(Utilities::bindRouteNameMultiLanguage('frontend.cruise.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => $slug, 'id' => $list[$i]->id]);
+            } catch (\Throwable) {
+                continue;
+            }
+
+            $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.cruise.show', [
+                'slug' => $slug,
+                'id' => $list[$i]->id,
+            ], $languageId);
+
+            $entries[] = $this->makeUrlEntry(
+                $url,
+                Carbon::parse($list[$i]->updated_at ?: $list[$i]->created_at)->format('Y-m-d\TH:i:sP'),
+                'monthly',
+                '0.7',
+                $alternates
+            );
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'list' => $list,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
-    public function gallery(){
+    public function gallery()
+    {
+        $entries = [];
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $galleryLastmod = GalleryService::getGalleryUpdatedAt($defaultLanguage->id);
-        $lastmod = Carbon::parse($galleryLastmod)->format('Y-m-d\TH:i:sP');
-        $galleryUrls = [];
 
-        $galleryUrls[] = [
-            'loc' => route('frontend.gallery.index'),
-            'lastmod' => $lastmod,
-        ];
+        if ($galleryLastmod) {
+            $lastmod = Carbon::parse($galleryLastmod)->format('Y-m-d\TH:i:sP');
+            $entries = array_merge($entries, $this->buildHubEntries('frontend.gallery.index', $lastmod));
 
-        $filters = GalleryService::getGalleryFilter($defaultLanguage->id);
-        foreach (array_keys($filters) as $slug) {
-            $galleryUrls[] = [
-                'loc' => route('frontend.gallery.category', ['slug' => $slug]),
-                'lastmod' => $lastmod,
-            ];
+            foreach (AdLanguageService::getAll() as $language) {
+                $languageLastmod = GalleryService::getGalleryUpdatedAt($language->id);
+                if (!$languageLastmod) {
+                    continue;
+                }
+
+                $entryLastmod = Carbon::parse($languageLastmod)->format('Y-m-d\TH:i:sP');
+                $filters = GalleryService::getGalleryFilter($language->id);
+                foreach (array_keys($filters) as $slug) {
+                    $params = ['slug' => $slug];
+                    $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.gallery.category', $params, $language->id);
+
+                    try {
+                        $url = FeUtils::frontendRoute('frontend.gallery.category', $params, $language->code);
+                    } catch (\Throwable) {
+                        continue;
+                    }
+
+                    $entries[] = $this->makeUrlEntry($url, $entryLastmod, 'monthly', '0.6', $alternates);
+                }
+            }
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'galleryUrls' => $galleryUrls,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
     public function faq()
     {
-        $defaultLanguage = AdLanguageService::getDefaultLanguage();
+        $entries = [];
         $lastmod = Carbon::now()->format('Y-m-d\TH:i:sP');
-        $faqUrls = [];
-        
-        $faqUrls[] = [
-            'loc' => route('frontend.faq.index'),
-            'lastmod' => $lastmod,
-        ];
 
-        $listGroup = AppGroupService::getAll(config('backend.groupType.faq'), $defaultLanguage->id);
-        foreach ($listGroup as $group) {
-            if (!$group || !$group->slug || $group->slug === 'root') {
-                continue;
+        $entries = array_merge($entries, $this->buildHubEntries('frontend.faq.index', $lastmod));
+
+        foreach (AdLanguageService::getAll() as $language) {
+            $listGroup = AppGroupService::getAll(config('backend.groupType.faq'), $language->id);
+            foreach ($listGroup as $group) {
+                if (!$group || !$group->slug || $group->slug === 'root') {
+                    continue;
+                }
+
+                $params = ['slug' => $group->slug];
+                $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.faq.category', $params, $language->id);
+
+                try {
+                    $url = FeUtils::frontendRoute('frontend.faq.category', $params, $language->code);
+                } catch (\Throwable) {
+                    continue;
+                }
+
+                $entries[] = $this->makeUrlEntry($url, $lastmod, 'monthly', '0.6', $alternates);
             }
-            $faqUrls[] = [
-                'loc' => route('frontend.faq.category', ['slug' => $group->slug]),
-                'lastmod' => $lastmod,
-            ];
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'faqUrls' => $faqUrls,
+            'entries' => $entries,
         ])->header('Content-Type', 'text/xml');
     }
 
     
+    private function makeUrlEntry(
+        string $loc,
+        string $lastmod,
+        string $changefreq,
+        string $priority,
+        array $alternates = []
+    ): array {
+        return [
+            'loc' => $loc,
+            'lastmod' => $lastmod,
+            'changefreq' => $changefreq,
+            'priority' => $priority,
+            'alternates' => $alternates,
+        ];
+    }
+
+    private function buildHubEntries(
+        string $routeName,
+        string $lastmod,
+        array $params = [],
+        string $priority = '0.8',
+        string $changefreq = 'weekly'
+    ): array {
+        $alternates = FeHreflangUtils::getAlternateLinksForRoute($routeName, $params);
+        $entries = [];
+
+        foreach ($this->localizedHubUrls($routeName, $params) as $hub) {
+            $entries[] = $this->makeUrlEntry($hub['loc'], $lastmod, $changefreq, $priority, $alternates);
+        }
+
+        return $entries;
+    }
+
     private function localizedHubUrls(string $baseRouteName, array $params = []): array
     {
         $entries = [];

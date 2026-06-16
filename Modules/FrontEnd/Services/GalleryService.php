@@ -4,6 +4,7 @@ namespace Modules\FrontEnd\Services;
 
 use Carbon\Carbon;
 use Modules\BackEnd\Entities\AppPageConfig;
+use Modules\BackEnd\Services\AdLanguageService;
 use Modules\FrontEnd\Constants\PageCodeConsts;
 use Modules\FrontEnd\Constants\PageConfigKeyConsts;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
@@ -81,7 +82,11 @@ class GalleryService
     public static function getGalleryFilter($languageId = null): array
     {
         $pageConfig = FeUtils::getPageConfigByCode(PageCodeConsts::GALLERY, $languageId);
-        $langCode = self::currentLanguageCode();
+        if ($languageId) {
+            $langCode = AdLanguageService::getAll()->firstWhere('id', $languageId)->code ?? 'en';
+        } else {
+            $langCode = self::currentLanguageCode();
+        }
         $map = self::slugMap();
         return collect(array_keys($pageConfig))
             ->filter(fn($item) => !str_ends_with($item, "-vr-360"))
