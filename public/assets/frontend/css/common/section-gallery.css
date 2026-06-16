@@ -73,3 +73,95 @@
 .section-gallery .gallery-container.owl-carousel .owl-item {
     height: 300px;
 }
+
+.section-gallery .gallery-container.owl-carousel .owl-item > .gallery-image-wrapper {
+    display: block;
+    height: 100%;
+}
+
+/* Carousel nav — căn giữa theo chiều cao ảnh (owl-theme cùng element với owl-carousel) */
+.section-gallery .gallery-container.owl-carousel {
+    position: relative;
+}
+
+.section-gallery .gallery-container.owl-carousel .owl-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 !important;
+    pointer-events: none;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+}
+
+.section-gallery .gallery-container.owl-carousel .owl-nav .owl-prev,
+.section-gallery .gallery-container.owl-carousel .owl-nav .owl-next {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    float: none !important;
+    margin: 0 !important;
+    pointer-events: auto;
+    z-index: 9;
+}
+
+.section-gallery .gallery-container.owl-carousel .owl-nav .button {
+    width: 44px;
+    height: 44px;
+    line-height: 1;
+    font-size: 1.125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 61, 49, 0.35);
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    border-radius: 0;
+    color: var(--color-text-on-dark);
+    transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+}
+
+.section-gallery .gallery-container.owl-carousel .owl-nav .button:hover {
+    background: rgba(12, 61, 49, 0.55);
+    border-color: #C8A84B;
+    color: var(--color-text-accent);
+}
+
+.section-gallery .gallery-container.owl-carousel .owl-nav .disabled .button {
+    opacity: 0.35;
+    cursor: default;
+}
+
+@media (min-width: 768px) {
+    .section-gallery .gallery-container.owl-carousel .owl-nav {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-gallery .gallery-container.owl-carousel .owl-nav {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-gallery .gallery-container.owl-carousel .owl-nav {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .section-gallery .gallery-container.owl-carousel .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}

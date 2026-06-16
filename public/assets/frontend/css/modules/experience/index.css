@@ -423,4 +423,53 @@
     #experience .section-experience .slide-1 .owl-next {
         right: 12px;
     }
+
+    /* Experience Gallery — carousel mobile, nav giữa ảnh */
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel {
+        position: relative;
+    }
+
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel .owl-stage-outer {
+        position: relative;
+        z-index: 1;
+    }
+
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel .owl-nav {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 300px !important;
+        margin: 0 !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        pointer-events: none;
+        z-index: 2;
+        box-sizing: border-box;
+    }
+
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel .owl-nav .owl-prev,
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel .owl-nav .owl-next {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        float: none !important;
+        margin: 0 !important;
+        pointer-events: auto;
+    }
+
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel .owl-nav .button {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    #experience .section-gallery .slide-1 .gallery-container.owl-carousel .owl-dots {
+        margin-top: 1rem;
+    }
 }

@@ -48,17 +48,4 @@ $(document).ready(function () {
         onResized: fnListItemCarouselOnInit
     });
 
-    $('#experience .section-gallery .gallery-carousel-mobile').owlCarousel({
-        loop: false,
-        dots: true,
-        nav: true,
-        navText: [
-            '<div class="button"><i class="fa-solid fa-chevron-left"></i></div>',
-            '<div class="button"><i class="fa-solid fa-chevron-right"></i></div>'
-        ],
-        items: 1,
-        margin: 16,
-        autoplay: false,
-        smartSpeed: 400
-    });
 });
