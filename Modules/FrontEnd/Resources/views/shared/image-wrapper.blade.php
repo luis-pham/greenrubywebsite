@@ -60,6 +60,8 @@ $wrapperClasses = trim((isset($ratio) ? 'image-' . $ratio : '') . ' position-rel
         <img
             src="{{ $thumbnailSrc }}"
             alt="{{ $alt }}"
+            width="{{ $imageConfig['w'] ?? '' }}"
+            height="{{ $imageConfig['h'] ?? '' }}"
             class="position-absolute w-100 h-100"
             loading="{{ $loading }}"
             decoding="{{ $decoding }}"
