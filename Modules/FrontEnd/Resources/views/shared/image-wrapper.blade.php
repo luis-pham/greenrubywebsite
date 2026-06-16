@@ -16,8 +16,31 @@ if (array_key_exists('h', $imageConfig)) {
 if (array_key_exists('cr', $imageConfig)) {
     $imageLinkRouteParam['cr'] = $imageConfig['cr'];
 }
+if (array_key_exists('q', $imageConfig)) {
+    $imageLinkRouteParam['q'] = $imageConfig['q'];
+}
 
 $thumbnailSrc = FeUtils::getThumbnail($imageLinkRouteParam);
+
+$imageConfigMobile = $imageConfigMobile ?? [];
+$thumbnailSrcMobile = null;
+if (!empty($imageConfigMobile)) {
+    $imageLinkRouteParamMobile = ['link' => $link];
+    if (array_key_exists('w', $imageConfigMobile)) {
+        $imageLinkRouteParamMobile['w'] = $imageConfigMobile['w'];
+    }
+    if (array_key_exists('h', $imageConfigMobile)) {
+        $imageLinkRouteParamMobile['h'] = $imageConfigMobile['h'];
+    }
+    if (array_key_exists('cr', $imageConfigMobile)) {
+        $imageLinkRouteParamMobile['cr'] = $imageConfigMobile['cr'];
+    }
+    if (array_key_exists('q', $imageConfigMobile)) {
+        $imageLinkRouteParamMobile['q'] = $imageConfigMobile['q'];
+    }
+    $thumbnailSrcMobile = FeUtils::getThumbnail($imageLinkRouteParamMobile);
+}
+
 $iconTintOnLight = !empty($iconTintOnLight);
 $wrapperClasses = trim((isset($ratio) ? 'image-' . $ratio : '') . ' position-relative' . ($iconTintOnLight ? ' icon-on-light' : ''));
 ?>
@@ -25,12 +48,22 @@ $wrapperClasses = trim((isset($ratio) ? 'image-' . $ratio : '') . ' position-rel
     class="image-wrapper {{ $wrapperClasses }}"
     @if ($iconTintOnLight) style="--icon-mask: url('{{ $thumbnailSrc }}');" @endif
 >
-    <img
-        src="{{ $thumbnailSrc }}"
-        alt="{{ $alt }}"
-        class="position-absolute w-100 h-100"
-        loading="{{ $loading }}"
-        decoding="{{ $decoding }}"
-        {!! $fetchpriority ? 'fetchpriority="' . $fetchpriority . '"' : '' !!}
-    />
+    <picture>
+        <source
+            media="(max-width: 768px)"
+            srcset="{{ $thumbnailSrcMobile ?? $thumbnailSrc }}"
+            type="image/webp">
+        <source
+            media="(min-width: 769px)"
+            srcset="{{ $thumbnailSrc }}"
+            type="image/webp">
+        <img
+            src="{{ $thumbnailSrc }}"
+            alt="{{ $alt }}"
+            class="position-absolute w-100 h-100"
+            loading="{{ $loading }}"
+            decoding="{{ $decoding }}"
+            {!! $fetchpriority ? 'fetchpriority="' . $fetchpriority . '"' : '' !!}
+        />
+    </picture>
 </div>

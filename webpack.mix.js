@@ -56,7 +56,6 @@ mix.styles([
 
     // ── Plugins (global) ──────────────────────────────────────
     'public/assets/frontend/plugins/bootstrap/css/bootstrap.min.css',
-    'public/assets/frontend/plugins/font-awesome/css/all.min.css',
     'public/assets/frontend/plugins/owl-carousel/css/owl.carousel.min.css',
     'public/assets/frontend/plugins/owl-carousel/css/owl.theme.default.min.css',
     'public/assets/frontend/plugins/fancybox/jquery.fancybox.min.css',
@@ -158,9 +157,6 @@ mix.scripts([
 mix.styles([
     // ── Plugins (global) ──────────────────────────────────────
     'public/assets/frontend/plugins/bootstrap/css/bootstrap.min.css',
-    'public/assets/frontend/plugins/font-awesome/css/fontawesome.min.css',
-    'public/assets/frontend/plugins/font-awesome/css/solid.min.css',
-    'public/assets/frontend/plugins/font-awesome/css/brands.min.css',
     'public/assets/frontend/plugins/owl-carousel/css/owl.carousel.min.css',
     'public/assets/frontend/plugins/owl-carousel/css/owl.theme.default.min.css',
 
@@ -201,11 +197,6 @@ mix.scripts([
     // ── Homepage module ───────────────────────────────────────
     'public/assets/frontend/js/modules/index/index.js',
 ], 'public/assets/frontend/dist/js/home.js');
-
-mix.copyDirectory(
-    'public/assets/frontend/plugins/font-awesome/webfonts',
-    'public/assets/frontend/dist/webfonts'
-);
 
 mix.after(() => {
     copyFontsTreeToFlatDir(

@@ -32,6 +32,25 @@
         $listBanner[$i]->listButton[] = $btn;
     }
 
+    // Preload hero image
+    $heroPreloadDesktop = null;
+    $heroPreloadMobile = null;
+    if (!empty($listBanner)) {
+        $firstBanner = $listBanner[0];
+        $ext = strtolower(pathinfo($firstBanner->link ?? '', PATHINFO_EXTENSION));
+        $videoExts = config('backend.fileTypeVideo', ['mp4', 'webm', 'ogg', 'mov']);
+        if (!in_array($ext, $videoExts)) {
+            $heroPreloadDesktop = FeUtils::getThumbnail([
+                'link' => $firstBanner->link,
+                'w' => 1920, 'h' => 848, 'q' => 80,
+            ]);
+            $heroPreloadMobile = FeUtils::getThumbnail([
+                'link' => $firstBanner->link,
+                'w' => 800, 'h' => 600, 'q' => 75,
+            ]);
+        }
+    }
+
     $listSustainability = isset($pageConfig[PageConfigKeyConsts::HOMEPAGE_SUSTAINABILITY])
         ? $pageConfig[PageConfigKeyConsts::HOMEPAGE_SUSTAINABILITY]
         : [];
@@ -91,6 +110,16 @@
         : [];
 @endphp
 
+@if ($heroPreloadDesktop)
+@push('preload')
+    <link rel="preload" as="image"
+          href="{{ $heroPreloadDesktop }}"
+          imagesrcset="{{ $heroPreloadMobile }} 800w, {{ $heroPreloadDesktop }} 1920w"
+          imagesizes="100vw"
+          fetchpriority="high">
+@endpush
+@endif
+
 @push('styles')
     <link rel="stylesheet" href="{{ mix('assets/frontend/dist/css/home.css') }}">
 @endpush
@@ -100,7 +129,8 @@
         @include('frontend::shared.section.section-cover', [
             'class' => 'section-1',
             'list' => $listBanner,
-            'imageConfig' => ['w' => 1920, 'h' => 848],
+            'imageConfig' => ['w' => 1920, 'h' => 848, 'q' => 80],
+            'imageConfigMobile' => ['w' => 800, 'h' => 600, 'q' => 75],
             'heroEyebrow' => __('frontend::homepage.hero_eyebrow'),
             'tagHeading' => 'h1',
             'allowTitleHtml' => true,

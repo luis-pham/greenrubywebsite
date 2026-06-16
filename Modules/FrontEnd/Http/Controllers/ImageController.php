@@ -33,8 +33,7 @@ class ImageController extends Controller
                 ]);
             }
 
-            $quality = (int) env('IMAGE_PROXY_QUALITY', 100);
-            $quality = max(1, min(100, $quality));
+            $quality = max(1, min(100, (int) ($request->get('q') ?: env('IMAGE_PROXY_QUALITY', 100))));
             $outputFormat = 'webp';
             $crFlag = $crop ? 1 : 0;
             $cacheKey = sha1(

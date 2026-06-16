@@ -12,22 +12,11 @@
 @endphp
 
 @if (!in_array(pathinfo($obj->link, PATHINFO_EXTENSION), config('backend.fileTypeVideo')))
-    @php
-        $imageLinkRouteParam = ['link' => $obj->link];
-        $imageConfig = $imageConfig ?? [];
-        if (array_key_exists('w', $imageConfig)) {
-            $imageLinkRouteParam['w'] = $imageConfig['w'];
-        }
-        if (array_key_exists('h', $imageConfig)) {
-            $imageLinkRouteParam['h'] = $imageConfig['h'];
-        }
-        if (array_key_exists('cr', $imageConfig)) {
-            $imageLinkRouteParam['cr'] = $imageConfig['cr'];
-        }
-    @endphp
     @include('frontend::shared.image-wrapper', [
-        'link' => FeUtils::getThumbnail($imageLinkRouteParam),
+        'link' => $obj->link,
         'alt' => $obj->title,
+        'imageConfig' => $imageConfig ?? [],
+        'imageConfigMobile' => $imageConfigMobile ?? [],
         'fetchpriority' => $isPriorityMedia ? 'high' : null,
         'loading' => $isPriorityMedia ? 'eager' : 'lazy',
     ])

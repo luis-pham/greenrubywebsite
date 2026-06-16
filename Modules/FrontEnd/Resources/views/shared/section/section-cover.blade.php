@@ -5,6 +5,7 @@
     $heroEyebrow = $heroEyebrow ?? null;
     $allowTitleHtml = $allowTitleHtml ?? false;
     $imageConfig = $imageConfig ?? [];
+    $imageConfigMobile = $imageConfigMobile ?? [];
     $cruiseHero = $cruiseHero ?? false;
     $vesselLabel = $vesselLabel ?? '';
     $shipHeroSub = $shipHeroSub ?? '';
@@ -27,6 +28,7 @@
                                         'heroEyebrow' => $heroEyebrow,
                                         'allowTitleHtml' => $allowTitleHtml,
                                         'imageConfig' => $imageConfig,
+                                        'imageConfigMobile' => $imageConfigMobile,
                                         'cruiseHero' => $cruiseHero,
                                         'vesselLabel' => $vesselLabel,
                                         'shipHeroSub' => $shipHeroSub,
@@ -45,6 +47,7 @@
                         'heroEyebrow' => $heroEyebrow,
                         'allowTitleHtml' => $allowTitleHtml,
                         'imageConfig' => $imageConfig,
+                        'imageConfigMobile' => $imageConfigMobile,
                         'cruiseHero' => $cruiseHero,
                         'vesselLabel' => $vesselLabel,
                         'shipHeroSub' => $shipHeroSub,
