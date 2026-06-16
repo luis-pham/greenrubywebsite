@@ -63,3 +63,30 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    @php
+        use Modules\BackEnd\Helpers\Utilities;
+
+        $hubHasPart = null;
+        if (count($listItinerary) > 0) {
+            $hubHasPart = [
+                '@type' => 'ItemList',
+                'itemListElement' => collect($listItinerary)->values()->map(function ($item, $index) use ($languageCode) {
+                    return [
+                        '@type' => 'ListItem',
+                        'position' => $index + 1,
+                        'name' => $item->name,
+                        'url' => route(Utilities::getRouteName('frontend.itinerary.show'), [
+                            'languageCode' => $languageCode,
+                            'slug' => Utilities::convertToAlias($item->name),
+                            'cruise_id' => $item->cruise_id ?? 0,
+                            'itinerary_id' => $item->id,
+                        ]),
+                    ];
+                })->all(),
+            ];
+        }
+    @endphp
+    @include('frontend::shared.structured-data-webpage', ['hubHasPart' => $hubHasPart])
+@endpush

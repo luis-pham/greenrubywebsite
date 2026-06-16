@@ -85,16 +85,16 @@ class ItineraryController extends Controller
         }
 
         $config = Utilities::getAllConfig($language);
-        $canonicalUrl = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
-        $seo = FeUtils::resolveHubSeo(
+        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
+        $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::ITINERARY,
             $language,
             fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
             $config['website-description']
         );
-        FeUtils::applyHubSeoMeta($seo, $canonicalUrl, $config);
+        FeUtils::applyHubSeoMeta($hubSeo, $hubCanonicalUrl, $config);
 
-        return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'listItinerary', 'listInclusiveService', 'listFaq', 'listBanner'));
+        return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'listItinerary', 'listInclusiveService', 'listFaq', 'listBanner', 'hubSeo', 'hubCanonicalUrl'));
     }
 
     public function show(Request $request) {

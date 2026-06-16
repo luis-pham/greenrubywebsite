@@ -41,16 +41,16 @@ class ExperienceController extends Controller{
 
         $config = Utilities::getAllConfig($language);
         $menuUrlActive = route(Utilities::getRouteName('frontend.experience.index'), ['languageCode' => $languageCode]);
-        $url = route(Utilities::getRouteName('frontend.experience.index'), ['languageCode' => $languageCode]);
-        $seo = FeUtils::resolveHubSeo(
+        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.experience.index'), ['languageCode' => $languageCode]);
+        $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::EXPERIENCE,
             $language,
             fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
             $config['website-description']
         );
-        FeUtils::applyHubSeoMeta($seo, $url, $config);
+        FeUtils::applyHubSeoMeta($hubSeo, $hubCanonicalUrl, $config);
 
-        return view($this->baseView . __FUNCTION__, compact('menuUrlActive','listExperience', 'listExpFeatured', 'listGroup', 'pageConfig', 'tabButtons'));
+        return view($this->baseView . __FUNCTION__, compact('menuUrlActive','listExperience', 'listExpFeatured', 'listGroup', 'pageConfig', 'tabButtons', 'hubSeo', 'hubCanonicalUrl'));
     }
 
     public function show(Request $request){

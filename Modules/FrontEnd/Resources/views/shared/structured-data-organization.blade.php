@@ -26,10 +26,19 @@
     if ($isValid) {
         $schemaData = [
             '@context' => 'https://schema.org',
-            '@type'    => 'Organization',
+            '@type'    => 'TravelAgency',
             '@id'      => config('frontend.organizationSchemaId'),
             'name'     => $name,
             'url'      => config('frontend.organizationCanonicalUrl'),
+            'address'  => array_merge(
+                ['@type' => 'PostalAddress'],
+                config('frontend.organizationAddress')
+            ),
+            'geo' => array_merge(
+                ['@type' => 'GeoCoordinates'],
+                config('frontend.organizationGeo')
+            ),
+            'areaServed' => config('frontend.organizationAreaServed'),
         ];
 
         if (!empty($logo)) {

@@ -267,7 +267,7 @@ class ArticleController extends Controller
         \TwitterCard::setUrl($url);
         \TwitterCard::setImage($obj->image_link ? \URL::to('/') . $obj->image_link : \URL::to('/') . config('frontend.organizationLogoSocial.url'));
 
-        return view($this->baseView . __FUNCTION__, compact('pageConfig', 'title', 'config', 'menuUrlActive', 'listBreadcrumb', 'obj', 'listArticleRelated', 'category', 'categoryParent', 'listCategoryChild'));
+        return view($this->baseView . __FUNCTION__, compact('pageConfig', 'title', 'config', 'menuUrlActive', 'listBreadcrumb', 'obj', 'listArticleRelated', 'category', 'categoryParent', 'listCategoryChild', 'url'));
     }
 
     private function getBreadcrumbByCategory($listCategory, $languageCode)

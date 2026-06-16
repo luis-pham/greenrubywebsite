@@ -55,23 +55,23 @@ class GalleryController
         $config = Utilities::getAllConfig($language);
 
         if ($slug) {
-            $url = $page == 1
+            $hubCanonicalUrl = $page == 1
                 ? route(Utilities::getRouteName('frontend.gallery.category'), ['languageCode' => $languageCode, 'slug' => $slug])
                 : route(Utilities::getRouteName('frontend.gallery.category.paginate'), ['languageCode' => $languageCode, 'slug' => $slug, 'page' => $page]);
         } else {
-            $url = $page == 1
+            $hubCanonicalUrl = $page == 1
                 ? route(Utilities::getRouteName('frontend.gallery.index'), ['languageCode' => $languageCode])
                 : route(Utilities::getRouteName('frontend.gallery.index.paginate'), ['languageCode' => $languageCode, 'page' => $page]);
         }
 
-        $seo = FeUtils::resolveHubSeo(
+        $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::GALLERY,
             $language,
             fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
             $config['website-description']
         );
-        FeUtils::applyHubSeoMeta($seo, $url, $config);
+        FeUtils::applyHubSeoMeta($hubSeo, $hubCanonicalUrl, $config);
 
-        return view($this->baseView . __FUNCTION__, compact('paginated','listExperience','galleryFilters'));
+        return view($this->baseView . __FUNCTION__, compact('paginated','listExperience','galleryFilters', 'hubSeo', 'hubCanonicalUrl'));
     }
 }

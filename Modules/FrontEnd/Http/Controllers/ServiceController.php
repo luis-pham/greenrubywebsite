@@ -31,16 +31,16 @@ class ServiceController extends Controller{
         $menuUrlActive = route(Utilities::getRouteName('frontend.service.index'), ['languageCode' => $languageCode]);
 
         $config = Utilities::getAllConfig($language);
-        $url = route(Utilities::getRouteName('frontend.service.index'), ['languageCode' => $languageCode]);
-        $seo = FeUtils::resolveHubSeo(
+        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.service.index'), ['languageCode' => $languageCode]);
+        $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::SERVICE,
             $language,
             fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
             $config['website-description']
         );
-        FeUtils::applyHubSeoMeta($seo, $url, $config);
+        FeUtils::applyHubSeoMeta($hubSeo, $hubCanonicalUrl, $config);
         
-        return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'listAmenity', 'listGroup', 'pageConfig'));
+        return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'listAmenity', 'listGroup', 'pageConfig', 'hubSeo', 'hubCanonicalUrl'));
     }
     public function getById(Request $request){
         $language = FeLanguageUtils::getCurrentLanguage();

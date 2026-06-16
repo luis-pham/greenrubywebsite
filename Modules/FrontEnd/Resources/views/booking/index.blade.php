@@ -513,6 +513,7 @@
 @endsection
 
 @push('scripts')
+    @include('frontend::shared.structured-data-webpage')
     <script>
         window.bookingLabels = {!! json_encode([
             'failed_load' => __('frontend::booking.js.failed_load'),

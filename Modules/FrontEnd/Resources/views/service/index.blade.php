@@ -110,3 +110,7 @@
         ])
     </div>
 @endsection
+
+@push('scripts')
+    @include('frontend::shared.structured-data-webpage')
+@endpush

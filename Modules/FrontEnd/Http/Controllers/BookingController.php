@@ -23,14 +23,14 @@ class BookingController extends Controller
             : route('frontend.booking');
 
         $config = Utilities::getAllConfig($language);
-        $canonicalUrl = route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode]);
-        $seo = FeUtils::resolveHubSeo(
+        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode]);
+        $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::BOOKING,
             $language,
             fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
             $config['website-description']
         );
-        FeUtils::applyHubSeoMeta($seo, $canonicalUrl, $config);
+        FeUtils::applyHubSeoMeta($hubSeo, $hubCanonicalUrl, $config);
 
         $listHeroBannerImages = AppCruiseItineraryService::getHeroBannerImages($language->id, 2);
         $listBanner = [];
@@ -43,7 +43,7 @@ class BookingController extends Controller
         }
 
         $languageCode = $languageCode ?? $language->code ?? 'vi';
-        return view($this->baseView . 'index', compact('menuUrlActive', 'languageCode', 'listBanner'));
+        return view($this->baseView . 'index', compact('menuUrlActive', 'languageCode', 'listBanner', 'hubSeo', 'hubCanonicalUrl'));
     }
 }
 
