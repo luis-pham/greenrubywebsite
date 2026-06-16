@@ -49,19 +49,21 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
     Route::get('/booking', 'BookingController@index')->name('frontend.booking');
     Route::get('/{languageCode}/booking', 'BookingController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.booking'));
 
-    Route::post('/api/search-tour', 'IndexController@searchTour')->name('frontend.index.search-tour');
-    Route::post('/api/{languageCode}/search-tour', 'IndexController@searchTour')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index.search-tour'));
+    Route::middleware('api.noindex')->group(function () use ($listLanguageCode) {
+        Route::post('/api/search-tour', 'IndexController@searchTour')->name('frontend.index.search-tour');
+        Route::post('/api/{languageCode}/search-tour', 'IndexController@searchTour')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index.search-tour'));
 
-    Route::get('/api/cabins/getById', 'ApiCabinController@getById')->where('languageCode', $listLanguageCode)->name('frontend.api.cabin.getById');
-    Route::get('/api/{languageCode}/cabins/getById', 'ApiCabinController@getById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.api.cabin.getById'));
+        Route::get('/api/cabins/getById', 'ApiCabinController@getById')->where('languageCode', $listLanguageCode)->name('frontend.api.cabin.getById');
+        Route::get('/api/{languageCode}/cabins/getById', 'ApiCabinController@getById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.api.cabin.getById'));
 
-    Route::get('/api/services/getById', 'ServiceController@getById')->where('languageCode', $listLanguageCode)->name('frontend.api.service.getById');
-    Route::get('/api/{languageCode}/services/getById', 'ServiceController@getById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.api.service.getById'));
+        Route::get('/api/services/getById', 'ServiceController@getById')->where('languageCode', $listLanguageCode)->name('frontend.api.service.getById');
+        Route::get('/api/{languageCode}/services/getById', 'ServiceController@getById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.api.service.getById'));
 
-    Route::get('/api/exp-activities/getById', 'PublicDataController@expActivityGetById')->name('api.expActivity.getById');
-    Route::get('/api/{languageCode}/exp-activities/getById', 'PublicDataController@expActivityGetById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('api.expActivity.getById'));
+        Route::get('/api/exp-activities/getById', 'PublicDataController@expActivityGetById')->name('api.expActivity.getById');
+        Route::get('/api/{languageCode}/exp-activities/getById', 'PublicDataController@expActivityGetById')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('api.expActivity.getById'));
 
-    Route::post('/api/cookie/consent', 'CookieController@consent')->name('frontend.cookie.consent');
+        Route::post('/api/cookie/consent', 'CookieController@consent')->name('frontend.cookie.consent');
+    });
 
     Route::get('/itinerary','ItineraryController@index')->name('frontend.itinerary.index');
     Route::get('/{languageCode}/hanh-trinh','ItineraryController@index')->where('languageCode',$listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.itinerary.index'));

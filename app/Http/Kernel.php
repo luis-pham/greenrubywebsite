@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ApiNoIndexRobots::class,
         ],
     ];
 
@@ -81,5 +82,6 @@ class Kernel extends HttpKernel
         'can-group' => \Modules\BackEnd\Http\Middleware\CanGroup::class,
         'language.backend' => \Modules\BackEnd\Http\Middleware\Language::class,
         'language.frontend' => \Modules\FrontEnd\Http\Middleware\Language::class,
+        'api.noindex' => \App\Http\Middleware\ApiNoIndexRobots::class,
     ];
 }
