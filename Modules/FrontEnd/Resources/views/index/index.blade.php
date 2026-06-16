@@ -121,8 +121,7 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ mix('assets/frontend/dist/css/home.css') }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ mix('assets/frontend/dist/css/home.css') }}"></noscript>
+    <link rel="stylesheet" href="{{ mix('assets/frontend/dist/css/home.css') }}">
 @endpush
 
 @section('content')
