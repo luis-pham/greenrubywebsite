@@ -12,7 +12,7 @@ $url = route(
 $listBanner = [];
 $listBanner[0] = new stdClass();
 $listBanner[0]->title = $obj->name;
-$listBanner[0]->link = asset(FeUtils::getThumbnail(['link' => $obj->cover_link, 'w' => 1920, 'h' => 400]));
+$listBanner[0]->link = $obj->cover_link;
 $listBanner[0]->description = $obj->summary;
 $pageConfig = isset($pageConfig) ? $pageConfig : [];
 $readyToSailDescription = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO_SAIL_DESCRIPTION])
@@ -29,6 +29,7 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
             'class' => 'section-1 section-cover-sm',
             'list' => $listBanner,
             'tagHeading' => 'h1',
+            'imageConfig' => ['w' => 1920, 'h' => 466],
         ])
 
         <section class="section-2">
@@ -38,7 +39,6 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
                         <div class="section-content-wrapper col-12 col-lg-8">
                             <div class="section-content-wrapper-inner-1">
                                 <p class="section-eyebrow section-eyebrow--gold">{{ __('frontend::experienceDetail.section_2_title') }}</p>
-                                <p class="section-description font-heading">{{ __('frontend::experienceDetail.section_2_description') }}</p>
                                 <div class="section-content d-flex">
                                     <div class="item-duration d-flex align-items-center w-100">
                                         <i class="fas fa-clock"></i>

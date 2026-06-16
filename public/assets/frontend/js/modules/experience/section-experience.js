@@ -25,11 +25,13 @@ $(document).ready(function () {
         smartSpeed: 400,
         responsiveClass: true,
         responsive: {
-            0:    { items: 1 },
-            576:  { items: 2 },
+            0:    { items: 1, margin: 16 },
+            768:  { items: 2, margin: 24 },
             992:  { items: 3 },
             1200: { items: 4 }
-        }
+        },
+        onInitialized: fnListItemCarouselOnInit,
+        onResized: fnListItemCarouselOnInit
     };
 
     if ($carousel.length) {

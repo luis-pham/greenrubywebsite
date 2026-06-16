@@ -1681,6 +1681,21 @@ h1, h2, h3, h4, h5, h6 {
         background: transparent;
     }
 
+    /* Experiences — header trong suốt, hero ảnh kéo lên phía sau logo */
+    #header:has(+ #main #experience .section-cover) > .container-fluid {
+        background: transparent;
+    }
+
+    /* Services — header trong suốt, hero ảnh kéo lên phía sau logo */
+    #header:has(+ #main #service .section-cover) > .container-fluid {
+        background: transparent;
+    }
+
+    /* Experience detail — header trong suốt, hero ảnh kéo lên phía sau logo */
+    #header:has(+ #main #experience-detail .section-cover) > .container-fluid {
+        background: transparent;
+    }
+
     #header > .container-fluid:before {
         display: none;
     }

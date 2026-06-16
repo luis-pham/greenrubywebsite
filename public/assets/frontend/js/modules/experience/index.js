@@ -18,15 +18,17 @@ $(document).ready(function () {
                 items: 1,
                 dots: true,
                 nav: true,
+                margin: 16,
                 navText: [
                     '<div class="button"><i class="fa-solid fa-chevron-left"></i></div>',
                     '<div class="button"><i class="fa-solid fa-chevron-right"></i></div>'
                 ],
             },
-            540: {
+            768: {
                 items: 2,
                 dots: false,
                 nav: true,
+                margin: 24,
                 navText: [
                     '<div class="button"><i class="fa-solid fa-chevron-left"></i></div>',
                     '<div class="button"><i class="fa-solid fa-chevron-right"></i></div>'
@@ -38,7 +40,7 @@ $(document).ready(function () {
             },
             1400: {
                 items: 3,
-                margin:24,
+                margin: 24,
                 dots: false
             }
         },

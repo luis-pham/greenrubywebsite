@@ -26,6 +26,7 @@
             'class' => 'section-1 section-cover-sm',
             'list' => $listBanner,
             'tagHeading' => 'h1',
+            'imageConfig' => ['w' => 1920, 'h' => 466],
         ])
         <section class="section-2 bg bg-azure">
             <div class="container-fluid">

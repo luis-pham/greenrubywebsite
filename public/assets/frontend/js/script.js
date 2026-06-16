@@ -480,7 +480,11 @@ var fnListItemCarouselOnInit = function (event) {
     let isItinerarySuitesMobile = target.closest('#itinerary-detail .section-cabin').length > 0
         && target.hasClass('suites-grid')
         && $(window).width() < 1024;
-    if (isHomeCuratedJourneys || isCruiseItineraryCarousel || isHomeSuitesMobile || isCruiseSuitesMobile || isItinerarySuitesMobile) {
+    let isExperienceMobile = target.closest('#experience .section-experience').length > 0
+        && $(window).width() < 1024;
+    let isExperienceSignatureMobile = target.closest('#experience .section-2').length > 0
+        && $(window).width() < 1024;
+    if (isHomeCuratedJourneys || isCruiseItineraryCarousel || isHomeSuitesMobile || isCruiseSuitesMobile || isItinerarySuitesMobile || isExperienceMobile || isExperienceSignatureMobile) {
         fnAlignCarouselNavToImage(target);
         target.find('.owl-prev').attr('aria-label', 'Previous slide');
         target.find('.owl-next').attr('aria-label', 'Next slide');

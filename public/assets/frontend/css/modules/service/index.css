@@ -1,76 +1,140 @@
 /* ============================================================
-   SECTION 1 — Hero
+   SECTION 1 — Hero (giống trang itinerary)
 ============================================================= */
-#service .section-1.section-cover .page-cover,
-#service .section-1.section-cover .page-cover .image-wrapper {
-    height: 380px;
-}
-
-#service .section-1.section-cover .page-cover .image-wrapper:after {
-    padding-top: 0;
-    height: 380px;
-}
-
-#service .section-1.section-cover .page-cover .image-wrapper:before {
-    opacity: 1;
-    background: rgba(10, 28, 18, 0.55);
-}
-
 #service .section-1.section-cover {
     margin-bottom: 0;
 }
 
-/* Hero typography — design system tokens */
-#main #service .section-1.section-cover .page-cover .main-info .title {
-    font-family: var(--font-display);
-    font-weight: 300;
-    color: var(--color-text-on-dark);
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-}
-
-#main #service .section-1.section-cover .page-cover .main-info .description {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--color-text-on-dark);
-    letter-spacing: 0.02em;
-    line-height: 1.4375;
-}
-
-@media (max-width: 1023px) {
-    #main #service .section-1.section-cover .page-cover .main-info .title {
-        font-size: var(--text-hero-title-mobile);
-        line-height: 1.1;
-        letter-spacing: -0.01em;
-        margin-bottom: var(--space-2);
-    }
-
-    #main #service .section-1.section-cover .page-cover .main-info .description {
-        font-family: var(--font-body);
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 300;
-        color: var(--color-text-muted-on-dark);
-        line-height: 1.7;
-        margin-bottom: var(--space-5);
-    }
-}
-
 @media (min-width: 768px) {
-    #main #service .section-1.section-cover .page-cover .main-info .title {
-        font-size: 2.125rem;
+    #service .section-1.section-cover .page-cover .main-info {
+        width: 100%;
     }
+}
+
+#service .section-1.section-cover .page-cover .main-info .title,
+#service .section-1.section-cover .page-cover .main-info .description {
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+    #main #service .section-1.section-cover .page-cover .main-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    #main #service .section-1.section-cover .page-cover .main-info .title,
+    #main #service .section-1.section-cover .page-cover .main-info .description {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+#service .section-1.section-cover .page-cover .image-wrapper::before {
+    opacity: 0.5;
 }
 
 @media (min-width: 992px) {
-    #main #service .section-1.section-cover .page-cover .main-info .title {
-        font-size: 2.625rem;
+    #service .section-1.section-cover .page-cover .image-wrapper::before {
+        opacity: 0.42;
+    }
+}
+
+@media (min-width: 1920px) {
+    #service .section-1.section-cover .page-cover .image-wrapper::after {
+        padding-top: 24.271%;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1920px) {
+    #service .section-1.section-cover .page-cover .image-wrapper::after {
+        padding-top: calc(35.271% - 11% * tan(atan2(100vw - 1200px, 720px)));
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    #service .section-1.section-cover .page-cover .image-wrapper::after {
+        padding-top: calc(65% - 25% * tan(atan2(100vw - 768px, 432px)));
+    }
+}
+
+@media (max-width: 1023px) {
+    #main #service .section-1.section-cover {
+        margin-top: calc(-72px - env(safe-area-inset-top, 0px)) !important;
+        padding: 0 !important;
+        position: relative;
+        z-index: 1;
     }
 
-    #main #service .section-1.section-cover .page-cover .main-info .description {
-        font-size: var(--text-lg);
-        margin-bottom: var(--space-6);
+    #service .section-1.section-cover .page-cover {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #service .section-1.section-cover .page-cover .image-wrapper::after {
+        display: none;
+        padding-top: 0;
+    }
+
+    #service .section-1.section-cover .page-cover .image-wrapper {
+        flex-shrink: 0;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #service .section-1.section-cover .page-cover .image-wrapper img {
+        position: static !important;
+        width: 100%;
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+    }
+
+    #service .section-1.section-cover .page-cover .image-wrapper::before {
+        display: block;
+        height: 140px;
+        width: 100%;
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+    }
+
+    #service .section-1.section-cover .page-cover .container.hero-content {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        margin-top: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: var(--color-forest);
+        padding: 20px 18px 24px;
+        text-align: left;
+    }
+
+    #service .section-1.section-cover .page-cover .main-info {
+        max-width: none;
+        width: 100%;
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    #service .section-1.section-cover .page-cover .main-info .title {
+        max-width: 340px;
+        text-align: left !important;
+    }
+
+    #service .section-1.section-cover .page-cover .main-info .description {
+        max-width: 330px;
+        text-align: left !important;
     }
 }
 
