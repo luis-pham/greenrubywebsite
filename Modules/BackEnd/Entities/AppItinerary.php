@@ -8,6 +8,8 @@ class AppItinerary extends BaseModel
         'language_id',
         'name',
         'description',
+        'seo_title',
+        'seo_description',
         'duration',
         'image_link',
         'important_note',

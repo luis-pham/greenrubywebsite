@@ -190,8 +190,16 @@ class ItineraryController extends Controller
         $menuUrlActive = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
 
         $config = Utilities::getAllConfig($language);
-        $title = $obj->seo_title ? $obj->seo_title : $obj->itinerary->name;
-        $title = FeUtils::bindWebsiteTitle($title, $config['website-name']);
+        $itinerary = $obj->itinerary;
+        $seoTitle = trim((string) ($itinerary->seo_title ?? ''));
+        $title = $seoTitle !== ''
+            ? $seoTitle
+            : FeUtils::bindWebsiteTitle($itinerary->name, $config['website-name']);
+
+        $seoDescription = trim((string) ($itinerary->seo_description ?? ''));
+        $description = $seoDescription !== ''
+            ? $seoDescription
+            : strip_tags($itinerary->description ?? '');
 
         $urlParams = [
             'slug' => $obj->slug,
@@ -204,10 +212,11 @@ class ItineraryController extends Controller
         $url = route($showRouteName, $urlParams);
 
         \SEO::setTitle($title);
-        \SEO::setDescription($obj->seo_description ? $obj->seo_description : strip_tags($obj->lead));
+        \SEO::setDescription($description);
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($title);
+        \OpenGraph::setDescription($description);
         \OpenGraph::setUrl($url);
         if ($obj->image_link) {
             $image = FeUtils::getThumbnail(['link' => $obj->image_link, 'w' => 1200, 'h' => 630]);
@@ -216,7 +225,7 @@ class ItineraryController extends Controller
 
         \TwitterCard::setType('summary');
         \TwitterCard::setTitle($title);
-        \TwitterCard::setDescription($obj->seo_description ? $obj->seo_description : strip_tags($obj->lead));
+        \TwitterCard::setDescription($description);
         \TwitterCard::setUrl($url);
         \TwitterCard::setImage($obj->image_link ? \URL::to('/') . $obj->image_link : \URL::to('/') . config('frontend.organizationLogoSocial.url'));
         \SEO::setCanonical($url);
