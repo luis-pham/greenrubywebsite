@@ -41,6 +41,7 @@ class PageController extends Controller
 
         \SEO::setTitle($title);
         \SEO::setCanonical($pageUrl);
+        FeUtils::applyNoIndexFollowMeta();
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($pageTitle);
@@ -86,6 +87,7 @@ class PageController extends Controller
         \SEO::setTitle($title);
         \SEO::setDescription($metaDescription);
         \SEO::setCanonical($pageUrl);
+        FeUtils::applyNoIndexFollowMeta();
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($pageTitle);
@@ -134,6 +136,7 @@ class PageController extends Controller
 
         \SEO::setTitle($title);
         \SEO::setCanonical($pageUrl);
+        FeUtils::applyNoIndexFollowMeta();
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($pageTitle);

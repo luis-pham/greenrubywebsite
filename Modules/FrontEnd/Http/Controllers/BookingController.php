@@ -31,6 +31,7 @@ class BookingController extends Controller
             $config['website-description']
         );
         FeUtils::applyHubSeoMeta($hubSeo, $hubCanonicalUrl, $config);
+        FeUtils::applyNoIndexFollowMeta();
 
         $listHeroBannerImages = AppCruiseItineraryService::getHeroBannerImages($language->id, 2);
         $listBanner = [];

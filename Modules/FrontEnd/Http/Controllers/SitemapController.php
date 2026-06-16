@@ -100,7 +100,6 @@ class SitemapController extends Controller
         $cruise = AppCruiseService::getLatestUpdate([]);
         $gallery = GalleryService::getGalleryUpdatedAt([]);
         $faq = AppFaqService::getLatestUpdate([]);
-        $legal = PageService::getLegalUpdatedAt([]);
         $about = PageService::getAboutUpdatedAt([]);
         $contact = PageService::getContactUpdatedAt([]);
         $entries = [];
@@ -135,18 +134,6 @@ class SitemapController extends Controller
             $lastmod = Carbon::parse($faq->updated_at ?: $faq->created_at)->format('Y-m-d\TH:i:sP');
             $entries = array_merge($entries, $this->buildHubEntries('frontend.faq.index', $lastmod));
         }
-        if ($legal) {
-            $lastmod = Carbon::parse($legal)->format('Y-m-d\TH:i:sP');
-            $entries = array_merge($entries, $this->buildHubEntries('frontend.page.legal', $lastmod));
-            foreach ([
-                'frontend.page.safety-policies',
-                'frontend.page.terms-and-conditions',
-                'frontend.page.privacy-policy',
-                'frontend.page.payment-methods',
-            ] as $routeName) {
-                $entries = array_merge($entries, $this->buildHubEntries($routeName, $lastmod));
-            }
-        }
         if ($about) {
             $lastmod = Carbon::parse($about)->format('Y-m-d\TH:i:sP');
             $entries = array_merge($entries, $this->buildHubEntries('frontend.about.index', $lastmod));
@@ -155,8 +142,6 @@ class SitemapController extends Controller
             $lastmod = Carbon::parse($contact)->format('Y-m-d\TH:i:sP');
             $entries = array_merge($entries, $this->buildHubEntries('frontend.contact.index', $lastmod));
         }
-
-        $entries = array_merge($entries, $this->buildHubEntries('frontend.booking', $homepageLastmod));
 
         return response()->view($this->baseView . __FUNCTION__, [
             'entries' => $entries,

@@ -71,6 +71,7 @@ class Handler extends ExceptionHandler
             if (\Str::of($currentUrl)->startsWith($baseUrlBackEnd)) {
                 return response()->view('backend::error', compact('statusCode'), $statusCode);
             } else {
+                \Modules\FrontEnd\Helpers\FeUtils::applyNoIndexFollowMeta();
                 return response()->view('frontend::error', compact('statusCode'), $statusCode);
             }
         } elseif ($exception instanceof \PDOException && !config('app.debug')) {

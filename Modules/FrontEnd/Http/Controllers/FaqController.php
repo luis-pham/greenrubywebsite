@@ -54,8 +54,8 @@ class FaqController extends Controller
         $menuUrlActive = route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]);
 
         $url = $page == 1
-            ? route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode])
-            : route(Utilities::getRouteName('frontend.faq.index.paginate'), ['languageCode' => $languageCode, 'page' => $page]);
+            ? FeUtils::frontendRoute('frontend.faq.index', [], $languageCode)
+            : FeUtils::frontendRoute('frontend.faq.index.paginate', ['page' => $page], $languageCode);
 
         \SEO::setTitle($title);
         \SEO::setCanonical($url);
@@ -125,8 +125,8 @@ class FaqController extends Controller
         $menuUrlActive = route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]);
 
         $url = $page == 1
-            ? route(Utilities::getRouteName('frontend.faq.category'), ['languageCode' => $languageCode, 'slug' => $group->slug])
-            : route(Utilities::getRouteName('frontend.faq.category.paginate'), ['languageCode' => $languageCode, 'slug' => $group->slug, 'page' => $page]);
+            ? FeUtils::frontendRoute('frontend.faq.category', ['slug' => $group->slug], $languageCode)
+            : FeUtils::frontendRoute('frontend.faq.category.paginate', ['slug' => $group->slug, 'page' => $page], $languageCode);
 
         \SEO::setTitle($title);
         \SEO::setCanonical($url);

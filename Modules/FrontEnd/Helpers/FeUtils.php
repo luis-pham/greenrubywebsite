@@ -439,6 +439,11 @@ class FeUtils
         ];
     }
 
+    public static function applyNoIndexFollowMeta(): void
+    {
+        \SEO::metatags()->setRobots('noindex, follow');
+    }
+
     public static function applyHubSeoMeta(array $seo, string $canonicalUrl, array $config, ?string $imageUrl = null): void
     {
         $imageUrl = $imageUrl ?: \URL::to('/') . config('frontend.organizationLogoSocial.url');
