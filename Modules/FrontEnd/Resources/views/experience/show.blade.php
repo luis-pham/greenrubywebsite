@@ -246,33 +246,6 @@ $readyToSailContent = isset($pageConfig[PageConfigKeyConsts::EXPERIENCE_READY_TO
 @endsection
 
 @push('scripts')
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "{!! html_entity_decode($obj->name, ENT_QUOTES, 'UTF-8') !!}",
-        "description": "{!! html_entity_decode($obj->summary, ENT_QUOTES, 'UTF-8') !!}",
-        "startDate": "{{ date('Y-m-d\TH:i:s', strtotime($obj->start_time)) }}",
-        "endDate": "{{ date('Y-m-d\TH:i:s', strtotime($obj->end_time)) }}",
-        "image": "{{ asset(FeUtils::getImageLink($obj->cover_link)) }}",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "location": {
-            "@type": "Place",
-            "name": "Ha Long Bay",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Quang Ninh",
-                "addressCountry": "VN"
-            }
-        },
-        "organizer": {
-            "@type": "Organization",
-            "name": "Green Ruby",
-            "url": "{{ url('/') }}"
-        }
-        
-    }
-    </script>
     <script>
         $('.btn-coming-soon').on('click', function () {
             $('#quoteSuccessModal').modal('show');
