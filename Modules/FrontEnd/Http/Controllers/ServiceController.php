@@ -31,7 +31,7 @@ class ServiceController extends Controller{
         $menuUrlActive = route(Utilities::getRouteName('frontend.service.index'), ['languageCode' => $languageCode]);
 
         $config = Utilities::getAllConfig($language);
-        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.service.index'), ['languageCode' => $languageCode]);
+        $hubCanonicalUrl = FeUtils::frontendRoute('frontend.service.index', [], $languageCode);
         $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::SERVICE,
             $language,

@@ -25,9 +25,12 @@ class FeArticleUtils
         }
 
         if (!$categorySlug) {
-            return route(Utilities::getRouteName('frontend.article.index'), array_filter([
-                'languageCode' => $languageCode,
-            ]));
+            $routeName = $languageCode
+                ? Utilities::bindRouteNameMultiLanguage('frontend.article.index')
+                : 'frontend.article.index';
+            $params = $languageCode ? ['languageCode' => $languageCode] : [];
+
+            return route($routeName, $params);
         }
 
         $params = [
@@ -39,7 +42,11 @@ class FeArticleUtils
             $params['languageCode'] = $languageCode;
         }
 
-        return route(Utilities::getRouteName('frontend.article.show'), $params);
+        $routeName = $languageCode
+            ? Utilities::bindRouteNameMultiLanguage('frontend.article.show')
+            : 'frontend.article.show';
+
+        return route($routeName, $params);
     }
 
     public static function resolveLegacyUrl(string $legacySlug, $id, ?string $languageCode = null): ?string

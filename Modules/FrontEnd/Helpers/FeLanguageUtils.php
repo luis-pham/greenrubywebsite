@@ -25,4 +25,26 @@ class FeLanguageUtils
     {
         Session::forget('frontend-language');
     }
+
+    public static function getRouteLanguageCode(): ?string
+    {
+        $languageCode = \Route::current()?->parameter('languageCode');
+        if ($languageCode) {
+            return $languageCode;
+        }
+
+        $language = self::getCurrentLanguage();
+        if ($language && !$language->is_default) {
+            return $language->code;
+        }
+
+        return null;
+    }
+
+    public static function getRouteLanguageParams(): array
+    {
+        $languageCode = self::getRouteLanguageCode();
+
+        return $languageCode ? ['languageCode' => $languageCode] : [];
+    }
 }

@@ -11,7 +11,7 @@ return [
     'section_5_title' => 'Our Positive Impact',
     'section_5_description' => 'Measurable results from our sustainability initiatives',
     'section_6_title' => 'Recognition & Partnerships',
-    'section_6_description' => 'Proud to be recognized for sustainable hospitality in Ha Long Bay',
+    'section_6_description' => 'Working toward recognised sustainability standards on Ha Long and Lan Ha Bay',
     'button_see_itineraries' => 'See Itineraries',
     'button_contact_us' => 'Contact Us',
     'ready_to_sail_content' => 'Explore our itineraries and be part of the change. Experience eco-luxury that protects Ha Long Bay for generations to come.',
@@ -27,7 +27,7 @@ return [
     'cert_title_html' => 'Verified <em>Standards</em>',
     'cert_sub' => 'Credentials you can trust — not claims we invented.',
     'cert_green_globe' => 'Green Globe · In Progress',
-    'cert_eu_green' => 'EU Green Claims · Compliant',
-    'cert_gstc' => 'GSTC · Recognised Standard',
+    'cert_eu_green' => 'EU Green Claims · Framework aligned',
+    'cert_gstc' => 'GSTC · Criteria aligned',
     'cta_title_html' => 'Be Part of <em>the Change.</em>',
 ];

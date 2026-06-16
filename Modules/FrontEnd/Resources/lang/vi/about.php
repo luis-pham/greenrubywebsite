@@ -10,7 +10,7 @@ return [
     'section_5_title' => 'Tác động tích cực của chúng tôi',
     'section_5_description' => 'Những kết quả đo lường được từ các sáng kiến phát triển bền vững',
     'section_6_title' => 'Chứng nhận & Đối tác',
-    'section_6_description' => 'Tự hào được công nhận về dịch vụ khách sạn bền vững tại Vịnh Hạ Long',
+    'section_6_description' => 'Hướng tới các tiêu chuẩn bền vững được công nhận tại Vịnh Hạ Long và Lan Hạ',
     'button_see_itineraries' => 'Xem các hành trình',
     'button_contact_us' => 'Liên hệ với chúng tôi',
     'ready_to_sail_content' => 'Khám phá hành trình và cùng chúng tôi lan tỏa thay đổi. Trải nghiệm du thuyền sang trọng bền vững, gìn giữ vẻ đẹp Vịnh Hạ Long.',
@@ -26,7 +26,7 @@ return [
     'cert_title_html' => 'Tiêu Chuẩn <em>Đã Xác Minh</em>',
     'cert_sub' => 'Chứng nhận bạn có thể tin — không phải lời khoe chưa kiểm chứng.',
     'cert_green_globe' => 'Green Globe · Đang tiến hành',
-    'cert_eu_green' => 'EU Green Claims · Tuân thủ',
-    'cert_gstc' => 'GSTC · Tiêu chuẩn được công nhận',
+    'cert_eu_green' => 'EU Green Claims · Theo khung tiêu chuẩn',
+    'cert_gstc' => 'GSTC · Theo bộ tiêu chí',
     'cta_title_html' => 'Hãy Là Một Phần <em>Của Sự Thay Đổi.</em>',
 ];

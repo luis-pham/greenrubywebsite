@@ -1,7 +1,7 @@
 @extends('frontend::layouts.master')
 
 @php
-    $languageCode = Route::current()->parameter('languageCode');
+    $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
 
     $safetyPoliciesContent = isset($pageConfig[PageConfigKeyConsts::LEGAL_SAFETY_POLICIES_CONTENT])
         ? $pageConfig[PageConfigKeyConsts::LEGAL_SAFETY_POLICIES_CONTENT]

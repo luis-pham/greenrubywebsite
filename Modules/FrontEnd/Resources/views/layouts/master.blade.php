@@ -1,6 +1,7 @@
 @php
     $config = isset($config) ? $config : [];
-    $languageCode = Route::current()->parameter('languageCode');
+    $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
+    $routeLanguageParams = $languageCode ? ['languageCode' => $languageCode] : [];
 @endphp
 
 <!DOCTYPE html>
@@ -59,13 +60,13 @@
             functionUnderDevelopment: '{{ __('frontend::common.function_under_development') }}'
         };
         let apiHomepage = {
-            searchTour: '{{ route(Utilities::getRouteName('frontend.index.search-tour'), ['languageCode' => $languageCode]) }}'
+            searchTour: '{{ route(Utilities::getRouteName('frontend.index.search-tour'), $routeLanguageParams) }}'
         };
         let apiCabin = {
-            getById: '{{ route(Utilities::getRouteName('frontend.api.cabin.getById'), ['languageCode' => $languageCode]) }}'
+            getById: '{{ route(Utilities::getRouteName('frontend.api.cabin.getById'), $routeLanguageParams) }}'
         };
         let apiService = {
-            getById: '{{ route(Utilities::getRouteName('frontend.api.service.getById'), ['languageCode' => $languageCode]) }}',
+            getById: '{{ route(Utilities::getRouteName('frontend.api.service.getById'), $routeLanguageParams) }}',
             priceFormat: '{!! addslashes(sprintf(__('frontend::service.price_per_guest'), '__PRICE__')) !!}'
         };
         let apiCookie = {

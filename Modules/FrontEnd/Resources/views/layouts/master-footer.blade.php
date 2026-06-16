@@ -1,5 +1,5 @@
 @php
-    $languageCode = Route::current()->parameter('languageCode');
+    $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
     $indexUrl = route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]);
     $legalUrl = route(Utilities::getRouteName('frontend.page.legal'), ['languageCode' => $languageCode]);
     $privacyPolicyUrl = route(Utilities::getRouteName('frontend.page.privacy-policy'), ['languageCode' => $languageCode]);

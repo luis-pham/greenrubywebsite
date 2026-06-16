@@ -1,5 +1,5 @@
 @php
-    $languageCode = Route::current()->parameter('languageCode');
+    $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
     $headerLogo = !empty($config['website-logo-negative'])
         ? $config['website-logo-negative']
         : ($config['website-logo'] ?? null);

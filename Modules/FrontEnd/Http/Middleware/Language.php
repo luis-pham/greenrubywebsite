@@ -14,7 +14,8 @@ class Language
     {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $currentLanguage = FeLanguageUtils::getCurrentLanguage();
-        $routeName = $request->route()->getName();
+        $route = $request->route();
+        $routeName = $route ? $route->getName() : null;
         if ($routeName == 'frontend.index' && $currentLanguage == null) {
             $languageCode = $this->getPreferredLanguage();
             $currentLanguage = AdLanguageService::findByCode($languageCode);
@@ -47,10 +48,15 @@ class Language
 
         if (!$currentLanguage || $currentLanguage->code != $languageCode) {
             $language = AdLanguageService::findByCode($languageCode);
+            if (!$language) {
+                $language = $defaultLanguage;
+            }
             FeLanguageUtils::setCurrentLanguage($language);
             $currentLanguage = $language;
         }
-        App::setLocale($currentLanguage->code);
+        if ($currentLanguage) {
+            App::setLocale($currentLanguage->code);
+        }
 
         return $next($request);
     }

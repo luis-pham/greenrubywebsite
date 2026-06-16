@@ -33,12 +33,20 @@ class FrontEndServiceProvider extends ServiceProvider
         \View::composer(['frontend::layouts.master'], function ($view) {
             $listLanguage = AdLanguageService::getAll();
             $currentLanguage = FeLanguageUtils::getCurrentLanguage();
+            if (!$currentLanguage) {
+                $currentLanguage = AdLanguageService::getDefaultLanguage();
+                if ($currentLanguage) {
+                    FeLanguageUtils::setCurrentLanguage($currentLanguage);
+                }
+            }
             $view->with('listLanguage', $listLanguage);
             $view->with('currentLanguage', $currentLanguage);
 
             $config = [];
             try {
-                $config = Utilities::getAllConfig($currentLanguage);
+                if ($currentLanguage) {
+                    $config = Utilities::getAllConfig($currentLanguage);
+                }
                 $view->with('config', $config);
             } catch (\Exception $e) {
 
@@ -176,8 +184,22 @@ class FrontEndServiceProvider extends ServiceProvider
     private function getMenu($code)
     {
         $language = FeLanguageUtils::getCurrentLanguage();
+        if (!$language) {
+            $language = AdLanguageService::getDefaultLanguage();
+        }
+        if (!$language) {
+            return [];
+        }
+
         $obj = AppMenuFrontEndService::getByCode($code, $language->id);
+        if (!$obj || !$obj->menu) {
+            return [];
+        }
+
         $data = json_decode($obj->menu);
+        if (!is_array($data)) {
+            return [];
+        }
         $data = $this->processMenu($data, $language);
         $data = $this->bindMenuDeep($data);
         $data = $this->bindMenu($data);

@@ -23,7 +23,7 @@ class BookingController extends Controller
             : route('frontend.booking');
 
         $config = Utilities::getAllConfig($language);
-        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode]);
+        $hubCanonicalUrl = FeUtils::frontendRoute('frontend.booking', [], $languageCode);
         $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::BOOKING,
             $language,

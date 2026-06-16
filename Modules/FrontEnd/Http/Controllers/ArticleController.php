@@ -70,8 +70,8 @@ class ArticleController extends Controller
         $menuUrlActive = route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode]);
 
         $url = $page == 1
-            ? route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode])
-            : route(Utilities::getRouteName('frontend.article.index.paginate'), ['languageCode' => $languageCode, 'page' => $page]);
+            ? FeUtils::frontendRoute('frontend.article.index', [], $languageCode)
+            : FeUtils::frontendRoute('frontend.article.index.paginate', ['page' => $page], $languageCode);
 
         FeUtils::applyHubSeoMeta($seo, $url, $config);
 

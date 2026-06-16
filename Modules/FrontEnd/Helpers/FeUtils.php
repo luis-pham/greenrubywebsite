@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Modules\BackEnd\Constants\PageConfigConsts;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AdConfigService;
+use Modules\BackEnd\Services\AdLanguageService;
 use Modules\BackEnd\Services\AppSeoKeywordService;
 use Modules\BackEnd\Services\SourceDataService;
 use Modules\BackEnd\Services\AppPageService;
@@ -562,8 +563,11 @@ class FeUtils
 
     public static function getUrlMultiLanguage($language)
     {
-        $routeName = \Request::route()->getName();
-        $routeName = preg_replace('/\|' . Utilities::$routeNameMultiLangaugeSurfix . '$/', '', $routeName);
+        $route = \Request::route();
+        $routeName = $route ? $route->getName() : null;
+        $routeName = $routeName
+            ? preg_replace('/\|' . Utilities::$routeNameMultiLangaugeSurfix . '$/', '', $routeName)
+            : 'frontend.index';
 
         $listRouteName = [
             'frontend.index',
@@ -662,5 +666,43 @@ class FeUtils
         }
 
         return $result;
+    }
+
+    public static function frontendRouteParams(?string $languageCode = null, array $params = []): array
+    {
+        $language = null;
+        if ($languageCode) {
+            $language = AdLanguageService::findByCode($languageCode);
+        }
+        if (!$language) {
+            $language = FeLanguageUtils::getCurrentLanguage() ?: AdLanguageService::getDefaultLanguage();
+        }
+
+        if ($language && !$language->is_default) {
+            $params['languageCode'] = $language->code;
+        } else {
+            unset($params['languageCode']);
+        }
+
+        return $params;
+    }
+
+    public static function frontendRoute(string $baseRouteName, array $params = [], ?string $languageCode = null): string
+    {
+        $language = null;
+        if ($languageCode) {
+            $language = AdLanguageService::findByCode($languageCode);
+        }
+        if (!$language) {
+            $language = FeLanguageUtils::getCurrentLanguage() ?: AdLanguageService::getDefaultLanguage();
+        }
+
+        $routeName = ($language && !$language->is_default)
+            ? Utilities::bindRouteNameMultiLanguage($baseRouteName)
+            : $baseRouteName;
+
+        $resolvedCode = ($language && !$language->is_default) ? $language->code : null;
+
+        return route($routeName, self::frontendRouteParams($resolvedCode, $params));
     }
 }

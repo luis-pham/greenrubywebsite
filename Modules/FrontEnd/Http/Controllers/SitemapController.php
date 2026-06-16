@@ -11,6 +11,7 @@ use Modules\BackEnd\Services\AppServiceService;
 use Modules\BackEnd\Services\AppItineraryService;
 use Modules\BackEnd\Services\AppGroupService;
 use Modules\FrontEnd\Helpers\FeArticleUtils;
+use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppArticleService;
 use Modules\FrontEnd\Services\AppCategoryService;
 use Modules\FrontEnd\Services\AppFaqService;
@@ -106,63 +107,83 @@ class SitemapController extends Controller
         $homepageLastmod = $cruise
             ? Carbon::parse($cruise->updated_at ?: $cruise->created_at)->format('Y-m-d\TH:i:sP')
             : Carbon::now()->format('Y-m-d\TH:i:sP');
-        $pages[] = [
-            'loc' => route('frontend.index'),
-            'lastmod' => $homepageLastmod,
-        ];
+
+        foreach ($this->localizedHubUrls('frontend.index') as $entry) {
+            $pages[] = [
+                'loc' => $entry['loc'],
+                'lastmod' => $homepageLastmod,
+            ];
+        }
 
         if ($article) {
-            $pages[] = [
-                'loc' => route('frontend.article.index'),
-                'lastmod' => Carbon::parse($article->updated_at ?: $article->created_at)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($article->updated_at ?: $article->created_at)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.article.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($experience) {
-            $pages[] = [
-                'loc' => route('frontend.experience.index'),
-                'lastmod' => Carbon::parse($experience->updated_at ?: $experience->created_at)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($experience->updated_at ?: $experience->created_at)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.experience.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($service) {
-            $pages[] = [
-                'loc' => route('frontend.service.index'),
-                'lastmod' => Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.service.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($itinerary) {
-            $pages[] = [
-                'loc' => route('frontend.itinerary.index'),
-                'lastmod' => Carbon::parse($itinerary->updated_at ?: $itinerary->created_at)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($itinerary->updated_at ?: $itinerary->created_at)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.itinerary.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($gallery) {
-            $pages[] = [
-                'loc' => route('frontend.gallery.index'),
-                'lastmod' => Carbon::parse($gallery)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($gallery)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.gallery.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($faq) {
-            $pages[] = [
-                'loc' => route('frontend.faq.index'),
-                'lastmod' => Carbon::parse($faq->updated_at ?: $faq->created_at)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($faq->updated_at ?: $faq->created_at)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.faq.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($legal) {
-            $pages[] = [
-                'loc' => route('frontend.page.legal'),
-                'lastmod' => Carbon::parse($legal)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($legal)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.page.legal') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
+            foreach ([
+                'frontend.page.safety-policies',
+                'frontend.page.terms-and-conditions',
+                'frontend.page.privacy-policy',
+                'frontend.page.payment-methods',
+            ] as $routeName) {
+                foreach ($this->localizedHubUrls($routeName) as $entry) {
+                    $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+                }
+            }
         }
         if ($about) {
-            $pages[] = [
-                'loc' => route('frontend.about.index'),
-                'lastmod' => Carbon::parse($about)->format('Y-m-d\TH:i:sP'),
-            ];
+            $lastmod = Carbon::parse($about)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.about.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
         }
         if ($contact) {
+            $lastmod = Carbon::parse($contact)->format('Y-m-d\TH:i:sP');
+            foreach ($this->localizedHubUrls('frontend.contact.index') as $entry) {
+                $pages[] = ['loc' => $entry['loc'], 'lastmod' => $lastmod];
+            }
+        }
+
+        foreach ($this->localizedHubUrls('frontend.booking') as $entry) {
             $pages[] = [
-                'loc' => route('frontend.contact.index'),
-                'lastmod' => Carbon::parse($contact)->format('Y-m-d\TH:i:sP'),
+                'loc' => $entry['loc'],
+                'lastmod' => $homepageLastmod,
             ];
         }
 
@@ -177,15 +198,21 @@ class SitemapController extends Controller
         $listLanguage = $this->getAllLanguage();
         
         $list = AppArticleService::getPaging(['is_disabled_paginate' => true]);
+        $published = [];
         for ($i = 0; $i < count($list); $i++) {
             $languageCode = $defaultLanguage->id == $list[$i]->language_id
                 ? null
-                : $listLanguage[$list[$i]->language_id];
-            $list[$i]->url = FeArticleUtils::getShowUrl($list[$i], $languageCode);
+                : ($listLanguage[$list[$i]->language_id] ?? null);
+            try {
+                $list[$i]->url = FeArticleUtils::getShowUrl($list[$i], $languageCode);
+                $published[] = $list[$i];
+            } catch (\Throwable) {
+                continue;
+            }
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'list' => $list,
+            'list' => $published,
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -351,6 +378,24 @@ class SitemapController extends Controller
     }
 
     
+    private function localizedHubUrls(string $baseRouteName, array $params = []): array
+    {
+        $entries = [];
+
+        foreach (AdLanguageService::getAll() as $language) {
+            try {
+                $entries[] = [
+                    'loc' => FeUtils::frontendRoute($baseRouteName, $params, $language->code),
+                    'lang' => $language->code,
+                ];
+            } catch (\Throwable) {
+                continue;
+            }
+        }
+
+        return $entries;
+    }
+
     private function getAllLanguage()
     {
         return AdLanguageService::getAll()->pluck('code', 'id');

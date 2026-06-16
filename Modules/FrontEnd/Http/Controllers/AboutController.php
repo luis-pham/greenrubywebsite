@@ -24,7 +24,7 @@ class AboutController extends Controller
         $listStoryImages = AppCruiseItineraryService::getHeroBannerImages($language->id, 2);
         $listExpFeatured = AppExpActivityService::getExpActivityFeatured($language->id);
         $config = Utilities::getAllConfig($language);
-        $url = route(Utilities::getRouteName('frontend.about.index'), ['languageCode' => $languageCode]);
+        $url = FeUtils::frontendRoute('frontend.about.index', [], $languageCode);
         $seo = FeUtils::resolveHubSeo(
             PageCodeConsts::ABOUT,
             $language,

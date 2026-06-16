@@ -20,7 +20,7 @@ class ContactController
         $languageCode = $request->route('languageCode');
 
         $config = Utilities::getAllConfig($language);
-        $canonicalUrl = route(Utilities::getRouteName('frontend.contact.index'), ['languageCode' => $languageCode]);
+        $canonicalUrl = FeUtils::frontendRoute('frontend.contact.index', [], $languageCode);
         $seo = FeUtils::resolveHubSeo(
             PageCodeConsts::CONTACT,
             $language,

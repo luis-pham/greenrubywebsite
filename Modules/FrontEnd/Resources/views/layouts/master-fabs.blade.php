@@ -1,5 +1,5 @@
 @php
-    $languageCode = Route::current()->parameter('languageCode');
+    $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
 @endphp
 <div id="fabs">
     <div class="list-btn">

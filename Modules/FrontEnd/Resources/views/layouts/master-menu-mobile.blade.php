@@ -1,5 +1,5 @@
 @php
-    $languageCode = Route::current()->parameter('languageCode');
+    $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
 @endphp
 <div id="menu-mobile" class="d-md-none">
     <div class="overlay"></div>

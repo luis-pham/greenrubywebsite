@@ -133,7 +133,7 @@ class IndexController extends Controller
         $cruiseLatest = FeAppCruiseService::getLatest($language->id);
 
         $config = Utilities::getAllConfig($language);
-        $canonicalUrl = route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]);
+        $canonicalUrl = FeUtils::frontendRoute('frontend.index', [], $languageCode);
         $seo = FeUtils::resolveHubSeo(
             PageCodeConsts::HOMEPAGE,
             $language,

@@ -627,7 +627,7 @@ class Utilities
 
     public static function getRouteName($routeName)
     {
-        $languageCode = Route::current()->parameter('languageCode');
+        $languageCode = Route::current()?->parameter('languageCode');
         return $languageCode ? $routeName . '|' . self::$routeNameMultiLangaugeSurfix : $routeName;
     }
 

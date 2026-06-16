@@ -34,6 +34,15 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
     $listLanguage = AdLanguageService::getAll();
     $listLanguageCode = implode('|', $listLanguage->where('is_default', false)->pluck('code')->toArray());
 
+    $defaultLanguage = AdLanguageService::getDefaultLanguage();
+    if ($defaultLanguage) {
+        $defaultCode = $defaultLanguage->code;
+        Route::redirect('/' . $defaultCode, '/', 301);
+        Route::get('/' . $defaultCode . '/{path}', function (string $path) {
+            return redirect('/' . $path, 301);
+        })->where('path', '.*');
+    }
+
     Route::get('', 'IndexController@index')->name('frontend.index');
     Route::get('/{languageCode}', 'IndexController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index'));
 

@@ -41,7 +41,7 @@ class ExperienceController extends Controller{
 
         $config = Utilities::getAllConfig($language);
         $menuUrlActive = route(Utilities::getRouteName('frontend.experience.index'), ['languageCode' => $languageCode]);
-        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.experience.index'), ['languageCode' => $languageCode]);
+        $hubCanonicalUrl = FeUtils::frontendRoute('frontend.experience.index', [], $languageCode);
         $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::EXPERIENCE,
             $language,

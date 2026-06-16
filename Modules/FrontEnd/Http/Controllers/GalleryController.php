@@ -56,12 +56,12 @@ class GalleryController
 
         if ($slug) {
             $hubCanonicalUrl = $page == 1
-                ? route(Utilities::getRouteName('frontend.gallery.category'), ['languageCode' => $languageCode, 'slug' => $slug])
-                : route(Utilities::getRouteName('frontend.gallery.category.paginate'), ['languageCode' => $languageCode, 'slug' => $slug, 'page' => $page]);
+                ? FeUtils::frontendRoute('frontend.gallery.category', ['slug' => $slug], $languageCode)
+                : FeUtils::frontendRoute('frontend.gallery.category.paginate', ['slug' => $slug, 'page' => $page], $languageCode);
         } else {
             $hubCanonicalUrl = $page == 1
-                ? route(Utilities::getRouteName('frontend.gallery.index'), ['languageCode' => $languageCode])
-                : route(Utilities::getRouteName('frontend.gallery.index.paginate'), ['languageCode' => $languageCode, 'page' => $page]);
+                ? FeUtils::frontendRoute('frontend.gallery.index', [], $languageCode)
+                : FeUtils::frontendRoute('frontend.gallery.index.paginate', ['page' => $page], $languageCode);
         }
 
         $hubSeo = FeUtils::resolveHubSeo(

@@ -85,7 +85,7 @@ class ItineraryController extends Controller
         }
 
         $config = Utilities::getAllConfig($language);
-        $hubCanonicalUrl = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
+        $hubCanonicalUrl = FeUtils::frontendRoute('frontend.itinerary.index', [], $languageCode);
         $hubSeo = FeUtils::resolveHubSeo(
             PageCodeConsts::ITINERARY,
             $language,

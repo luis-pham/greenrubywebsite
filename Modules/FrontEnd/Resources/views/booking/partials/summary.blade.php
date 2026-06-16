@@ -4,32 +4,6 @@
         <b class="summary-tagline">{{ __('frontend::booking.summary_tagline') }}</b>
         <h3 class="summary-heading">{{ __('frontend::booking.summary_heading') }}</h3>
     </div>
-    <div class="summary-rating-row">
-        <div class="star-parent">
-            <div class="star">
-                <div class="icon-glyph-base"></div>
-            </div>
-            <div class="star2">
-                <div class="icon-glyph-base"></div>
-            </div>
-            <div classstar3>
-                <div class="icon-glyph-base"></div>
-            </div>
-            <div class="star4">
-                <div class="icon-glyph-base"></div>
-            </div>
-            <div class="star5">
-                <div class="icon-glyph-base"></div>
-            </div>
-        </div>
-        <div class="reviews">
-            <b>
-                <span>4.9</span>
-                <span class="rating-gap"> </span>
-            </b>
-            <span class="rating-reviews-text">{{ __('frontend::booking.summary_reviews') }}</span>
-        </div>
-    </div>
     <div class="summary-voyage-card-wrap">
         <div class="summary-voyage-card">
             <img

@@ -21,7 +21,7 @@ class PageController extends Controller
 
         $pageConfig = FeUtils::getPageConfigByCode(PageCodeConsts::LEGAL, $language->id);
         $pageTitle = __('frontend::page.page_legal_title');
-        $pageUrl = route(Utilities::getRouteName('frontend.page.legal'), ['languageCode' => $languageCode]);
+        $pageUrl = FeUtils::frontendRoute('frontend.page.legal', [], $languageCode);
         
         $listArticlePopular = [];
         $pageArticle = AppPageService::getByCode(PageCodeConsts::ARTICLE, $language->id);
@@ -71,7 +71,7 @@ class PageController extends Controller
         $languageCode = $request->route('languageCode');
 
         $pageTitle = 'Privacy Policy';
-        $pageUrl = route(Utilities::getRouteName('frontend.page.privacy-policy'), ['languageCode' => $languageCode]);
+        $pageUrl = FeUtils::frontendRoute('frontend.page.privacy-policy', [], $languageCode);
 
         $lastBreadcrumb[] = [
             'name' => $pageTitle,
@@ -114,7 +114,7 @@ class PageController extends Controller
         $pageConfig = FeUtils::getPageConfigByCode($pageCode, $language->id);
 
         $pageContent = isset($pageConfig[$pageConfigKeyContent]) ? $pageConfig[$pageConfigKeyContent] : '';
-        $pageUrl = route(Utilities::getRouteName($routeName), ['languageCode' => $languageCode]);
+        $pageUrl = FeUtils::frontendRoute($routeName, [], $languageCode);
         
         $listArticlePopular = [];
         $pageArticle = AppPageService::getByCode(PageCodeConsts::ARTICLE, $language->id);
