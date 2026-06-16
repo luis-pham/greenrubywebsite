@@ -130,7 +130,7 @@
             'class' => 'section-1',
             'list' => $listBanner,
             'imageConfig' => ['w' => 1920, 'h' => 848, 'q' => 80],
-            'imageConfigMobile' => ['w' => 800, 'h' => 600, 'q' => 75],
+            'imageConfigMobile' => ['w' => 420, 'h' => 309, 'q' => 75],
             'heroEyebrow' => __('frontend::homepage.hero_eyebrow'),
             'tagHeading' => 'h1',
             'allowTitleHtml' => true,

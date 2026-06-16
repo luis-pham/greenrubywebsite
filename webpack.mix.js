@@ -52,6 +52,7 @@ mix.options({
 
 mix.styles([
     // ── Fonts ──────────────────────────────────────
+    'public/assets/frontend/css/fonts.css',
     'public/assets/frontend/fonts/VideoJS/style.css',
 
     // ── Plugins (global) ──────────────────────────────────────
@@ -155,6 +156,9 @@ mix.scripts([
 ], 'public/assets/frontend/dist/js/app.js');
 
 mix.styles([
+    // ── Fonts ──────────────────────────────────────
+    'public/assets/frontend/css/fonts.css',
+
     // ── Plugins (global) ──────────────────────────────────────
     'public/assets/frontend/plugins/bootstrap/css/bootstrap.min.css',
     'public/assets/frontend/plugins/owl-carousel/css/owl.carousel.min.css',
