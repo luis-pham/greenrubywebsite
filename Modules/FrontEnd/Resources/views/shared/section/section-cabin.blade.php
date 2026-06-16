@@ -198,7 +198,6 @@ $itineraryId = $itineraryId ?? null;
                                         </div>
                                     </div>
                                     <div class="item-footer">
-                                        <hr />
                                         <div class="d-flex align-items-center {{$isShowBookNow ? "justify-content-between" : 'justify-content-center'}}{{ $suitesGrid ? ' suite-card-actions' : '' }}">
                                             <div>
                                                 <a href="javascript:;" class="btn-view-cabin-details btn-view-details d-block" data-id="{{ $list[$i]->id }}">{{ __('frontend::common.button_view_cabin') }}</a>

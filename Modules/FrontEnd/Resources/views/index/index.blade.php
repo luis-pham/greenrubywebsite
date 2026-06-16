@@ -398,7 +398,7 @@
                                                 @if ($cruiseGreenRuby1Url)
                                                     <a href="{{ $cruiseGreenRuby1Url }}" class="btn-explorer btn btn-warning mb-2">
                                                         <span class="d-none d-md-inline">{{ __('frontend::homepage.button_explore_cruise', ['name' => $cruiseGreenRuby1Name]) }}</span>
-                                                        <span class="d-md-none">{{ $cruiseGreenRuby1Name ?: __('frontend::homepage.section_5_vessel_01_name') }}</span>
+                                                        <span class="d-md-none">{{ __('frontend::homepage.button_explore_cruise', ['name' => $cruiseGreenRuby1Name ?: __('frontend::homepage.section_5_vessel_01_name')]) }}</span>
                                                         <i class="fa-solid fa-arrow-right-long ml-2 d-none d-md-inline"></i>
                                                     </a>
                                                 @endif
