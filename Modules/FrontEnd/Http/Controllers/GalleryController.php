@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppExpActivityService;
+use Modules\FrontEnd\Constants\PageCodeConsts;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\GalleryService;
@@ -52,7 +53,6 @@ class GalleryController
         });
 
         $config = Utilities::getAllConfig($language);
-        $title = FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']);
 
         if ($slug) {
             $url = $page == 1
@@ -64,24 +64,13 @@ class GalleryController
                 : route(Utilities::getRouteName('frontend.gallery.index.paginate'), ['languageCode' => $languageCode, 'page' => $page]);
         }
 
-
-        \SEO::setTitle($title);
-        \SEO::setDescription($config['website-description']);
-        \SEO::setCanonical($url);
-
-        \OpenGraph::setSiteName($config['website-name']);
-        \OpenGraph::setTitle($title);
-        \OpenGraph::setUrl($url);
-        \OpenGraph::addImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'), [
-            'width' => config('frontend.organizationLogoSocial.width'),
-            'height' => config('frontend.organizationLogoSocial.height'),
-        ]);
-
-        \TwitterCard::setType('summary');
-        \TwitterCard::setTitle($title);
-        \TwitterCard::setDescription($config['website-description']);
-        \TwitterCard::setUrl($url);
-        \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
+        $seo = FeUtils::resolveHubSeo(
+            PageCodeConsts::GALLERY,
+            $language,
+            fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
+            $config['website-description']
+        );
+        FeUtils::applyHubSeoMeta($seo, $url, $config);
 
         return view($this->baseView . __FUNCTION__, compact('paginated','listExperience','galleryFilters'));
     }

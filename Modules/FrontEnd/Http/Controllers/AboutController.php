@@ -24,25 +24,14 @@ class AboutController extends Controller
         $listStoryImages = AppCruiseItineraryService::getHeroBannerImages($language->id, 2);
         $listExpFeatured = AppExpActivityService::getExpActivityFeatured($language->id);
         $config = Utilities::getAllConfig($language);
-        $title = FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']);
         $url = route(Utilities::getRouteName('frontend.about.index'), ['languageCode' => $languageCode]);
-
-        \SEO::setTitle($title);
-        \SEO::setDescription($config['website-description']);
-        \SEO::setCanonical($url);
-
-        \OpenGraph::setSiteName($config['website-name']);
-        \OpenGraph::setTitle($title);
-        \OpenGraph::setUrl($url);
-        \OpenGraph::addImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'), [
-            'width' => config('frontend.organizationLogoSocial.width'),
-            'height' => config('frontend.organizationLogoSocial.height'),
-        ]);
-        \TwitterCard::setType('summary');
-        \TwitterCard::setTitle($title);
-        \TwitterCard::setDescription($config['website-description']);
-        \TwitterCard::setUrl($url);
-        \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
+        $seo = FeUtils::resolveHubSeo(
+            PageCodeConsts::ABOUT,
+            $language,
+            fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
+            $config['website-description']
+        );
+        FeUtils::applyHubSeoMeta($seo, $url, $config);
 
         return view($this->baseView . __FUNCTION__, compact('pageConfig', 'listStoryImages', 'listExpFeatured', 'config', 'url'));
     }

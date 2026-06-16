@@ -537,12 +537,12 @@
                         </div>
                     @endif
                 </div>
-                <div class="award text-white">
-                    <div class="award-header">
-                        <h2 class="section-title font-weight-normal text-left">{{ __('frontend::homepage.section_11_title') }}</h2>
-                        <p class="section-description text-left">{{ __('frontend::homepage.section_11_description') }}</p>
-                    </div>
-                    @if (count($listAward) > 0)
+                @if (count($listAward) > 0)
+                    <div class="award text-white">
+                        <div class="award-header">
+                            <h2 class="section-title font-weight-normal text-left">{{ __('frontend::homepage.section_11_title') }}</h2>
+                            <p class="section-description text-left">{{ __('frontend::homepage.section_11_description') }}</p>
+                        </div>
                         <div class="award-body">
                             <div class="list-item d-flex">
                                 @for ($i = 0; $i < count($listAward); $i++)
@@ -561,8 +561,8 @@
                                 @endfor
                             </div>
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </section>
         @include('frontend::shared.section.section-call-to-action', [

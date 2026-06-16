@@ -12,6 +12,8 @@ class AppExpActivity extends BaseModel
         'cruise_id',
         'name',
         'summary',
+        'seo_title',
+        'seo_description',
         'content',
         'image_link',
         'cover_link',

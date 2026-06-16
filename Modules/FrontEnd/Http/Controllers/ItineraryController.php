@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppGroupService;
 use Modules\BackEnd\Services\AppTestimonialService;
+use Modules\FrontEnd\Constants\PageCodeConsts;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppCabinService;
@@ -84,25 +85,14 @@ class ItineraryController extends Controller
         }
 
         $config = Utilities::getAllConfig($language);
-        $title = FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']);
-
-        \SEO::setTitle($title);
-        \SEO::setDescription($config['website-description']);
-        \SEO::setCanonical(route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]));
-
-        \OpenGraph::setSiteName($config['website-name']);
-        \OpenGraph::setTitle($title);
-        \OpenGraph::setUrl(route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]));
-        \OpenGraph::addImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'), [
-            'width' => config('frontend.organizationLogoSocial.width'),
-            'height' => config('frontend.organizationLogoSocial.height'),
-        ]);
-
-        \TwitterCard::setType('summary');
-        \TwitterCard::setTitle($title);
-        \TwitterCard::setDescription($config['website-description']);
-        \TwitterCard::setUrl(route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]));
-        \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
+        $canonicalUrl = route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]);
+        $seo = FeUtils::resolveHubSeo(
+            PageCodeConsts::ITINERARY,
+            $language,
+            fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
+            $config['website-description']
+        );
+        FeUtils::applyHubSeoMeta($seo, $canonicalUrl, $config);
 
         return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'listItinerary', 'listInclusiveService', 'listFaq', 'listBanner'));
     }

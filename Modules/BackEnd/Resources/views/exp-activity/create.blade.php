@@ -93,6 +93,21 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-header">
+                        <h6 class="m-0"><i class="fas fa-search"></i> THÔNG TIN SEO</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Tiêu đề SEO</label>
+                            {{ Form::text('seo_title', null, ['class' => 'form-control', 'placeholder' => 'Để trống = dùng tên hoạt động', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                        </div>
+                        <div class="form-group mb-0">
+                            <label>Mô tả SEO</label>
+                            {{ Form::text('seo_description', null, ['class' => 'form-control', 'placeholder' => 'Để trống = dùng mô tả ngắn', 'maxlength' => 255, 'autocomplete' => 'off']) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
                         <h6 class="m-0"><i class="fas fa-tag"></i> PHÂN LOẠI VÀ THỜI GIAN</h6>
                     </div>
                     <div class="card-body">

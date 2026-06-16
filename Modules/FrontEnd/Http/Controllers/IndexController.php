@@ -110,9 +110,6 @@ class IndexController extends Controller
         $listCruiseName = AppCruiseService::getAll($language->id)->pluck('name')->toArray();
         $listAllCruise = AppCruiseService::getAll($language->id);
 
-        $config = Utilities::getAllConfig($language);
-        $title = FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']);
-
         $listCruiseByService = [];
         if (array_key_exists(PageConfigKeyConsts::HOMEPAGE_SERVICE, $pageConfig)) {
             $listService = $pageConfig[PageConfigKeyConsts::HOMEPAGE_SERVICE];
@@ -135,23 +132,15 @@ class IndexController extends Controller
 
         $cruiseLatest = FeAppCruiseService::getLatest($language->id);
 
-        \SEO::setTitle($title);
-        \SEO::setDescription($config['website-description']);
-        \SEO::setCanonical(route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]));
-
-        \OpenGraph::setSiteName($config['website-name']);
-        \OpenGraph::setTitle($title);
-        \OpenGraph::setUrl(route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]));
-        \OpenGraph::addImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'), [
-            'width' => config('frontend.organizationLogoSocial.width'),
-            'height' => config('frontend.organizationLogoSocial.height'),
-        ]);
-
-        \TwitterCard::setType('summary');
-        \TwitterCard::setTitle($title);
-        \TwitterCard::setDescription($config['website-description']);
-        \TwitterCard::setUrl(route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]));
-        \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
+        $config = Utilities::getAllConfig($language);
+        $canonicalUrl = route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]);
+        $seo = FeUtils::resolveHubSeo(
+            PageCodeConsts::HOMEPAGE,
+            $language,
+            fn () => FeUtils::bindWebsiteTitle($config['website-name'], $config['website-slogan']),
+            $config['website-description']
+        );
+        FeUtils::applyHubSeoMeta($seo, $canonicalUrl, $config);
 
         return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'pageConfig', 'selectBoxData', 'listCruiseByService', 'cruiseLatest', 'listCruiseName', 'listAllCruise'));
     }

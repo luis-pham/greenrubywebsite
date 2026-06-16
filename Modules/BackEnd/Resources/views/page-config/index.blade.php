@@ -15,6 +15,24 @@
     @include('backend::shared.message')
     <h1 class="h3 mb-4 text-center">{{ $title }}</h1>
     {{ Form::open(['route' => [Utilities::getRouteName('backend.page-config.update'), ['languageCode' => $languageCode, 'pageCode' => $pageCode]], 'id' => 'frm']) }}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h1 class="h5 m-0">SEO</h1>
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label>SEO Title</label>
+                        {{ Form::text('seo_title', old('seo_title', $page->seo_title), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng title mặc định của trang', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                        <small class="form-text text-muted">Tối đa 50 ký tự. Khi có giá trị, dùng nguyên chuỗi (không nối thêm brand/slogan).</small>
+                    </div>
+                    <div class="form-group mb-0">
+                        <label>SEO Description</label>
+                        {{ Form::text('seo_description', old('seo_description', $page->seo_description), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng mô tả website mặc định', 'maxlength' => 255, 'autocomplete' => 'off']) }}
+                    </div>
+                </div>
+            </div>
+        </div>
         @for ($i = 0; $i < count($listSection); $i++)
             @php
                 $dataConfig = array_key_exists($listSection[$i]->id, $listConfig)

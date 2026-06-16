@@ -9,6 +9,9 @@ class PageCodeConsts
     const EXPERIENCE = 'exp-activity';
     const SERVICE = 'service';
     const ABOUT = 'about-us';
+    const ITINERARY = 'itinerary';
+    const CONTACT = 'contact';
+    const BOOKING = 'booking';
     const LEGAL = 'legal';
     const SAFETY_POLICIES = 'safety-policies';
     const TERMS_AND_CONDITIONS = 'terms-and-conditions';

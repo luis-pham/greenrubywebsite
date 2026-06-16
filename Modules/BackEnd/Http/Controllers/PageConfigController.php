@@ -40,7 +40,7 @@ class PageConfigController extends Controller
             $listConfig[$key][] = $dataConfig[$i];
         }
 
-        return view($this->baseView . __FUNCTION__, compact('title', 'listSection', 'listConfig'));
+        return view($this->baseView . __FUNCTION__, compact('title', 'page', 'listSection', 'listConfig'));
     }
 
     public function update(Request $request)
@@ -58,8 +58,16 @@ class PageConfigController extends Controller
         try {
             $data = $request->all();
 
+            if (array_key_exists('seo_title', $data) || array_key_exists('seo_description', $data)) {
+                AppPageService::update([
+                    'id' => $page->id,
+                    'seo_title' => $data['seo_title'] ?? '',
+                    'seo_description' => $data['seo_description'] ?? '',
+                ], $language->id);
+            }
+
             foreach ($data as $key => $value) {
-                if ($key == '_token') {
+                if ($key == '_token' || $key === 'seo_title' || $key === 'seo_description') {
                     continue;
                 }
 

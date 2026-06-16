@@ -8,6 +8,7 @@ use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AdConfigService;
 use Modules\BackEnd\Services\AppSeoKeywordService;
 use Modules\BackEnd\Services\SourceDataService;
+use Modules\BackEnd\Services\AppPageService;
 use Modules\FrontEnd\Services\AppCruiseService;
 use Modules\FrontEnd\Services\AppPageConfigService;
 
@@ -419,6 +420,46 @@ class FeUtils
             $title .= ' | ' . $description;
         }
         return $title;
+    }
+
+    public static function resolveHubSeo(string $pageCode, $language, callable $defaultTitle, string $defaultDescription): array
+    {
+        $page = AppPageService::getByCode($pageCode, $language->id);
+        $title = ($page && trim((string) $page->seo_title) !== '')
+            ? trim($page->seo_title)
+            : $defaultTitle();
+        $description = ($page && trim((string) $page->seo_description) !== '')
+            ? trim($page->seo_description)
+            : $defaultDescription;
+
+        return [
+            'title' => $title,
+            'description' => $description,
+        ];
+    }
+
+    public static function applyHubSeoMeta(array $seo, string $canonicalUrl, array $config, ?string $imageUrl = null): void
+    {
+        $imageUrl = $imageUrl ?: \URL::to('/') . config('frontend.organizationLogoSocial.url');
+
+        \SEO::setTitle($seo['title']);
+        \SEO::setDescription($seo['description']);
+        \SEO::setCanonical($canonicalUrl);
+
+        \OpenGraph::setSiteName($config['website-name']);
+        \OpenGraph::setTitle($seo['title']);
+        \OpenGraph::setDescription($seo['description']);
+        \OpenGraph::setUrl($canonicalUrl);
+        \OpenGraph::addImage($imageUrl, [
+            'width' => config('frontend.organizationLogoSocial.width'),
+            'height' => config('frontend.organizationLogoSocial.height'),
+        ]);
+
+        \TwitterCard::setType('summary');
+        \TwitterCard::setTitle($seo['title']);
+        \TwitterCard::setDescription($seo['description']);
+        \TwitterCard::setUrl($canonicalUrl);
+        \TwitterCard::setImage($imageUrl);
     }
 
     public static function getPageConfigByCode($code, $languageId)

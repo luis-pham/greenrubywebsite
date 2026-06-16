@@ -486,13 +486,13 @@
                     ['@type' => 'PropertyValue', 'name' => 'Year Built',   'value' => (string) $shipSpecs['year']],
                 ]
             ],
-            $obj->star_rating ? [
+            $obj->star_rating && ($obj->review_count ?? 0) >= 5 ? [
                 'aggregateRating' => [
                     '@type'       => 'AggregateRating',
                     'ratingValue' => (string) $obj->star_rating,
                     'bestRating'  => '5',
                     'worstRating' => '1',
-                    'ratingCount' => (string) ($obj->review_count ?? 1),
+                    'ratingCount' => (string) $obj->review_count,
                 ]
             ] : []
             ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)

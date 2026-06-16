@@ -53,9 +53,14 @@ class ArticleController extends Controller
         ], $language->id);
 
         $config = Utilities::getAllConfig($language);
-        $title = FeUtils::bindWebsiteTitle('Blog', $config['website-name']);
+        $seo = FeUtils::resolveHubSeo(
+            PageCodeConsts::ARTICLE,
+            $language,
+            fn () => FeUtils::bindWebsiteTitle('Blog', $config['website-name']),
+            $config['website-description']
+        );
         if ($page > 1) {
-            $title .= ' - ' . __('frontend::common.page') . ' ' . $page;
+            $seo['title'] .= ' - ' . __('frontend::common.page') . ' ' . $page;
         }
 
         $param['page'] = $page;
@@ -68,22 +73,7 @@ class ArticleController extends Controller
             ? route(Utilities::getRouteName('frontend.article.index'), ['languageCode' => $languageCode])
             : route(Utilities::getRouteName('frontend.article.index.paginate'), ['languageCode' => $languageCode, 'page' => $page]);
 
-        \SEO::setTitle($title);
-        \SEO::setCanonical($url);
-
-        \OpenGraph::setSiteName($config['website-name']);
-        \OpenGraph::setTitle($title);
-        \OpenGraph::setUrl($url);
-        \OpenGraph::addImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'), [
-            'width' => config('frontend.organizationLogoSocial.width'),
-            'height' => config('frontend.organizationLogoSocial.height'),
-        ]);
-
-        \TwitterCard::setType('summary');
-        \TwitterCard::setTitle($title);
-        \TwitterCard::setDescription($config['website-description']);
-        \TwitterCard::setUrl($url);
-        \TwitterCard::setImage(\URL::to('/') . config('frontend.organizationLogoSocial.url'));
+        FeUtils::applyHubSeoMeta($seo, $url, $config);
 
         return view($this->baseView . __FUNCTION__, compact('pageConfig', 'menuUrlActive', 'listBreadcrumb', 'listArticleFeatured', 'listCategoryChild', 'listArticle', 'totalPage'));
     }
