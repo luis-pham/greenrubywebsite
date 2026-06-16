@@ -22,8 +22,12 @@
     {!! TwitterCard::generate() !!}
     @include('frontend::shared.hreflang')
     @stack('preload')
+    <style>
+{!! file_get_contents(public_path('assets/frontend/css/critical.css')) !!}
+</style>
     @if (!isset($disableDefaultAppCss) || !$disableDefaultAppCss)
-        <link href="{{ mix('assets/frontend/dist/css/app.css') }}" rel="stylesheet" />
+        <link href="{{ mix('assets/frontend/dist/css/app.css') }}" rel="stylesheet" media="print" onload="this.media='all'" />
+        <noscript><link href="{{ mix('assets/frontend/dist/css/app.css') }}" rel="stylesheet" /></noscript>
     @endif
     @stack('styles')
     @if (array_key_exists('embed-code-head-tag', $config) && $config['embed-code-head-tag'])
