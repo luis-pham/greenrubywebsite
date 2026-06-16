@@ -97,7 +97,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Tiêu đề SEO</label>
-                            {{ Form::text('seo_title', old('seo_title', $obj->seo_title), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng tên hoạt động', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                            {{ Form::text('seo_title', old('seo_title', $obj->seo_title), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng tên hoạt động', 'maxlength' => 65, 'autocomplete' => 'off']) }}
                         </div>
                         <div class="form-group mb-0">
                             <label>Mô tả SEO</label>

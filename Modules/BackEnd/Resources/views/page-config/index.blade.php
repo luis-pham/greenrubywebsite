@@ -23,8 +23,8 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label>SEO Title</label>
-                        {{ Form::text('seo_title', old('seo_title', $page->seo_title), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng title mặc định của trang', 'maxlength' => 50, 'autocomplete' => 'off']) }}
-                        <small class="form-text text-muted">Tối đa 50 ký tự. Khi có giá trị, dùng nguyên chuỗi (không nối thêm brand/slogan).</small>
+                        {{ Form::text('seo_title', old('seo_title', $page->seo_title), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng title mặc định của trang', 'maxlength' => 65, 'autocomplete' => 'off']) }}
+                        <small class="form-text text-muted">Tối đa 65 ký tự. Khi có giá trị, dùng nguyên chuỗi (không nối thêm brand/slogan).</small>
                     </div>
                     <div class="form-group mb-0">
                         <label>SEO Description</label>

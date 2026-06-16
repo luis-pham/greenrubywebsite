@@ -62,7 +62,7 @@
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label>Tiêu đề</label>
-                                {{ Form::text('seo_title', old('seo_title', $obj->seo_title), ['class' => 'form-control', 'placeholder' => 'Nhập tiêu đề...', 'maxlength' => 50, 'autocomplete' => 'off']) }}
+                                {{ Form::text('seo_title', old('seo_title', $obj->seo_title), ['class' => 'form-control', 'placeholder' => 'Nhập tiêu đề...', 'maxlength' => 65, 'autocomplete' => 'off']) }}
                             </div>
                             <div class="form-group">
                                 <label>Mô tả</label>
