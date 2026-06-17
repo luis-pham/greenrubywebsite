@@ -2628,3 +2628,36 @@
     position: relative;
     overflow: hidden;
 }
+
+/* ── Tabler icon spacing (replaced FA inline icons) ── */
+
+/* Section 7 — btn-explorer arrow */
+#home .section-7 .btn-explorer,
+#home .section-7 .btn-explorer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Section 9 — activity badge icons */
+#home .section-9 .btn.btn-warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Section 13 — View all FAQ button */
+#home .section-13 .btn.btn-warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* FAQ toggle icon rotate */
+#home .section-13 .btn-toggle .faq-icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+#home .section-13 .btn-toggle.is-open .faq-icon {
+    transform: rotate(45deg);
+}

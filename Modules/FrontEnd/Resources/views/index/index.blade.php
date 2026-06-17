@@ -429,13 +429,23 @@
                                                     <a href="{{ $cruiseGreenRuby1Url }}" class="btn-explorer btn btn-warning mb-2">
                                                         <span class="d-none d-md-inline">{{ __('frontend::homepage.button_explore_cruise', ['name' => $cruiseGreenRuby1Name]) }}</span>
                                                         <span class="d-md-none">{{ __('frontend::homepage.button_explore_cruise', ['name' => $cruiseGreenRuby1Name ?: __('frontend::homepage.section_5_vessel_01_name')]) }}</span>
-                                                        <i class="fa-solid fa-arrow-right-long ml-2 d-none d-md-inline"></i>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="d-none d-md-inline" aria-hidden="true">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                            <path d="M5 12l14 0"/>
+                                                            <path d="M15 16l4 -4"/>
+                                                            <path d="M15 8l4 4"/>
+                                                        </svg>
                                                     </a>
                                                 @endif
                                                 @if ($cruiseGreenRuby2Url)
                                                     <a href="{{ $cruiseGreenRuby2Url }}" class="btn-explorer-link">
                                                         {{ __('frontend::homepage.button_explore_cruise', ['name' => $cruiseGreenRuby2Name]) }}
-                                                        <i class="fa-solid fa-arrow-right-long ml-1"></i>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                            <path d="M5 12l14 0"/>
+                                                            <path d="M15 16l4 -4"/>
+                                                            <path d="M15 8l4 4"/>
+                                                        </svg>
                                                     </a>
                                                 @endif
                                             </div>
@@ -511,11 +521,20 @@
                                                         <div class="list-button d-flex mb-2">
                                                             @if ($listExpActivity[$i]->group_name)
                                                                 <button type="button" class="btn btn-warning">
-                                                                    <i class="fa-solid fa-tags mr-2"></i>{{ $listExpActivity[$i]->group_name }}
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                                        <path d="M3 8v4.172a2 2 0 0 0 .586 1.414l4.828 4.828a2 2 0 0 0 2.828 0l4.172 -4.172a2 2 0 0 0 0 -2.828l-4.828 -4.828a2 2 0 0 0 -1.414 -.586h-4.172a1 1 0 0 0 -1 1z"/>
+                                                                        <path d="M7 9l0 .01"/>
+                                                                        <path d="M14 17l3.586 3.586a2 2 0 0 0 2.828 0l.172 -.172a2 2 0 0 0 0 -2.828l-5.586 -5.586"/>
+                                                                    </svg>{{ $listExpActivity[$i]->group_name }}
                                                                 </button>
                                                             @endif
                                                             <button type="button" class="btn btn-warning">
-                                                                <i class="fa-solid fa-clock mr-2"></i>{{ Utilities::formatDisplayTime($listExpActivity[$i]->start_time) }} - {{ Utilities::formatDisplayTime($listExpActivity[$i]->end_time) }}
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/>
+                                                                    <path d="M12 7v5l3 3"/>
+                                                                </svg>{{ Utilities::formatDisplayTime($listExpActivity[$i]->start_time) }} - {{ Utilities::formatDisplayTime($listExpActivity[$i]->end_time) }}
                                                             </button>
                                                         </div>
                                                         <h3 class="title mb-2">
@@ -624,7 +643,11 @@
                                         <div class="question article-content">{!! safe_html($listFaq[$i]->question) !!}</div>
                                         <div class="answer article-content">{!! safe_html($listFaq[$i]->answer) !!}</div>
                                         <button type="button" class="btn-toggle border-0 rounded-circle" title="Toggle FAQ">
-                                            <i class="fa-solid fa-plus"></i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="faq-icon" aria-hidden="true">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path d="M12 5l0 14"/>
+                                                <path d="M5 12l14 0"/>
+                                            </svg>
                                         </button>
                                     </div>
                                 </li>
@@ -633,7 +656,12 @@
                         <div class="text-center">
                             <a href="{{ route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}" class="btn btn-lg btn-warning">
                                 {{ __('frontend::common.button_view_all') }}
-                                <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M5 12l14 0"/>
+                                    <path d="M15 16l4 -4"/>
+                                    <path d="M15 8l4 4"/>
+                                </svg>
                             </a>
                         </div>
                     @endif

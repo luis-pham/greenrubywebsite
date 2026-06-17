@@ -673,10 +673,10 @@ $(document).ready(function () {
         let btn = $(this);
         let item = btn.closest('.item');
         if (item.hasClass('expand')) {
-            $('i', btn).removeClass('fa-minus').addClass('fa-plus');
+            btn.removeClass('is-open');
             item.removeClass('expand');
         } else {
-            $('i', btn).removeClass('fa-plus').addClass('fa-minus');
+            btn.addClass('is-open');
             item.addClass('expand');
         }
     });
