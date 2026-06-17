@@ -702,6 +702,24 @@
     font-family: var(--font-body);
 }
 
+#about .about-impact-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+#about .about-impact-cta--has-stats {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 0.5px solid rgba(12, 61, 49, 0.08);
+}
+
+#about .about-impact-cta .about-cta-title {
+    margin-top: 0;
+}
+
 #about .about-impact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

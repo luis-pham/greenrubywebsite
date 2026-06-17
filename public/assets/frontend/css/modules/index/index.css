@@ -1740,12 +1740,29 @@
 
     #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-warning {
         width: 100% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        font-size: 11px !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        font-weight: 500 !important;
+        padding: 11px 6px !important;
+        line-height: 1.3 !important;
+        font-family: 'DM Sans', system-ui, sans-serif !important;
+        text-align: center !important;
+        white-space: nowrap !important;
     }
 
     #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer-link {
         flex: none !important;
         width: 100% !important;
         margin: 8px 0 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
         padding: 11px 6px !important;
         font-size: 11px !important;
         letter-spacing: 0.08em !important;

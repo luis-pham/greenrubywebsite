@@ -148,7 +148,7 @@
                 <div class="container gallery-memories-panel">
                     <p class="section-eyebrow section-eyebrow--gold text-left">{{ __('frontend::gallery.memories.eyebrow') }}</p>
                     <h2 class="gallery-memories-title">{!! __('frontend::gallery.memories.title_html') !!}</h2>
-                    <div class="gallery-memories-grid list-experience">
+                    <div class="gallery-memories-grid gallery-memories-grid--desktop">
                         @foreach($listExperience as $e)
                             <div class="item gallery-memory-card memory-card">
                                 <a href="{{ $e->url }}" class="gallery-memory-image-link">
@@ -168,6 +168,29 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="slide-1 gallery-memories-slide">
+                        <div class="gallery-memories-carousel owl-carousel owl-theme">
+                            @foreach($listExperience as $e)
+                                <div class="item gallery-memory-card memory-card">
+                                    <a href="{{ $e->url }}" class="gallery-memory-image-link">
+                                        <img
+                                            class="gallery-memory-image"
+                                            alt="{{ $e->name }}"
+                                            src="{{ \Modules\FrontEnd\Helpers\FeUtils::getImageLink($e->image_link) }}"
+                                            loading="lazy"
+                                        />
+                                    </a>
+                                    <div class="gallery-memory-content memory-content">
+                                        <p class="memory-tag">{{ __('frontend::gallery.memories.tag') }}</p>
+                                        <a href="{{ $e->url }}">
+                                            <p class="gallery-memory-title">{{ $e->name }}</p>
+                                        </a>
+                                        <p class="gallery-memory-desc">{{ $e->summary }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

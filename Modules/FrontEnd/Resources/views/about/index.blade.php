@@ -53,6 +53,12 @@
         ? $pageConfig[PageConfigKeyConsts::ABOUT_US_STATISTIC_RENEWABLE_SOLAR_POWER]
         : null;
 
+    $impactTitle = $aboutUsStatisticTitle ?: __('frontend::about.section_5_title');
+    $impactDescription = $aboutUsStatisticDescription ?: __('frontend::about.section_5_description');
+    $hasImpactStats = $aboutUsStatisticWastewaterTreated
+        || $aboutUsStatisticReducedAnnually
+        || $aboutUsStatisticRenewableSolarPower;
+
     $aboutUsPartnerTitle = isset($pageConfig[PageConfigKeyConsts::ABOUT_US_PARTNER_TITLE])
         ? $pageConfig[PageConfigKeyConsts::ABOUT_US_PARTNER_TITLE]
         : '';
@@ -227,33 +233,52 @@
             </div>
         </section>
 
-        {{-- SECTION 5: IMPACT STATS --}}
+        {{-- SECTION 5: IMPACT + CTA --}}
         <section class="section-5 bg bg-azure about-impact">
             <div class="container-fluid px-0">
                 <div class="container about-impact-panel">
                     <p class="section-eyebrow">{{ __('frontend::about.impact_eyebrow') }}</p>
-                    @if ($aboutUsStatisticTitle)
-                        <h2 class="about-impact-title">{{ $aboutUsStatisticTitle }}</h2>
+                    <h2 class="about-impact-title">{{ $impactTitle }}</h2>
+                    @if ($impactDescription)
+                        <p class="about-impact-sub">{{ $impactDescription }}</p>
                     @endif
-                    <div class="about-impact-grid">
-                        @if ($aboutUsStatisticWastewaterTreated)
-                            <div class="about-impact-stat">
-                                <p class="about-impact-stat-value">{{ $aboutUsStatisticWastewaterTreated }}%</p>
-                                <p class="about-impact-stat-label">{{ __('frontend::about.wastewater_treated') }}</p>
-                            </div>
+                    @if ($hasImpactStats)
+                        <div class="about-impact-grid">
+                            @if ($aboutUsStatisticWastewaterTreated)
+                                <div class="about-impact-stat">
+                                    <p class="about-impact-stat-value">{{ $aboutUsStatisticWastewaterTreated }}%</p>
+                                    <p class="about-impact-stat-label">{{ __('frontend::about.wastewater_treated') }}</p>
+                                </div>
+                            @endif
+                            @if ($aboutUsStatisticReducedAnnually)
+                                <div class="about-impact-stat">
+                                    <p class="about-impact-stat-value">{{ $aboutUsStatisticReducedAnnually }}+</p>
+                                    <p class="about-impact-stat-label">{{ __('frontend::about.tons_of_co2_reduced_annually') }}</p>
+                                </div>
+                            @endif
+                            @if ($aboutUsStatisticRenewableSolarPower)
+                                <div class="about-impact-stat">
+                                    <p class="about-impact-stat-value">{{ $aboutUsStatisticRenewableSolarPower }}kW</p>
+                                    <p class="about-impact-stat-label">{{ __('frontend::about.renewable_solar_power') }}</p>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+
+                    <div class="about-impact-cta{{ $hasImpactStats ? ' about-impact-cta--has-stats' : '' }}">
+                        <h2 class="about-cta-title">{!! __('frontend::about.cta_title_html') !!}</h2>
+                        <p class="about-cta-desc">{{ __('frontend::about.ready_to_sail_content') }}</p>
+                        @if ($aboutUsReadyToSailDescription)
+                            <p class="about-cta-kicker">{{ $aboutUsReadyToSailDescription }}</p>
                         @endif
-                        @if ($aboutUsStatisticReducedAnnually)
-                            <div class="about-impact-stat">
-                                <p class="about-impact-stat-value">{{ $aboutUsStatisticReducedAnnually }}+</p>
-                                <p class="about-impact-stat-label">{{ __('frontend::about.tons_of_co2_reduced_annually') }}</p>
+                        <div class="about-cta-buttons list-button d-flex flex-wrap justify-content-center">
+                            <div class="item">
+                                <a href="{{ $itineraryUrl }}" class="btn-warning btn-rounded">{{ __('frontend::about.button_see_itineraries') }}</a>
                             </div>
-                        @endif
-                        @if ($aboutUsStatisticRenewableSolarPower)
-                            <div class="about-impact-stat">
-                                <p class="about-impact-stat-value">{{ $aboutUsStatisticRenewableSolarPower }}kW</p>
-                                <p class="about-impact-stat-label">{{ __('frontend::about.renewable_solar_power') }}</p>
+                            <div class="item">
+                                <a href="{{ $contactUrl }}" class="btn-success btn-rounded">{{ __('frontend::about.button_contact_us') }}</a>
                             </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -279,29 +304,6 @@
                         <div class="about-cert-badge">
                             <div class="about-cert-dot"></div>
                             <span class="about-cert-text">{{ __('frontend::about.cert_gstc') }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {{-- SECTION 8: CTA --}}
-        <section class="section-7 about-cta bg">
-            <div class="container-fluid px-0">
-                <div class="container about-cta-grid">
-                    <div class="about-cta-copy">
-                        <h2 class="about-cta-title">{!! __('frontend::about.cta_title_html') !!}</h2>
-                        <p class="about-cta-desc">{{ __('frontend::about.ready_to_sail_content') }}</p>
-                        @if ($aboutUsReadyToSailDescription)
-                            <p class="about-cta-kicker">{{ $aboutUsReadyToSailDescription }}</p>
-                        @endif
-                        <div class="about-cta-buttons list-button d-flex flex-wrap justify-content-center">
-                            <div class="item">
-                                <a href="{{ $itineraryUrl }}" class="btn-warning btn-rounded">{{ __('frontend::about.button_see_itineraries') }}</a>
-                            </div>
-                            <div class="item">
-                                <a href="{{ $contactUrl }}" class="btn-success btn-rounded">{{ __('frontend::about.button_contact_us') }}</a>
-                            </div>
                         </div>
                     </div>
                 </div>

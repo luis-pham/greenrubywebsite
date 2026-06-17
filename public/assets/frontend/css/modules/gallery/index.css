@@ -368,10 +368,6 @@
     #gallery .gallery-memories-panel {
         padding: 40px 0;
     }
-
-    #gallery .gallery-memories-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* ── SECTION 4: SIGNATURE MOMENTS ───────────────────────── */
@@ -404,9 +400,101 @@
 }
 
 #gallery .gallery-memories-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 3px;
+}
+
+#gallery .gallery-memories-grid--desktop {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    #gallery .gallery-memories-grid--desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #gallery .gallery-memories-slide {
+        display: none !important;
+    }
+}
+
+/* Mobile carousel — Signature Moments */
+#gallery .gallery-memories-slide {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#gallery .gallery-memories-slide .gallery-memories-carousel {
+    position: relative;
+}
+
+#gallery .gallery-memories-slide .owl-theme .owl-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 !important;
+    pointer-events: none;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+}
+
+#gallery .gallery-memories-slide .owl-nav .owl-prev,
+#gallery .gallery-memories-slide .owl-nav .owl-next {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    float: none !important;
+    margin: 0 !important;
+    pointer-events: auto;
+    z-index: 9;
+}
+
+#gallery .gallery-memories-slide .owl-nav .button {
+    width: 44px;
+    height: 44px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 61, 49, 0.35);
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    border-radius: 0;
+    color: var(--color-text-on-dark);
+    transition: background-color 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+}
+
+#gallery .gallery-memories-slide .owl-nav .button:hover {
+    background: rgba(12, 61, 49, 0.55);
+    border-color: #C8A84B;
+    color: var(--color-text-accent);
+}
+
+#gallery .gallery-memories-slide .owl-nav .disabled .button {
+    opacity: 0.35;
+    cursor: default;
+}
+
+#gallery .gallery-memories-slide .owl-dots {
+    margin-top: 16px;
+}
+
+#gallery .gallery-memories-slide .owl-item .gallery-memory-card {
+    margin: 0 15px;
+}
+
+@media (max-width: 767px) {
+    #gallery .gallery-memories-slide .owl-nav .button {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 #gallery .gallery-memory-card {
