@@ -629,9 +629,21 @@ button {
     width: 32px;
     height: 32px;
     line-height: 32px;
-    background-color: #fff;
+    background-color: transparent;
     color: var(--color-text-muted-on-light);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-faq .item .btn-toggle .faq-icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.list-faq .item .btn-toggle.is-open .faq-icon {
+    transform: rotate(45deg);
 }
 
 @media (min-width: 768px) {

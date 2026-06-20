@@ -36,25 +36,25 @@ return [
     'eco_cards' => [
         [
             'title' => 'Solar-Assisted Power',
-            'description' => 'Rooftop solar shares the load with our generators — less fuel burned, less CO₂ over the bay.',
+            'description' => 'Rooftop solar shares the load with generators — less fuel, less CO₂.',
             'stat_number' => '~25%',
             'stat_label' => 'OF ONBOARD POWER FROM SOLAR',
         ],
         [
             'title' => 'Zero Plastic Water',
-            'description' => 'Onboard RO filtration produces clean drinking water throughout your voyage. No single-use plastic bottles on either vessel.',
+            'description' => 'Onboard RO filtration produces clean drinking water. No single-use plastic bottles on either vessel.',
             'stat_number' => '0',
             'stat_label' => 'plastic bottles per voyage',
         ],
         [
             'title' => 'Seawater Cooling',
-            'description' => 'Deep cold seawater from Ha Long Bay replaces conventional AC compressors — a passive cooling system unique to our vessels.',
+            'description' => 'Deep cold seawater replaces conventional AC compressors — a passive system unique to our vessels.',
             'stat_number' => '−40%',
             'stat_label' => 'energy saved on cooling',
         ],
         [
             'title' => 'Wastewater Treatment',
-            'description' => 'Advanced onboard treatment system ensures zero untreated waste is discharged into Ha Long Bay\'s waters.',
+            'description' => 'Advanced onboard treatment ensures zero untreated waste discharged into the bay.',
             'stat_number' => '0',
             'stat_label' => 'untreated discharge',
         ],

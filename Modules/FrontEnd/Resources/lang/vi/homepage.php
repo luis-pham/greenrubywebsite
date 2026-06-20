@@ -36,25 +36,25 @@ return [
     'eco_cards' => [
         [
             'title' => 'Năng lượng mặt trời hỗ trợ',
-            'description' => 'Pin mặt trời san sẻ tải với máy phát — ít nhiên liệu hơn, ít CO₂ thải xuống vịnh hơn.',
+            'description' => 'Pin mặt trời san sẻ tải với máy phát — ít nhiên liệu, ít CO₂.',
             'stat_number' => '~25%',
             'stat_label' => 'ĐIỆN NĂNG TRÊN TÀU TỪ MẶT TRỜI',
         ],
         [
             'title' => 'Nước không nhựa',
-            'description' => 'Hệ thống lọc RO trên tàu cung cấp nước uống sạch suốt hành trình. Không sử dụng chai nhựa dùng một lần trên cả hai tàu.',
+            'description' => 'Hệ thống lọc RO trên tàu cung cấp nước uống sạch. Không sử dụng chai nhựa dùng một lần trên cả hai tàu.',
             'stat_number' => '0',
             'stat_label' => 'chai nhựa mỗi hành trình',
         ],
         [
             'title' => 'Làm mát bằng nước biển',
-            'description' => 'Nước biển sâu lạnh từ Vịnh Hạ Long thay thế máy nén điều hòa truyền thống — hệ thống làm mát thụ động độc đáo trên tàu.',
+            'description' => 'Nước biển sâu lạnh thay thế máy nén điều hòa truyền thống — hệ thống thụ động độc đáo trên tàu.',
             'stat_number' => '−40%',
             'stat_label' => 'năng lượng tiết kiệm làm mát',
         ],
         [
             'title' => 'Xử lý nước thải',
-            'description' => 'Hệ thống xử lý tiên tiến trên tàu đảm bảo không xả thải chưa qua xử lý ra vùng biển Vịnh Hạ Long.',
+            'description' => 'Hệ thống xử lý tiên tiến trên tàu đảm bảo không xả thải chưa qua xử lý ra vịnh.',
             'stat_number' => '0',
             'stat_label' => 'lượng xả thải chưa xử lý',
         ],

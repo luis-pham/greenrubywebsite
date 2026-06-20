@@ -1008,13 +1008,22 @@
     margin: 0 auto 20px;
     width: 56px;
     height: 56px;
+    color: var(--color-text-on-light);
+}
+
+#home .section-3 .eco-icon-wrap svg [stroke] {
+    stroke: var(--color-text-on-light);
+}
+
+#home .section-3 .eco-icon-wrap svg [fill="rgba(200,168,75,0.12)"] {
+    fill: color-mix(in srgb, var(--color-text-on-light) 12%, transparent);
 }
 
 #home .section-3 .eco-stat-number {
     font-family: var(--font-display);
     font-size: 30px;
     font-weight: 400;
-    color: var(--color-text-accent);
+    color: var(--color-text-on-light);
     line-height: 1;
     margin-top: 16px;
     padding-top: 16px;
@@ -2678,4 +2687,44 @@
 }
 #home .section-13 .btn-toggle.is-open .faq-icon {
     transform: rotate(45deg);
+}
+
+/* ============================================
+   ECO CARDS — equal height + stat alignment
+   ============================================ */
+
+#home .section-3 .list-item .owl-stage {
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+#home .section-3 .list-item .owl-item {
+    display: flex !important;
+}
+
+#home .section-3 .list-item .item {
+    display: flex !important;
+    flex: 1 !important;
+}
+
+#home .section-3 .eco-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+#home .section-3 .eco-card .description {
+    flex: 1 !important;
+    margin-bottom: 0 !important;
+}
+
+#home .section-3 .eco-stat-number {
+    margin-top: 16px !important;
+    padding-top: 16px !important;
+    color: var(--color-text-on-light) !important;
+}
+
+#home .section-3 .eco-stat-label {
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
 }
