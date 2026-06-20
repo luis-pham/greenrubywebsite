@@ -2279,6 +2279,7 @@
 #home .section-6.section-cabin .item-footer {
     position: relative;
     z-index: 11;
+    padding-top: 10px;
 }
 
 #home .section-6.section-cabin .item-footer .btn-view-cabin-details {

@@ -629,7 +629,7 @@ button {
     width: 32px;
     height: 32px;
     line-height: 32px;
-    background-color: #e8dfcf;
+    background-color: #fff;
     color: var(--color-text-muted-on-light);
     text-align: center;
 }

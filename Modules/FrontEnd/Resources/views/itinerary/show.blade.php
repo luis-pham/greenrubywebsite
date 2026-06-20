@@ -118,7 +118,6 @@
                                     <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'itinerary_id' => $obj->itinerary_id, 'cruise_id' => $obj->cruise_id]) }}"
                                        class="btn-book-detail">
                                         {{ __('frontend::common.book_now') }}
-                                        <i class="ml-2 fas fa-calendar-check" aria-hidden="true"></i>
                                     </a>
                                 </div>
 
