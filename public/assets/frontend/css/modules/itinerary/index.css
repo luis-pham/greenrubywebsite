@@ -199,8 +199,9 @@
     color: var(--color-text-on-dark);
 }
 
-#itinerary .section-service .btn-view-all {
-    padding: 13.5px 1.5rem;
+#itinerary .section-service .btn-view-all.btn-ghost-gold,
+#itinerary .section-service .btn-ghost-gold {
+    padding: 11px 28px;
 }
 
 #itinerary .section-service.section-amenity .list-item .item .item-wrapper{
@@ -334,6 +335,60 @@
 
 #itinerary .section-itinerary .slide-1 {
     padding-bottom: var(--space-8);
+}
+
+/* Itinerary cards — 3:2 images + light shadow (matches homepage) */
+#itinerary .section-itinerary .list-itinerary-cruise .item .item-header .image-wrapper:after {
+    padding-top: 66.666667%;
+}
+
+#itinerary .section-itinerary .list-itinerary-cruise .item .item-wrapper {
+    box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018);
+}
+
+#itinerary .section-itinerary .list-itinerary-cruise .item .item-body,
+#itinerary .section-itinerary .list-itinerary-cruise .item .item-footer {
+    border-color: rgba(12, 61, 49, 0.03);
+}
+
+#itinerary .section-itinerary .itin-grid.owl-carousel .owl-item:has(.item.disabled) {
+    display: none;
+}
+
+/* Itinerary page — 2×2 grid on desktop (matches homepage Private Sanctuaries) */
+@media (max-width: 1023px) {
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-stage-outer {
+        overflow: hidden;
+    }
+
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-item .item {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-nav,
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-dots {
+        display: none;
+    }
+
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-stage-outer {
+        overflow: visible;
+    }
+
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-stage {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        width: 100% !important;
+        transform: none !important;
+    }
+
+    #itinerary .section-itinerary .itin-grid.owl-carousel .owl-item {
+        width: 100% !important;
+        float: none;
+        padding: 0;
+    }
 }
 
 @media (min-width: 992px) {

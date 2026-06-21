@@ -2078,10 +2078,6 @@ button {
 /* =============================================
    SECTION 2 — Info bar (above/near fold, high CLS risk)
    ============================================= */
-#home .section-2 .container-fluid {
-    background: url('/assets/frontend/images/modules/index/bg-section-2.jpg') center no-repeat;
-}
-
 #home .section-2.bg .container-fluid {
     padding-top: 240px;
 }

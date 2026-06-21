@@ -83,7 +83,7 @@ $(document).ready(function(){
                     touchDrag: false
                 },
                 1200: {
-                    items: 3,
+                    items: 2,
                     dots: false,
                     nav: false,
                     margin: 0,
@@ -91,7 +91,7 @@ $(document).ready(function(){
                     touchDrag: false
                 },
                 1400: {
-                    items: 4,
+                    items: 2,
                     dots: false,
                     nav: false,
                     margin: 0,

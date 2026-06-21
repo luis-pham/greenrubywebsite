@@ -12,6 +12,10 @@
     $tagHeading = isset($tagHeading) ? $tagHeading : 'p';
     $titleClass = $titleClass ?? 'section-title';
     $itineraryRedesign = $itineraryRedesign ?? false;
+    $hideAllFilter = $hideAllFilter ?? false;
+    $defaultBay = $defaultBay ?? null;
+    $itineraryImageConfig = $itineraryImageConfig ?? ($itineraryRedesign ? ['w' => 600, 'h' => 400] : ['w' => 545, 'h' => 673]);
+    $viewAllUrl = $viewAllUrl ?? null;
 
     $languageCode = Route::current()->parameter('languageCode');
 @endphp
@@ -35,7 +39,7 @@
     </div>
 @endif
 
-<section class="{{ $class }} section-itinerary bg">
+<section class="{{ $class }} section-itinerary bg" @if ($defaultBay !== null) data-default-bay="{{ $defaultBay }}" @endif>
     @if ($itineraryRedesign)
         <div class="container-fluid px-0">
             @if ($title || $subTitle)
@@ -81,7 +85,7 @@
             @if (count($list) > 0)
                 <div class="container">
                     <div class="slide-1">
-                        <div class="list-itinerary-cruise owl-carousel owl-theme">
+                        <div class="list-itinerary-cruise owl-carousel owl-theme itin-grid">
                             @for ($i = 0; $i < count($list); $i++)
                                 @php
                                     $destination = array_key_exists($list[$i]->bay, $listBay) ? $listBay[$list[$i]->bay] : '';
@@ -98,15 +102,16 @@
                                     }
                                     $slug = Utilities::convertToAlias($list[$i]->name);
                                     $url = route(Utilities::getRouteName('frontend.itinerary.show'), ['languageCode' => $languageCode, 'slug' => $slug, 'cruise_id' => $cruiseId, 'itinerary_id' => $itineraryId]);
+                                    $itemDisabled = $defaultBay !== null && (string) $list[$i]->bay !== (string) $defaultBay;
                                 @endphp
-                                <div class="item d-flex h-100" data-itinerary-id="{{ $list[$i]->id }}" data-cruise-id="{{ $list[$i]->cruise_id }}" data-bay="{{ $list[$i]->bay }}">
+                                <div class="item d-flex h-100{{ $itemDisabled ? ' disabled' : '' }}" data-itinerary-id="{{ $list[$i]->id }}" data-cruise-id="{{ $list[$i]->cruise_id }}" data-bay="{{ $list[$i]->bay }}">
                                     <div class="item-wrapper d-flex flex-column w-100 bg-white">
                                         <div class="item-header itin-card-image-wrap position-relative">
                                             <a href="{{ $url }}">
                                                 @include('frontend::shared.image-wrapper', [
                                                     'link' => $list[$i]->image_link,
                                                     'alt' => $list[$i]->name,
-                                                    'imageConfig' => ['w' => 545, 'h' => 673]
+                                                    'imageConfig' => $itineraryImageConfig
                                                 ])
                                             </a>
                                             <span class="itin-badge-bay">{{ $destination ?: __('frontend::common.ha_long_bay') }}</span>
@@ -139,7 +144,7 @@
                                                 </div>
                                                 @if ($list[$i]->price)
                                                     <div class="justify-content-end">
-                                                        <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'cruise_id' => $list[$i]->cruise_id, 'itinerary_id' => $list[$i]->id]) }}" class="itin-btn-book btn-book-now btn btn-sm btn-warning">
+                                                        <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'cruise_id' => $list[$i]->cruise_id, 'itinerary_id' => $list[$i]->id]) }}" class="btn-book-now btn-ghost-gold">
                                                             {{ __('frontend::common.book_now') }}
                                                         </a>
                                                     </div>
@@ -165,12 +170,14 @@
                 @endif
                 <div class="tab-filter">
                     <div class="list-button d-flex flex-wrap justify-content-center {{ $backgroundImage ? 'transparent' : '' }}">
-                        <div class="item">
-                            <button type="button" class="font-weight-bold text-white border-0 active" data-bay="">{{ __('frontend::common.all') }}</button>
-                        </div>
+                        @if (!$hideAllFilter)
+                            <div class="item">
+                                <button type="button" class="font-weight-bold text-white border-0 active" data-bay="">{{ __('frontend::common.all') }}</button>
+                            </div>
+                        @endif
                         @foreach ($listBay as $key => $value)
                             <div class="item">
-                                <button type="button" class="font-weight-bold text-white border-0" data-bay="{{ $key }}">{{ $value }}</button>
+                                <button type="button" class="font-weight-bold text-white border-0 {{ $hideAllFilter && (string) $defaultBay === (string) $key ? 'active' : '' }}" data-bay="{{ $key }}">{{ $value }}</button>
                             </div>
                         @endforeach
                     </div>
@@ -194,15 +201,16 @@
                                     }
                                     $slug = Utilities::convertToAlias($list[$i]->name);
                                     $url = route(Utilities::getRouteName('frontend.itinerary.show'), ['languageCode' => $languageCode, 'slug' => $slug, 'cruise_id' => $cruiseId, 'itinerary_id' => $itineraryId]);
+                                    $itemDisabled = $defaultBay !== null && (string) $list[$i]->bay !== (string) $defaultBay;
                                 @endphp
-                                <div class="item d-flex h-100" data-itinerary-id="{{ $list[$i]->id }}" data-cruise-id="{{ $list[$i]->cruise_id }}" data-bay="{{ $list[$i]->bay }}">
+                                <div class="item d-flex h-100{{ $itemDisabled ? ' disabled' : '' }}" data-itinerary-id="{{ $list[$i]->id }}" data-cruise-id="{{ $list[$i]->cruise_id }}" data-bay="{{ $list[$i]->bay }}">
                                     <div class="item-wrapper d-flex flex-column w-100 bg-white">
                                         <div class="item-header itin-card-image-wrap position-relative">
                                             <a href="{{ $url }}">
                                                 @include('frontend::shared.image-wrapper', [
                                                     'link' => $list[$i]->image_link,
                                                     'alt' => $list[$i]->name,
-                                                    'imageConfig' => ['w' => 545, 'h' => 673]
+                                                    'imageConfig' => $itineraryImageConfig
                                                 ])
                                             </a>
                                             <span class="itin-badge-bay">{{ $destination ?: __('frontend::common.ha_long_bay') }}</span>
@@ -235,7 +243,7 @@
                                                 </div>
                                                 @if ($list[$i]->price)
                                                     <div class="justify-content-end">
-                                                        <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'cruise_id' => $list[$i]->cruise_id, 'itinerary_id' => $list[$i]->id]) }}" class="itin-btn-book btn-book-now btn btn-sm btn-warning">
+                                                        <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'cruise_id' => $list[$i]->cruise_id, 'itinerary_id' => $list[$i]->id]) }}" class="btn-book-now btn-ghost-gold">
                                                             {{ __('frontend::common.book_now') }}
                                                         </a>
                                                     </div>
@@ -246,6 +254,19 @@
                                 </div>
                             @endfor
                         </div>
+                    </div>
+                @endif
+                @if ($viewAllUrl)
+                    <div class="section-itinerary-view-all text-center">
+                        <a href="{{ $viewAllUrl }}" class="btn-ghost-gold">
+                            {{ __('frontend::common.button_view_all') }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M5 12l14 0"/>
+                                <path d="M15 16l4 -4"/>
+                                <path d="M15 8l4 4"/>
+                            </svg>
+                        </a>
                     </div>
                 @endif
             </div>

@@ -40,7 +40,7 @@
                             @endforeach
                         </ul>
                         <div class="text-center">
-                            <a href="{{ route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}" class="btn btn-lg btn-warning">
+                            <a href="{{ route(\Modules\BackEnd\Helpers\Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}" class="btn-ghost-gold">
                                 {{ __('frontend::common.button_view_all') }}
                                 <i class="fa-solid fa-arrow-right-long ml-2"></i>
                             </a>

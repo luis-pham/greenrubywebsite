@@ -8,6 +8,8 @@ return [
     'itinerary' => 'Hành trình',
     'cruise' => 'Du thuyền',
     'page' => 'Trang',
+    'pagination_previous' => 'Trang trước',
+    'pagination_next' => 'Trang sau',
     'address' => 'Địa chỉ',
     'share' => 'Chia sẻ',
     'follow_us' => 'Theo dõi chúng tôi',

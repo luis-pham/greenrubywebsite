@@ -8,6 +8,8 @@ return [
     'itinerary' => 'Itinerary',
     'cruise' => 'Cruise',
     'page' => 'Page',
+    'pagination_previous' => 'Previous page',
+    'pagination_next' => 'Next page',
     'address' => 'Address',
     'share' => 'Share',
     'follow_us' => 'Follow us',

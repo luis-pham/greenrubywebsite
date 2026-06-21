@@ -2,6 +2,12 @@
     margin-top: 2rem;
 }
 
+#main .section-amenity .btn-view-all-wrapper .btn-ghost-gold,
+#main .section-amenity .btn-view-all.btn-ghost-gold,
+#main .section-amenity .btn-view-all-mobile.btn-ghost-gold {
+    display: inline-block;
+}
+
 #main .section-amenity .list-item:not(.owl-carousel):not(.mobile) {
     display: flex;
     flex-wrap: wrap;

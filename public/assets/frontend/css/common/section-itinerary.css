@@ -341,27 +341,34 @@ html[lang="vi"] #main .section-itinerary .list-itinerary-cruise .item .item-body
     padding: .1875rem 0;
 }
 
-#main .section-itinerary .list-itinerary-cruise .item .itin-btn-book {
-    background-color: #C8A84B;
-    border: 1px solid #c8a84b;
-    color: var(--color-text-on-light) !important;
-    font-size: 15px;
-    letter-spacing: 0.16em;
+#main .section-itinerary .list-itinerary-cruise .item .itin-btn-book,
+#main .section-itinerary .list-itinerary-cruise .item .btn-ghost-gold {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 500;
-    padding: 10px;
-    cursor: pointer;
+    color: #0D2B1A;
+    background: none;
+    border: 1px solid #0D2B1A;
     border-radius: 0;
-    font-family: var(--font-body);
+    padding: 11px 28px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
     line-height: 1.4;
     box-shadow: none;
 }
 
 #main .section-itinerary .list-itinerary-cruise .item .itin-btn-book:hover,
-#main .section-itinerary .list-itinerary-cruise .item .itin-btn-book:focus {
-    background-color: #b8923e;
-    border-color: #b8923e;
-    color: var(--color-text-on-light) !important;
+#main .section-itinerary .list-itinerary-cruise .item .itin-btn-book:focus,
+#main .section-itinerary .list-itinerary-cruise .item .btn-ghost-gold:hover,
+#main .section-itinerary .list-itinerary-cruise .item .btn-ghost-gold:focus {
+    background: rgba(200, 168, 75, 0.08);
+    color: var(--color-gold);
+    text-decoration: none;
+    border-color: var(--color-gold);
 }
 
 /* Itinerary page — card overrides */

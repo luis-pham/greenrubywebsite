@@ -183,6 +183,7 @@
                                     @include('frontend::shared.section.partials.itinerary-card', [
                                         'itinerary' => $itinerary,
                                         'languageCode' => $languageCode,
+                                        'itineraryImageConfig' => ['w' => 600, 'h' => 400],
                                     ])
                                 @endforeach
                             </div>

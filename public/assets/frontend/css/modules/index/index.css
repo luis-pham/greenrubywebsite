@@ -519,10 +519,6 @@
 }
 
 /* Section 2 */
-#home .section-2 .container-fluid {
-    background: url('/assets/frontend/images/modules/index/bg-section-2.jpg') center no-repeat;
-}
-
 #home .section-2.bg .container-fluid {
     padding-top: 240px;
 }
@@ -534,8 +530,7 @@
 #home .section-2 .info-bar {
     width: calc(100% - 30px);
     background: var(--color-cream-bg);
-    border-top: none;
-    border-bottom: 1.5px solid #C8A84B;
+    border: 1px solid #0c3d311a;
     padding: 0;
     font-size: 1rem;
     z-index: 1;
@@ -735,7 +730,7 @@
         display: flex;
         flex-direction: column;
         background: var(--color-cream-bg);
-        border-bottom: 1.5px solid #C8A84B;
+        border: 1px solid #0c3d311a;
     }
 
     #home .section-2 .info-bar .info-bar-wrapper {
@@ -933,6 +928,134 @@
     color: #fff;
 }
 
+/* Curated Journeys — forest topo background matches Premium Amenities */
+#home .section-4.section-itinerary {
+    background-color: var(--color-cream-bg);
+}
+
+#home .section-4.section-itinerary > .container-fluid {
+    --curated-topo-height: clamp(540px, 31.2vw, 600px);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-cream-bg);
+    z-index: 0;
+}
+
+#home .section-4.section-itinerary > .container-fluid::before,
+#home .section-4.section-itinerary > .container-fluid::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+#home .section-4.section-itinerary > .container-fluid::before {
+    background-color: var(--color-forest);
+    z-index: 0;
+    height: var(--curated-topo-height);
+}
+
+#home .section-4.section-itinerary > .container-fluid::after {
+    background: url('/assets/frontend/images/bg-grain.png') center no-repeat;
+    background-size: cover;
+    z-index: 0;
+    opacity: .05;
+    height: var(--curated-topo-height);
+}
+
+#home .section-4.section-itinerary > .container-fluid > .container {
+    position: relative;
+    z-index: 1;
+}
+
+#home .section-4.section-itinerary .section-description {
+    color: #fff;
+}
+
+#home .section-4.section-itinerary .tab-filter .list-button .item button:not(.active),
+#home .section-4.section-itinerary .tab-filter .list-button .item a:not(.active) {
+    background-color: #ffffff66;
+    color: #fff;
+}
+
+/* Curated Journeys — hide filtered-out cards; desktop shows 2 cards at 50% width */
+#home .section-4.section-itinerary .list-itinerary-cruise.owl-carousel .owl-item:has(.item.disabled) {
+    display: none;
+}
+
+/* Curated Journeys — card image 3:2 */
+#home .section-4.section-itinerary .list-itinerary-cruise .item .item-header .image-wrapper:after {
+    padding-top: 66.666667%;
+}
+
+/* Curated Journeys — card shadow matches Private Sanctuaries */
+#home .section-4.section-itinerary .list-itinerary-cruise .item .item-wrapper {
+    box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018);
+}
+
+#home .section-4.section-itinerary .list-itinerary-cruise .item .item-body,
+#home .section-4.section-itinerary .list-itinerary-cruise .item .item-footer {
+    border-color: rgba(12, 61, 49, 0.03);
+}
+
+/* Curated Journeys — dot navigator (matches global .slide-1 carousel dots) */
+#home .section-4.section-itinerary .slide-1 .owl-theme .owl-dots {
+    margin-top: 1.5rem;
+    line-height: 1;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-theme .owl-dots:not(.disabled) {
+    display: flex;
+    justify-content: center;
+    gap: .25rem;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-theme .owl-dots .owl-dot span {
+    margin: 0;
+    width: 6px;
+    height: 6px;
+    background-color: #d6d3cc;
+    border-radius: 0;
+    transition: width .2s linear;
+}
+
+#home .section-4.section-itinerary .slide-1 .owl-theme .owl-dots .owl-dot.active span {
+    background-color: #C8A84B;
+    width: 50px;
+}
+
+@media (min-width: 992px) {
+    #home .section-4.section-itinerary .slide-1 .owl-theme .owl-dots {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    #home .section-4.section-itinerary > .container-fluid {
+        --curated-topo-height: 468px;
+    }
+}
+
+@media (max-width: 767px) {
+    #home .section-4.section-itinerary > .container-fluid {
+        --curated-topo-height: 396px;
+    }
+}
+
+/* Curated Journeys — View all */
+#home .section-4.section-itinerary .section-itinerary-view-all {
+    margin-top: 2rem;
+}
+
+#home .section-4.section-itinerary .section-itinerary-view-all .btn-ghost-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
 /* Section 3 */
 #home .section-3 .slide-1 .owl-nav .button {
     width: 32px;
@@ -960,10 +1083,6 @@
 
 #home .section-3 .slide-1 .owl-nav .disabled .button {
     background-color: #ffffff4d;
-}
-
-#home .section-3 .container-fluid {
-    background: url('/assets/frontend/images/modules/index/bg-section-2.jpg') center no-repeat;
 }
 
 #home .section-3 .section-description {
@@ -1248,10 +1367,6 @@
     justify-content: space-between;
 }
 
-#home .section-5 .cruise.ship-card .ship-btn {
-    width: auto;
-}
-
 @media (min-width: 1024px) {
     #home .section-5 .cruise.ship-card {
         min-height: 320px;
@@ -1531,40 +1646,55 @@
         font-family: var(--font-body);
     }
 
-    /* THAY ĐỔI 8: button — match Book Now / .btn-warning */
-    #home .section-5 .cruise.ship-card .ship-btn {
-        display: block !important;
-        width: 100% !important;
-        text-align: center !important;
-        padding: 14px 32px !important;
-        font-family: var(--font-body) !important;
-        font-size: 15px !important;
-        font-weight: 500 !important;
-        letter-spacing: 0.16em !important;
-        text-transform: uppercase !important;
-        line-height: 1.4 !important;
-        background-color: #C8A84B !important;
-        color: var(--color-text-on-light) !important;
-        border: 1px solid #c8a84b !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        cursor: pointer;
+    #home .section-5 .cruise.ship-card .ship-bottom {
+        justify-content: center;
+        width: 100%;
     }
 
-    #home .section-5 .cruise.ship-card .ship-btn i {
-        color: var(--color-text-on-light) !important;
-    }
-
-    #home .section-5 .cruise.ship-card .ship-btn:hover,
-    #home .section-5 .cruise.ship-card .ship-btn:focus {
-        background-color: #b8923e !important;
-        border-color: #b8923e !important;
-        color: var(--color-text-on-light) !important;
+    #home .section-5 .cruise.ship-card .ship-cta-link {
+        margin-inline: auto;
     }
 
     #home .section-5 .cruise.ship-card .ship-deck-link {
         display: none;
     }
+}
+
+#home .section-5 .ship-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C8A84B;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200, 168, 75, 0.4);
+    padding-bottom: 3px;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    transition: border-color 0.2s ease;
+}
+
+#home .section-5 .ship-cta-link:hover {
+    border-bottom-color: #C8A84B;
+    color: #C8A84B;
+    text-decoration: none;
+}
+
+#home .section-5 .ship-cta-arrow {
+    font-size: 14px;
+    line-height: 1;
+}
+
+#home .section-5 .ship-stat-unit {
+    font-size: 65%;
+    vertical-align: baseline;
+    margin-left: 1px;
+    opacity: 0.85;
 }
 
 /* Section 7 */
@@ -1664,6 +1794,18 @@
 
 #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-warning {
     margin-bottom: 0;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid var(--color-gold) !important;
+    color: var(--color-gold) !important;
+    box-shadow: none !important;
+}
+
+#home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-warning:hover,
+#home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-warning:focus {
+    background: rgba(200, 168, 75, 0.08) !important;
+    border-color: var(--color-gold) !important;
+    color: var(--color-gold) !important;
 }
 
 @media (min-width: 768px) {
@@ -1736,9 +1878,9 @@
     }
 
     #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer .btn-explorer.btn-warning {
-        background: #C8A84B !important;
-        color: var(--color-text-on-light) !important;
-        border: none !important;
+        background: transparent !important;
+        color: var(--color-gold) !important;
+        border: 1px solid var(--color-gold) !important;
     }
 
     #home .section-7 .list-item .item .item-wrapper .main-info .main-info-footer {
@@ -2435,8 +2577,7 @@
         display: block !important;
         grid-template-columns: unset !important;
         background: var(--color-cream-bg);
-        border-top: none;
-        border-bottom: 1.5px solid #C8A84B;
+        border: 1px solid #0c3d311a;
     }
 
     #home .section-2 .info-bar .info-bar-wrapper {
@@ -2674,7 +2815,7 @@
 }
 
 /* Section 13 — View all FAQ button */
-#home .section-13 .btn.btn-warning {
+#home .section-13 .btn-ghost-gold {
     display: inline-flex;
     align-items: center;
     gap: 8px;

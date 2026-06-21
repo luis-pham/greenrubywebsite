@@ -280,10 +280,12 @@
             'title' => __('frontend::homepage.section_4_title'),
             'subTitle' => __('frontend::homepage.section_4_description'),
             'list' => $listCruiseItinerary,
-            'backgroundImage' => asset('/assets/frontend/images/modules/index/bg-section-4.webp'),
-            'backgroundBottom' => '#f8f5ef',
             'tagHeading' => 'p',
             'titleClass' => 'section-eyebrow section-eyebrow--gold',
+            'hideAllFilter' => true,
+            'defaultBay' => 1,
+            'itineraryImageConfig' => ['w' => 600, 'h' => 400],
+            'viewAllUrl' => route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]),
         ])
         <section id="section-cruise" class="section-5 p-0">
             <div class="container-fluid px-0">
@@ -329,7 +331,7 @@
                                     </div>
                                     <div class="ship-stats specification">
                                         <div class="ship-stat-item">
-                                            <p class="value ship-stat-val font-heading">{{ $statLength }}</p>
+                                            <p class="value font-heading mb-0"><span class="ship-stat-val">{{ $statLength }}<span class="ship-stat-unit">m</span></span></p>
                                             <p class="unit ship-stat-key mb-0">{{ __('frontend::homepage.section_5_length_unit') }}</p>
                                         </div>
                                         <div class="ship-stat-item">
@@ -342,8 +344,9 @@
                                         </div>
                                     </div>
                                     <div class="ship-bottom">
-                                        <a href="{{ route(Utilities::getRouteName('frontend.cruise.show'), ['languageCode' => $languageCode, 'slug' => Utilities::convertToAlias($listCruise[$i]->name), 'id' => $listCruise[$i]->id]) }}" class="btn btn-warning ship-btn">
+                                        <a href="{{ route(Utilities::getRouteName('frontend.cruise.show'), ['languageCode' => $languageCode, 'slug' => Utilities::convertToAlias($listCruise[$i]->name), 'id' => $listCruise[$i]->id]) }}" class="ship-cta-link">
                                             {{ $cruiseButtonLabels[$i] ?? __('frontend::homepage.button_explorer_the_cruise') }}
+                                            <span class="ship-cta-arrow">→</span>
                                         </a>
                                     </div>
                                 </div>
@@ -654,7 +657,7 @@
                             @endfor
                         </ul>
                         <div class="text-center">
-                            <a href="{{ route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}" class="btn btn-lg btn-warning">
+                            <a href="{{ route(Utilities::getRouteName('frontend.faq.index'), ['languageCode' => $languageCode]) }}" class="btn-ghost-gold">
                                 {{ __('frontend::common.button_view_all') }}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>

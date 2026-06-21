@@ -22,6 +22,7 @@
     $price = $itinerary->price ?? $itinerary->min_price ?? 0;
     $imageLink = $itinerary->image_link ?? $itinerary->cover_link ?? null;
     $cruiseName = $itinerary->cruise_name ?? '';
+    $itineraryImageConfig = $itineraryImageConfig ?? ['w' => 545, 'h' => 673];
 @endphp
 <div class="item d-flex h-100" data-itinerary-id="{{ $itineraryId }}" data-cruise-id="{{ $cruiseId }}" data-bay="{{ $itinerary->bay ?? '' }}">
     <div class="item-wrapper d-flex flex-column w-100 bg-white">
@@ -30,7 +31,7 @@
                 @include('frontend::shared.image-wrapper', [
                     'link' => $imageLink,
                     'alt' => $itinerary->name,
-                    'imageConfig' => ['w' => 545, 'h' => 673],
+                    'imageConfig' => $itineraryImageConfig,
                 ])
             </a>
             <span class="itin-badge-bay">{{ $destination ?: __('frontend::common.ha_long_bay') }}</span>
@@ -63,7 +64,7 @@
                 </div>
                 @if ($price)
                     <div class="justify-content-end">
-                        <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'cruise_id' => $cruiseId, 'itinerary_id' => $itineraryId]) }}" class="itin-btn-book btn-book-now btn btn-sm btn-warning">
+                        <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode, 'cruise_id' => $cruiseId, 'itinerary_id' => $itineraryId]) }}" class="btn-book-now btn-ghost-gold">
                             {{ __('frontend::common.book_now') }}
                         </a>
                     </div>

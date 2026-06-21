@@ -654,6 +654,44 @@
     padding: .375rem;
 }
 
+#cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-header .image-wrapper:after {
+    padding-top: 66.666667%;
+}
+
+#cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-wrapper {
+    box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018);
+}
+
+#cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-body,
+#cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-footer {
+    border-color: rgba(12, 61, 49, 0.03);
+}
+
+#cruise-detail .section-itinerary .cruise-itinerary-slide .owl-theme .owl-dots {
+    margin-top: 1.5rem;
+    line-height: 1;
+}
+
+#cruise-detail .section-itinerary .cruise-itinerary-slide .owl-theme .owl-dots:not(.disabled) {
+    display: flex;
+    justify-content: center;
+    gap: .25rem;
+}
+
+#cruise-detail .section-itinerary .cruise-itinerary-slide .owl-theme .owl-dots .owl-dot span {
+    margin: 0;
+    width: 6px;
+    height: 6px;
+    background-color: #d6d3cc;
+    border-radius: 0;
+    transition: width .2s linear;
+}
+
+#cruise-detail .section-itinerary .cruise-itinerary-slide .owl-theme .owl-dots .owl-dot.active span {
+    background-color: #C8A84B;
+    width: 50px;
+}
+
 @media (min-width: 768px) {
     #cruise-detail .section-itinerary .cruise-itinerary-slide {
         margin: -.75rem;
@@ -664,14 +702,9 @@
     }
 }
 
-@media (max-width: 991px) {
-    #cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-wrapper {
-        box-shadow: 0 1px 7px 0 rgba(0, 32, 24, 0.018);
-    }
-
-    #cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-body,
-    #cruise-detail .section-itinerary .cruise-itinerary-carousel .item .item-footer {
-        border-color: rgba(12, 61, 49, 0.03);
+@media (min-width: 992px) {
+    #cruise-detail .section-itinerary .cruise-itinerary-slide .owl-theme .owl-dots {
+        margin-top: 2rem;
     }
 }
 
@@ -700,23 +733,6 @@
         width: 50% !important;
     }
 }
-
-@media (min-width: 1200px) {
-    #cruise-detail .section-itinerary .cruise-itinerary-carousel.owl-carousel .owl-item {
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
-        width: 33.333333% !important;
-    }
-}
-
-@media (min-width: 1400px) {
-    #cruise-detail .section-itinerary .cruise-itinerary-carousel.owl-carousel .owl-item {
-        flex: 0 0 25%;
-        max-width: 25%;
-        width: 25% !important;
-    }
-}
-
 
 /* Journeys carousel — mobile nav căn giữa theo vùng ảnh (fnAlignCarouselNavToImage) */
 @media (max-width: 1023px) {

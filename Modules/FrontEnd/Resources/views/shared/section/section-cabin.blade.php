@@ -214,7 +214,7 @@ $itineraryId = $itineraryId ?? null;
                                                 <div>
                                                     <a
                                                         href="{{ route(isset($languageCode) ? Utilities::getRouteName('frontend.booking') : 'frontend.booking', $bookingParams) }}"
-                                                        class="btn-book-now btn btn-sm btn-warning"
+                                                        class="btn-book-now btn-ghost-gold"
                                                     >
                                                         {{ __('frontend::common.book_now') }}
                                                     </a>
