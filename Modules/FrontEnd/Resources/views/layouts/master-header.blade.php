@@ -9,6 +9,9 @@
     $headerLogo = $headerHeroType === 'solid'
         ? ($headerLogoNegative ?: $headerLogoNormal)
         : ($headerLogoNormal ?: $headerLogoNegative);
+    $headerLogoSrc = $headerLogo
+        ? FeUtils::getThumbnail(['link' => $headerLogo, 'w' => 280, 'h' => 224, 'q' => 80, 'cr' => 1])
+        : null;
     $primaryMenuNavKeys = [];
     for ($menuIndex = 0; $menuIndex < count($listMenuPrimary); $menuIndex++) {
         $primaryMenuNavKeys[$menuIndex] = FeUtils::resolvePrimaryMenuNavKey($listMenuPrimary[$menuIndex]);
@@ -99,9 +102,9 @@
                 @endif
             </div>
             <div class="header-center justify-content-center">
-                @if ($headerLogo)
+                @if ($headerLogoSrc)
                     <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
-                        <img src="{{ Utilities::getFileLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
+                        <img src="{{ $headerLogoSrc }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
                     </a>
                 @endif
             </div>
@@ -154,9 +157,9 @@
                 </a>
             </div>
             <div class="header-center">
-                @if ($headerLogo)
+                @if ($headerLogoSrc)
                     <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
-                        <img src="{{ FeUtils::getImageLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="140" height="112" />
+                        <img src="{{ $headerLogoSrc }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="140" height="112" />
                     </a>
                 @endif
             </div>

@@ -61,7 +61,7 @@ $imgSizes = $sizes ?? ((isset($imageConfig['w']) && (int) $imageConfig['w'] >= 1
             srcset="{{ $thumbnailSrc }}"
             type="image/webp">
         <img
-            src="{{ $thumbnailSrc }}"
+            src="{{ $thumbnailSrcMobile ?? $thumbnailSrc }}"
             alt="{{ $alt }}"
             @if ($imgWidth) width="{{ $imgWidth }}" @endif
             @if ($imgHeight) height="{{ $imgHeight }}" @endif

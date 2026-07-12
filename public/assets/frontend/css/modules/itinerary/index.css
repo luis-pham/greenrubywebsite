@@ -177,7 +177,7 @@
 #itinerary .section-service .container-fluid::after {
     z-index: -1;
     opacity: 0.03;
-    background: url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
+    background: url(/assets/frontend/images/bg-grain.webp) center center / cover no-repeat;
 }
 
 #itinerary .section-service .container-fluid::before{

@@ -95,7 +95,7 @@
     height: 100%;
     z-index: 0;
     opacity: 0.03;
-    background: url(/assets/frontend/images/bg-grain.png) center center / cover no-repeat;
+    background: url(/assets/frontend/images/bg-grain.webp) center center / cover no-repeat;
     pointer-events: none;
 }
 

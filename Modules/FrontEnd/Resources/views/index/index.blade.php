@@ -113,10 +113,12 @@
 @if ($heroPreloadDesktop)
 @push('preload')
     <link rel="preload" as="image"
-          href="{{ $heroPreloadDesktop }}"
+          href="{{ $heroPreloadMobile ?: $heroPreloadDesktop }}"
           imagesrcset="{{ $heroPreloadMobile }} 800w, {{ $heroPreloadDesktop }} 1920w"
           imagesizes="100vw"
           fetchpriority="high">
+    <link rel="preload" as="font" href="{{ asset('assets/frontend/fonts/cormorant-garamond/cormorant-garamond-400.woff2') }}" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="{{ asset('assets/frontend/fonts/dm-sans/dm-sans-normal.woff2') }}" type="font/woff2" crossorigin>
 @endpush
 @endif
 

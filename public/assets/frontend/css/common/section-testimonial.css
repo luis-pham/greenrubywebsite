@@ -19,7 +19,7 @@
 }
 
 #main .section-testimonial .container-fluid:after {
-    background: url('/assets/frontend/images/bg-grain.png') top center no-repeat;
+    background: url('/assets/frontend/images/bg-grain.webp') top center no-repeat;
     z-index: -1;
     opacity: .05;
 }

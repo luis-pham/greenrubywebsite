@@ -959,7 +959,7 @@
 }
 
 #home .section-4.section-itinerary > .container-fluid::after {
-    background: url('/assets/frontend/images/bg-grain.png') center no-repeat;
+    background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
     background-size: cover;
     z-index: 0;
     opacity: .05;
@@ -1715,7 +1715,7 @@
 }
 
 #home .section-7 .container-fluid:after {
-    background: url('/assets/frontend/images/bg-grain.png') center no-repeat;
+    background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
     background-size: cover;
     z-index: -1;
     opacity: .05;
