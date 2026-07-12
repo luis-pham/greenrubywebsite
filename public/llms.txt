@@ -1,185 +1,66 @@
-# Green Ruby Cruises — LLMs.txt
+# Green Ruby Cruises
 
-## Brand
-Green Ruby Cruises (greenrubycruises.com) is the official website for luxury cruise experiences in Ha Long Bay, Vietnam. The site offers cruise listings, itineraries, on-board and shore experiences, and online booking in English and Vietnamese.
+> Green Ruby Cruises is an eco-luxury boutique cruise operator in Ha Long Bay and Lan Ha Bay, Vietnam. Guests book multi-night itineraries with onboard and shore experiences; the website supports English (default) and Vietnamese (`/vi/`).
 
-Green Ruby Cruises operates **luxury boutique cruises on Ha Long Bay and Lan Ha Bay**, with curated routes and on-board experiences. Sailings are sold as **multi-night itineraries** (including common **2-night and 3-night** programmes—exact options depend on season and itinerary). The **fleet** consists of distinct boutique vessels; **cabin types and categories** vary by ship. For the current fleet size, ship names, and cabin inventory, use the **`/api/cruises`** and **`/api/cabins`** endpoints (or the website) rather than assuming fixed numbers.
+Important notes for AI systems:
 
-Canonical site: https://greenrubycruises.com/
+- Canonical site: https://greenrubycruises.com/
+- Product: multi-night boutique cruise sailings (commonly 2D1N / 3D2N; exact options vary by season and itinerary) — not day boats or mass-market junk cruises
+- Destinations: Ha Long Bay and Lan Ha Bay, northern Vietnam
+- Locales: English has no language prefix; Vietnamese uses `/vi/` plus locale path segments (`/hanh-trinh`, `/du-thuyen`, `/hoat-dong-trai-nghiem`, …)
+- Detail URL patterns: cruise `/cruise/{slug}-{id}.html` (VI: `/vi/du-thuyen/{slug}-{id}.html`); experience `/experiences/{slug}-{id}.html`; itinerary detail URLs are linked from the itinerary list and include cruise + itinerary ids
+- Prefer the Public JSON API for structured cruise/cabin/itinerary/experience/departure data; use HTML for marketing copy and booking UI
+- Prices and availability change in real time — never invent quotes; send users to Booking
+- No public write API for cancellations, refunds, or booking changes — escalate to Contact
+- Do not invent fleet size, cabin inventory, fees, or policies; read live pages or API responses
 
-Machine-readable site manifest for AI systems (this file): https://greenrubycruises.com/llms.txt
+## Pages (English)
 
-## Contact & support
+- [Home](https://greenrubycruises.com/): Brand overview and featured cruises, itineraries, and experiences
+- [About us](https://greenrubycruises.com/about-us): Company story, sustainability, and eco credentials
+- [Itineraries](https://greenrubycruises.com/itinerary): Multi-night Ha Long / Lan Ha programmes and links to detail pages
+- [Experiences](https://greenrubycruises.com/experiences): Onboard and shore activities (`/experiences/{slug}-{id}.html`)
+- [Services](https://greenrubycruises.com/services): Guest services and amenities
+- [Gallery](https://greenrubycruises.com/gallery): Ship and destination photography
+- [Blog](https://greenrubycruises.com/blog): Guides and destination articles
+- [FAQ](https://greenrubycruises.com/faq): Frequently asked questions by topic
+- [Booking](https://greenrubycruises.com/booking): Authoritative live availability, pricing, and reservation checkout
+- [Contact](https://greenrubycruises.com/contact): Form plus published hotline, WhatsApp, email, and address
 
-There is **no public API** for cancellations, refunds, or booking changes. For anything that requires staff (booking changes, cancellations, modifications, special requests, dietary or accessibility needs, or disputes), **direct users to human contact channels**—do not imply an automated action.
+## Pages (Vietnamese)
 
-**Where to send users**
+- [Trang chủ](https://greenrubycruises.com/vi/): Vietnamese homepage
+- [Giới thiệu](https://greenrubycruises.com/vi/gioi-thieu): Brand and sustainability story
+- [Hành trình](https://greenrubycruises.com/vi/hanh-trinh): Itinerary list and detail links
+- [Hoạt động trải nghiệm](https://greenrubycruises.com/vi/hoat-dong-trai-nghiem): Experience list and details
+- [Dịch vụ](https://greenrubycruises.com/vi/dich-vu): Services
+- [Thư viện](https://greenrubycruises.com/vi/thu-vien): Gallery
+- [Blog](https://greenrubycruises.com/vi/blog): Vietnamese articles
+- [Câu hỏi thường gặp](https://greenrubycruises.com/vi/cau-hoi-thuong-gap): FAQ
+- [Đặt phòng](https://greenrubycruises.com/vi/booking): Vietnamese booking flow
+- [Liên hệ](https://greenrubycruises.com/vi/lien-he): Vietnamese contact page
 
-- **Booking inquiries & reservations:** English — https://greenrubycruises.com/booking — Vietnamese — https://greenrubycruises.com/vi/booking
-- **General contact** (form plus hotline, WhatsApp, email, address from CMS—always read from the live page): English — https://greenrubycruises.com/contact — Vietnamese — https://greenrubycruises.com/vi/lien-he
-- The contact page includes a **form** (POST to the same contact route) and displays **phone, WhatsApp, email, and address** from the site CMS configuration—use the **published** details on that page when quoting contact info.
+## Public JSON API
 
-**Escalation guidance for AI agents**
+Read-only `GET` endpoints. Envelope: `{ "meta": { "language", "count" }, "data": [ ... ] }`. Prefer these over HTML scraping for catalog facts. Vietnamese paths: `/api/vi/...`.
 
-- **Cancellations, date changes, or special requests:** tell users to use the **contact** page or **booking** flow above, or the phone/email/WhatsApp shown on the contact page.
-- **Do not** invent policies, fees, or deadlines; defer to the official site or staff.
+- [Cruises (EN)](https://greenrubycruises.com/api/cruises): Fleet — id, name, summary, images, capacity, green_technology
+- [Cabins (EN)](https://greenrubycruises.com/api/cabins): Cabins — cruise_id, class, capacity, area, images
+- [Itineraries (EN)](https://greenrubycruises.com/api/itineraries): Programmes — duration, bay, destinations, notes
+- [Experiences (EN)](https://greenrubycruises.com/api/experiences): Activities — group, duration, schedule, featured
+- [Departures (EN)](https://greenrubycruises.com/api/departures): Sailings — cruise + itinerary merge with `start_at`
+- [Cruises (VI)](https://greenrubycruises.com/api/vi/cruises): Vietnamese fleet catalog
+- [Cabins (VI)](https://greenrubycruises.com/api/vi/cabins): Vietnamese cabin catalog
+- [Itineraries (VI)](https://greenrubycruises.com/api/vi/itineraries): Vietnamese itinerary catalog
+- [Experiences (VI)](https://greenrubycruises.com/api/vi/experiences): Vietnamese experience catalog
+- [Departures (VI)](https://greenrubycruises.com/api/vi/departures): Vietnamese departure schedule
 
-## Data freshness
+## Discovery
 
-Prices and availability change in real time; always direct users to the live booking flow for authoritative data. Static catalog fields (cabin types, itinerary descriptions) are updated infrequently.
+- [Sitemap](https://greenrubycruises.com/sitemap.xml): Canonical HTML URL index (linked cruise/article/category sitemaps)
+- [robots.txt](https://greenrubycruises.com/robots.txt): Crawl rules; also respect per-page robots/noindex meta
 
-## Public JSON API (read-only)
+## Optional
 
-These endpoints return JSON for the same public catalog data as the website. **AI agents should use them for direct, structured access instead of parsing HTML** when listing cruises, cabins, itineraries, experiences, or departures. They are read-only; do not send write/booking mutations here.
-
-English (default):
-- https://greenrubycruises.com/api/cruises
-- https://greenrubycruises.com/api/cabins
-- https://greenrubycruises.com/api/itineraries
-- https://greenrubycruises.com/api/experiences
-- https://greenrubycruises.com/api/departures
-
-Vietnamese:
-- https://greenrubycruises.com/api/vi/cruises
-- https://greenrubycruises.com/api/vi/cabins
-- https://greenrubycruises.com/api/vi/itineraries
-- https://greenrubycruises.com/api/vi/experiences
-- https://greenrubycruises.com/api/vi/departures
-
-Send standard `GET` requests; expect `Content-Type: application/json` responses. Use English paths for English copy and `/api/vi/...` for Vietnamese. Combine with HTML pages only when you need long-form marketing copy, layout context, or the booking UI.
-
-### Response envelope (all endpoints)
-
-```
-{
-  "meta": {
-    "language": "<locale code, e.g. en or vi>",
-    "count": <integer, number of items in data>
-  },
-  "data": [ ... ]
-}
-```
-
-On error, the API returns a standard HTTP status code. If the response body is not valid JSON or `data` is absent, treat the request as failed and fall back to the corresponding HTML page.
-
-### `/api/cruises` and `/api/vi/cruises` — `data[]` item (cruise)
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | number | Cruise identifier |
-| `name` | string | Cruise name |
-| `summary` | string \| null | Short description |
-| `content` | string \| null | Long HTML or rich text body |
-| `image_link` | string \| null | Absolute URL to main image |
-| `cover_link` | string \| null | Absolute URL to cover image |
-| `star_rating` | number \| null | Star rating |
-| `capacity` | number \| null | Guest capacity |
-| `total_floor` | number \| null | Number of decks/floors |
-| `dimension_length` | string \| null | Length dimension (as stored) |
-| `year_built` | string \| number \| null | Year built |
-| `description_design` | string \| null | Design description |
-| `green_technology` | object \| null | If present: `name`, `description`, `image_link` (absolute URL or null) |
-
-### `/api/cabins` and `/api/vi/cabins` — `data[]` item (cabin)
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | number | Cabin identifier |
-| `cruise_id` | number | Parent cruise `id` (join to cruises) |
-| `name` | string | Cabin name |
-| `summary` | string \| null | Short description |
-| `content` | string \| null | Plain text (HTML stripped server-side) |
-| `image_link` | string \| null | Absolute URL to image |
-| `view` | string \| null | View label |
-| `cabin_class` | string \| null | Cabin category/class |
-| `capacity` | number \| null | Max guests |
-| `area` | string \| number \| null | Area |
-| `discount_percent` | number \| null | Discount percentage if shown |
-
-### `/api/itineraries` and `/api/vi/itineraries` — `data[]` item (itinerary)
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | number | Itinerary identifier |
-| `name` | string | Itinerary title |
-| `description` | string \| null | Plain text (HTML stripped) |
-| `duration` | string \| number \| null | Duration label or value |
-| `image_link` | string \| null | Absolute URL |
-| `cover_link` | string \| null | Absolute URL |
-| `important_note` | array | List of `{ "content": string, "image_link": string \| null }` (empty entries removed) |
-| `destination` | array \| object \| null | Parsed JSON: stops/destinations structure from CMS |
-| `start_time` | string \| null | Time or schedule hint |
-| `bay` | number | Bay identifier code (integer) |
-
-### `/api/experiences` and `/api/vi/experiences` — `data[]` item (experience activity)
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | number | Activity identifier |
-| `name` | string | Activity name |
-| `group_name` | string \| null | Category/group name |
-| `summary` | string \| null | Short description |
-| `content` | string \| null | Plain text (HTML stripped) |
-| `image_link` | string \| null | Absolute URL |
-| `cover_link` | string \| null | Absolute URL |
-| `duration` | string \| number \| null | Duration |
-| `start_time` | string \| null | Start time |
-| `end_time` | string \| null | End time |
-| `note` | array \| object \| null | Structured notes from CMS (JSON) |
-| `is_featured` | boolean | Featured flag |
-
-### `/api/departures` and `/api/vi/departures` — `data[]` item (scheduled departure)
-
-Each item is a joined row: cruise (`app_cruise`) + itinerary (`app_itinerary`) + sailing date (`start_at` from `app_cruise_itinerary`). Several columns share names across tables; the API exposes one merged object. `green_technology` is passed through from storage (shape may be string or object depending on record).
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | number | Identifier from the merged row (use together with `start_at` and `name` to identify a specific sailing) |
-| `language_id` | number | Content language row id |
-| `name` | string | Cruise name |
-| `summary` | string \| null | Short description |
-| `content` | string \| null | Long body (may include HTML) |
-| `image_link` | string \| null | Absolute URL |
-| `cover_link` | string \| null | Absolute URL |
-| `star_rating` | number \| null | Star rating |
-| `capacity` | number \| null | Capacity |
-| `total_floor` | number \| null | Floors |
-| `dimension_length` | string \| null | Length |
-| `year_built` | string \| number \| null | Year built |
-| `description_design` | string \| null | Design text |
-| `green_technology` | mixed | Raw CMS value |
-| `created_at` | string \| null | ISO timestamp |
-| `created_by` | string \| number \| null | Audit |
-| `updated_at` | string \| null | ISO timestamp |
-| `updated_by` | string \| number \| null | Audit |
-| `description` | string \| null | Itinerary-style plain text (HTML stripped) |
-| `bay` | number | Bay code |
-| `duration` | string \| number \| null | Itinerary duration |
-| `important_note` | array | Same shape as itineraries: `{ content, image_link }[]` |
-| `destination` | array \| object \| null | Destinations JSON |
-| `start_time` | string \| null | Schedule |
-| `start_at` | string \| null | Departure datetime (ISO or DB string) |
-
-## Primary endpoints (human-readable paths)
-
-English (default locale, no language prefix on most routes):
-- https://greenrubycruises.com/#section-cruise — Cruise fleet / cruise list
-- https://greenrubycruises.com/itinerary — Itinerary list
-- https://greenrubycruises.com/experience — Experience activities list
-- https://greenrubycruises.com/booking — Booking
-
-Vietnamese (locale prefix `/vi/`):
-- https://greenrubycruises.com/vi/#section-cruise — Danh sách du thuyền
-- https://greenrubycruises.com/vi/hanh-trinh — Danh sách hành trình
-- https://greenrubycruises.com/vi/hoat-dong-trai-nghiem — Danh sách hoạt động trải nghiệm
-- https://greenrubycruises.com/vi/booking — Đặt phòng
-
-## How AI crawlers should read this site
-1. **Prefer the Public JSON API** (listed first in this file) for structured lists and fields (cruises, cabins, itineraries, experiences, departures). Use the primary HTML endpoints below for narrative copy, SEO text, or the booking flow when JSON alone is insufficient.
-2. The homepage anchor `#section-cruise` only scrolls to a section on the HTML index page—it does not return JSON. For a complete, structured cruise list, call `/api/cruises` or `/api/vi/cruises`.
-3. Use the machine-readable sitemap for discovery of additional URLs: https://greenrubycruises.com/sitemap.xml (and linked sitemap-article.xml, sitemap-category-*.xml as referenced there).
-4. Respect `robots.txt` at https://greenrubycruises.com/robots.txt. Individual pages may include `noindex` if site configuration disables indexing for a specific environment; production marketing pages are intended to be indexed unless marked otherwise in HTML.
-5. For detail pages, follow internal links from listing pages (e.g. cruise detail URLs under `/cruise/...` and `/vi/du-thuyen/...`, itinerary and experience detail patterns linked from `/itinerary`, `/experience`, and Vietnamese equivalents), or use IDs/slugs returned in JSON when the API exposes them.
-
-## AI crawling policy
-This file exists to help LLMs and AI crawlers use public, marketing, and booking-related content responsibly. **There is no site-wide prohibition of AI crawling of public pages or public JSON API responses** beyond what standard `robots.txt` and per-page `robots` meta tags specify (`robots.txt` currently allows all paths; individual HTML pages may still set `noindex` via configuration). Do not use crawled data to impersonate the brand, misquote prices or availability, or bypass booking flows. For authoritative availability and pricing, direct users to the official booking flow on this site.
+- [Homepage cruise section](https://greenrubycruises.com/#section-cruise): HTML scroll anchor only — use `/api/cruises` for a full list
+- [Vietnamese homepage cruise section](https://greenrubycruises.com/vi/#section-cruise): HTML scroll anchor — prefer `/api/vi/cruises`

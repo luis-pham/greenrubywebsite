@@ -29,108 +29,29 @@ class IndexController extends Controller
             : '/';
 
         $pageConfig = FeUtils::getPageConfigByCode(PageCodeConsts::HOMEPAGE, $language->id);
-
-        // Bind cruise itinerary
-        $listCruiseItinerary = $pageConfig[PageConfigKeyConsts::HOMEPAGE_CRUISE_ITINERARY];
-        if (isset($listCruiseItinerary) && count($listCruiseItinerary) > 0) {
-            $listCruiseId = [];
-            for ($i = 0; $i < count($listCruiseItinerary); $i++) {
-                if (!in_array($listCruiseItinerary[$i]->cruise_id, $listCruiseId)) {
-                    $listCruiseId[] = $listCruiseItinerary[$i]->cruise_id;
-                }
-            }
-
-            if (count($listCruiseId) > 0) {
-                $listCruiseItineraryPrice = AppCabinService::getMinPriceByCruiseId($listCruiseId);
-                if (count($listCruiseItineraryPrice) > 0) {
-                    for ($i = 0; $i < count($listCruiseItinerary); $i++) {
-                        $listCruiseItinerary[$i]->price = $listCruiseItineraryPrice
-                            ->where('cruise_id', $listCruiseItinerary[$i]->cruise_id)
-                            ->where('duration', $listCruiseItinerary[$i]->duration)
-                            ->value('min_price');
-                    }
-                }
-            }
-        }
-
-        // Bind cabin
-        $listCabin = $pageConfig[PageConfigKeyConsts::HOMEPAGE_CABIN];
-        if (isset($listCabin) && count($listCabin) > 0) {
-            $listCabinId = [];
-            for ($i = 0; $i < count($listCabin); $i++) {
-                if (!in_array($listCabin[$i]->id, $listCabinId)) {
-                    $listCabinId[] = $listCabin[$i]->id;
-                }
-            }
-
-            // $listCabinRoomCount = AppCabinService::getCountRoomById($listCabinId);
-            // if (count($listCabinRoomCount) > 0) {
-            //     for ($i = 0; $i < count($listCabin); $i++) {
-            //         $listCabin[$i]->room_count = $listCabinRoomCount
-            //             ->where('cabin_id', $listCabin[$i]->id)
-            //             //->sortBy('title')
-            //             ->values();
-            //     }
-            // }
-
-            $listCabinRoom = AppCabinService::getRoomById($listCabinId);
-            if (count($listCabinRoom) > 0) {
-                for ($i = 0; $i < count($listCabin); $i++) {
-                    $listCabin[$i]->room = $listCabinRoom
-                        ->where('cabin_id', $listCabin[$i]->id)
-                        ->values();
-                }
-            }
-        }
-
-        // Bind exp activity
-        $listExpActivity = $pageConfig[PageConfigKeyConsts::HOMEPAGE_EXP_ACTIVITY];
-        if (isset($listExpActivity) && count($listExpActivity) > 0) {
-            $listExpActivityId = [];
-            for ($i = 0; $i < count($listExpActivity); $i++) {
-                if (!in_array($listExpActivity[$i]->id, $listExpActivityId)) {
-                    $listExpActivityId[] = $listExpActivity[$i]->id;
-                }
-            }
-
-            $listFile = AppFileService::getByObjectId($listExpActivityId, config('backend.fileAttachObjectType.expActivity'));
-            if (count($listFile) > 0) {
-                for ($i = 0; $i < count($listExpActivity); $i++) {
-                    $listExpActivity[$i]->file = $listFile
-                        ->where('object_id', $listExpActivity[$i]->id)
-                        ->values();
-                }
-            }
-        }
+        $deferBelowFold = !$this->isLikelyBot($request);
 
         $selectBoxData = [];
-        $selectBoxData['cruise'] = AppCruiseService::getAll($language->id)->sortBy('name');
-        $selectBoxData['itinerary'] = AppItineraryService::getAll($language->id)->sortBy('name');
-
-        $listCruiseName = AppCruiseService::getAll($language->id)->pluck('name')->toArray();
-        $listAllCruise = AppCruiseService::getAll($language->id);
-
         $listCruiseByService = [];
-        if (array_key_exists(PageConfigKeyConsts::HOMEPAGE_SERVICE, $pageConfig)) {
-            $listService = $pageConfig[PageConfigKeyConsts::HOMEPAGE_SERVICE];
-            $listServiceId = [];
-            if (isset($listService) && count($listService) > 0) {
-                for ($i = 0; $i < count($listService); $i++) {
-                    if (!in_array($listService[$i]->id, $listServiceId)) {
-                        $listServiceId[] = $listService[$i]->id;
-                    }
-                }
-            }
-            $data = FeAppCruiseService::getByServiceId($listServiceId, $language->id);
-            for ($i = 0; $i < count($data); $i++) {
-                if (!array_key_exists($data[$i]->service_id, $listCruiseByService)) {
-                    $listCruiseByService[$data[$i]->service_id] = [];
-                }
-                $listCruiseByService[$data[$i]->service_id][] = $data[$i];
-            }
+        $cruiseLatest = null;
+        $listCruiseName = [];
+        $listAllCruise = collect();
+
+        if (!$deferBelowFold) {
+            $belowFoldData = $this->buildBelowFoldData($pageConfig, $language);
+            $selectBoxData = $belowFoldData['selectBoxData'];
+            $listCruiseByService = $belowFoldData['listCruiseByService'];
+            $cruiseLatest = $belowFoldData['cruiseLatest'];
+            $listCruiseName = $belowFoldData['listCruiseName'];
+            $listAllCruise = $belowFoldData['listAllCruise'];
+            $pageConfig = $belowFoldData['pageConfig'];
+        } else {
+            $listCruiseName = AppCruiseService::getAll($language->id)->pluck('name')->toArray();
         }
 
-        $cruiseLatest = FeAppCruiseService::getLatest($language->id);
+        $belowFoldUrl = route(Utilities::getRouteName('frontend.index.below-fold'), array_filter([
+            'languageCode' => $languageCode,
+        ]));
 
         $config = Utilities::getAllConfig($language);
         $canonicalUrl = FeUtils::frontendRoute('frontend.index', [], $languageCode);
@@ -142,7 +63,36 @@ class IndexController extends Controller
         );
         FeUtils::applyHubSeoMeta($seo, $canonicalUrl, $config);
 
-        return view($this->baseView . __FUNCTION__, compact('menuUrlActive', 'pageConfig', 'selectBoxData', 'listCruiseByService', 'cruiseLatest', 'listCruiseName', 'listAllCruise'));
+        $criticalCssPath = 'assets/frontend/css/critical-home.css';
+
+        return view($this->baseView . 'index', compact(
+            'menuUrlActive',
+            'pageConfig',
+            'selectBoxData',
+            'listCruiseByService',
+            'cruiseLatest',
+            'listCruiseName',
+            'listAllCruise',
+            'belowFoldUrl',
+            'deferBelowFold',
+            'criticalCssPath'
+        ));
+    }
+
+    public function belowFold(Request $request)
+    {
+        $language = FeLanguageUtils::getCurrentLanguage();
+        $languageCode = $request->route('languageCode');
+
+        $pageConfig = FeUtils::getPageConfigByCode(PageCodeConsts::HOMEPAGE, $language->id);
+        $data = $this->buildBelowFoldData($pageConfig, $language);
+
+        return response()
+            ->view($this->baseView . 'partials.below-fold', array_merge($data, [
+                'languageCode' => $languageCode,
+                'pageConfig' => $data['pageConfig'],
+            ]))
+            ->header('Content-Type', 'text/html; charset=UTF-8');
     }
 
     public function searchTour(Request $request)
@@ -176,5 +126,127 @@ class IndexController extends Controller
                 'err' => $e->getMessage()
             ]);
         }
+    }
+
+    /**
+     * Heavy homepage bindings used by below-fold sections.
+     */
+    private function buildBelowFoldData(array $pageConfig, $language): array
+    {
+        $listCruiseItinerary = $pageConfig[PageConfigKeyConsts::HOMEPAGE_CRUISE_ITINERARY] ?? null;
+        if (isset($listCruiseItinerary) && count($listCruiseItinerary) > 0) {
+            $listCruiseId = [];
+            for ($i = 0; $i < count($listCruiseItinerary); $i++) {
+                if (!in_array($listCruiseItinerary[$i]->cruise_id, $listCruiseId)) {
+                    $listCruiseId[] = $listCruiseItinerary[$i]->cruise_id;
+                }
+            }
+
+            if (count($listCruiseId) > 0) {
+                $listCruiseItineraryPrice = AppCabinService::getMinPriceByCruiseId($listCruiseId);
+                if (count($listCruiseItineraryPrice) > 0) {
+                    for ($i = 0; $i < count($listCruiseItinerary); $i++) {
+                        $listCruiseItinerary[$i]->price = $listCruiseItineraryPrice
+                            ->where('cruise_id', $listCruiseItinerary[$i]->cruise_id)
+                            ->where('duration', $listCruiseItinerary[$i]->duration)
+                            ->value('min_price');
+                    }
+                }
+            }
+            $pageConfig[PageConfigKeyConsts::HOMEPAGE_CRUISE_ITINERARY] = $listCruiseItinerary;
+        }
+
+        $listCabin = $pageConfig[PageConfigKeyConsts::HOMEPAGE_CABIN] ?? null;
+        if (isset($listCabin) && count($listCabin) > 0) {
+            $listCabinId = [];
+            for ($i = 0; $i < count($listCabin); $i++) {
+                if (!in_array($listCabin[$i]->id, $listCabinId)) {
+                    $listCabinId[] = $listCabin[$i]->id;
+                }
+            }
+
+            $listCabinRoom = AppCabinService::getRoomById($listCabinId);
+            if (count($listCabinRoom) > 0) {
+                for ($i = 0; $i < count($listCabin); $i++) {
+                    $listCabin[$i]->room = $listCabinRoom
+                        ->where('cabin_id', $listCabin[$i]->id)
+                        ->values();
+                }
+            }
+            $pageConfig[PageConfigKeyConsts::HOMEPAGE_CABIN] = $listCabin;
+        }
+
+        $listExpActivity = $pageConfig[PageConfigKeyConsts::HOMEPAGE_EXP_ACTIVITY] ?? null;
+        if (isset($listExpActivity) && count($listExpActivity) > 0) {
+            $listExpActivityId = [];
+            for ($i = 0; $i < count($listExpActivity); $i++) {
+                if (!in_array($listExpActivity[$i]->id, $listExpActivityId)) {
+                    $listExpActivityId[] = $listExpActivity[$i]->id;
+                }
+            }
+
+            $listFile = AppFileService::getByObjectId($listExpActivityId, config('backend.fileAttachObjectType.expActivity'));
+            if (count($listFile) > 0) {
+                for ($i = 0; $i < count($listExpActivity); $i++) {
+                    $listExpActivity[$i]->file = $listFile
+                        ->where('object_id', $listExpActivity[$i]->id)
+                        ->values();
+                }
+            }
+            $pageConfig[PageConfigKeyConsts::HOMEPAGE_EXP_ACTIVITY] = $listExpActivity;
+        }
+
+        $selectBoxData = [];
+        $selectBoxData['cruise'] = AppCruiseService::getAll($language->id)->sortBy('name');
+        $selectBoxData['itinerary'] = AppItineraryService::getAll($language->id)->sortBy('name');
+
+        $listCruiseName = AppCruiseService::getAll($language->id)->pluck('name')->toArray();
+        $listAllCruise = AppCruiseService::getAll($language->id);
+
+        $listCruiseByService = [];
+        if (array_key_exists(PageConfigKeyConsts::HOMEPAGE_SERVICE, $pageConfig)) {
+            $listService = $pageConfig[PageConfigKeyConsts::HOMEPAGE_SERVICE];
+            $listServiceId = [];
+            if (isset($listService) && count($listService) > 0) {
+                for ($i = 0; $i < count($listService); $i++) {
+                    if (!in_array($listService[$i]->id, $listServiceId)) {
+                        $listServiceId[] = $listService[$i]->id;
+                    }
+                }
+            }
+            if (count($listServiceId) > 0) {
+                $data = FeAppCruiseService::getByServiceId($listServiceId, $language->id);
+                for ($i = 0; $i < count($data); $i++) {
+                    if (!array_key_exists($data[$i]->service_id, $listCruiseByService)) {
+                        $listCruiseByService[$data[$i]->service_id] = [];
+                    }
+                    $listCruiseByService[$data[$i]->service_id][] = $data[$i];
+                }
+            }
+        }
+
+        $cruiseLatest = FeAppCruiseService::getLatest($language->id);
+
+        return [
+            'pageConfig' => $pageConfig,
+            'selectBoxData' => $selectBoxData,
+            'listCruiseByService' => $listCruiseByService,
+            'cruiseLatest' => $cruiseLatest,
+            'listCruiseName' => $listCruiseName,
+            'listAllCruise' => $listAllCruise,
+        ];
+    }
+
+    private function isLikelyBot(Request $request): bool
+    {
+        $ua = strtolower((string) $request->userAgent());
+        if ($ua === '') {
+            return false;
+        }
+
+        return (bool) preg_match(
+            '/bot|crawl|slurp|spider|facebookexternalhit|preview|whatsapp|telegram|linkedinbot|embedly|quora|pinterest|redditbot|applebot|bingpreview|yandex|duckduck|semrush|ahrefs|gptbot|claudebot|anthropic|bytespider|ccbot|perplexity/i',
+            $ua
+        );
     }
 }

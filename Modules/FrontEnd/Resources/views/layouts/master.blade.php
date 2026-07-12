@@ -23,7 +23,7 @@
     @include('frontend::shared.hreflang')
     @stack('preload')
     <style>
-{!! file_get_contents(public_path('assets/frontend/css/critical.css')) !!}
+{!! file_get_contents(public_path(isset($criticalCssPath) && $criticalCssPath ? $criticalCssPath : 'assets/frontend/css/critical.css')) !!}
 </style>
     @if (!isset($disableDefaultAppCss) || !$disableDefaultAppCss)
         <link href="{{ mix('assets/frontend/dist/css/app.css') }}" rel="stylesheet" media="print" onload="this.media='all'" />

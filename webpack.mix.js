@@ -187,20 +187,21 @@ mix.scripts([
     'public/assets/frontend/plugins/bootstrap/js/bootstrap.bundle.min.js',
     'public/assets/frontend/plugins/owl-carousel/js/owl.carousel.min.js',
 
-    // ── Global ────────────────────────────────────────────────
+    // ── Global + above-the-fold homepage ──────────────────────
     'public/assets/frontend/js/script.js',
+    'public/assets/frontend/js/common/section-cover.js',
+    'public/assets/frontend/js/modules/index/home-loader.js',
+], 'public/assets/frontend/dist/js/home-core.js');
 
-    // ── Common components used by homepage ────────────────────
+mix.scripts([
+    // ── Below-fold carousels / modals (loaded after fragment) ─
     'public/assets/frontend/js/common/modal-cabin-details.js',
     'public/assets/frontend/js/common/section-amenity.js',
     'public/assets/frontend/js/common/section-cabin.js',
-    'public/assets/frontend/js/common/section-cover.js',
     'public/assets/frontend/js/common/section-itinerary.js',
     'public/assets/frontend/js/common/section-testimonial.js',
-
-    // ── Homepage module ───────────────────────────────────────
     'public/assets/frontend/js/modules/index/index.js',
-], 'public/assets/frontend/dist/js/home.js');
+], 'public/assets/frontend/dist/js/home-deferred.js');
 
 mix.after(() => {
     copyFontsTreeToFlatDir(
@@ -211,9 +212,12 @@ mix.after(() => {
 
 mix.minify('public/assets/frontend/dist/css/app.css')
    .minify('public/assets/frontend/dist/js/app.js')
-   .minify('public/assets/frontend/dist/js/home.js')
+   .minify('public/assets/frontend/dist/js/home-core.js')
+   .minify('public/assets/frontend/dist/js/home-deferred.js')
    .version([
        'public/assets/frontend/dist/css/app.css',
+       'public/assets/frontend/dist/css/home.css',
        'public/assets/frontend/dist/js/app.js',
-       'public/assets/frontend/dist/js/home.js',
+       'public/assets/frontend/dist/js/home-core.js',
+       'public/assets/frontend/dist/js/home-deferred.js',
    ]);

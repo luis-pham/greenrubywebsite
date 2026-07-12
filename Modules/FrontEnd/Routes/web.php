@@ -52,13 +52,20 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
         })->where('path', '.*');
     }
 
-    Route::get('', 'IndexController@index')->name('frontend.index');
-    Route::get('/{languageCode}', 'IndexController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index'));
+    Route::middleware('html.cache:60,auto')->group(function () use ($listLanguageCode) {
+        Route::get('', 'IndexController@index')->name('frontend.index');
+        Route::get('/{languageCode}', 'IndexController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index'));
+    });
 
     Route::get('/booking', 'BookingController@index')->name('frontend.booking');
     Route::get('/{languageCode}/booking', 'BookingController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.booking'));
 
     Route::middleware('api.noindex')->group(function () use ($listLanguageCode) {
+        Route::middleware('html.cache:60,public')->group(function () use ($listLanguageCode) {
+            Route::get('/api/home/below-fold', 'IndexController@belowFold')->name('frontend.index.below-fold');
+            Route::get('/api/{languageCode}/home/below-fold', 'IndexController@belowFold')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index.below-fold'));
+        });
+
         Route::post('/api/search-tour', 'IndexController@searchTour')->name('frontend.index.search-tour');
         Route::post('/api/{languageCode}/search-tour', 'IndexController@searchTour')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index.search-tour'));
 
