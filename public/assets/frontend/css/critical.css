@@ -882,6 +882,21 @@ button {
         object-position: center;
     }
 
+    /* Homepage mobile logo: -15% size, 10px from top */
+    #header:has(+ #main #home) .header-mobile .header-center {
+        top: 10px;
+        transform: translateX(-50%);
+    }
+
+    #header:has(+ #main #home) .header-mobile .header-center img {
+        height: 59.67px;
+        max-width: min(299.88px, 39.1vw);
+    }
+
+    #header:has(+ #main #home) .header-mobile .btn-book-now {
+        display: none !important;
+    }
+
     #header .header-mobile .header-right {
         flex-shrink: 0;
         gap: 8px;

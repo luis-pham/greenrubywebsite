@@ -29,29 +29,13 @@ class IndexController extends Controller
             : '/';
 
         $pageConfig = FeUtils::getPageConfigByCode(PageCodeConsts::HOMEPAGE, $language->id);
-        $deferBelowFold = !$this->isLikelyBot($request);
-
-        $selectBoxData = [];
-        $listCruiseByService = [];
-        $cruiseLatest = null;
-        $listCruiseName = [];
-        $listAllCruise = collect();
-
-        if (!$deferBelowFold) {
-            $belowFoldData = $this->buildBelowFoldData($pageConfig, $language);
-            $selectBoxData = $belowFoldData['selectBoxData'];
-            $listCruiseByService = $belowFoldData['listCruiseByService'];
-            $cruiseLatest = $belowFoldData['cruiseLatest'];
-            $listCruiseName = $belowFoldData['listCruiseName'];
-            $listAllCruise = $belowFoldData['listAllCruise'];
-            $pageConfig = $belowFoldData['pageConfig'];
-        } else {
-            $listCruiseName = AppCruiseService::getAll($language->id)->pluck('name')->toArray();
-        }
-
-        $belowFoldUrl = route(Utilities::getRouteName('frontend.index.below-fold'), array_filter([
-            'languageCode' => $languageCode,
-        ]));
+        $belowFoldData = $this->buildBelowFoldData($pageConfig, $language);
+        $selectBoxData = $belowFoldData['selectBoxData'];
+        $listCruiseByService = $belowFoldData['listCruiseByService'];
+        $cruiseLatest = $belowFoldData['cruiseLatest'];
+        $listCruiseName = $belowFoldData['listCruiseName'];
+        $listAllCruise = $belowFoldData['listAllCruise'];
+        $pageConfig = $belowFoldData['pageConfig'];
 
         $config = Utilities::getAllConfig($language);
         $canonicalUrl = FeUtils::frontendRoute('frontend.index', [], $languageCode);
@@ -73,8 +57,6 @@ class IndexController extends Controller
             'cruiseLatest',
             'listCruiseName',
             'listAllCruise',
-            'belowFoldUrl',
-            'deferBelowFold',
             'criticalCssPath'
         ));
     }
@@ -237,16 +219,4 @@ class IndexController extends Controller
         ];
     }
 
-    private function isLikelyBot(Request $request): bool
-    {
-        $ua = strtolower((string) $request->userAgent());
-        if ($ua === '') {
-            return false;
-        }
-
-        return (bool) preg_match(
-            '/bot|crawl|slurp|spider|facebookexternalhit|preview|whatsapp|telegram|linkedinbot|embedly|quora|pinterest|redditbot|applebot|bingpreview|yandex|duckduck|semrush|ahrefs|gptbot|claudebot|anthropic|bytespider|ccbot|perplexity/i',
-            $ua
-        );
-    }
 }

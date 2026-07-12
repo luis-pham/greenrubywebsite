@@ -12,10 +12,6 @@
     $listBanner = isset($pageConfig[PageConfigKeyConsts::HOMEPAGE_BANNER])
         ? $pageConfig[PageConfigKeyConsts::HOMEPAGE_BANNER]
         : [];
-    // First banner only in initial HTML — extra carousel slides compete with LCP.
-    if (count($listBanner) > 1) {
-        $listBanner = [ $listBanner[0] ];
-    }
 
     for ($i = 0; $i < count($listBanner); $i++) {
         if ($i === 0) {
@@ -168,27 +164,15 @@
                 </div>
             </div>
         </section>
-        <div id="home-below-fold"
-             @if (!empty($deferBelowFold))
-                 data-below-fold-url="{{ $belowFoldUrl }}"
-                 data-deferred-js="{{ mix('assets/frontend/dist/js/home-deferred.js') }}"
-                 aria-busy="true"
-             @endif
-        >
-            @if (empty($deferBelowFold))
-                @include('frontend::index.partials.below-fold')
-            @else
-                <div class="home-below-fold-placeholder" aria-hidden="true"></div>
-            @endif
+        <div id="home-below-fold">
+            @include('frontend::index.partials.below-fold')
         </div>
     </div>
 @endsection
 
 @push('scripts')
     <script src="{{ mix('assets/frontend/dist/js/home-core.js') }}" defer></script>
-    @if (empty($deferBelowFold))
-        <script src="{{ mix('assets/frontend/dist/js/home-deferred.js') }}" defer></script>
-    @endif
+    <script src="{{ mix('assets/frontend/dist/js/home-deferred.js') }}" defer></script>
     @include('frontend::shared.structured-data-organization', [
         'url' => route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode])
     ])

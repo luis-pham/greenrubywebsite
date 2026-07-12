@@ -1,9 +1,3 @@
-
-/* Deferred below-fold mount */
-#home-below-fold[aria-busy="true"],
-#home .home-below-fold-placeholder {
-    min-height: 40vh;
-}
 /* Section 1 */
 #home .section-1.section-cover .page-cover {
     position: relative;

@@ -190,7 +190,6 @@ mix.scripts([
     // ── Global + above-the-fold homepage ──────────────────────
     'public/assets/frontend/js/script.js',
     'public/assets/frontend/js/common/section-cover.js',
-    'public/assets/frontend/js/modules/index/home-loader.js',
 ], 'public/assets/frontend/dist/js/home-core.js');
 
 mix.scripts([
