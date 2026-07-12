@@ -3,14 +3,13 @@ namespace Modules\FrontEnd\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\BackEnd\Entities\AppGroup;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppGroupService;
-use Modules\FrontEnd\Constants\PageCodeConsts;
-use Modules\FrontEnd\Constants\PageConfigKeyConsts;
+use Modules\FrontEnd\Helpers\FeHreflangUtils;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppFaqService;
-use Modules\FrontEnd\Services\AppGroupService as FeAppGroupService;
 
 class FaqController extends Controller
 {
@@ -86,8 +85,36 @@ class FaqController extends Controller
         $language = FeLanguageUtils::getCurrentLanguage();
         $languageCode = $request->route('languageCode');
 
-        $group = AppGroupService::getBySlug($slug, config('backend.groupType.faq'), $language->id);
-        if (!$group || $group->slug == 'root') {
+        $faqType = config('backend.groupType.faq');
+        $group = AppGroupService::getBySlug($slug, $faqType, $language->id);
+
+        if (!$group || $group->slug === 'root') {
+            $sourceGroup = AppGroup::where('slug', $slug)
+                ->where('type', $faqType)
+                ->where('slug', '!=', 'root')
+                ->first();
+
+            if ($sourceGroup) {
+                $localizedGroup = FeHreflangUtils::findFaqGroupCounterpart(
+                    $sourceGroup,
+                    $language->id
+                );
+                if ($localizedGroup && $localizedGroup->slug && $localizedGroup->slug !== 'root') {
+                    $redirectRoute = ($page && (int) $page > 1)
+                        ? 'frontend.faq.category.paginate'
+                        : 'frontend.faq.category';
+                    $redirectParams = ['slug' => $localizedGroup->slug];
+                    if ($page && (int) $page > 1) {
+                        $redirectParams['page'] = (int) $page;
+                    }
+
+                    return redirect(
+                        FeUtils::frontendRoute($redirectRoute, $redirectParams, $languageCode),
+                        301
+                    );
+                }
+            }
+
             return abort(404);
         }
 

@@ -43,6 +43,9 @@ if (!empty($imageConfigMobile)) {
 
 $iconTintOnLight = !empty($iconTintOnLight);
 $wrapperClasses = trim((isset($ratio) ? 'image-' . $ratio : '') . ' position-relative' . ($iconTintOnLight ? ' icon-on-light' : ''));
+$imgWidth = $imageConfig['w'] ?? null;
+$imgHeight = $imageConfig['h'] ?? null;
+$imgSizes = $sizes ?? ((isset($imageConfig['w']) && (int) $imageConfig['w'] >= 1200) ? '100vw' : null);
 ?>
 <div
     class="image-wrapper {{ $wrapperClasses }}"
@@ -60,12 +63,13 @@ $wrapperClasses = trim((isset($ratio) ? 'image-' . $ratio : '') . ' position-rel
         <img
             src="{{ $thumbnailSrc }}"
             alt="{{ $alt }}"
-            width="{{ $imageConfig['w'] ?? '' }}"
-            height="{{ $imageConfig['h'] ?? '' }}"
+            @if ($imgWidth) width="{{ $imgWidth }}" @endif
+            @if ($imgHeight) height="{{ $imgHeight }}" @endif
+            @if ($imgSizes) sizes="{{ $imgSizes }}" @endif
             class="position-absolute w-100 h-100"
             loading="{{ $loading }}"
             decoding="{{ $decoding }}"
-            {!! $fetchpriority ? 'fetchpriority="' . $fetchpriority . '"' : '' !!}
+            {!! $fetchpriority ? 'fetchpriority="' . e($fetchpriority) . '"' : '' !!}
         />
     </picture>
 </div>

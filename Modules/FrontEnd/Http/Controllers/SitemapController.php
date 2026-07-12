@@ -200,7 +200,11 @@ class SitemapController extends Controller
                     continue;
                 }
 
-                $slug = Utilities::convertToAlias($list[$i]->name);
+                $slug = $list[$i]->slug ?: Utilities::convertToAlias($list[$i]->name);
+                if (!$slug || $slug === 'root') {
+                    continue;
+                }
+
                 $languageId = $list[$i]->language_id;
                 $url = $defaultLanguage->id == $languageId
                     ? route('frontend.article.category', ['slug' => $slug])
@@ -230,23 +234,52 @@ class SitemapController extends Controller
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $listLanguage = $this->getAllLanguage();
         $entries = [];
+        $emittedClusterKeys = [];
 
         $list = AppExpActivityService::getPaging(['is_disabled_paginate' => true]);
         for ($i = 0; $i < count($list); $i++) {
             $languageId = $list[$i]->language_id ?? $defaultLanguage->id;
             $slug = Utilities::convertToAlias($list[$i]->name);
+            $params = [
+                'slug' => $slug,
+                'id' => $list[$i]->id,
+            ];
+
+            $alternates = FeHreflangUtils::getAlternateLinksForRoute(
+                'frontend.experience.show',
+                $params,
+                $languageId
+            );
+
+            // Prefer emitting one sitemap row per reciprocal cluster (keyed by default-locale URL).
+            $clusterKey = collect($alternates)
+                ->firstWhere('hreflang', $defaultLanguage->code)['url']
+                ?? collect($alternates)->first()['url']
+                ?? null;
+
+            if ($clusterKey && isset($emittedClusterKeys[$clusterKey])) {
+                continue;
+            }
+            if ($clusterKey) {
+                $emittedClusterKeys[$clusterKey] = true;
+            }
+
             try {
                 $url = $defaultLanguage->id == $languageId
-                    ? route('frontend.experience.show', ['slug' => $slug, 'id' => $list[$i]->id])
-                    : route(Utilities::bindRouteNameMultiLanguage('frontend.experience.show'), ['languageCode' => $listLanguage[$languageId], 'slug' => $slug, 'id' => $list[$i]->id]);
+                    ? route('frontend.experience.show', $params)
+                    : route(
+                        Utilities::bindRouteNameMultiLanguage('frontend.experience.show'),
+                        array_merge($params, ['languageCode' => $listLanguage[$languageId]])
+                    );
             } catch (\Throwable) {
                 continue;
             }
 
-            $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.experience.show', [
-                'slug' => $slug,
-                'id' => $list[$i]->id,
-            ], $languageId);
+            // Prefer the default-locale URL as <loc> when the cluster includes it.
+            $defaultAlternate = collect($alternates)->firstWhere('hreflang', $defaultLanguage->code);
+            if ($defaultAlternate) {
+                $url = $defaultAlternate['url'];
+            }
 
             $entries[] = $this->makeUrlEntry(
                 $url,
@@ -371,6 +404,7 @@ class SitemapController extends Controller
         $entries = [];
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $galleryLastmod = GalleryService::getGalleryUpdatedAt($defaultLanguage->id);
+        $emittedClusterKeys = [];
 
         if ($galleryLastmod) {
             $lastmod = Carbon::parse($galleryLastmod)->format('Y-m-d\TH:i:sP');
@@ -386,12 +420,37 @@ class SitemapController extends Controller
                 $filters = GalleryService::getGalleryFilter($language->id);
                 foreach (array_keys($filters) as $slug) {
                     $params = ['slug' => $slug];
-                    $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.gallery.category', $params, $language->id);
+                    $alternates = FeHreflangUtils::getAlternateLinksForRoute(
+                        'frontend.gallery.category',
+                        $params,
+                        $language->id
+                    );
+
+                    if (count($alternates) === 0) {
+                        continue;
+                    }
+
+                    $clusterKey = collect($alternates)
+                        ->firstWhere('hreflang', $defaultLanguage->code)['url']
+                        ?? collect($alternates)->first()['url']
+                        ?? null;
+
+                    if ($clusterKey && isset($emittedClusterKeys[$clusterKey])) {
+                        continue;
+                    }
+                    if ($clusterKey) {
+                        $emittedClusterKeys[$clusterKey] = true;
+                    }
 
                     try {
                         $url = FeUtils::frontendRoute('frontend.gallery.category', $params, $language->code);
                     } catch (\Throwable) {
                         continue;
+                    }
+
+                    $defaultAlternate = collect($alternates)->firstWhere('hreflang', $defaultLanguage->code);
+                    if ($defaultAlternate) {
+                        $url = $defaultAlternate['url'];
                     }
 
                     $entries[] = $this->makeUrlEntry($url, $entryLastmod, 'monthly', '0.6', $alternates);
@@ -408,6 +467,8 @@ class SitemapController extends Controller
     {
         $entries = [];
         $lastmod = Carbon::now()->format('Y-m-d\TH:i:sP');
+        $defaultLanguage = AdLanguageService::getDefaultLanguage();
+        $emittedClusterKeys = [];
 
         $entries = array_merge($entries, $this->buildHubEntries('frontend.faq.index', $lastmod));
 
@@ -419,12 +480,37 @@ class SitemapController extends Controller
                 }
 
                 $params = ['slug' => $group->slug];
-                $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.faq.category', $params, $language->id);
+                $alternates = FeHreflangUtils::getAlternateLinksForRoute(
+                    'frontend.faq.category',
+                    $params,
+                    $language->id
+                );
+
+                if (count($alternates) === 0) {
+                    continue;
+                }
+
+                $clusterKey = collect($alternates)
+                    ->firstWhere('hreflang', $defaultLanguage->code)['url']
+                    ?? collect($alternates)->first()['url']
+                    ?? null;
+
+                if ($clusterKey && isset($emittedClusterKeys[$clusterKey])) {
+                    continue;
+                }
+                if ($clusterKey) {
+                    $emittedClusterKeys[$clusterKey] = true;
+                }
 
                 try {
                     $url = FeUtils::frontendRoute('frontend.faq.category', $params, $language->code);
                 } catch (\Throwable) {
                     continue;
+                }
+
+                $defaultAlternate = collect($alternates)->firstWhere('hreflang', $defaultLanguage->code);
+                if ($defaultAlternate) {
+                    $url = $defaultAlternate['url'];
                 }
 
                 $entries[] = $this->makeUrlEntry($url, $lastmod, 'monthly', '0.6', $alternates);

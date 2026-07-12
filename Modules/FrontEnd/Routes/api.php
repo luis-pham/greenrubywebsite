@@ -5,7 +5,15 @@ use Modules\BackEnd\Services\AdLanguageService;
 
 
 $listLanguage = AdLanguageService::getAll();
-$listLanguageCode = implode('|', $listLanguage->where('is_default', false)->pluck('code')->toArray());
+$nonDefaultLanguageCodes = $listLanguage
+    ->where('is_default', false)
+    ->pluck('code')
+    ->filter()
+    ->values()
+    ->all();
+$listLanguageCode = count($nonDefaultLanguageCodes) > 0
+    ? implode('|', $nonDefaultLanguageCodes)
+    : '__no_alt_locale__';
 
 Route::middleware('auth:api')->get('/frontend', function (Request $request) {
     return $request->user();

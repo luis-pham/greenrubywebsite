@@ -69,8 +69,33 @@ class ItineraryController extends Controller
         $languageCode = $request->route('languageCode');
 
         $slug = $request->route('slug');
-        $cruiseId = $request->route('cruise_id');
-        $itineraryId = $request->route('itinerary_id');
+        $cruiseId = (int) $request->route('cruise_id');
+        $itineraryId = (int) $request->route('itinerary_id');
+
+        $canonical = AppCruiseItineraryService::resolveCanonicalShowParams($itineraryId, $language->id);
+        if (!$canonical) {
+            abort(404);
+        }
+
+        $showRouteName = $languageCode
+            ? Utilities::bindRouteNameMultiLanguage('frontend.itinerary.show')
+            : 'frontend.itinerary.show';
+
+        if (
+            $cruiseId !== (int) $canonical['cruise_id']
+            || $slug !== $canonical['slug']
+        ) {
+            $redirectParams = $canonical;
+            if ($languageCode) {
+                $redirectParams['languageCode'] = $languageCode;
+            }
+
+            return redirect(route($showRouteName, $redirectParams), 301);
+        }
+
+        $cruiseId = (int) $canonical['cruise_id'];
+        $itineraryId = (int) $canonical['itinerary_id'];
+        $slug = $canonical['slug'];
 
         $itineraries = AppCruiseItineraryService::findByIdsJoin($cruiseId,$itineraryId,$language->id);
 
@@ -78,24 +103,11 @@ class ItineraryController extends Controller
             abort(404);
 
         $obj = $itineraries->first();
-        $obj->slug = Utilities::convertToAlias($obj->itinerary->name);
-
-        $showRouteName = $languageCode
-            ? Utilities::bindRouteNameMultiLanguage('frontend.itinerary.show')
-            : 'frontend.itinerary.show';
-
-        if ($obj->slug !== $slug) {
-            $redirectParams = [
-                'slug' => $obj->slug,
-                'cruise_id' => $cruiseId,
-                'itinerary_id' => $itineraryId,
-            ];
-            if ($languageCode) {
-                $redirectParams['languageCode'] = $languageCode;
-            }
-
-            return redirect(route($showRouteName, $redirectParams));
+        if (!$obj->cruise || !$obj->itinerary) {
+            abort(404);
         }
+        $obj->slug = $slug;
+
         $obj->price = AppCabinService::getMinPriceByCruiseId($cruiseId)
                         ->where('duration',$obj->itinerary->duration)
                         ->first()?->min_price ?? 0;

@@ -23,6 +23,30 @@ class GalleryController
         $page = $request->route('page');
         $page = $page < 1 ? 1 : $page;
 
+        if ($slug) {
+            $canonicalSlug = GalleryService::getCanonicalSlug($slug, $language->code);
+            if (!$canonicalSlug) {
+                abort(404);
+            }
+
+            if ($canonicalSlug !== $slug) {
+                $redirectRoute = $page > 1
+                    ? 'frontend.gallery.category.paginate'
+                    : 'frontend.gallery.category';
+                $redirectParams = ['slug' => $canonicalSlug];
+                if ($page > 1) {
+                    $redirectParams['page'] = $page;
+                }
+
+                return redirect(
+                    FeUtils::frontendRoute($redirectRoute, $redirectParams, $languageCode),
+                    301
+                );
+            }
+
+            $slug = $canonicalSlug;
+        }
+
         $galleries = GalleryService::getConfigGalleries($language->id,$slug);
 
         $galleries = collect($galleries)->each(function($item){

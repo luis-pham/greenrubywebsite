@@ -8,6 +8,7 @@ use Modules\BackEnd\Services\AppCategoryService;
 use Modules\FrontEnd\Constants\PageCodeConsts;
 use Modules\FrontEnd\Constants\PageConfigKeyConsts;
 use Modules\FrontEnd\Helpers\FeArticleUtils;
+use Modules\FrontEnd\Helpers\FeHreflangUtils;
 use Modules\FrontEnd\Helpers\FeLanguageUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppArticleService;
@@ -87,8 +88,36 @@ class ArticleController extends Controller
         $language = FeLanguageUtils::getCurrentLanguage();
         $languageCode = $request->route('languageCode');
 
-        $category = AppCategoryService::getBySlug($slug, config('backend.categoryType.article'), $language->id);
-        if (!$category || $category->slug == 'root') {
+        $articleType = config('backend.categoryType.article');
+        $category = AppCategoryService::getBySlug($slug, $articleType, $language->id);
+
+        if (!$category || $category->slug === 'root') {
+            $sourceCategory = \Modules\BackEnd\Entities\AppCategory::where('slug', $slug)
+                ->where('type', $articleType)
+                ->where('slug', '!=', 'root')
+                ->first();
+
+            if ($sourceCategory) {
+                $localizedCategory = FeHreflangUtils::findArticleCategoryCounterpart(
+                    $sourceCategory,
+                    $language->id
+                );
+                if ($localizedCategory && $localizedCategory->slug && $localizedCategory->slug !== 'root') {
+                    $redirectRoute = ($page && (int) $page > 1)
+                        ? 'frontend.article.category.paginate'
+                        : 'frontend.article.category';
+                    $redirectParams = ['slug' => $localizedCategory->slug];
+                    if ($page && (int) $page > 1) {
+                        $redirectParams['page'] = (int) $page;
+                    }
+
+                    return redirect(
+                        FeUtils::frontendRoute($redirectRoute, $redirectParams, $languageCode),
+                        301
+                    );
+                }
+            }
+
             return abort(404);
         }
 
@@ -154,7 +183,16 @@ class ArticleController extends Controller
             : route(Utilities::getRouteName('frontend.article.category.paginate'), ['languageCode' => $languageCode, 'slug' => $category->slug, 'page' => $page]);
 
         \SEO::setTitle($title);
+        $seoDescription = trim((string) ($category->seo_description ?? ''));
+        if ($seoDescription !== '') {
+            \SEO::setDescription($seoDescription);
+        }
         \SEO::setCanonical($url);
+
+        // Empty hubs stay crawlable for discovery but must not be indexed until they have articles.
+        if ($listArticleCount === 0) {
+            FeUtils::applyNoIndexFollowMeta();
+        }
 
         \OpenGraph::setSiteName($config['website-name']);
         \OpenGraph::setTitle($title);

@@ -47,13 +47,42 @@ class GalleryService
 
     private static function resolveConfigKey(?string $slug): ?string
     {
-        if (!$slug) return null;
+        if (!$slug) {
+            return null;
+        }
+
         foreach (self::slugMap() as $configKey => $slugs) {
             if (in_array($slug, $slugs, true)) {
                 return $configKey;
             }
         }
-        return $slug;
+
+        return null;
+    }
+
+    public static function resolveConfigKeyFromSlug(?string $slug): ?string
+    {
+        return self::resolveConfigKey($slug);
+    }
+
+    public static function getLocalizedSlugForConfigKey(string $configKey, string $langCode): ?string
+    {
+        $map = self::slugMap();
+        if (!isset($map[$configKey])) {
+            return null;
+        }
+
+        return $map[$configKey][$langCode] ?? $map[$configKey]['en'] ?? null;
+    }
+
+    public static function getCanonicalSlug(?string $anySlug, string $langCode): ?string
+    {
+        $configKey = self::resolveConfigKey($anySlug);
+        if (!$configKey) {
+            return null;
+        }
+
+        return self::getLocalizedSlugForConfigKey($configKey, $langCode);
     }
 
     public static function getConfigGalleries($languageId, ?string $slug): array

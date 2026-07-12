@@ -26,7 +26,7 @@
     if ($isValid) {
         $schemaData = [
             '@context' => 'https://schema.org',
-            '@type'    => 'TravelAgency',
+            '@type'    => ['TravelAgency', 'LocalBusiness'],
             '@id'      => config('frontend.organizationSchemaId'),
             'name'     => $name,
             'url'      => config('frontend.organizationCanonicalUrl'),
@@ -40,6 +40,10 @@
             ),
             'areaServed' => config('frontend.organizationAreaServed'),
         ];
+
+        if (!empty($phone)) {
+            $schemaData['telephone'] = $phone;
+        }
 
         if (!empty($logo)) {
             $schemaData['logo'] = $logo;

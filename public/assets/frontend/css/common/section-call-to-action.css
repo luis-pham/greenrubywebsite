@@ -1,6 +1,18 @@
 #main .section-call-to-action .container-fluid {
-    background: url('/assets/frontend/images/bg-section-call-to-action-mobile.jpg') center bottom no-repeat;
-    background-size: cover;
+    background: var(--color-forest);
+    background-image: none;
+    text-align: center;
+}
+
+#main .section-call-to-action .section-wrapper {
+    margin-inline: auto;
+    text-align: center;
+}
+
+#main .section-call-to-action .section-title,
+#main .section-call-to-action .section-description,
+#main .section-call-to-action .content {
+    text-align: center;
 }
 
 #main .section-call-to-action .section-description,
@@ -10,7 +22,6 @@
 
 #main .section-call-to-action .content {
     font-family: var(--font-display);
-    text-align: center;
 }
 
 #main .section-call-to-action .list-button {
@@ -18,22 +29,13 @@
     grid-template-columns: max-content;
     gap: .75rem;
     justify-content: center;
+    justify-items: center;
 }
 
 @media (min-width: 576px) {
-    #main .section-call-to-action .container-fluid {
-        background: url('/assets/frontend/images/bg-section-call-to-action.jpg') center no-repeat;
-    }
-
     #main .section-call-to-action .list-button {
         grid-template-columns: auto auto;
-        justify-content: start;
-    }
-
-    #main .section-call-to-action .section-title,
-    #main .section-call-to-action .section-description,
-    #main .section-call-to-action .content {
-        text-align: left;
+        justify-content: center;
     }
 
     #main .section-call-to-action .section-description,

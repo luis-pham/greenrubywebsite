@@ -922,21 +922,7 @@
     position: relative;
 }
 
-/* CTA footer — căn giữa text & nút */
-#itinerary-detail .section-call-to-action .section-wrapper {
-    margin-inline: auto;
-    text-align: center;
-}
-
-#itinerary-detail .section-call-to-action .section-description,
-#itinerary-detail .section-call-to-action .content {
-    text-align: center;
-}
-
-#itinerary-detail .section-call-to-action .list-button {
-    justify-content: center;
-}
-
+/* CTA footer — solid bg + centered (shared section-call-to-action.css) */
 #itinerary-detail .section-call-to-action .container-fluid {
     padding-bottom: calc(72px + 68px/2) !important;
 }

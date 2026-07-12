@@ -63,11 +63,23 @@ class Language
 
     private function getPreferredLanguage()
     {
-        $languageCode = request()->getPreferredLanguage() ?? config('app.locale');
-        if (Str::startsWith($languageCode, 'en')) {
-            $languageCode = 'en';
+        $preferred = request()->getPreferredLanguage() ?? config('app.locale');
+        $preferred = strtolower((string) $preferred);
+
+        $availableCodes = AdLanguageService::getAll()->pluck('code')->filter()->values()->all();
+        foreach ($availableCodes as $code) {
+            $code = strtolower((string) $code);
+            if ($preferred === $code || Str::startsWith($preferred, $code . '-') || Str::startsWith($preferred, $code . '_')) {
+                return $code;
+            }
         }
 
-        return $languageCode;
+        if (Str::startsWith($preferred, 'en')) {
+            return in_array('en', $availableCodes, true) ? 'en' : ($availableCodes[0] ?? config('app.locale'));
+        }
+
+        $default = AdLanguageService::getDefaultLanguage();
+
+        return $default?->code ?? config('app.locale');
     }
 }

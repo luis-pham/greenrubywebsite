@@ -42,11 +42,11 @@
         if (!in_array($ext, $videoExts)) {
             $heroPreloadDesktop = FeUtils::getThumbnail([
                 'link' => $firstBanner->link,
-                'w' => 1920, 'h' => 848, 'q' => 80,
+                'w' => 1920, 'h' => 848, 'q' => 80, 'cr' => 1,
             ]);
             $heroPreloadMobile = FeUtils::getThumbnail([
                 'link' => $firstBanner->link,
-                'w' => 800, 'h' => 600, 'q' => 75,
+                'w' => 800, 'h' => 600, 'q' => 75, 'cr' => 1,
             ]);
         }
     }
@@ -129,8 +129,8 @@
         @include('frontend::shared.section.section-cover', [
             'class' => 'section-1',
             'list' => $listBanner,
-            'imageConfig' => ['w' => 1920, 'h' => 848, 'q' => 80],
-            'imageConfigMobile' => ['w' => 420, 'h' => 309, 'q' => 75],
+            'imageConfig' => ['w' => 1920, 'h' => 848, 'q' => 80, 'cr' => 1],
+            'imageConfigMobile' => ['w' => 800, 'h' => 600, 'q' => 75, 'cr' => 1],
             'heroEyebrow' => __('frontend::homepage.hero_eyebrow'),
             'tagHeading' => 'h1',
             'allowTitleHtml' => true,

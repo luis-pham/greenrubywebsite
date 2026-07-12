@@ -7,6 +7,8 @@ use Modules\BackEnd\Entities\AppCabin;
 use Modules\BackEnd\Entities\AppCruise;
 use Modules\BackEnd\Entities\AppCruiseItinerary;
 use Modules\BackEnd\Entities\AppItinerary;
+use Modules\BackEnd\Helpers\Utilities;
+use Modules\FrontEnd\Helpers\FeCruiseUtils;
 use Modules\FrontEnd\Helpers\FeUtils;
 use Modules\FrontEnd\Services\AppCabinService;
 use Modules\FrontEnd\Services\AppCruiseService;
@@ -93,22 +95,33 @@ class AppCruiseItineraryService
             }
         });
 
+        $listCruise = AppCruiseService::getAll($languageId);
+
         if (count($listItineraryYetScheduled) > 0) {
-            $listCruise = AppCruiseService::getAll($languageId);
             $listCruiseId = $listCruise->pluck('id')->toArray();
             $listMinPrice = AppCabinService::getMinPriceByCruiseId($listCruiseId);
 
-            $cheapestByDuration = $listMinPrice->groupBy('duration')->map(function ($group) {
-                return $group->sortBy('min_price')->first();
-            });
-
             foreach ($listItineraryYetScheduled as $item) {
-                $matchedPrice = $cheapestByDuration->where('duration', $item->duration)->first();
-                if ($matchedPrice) {
-                    $matchedCruise = $listCruise->where('id', $matchedPrice->cruise_id)->first();
-                    $item->price = $matchedPrice->min_price;
+                $matchedCruise = $listCruise->first(
+                    fn ($cruise) => FeCruiseUtils::getBayForCruise($cruise->name) === (int) $item->bay
+                );
+
+                if (!$matchedCruise) {
+                    $matchedCruise = $listCruise->first();
+                }
+
+                if ($matchedCruise) {
+                    $matchedPrice = $listMinPrice
+                        ->where('cruise_id', $matchedCruise->id)
+                        ->where('duration', $item->duration)
+                        ->sortBy('min_price')
+                        ->first();
+
                     $item->cruise_id = $matchedCruise->id;
                     $item->cruise_name = $matchedCruise->name;
+                    if ($matchedPrice) {
+                        $item->price = $matchedPrice->min_price;
+                    }
                 }
 
                 if (!$item->price || !$item->cruise_id || !$item->cruise_name) {
@@ -117,7 +130,72 @@ class AppCruiseItineraryService
             }
         }
 
+        $listItinerary->each(function ($item) use ($listCruise) {
+            $cruise = $listCruise->firstWhere('id', $item->cruise_id);
+            $cruiseBay = $cruise ? FeCruiseUtils::getBayForCruise($cruise->name) : null;
+            if ((int) $cruiseBay === (int) $item->bay) {
+                return;
+            }
+
+            $matchedCruise = $listCruise->first(
+                fn ($candidate) => FeCruiseUtils::getBayForCruise($candidate->name) === (int) $item->bay
+            );
+            if (!$matchedCruise) {
+                return;
+            }
+
+            $item->cruise_id = $matchedCruise->id;
+            $item->cruise_name = $matchedCruise->name;
+            $matchedPrice = AppCabinService::getMinPriceByCruiseId($matchedCruise->id)
+                ->where('duration', $item->duration)
+                ->first();
+            if ($matchedPrice) {
+                $item->price = $matchedPrice->min_price;
+            }
+        });
+
         return $listItinerary;
+    }
+
+    /**
+     * Canonical show URL params for an itinerary in a given language.
+     * Cruise is chosen by matching itinerary bay to ship bay (GR1=Ha Long, GR2=Lan Ha).
+     */
+    public static function resolveCanonicalShowParams(int $itineraryId, int $languageId): ?array
+    {
+        $itinerary = AppItinerary::where('id', $itineraryId)
+            ->where('language_id', $languageId)
+            ->first();
+
+        if (!$itinerary) {
+            return null;
+        }
+
+        $cruises = AppCruiseService::getAll($languageId);
+        $cruise = $cruises->first(
+            fn ($candidate) => FeCruiseUtils::getBayForCruise($candidate->name) === (int) $itinerary->bay
+        );
+
+        if (!$cruise) {
+            $listed = self::resolveItinerariesForListing($languageId)->firstWhere('id', $itineraryId);
+            if ($listed && $listed->cruise_id) {
+                $cruise = $cruises->firstWhere('id', $listed->cruise_id);
+            }
+        }
+
+        if (!$cruise) {
+            $cruise = $cruises->first();
+        }
+
+        if (!$cruise) {
+            return null;
+        }
+
+        return [
+            'slug' => Utilities::convertToAlias($itinerary->name),
+            'cruise_id' => $cruise->id,
+            'itinerary_id' => $itinerary->id,
+        ];
     }
 
     public static function findByIdsJoin($cruiseId,$itineraryId,$languageId){
@@ -133,7 +211,12 @@ class AppCruiseItineraryService
             'galleryImages',
         ])
             ->where('id', $itineraryId)
+            ->where('language_id', $languageId)
             ->first();
+
+        if (!$cruise || !$itinerary) {
+            return collect();
+        }
 
         $pivot = AppCruiseItinerary::where('cruise_id', $cruiseId)
             ->where('itinerary_id', $itineraryId)

@@ -32,7 +32,16 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware(['guest', 'language.frontend'])->group(function() {
     $listLanguage = AdLanguageService::getAll();
-    $listLanguageCode = implode('|', $listLanguage->where('is_default', false)->pluck('code')->toArray());
+    $nonDefaultLanguageCodes = $listLanguage
+        ->where('is_default', false)
+        ->pluck('code')
+        ->filter()
+        ->values()
+        ->all();
+    // Impossible token when only the default locale exists — avoids an empty `where` matching everything.
+    $listLanguageCode = count($nonDefaultLanguageCodes) > 0
+        ? implode('|', $nonDefaultLanguageCodes)
+        : '__no_alt_locale__';
 
     $defaultLanguage = AdLanguageService::getDefaultLanguage();
     if ($defaultLanguage) {
