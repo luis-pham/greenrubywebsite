@@ -145,22 +145,24 @@
             </div>
         </div>
         <div class="header-mobile d-flex d-md-none align-items-center justify-content-between position-relative text-white">
-            <div class="header-left">
-                @if ($headerLogo)
-                    <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
-                        <img src="{{ FeUtils::getImageLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="117" height="93" />
-                    </a>
-                @endif
-            </div>
-            <div class="header-right d-flex align-items-center">
-                <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode]) }}" class="btn-book-now d-flex align-items-center justify-content-center border-0 mr-3">
-                    <span class="label font-weight-bold">{{ __('frontend::common.book_now') }}</span>
-                </a>
+            <div class="header-left d-flex align-items-center">
                 <a href="javascript:;" class="btn-expand-menu-mobile d-flex align-items-center justify-content-center" title="Toggle menu mobile">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/>
                     </svg>
+                </a>
+            </div>
+            <div class="header-center">
+                @if ($headerLogo)
+                    <a href="{{ route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode]) }}" class="d-block">
+                        <img src="{{ FeUtils::getImageLink($headerLogo) }}" alt="{{ $config['website-name'] }}" class="img-fluid" width="140" height="112" />
+                    </a>
+                @endif
+            </div>
+            <div class="header-right d-flex align-items-center justify-content-end">
+                <a href="{{ route(Utilities::getRouteName('frontend.booking'), ['languageCode' => $languageCode]) }}" class="btn-book-now d-flex align-items-center justify-content-center border-0">
+                    <span class="label font-weight-bold">{{ __('frontend::common.book_now') }}</span>
                 </a>
             </div>
         </div>

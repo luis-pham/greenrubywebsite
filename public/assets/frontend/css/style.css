@@ -1692,7 +1692,8 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 44px;
 }
 
-#header .header-mobile .header-left {
+#header .header-mobile .header-left,
+#header .header-mobile .header-right {
     width: 80px;
 }
 
@@ -1755,18 +1756,37 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
 
-    #header .header-mobile .header-left {
+    #header .header-mobile .header-left,
+    #header .header-mobile .header-right {
         width: auto;
         flex: 1;
         min-width: 0;
+        position: relative;
+        z-index: 1;
     }
 
-    #header .header-mobile .header-left img {
+    #header .header-mobile .header-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+
+    #header .header-mobile .header-center a {
+        pointer-events: auto;
+    }
+
+    #header .header-mobile .header-center img {
         width: auto;
-        height: 58.5px;
-        max-width: 294px;
+        height: 70.2px;
+        max-width: min(352.8px, 46vw);
         object-fit: contain;
-        object-position: left center;
+        object-position: center;
     }
 
     #header .header-mobile .header-right {
