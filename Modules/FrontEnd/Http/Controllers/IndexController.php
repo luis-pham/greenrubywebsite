@@ -179,11 +179,11 @@ class IndexController extends Controller
         }
 
         $selectBoxData = [];
-        $selectBoxData['cruise'] = AppCruiseService::getAll($language->id)->sortBy('name');
+        $listAllCruise = AppCruiseService::getAll($language->id);
+        $selectBoxData['cruise'] = $listAllCruise->sortBy('name');
         $selectBoxData['itinerary'] = AppItineraryService::getAll($language->id)->sortBy('name');
 
-        $listCruiseName = AppCruiseService::getAll($language->id)->pluck('name')->toArray();
-        $listAllCruise = AppCruiseService::getAll($language->id);
+        $listCruiseName = $listAllCruise->pluck('name')->toArray();
 
         $listCruiseByService = [];
         if (array_key_exists(PageConfigKeyConsts::HOMEPAGE_SERVICE, $pageConfig)) {

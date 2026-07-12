@@ -1,99 +1,45 @@
 (function () {
     'use strict';
 
-    function loadScript(src) {
-        return new Promise(function (resolve, reject) {
-            if (!src) {
-                resolve();
-                return;
-            }
-            if (document.querySelector('script[data-home-deferred="1"]')) {
-                resolve();
-                return;
-            }
-            var script = document.createElement('script');
-            script.src = src;
-            script.async = true;
-            script.setAttribute('data-home-deferred', '1');
-            script.onload = function () { resolve(); };
-            script.onerror = function () { reject(new Error('Failed to load ' + src)); };
-            document.body.appendChild(script);
-        });
-    }
-
-    function fetchBelowFold(url) {
-        return fetch(url, {
-            credentials: 'same-origin',
-            headers: { Accept: 'text/html' }
-        }).then(function (response) {
-            if (!response.ok) {
-                throw new Error('Below-fold HTTP ' + response.status);
-            }
-            return response.text();
-        });
-    }
-
-    function injectBelowFold(el, html) {
-        if (!el || html == null) {
-            return;
-        }
-        el.innerHTML = html;
-        el.removeAttribute('aria-busy');
-    }
-
-    function afterWindowLoad(callback) {
-        if (document.readyState === 'complete') {
-            callback();
-            return;
-        }
-        window.addEventListener('load', callback, { once: true });
-    }
-
     function whenIdle(callback) {
         if (typeof window.requestIdleCallback === 'function') {
-            window.requestIdleCallback(callback, { timeout: 3000 });
+            window.requestIdleCallback(callback, { timeout: 2000 });
             return;
         }
-        setTimeout(callback, 300);
+        setTimeout(callback, 200);
     }
 
-    function boot() {
-        var el = document.getElementById('home-below-fold');
-        if (!el) {
+    function loadDeferredHomepage() {
+        var home = document.getElementById('home');
+        var src = home ? home.getAttribute('data-deferred-js') : null;
+        if (!src || document.querySelector('script[data-home-deferred="1"]')) {
             return;
         }
 
-        var deferredSrc = el.getAttribute('data-deferred-js');
-        var url = el.getAttribute('data-below-fold-url');
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.setAttribute('data-home-deferred', '1');
+        script.onload = function () {
+            // Bootstrap-dependent global tooltips were skipped before this chunk
+            // arrived. Re-run their debounced resize initialization now.
+            window.dispatchEvent(new Event('resize'));
+        };
+        script.onerror = function () {
+            console.error('Failed to load deferred homepage scripts: ' + src);
+        };
+        document.body.appendChild(script);
+    }
 
-        // Do not contend with LCP: wait until window load + idle, then fetch/inject.
-        afterWindowLoad(function () {
-            whenIdle(function () {
-                var chain = url ? fetchBelowFold(url) : Promise.resolve(null);
-
-                chain
-                    .then(function (html) {
-                        if (url) {
-                            injectBelowFold(el, html);
-                        }
-                    })
-                    .catch(function (err) {
-                        console.error(err);
-                        el.removeAttribute('aria-busy');
-                    })
-                    .then(function () {
-                        return loadScript(deferredSrc);
-                    })
-                    .catch(function (err) {
-                        console.error(err);
-                    });
-            });
+    function schedule() {
+        whenIdle(function () {
+            loadDeferredHomepage();
         });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
+    if (document.readyState === 'complete') {
+        schedule();
     } else {
-        boot();
+        window.addEventListener('load', schedule, { once: true });
     }
 })();

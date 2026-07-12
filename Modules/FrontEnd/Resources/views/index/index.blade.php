@@ -65,12 +65,13 @@
 @endif
 
 @push('styles')
-    <link href="{{ mix('assets/frontend/dist/css/home.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="{{ mix('assets/frontend/dist/css/home.css') }}" rel="stylesheet"></noscript>
+    {{-- Blocking intentionally: applying the complete homepage stylesheet after
+         first paint caused a full-body layout shift in Lighthouse. --}}
+    <link href="{{ mix('assets/frontend/dist/css/home.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
-    <div id="home">
+    <div id="home" data-deferred-js="{{ mix('assets/frontend/dist/js/home-deferred.js') }}">
         @include('frontend::shared.section.section-cover', [
             'class' => 'section-1',
             'list' => $listBanner,
@@ -172,7 +173,6 @@
 
 @push('scripts')
     <script src="{{ mix('assets/frontend/dist/js/home-core.js') }}" defer></script>
-    <script src="{{ mix('assets/frontend/dist/js/home-deferred.js') }}" defer></script>
     @include('frontend::shared.structured-data-organization', [
         'url' => route(Utilities::getRouteName('frontend.index'), ['languageCode' => $languageCode])
     ])

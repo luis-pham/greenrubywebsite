@@ -15,13 +15,37 @@ $(document).ready(function () {
             margin: 0,
             autoplay: false,
             autoplayTimeout: 6000,
-            smartSpeed: 1000,
+            smartSpeed: 600,
             onInitialized: function (e) {
                 $(e.target).closest('.section-cover').removeClass('is-loading');
             }
         };
         let fnPageCoverAutoplayTimeout = null;
         let slidePageCoverVideoTime = {};
+        // An automatic hero change before the first interaction resets LCP.
+        // Enable cycling only after a real visitor interacts with the page.
+        let canAutoAdvanceHomeHero = !isHomeHero;
+
+        let scheduleImageAdvance = function () {
+            if (isHomeHero && !canAutoAdvanceHomeHero) {
+                return;
+            }
+
+            fnPageCoverAutoplayTimeout = setTimeout(function () {
+                slidePageCover.trigger('next.owl.carousel');
+            }, slidePageCoverConfig.autoplayTimeout);
+        };
+
+        if (isHomeHero) {
+            $(document).one('pointerdown.homeHero keydown.homeHero touchstart.homeHero', function () {
+                canAutoAdvanceHomeHero = true;
+
+                let currentItem = slidePageCover.find('.owl-item.active').first();
+                if (!currentItem.find('video').length && !fnPageCoverAutoplayTimeout) {
+                    scheduleImageAdvance();
+                }
+            });
+        }
 
         slidePageCover.on('changed.owl.carousel', function (e) {
             if (fnPageCoverAutoplayTimeout) {
@@ -50,9 +74,7 @@ $(document).ready(function () {
                     slidePageCover.trigger('next.owl.carousel');
                 });
             } else {
-                fnPageCoverAutoplayTimeout = setTimeout(function () {
-                    slidePageCover.trigger('next.owl.carousel');
-                }, slidePageCoverConfig.autoplayTimeout);
+                scheduleImageAdvance();
             }
         });
 

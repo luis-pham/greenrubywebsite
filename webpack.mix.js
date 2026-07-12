@@ -166,7 +166,6 @@ mix.styles([
 
     // ── Global CSS ────────────────────────────────────────────
     'public/assets/frontend/css/style.css',
-    'public/assets/frontend/css/article-content.css',
 
     // ── Common components ─────────────────────────────────────
     'public/assets/frontend/css/common/modal-cabin-details.css',
@@ -184,16 +183,17 @@ mix.styles([
 mix.scripts([
     // ── Plugins ───────────────────────────────────────────────
     'public/assets/frontend/plugins/jquery/jquery-3.5.1.min.js',
-    'public/assets/frontend/plugins/bootstrap/js/bootstrap.bundle.min.js',
     'public/assets/frontend/plugins/owl-carousel/js/owl.carousel.min.js',
 
     // ── Global + above-the-fold homepage ──────────────────────
     'public/assets/frontend/js/script.js',
     'public/assets/frontend/js/common/section-cover.js',
+    'public/assets/frontend/js/modules/index/home-loader.js',
 ], 'public/assets/frontend/dist/js/home-core.js');
 
 mix.scripts([
-    // ── Below-fold carousels / modals (loaded after fragment) ─
+    // ── Below-fold carousels / modals (loaded after window load) ─
+    'public/assets/frontend/plugins/bootstrap/js/bootstrap.bundle.min.js',
     'public/assets/frontend/js/common/modal-cabin-details.js',
     'public/assets/frontend/js/common/section-amenity.js',
     'public/assets/frontend/js/common/section-cabin.js',

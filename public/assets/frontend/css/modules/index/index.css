@@ -1,4 +1,9 @@
 /* Section 1 */
+#home-below-fold > section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+}
+
 #home .section-1.section-cover .page-cover {
     position: relative;
 }

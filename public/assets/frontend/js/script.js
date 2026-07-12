@@ -396,6 +396,10 @@ function isEllipsisActive(el) {
 }
 
 function initEllipsisTooltip(container = $('body')) {
+    if (!$.fn.tooltip) {
+        return;
+    }
+
     const $tooltip = $('.give-ellipsis',container);
     $tooltip.each(function () {
         const el = this;
@@ -494,6 +498,10 @@ var fnListItemCarouselOnInit = function (event) {
 };
 
 function initFabTooltip($el){
+    if (!$.fn.tooltip) {
+        return;
+    }
+
     if($el.data('bs.tooltip')){
         $el.tooltip('dispose');
     }

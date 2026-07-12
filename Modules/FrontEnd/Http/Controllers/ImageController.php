@@ -8,6 +8,8 @@ use Intervention\Image\Facades\Image as ImageFacade;
 
 class ImageController extends Controller
 {
+    private const THUMBNAIL_CACHE_CONTROL = 'public, max-age=31536000, immutable';
+
     public function thumbnail(Request $request)
     {
         $link = $request->route('link');
@@ -30,10 +32,13 @@ class ImageController extends Controller
             if ($sourceExt === 'svg') {
                 return response()->file($filePath, [
                     'Content-Type' => 'image/svg+xml',
+                    'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
+                    'X-Content-Type-Options' => 'nosniff',
                 ]);
             }
 
-            $quality = max(1, min(100, (int) ($request->get('q') ?: env('IMAGE_PROXY_QUALITY', 100))));
+            $defaultQuality = max(1, min(80, (int) env('IMAGE_PROXY_QUALITY', 80)));
+            $quality = max(1, min(100, (int) ($request->get('q') ?: $defaultQuality)));
             $outputFormat = 'webp';
             $crFlag = $crop ? 1 : 0;
             $cacheKey = sha1(
@@ -46,7 +51,9 @@ class ImageController extends Controller
             if ($cacheEnabled && File::exists($thumbPath) && is_file($thumbPath)) {
                 $mimeType = File::mimeType($thumbPath) ?: 'image/webp';
                 return response()->file($thumbPath, [
-                    'Content-Type' => $mimeType
+                    'Content-Type' => $mimeType,
+                    'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
+                    'X-Content-Type-Options' => 'nosniff',
                 ]);
             }
 
@@ -81,11 +88,15 @@ class ImageController extends Controller
 
                 return response()->file($thumbPath, [
                     'Content-Type' => 'image/webp',
+                    'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
+                    'X-Content-Type-Options' => 'nosniff',
                 ]);
             }
 
             return response($final->encoded, 200, [
                 'Content-Type' => 'image/webp',
+                'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
+                'X-Content-Type-Options' => 'nosniff',
             ]);
         } catch (\Exception $e) {
             return abort(404);

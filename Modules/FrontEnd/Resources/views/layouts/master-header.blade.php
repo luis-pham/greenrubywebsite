@@ -10,7 +10,7 @@
         ? ($headerLogoNegative ?: $headerLogoNormal)
         : ($headerLogoNormal ?: $headerLogoNegative);
     $headerLogoSrc = $headerLogo
-        ? FeUtils::getThumbnail(['link' => $headerLogo, 'w' => 280, 'h' => 224, 'q' => 80, 'cr' => 1])
+        ? FeUtils::getThumbnail(['link' => $headerLogo, 'w' => 140, 'h' => 112, 'q' => 60, 'cr' => 1])
         : null;
     $primaryMenuNavKeys = [];
     for ($menuIndex = 0; $menuIndex < count($listMenuPrimary); $menuIndex++) {
