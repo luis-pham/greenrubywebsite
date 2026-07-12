@@ -1,5 +1,7 @@
 @extends('frontend::layouts.master')
 
+@section('headerHeroType', 'solid')
+
 @php
     $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
 

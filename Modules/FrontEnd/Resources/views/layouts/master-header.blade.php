@@ -1,8 +1,14 @@
 @php
     $languageCode = \Modules\FrontEnd\Helpers\FeLanguageUtils::getRouteLanguageCode();
-    $headerLogo = !empty($config['website-logo-negative'])
+    // Image hero → normal logo; solid-color hero → negative/light logo
+    $headerHeroType = trim($__env->yieldContent('headerHeroType', 'image'));
+    $headerLogoNormal = $config['website-logo'] ?? null;
+    $headerLogoNegative = !empty($config['website-logo-negative'])
         ? $config['website-logo-negative']
-        : ($config['website-logo'] ?? null);
+        : '/upload/2026/02/06/logo-negative.png';
+    $headerLogo = $headerHeroType === 'solid'
+        ? ($headerLogoNegative ?: $headerLogoNormal)
+        : ($headerLogoNormal ?: $headerLogoNegative);
     $primaryMenuNavKeys = [];
     for ($menuIndex = 0; $menuIndex < count($listMenuPrimary); $menuIndex++) {
         $primaryMenuNavKeys[$menuIndex] = FeUtils::resolvePrimaryMenuNavKey($listMenuPrimary[$menuIndex]);

@@ -1,5 +1,7 @@
 @extends('frontend::layouts.master')
 
+@section('headerHeroType', 'solid')
+
 @php
     $listArticlePopular = isset($pageConfig[PageConfigKeyConsts::ARTICLE_POPULAR])
         ? $pageConfig[PageConfigKeyConsts::ARTICLE_POPULAR]

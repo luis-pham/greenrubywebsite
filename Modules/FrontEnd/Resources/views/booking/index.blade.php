@@ -1,5 +1,7 @@
 @extends('frontend::layouts.master')
 
+@section('headerHeroType', 'solid')
+
 @section('content')
     <div id="booking">
     @php

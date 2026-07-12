@@ -1,5 +1,7 @@
 @extends('frontend::layouts.master')
 
+@section('headerHeroType', 'solid')
+
 @php
     $languageCode = Route::current()->parameter('languageCode');
     $sectionFilterId = isset($group) ? 'section-filter-' . $group->slug : 'section-filter';
