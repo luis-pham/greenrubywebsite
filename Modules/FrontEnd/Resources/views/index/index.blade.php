@@ -12,6 +12,11 @@
     $listBanner = isset($pageConfig[PageConfigKeyConsts::HOMEPAGE_BANNER])
         ? $pageConfig[PageConfigKeyConsts::HOMEPAGE_BANNER]
         : [];
+    // First banner only in initial HTML — extra carousel slides compete with LCP.
+    if (count($listBanner) > 1) {
+        $listBanner = [ $listBanner[0] ];
+    }
+
     for ($i = 0; $i < count($listBanner); $i++) {
         if ($i === 0) {
             $listBanner[$i]->title = __('frontend::homepage.hero_title');

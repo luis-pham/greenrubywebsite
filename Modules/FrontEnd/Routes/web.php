@@ -52,7 +52,8 @@ Route::middleware(['guest', 'language.frontend'])->group(function() {
         })->where('path', '.*');
     }
 
-    Route::middleware('html.cache:60,auto')->group(function () use ($listLanguageCode) {
+    // private: homepage always starts a session/CSRF cookie
+    Route::middleware('html.cache:60,private')->group(function () use ($listLanguageCode) {
         Route::get('', 'IndexController@index')->name('frontend.index');
         Route::get('/{languageCode}', 'IndexController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('frontend.index'));
     });
