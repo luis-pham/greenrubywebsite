@@ -7,7 +7,7 @@
 @endphp
 
 <section class="{{ $class }} section-call-to-action bg">
-    <div class="container-fluid text-white">
+    <div class="container-fluid">
         <div class="container">
             <div class="section-wrapper">
                 @if ($title)

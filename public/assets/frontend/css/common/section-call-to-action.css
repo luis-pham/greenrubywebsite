@@ -1,7 +1,8 @@
 #main .section-call-to-action .container-fluid {
-    background: var(--color-forest);
+    background: #fff;
     background-image: none;
     text-align: center;
+    color: var(--color-text-on-light);
 }
 
 #main .section-call-to-action .section-wrapper {
@@ -15,13 +16,21 @@
     text-align: center;
 }
 
+#main .section-call-to-action .section-description {
+    color: var(--color-text-on-light);
+}
+
 #main .section-call-to-action .section-description,
 #main .section-call-to-action .content {
     margin-bottom: 1.5rem;
 }
 
 #main .section-call-to-action .content {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-muted);
 }
 
 #main .section-call-to-action .list-button {
@@ -59,7 +68,38 @@
     }
 }
 
+/* Secondary CTA — outline style matching other light-bg secondary buttons */
 #main .section-call-to-action .list-button .item a.btn-success,
+#main .section-call-to-action .list-button .item a.btn-success.btn-rounded {
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-text-on-light);
+    font-family: var(--font-body);
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 14px 32px;
+    border: 1px solid rgba(13, 43, 26, 0.2);
+    box-shadow: none;
+    line-height: 1.4;
+}
+
+#main .section-call-to-action .list-button .item a.btn-success:hover,
+#main .section-call-to-action .list-button .item a.btn-success:focus,
+#main .section-call-to-action .list-button .item a.btn-success.btn-rounded:hover,
+#main .section-call-to-action .list-button .item a.btn-success.btn-rounded:focus {
+    background: transparent;
+    color: var(--color-text-on-light);
+    border-color: var(--color-forest);
+    box-shadow: none;
+}
+
+/* Primary keeps global .btn-warning styling */
+#main .section-call-to-action .list-button .item a.btn-warning.btn-rounded {
+    border-radius: 0;
+}
+
 #main .section-contact .list-btn a.btn-success {
     border-radius: 0;
     background: transparent;
@@ -73,8 +113,6 @@
     box-shadow: none;
 }
 
-#main .section-call-to-action .list-button .item a.btn-success:hover,
-#main .section-call-to-action .list-button .item a.btn-success:focus,
 #main .section-contact .list-btn a.btn-success:hover,
 #main .section-contact .list-btn a.btn-success:focus {
     background: transparent;
