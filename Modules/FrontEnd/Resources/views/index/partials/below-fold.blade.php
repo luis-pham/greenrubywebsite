@@ -121,6 +121,7 @@
             'hideAllFilter' => true,
             'defaultBay' => 1,
             'itineraryImageConfig' => ['w' => 600, 'h' => 400, 'q' => 70],
+            'priceUnitLabel' => __('frontend::cruiseDetail.cabin'),
             'viewAllUrl' => route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]),
         ])
         <section id="section-cruise" class="section-5 p-0">

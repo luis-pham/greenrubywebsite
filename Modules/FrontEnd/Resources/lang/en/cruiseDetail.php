@@ -3,6 +3,7 @@
 return [
     'from' => 'From',
     'person' => 'person',
+    'cabin' => 'cabin',
 
     'section-cover.btn-book' => 'Book Your Trip',
     'section-cover.btn-watch' => 'Watch The Journey',

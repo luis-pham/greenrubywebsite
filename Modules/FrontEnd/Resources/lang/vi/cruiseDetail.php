@@ -2,6 +2,7 @@
 return [
     'from' => 'Từ',
     'person' => 'người',
+    'cabin' => 'cabin',
     'section-cover.btn-book' => 'Đặt Chuyến Đi',
     'section-cover.btn-watch' => 'Xem Hành Trình',
     'section-info.title' => 'Thông Số Kỹ Thuật Du Thuyền',

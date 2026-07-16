@@ -16,6 +16,7 @@
     $defaultBay = $defaultBay ?? null;
     $itineraryImageConfig = $itineraryImageConfig ?? ($itineraryRedesign ? ['w' => 600, 'h' => 400] : ['w' => 545, 'h' => 673]);
     $viewAllUrl = $viewAllUrl ?? null;
+    $priceUnitLabel = $priceUnitLabel ?? __('frontend::cruiseDetail.person');
 
     $languageCode = Route::current()->parameter('languageCode');
 @endphp
@@ -133,7 +134,7 @@
                                                 <div class="itin-price">
                                                     <span class="itin-price-from">{{ __('frontend::cruiseDetail.from') }}</span>
                                                     <span class="itin-price-val">{{ FeUtils::formatDisplayCurrency($list[$i]->price) }}</span>
-                                                    <span class="itin-price-unit">/ {{ __('frontend::cruiseDetail.person') }}</span>
+                                                    <span class="itin-price-unit">/ {{ $priceUnitLabel }}</span>
                                                 </div>
                                             @endif
                                         </div>
@@ -232,7 +233,7 @@
                                                 <div class="itin-price">
                                                     <span class="itin-price-from">{{ __('frontend::cruiseDetail.from') }}</span>
                                                     <span class="itin-price-val">{{ FeUtils::formatDisplayCurrency($list[$i]->price) }}</span>
-                                                    <span class="itin-price-unit">/ {{ __('frontend::cruiseDetail.person') }}</span>
+                                                    <span class="itin-price-unit">/ {{ $priceUnitLabel }}</span>
                                                 </div>
                                             @endif
                                         </div>
