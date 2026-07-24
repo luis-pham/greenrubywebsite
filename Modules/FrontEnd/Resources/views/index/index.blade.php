@@ -64,6 +64,43 @@
 @endpush
 @endif
 
+@push('preload')
+    {{-- Preload the font faces used above the fold. `crossorigin` is required
+         so the preload can be reused by the CSS font request. --}}
+    <link rel="preload"
+          href="{{ asset('assets/frontend/dist/css/cormorant-garamond-300.woff2') }}"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+    <link rel="preload"
+          href="{{ asset('assets/frontend/dist/css/cormorant-garamond-300italic.woff2') }}"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+    <link rel="preload"
+          href="{{ asset('assets/frontend/dist/css/dm-sans-normal.woff2') }}"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+    @if (app()->getLocale() === 'vi')
+        <link rel="preload"
+              href="{{ asset('assets/frontend/dist/css/cormorant-garamond-300-vietnamese.woff2') }}"
+              as="font"
+              type="font/woff2"
+              crossorigin>
+        <link rel="preload"
+              href="{{ asset('assets/frontend/dist/css/cormorant-garamond-300italic-vietnamese.woff2') }}"
+              as="font"
+              type="font/woff2"
+              crossorigin>
+        <link rel="preload"
+              href="{{ asset('assets/frontend/dist/css/dm-sans-normal-vietnamese.woff2') }}"
+              as="font"
+              type="font/woff2"
+              crossorigin>
+    @endif
+@endpush
+
 @push('styles')
     {{-- Blocking intentionally: applying the complete homepage stylesheet after
          first paint caused a full-body layout shift in Lighthouse. --}}
