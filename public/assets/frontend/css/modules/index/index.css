@@ -967,7 +967,7 @@
     background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
     background-size: cover;
     z-index: 0;
-    opacity: .05;
+    opacity: .10;
     height: var(--curated-topo-height);
 }
 
@@ -1723,7 +1723,7 @@
     background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
     background-size: cover;
     z-index: -1;
-    opacity: .05;
+    opacity: .10;
     height: 75%;
 }
 

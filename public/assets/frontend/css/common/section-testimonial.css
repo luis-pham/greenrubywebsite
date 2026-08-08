@@ -20,8 +20,9 @@
 
 #main .section-testimonial .container-fluid:after {
     background: url('/assets/frontend/images/bg-grain.webp') top center no-repeat;
+    background-size: cover;
     z-index: -1;
-    opacity: .05;
+    opacity: .10;
 }
 
 #main .section-testimonial .list-item  {
