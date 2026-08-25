@@ -3,10 +3,10 @@
 
     function whenIdle(callback) {
         if (typeof window.requestIdleCallback === 'function') {
-            window.requestIdleCallback(callback, { timeout: 2000 });
+            window.requestIdleCallback(callback, { timeout: 1200 });
             return;
         }
-        setTimeout(callback, 200);
+        setTimeout(callback, 50);
     }
 
     function loadDeferredHomepage() {
@@ -37,9 +37,9 @@
         });
     }
 
-    if (document.readyState === 'complete') {
-        schedule();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', schedule, { once: true });
     } else {
-        window.addEventListener('load', schedule, { once: true });
+        schedule();
     }
 })();

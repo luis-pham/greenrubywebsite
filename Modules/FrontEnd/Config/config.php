@@ -23,5 +23,7 @@ return [
     'paginationLimit' => 20,
     'paginationArticleLimit' => 10,
     'paginationGalleryLimit' => 20,
-    'imageBlank' => '/assets/frontend/images/blank.gif'
+    'imageBlank' => '/assets/frontend/images/blank.gif',
+    'imageProxyQuality' => max(1, min(95, (int) env('IMAGE_PROXY_QUALITY', 90))),
+    'showPublicPrices' => env('FRONTEND_SHOW_PUBLIC_PRICES', false),
 ];

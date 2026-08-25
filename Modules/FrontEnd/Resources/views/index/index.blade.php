@@ -43,11 +43,11 @@
         if (!in_array($ext, $videoExts)) {
             $heroPreloadDesktop = FeUtils::getThumbnail([
                 'link' => $firstBanner->link,
-                'w' => 1920, 'h' => 848, 'q' => 80, 'cr' => 1,
+                'w' => 2400, 'h' => 1060, 'q' => 84, 'cr' => 1,
             ]);
             $heroPreloadMobile = FeUtils::getThumbnail([
                 'link' => $firstBanner->link,
-                'w' => 560, 'h' => 420, 'q' => 50, 'cr' => 1,
+                'w' => 900, 'h' => 675, 'q' => 84, 'cr' => 1,
             ]);
         }
     }
@@ -56,10 +56,15 @@
 
 @if ($heroPreloadDesktop)
 @push('preload')
+    @if ($heroPreloadMobile)
     <link rel="preload" as="image"
-          href="{{ $heroPreloadMobile ?: $heroPreloadDesktop }}"
-          imagesrcset="{{ $heroPreloadMobile }} 560w, {{ $heroPreloadDesktop }} 1920w"
-          imagesizes="100vw"
+          href="{{ $heroPreloadMobile }}"
+          media="(max-width: 768px)"
+          fetchpriority="high">
+    @endif
+    <link rel="preload" as="image"
+          href="{{ $heroPreloadDesktop }}"
+          media="(min-width: 769px)"
           fetchpriority="high">
 @endpush
 @endif
@@ -101,6 +106,14 @@
     @endif
 @endpush
 
+@push('preload')
+    {{-- Start fetching the hero carousel runtime while the browser parses HTML.
+         The script itself remains deferred, so parsing is never blocked. --}}
+    <link rel="preload"
+          href="{{ mix('assets/frontend/dist/js/home-core.js') }}"
+          as="script">
+@endpush
+
 @push('styles')
     {{-- Blocking intentionally: applying the complete homepage stylesheet after
          first paint caused a full-body layout shift in Lighthouse. --}}
@@ -112,8 +125,8 @@
         @include('frontend::shared.section.section-cover', [
             'class' => 'section-1',
             'list' => $listBanner,
-            'imageConfig' => ['w' => 1920, 'h' => 848, 'q' => 80, 'cr' => 1],
-            'imageConfigMobile' => ['w' => 560, 'h' => 420, 'q' => 50, 'cr' => 1],
+            'imageConfig' => ['w' => 2400, 'h' => 1060, 'q' => 84, 'cr' => 1],
+            'imageConfigMobile' => ['w' => 900, 'h' => 675, 'q' => 84, 'cr' => 1],
             'heroEyebrow' => __('frontend::homepage.hero_eyebrow'),
             'tagHeading' => 'h1',
             'allowTitleHtml' => true,

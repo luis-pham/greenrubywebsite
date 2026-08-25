@@ -123,7 +123,7 @@ $itineraryId = $itineraryId ?? null;
                                             @include('frontend::shared.image-wrapper', [
                                                 'link' => $list[$i]->image_link,
                                                 'alt' => $list[$i]->name,
-                                                'imageConfig' => $suitesGrid ? ['w' => 600, 'h' => 400] : ['w' => 545, 'h' => 404],
+                                                'imageConfig' => $suitesGrid ? ['w' => 960, 'h' => 640, 'q' => 88] : ['w' => 545, 'h' => 404],
                                                 'ratio' => $suitesGrid ? '3-2' : null,
                                             ])
                                         </a>

@@ -37,7 +37,7 @@ class ImageController extends Controller
                 ]);
             }
 
-            $defaultQuality = max(1, min(80, (int) env('IMAGE_PROXY_QUALITY', 80)));
+            $defaultQuality = (int) config('frontend.imageProxyQuality', 90);
             $quality = max(1, min(100, (int) ($request->get('q') ?: $defaultQuality)));
             $outputFormat = 'webp';
             $crFlag = $crop ? 1 : 0;

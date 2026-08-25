@@ -120,7 +120,7 @@
             'titleClass' => 'section-eyebrow section-eyebrow--gold',
             'hideAllFilter' => true,
             'defaultBay' => 1,
-            'itineraryImageConfig' => ['w' => 600, 'h' => 400, 'q' => 70],
+            'itineraryImageConfig' => ['w' => 960, 'h' => 640, 'q' => 88],
             'priceUnitLabel' => __('frontend::cruiseDetail.cabin'),
             'viewAllUrl' => route(Utilities::getRouteName('frontend.itinerary.index'), ['languageCode' => $languageCode]),
         ])
@@ -155,7 +155,7 @@
                             $statGuests = $shipSpecs['guests'];
                         @endphp
                         <div class="cruise ship-card row no-gutters">
-                            <div class="ship-image-wrap image col-lg-6" style="background-image: url({{ FeUtils::getThumbnail(['link' => $listCruise[$i]->image_link, 'w' => 960, 'h' => 490, 'q' => 70]) }})"></div>
+                            <div class="ship-image-wrap image col-lg-6" style="background-image: url({{ FeUtils::getThumbnail(['link' => $listCruise[$i]->image_link, 'w' => 1600, 'h' => 817, 'q' => 88]) }})"></div>
                             <div class="main-info ship-text col-lg-6">
                                 <div class="main-info-wrapper text-white">
                                     <div class="ship-text-top">
@@ -258,7 +258,7 @@
                                 @endphp
                                 <div class="item {{ $i > 0 ? 'd-none' : '' }}">
                                     <div class="item-wrapper">
-                                        <div class="image" style="background-image: url({{ FeUtils::getThumbnail(['link' => $listService[$i]->image_link, 'w' => 950, 'h' => 500, 'q' => 70]) }})"></div>
+                                        <div class="image" style="background-image: url({{ FeUtils::getThumbnail(['link' => $listService[$i]->image_link, 'w' => 1600, 'h' => 842, 'q' => 88]) }})"></div>
                                         <div class="main-info d-flex flex-column w-100">
                                             <div class="main-info-body">
                                                 <p class="title">{{ $listService[$i]->name }}</p>
@@ -352,7 +352,7 @@
                                         <div class="item-wrapper d-flex flex-column w-100">
                                             <div class="image-wrapper position-relative">
                                                 @if (in_array($listFile[$j]->extension, config('backend.fileTypeImage')))
-                                                    <img src="{{ FeUtils::getThumbnail(['link' => $listFile[$j]->link, 'w' => 860, 'h' => 545, 'q' => 70]) }}" alt="{{ $listExpActivity[$i]->name }}" width="860" height="545" class="position-absolute w-100 h-100" loading="lazy" decoding="async" />
+                                                    <img src="{{ FeUtils::getThumbnail(['link' => $listFile[$j]->link, 'w' => 1280, 'h' => 811, 'q' => 88]) }}" alt="{{ $listExpActivity[$i]->name }}" width="1280" height="811" class="position-absolute w-100 h-100" loading="lazy" decoding="async" />
                                                 @elseif ($isFileVideo)
                                                     <video src="{{ asset(Utilities::getFileLink($listFile[$j]->link)) }}" class="position-absolute w-100 h-100" controls preload="none"></video>
                                                 @endif

@@ -64,16 +64,34 @@ class FeUtils
             $params['cr'] = true;
         }
 
-        $defaultQuality = max(1, min(80, (int) env('IMAGE_PROXY_QUALITY', 80)));
+        $defaultQuality = (int) config('frontend.imageProxyQuality', 90);
         $params['q'] = max(1, min(100, (int) ($params['q'] ?? $defaultQuality)));
 
-        return route('frontend.image.thumbnail', $params);
+        // Keep thumbnail query strings stable so a preloaded image and its
+        // matching <img> share the same browser cache entry.
+        $orderedParams = [];
+        foreach (['link', 'w', 'h', 'q', 'cr'] as $key) {
+            if (array_key_exists($key, $params)) {
+                $orderedParams[$key] = $params[$key];
+            }
+        }
+        foreach ($params as $key => $value) {
+            if (!array_key_exists($key, $orderedParams)) {
+                $orderedParams[$key] = $value;
+            }
+        }
+
+        return route('frontend.image.thumbnail', $orderedParams);
     }
 
     public static function formatDisplayCurrency($value)
     {
         if (is_null($value)) {
             return '';
+        }
+
+        if (!config('frontend.showPublicPrices', false)) {
+            return '---';
         }
 
         $currentLanguage = FeLanguageUtils::getCurrentLanguage();
