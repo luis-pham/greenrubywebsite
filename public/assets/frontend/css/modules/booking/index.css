@@ -9,6 +9,37 @@
   align-items: flex-start;
   padding-bottom: 1rem;
 }
+
+/*
+ * Temporary display-only price privacy mode. The real text remains in the DOM
+ * because booking calculations and payment payloads still depend on it.
+ */
+#booking-page.booking-prices-hidden .price-amount,
+#booking-page.booking-prices-hidden .in-voyage-cabin-fare strong,
+#booking-page.booking-prices-hidden .amenity-price-value,
+#booking-page.booking-prices-hidden .summary-price-value,
+#booking-page.booking-prices-hidden .total-amount {
+  position: relative;
+  visibility: hidden !important;
+}
+
+#booking-page.booking-prices-hidden .price-amount::after,
+#booking-page.booking-prices-hidden .in-voyage-cabin-fare strong::after,
+#booking-page.booking-prices-hidden .amenity-price-value::after,
+#booking-page.booking-prices-hidden .summary-price-value::after,
+#booking-page.booking-prices-hidden .total-amount::after {
+  content: "---";
+  visibility: visible;
+  position: absolute;
+  inset-inline-end: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+}
 #booking-page .booking-field-error:not(:empty),
 #guest-details-panel .booking-field-error:not(:empty) {
   color: #dc3545;

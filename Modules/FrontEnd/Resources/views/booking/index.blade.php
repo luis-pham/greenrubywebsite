@@ -29,7 +29,7 @@
 
     <div
         id="booking-page"
-        class="booking-page-shell booking-page"
+        class="booking-page-shell booking-page{{ config('frontend.showPublicPrices', false) ? '' : ' booking-prices-hidden' }}"
         data-init-result="{{ request()->has('result') && request()->has('tx') ? '1' : '0' }}"
         data-lang="{{ $languageCode ?? 'all' }}"
         data-itinerary-url-template="{{ $bookingItineraryShowTemplate }}"
@@ -381,7 +381,7 @@
                                         <b class="amenity-title">
                                             {{ __('frontend::booking.step3_amenity_transfer') }}
                                         </b>
-                                        <div class="label-check">$0</div>
+                                        <div class="label-check amenity-price-value">$0</div>
                                         <div class="quantity-parent">
                                             <div class="mmddyyyy">
                                                 {{ __('frontend::booking.step3_quantity_label') }}
@@ -404,7 +404,7 @@
                                         <b class="amenity-title">
                                             {{ __('frontend::booking.step3_amenity_spa') }}
                                         </b>
-                                        <div class="label-check">$0</div>
+                                        <div class="label-check amenity-price-value">$0</div>
                                         <div class="quantity-group">
                                             <div class="mmddyyyy">
                                                 {{ __('frontend::booking.step3_quantity_label') }}
@@ -429,7 +429,7 @@
                                         <b class="amenity-title-wide">
                                             {{ __('frontend::booking.step3_amenity_welcome') }}
                                         </b>
-                                        <div class="label-check">$0</div>
+                                        <div class="label-check amenity-price-value">$0</div>
                                         <div class="quantity-group">
                                             <div class="mmddyyyy">
                                                 {{ __('frontend::booking.step3_quantity_label') }}
@@ -454,7 +454,7 @@
                                         <b class="amenity-title-wide">
                                             {{ __('frontend::booking.step3_amenity_photo') }}
                                         </b>
-                                        <div class="label-check">$0</div>
+                                        <div class="label-check amenity-price-value">$0</div>
                                         <div class="quantity-group">
                                             <div class="mmddyyyy">
                                                 {{ __('frontend::booking.step3_quantity_label') }}
@@ -478,7 +478,7 @@
                                     <b class="amenity-title-wide">
                                         {{ __('frontend::booking.step3_amenity_drone') }}
                                     </b>
-                                    <div class="label-check">$0</div>
+                                    <div class="label-check amenity-price-value">$0</div>
                                     <div class="quantity-group">
                                         <div class="mmddyyyy">
                                             {{ __('frontend::booking.step3_quantity_label') }}
