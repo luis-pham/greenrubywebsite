@@ -551,7 +551,7 @@
 #itinerary-detail .section-detail .list-detail .item-detail .header::before {
     z-index: 0;
     opacity: 0.12;
-    background: url(/assets/frontend/images/bg-grain.webp) center center / cover no-repeat;
+    background: url(/assets/frontend/images/bg-grain.webp?v=20260825) center center / cover no-repeat;
 }
 
 #itinerary-detail .section-detail .list-detail .item-detail .header:hover{
@@ -693,7 +693,7 @@
 #itinerary-detail .section-cabin .container-fluid::after {
     z-index: -1;
     opacity: 0.08;
-    background: url(/assets/frontend/images/bg-grain.webp) center center / cover no-repeat;
+    background: url(/assets/frontend/images/bg-grain.webp?v=20260825) center center / cover no-repeat;
 }
 
 #itinerary-detail .section-cabin .container-fluid::before{

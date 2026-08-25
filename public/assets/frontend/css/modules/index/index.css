@@ -979,7 +979,7 @@
 }
 
 #home .section-4.section-itinerary > .container-fluid::after {
-    background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
+    background: url('/assets/frontend/images/bg-grain.webp?v=20260825') center no-repeat;
     background-size: cover;
     z-index: 0;
     opacity: .14;
@@ -1741,7 +1741,7 @@
 }
 
 #home .section-7 .container-fluid:after {
-    background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
+    background: url('/assets/frontend/images/bg-grain.webp?v=20260825') center no-repeat;
     background-size: cover;
     z-index: 0;
     opacity: .14;

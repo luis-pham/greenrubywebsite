@@ -10,7 +10,7 @@
 .section-vr-360 .container-fluid::after{
     z-index: -1;
     opacity: 0.08;
-    background: url(/assets/frontend/images/bg-grain.webp) center center / cover no-repeat;
+    background: url(/assets/frontend/images/bg-grain.webp?v=20260825) center center / cover no-repeat;
 }
 .section-vr-360 .container-fluid::before,
 .section-vr-360 .container-fluid::after{

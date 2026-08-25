@@ -15,7 +15,7 @@
     left: 0;
     width: 100%;
     height: 75%;
-    background: url('/assets/frontend/images/bg-grain.webp') center no-repeat;
+    background: url('/assets/frontend/images/bg-grain.webp?v=20260825') center no-repeat;
     background-size: cover;
     z-index: 1;
     opacity: .10;
@@ -241,4 +241,3 @@
 #experience .section-experience .slide-1 .item-body .sub-title {
     min-height: 7.5rem; 
 } */
-
