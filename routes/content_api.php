@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\Content\ArticleController;
 use App\Http\Controllers\Api\Content\CabinController;
 use App\Http\Controllers\Api\Content\ContactController;
 use App\Http\Controllers\Api\Content\CruiseController;
+use App\Http\Controllers\Api\Content\ExperienceController;
+use App\Http\Controllers\Api\Content\FaqController;
+use App\Http\Controllers\Api\Content\GalleryController;
 use App\Http\Controllers\Api\Content\ItineraryController;
+use App\Http\Controllers\Api\Content\LegalController;
 use App\Http\Controllers\Api\Content\PageController;
+use App\Http\Controllers\Api\Content\ServiceController;
 use App\Http\Controllers\Api\Content\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +32,26 @@ Route::get('/cruises/{id}', [CruiseController::class, 'show'])
 Route::get('/itineraries', [ItineraryController::class, 'index'])->name('api.content.itineraries.index');
 Route::get('/itineraries/{cruiseId}/{itineraryId}', [ItineraryController::class, 'show'])
     ->name('api.content.itineraries.show');
+
+Route::get('/experiences', [ExperienceController::class, 'index'])->name('api.content.experiences.index');
+Route::get('/experiences/{id}', [ExperienceController::class, 'show'])
+    ->name('api.content.experiences.show');
+
+Route::get('/services', [ServiceController::class, 'index'])->name('api.content.services.index');
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('api.content.gallery.index');
+
+Route::get('/faqs', [FaqController::class, 'index'])->name('api.content.faqs.index');
+
+Route::get('/articles', [ArticleController::class, 'index'])->name('api.content.articles.index');
+// Registered before {categorySlug}/{slug}: "legacy" is reserved as a category slug.
+Route::get('/articles/legacy/{id}', [ArticleController::class, 'legacy'])
+    ->name('api.content.articles.legacy');
+Route::get('/articles/{categorySlug}/{slug}', [ArticleController::class, 'show'])
+    ->where(['categorySlug' => '[A-Za-z0-9_\-]+', 'slug' => '[A-Za-z0-9_\-]+'])
+    ->name('api.content.articles.show');
+
+Route::get('/legal', [LegalController::class, 'show'])->name('api.content.legal');
 
 Route::get('/pages/{code}', [PageController::class, 'show'])
     ->where('code', '[a-z0-9-]+')

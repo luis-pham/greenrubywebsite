@@ -20,12 +20,12 @@ class RevalidateFrontend
     /** Admin route name (without "backend." and "|multi-language") prefix => tags. */
     protected const TAGS = [
         'amenity' => ['cabins', 'cruises'],
-        'article' => ['articles'],
+        'article' => ['articles', 'legal'],
         'cabin' => ['cabins', 'cruises'],
         'category' => ['articles'],
         'config' => ['site'],
         'cruise' => ['cruises', 'cabins', 'itineraries'],
-        'exp-activity' => ['experiences', 'itineraries', 'cruises'],
+        'exp-activity' => ['experiences', 'itineraries', 'cruises', 'gallery'],
         'faq' => ['faqs'],
         'file' => ['content'],
         'group' => ['cabins', 'experiences', 'services', 'faqs'],
@@ -34,6 +34,24 @@ class RevalidateFrontend
         'page-config' => ['pages'],
         'service' => ['services', 'itineraries', 'cruises'],
         'testimonial' => ['testimonials'],
+    ];
+
+    /**
+     * page-config saves (route param {pageCode}) => tags of the endpoints that embed that page's config,
+     * on top of "pages" + "page:{pageCode}".
+     */
+    protected const PAGE_CODE_TAGS = [
+        'article' => ['articles', 'legal'],
+        'exp-activity' => ['experiences'],
+        'faq' => ['faqs'],
+        'gallery' => ['gallery'],
+        'itinerary' => ['itineraries'],
+        'legal' => ['legal'],
+        'payment-methods' => ['legal'],
+        'privacy-policies' => ['legal'],
+        'safety-policies' => ['legal'],
+        'service' => ['services'],
+        'terms-and-conditions' => ['legal'],
     ];
 
     /** Routes whose {id} identifies one entity => tag prefix for that entity. */
@@ -90,6 +108,7 @@ class RevalidateFrontend
 
         if ($entity === 'page-config' && ($code = $request->route('pageCode'))) {
             $tags[] = 'page:' . $code;
+            array_push($tags, ...(self::PAGE_CODE_TAGS[$code] ?? []));
         }
         $id = $request->route('id');
         if (isset(self::ID_TAGS[$entity]) && is_numeric($id)) {

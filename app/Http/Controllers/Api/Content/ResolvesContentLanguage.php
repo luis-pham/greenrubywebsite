@@ -26,6 +26,18 @@ trait ResolvesContentLanguage
         return $language;
     }
 
+    /** Trimmed string query parameter, null when absent/empty/not a string. */
+    protected function stringQuery(Request $request, string $key): ?string
+    {
+        $value = $request->query($key);
+        if (!is_string($value)) {
+            return null;
+        }
+        $value = trim($value);
+
+        return $value === '' ? null : $value;
+    }
+
     protected function notFound()
     {
         return response()->json(['error' => 'not_found'], 404);
