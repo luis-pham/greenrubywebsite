@@ -60,6 +60,14 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\ApiNoIndexRobots::class,
         ],
+
+        // Content API for the Next.js frontend: server-to-server and key-protected (content.key), so it
+        // is not rate limited — a frontend build prerenders many pages at once. POST /contact keeps
+        // its own throttle in routes/content_api.php.
+        'content' => [
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ApiNoIndexRobots::class,
+        ],
     ];
 
     /**
