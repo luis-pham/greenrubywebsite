@@ -71,4 +71,8 @@ return [
         'disable_tls_verify' => env('PAYMENT_DISABLE_TLS_VERIFY', false),
     ],
 
+    'content_api' => [
+        'key' => env('CONTENT_API_KEY'),
+    ],
+
 ];

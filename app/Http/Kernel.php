@@ -84,5 +84,6 @@ class Kernel extends HttpKernel
         'language.frontend' => \Modules\FrontEnd\Http\Middleware\Language::class,
         'api.noindex' => \App\Http\Middleware\ApiNoIndexRobots::class,
         'html.cache' => \App\Http\Middleware\SetHtmlCacheHeaders::class,
+        'content.key' => \App\Http\Middleware\ContentApiKey::class,
     ];
 }

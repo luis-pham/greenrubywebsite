@@ -138,7 +138,7 @@ class FeHreflangUtils
         return $params;
     }
 
-    private static function findCruiseCounterpart(int $sourceCruiseId, ?int $sourceLanguageId, $targetLanguage): ?AppCruise
+    public static function findCruiseCounterpart(int $sourceCruiseId, ?int $sourceLanguageId, $targetLanguage): ?AppCruise
     {
         $sameId = AppCruiseService::findByIdJoin($sourceCruiseId, $targetLanguage->id);
         if ($sameId) {
