@@ -34,6 +34,12 @@
             <lastmod>{{ Carbon\Carbon::parse($itinerary->updated_at ?: $itinerary->created_at)->format('Y-m-d\TH:i:sP') }}</lastmod>
         </sitemap>
     @endif
+    @if ($cabinUpdatedAt)
+        <sitemap>
+            <loc>{{ route('frontend.sitemap.cabin') }}</loc>
+            <lastmod>{{ Carbon\Carbon::parse($cabinUpdatedAt)->format('Y-m-d\TH:i:sP') }}</lastmod>
+        </sitemap>
+    @endif
     @if ($cruise)
         <sitemap>
             <loc>{{ route('frontend.sitemap.cruise') }}</loc>

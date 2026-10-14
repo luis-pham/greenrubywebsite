@@ -26,6 +26,7 @@ Route::middleware('guest')->group(function() {
     Route::get('/sitemap-service.xml', 'SitemapController@service')->name('frontend.sitemap.service');
     Route::get('/sitemap-itinerary.xml', 'SitemapController@itinerary')->name('frontend.sitemap.itinerary');
     Route::get('/sitemap-cruise.xml', 'SitemapController@cruise')->name('frontend.sitemap.cruise');
+    Route::get('/sitemap-cabin.xml', 'SitemapController@cabin')->name('frontend.sitemap.cabin');
     Route::get('/sitemap-category-faq.xml', 'SitemapController@faq')->name('frontend.sitemap.faq');
     Route::get('/sitemap-category-gallery.xml', 'SitemapController@gallery')->name('frontend.sitemap.gallery');
 });
