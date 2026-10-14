@@ -111,7 +111,7 @@ class HomepageContentService
     }
 
     /** Language-neutral bay code (config('backend.itineraryBay') only holds Vietnamese labels). */
-    protected static function bayCode($bay): ?string
+    public static function bayCode($bay): ?string
     {
         return [1 => 'ha-long', 2 => 'lan-ha'][(int) $bay] ?? null;
     }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\Content\CabinController;
 use App\Http\Controllers\Api\Content\ContactController;
+use App\Http\Controllers\Api\Content\CruiseController;
+use App\Http\Controllers\Api\Content\ItineraryController;
 use App\Http\Controllers\Api\Content\PageController;
 use App\Http\Controllers\Api\Content\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +18,14 @@ Route::get('/site', [SiteController::class, 'show'])->name('api.content.site');
 Route::get('/cabins', [CabinController::class, 'index'])->name('api.content.cabins.index');
 Route::get('/cabins/{id}', [CabinController::class, 'show'])
     ->name('api.content.cabins.show');
+
+Route::get('/cruises', [CruiseController::class, 'index'])->name('api.content.cruises.index');
+Route::get('/cruises/{id}', [CruiseController::class, 'show'])
+    ->name('api.content.cruises.show');
+
+Route::get('/itineraries', [ItineraryController::class, 'index'])->name('api.content.itineraries.index');
+Route::get('/itineraries/{cruiseId}/{itineraryId}', [ItineraryController::class, 'show'])
+    ->name('api.content.itineraries.show');
 
 Route::get('/pages/{code}', [PageController::class, 'show'])
     ->where('code', '[a-z0-9-]+')

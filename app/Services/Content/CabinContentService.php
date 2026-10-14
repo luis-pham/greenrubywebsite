@@ -220,7 +220,7 @@ class CabinContentService
         return ['lang' => $target->code, 'id' => (int) $matches->first()->id];
     }
 
-    private static function isoDate($value): ?string
+    public static function isoDate($value): ?string
     {
         if (!$value) {
             return null;
@@ -232,7 +232,7 @@ class CabinContentService
         }
     }
 
-    private static function number($value)
+    public static function number($value)
     {
         if ($value === null) {
             return null;
