@@ -3,6 +3,7 @@
 namespace App\Payments\Gateways;
 
 use App\Models\Payment;
+use App\Payments\AmountGuard;
 use App\Payments\Dto\PaymentConfirmResult;
 use App\Payments\Dto\PaymentInitResult;
 use App\Payments\Dto\PaymentStatusResult;
@@ -167,6 +168,11 @@ class SePayPaymentGateway implements PaymentGatewayInterface
                 default => Payment::statusPending(),
             };
 
+            if ($status === Payment::statusSucceeded() && $payment->status === Payment::statusPending()
+                && !$this->amountMatches($payment, $order['order_amount'] ?? null)) {
+                return new PaymentStatusResult($internalTxId, Payment::statusFailed(), $payment->provider_tx_id, $order);
+            }
+
             if ($payment->status === Payment::statusPending() && $status !== Payment::statusPending()) {
                 $update = [
                     'status' => $status,
@@ -259,6 +265,15 @@ class SePayPaymentGateway implements PaymentGatewayInterface
         $isFailed = in_array($status, ['failed', 'error', 'canceled'], true)
             || in_array($orderStatus, ['failed', 'cancelled'], true);
 
+        $reportedAmount = $data['order']['order_amount']
+            ?? $data['order_amount']
+            ?? $data['transaction']['transaction_amount']
+            ?? null;
+
+        if ($isSuccess && !$this->amountMatches($payment, $reportedAmount)) {
+            return;
+        }
+
         if ($isSuccess) {
             $payment->update([
                 'status' => Payment::statusSucceeded(),
@@ -278,6 +293,24 @@ class SePayPaymentGateway implements PaymentGatewayInterface
             'tx' => $payment->internal_tx_id,
             'status' => $payment->status,
         ]);
+    }
+
+    /**
+     * The checkout form amount is signed server-side, so a missing amount is tolerated; a present
+     * but different one fails the payment for manual review.
+     */
+    protected function amountMatches(Payment $payment, $reportedAmount): bool
+    {
+        if ($reportedAmount === null || $reportedAmount === '') {
+            return true;
+        }
+        $reported = AmountGuard::toStorage($reportedAmount, 'vnd');
+        if (AmountGuard::matches($payment, $reported, 'vnd')) {
+            return true;
+        }
+        AmountGuard::failMismatch($payment, 'sepay', $reported, 'vnd');
+
+        return false;
     }
 
     protected function signFields(array $fields, string $secretKey): string

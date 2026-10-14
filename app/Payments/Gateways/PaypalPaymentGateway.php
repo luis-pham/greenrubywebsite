@@ -3,6 +3,7 @@
 namespace App\Payments\Gateways;
 
 use App\Models\Payment;
+use App\Payments\AmountGuard;
 use App\Payments\Dto\PaymentConfirmResult;
 use App\Payments\Dto\PaymentInitResult;
 use App\Payments\Dto\PaymentStatusResult;
@@ -102,6 +103,9 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
     {
         try {
             $token = $this->getAccessToken();
+            if (!$this->orderBelongsToPayment($orderId, $internalTxId, $token)) {
+                return;
+            }
             $url = $this->baseUrl . $this->ordersEndpoint . '/' . $orderId . '/capture';
             $response = $this->httpClient()
                 ->withToken($token)
@@ -208,6 +212,9 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
 
             if ($status === 'COMPLETED' && $captureStatus === 'COMPLETED') {
                 if ($payment && $payment->status === Payment::statusPending()) {
+                    if (!$this->captureAmountMatches($payment, $this->extractCaptureAmount($data))) {
+                        return new PaymentStatusResult($internalTxId, 'failed', $orderId, $data);
+                    }
                     $payment->update([
                         'status' => Payment::statusSucceeded(),
                         'completed_at' => now(),
@@ -300,7 +307,8 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
             $internalTxId = $resource['custom_id'] ?? null;
             if ($internalTxId) {
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
-                if ($payment && $payment->status === Payment::statusPending()) {
+                if ($payment && $payment->status === Payment::statusPending()
+                    && $this->captureAmountMatches($payment, $resource['amount'] ?? null)) {
                     $payment->update([
                         'status' => Payment::statusSucceeded(),
                         'provider_tx_id' => $resource['id'] ?? $payment->provider_tx_id,
@@ -353,6 +361,54 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
     {
         $client = Http::getFacadeRoot();
         return config('services.payment.disable_tls_verify') ? $client->withoutVerifying() : $client;
+    }
+
+    /**
+     * The order id in the return URL is attacker-controlled. Only capture it if it is the order we
+     * created for this payment, for this payment's exact amount.
+     */
+    protected function orderBelongsToPayment(string $orderId, string $internalTxId, ?string $token): bool
+    {
+        $payment = Payment::where('internal_tx_id', $internalTxId)->first();
+        if (!$payment || ($payment->provider_tx_id && $payment->provider_tx_id !== $orderId)) {
+            Log::warning('PayPal capture refused: order does not belong to payment', ['tx' => $internalTxId, 'order_id' => $orderId]);
+            return false;
+        }
+
+        $response = $this->httpClient()->withToken($token)->get($this->baseUrl . $this->ordersEndpoint . '/' . $orderId);
+        if (!$response->successful()) {
+            Log::warning('PayPal capture refused: order lookup failed', ['tx' => $internalTxId, 'status' => $response->status()]);
+            return false;
+        }
+
+        $unit = $response->json()['purchase_units'][0] ?? [];
+        if (($unit['custom_id'] ?? null) !== $internalTxId) {
+            Log::warning('PayPal capture refused: custom_id mismatch', ['tx' => $internalTxId, 'order_id' => $orderId]);
+            if ($payment->status === Payment::statusPending()) {
+                $payment->update(['error_code' => 'paypal_order_mismatch', 'error_message' => 'Return URL referenced another PayPal order.']);
+            }
+            return false;
+        }
+
+        return $this->captureAmountMatches($payment, $unit['amount'] ?? null);
+    }
+
+    /** @param array{value?: string, currency_code?: string}|null $amount PayPal amount object */
+    protected function captureAmountMatches(Payment $payment, ?array $amount): bool
+    {
+        $currency = $amount['currency_code'] ?? null;
+        $reported = AmountGuard::toStorage($amount['value'] ?? 0, (string) $currency);
+        if (AmountGuard::matches($payment, $reported, $currency)) {
+            return true;
+        }
+        AmountGuard::failMismatch($payment, 'paypal', $reported, $currency);
+
+        return false;
+    }
+
+    protected function extractCaptureAmount(array $orderData): ?array
+    {
+        return $orderData['purchase_units'][0]['payments']['captures'][0]['amount'] ?? null;
     }
 
     protected function extractCaptureStatus(array $orderData): ?string

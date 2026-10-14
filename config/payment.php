@@ -22,6 +22,8 @@ return [
         'paypal_capture_error' => 'Không thể xác nhận thanh toán. Vui lòng thử lại.',
         'paypal_capture_malformed_request_json' => 'Lỗi định dạng yêu cầu thanh toán. Vui lòng thử lại.',
         'paypal_capture_on_hold' => 'Thanh toán đang bị giữ bởi PayPal. Số dư sẽ khả dụng khi được giải phóng.',
+        'amount_mismatch' => 'Số tiền thanh toán không khớp với đơn đặt chỗ. Đội ngũ của chúng tôi sẽ liên hệ để xử lý và hoàn tiền nếu cần.',
+        'paypal_order_mismatch' => 'Giao dịch PayPal không khớp với đơn đặt chỗ. Vui lòng thử lại.',
     ],
 
     'methods' => ['stripe', 'paypal', 'sepay'],
