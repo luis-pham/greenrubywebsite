@@ -39,6 +39,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\ForceLogoutUser::class,
+            // Admin (/admincp) routes use this group: refresh the Next.js cache after content edits.
+            \App\Http\Middleware\RevalidateFrontend::class,
         ],
 
         'web.frontend' => [

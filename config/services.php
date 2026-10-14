@@ -75,4 +75,10 @@ return [
         'key' => env('CONTENT_API_KEY'),
     ],
 
+    // Next.js on-demand revalidation (greenruby-web /api/revalidate). Empty URL disables it.
+    'frontend_revalidate' => [
+        'url' => env('FRONTEND_REVALIDATE_URL'),
+        'secret' => env('FRONTEND_REVALIDATE_SECRET'),
+    ],
+
 ];
