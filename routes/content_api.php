@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Content\CabinController;
 use App\Http\Controllers\Api\Content\ContactController;
+use App\Http\Controllers\Api\Content\PageController;
 use App\Http\Controllers\Api\Content\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,10 @@ Route::get('/site', [SiteController::class, 'show'])->name('api.content.site');
 Route::get('/cabins', [CabinController::class, 'index'])->name('api.content.cabins.index');
 Route::get('/cabins/{id}', [CabinController::class, 'show'])
     ->name('api.content.cabins.show');
+
+Route::get('/pages/{code}', [PageController::class, 'show'])
+    ->where('code', '[a-z0-9-]+')
+    ->name('api.content.pages.show');
 
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:sensitive-api')
