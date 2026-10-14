@@ -11,6 +11,7 @@ use App\Models\PaymentCustomer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Payments\BookingPricer;
 use App\Payments\PaymentManager;
 use App\Support\SafeRedirect;
 use Modules\BackEnd\Entities\AdLanguage;
@@ -19,9 +20,12 @@ class PaymentController extends Controller
 {
     protected $payments;
 
-    public function __construct(PaymentManager $payments)
+    protected BookingPricer $pricer;
+
+    public function __construct(PaymentManager $payments, BookingPricer $pricer)
     {
         $this->payments = $payments;
+        $this->pricer = $pricer;
     }
 
     public function storeInquiry(Request $request)
@@ -71,7 +75,15 @@ class PaymentController extends Controller
             DB::beginTransaction();
             $internalTxId = 'inquiry_' . uniqid('', true);
 
-            [$subtotalCabinsRaw, $subtotalAmenitiesRaw, $totalRaw] = $this->calculateBookingTotals($bookingData);
+            // Reservation only (nothing is charged): prefer server prices, but still accept the request
+            // with the guest's displayed totals when it can't be priced, so the team can follow up.
+            $priced = $this->pricer->price($bookingData);
+            if ($priced !== null) {
+                $currency = $priced['currency'];
+                [$subtotalCabinsRaw, $subtotalAmenitiesRaw, $totalRaw] = [$priced['subtotal_cabins'], $priced['subtotal_amenities'], $priced['total']];
+            } else {
+                [$subtotalCabinsRaw, $subtotalAmenitiesRaw, $totalRaw] = $this->clientTotals($bookingData);
+            }
 
             $subtotalCabins = $this->toStorageAmount($subtotalCabinsRaw, $currency);
             $subtotalAmenities = $this->toStorageAmount($subtotalAmenitiesRaw, $currency);
@@ -85,11 +97,7 @@ class PaymentController extends Controller
                 'status' => Payment::defaultStatus(),
             ]);
             $bookingCode = 'BK' . date('Ymd') . strtoupper(substr(uniqid(), -6));
-            $rawItineraryId = $bookingData['itinerary_id'] ?? null;
-            $itineraryId = null;
-            if ($rawItineraryId !== null && $rawItineraryId !== '') {
-                $itineraryId = is_numeric($rawItineraryId) ? (int) $rawItineraryId : null;
-            }
+            $itineraryId = BookingPricer::parseItineraryId($bookingData['itinerary_id'] ?? null);
             $rawEmail = isset($bookingData['email']) ? trim((string) $bookingData['email']) : '';
             $booking = Booking::create([
                 'payment_id' => $payment->id,
@@ -112,33 +120,7 @@ class PaymentController extends Controller
                 'total_amount' => $totalAmount,
                 'status' => config('statuses.booking.pending', 'pending'),
             ]);
-            foreach ($bookingData['cabins'] ?? [] as $row) {
-                $cabinPayload = [
-                    'booking_id' => $booking->id,
-                    'cabin_name' => $row['cabin_name'] ?? '',
-                    'cabin_description' => $row['cabin_description'] ?? null,
-                    'unit_price' => $this->toStorageAmount((float) ($row['unit_price'] ?? 0), $currency),
-                    'quantity' => (int) ($row['quantity'] ?? 1),
-                    'adults' => (int) ($row['adults'] ?? 0),
-                    'children_6_12' => (int) ($row['children_6_12'] ?? 0),
-                    'children_2_5' => (int) ($row['children_2_5'] ?? 0),
-                    'infants' => (int) ($row['infants'] ?? 0),
-                    'total_price' => $this->toStorageAmount((float) ($row['total_price'] ?? 0), $currency),
-                ];
-                if (isset($row['cabin_id']) && is_numeric($row['cabin_id'])) {
-                    $cabinPayload['cabin_id'] = (int) $row['cabin_id'];
-                }
-                BookingCabin::create($cabinPayload);
-            }
-            foreach ($bookingData['amenities'] ?? [] as $row) {
-                BookingAmenity::create([
-                    'booking_id' => $booking->id,
-                    'amenity_name' => $row['amenity_name'] ?? '',
-                    'unit_price' => $this->toStorageAmount((float) ($row['unit_price'] ?? 0), $currency),
-                    'quantity' => (int) ($row['quantity'] ?? 0),
-                    'total_price' => $this->toStorageAmount((float) ($row['total_price'] ?? 0), $currency),
-                ]);
-            }
+            $this->storeLineItems($booking, $bookingData, $priced, $currency);
             DB::commit();
 
             $booking->refresh();
@@ -228,25 +210,20 @@ class PaymentController extends Controller
         try {
             $method = $data['method'];
             $bookingData = $data['booking'] ?? [];
-            $currency = $this->resolveCurrencyFromBooking($bookingData);
-            if ($currency === null) {
-                return response()->json([
-                    'success' => false,
-                    'code' => 'currency_unknown',
-                    'message' => 'Không xác định được đơn vị tiền tệ. Đơn hàng phải có ít nhất một cabin (cabin_id) để xác định từ ngôn ngữ trên máy chủ.',
-                ], 400);
-            }
-            $currency = strtolower($currency);
-            
-            $amountForGateway = $this->calculateAmountFromBooking($bookingData, $currency);
-            if ($amountForGateway <= 0) {
+            // The amount is always computed from the database; client-side prices are ignored.
+            $priced = $this->pricer->price($bookingData);
+            if ($priced === null) {
+                Log::warning('Payment init rejected: booking could not be priced', ['reason' => $this->pricer->error]);
                 return response()->json([
                     'success' => false,
                     'code' => 'amount_calculation_failed',
-                    'message' => 'Không tính được số tiền thanh toán từ dữ liệu trên máy chủ. Vui lòng kiểm tra lại cấu hình cabin/giá.',
+                    'reason' => $this->pricer->error,
+                    'message' => 'Không tính được số tiền thanh toán từ dữ liệu trên máy chủ. Vui lòng chọn lại hành trình, phòng và số khách.',
                 ], 400);
             }
-            
+            $currency = $priced['currency'];
+            $amountForGateway = $priced['total'];
+
             $amountForDb = $this->toStorageAmount($amountForGateway, $currency);
 
             $usdOnlyMethods = array('stripe', 'paypal');
@@ -288,15 +265,10 @@ class PaymentController extends Controller
                 $bookingData = $data['booking'] ?? null;
                 if ($bookingData && !empty($bookingData['full_name'])) {
                     $bookingCode = 'BK' . date('Ymd') . strtoupper(substr(uniqid(), -6));
-                    [$subtotalCabinsCurrency, $subtotalAmenitiesCurrency, $totalAmountCurrency] = $this->calculateBookingSubtotals($bookingData, $currency, $amountForGateway);
-                    $subtotalCabins = $this->toStorageAmount($subtotalCabinsCurrency, $currency);
-                    $subtotalAmenities = $this->toStorageAmount($subtotalAmenitiesCurrency, $currency);
-                    $totalAmount = $this->toStorageAmount($totalAmountCurrency, $currency);
-                    $rawItineraryId = $bookingData['itinerary_id'] ?? null;
-                    $itineraryId = null;
-                    if ($rawItineraryId !== null && $rawItineraryId !== '') {
-                        $itineraryId = is_numeric($rawItineraryId) ? (int) $rawItineraryId : null;
-                    }
+                    $subtotalCabins = $this->toStorageAmount($priced['subtotal_cabins'], $currency);
+                    $subtotalAmenities = $this->toStorageAmount($priced['subtotal_amenities'], $currency);
+                    $totalAmount = $amountForDb;
+                    $itineraryId = BookingPricer::parseItineraryId($bookingData['itinerary_id'] ?? null);
                     $rawEmail = isset($bookingData['email']) ? trim((string) $bookingData['email']) : '';
                     $booking = Booking::create([
                         'payment_id' => $payment->id,
@@ -319,33 +291,7 @@ class PaymentController extends Controller
                         'total_amount' => $totalAmount,
                         'status' => config('statuses.booking.pending', 'pending'),
                     ]);
-                    foreach ($bookingData['cabins'] ?? [] as $row) {
-                        $cabinPayload = [
-                            'booking_id' => $booking->id,
-                            'cabin_name' => $row['cabin_name'] ?? '',
-                            'cabin_description' => $row['cabin_description'] ?? null,
-                            'unit_price' => $this->toStorageAmount((float) ($row['unit_price'] ?? 0), $currency),
-                            'quantity' => (int) ($row['quantity'] ?? 1),
-                            'adults' => (int) ($row['adults'] ?? 0),
-                            'children_6_12' => (int) ($row['children_6_12'] ?? 0),
-                            'children_2_5' => (int) ($row['children_2_5'] ?? 0),
-                            'infants' => (int) ($row['infants'] ?? 0),
-                            'total_price' => $this->toStorageAmount((float) ($row['total_price'] ?? 0), $currency),
-                        ];
-                        if (isset($row['cabin_id']) && is_numeric($row['cabin_id'])) {
-                            $cabinPayload['cabin_id'] = (int) $row['cabin_id'];
-                        }
-                        BookingCabin::create($cabinPayload);
-                    }
-                    foreach ($bookingData['amenities'] ?? [] as $row) {
-                        BookingAmenity::create([
-                            'booking_id' => $booking->id,
-                            'amenity_name' => $row['amenity_name'] ?? '',
-                            'unit_price' => $this->toStorageAmount((float) ($row['unit_price'] ?? 0), $currency),
-                            'quantity' => (int) ($row['quantity'] ?? 0),
-                            'total_price' => $this->toStorageAmount((float) ($row['total_price'] ?? 0), $currency),
-                        ]);
-                    }
+                    $this->storeLineItems($booking, $bookingData, $priced, $currency);
                     PaymentCustomer::create([
                         'payment_id' => $payment->id,
                         'full_name' => $bookingData['full_name'] ?? '',
@@ -568,7 +514,9 @@ class PaymentController extends Controller
         if ($internalTxId) {
             $payment = Payment::where('internal_tx_id', $internalTxId)->first();
             if ($payment && $resultParam === 'cancel') {
-                if ($payment->status === Payment::statusPending()) {
+                if (!$this->isValidStatusToken($internalTxId, $request->query('st'))) {
+                    Log::warning('Payment callback: cancel ignored, invalid status token', ['tx' => $internalTxId]);
+                } elseif ($payment->status === Payment::statusPending()) {
                     $payment->update([
                         'status' => Payment::statusCanceled(),
                         'error_code' => 'user_cancelled',
@@ -650,7 +598,9 @@ class PaymentController extends Controller
         $host = $request->getSchemeAndHttpHost();
         $path = '/api/payment/callback/' . $method;
         $base = rtrim($host, '/') . $path;
-        $query = 'tx=' . urlencode($internalTxId) . '&method=' . urlencode($method);
+        // "st" (status token) proves the callback came from a URL we issued. It is not called "token"
+        // because PayPal appends its own token (the order id) to return URLs.
+        $query = 'tx=' . urlencode($internalTxId) . '&method=' . urlencode($method) . '&st=' . urlencode($statusToken);
         $redirect = '';
         if ($returnBase) {
             $sep = strpos($returnBase, '?') !== false ? '&' : '?';
@@ -663,236 +613,63 @@ class PaymentController extends Controller
         ];
     }
 
-    protected function calculateAmountFromBooking(array $bookingData, string $currency): float
+    /**
+     * Booking line items. Prices come from $priced (server-side) when available; names and guest
+     * counts come from the request because they are display-only.
+     */
+    protected function storeLineItems(Booking $booking, array $bookingData, ?array $priced, string $currency): void
     {
-        [$subtotalCabins, $subtotalAmenities, $total] = $this->calculateBookingTotals($bookingData);
-
-        if ($total <= 0) {
-            return 0.0;
-        }
-
-        if ($currency === 'vnd') {
-            return round($total, 0);
-        }
-
-        return round($total, 2);
-    }
-
-    protected function calculateBookingSubtotals(array $bookingData, string $currency, float $paymentAmount): array
-    {
-        [$subtotalCabinsRaw, $subtotalAmenitiesRaw, $totalRaw] = $this->calculateBookingTotals($bookingData);
-
-        if ($currency === 'vnd') {
-            $subtotalCabins = (int) round($subtotalCabinsRaw);
-            $subtotalAmenities = (int) round($subtotalAmenitiesRaw);
-            $totalAmount = $subtotalCabins + $subtotalAmenities;
-
-            return [$subtotalCabins, $subtotalAmenities, $totalAmount];
-        }
-
-        if ($currency === 'usd' && $totalRaw > 0 && $paymentAmount > 0) {
-            $paymentCents = (int) round($paymentAmount * 100);
-            $subtotalCabinsCentsRaw = (int) round($subtotalCabinsRaw * 100);
-            $subtotalAmenitiesCentsRaw = (int) round($subtotalAmenitiesRaw * 100);
-            $totalRawCents = $subtotalCabinsCentsRaw + $subtotalAmenitiesCentsRaw;
-
-            if ($totalRawCents <= 0) {
-                return [
-                    $paymentAmount,
-                    0.0,
-                    $paymentAmount,
-                ];
-            }
-
-            $subtotalCabinsCents = (int) floor($subtotalCabinsCentsRaw * $paymentCents / $totalRawCents);
-            $subtotalAmenitiesCents = $paymentCents - $subtotalCabinsCents;
-            $totalAmountCents = $paymentCents;
-
-            return [
-                $subtotalCabinsCents / 100,
-                $subtotalAmenitiesCents / 100,
-                $totalAmountCents / 100,
+        foreach (array_values($bookingData['cabins'] ?? []) as $i => $row) {
+            $line = $priced['cabins'][$i] ?? null;
+            $payload = [
+                'booking_id' => $booking->id,
+                'cabin_name' => $row['cabin_name'] ?? '',
+                'cabin_description' => $row['cabin_description'] ?? null,
+                'unit_price' => $this->toStorageAmount($line['unit_price'] ?? (float) ($row['unit_price'] ?? 0), $currency),
+                'quantity' => $line['quantity'] ?? (int) ($row['quantity'] ?? 1),
+                'adults' => (int) ($row['adults'] ?? 0),
+                'children_6_12' => (int) ($row['children_6_12'] ?? 0),
+                'children_2_5' => (int) ($row['children_2_5'] ?? 0),
+                'infants' => (int) ($row['infants'] ?? 0),
+                'total_price' => $this->toStorageAmount($line['total_price'] ?? (float) ($row['total_price'] ?? 0), $currency),
             ];
+            if (is_numeric($row['cabin_id'] ?? null)) {
+                $payload['cabin_id'] = (int) $row['cabin_id'];
+            }
+            BookingCabin::create($payload);
         }
 
-        $subtotalCabins = (int) round($subtotalCabinsRaw);
-        $subtotalAmenities = (int) round($subtotalAmenitiesRaw);
-        $totalAmount = $subtotalCabins + $subtotalAmenities;
-
-        return [$subtotalCabins, $subtotalAmenities, $totalAmount];
+        // BookingPricer skips amenity rows with quantity 0, so match them up in the same order.
+        $pricedAmenities = $priced['amenities'] ?? [];
+        $index = 0;
+        foreach ($bookingData['amenities'] ?? [] as $row) {
+            $line = (int) ($row['quantity'] ?? 0) > 0 ? ($pricedAmenities[$index++] ?? null) : null;
+            BookingAmenity::create([
+                'booking_id' => $booking->id,
+                'amenity_id' => $line['amenity_id'] ?? (is_numeric($row['amenity_id'] ?? null) ? (int) $row['amenity_id'] : null),
+                'amenity_name' => $row['amenity_name'] ?? '',
+                'unit_price' => $this->toStorageAmount($line['unit_price'] ?? (float) ($row['unit_price'] ?? 0), $currency),
+                'quantity' => $line['quantity'] ?? (int) ($row['quantity'] ?? 0),
+                'total_price' => $this->toStorageAmount($line['total_price'] ?? (float) ($row['total_price'] ?? 0), $currency),
+            ]);
+        }
     }
 
-    protected function calculateBookingTotals(array $bookingData): array
+    /** Totals as displayed to the guest. Only used for reservation-only inquiries, never for charging. */
+    protected function clientTotals(array $bookingData): array
     {
-        $cabins = $bookingData['cabins'] ?? [];
-        $amenities = $bookingData['amenities'] ?? [];
+        $sum = fn (array $rows) => array_sum(array_map(
+            fn ($row) => (float) ($row['total_price'] ?? 0) * max(1, (int) ($row['quantity'] ?? 1)),
+            $rows
+        ));
+        $cabins = $sum($bookingData['cabins'] ?? []);
+        // The booking page sends amenity total_price as the unit price, so multiply by quantity here.
+        $amenities = array_sum(array_map(
+            fn ($row) => (float) ($row['unit_price'] ?? 0) * max(0, (int) ($row['quantity'] ?? 0)),
+            $bookingData['amenities'] ?? []
+        ));
 
-        [$subtotalCabins, $usedDb] = $this->calculateCabinsTotalFromDb($cabins, $bookingData);
-        if (!$usedDb) {
-            $subtotalCabins = 0.0;
-            foreach ($cabins as $row) {
-                $lineTotal = isset($row['total_price']) ? (float) $row['total_price'] : 0.0;
-                $qty = isset($row['quantity']) ? (int) $row['quantity'] : 1;
-                if ($qty < 1) {
-                    $qty = 1;
-                }
-                $subtotalCabins += $lineTotal * $qty;
-            }
-        }
-
-        [$subtotalAmenities, $usedAmenityDb] = $this->calculateAmenitiesTotalFromDb($amenities);
-        if (!$usedAmenityDb) {
-            $subtotalAmenities = 0.0;
-        }
-
-        $total = $subtotalCabins + $subtotalAmenities;
-
-        return [$subtotalCabins, $subtotalAmenities, $total];
-    }
-
-    protected function calculateCabinsTotalFromDb(array $cabins, array $bookingData): array
-    {
-        $duration = $this->resolveItineraryDurationFromBooking($bookingData);
-        if ($duration === null) {
-            return [0.0, false];
-        }
-
-        $cabinIds = [];
-        foreach ($cabins as $row) {
-            $id = $row['cabin_id'] ?? null;
-            if ($id !== null && $id !== '' && is_numeric($id)) {
-                $cabinIds[] = (int) $id;
-            }
-        }
-        $cabinIds = array_values(array_unique($cabinIds));
-        if (empty($cabinIds)) {
-            return [0.0, false];
-        }
-
-        $cabinMeta = DB::table('app_cabin')
-            ->select(
-                'id',
-                'capacity',
-                'over_capacity_adult',
-                'over_capacity_child_6_12',
-                'over_capacity_child_2_5',
-                'over_capacity_infant'
-            )
-            ->whereIn('id', $cabinIds)
-            ->get()
-            ->keyBy('id');
-
-        if ($cabinMeta->isEmpty()) {
-            return [0.0, false];
-        }
-
-        $pricesData = DB::table('app_cabin_price')
-            ->whereIn('cabin_id', $cabinIds)
-            ->where('duration', $duration)
-            ->select('cabin_id', 'guest', 'price')
-            ->get();
-
-        $pricesByCabin = [];
-        foreach ($pricesData as $row) {
-            $cabinId = (int) $row->cabin_id;
-            $guest = (int) $row->guest;
-            if (!isset($pricesByCabin[$cabinId])) {
-                $pricesByCabin[$cabinId] = [];
-            }
-            $pricesByCabin[$cabinId][$guest] = (float) $row->price;
-        }
-
-        if (empty($pricesByCabin)) {
-            return [0.0, false];
-        }
-
-        $subtotalCabins = 0.0;
-        foreach ($cabins as $row) {
-            $id = $row['cabin_id'] ?? null;
-            if ($id === null || $id === '' || !is_numeric($id)) {
-                $lineTotal = isset($row['total_price']) ? (float) $row['total_price'] : 0.0;
-                $qty = isset($row['quantity']) ? (int) $row['quantity'] : 1;
-                if ($qty < 1) {
-                    $qty = 1;
-                }
-                $subtotalCabins += $lineTotal * $qty;
-                continue;
-            }
-
-            $cabinId = (int) $id;
-            if (!$cabinMeta->has($cabinId) || !isset($pricesByCabin[$cabinId])) {
-                $lineTotal = isset($row['total_price']) ? (float) $row['total_price'] : 0.0;
-                $qty = isset($row['quantity']) ? (int) $row['quantity'] : 1;
-                if ($qty < 1) {
-                    $qty = 1;
-                }
-                $subtotalCabins += $lineTotal * $qty;
-                continue;
-            }
-
-            $meta = $cabinMeta->get($cabinId);
-            $prices = $pricesByCabin[$cabinId];
-
-            $guests = [
-                'adults' => isset($row['adults']) ? (int) $row['adults'] : 0,
-                'children_6_12' => isset($row['children_6_12']) ? (int) $row['children_6_12'] : 0,
-                'children_2_5' => isset($row['children_2_5']) ? (int) $row['children_2_5'] : 0,
-                'infants' => isset($row['infants']) ? (int) $row['infants'] : 0,
-            ];
-
-            $pricePerCabin = $this->calculateCabinPriceFromDb($meta, $prices, $guests);
-
-            $qty = isset($row['quantity']) ? (int) $row['quantity'] : 1;
-            if ($qty < 1) {
-                $qty = 1;
-            }
-
-            $subtotalCabins += $pricePerCabin * $qty;
-        }
-
-        return [$subtotalCabins, true];
-    }
-
-    protected function calculateAmenitiesTotalFromDb(array $amenities): array
-    {
-        $amenityIds = [];
-        foreach ($amenities as $row) {
-            $id = $row['amenity_id'] ?? null;
-            if ($id !== null && $id !== '' && is_numeric($id)) {
-                $amenityIds[] = (int) $id;
-            }
-        }
-
-        $amenityIds = array_values(array_unique($amenityIds));
-        if (empty($amenityIds)) {
-            return [0.0, false];
-        }
-
-        $prices = DB::table('app_service')
-            ->whereIn('id', $amenityIds)
-            ->pluck('price', 'id');
-
-        if ($prices->isEmpty()) {
-            return [0.0, false];
-        }
-
-        $subtotalAmenities = 0.0;
-        foreach ($amenities as $row) {
-            $id = $row['amenity_id'] ?? null;
-            $qty = isset($row['quantity']) ? (int) $row['quantity'] : 0;
-            if ($qty < 1 || $id === null || !is_numeric($id)) {
-                continue;
-            }
-
-            $amenityId = (int) $id;
-            if (!$prices->has($amenityId)) {
-                continue;
-            }
-
-            $subtotalAmenities += (float) $prices[$amenityId] * $qty;
-        }
-
-        return [$subtotalAmenities, true];
+        return [$cabins, $amenities, $cabins + $amenities];
     }
 
     protected function generateStatusToken(string $internalTxId): string
@@ -907,81 +684,6 @@ class PaymentController extends Controller
         }
 
         return hash_equals($this->generateStatusToken($internalTxId), $token);
-    }
-
-    protected function resolveItineraryDurationFromBooking(array $bookingData): ?int
-    {
-        $rawId = $bookingData['itinerary_id'] ?? null;
-        if ($rawId === null || $rawId === '' || !is_numeric($rawId)) {
-            return null;
-        }
-
-        $itineraryId = (int) $rawId;
-        $duration = DB::table('app_itinerary')->where('id', $itineraryId)->value('duration');
-        if ($duration === null) {
-            return null;
-        }
-
-        return (int) $duration;
-    }
-
-    protected function calculateCabinPriceFromDb($meta, array $pricesByGuest, array $guests): float
-    {
-        $capacity = (int) ($meta->capacity ?? 0);
-        if ($capacity <= 0) {
-            return 0.0;
-        }
-
-        $adults = max(0, (int) ($guests['adults'] ?? 0));
-        $children_6_12 = max(0, (int) ($guests['children_6_12'] ?? 0));
-        $children_2_5 = max(0, (int) ($guests['children_2_5'] ?? 0));
-        $infants = max(0, (int) ($guests['infants'] ?? 0));
-
-        $totalGuests = $adults + $children_6_12 + $children_2_5;
-        if ($totalGuests <= 0) {
-            return 0.0;
-        }
-
-        if ($totalGuests <= $capacity) {
-            $basePrice = $pricesByGuest[$totalGuests] ?? 0.0;
-            if ($basePrice <= 0 && $totalGuests > 0) {
-                $maxCapacityPrice = $pricesByGuest[$capacity] ?? 0.0;
-                if ($maxCapacityPrice > 0) {
-                    $basePrice = ($maxCapacityPrice / $capacity) * $totalGuests;
-                }
-            }
-
-            return $basePrice > 0 ? $basePrice : 0.0;
-        }
-
-        $basePrice = $pricesByGuest[$capacity] ?? 0.0;
-        if ($basePrice <= 0) {
-            return 0.0;
-        }
-
-        $pricePerPerson = $basePrice / $capacity;
-
-        $remainingInBase = $capacity;
-
-        $adultsInBase = min($adults, $remainingInBase);
-        $remainingInBase -= $adultsInBase;
-        $adultsExceeded = $adults - $adultsInBase;
-
-        $children_6_12_inBase = min($children_6_12, $remainingInBase);
-        $remainingInBase -= $children_6_12_inBase;
-        $children_6_12_exceeded = $children_6_12 - $children_6_12_inBase;
-
-        $children_2_5_inBase = min($children_2_5, $remainingInBase);
-        $children_2_5_exceeded = $children_2_5 - $children_2_5_inBase;
-
-        $extraCharges = 0.0;
-        $extraCharges += $adultsExceeded * $pricePerPerson;
-        $extraCharges += $children_6_12_exceeded * $pricePerPerson * 0.75;
-        $extraCharges += $children_2_5_exceeded * $pricePerPerson * 0.5;
-
-        $totalPrice = $basePrice + $extraCharges;
-
-        return $totalPrice > 0 ? $totalPrice : 0.0;
     }
 
     protected function redirectToReturnUrl(string $redirectUrl, string $result, string $tx, string $method)

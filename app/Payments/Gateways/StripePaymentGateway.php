@@ -3,6 +3,7 @@
 namespace App\Payments\Gateways;
 
 use App\Models\Payment;
+use App\Payments\AmountGuard;
 use App\Payments\Dto\PaymentConfirmResult;
 use App\Payments\Dto\PaymentInitResult;
 use App\Payments\Dto\PaymentStatusResult;
@@ -13,6 +14,8 @@ use Modules\BackEnd\Helpers\Logging;
 
 class StripePaymentGateway implements PaymentGatewayInterface
 {
+    protected const SIGNATURE_TOLERANCE_SECONDS = 300;
+
     protected $secret;
     protected $webhookSecret;
     protected $apiBase;
@@ -54,6 +57,8 @@ class StripePaymentGateway implements PaymentGatewayInterface
                 'success_url' => $context['success_url'],
                 'cancel_url' => $context['cancel_url'],
                 'metadata[internal_tx_id]' => $internalTxId,
+                // Also on the PaymentIntent, so payment_intent.* webhooks can be matched to the payment.
+                'payment_intent_data[metadata][internal_tx_id]' => $internalTxId,
                 'line_items[0][price_data][currency]' => $currency,
                 'line_items[0][price_data][unit_amount]' => $unitAmount,
                 'line_items[0][price_data][product_data][name]' => $context['description'] ?? 'Payment',
@@ -100,6 +105,9 @@ class StripePaymentGateway implements PaymentGatewayInterface
 
         if ($status === 'complete' && $paymentStatus === 'paid') {
             if ($payment && $payment->status === Payment::statusPending()) {
+                if (!$this->sessionAmountMatches($payment, $data)) {
+                    return new PaymentStatusResult($internalTxId, 'failed', $sessionId, $data);
+                }
                 $payment->update([
                     'status' => Payment::statusSucceeded(),
                     'completed_at' => now(),
@@ -135,11 +143,13 @@ class StripePaymentGateway implements PaymentGatewayInterface
 
         $object = $event['data']['object'] ?? [];
 
-        if ($type === 'checkout.session.completed') {
+        // "completed" can arrive before the money does (async methods); only "paid" counts.
+        $paid = ($object['payment_status'] ?? null) === 'paid';
+        if (($type === 'checkout.session.completed' && $paid) || $type === 'checkout.session.async_payment_succeeded') {
             $internalTxId = $object['metadata']['internal_tx_id'] ?? null;
             if ($internalTxId) {
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
-                if ($payment && $payment->status === Payment::statusPending()) {
+                if ($payment && $payment->status === Payment::statusPending() && $this->sessionAmountMatches($payment, $object)) {
                     $payment->update([
                         'status' => Payment::statusSucceeded(),
                         'provider_tx_id' => $object['id'] ?? $payment->provider_tx_id,
@@ -194,6 +204,11 @@ class StripePaymentGateway implements PaymentGatewayInterface
             return false;
         }
 
+        // Reject replays of old (validly signed) events; Stripe's default tolerance is 5 minutes.
+        if (abs(time() - (int) $timestamp) > self::SIGNATURE_TOLERANCE_SECONDS) {
+            return false;
+        }
+
         $signedPayload = $timestamp . '.' . $payload;
         $expected = hash_hmac('sha256', $signedPayload, $secret);
 
@@ -202,6 +217,19 @@ class StripePaymentGateway implements PaymentGatewayInterface
         }
 
         return $expected === $signature;
+    }
+
+    /** Checkout Session amount_total is in the smallest unit (cents for USD, whole VND), like Payment::amount. */
+    protected function sessionAmountMatches(Payment $payment, array $session): bool
+    {
+        $reported = (int) ($session['amount_total'] ?? -1);
+        $currency = $session['currency'] ?? null;
+        if (AmountGuard::matches($payment, $reported, $currency)) {
+            return true;
+        }
+        AmountGuard::failMismatch($payment, 'stripe', $reported, $currency);
+
+        return false;
     }
 
     protected function httpClient()
