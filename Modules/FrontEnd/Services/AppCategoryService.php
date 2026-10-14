@@ -38,51 +38,35 @@ class AppCategoryService
 
     public static function getParent($id, $type, $languageId)
     {
-        DB::beginTransaction();
-        try {
-            $obj = BeAppCategoryService::find($id, $type, $languageId);
-            if ($obj) {
-                return AppCategory::where('lvl', '>', 0)
-                    ->where('lft', '<=', $obj->lft)
-                    ->where('rgt', '>=', $obj->rgt)
-                    ->where('type', $type)
-                    ->where('language_id', $languageId)
-                    ->orderBy('lft')
-                    ->get();
-            }
-            
-            DB::commit();
-
-            return null;
-        } catch (\Exception $e) {
-            DB::rollBack();
-
+        // Read-only: no transaction needed (the previous version never committed on success).
+        $obj = BeAppCategoryService::find($id, $type, $languageId);
+        if (!$obj) {
             return null;
         }
+
+        return AppCategory::where('lvl', '>', 0)
+            ->where('lft', '<=', $obj->lft)
+            ->where('rgt', '>=', $obj->rgt)
+            ->where('type', $type)
+            ->where('language_id', $languageId)
+            ->orderBy('lft')
+            ->get();
     }
 
     public static function getParentByLevel($id, $level, $type, $languageId)
     {
-        DB::beginTransaction();
-        try {
-            $obj = BeAppCategoryService::find($id, $type, $languageId);
-            if ($obj) {
-                return AppCategory::where('lvl', $level)
-                    ->where('lft', '<=', $obj->lft)
-                    ->where('rgt', '>=', $obj->rgt)
-                    ->where('type', $type)
-                    ->where('language_id', $languageId)
-                    ->orderBy('lft')
-                    ->first();
-            }
-            
-            DB::commit();
-
-            return null;
-        } catch (\Exception $e) {
-            DB::rollBack();
-
+        // Read-only: no transaction needed (the previous version never committed on success).
+        $obj = BeAppCategoryService::find($id, $type, $languageId);
+        if (!$obj) {
             return null;
         }
+
+        return AppCategory::where('lvl', $level)
+            ->where('lft', '<=', $obj->lft)
+            ->where('rgt', '>=', $obj->rgt)
+            ->where('type', $type)
+            ->where('language_id', $languageId)
+            ->orderBy('lft')
+            ->first();
     }
 }
