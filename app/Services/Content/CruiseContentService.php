@@ -123,6 +123,7 @@ class CruiseContentService
             'starRating' => CabinContentService::number($cruise->star_rating),
             'capacity' => CabinContentService::number($cruise->capacity),
             'totalFloor' => CabinContentService::number($cruise->total_floor),
+            'totalCabin' => CabinContentService::number($cruise->total_cabin),
             'length' => CabinContentService::number($cruise->dimension_length),
             'yearBuilt' => CabinContentService::number($cruise->year_built),
             'descriptionDesignHtml' => safe_html($cruise->description_design) ?? '',

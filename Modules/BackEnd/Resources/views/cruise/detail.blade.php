@@ -361,6 +361,22 @@
                                         {{--                                    @enderror--}}
                                     </div>
                                     <div class="col-6 form-group">
+                                        <label class="col-form-label">Số cabin</label>
+                                        {!!
+                                           Form::number(
+                                               'total_cabin',
+                                               $cruise->total_cabin ?? null,
+                                               [
+                                                   'class' => 'form-control' . ($errors->has('total_cabin') ? ' is-invalid' : ''),
+                                                   'placeholder' => 'Nhập số cabin...',
+                                                   'autocomplete' => 'off',
+                                                   'min' => 1,
+                                                   'disabled' => $readOnly
+                                               ]
+                                           )
+                                        !!}
+                                    </div>
+                                    <div class="col-6 form-group">
                                         <label class="col-form-label">Chiều dài <span class="text-danger">*</span></label>
                                         {!!
                                            Form::number(

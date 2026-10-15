@@ -30,6 +30,7 @@ class CruiseCreateUpdateRequest extends FormRequest
             'star_rating'        => ['nullable', 'numeric', 'between:1,5'], // thường 1.0 → 5.0
             'capacity'           => ['required', 'integer', 'min:1', 'max:1000'], // tùy business, có thể điều chỉnh max
             'total_floor'        => ['required', 'integer', 'min:1', 'max:20'],   // số tầng tàu
+            'total_cabin'        => ['nullable', 'integer', 'min:1', 'max:500'],  // số cabin trên tàu
             'dimension_length'   => ['required', 'numeric', 'min:10', 'max:1000'], // chiều dài tàu (mét)
             'year_built'         => ['required', 'integer', 'min:1900', 'max:' . ((int)date('Y') + 1)],
             'description_design' => ['nullable', 'string'], // longtext
@@ -67,6 +68,10 @@ class CruiseCreateUpdateRequest extends FormRequest
             'total_floor.required'      => 'Số tầng là bắt buộc.',
             'total_floor.min'           => 'Số tầng phải ít nhất là 1.',
             'total_floor.max'           => 'Số tầng tối đa hợp lý là 20.',
+
+            'total_cabin.integer'       => 'Số cabin phải là số nguyên.',
+            'total_cabin.min'           => 'Số cabin phải ít nhất là 1.',
+            'total_cabin.max'           => 'Số cabin tối đa hợp lý là 500.',
 
             'dimension_length.required' => 'Chiều dài tàu là bắt buộc.',
             'dimension_length.min'      => 'Chiều dài tàu phải lớn hơn hoặc bằng 10 mét.',

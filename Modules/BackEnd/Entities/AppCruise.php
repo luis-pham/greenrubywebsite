@@ -15,6 +15,7 @@ class AppCruise extends BaseModel
         'star_rating',
         'capacity',
         'total_floor',
+        'total_cabin',
         'dimension_length',
         'year_built',
         'description_design',

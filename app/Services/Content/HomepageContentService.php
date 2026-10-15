@@ -41,6 +41,8 @@ class HomepageContentService
                 'image' => CabinContentService::fileLink(self::field($c, 'image_link')),
                 'cover' => CabinContentService::fileLink(self::field($c, 'cover_link')),
                 'capacity' => self::number(self::field($c, 'capacity')),
+                'totalFloor' => self::number(self::field($c, 'total_floor')),
+                'totalCabin' => self::number(self::field($c, 'total_cabin')),
                 'length' => self::number(self::field($c, 'dimension_length')),
                 'starRating' => self::number(self::field($c, 'star_rating')),
             ])->values(),
