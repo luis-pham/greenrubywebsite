@@ -21,6 +21,8 @@ use Modules\FrontEnd\Services\AppCruiseItineraryService;
 use Modules\FrontEnd\Services\GalleryService;
 use Modules\FrontEnd\Services\PageService;
 use Modules\BackEnd\Entities\AppCruise;
+use Modules\BackEnd\Entities\AppExpActivity;
+use Modules\BackEnd\Entities\AppFaq;
 use App\Services\Content\CabinContentService;
 
 class SitemapController extends Controller
@@ -99,18 +101,15 @@ class SitemapController extends Controller
     {
         $article = AppArticleService::getLatestUpdate([]);
         $experience = AppExpActivityService::getLatestUpdate([]);
-        $service = AppServiceService::getLatestUpdate([]);
         $itinerary = AppItineraryService::getLatestUpdate([]);
         $cruise = AppCruiseService::getLatestUpdate([]);
-        $gallery = GalleryService::getGalleryUpdatedAt([]);
-        $faq = AppFaqService::getLatestUpdate([]);
         $about = PageService::getAboutUpdatedAt([]);
         $contact = PageService::getContactUpdatedAt([]);
         $entries = [];
 
         $homepageLastmod = $cruise
             ? Carbon::parse($cruise->updated_at ?: $cruise->created_at)->format('Y-m-d\TH:i:sP')
-            : Carbon::now()->format('Y-m-d\TH:i:sP');
+            : '';
 
         $entries = array_merge($entries, $this->buildHubEntries('frontend.index', $homepageLastmod, [], '1.0', 'weekly'));
 
@@ -122,21 +121,9 @@ class SitemapController extends Controller
             $lastmod = Carbon::parse($experience->updated_at ?: $experience->created_at)->format('Y-m-d\TH:i:sP');
             $entries = array_merge($entries, $this->buildHubEntries('frontend.experience.index', $lastmod));
         }
-        if ($service) {
-            $lastmod = Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP');
-            $entries = array_merge($entries, $this->buildHubEntries('frontend.service.index', $lastmod));
-        }
         if ($itinerary) {
             $lastmod = Carbon::parse($itinerary->updated_at ?: $itinerary->created_at)->format('Y-m-d\TH:i:sP');
             $entries = array_merge($entries, $this->buildHubEntries('frontend.itinerary.index', $lastmod));
-        }
-        if ($gallery) {
-            $lastmod = Carbon::parse($gallery)->format('Y-m-d\TH:i:sP');
-            $entries = array_merge($entries, $this->buildHubEntries('frontend.gallery.index', $lastmod));
-        }
-        if ($faq) {
-            $lastmod = Carbon::parse($faq->updated_at ?: $faq->created_at)->format('Y-m-d\TH:i:sP');
-            $entries = array_merge($entries, $this->buildHubEntries('frontend.faq.index', $lastmod));
         }
         if ($about) {
             $lastmod = Carbon::parse($about)->format('Y-m-d\TH:i:sP');
@@ -146,6 +133,9 @@ class SitemapController extends Controller
             $lastmod = Carbon::parse($contact)->format('Y-m-d\TH:i:sP');
             $entries = array_merge($entries, $this->buildHubEntries('frontend.contact.index', $lastmod));
         }
+
+        // Services, gallery and FAQ hubs live in their own sitemaps (sitemap-service/-category-gallery/-category-faq).
+        $entries = array_merge($entries, $this->nextOnlyEntries(self::ECO_DASHBOARD_PATH, '', 'monthly', '0.6'));
 
         return response()->view($this->baseView . __FUNCTION__, [
             'entries' => $entries,
@@ -235,63 +225,25 @@ class SitemapController extends Controller
 
     public function experience()
     {
-        $defaultLanguage = AdLanguageService::getDefaultLanguage();
-        $listLanguage = $this->getAllLanguage();
         $entries = [];
-        $emittedClusterKeys = [];
 
-        $list = AppExpActivityService::getPaging(['is_disabled_paginate' => true]);
-        for ($i = 0; $i < count($list); $i++) {
-            $languageId = $list[$i]->language_id ?? $defaultLanguage->id;
-            $slug = Utilities::convertToAlias($list[$i]->name);
-            $params = [
-                'slug' => $slug,
-                'id' => $list[$i]->id,
-            ];
+        foreach (AdLanguageService::getAll() as $language) {
+            foreach (AppExpActivity::where('language_id', $language->id)->orderBy('id')->get() as $item) {
+                $params = ['slug' => Utilities::convertToAlias($item->name), 'id' => $item->id];
+                try {
+                    $url = FeUtils::frontendRoute('frontend.experience.show', $params, $language->code);
+                } catch (\Throwable) {
+                    continue;
+                }
 
-            $alternates = FeHreflangUtils::getAlternateLinksForRoute(
-                'frontend.experience.show',
-                $params,
-                $languageId
-            );
-
-            // Prefer emitting one sitemap row per reciprocal cluster (keyed by default-locale URL).
-            $clusterKey = collect($alternates)
-                ->firstWhere('hreflang', $defaultLanguage->code)['url']
-                ?? collect($alternates)->first()['url']
-                ?? null;
-
-            if ($clusterKey && isset($emittedClusterKeys[$clusterKey])) {
-                continue;
+                $entries[] = $this->makeUrlEntry(
+                    $url,
+                    Carbon::parse($item->updated_at ?: $item->created_at)->format('Y-m-d\TH:i:sP'),
+                    'monthly',
+                    '0.6',
+                    FeHreflangUtils::getAlternateLinksForRoute('frontend.experience.show', $params, $language->id)
+                );
             }
-            if ($clusterKey) {
-                $emittedClusterKeys[$clusterKey] = true;
-            }
-
-            try {
-                $url = $defaultLanguage->id == $languageId
-                    ? route('frontend.experience.show', $params)
-                    : route(
-                        Utilities::bindRouteNameMultiLanguage('frontend.experience.show'),
-                        array_merge($params, ['languageCode' => $listLanguage[$languageId]])
-                    );
-            } catch (\Throwable) {
-                continue;
-            }
-
-            // Prefer the default-locale URL as <loc> when the cluster includes it.
-            $defaultAlternate = collect($alternates)->firstWhere('hreflang', $defaultLanguage->code);
-            if ($defaultAlternate) {
-                $url = $defaultAlternate['url'];
-            }
-
-            $entries[] = $this->makeUrlEntry(
-                $url,
-                Carbon::parse($list[$i]->updated_at ?: $list[$i]->created_at)->format('Y-m-d\TH:i:sP'),
-                'monthly',
-                '0.6',
-                $alternates
-            );
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
@@ -303,15 +255,7 @@ class SitemapController extends Controller
     {
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $service = AppServiceService::getLatestUpdate([], $defaultLanguage->id);
-
-        if (!$service) {
-            $service = (object) [
-                'updated_at' => Carbon::now(),
-                'created_at' => Carbon::now(),
-            ];
-        }
-
-        $lastmod = Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP');
+        $lastmod = $service ? Carbon::parse($service->updated_at ?: $service->created_at)->format('Y-m-d\TH:i:sP') : '';
         $entries = $this->buildHubEntries('frontend.service.index', $lastmod);
 
         return response()->view($this->baseView . __FUNCTION__, [
@@ -408,7 +352,6 @@ class SitemapController extends Controller
         $entries = [];
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
         $galleryLastmod = GalleryService::getGalleryUpdatedAt($defaultLanguage->id);
-        $emittedClusterKeys = [];
 
         if ($galleryLastmod) {
             $lastmod = Carbon::parse($galleryLastmod)->format('Y-m-d\TH:i:sP');
@@ -421,42 +364,15 @@ class SitemapController extends Controller
                 }
 
                 $entryLastmod = Carbon::parse($languageLastmod)->format('Y-m-d\TH:i:sP');
-                $filters = GalleryService::getGalleryFilter($language->id);
-                foreach (array_keys($filters) as $slug) {
+                foreach (array_keys(GalleryService::getGalleryFilter($language->id)) as $slug) {
                     $params = ['slug' => $slug];
-                    $alternates = FeHreflangUtils::getAlternateLinksForRoute(
-                        'frontend.gallery.category',
-                        $params,
-                        $language->id
-                    );
-
-                    if (count($alternates) === 0) {
-                        continue;
-                    }
-
-                    $clusterKey = collect($alternates)
-                        ->firstWhere('hreflang', $defaultLanguage->code)['url']
-                        ?? collect($alternates)->first()['url']
-                        ?? null;
-
-                    if ($clusterKey && isset($emittedClusterKeys[$clusterKey])) {
-                        continue;
-                    }
-                    if ($clusterKey) {
-                        $emittedClusterKeys[$clusterKey] = true;
-                    }
-
                     try {
                         $url = FeUtils::frontendRoute('frontend.gallery.category', $params, $language->code);
                     } catch (\Throwable) {
                         continue;
                     }
 
-                    $defaultAlternate = collect($alternates)->firstWhere('hreflang', $defaultLanguage->code);
-                    if ($defaultAlternate) {
-                        $url = $defaultAlternate['url'];
-                    }
-
+                    $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.gallery.category', $params, $language->id);
                     $entries[] = $this->makeUrlEntry($url, $entryLastmod, 'monthly', '0.6', $alternates);
                 }
             }
@@ -470,9 +386,12 @@ class SitemapController extends Controller
     public function faq()
     {
         $entries = [];
-        $lastmod = Carbon::now()->format('Y-m-d\TH:i:sP');
-        $defaultLanguage = AdLanguageService::getDefaultLanguage();
-        $emittedClusterKeys = [];
+        // FAQ rows are rarely edited in place (updated_at is often NULL), so fall back to created_at.
+        $latest = AppFaq::query()->max(\DB::raw('COALESCE(updated_at, created_at)'));
+        if (!$latest) {
+            return response()->view($this->baseView . __FUNCTION__, ['entries' => $entries])->header('Content-Type', 'text/xml');
+        }
+        $lastmod = Carbon::parse($latest)->format('Y-m-d\TH:i:sP');
 
         $entries = array_merge($entries, $this->buildHubEntries('frontend.faq.index', $lastmod));
 
@@ -484,39 +403,13 @@ class SitemapController extends Controller
                 }
 
                 $params = ['slug' => $group->slug];
-                $alternates = FeHreflangUtils::getAlternateLinksForRoute(
-                    'frontend.faq.category',
-                    $params,
-                    $language->id
-                );
-
-                if (count($alternates) === 0) {
-                    continue;
-                }
-
-                $clusterKey = collect($alternates)
-                    ->firstWhere('hreflang', $defaultLanguage->code)['url']
-                    ?? collect($alternates)->first()['url']
-                    ?? null;
-
-                if ($clusterKey && isset($emittedClusterKeys[$clusterKey])) {
-                    continue;
-                }
-                if ($clusterKey) {
-                    $emittedClusterKeys[$clusterKey] = true;
-                }
-
                 try {
                     $url = FeUtils::frontendRoute('frontend.faq.category', $params, $language->code);
                 } catch (\Throwable) {
                     continue;
                 }
 
-                $defaultAlternate = collect($alternates)->firstWhere('hreflang', $defaultLanguage->code);
-                if ($defaultAlternate) {
-                    $url = $defaultAlternate['url'];
-                }
-
+                $alternates = FeHreflangUtils::getAlternateLinksForRoute('frontend.faq.category', $params, $language->id);
                 $entries[] = $this->makeUrlEntry($url, $lastmod, 'monthly', '0.6', $alternates);
             }
         }
@@ -575,6 +468,35 @@ class SitemapController extends Controller
 
     /** Must match `segments.cabin` in greenruby-web/src/lib/i18n.ts. */
     private const CABIN_SEGMENT = ['vi' => 'phong-nghi'];
+
+    /** Must match `segments.ecoDashboard` in greenruby-web/src/lib/i18n.ts. */
+    private const ECO_DASHBOARD_PATH = ['en' => 'eco-dashboard', 'vi' => 'bao-cao-sinh-thai'];
+
+    /**
+     * One entry per language for a page that exists only on the Next.js frontend, keyed by language code
+     * => path segment (default language unprefixed, others under /{code}/), all sharing one hreflang set.
+     */
+    private function nextOnlyEntries(array $pathByLanguage, string $lastmod, string $changefreq, string $priority): array
+    {
+        $defaultLanguage = AdLanguageService::getDefaultLanguage();
+        $urls = [];
+        foreach (AdLanguageService::getAll() as $language) {
+            if (isset($pathByLanguage[$language->code])) {
+                $prefix = $language->code === $defaultLanguage->code ? '/' : '/' . $language->code . '/';
+                $urls[$language->code] = url($prefix . $pathByLanguage[$language->code]);
+            }
+        }
+
+        $alternates = [];
+        if (count($urls) > 1) {
+            foreach ($urls as $code => $href) {
+                $alternates[] = ['hreflang' => $code, 'url' => $href];
+            }
+            $alternates[] = ['hreflang' => 'x-default', 'url' => $urls[$defaultLanguage->code] ?? reset($urls)];
+        }
+
+        return array_map(fn ($href) => $this->makeUrlEntry($href, $lastmod, $changefreq, $priority, $alternates), array_values($urls));
+    }
 
     private function makeUrlEntry(
         string $loc,

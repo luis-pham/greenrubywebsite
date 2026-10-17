@@ -2,6 +2,7 @@
 
 namespace Modules\FrontEnd\Helpers;
 
+use App\Services\Content\ContentTranslations;
 use Illuminate\Support\Facades\Route;
 use Modules\BackEnd\Entities\AppCategory;
 use Modules\BackEnd\Entities\AppCruise;
@@ -145,6 +146,11 @@ class FeHreflangUtils
             return $sameId;
         }
 
+        [$linked, $linkedId] = ContentTranslations::lookup('cruise', $sourceCruiseId, (int) $targetLanguage->id);
+        if ($linked) {
+            return $linkedId ? AppCruiseService::findByIdJoin($linkedId, $targetLanguage->id) : null;
+        }
+
         $sourceCruise = null;
         if ($sourceLanguageId) {
             $sourceCruise = AppCruiseService::findByIdJoin($sourceCruiseId, $sourceLanguageId);
@@ -158,9 +164,9 @@ class FeHreflangUtils
 
         $bay = FeCruiseUtils::getBayForCruise($sourceCruise->name);
 
-        return AppCruise::where('language_id', $targetLanguage->id)
+        return ContentTranslations::unclaimed('cruise', AppCruise::where('language_id', $targetLanguage->id)
             ->get()
-            ->first(fn (AppCruise $cruise) => FeCruiseUtils::getBayForCruise($cruise->name) === $bay);
+            ->first(fn (AppCruise $cruise) => FeCruiseUtils::getBayForCruise($cruise->name) === $bay));
     }
 
     private static function resolveItineraryShow(array $params, $language, ?int $sourceLanguageId = null): ?array
@@ -174,11 +180,14 @@ class FeHreflangUtils
             return null;
         }
 
-        $targetItinerary = AppItinerary::where('language_id', $language->id)
-            ->where('duration', $sourceItinerary->duration)
-            ->where('bay', $sourceItinerary->bay)
-            ->orderBy('id')
-            ->first();
+        [$linked, $linkedId] = ContentTranslations::lookup('itinerary', (int) $sourceItinerary->id, (int) $language->id);
+        $targetItinerary = $linked
+            ? ($linkedId ? AppItinerary::where('id', $linkedId)->first() : null)
+            : ContentTranslations::unclaimed('itinerary', AppItinerary::where('language_id', $language->id)
+                ->where('duration', $sourceItinerary->duration)
+                ->where('bay', $sourceItinerary->bay)
+                ->orderBy('id')
+                ->first());
 
         if (!$targetItinerary) {
             return null;
@@ -219,6 +228,11 @@ class FeHreflangUtils
             return $sameId;
         }
 
+        [$linked, $linkedId] = ContentTranslations::lookup('experience', $sourceId, (int) $targetLanguage->id);
+        if ($linked) {
+            return $linkedId ? AppExpActivityService::getById($linkedId, $targetLanguage->id) : null;
+        }
+
         $source = null;
         if ($sourceLanguageId) {
             $source = AppExpActivityService::getById($sourceId, $sourceLanguageId);
@@ -235,7 +249,7 @@ class FeHreflangUtils
             return null;
         }
 
-        return AppExpActivity::where('language_id', $targetLanguage->id)
+        return ContentTranslations::unclaimed('experience', AppExpActivity::where('language_id', $targetLanguage->id)
             ->where('duration', $source->duration)
             ->get()
             ->first(function (AppExpActivity $item) use ($sourceImage) {
@@ -245,7 +259,7 @@ class FeHreflangUtils
                 }
 
                 return $itemImage === $sourceImage;
-            });
+            }));
     }
 
     private static function normalizeAssetPath(?string $path): string
@@ -314,13 +328,18 @@ class FeHreflangUtils
             return $sameId;
         }
 
-        return AppCategory::where('type', $articleType)
+        [$linked, $linkedId] = ContentTranslations::lookup('article_category', (int) $sourceCategory->id, $targetLanguageId);
+        if ($linked) {
+            return $linkedId ? AppCategoryService::find($linkedId, $articleType, $targetLanguageId) : null;
+        }
+
+        return ContentTranslations::unclaimed('article_category', AppCategory::where('type', $articleType)
             ->where('language_id', $targetLanguageId)
             ->where('lvl', $sourceCategory->lvl)
             ->where('lft', $sourceCategory->lft)
             ->where('slug', '!=', 'root')
             ->orderBy('id')
-            ->first();
+            ->first());
     }
 
     private static function resolveFaqCategory(array $params, $language, ?int $sourceLanguageId = null): ?array
@@ -362,16 +381,21 @@ class FeHreflangUtils
             return $sameId;
         }
 
+        [$linked, $linkedId] = ContentTranslations::lookup('faq_group', (int) $sourceGroup->id, $targetLanguageId);
+        if ($linked) {
+            return $linkedId ? AppGroupService::find($linkedId, $faqType, $targetLanguageId) : null;
+        }
+
         if ($sourceGroup->ord === null) {
             return null;
         }
 
-        return AppGroup::where('type', $faqType)
+        return ContentTranslations::unclaimed('faq_group', AppGroup::where('type', $faqType)
             ->where('language_id', $targetLanguageId)
             ->where('ord', $sourceGroup->ord)
             ->where('slug', '!=', 'root')
             ->orderBy('id')
-            ->first();
+            ->first());
     }
 
     private static function resolveGalleryCategory(array $params, $language, ?int $sourceLanguageId = null): ?array
@@ -415,7 +439,10 @@ class FeHreflangUtils
             return null;
         }
 
-        $article = AppArticleService::findJoin($sourceArticle->id, $language->id);
+        [$linked, $linkedId] = ContentTranslations::lookup('article', (int) $sourceArticle->id, (int) $language->id);
+        $article = $linked
+            ? ($linkedId ? AppArticleService::findJoin($linkedId, $language->id) : null)
+            : AppArticleService::findJoin($sourceArticle->id, $language->id);
         if (!$article) {
             return null;
         }

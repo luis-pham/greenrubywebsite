@@ -34,6 +34,8 @@ class RevalidateFrontend
         'page-config' => ['pages'],
         'service' => ['services', 'itineraries', 'cruises'],
         'testimonial' => ['testimonials'],
+        // EN <-> VI links change alternates on every content type.
+        'translation' => ['content'],
     ];
 
     /**

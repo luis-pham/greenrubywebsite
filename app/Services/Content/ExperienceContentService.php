@@ -115,12 +115,22 @@ class ExperienceContentService
     }
 
     /**
-     * Counterpart rule of FeHreflangUtils::findExperienceCounterpart (ids are per-language rows, so it is
-     * "same duration + same non-placeholder image_link"), kept only when exactly one row matches.
+     * Explicit ContentTranslations link first; otherwise the counterpart rule of
+     * FeHreflangUtils::findExperienceCounterpart (ids are per-language rows, so it is
+     * "same duration + same non-placeholder image_link"), kept only when exactly one unlinked row matches.
      */
     public static function alternate(AppExpActivity $e, AdLanguage $language): ?array
     {
         $target = ItineraryContentService::otherLanguage($language);
+        if ($target) {
+            [$linked, $linkedId] = ContentTranslations::lookup('experience', (int) $e->id, (int) $target->id);
+            if ($linked) {
+                $match = $linkedId ? AppExpActivity::where('id', $linkedId)->first() : null;
+
+                return $match ? ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => CabinContentService::slug($match->name)] : null;
+            }
+        }
+
         $image = self::normalizeAsset($e->image_link);
         if (!$target || $image === '' || str_ends_with($image, 'blank.gif')) {
             return null;
@@ -131,7 +141,7 @@ class ExperienceContentService
             ->get()
             ->filter(fn ($row) => self::normalizeAsset($row->image_link) === $image)
             ->values();
-        if ($matches->count() !== 1) {
+        if ($matches->count() !== 1 || !ContentTranslations::unclaimed('experience', $matches->first())) {
             return null;
         }
         $match = $matches->first();

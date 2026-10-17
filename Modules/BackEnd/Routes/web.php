@@ -49,6 +49,9 @@ Route::prefix('admincp')->middleware('auth:admin')->group(function () {
 
     Route::get('/logging', 'LoggingController@index')->name('backend.logging.index')->middleware('can:logging-read');
     Route::get('/logging/show/{id}', 'LoggingController@show')->name('backend.logging.show')->middleware('can:logging-read');
+
+    Route::get('/translation', 'TranslationController@index')->name('backend.translation.index')->middleware('can:config-update');
+    Route::post('/translation', 'TranslationController@update')->name('backend.translation.update')->middleware('can:config-update');
 });
 
 Route::prefix('admincp')->middleware(['auth:admin', 'language.backend'])->group(function () {

@@ -177,7 +177,7 @@ class CabinContentService
     }
 
     /**
-     * Conservative cross-language counterpart: counterpart cruise via FeHreflangUtils::findCruiseCounterpart
+     * Explicit ContentTranslations link first. Otherwise a conservative cross-language counterpart: counterpart cruise via FeHreflangUtils::findCruiseCounterpart
      * (same id in target language, else same bay), then the single accommodation cabin on that cruise with
      * the same `ord`. Returns null if no unique match (or the source ord is itself shared on its cruise).
      */
@@ -187,7 +187,18 @@ class CabinContentService
             ->whereIn('code', ['en', 'vi'])
             ->orderBy('ord')
             ->first();
-        if (!$target || !$cabin->cruise_id) {
+        if (!$target) {
+            return null;
+        }
+
+        [$linked, $linkedId] = ContentTranslations::lookup('cabin', (int) $cabin->id, (int) $target->id);
+        if ($linked) {
+            return $linkedId && self::findAccommodation($linkedId, (int) $target->id)
+                ? ['lang' => $target->code, 'id' => $linkedId]
+                : null;
+        }
+
+        if (!$cabin->cruise_id) {
             return null;
         }
 
@@ -213,7 +224,7 @@ class CabinContentService
             ->where('app_cabin.ord', $cabin->ord)
             ->limit(2)
             ->get();
-        if ($matches->count() !== 1) {
+        if ($matches->count() !== 1 || !ContentTranslations::unclaimed('cabin', $matches->first())) {
             return null;
         }
 

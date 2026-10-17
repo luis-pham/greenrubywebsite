@@ -252,13 +252,24 @@ class ArticleContentService
     }
 
     /**
-     * Blade hreflang (FeHreflangUtils::resolveArticleShow) only pairs the same article id in the other
-     * language; ids are unique across languages, so this is null unless that ever changes.
+     * Explicit ContentTranslations link; without one, Blade hreflang (FeHreflangUtils::resolveArticleShow)
+     * only pairs the same article id in the other language, which never exists (ids are unique).
      */
+    public static function alternateFor(int $id, AdLanguage $language): ?array
+    {
+        return self::alternate((object) ['id' => $id], $language);
+    }
+
     protected static function alternate($obj, AdLanguage $language): ?array
     {
         $target = ItineraryContentService::otherLanguage($language);
-        $other = $target ? AppArticleService::findJoin($obj->id, (int) $target->id) : null;
+        if (!$target) {
+            return null;
+        }
+        [$linked, $linkedId] = ContentTranslations::lookup('article', (int) $obj->id, (int) $target->id);
+        $other = $linked
+            ? ($linkedId ? AppArticleService::findJoin($linkedId, (int) $target->id) : null)
+            : AppArticleService::findJoin($obj->id, (int) $target->id);
         if (!$other || !$other->category_slug) {
             return null;
         }

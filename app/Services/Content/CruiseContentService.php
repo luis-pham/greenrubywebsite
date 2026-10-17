@@ -151,12 +151,19 @@ class CruiseContentService
         ];
     }
 
-    /** Counterpart via FeHreflangUtils::findCruiseCounterpart, only when the ship's bay is unique in both languages. */
+    /** Explicit ContentTranslations link, else FeHreflangUtils::findCruiseCounterpart when the ship's bay is unique in both languages. */
     public static function alternate(AppCruise $cruise, AdLanguage $language): ?array
     {
         $target = ItineraryContentService::otherLanguage($language);
         if (!$target) {
             return null;
+        }
+
+        [$linked, $linkedId] = ContentTranslations::lookup('cruise', (int) $cruise->id, (int) $target->id);
+        if ($linked) {
+            $match = $linkedId ? AppCruise::where('id', $linkedId)->first() : null;
+
+            return $match ? ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => CabinContentService::slug($match->name)] : null;
         }
 
         $bay = FeCruiseUtils::getBayForCruise($cruise->name);

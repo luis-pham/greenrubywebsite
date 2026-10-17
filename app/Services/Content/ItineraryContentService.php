@@ -199,8 +199,9 @@ class ItineraryContentService
     }
 
     /**
-     * Counterpart = the only itinerary in the other language with the same duration + bay (the pairing
-     * FeHreflangUtils uses), and only when the source pair is itself unique; then its canonical cruise.
+     * Counterpart = the explicit ContentTranslations link, else the only unlinked itinerary in the other
+     * language with the same duration + bay (the pairing FeHreflangUtils uses), and only when the source
+     * pair is itself unique; then its canonical cruise.
      */
     public static function alternate(AppItinerary $itinerary, AdLanguage $language): ?array
     {
@@ -209,24 +210,33 @@ class ItineraryContentService
             return null;
         }
 
-        $sameInSource = AppItinerary::where('language_id', $language->id)
-            ->where('duration', $itinerary->duration)
-            ->where('bay', $itinerary->bay)
-            ->count();
-        if ($sameInSource !== 1) {
-            return null;
+        [$linked, $linkedId] = ContentTranslations::lookup('itinerary', (int) $itinerary->id, (int) $target->id);
+        if ($linked) {
+            if (!$linkedId) {
+                return null;
+            }
+            $matchId = $linkedId;
+        } else {
+            $sameInSource = AppItinerary::where('language_id', $language->id)
+                ->where('duration', $itinerary->duration)
+                ->where('bay', $itinerary->bay)
+                ->count();
+            if ($sameInSource !== 1) {
+                return null;
+            }
+
+            $matches = AppItinerary::where('language_id', $target->id)
+                ->where('duration', $itinerary->duration)
+                ->where('bay', $itinerary->bay)
+                ->limit(2)
+                ->get();
+            if ($matches->count() !== 1 || !ContentTranslations::unclaimed('itinerary', $matches->first())) {
+                return null;
+            }
+            $matchId = (int) $matches->first()->id;
         }
 
-        $matches = AppItinerary::where('language_id', $target->id)
-            ->where('duration', $itinerary->duration)
-            ->where('bay', $itinerary->bay)
-            ->limit(2)
-            ->get();
-        if ($matches->count() !== 1) {
-            return null;
-        }
-
-        $canonical = AppCruiseItineraryService::resolveCanonicalShowParams((int) $matches->first()->id, (int) $target->id);
+        $canonical = AppCruiseItineraryService::resolveCanonicalShowParams($matchId, (int) $target->id);
         if (!$canonical) {
             return null;
         }
