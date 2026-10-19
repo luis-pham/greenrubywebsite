@@ -69,6 +69,13 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\ApiNoIndexRobots::class,
         ],
+
+        // Writing app (write.greenrubycruises.com). Auth is a token cookie (editor.auth), no session.
+        'editor' => [
+            'throttle:240,1',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ApiNoIndexRobots::class,
+        ],
     ];
 
     /**
@@ -96,5 +103,6 @@ class Kernel extends HttpKernel
         'api.noindex' => \App\Http\Middleware\ApiNoIndexRobots::class,
         'html.cache' => \App\Http\Middleware\SetHtmlCacheHeaders::class,
         'content.key' => \App\Http\Middleware\ContentApiKey::class,
+        'editor.auth' => \App\Http\Middleware\EditorAuth::class,
     ];
 }

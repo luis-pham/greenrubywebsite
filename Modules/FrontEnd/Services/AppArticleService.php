@@ -8,10 +8,17 @@ use Modules\BackEnd\Services\AppCategoryService;
 
 class AppArticleService
 {
+    /** Scheduled articles (published with a future publish_date) stay hidden until that time. */
+    private static function isLive($query)
+    {
+        $query->whereNull('app_article.publish_date')->orWhere('app_article.publish_date', '<=', now());
+    }
+
     public static function find($id, $languageId)
     {
         return AppArticle::where('id', $id)
             ->where('is_published', true)
+            ->where(fn ($q) => self::isLive($q))
             ->where('language_id', $languageId)
             ->first();
     }
@@ -22,6 +29,7 @@ class AppArticleService
             ->leftJoin('app_category', 'app_category.id', '=', 'app_article.category_id')
             ->where('app_article.id', $id)
             ->where('is_published', true)
+            ->where(fn ($q) => self::isLive($q))
             ->where('app_article.language_id', $languageId)
             ->first();
     }
@@ -35,6 +43,7 @@ class AppArticleService
             ->where('app_category.language_id', $languageId)
             ->where('app_article.slug', $articleSlug)
             ->where('app_article.is_published', true)
+            ->where(fn ($q) => self::isLive($q))
             ->where('app_article.language_id', $languageId)
             ->first();
     }
@@ -61,7 +70,7 @@ class AppArticleService
                 $query = $query->where('app_article.id', '!=', $param['exclude_id']);
             }
         }
-        $query = $query->where('is_published', true);
+        $query = $query->where('is_published', true)->where(fn ($q) => self::isLive($q));
         if ($languageId) {
             $query = $query->where('app_article.language_id', $languageId);
         }
@@ -166,7 +175,7 @@ class AppArticleService
                 $query = $query->where('app_article.id', '!=', $param['exclude_id']);
             }
         }
-        $query = $query->where('is_published', true);
+        $query = $query->where('is_published', true)->where(fn ($q) => self::isLive($q));
         if ($languageId) {
             $query = $query->where('app_article.language_id', $languageId);
         }
@@ -214,7 +223,7 @@ class AppArticleService
     public static function getLatestUpdate($param, $languageId = null)
     {
         $query = AppArticle::select('app_article.*', DB::raw('IFNULL(app_article.updated_at, app_article.created_at) AS `lastmod`'));
-        $query = $query->where('is_published', true);
+        $query = $query->where('is_published', true)->where(fn ($q) => self::isLive($q));
         if (array_key_exists('category_id', $param)) {
             $query = $query->where('category_id', $param['category_id']);
         }

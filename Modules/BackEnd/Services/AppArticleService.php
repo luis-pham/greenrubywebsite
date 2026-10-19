@@ -3,6 +3,7 @@ namespace Modules\BackEnd\Services;
 
 use Illuminate\Support\Facades\DB;
 use Modules\BackEnd\Entities\AppArticle;
+use Modules\BackEnd\Helpers\Utilities;
 
 class AppArticleService
 {
