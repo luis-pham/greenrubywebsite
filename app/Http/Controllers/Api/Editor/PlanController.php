@@ -57,17 +57,23 @@ class PlanController extends Controller
                     'money_links' => json_encode($i['moneyLinks'] ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                     'siblings' => json_encode($i['siblings'] ?? [], JSON_UNESCAPED_UNICODE),
                     'note' => $i['note'] ?? null,
+                    'evidence' => in_array($i['evidence'] ?? null, ArticleController::EVIDENCE, true) ? $i['evidence'] : null,
                     'updated_at' => now(),
                 ];
+                $status = in_array($i['status'] ?? '', ['wait', 'skip'], true) ? $i['status'] : 'idea';
                 $existing = DB::table('app_article_plan')->where('code', $i['code'])->first();
                 if ($existing) {
+                    // A new plan version may defer or merge items; never override a status set by hand or an item already being written.
+                    if (!$existing->article_id && $existing->status === 'idea') {
+                        $row['status'] = $status;
+                    }
                     DB::table('app_article_plan')->where('id', $existing->id)->update($row);
                     $updated++;
                 } else {
                     $articleId = isset($i['articleId']) && AppArticle::where('id', $i['articleId'])->exists() ? (int) $i['articleId'] : null;
                     DB::table('app_article_plan')->insert($row + [
                         'code' => $i['code'],
-                        'status' => in_array($i['status'] ?? '', ['wait', 'skip'], true) ? $i['status'] : 'idea',
+                        'status' => $status,
                         'article_id' => $articleId,
                         'created_at' => now(),
                     ]);
@@ -132,6 +138,7 @@ class PlanController extends Controller
         $a->category_id = $categoryId;
         $a->slug = AppArticleService::resolveUniqueSlug($plan->title, $categoryId, $lang);
         $a->focus_keyword = $plan->primary_kw;
+        $a->evidence_status = $plan->evidence;
         $a->is_published = 0;
         $a->is_featured = 0;
         $a->publish_date = now();
@@ -164,6 +171,7 @@ class PlanController extends Controller
             'moneyLinks' => json_decode($p->money_links ?: '[]', true) ?: [],
             'siblings' => json_decode($p->siblings ?: '[]', true) ?: [],
             'note' => $p->note,
+            'evidence' => $p->evidence ?? null,
             'status' => $p->status,
             'articleId' => $p->article_id ? (int) $p->article_id : null,
         ];

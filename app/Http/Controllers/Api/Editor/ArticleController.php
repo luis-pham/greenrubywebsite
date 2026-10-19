@@ -22,6 +22,8 @@ use Modules\BackEnd\Services\AppArticleService;
 class ArticleController extends Controller
 {
     public const LANGS = ['vi' => 1, 'en' => 2];
+    /** verified | ops (needs operations confirmation) | design (design estimate) | na (not available yet). */
+    public const EVIDENCE = ['verified', 'ops', 'design', 'na'];
 
     public function index(Request $request)
     {
@@ -30,7 +32,7 @@ class ArticleController extends Controller
             ->leftJoin('app_article_plan', 'app_article_plan.article_id', '=', 'app_article.id')
             ->select('app_article.id', 'app_article.language_id', 'app_article.category_id', 'app_article.title', 'app_article.slug',
                 'app_article.publish_date', 'app_article.is_published', 'app_article.is_featured', 'app_article.image_link',
-                'app_article.focus_keyword', 'app_article.created_at', 'app_article.updated_at',
+                'app_article.focus_keyword', 'app_article.evidence_status', 'app_article.created_at', 'app_article.updated_at',
                 'app_category.name as category_name', 'app_category.slug as category_slug', 'app_article_plan.code as plan_code');
 
         if ($lang = self::LANGS[$request->query('lang')] ?? null) {
@@ -135,7 +137,7 @@ class ArticleController extends Controller
 
         $copy = new AppArticle();
         $copy->language_id = $otherLang;
-        foreach (['title', 'sub_title', 'lead', 'content', 'image_link', 'seo_title', 'seo_description', 'focus_keyword'] as $f) {
+        foreach (['title', 'sub_title', 'lead', 'content', 'image_link', 'seo_title', 'seo_description', 'focus_keyword', 'evidence_status'] as $f) {
             $copy->{$f} = $a->{$f} ?? ($f === 'lead' || $f === 'content' ? '' : null);
         }
         $copy->category_id = $a->category_id
@@ -203,10 +205,11 @@ class ArticleController extends Controller
             'seoTitle' => 'sometimes|nullable|string|max:65',
             'seoDescription' => 'sometimes|nullable|string|max:255',
             'focusKeyword' => 'sometimes|nullable|string|max:255',
+            'evidenceStatus' => 'sometimes|nullable|in:' . implode(',', self::EVIDENCE),
         ]);
 
         $map = ['title' => 'title', 'subTitle' => 'sub_title', 'imageLink' => 'image_link',
-            'seoTitle' => 'seo_title', 'seoDescription' => 'seo_description', 'focusKeyword' => 'focus_keyword'];
+            'seoTitle' => 'seo_title', 'seoDescription' => 'seo_description', 'focusKeyword' => 'focus_keyword', 'evidenceStatus' => 'evidence_status'];
         foreach ($map as $key => $col) {
             if (array_key_exists($key, $in)) {
                 $a->{$col} = $in[$key] === null ? null : trim($in[$key]);
@@ -305,6 +308,7 @@ class ArticleController extends Controller
             'isFeatured' => (bool) $a->is_featured,
             'imageLink' => $a->image_link ?: null,
             'focusKeyword' => $a->focus_keyword,
+            'evidenceStatus' => $a->evidence_status ?? null,
             'url' => self::url($a),
             'translationId' => $linked ? $translationId : null,
             'planCode' => $a->plan_code ?? null,
