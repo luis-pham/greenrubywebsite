@@ -39,7 +39,9 @@ class ImageController extends Controller
 
             $defaultQuality = (int) config('frontend.imageProxyQuality', 90);
             $quality = max(1, min(100, (int) ($request->get('q') ?: $defaultQuality)));
-            $outputFormat = 'webp';
+            // WebP by default; fm=jpg for social cards (Open Graph / X), which not every crawler renders as WebP.
+            $outputFormat = in_array(strtolower((string) $request->get('fm')), ['jpg', 'jpeg'], true) ? 'jpg' : 'webp';
+            $outputMime = $outputFormat === 'jpg' ? 'image/jpeg' : 'image/webp';
             $crFlag = $crop ? 1 : 0;
             $cacheKey = sha1(
                 $publicRelativePath . '|' . (string)$reqWidth . '|' . (string)$reqHeight . '|' . (string)$crFlag . '|' . $outputFormat . '|' . (string)$quality
@@ -49,7 +51,7 @@ class ImageController extends Controller
 
             $cacheEnabled = filter_var(env('IMAGE_PROXY_CACHE_ENABLED', true), FILTER_VALIDATE_BOOLEAN);
             if ($cacheEnabled && File::exists($thumbPath) && is_file($thumbPath)) {
-                $mimeType = File::mimeType($thumbPath) ?: 'image/webp';
+                $mimeType = File::mimeType($thumbPath) ?: $outputMime;
                 return response()->file($thumbPath, [
                     'Content-Type' => $mimeType,
                     'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
@@ -87,14 +89,14 @@ class ImageController extends Controller
                 File::put($thumbPath, $final->encoded);
 
                 return response()->file($thumbPath, [
-                    'Content-Type' => 'image/webp',
+                    'Content-Type' => $outputMime,
                     'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
                     'X-Content-Type-Options' => 'nosniff',
                 ]);
             }
 
             return response($final->encoded, 200, [
-                'Content-Type' => 'image/webp',
+                'Content-Type' => $outputMime,
                 'Cache-Control' => self::THUMBNAIL_CACHE_CONTROL,
                 'X-Content-Type-Options' => 'nosniff',
             ]);
