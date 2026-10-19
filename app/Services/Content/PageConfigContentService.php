@@ -50,7 +50,11 @@ class PageConfigContentService
         PageCodeConsts::TERMS_AND_CONDITIONS,
         PageCodeConsts::PRIVACY_POLICIES,
         PageCodeConsts::PAYMENT_METHODS,
+        self::ECO_DASHBOARD,
     ];
+
+    /** Next.js-only page (no Blade controller): SEO comes from app_page, null when empty so the frontend keeps its own copy. */
+    public const ECO_DASHBOARD = 'eco-dashboard';
 
     /** GET /pages/{code} payload, or null for codes that are not exposed. */
     public static function page(string $code, AdLanguage $language): ?array
@@ -84,6 +88,7 @@ class PageConfigContentService
         $config = Utilities::getAllConfig($language);
         $locale = $language->code;
         $defaultTitle ??= match ($code) {
+            self::ECO_DASHBOARD => '',
             PageCodeConsts::ARTICLE => 'Blog',
             'faq' => __('frontend::faq.page_title', [], $locale),
             PageCodeConsts::LEGAL => __('frontend::page.page_legal_title', [], $locale),
@@ -93,9 +98,9 @@ class PageConfigContentService
             PageCodeConsts::PAYMENT_METHODS => __('frontend::page.page_payment_methods_title', [], $locale),
             default => FeUtils::bindWebsiteTitle($config['website-name'] ?? '', $config['website-slogan'] ?? ''),
         };
-        $defaultDescription ??= ($code === PageCodeConsts::PRIVACY_POLICIES && $locale === 'en')
+        $defaultDescription ??= $code === self::ECO_DASHBOARD ? '' : (($code === PageCodeConsts::PRIVACY_POLICIES && $locale === 'en')
             ? 'How Green Ruby Cruises collects, uses, and protects your personal information. GDPR compliant.'
-            : (string) ($config['website-description'] ?? '');
+            : (string) ($config['website-description'] ?? ''));
 
         $seo = FeUtils::resolveHubSeo($code, $language, fn () => $defaultTitle, $defaultDescription);
 

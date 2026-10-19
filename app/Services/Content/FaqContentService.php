@@ -5,8 +5,8 @@ namespace App\Services\Content;
 use Illuminate\Support\Collection;
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Entities\AppGroup;
-use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AppGroupService;
+use Modules\BackEnd\Services\AppPageService;
 use Modules\FrontEnd\Helpers\FeHreflangUtils;
 use Modules\FrontEnd\Services\AppFaqService;
 
@@ -57,18 +57,19 @@ class FaqContentService
 
         $rows = AppFaqService::getPaging($param + ['page' => $page, 'pageSize' => $perPage], $languageId);
 
-        $config = Utilities::getAllConfig($language);
         // Group: seo_title ?: name. Hub: app_page "faq" SEO (admin page config), else the translated page title.
         $hubSeo = $group ? null : PageConfigContentService::seo('faq', $language);
         $title = $group
             ? (ItineraryContentService::clean($group->seo_title) ?? $group->name)
             : ($hubSeo['title'] ?? __('frontend::faq.page_title', [], $language->code));
-        $description = $group ? ItineraryContentService::clean($group->seo_description) : $hubSeo['description'];
+        // Only what the editor set (group / app_page "faq" seo_description): null lets the frontend use its own default.
+        $hubPage = $group ? null : AppPageService::getByCode('faq', $language->id);
+        $description = ItineraryContentService::clean($group ? $group->seo_description : ($hubPage->seo_description ?? null));
 
         return [
             'seo' => [
                 'title' => PageConfigContentService::pageSuffix(ItineraryContentService::clean($title), $page, $language),
-                'description' => $description ?? ItineraryContentService::clean($config['website-description'] ?? null),
+                'description' => $description,
             ],
             'group' => $group ? self::groupRef($group) : null,
             'groups' => $groups->map(fn ($g) => self::groupRef($g) + [

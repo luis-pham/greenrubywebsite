@@ -452,7 +452,7 @@ Mirrors `FaqController@index` / `@category`. Query: `lang`, `group` (optional gr
 
 ```ts
 {
-  seo: Seo;                       // group: seo_title ?: name; hub: app_page "faq" seo_title ?: "FAQ"/"Câu hỏi thường gặp" (+ " - Page N"); description: group / app_page seo_description ?: website-description
+  seo: Seo;                       // group: seo_title ?: name; hub: app_page "faq" seo_title ?: "FAQ"/"Câu hỏi thường gặp" (+ " - Page N"); description: group / app_page "faq" seo_description, else null (frontend default)
   group: GroupRef | null;         // current group (null = all)
   groups: (GroupRef & { count: number })[];  // filter tabs, admin order (count ignores k)
   items: FaqItem[];
