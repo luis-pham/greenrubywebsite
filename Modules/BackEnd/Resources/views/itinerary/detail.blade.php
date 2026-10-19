@@ -15,6 +15,7 @@
     $listExclusiveServiceOption = $listExclusiveService->pluck('name','id');
     $listInclusiveServiceOption = $listInclusiveService->pluck('name','id');
     $listActivityOption = $listActivity->pluck('name','id');
+    $listFaqOption = $listFaq->mapWithKeys(fn ($faq) => [$faq->id => \Illuminate\Support\Str::limit(trim(strip_tags($faq->question)), 110)]);
 
     $duration = old('duration',$itinerary?->duration ?? array_key_first(CruiseUtils::getListDuration()));
 @endphp
@@ -333,6 +334,30 @@
                                             $listActivity->mapWithKeys((fn($activity,$idx) => [$activity->id => ['data-image' => \Modules\BackEnd\Helpers\Utilities::getFileLink($activity->image_link)]]))->toArray()
                                         )
                                     }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center justify-content-between">
+                                    <h1 class="h5 m-0">Câu hỏi thường gặp (FAQ) của hành trình</h1>
+                                </div>
+                                <div class="card-body">
+                                    {{
+                                        Form::select(
+                                            'listFaqId[]',
+                                            $listFaqOption,
+                                            old('listFaqId', $itinerary?->itineraryFaqs->pluck('id')->all() ?? []),
+                                            [
+                                                'class' => 'form-control select2-multiple',
+                                                'multiple' => true,
+                                                'disabled' => $readOnly
+                                            ]
+                                        )
+                                    }}
+                                    <small class="form-text text-muted">Chọn từ module FAQ (cùng ngôn ngữ). Hiện trên trang hành trình kèm schema FAQPage. Để trống = không hiện FAQ.</small>
                                 </div>
                             </div>
                         </div>

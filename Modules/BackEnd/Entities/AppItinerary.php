@@ -31,6 +31,13 @@ class AppItinerary extends BaseModel
             ->orderByPivot('ord');
     }
 
+    public function itineraryFaqs(){
+        return $this
+            ->belongsToMany(AppFaq::class,'app_itinerary_faq','itinerary_id','faq_id')
+            ->withPivot('ord')
+            ->orderByPivot('ord');
+    }
+
     public function itineraryActivities(){
         return $this
             ->belongsToMany(AppExpActivity::class,'app_itinerary_exp_activity','itineraries_id','exp_activity_id')

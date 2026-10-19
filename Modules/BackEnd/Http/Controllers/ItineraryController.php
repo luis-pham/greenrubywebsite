@@ -64,9 +64,10 @@ class ItineraryController extends Controller
         });
 
         $listActivity = AppExpActivityService::getAll($language->id);
+        $listFaq = \Modules\BackEnd\Services\AppFaqService::getAll($language->id);
 
         Logging::logInfo("Xem chi tiết hành trình. ","id = " . $id);
-        return view($this->baseView . 'detail',compact('title','itinerary','isEdit','readOnly','listExclusiveService','listInclusiveService','listActivity'));
+        return view($this->baseView . 'detail',compact('title','itinerary','isEdit','readOnly','listExclusiveService','listInclusiveService','listActivity','listFaq'));
     }
 
     public function create(){
@@ -86,8 +87,9 @@ class ItineraryController extends Controller
            return $s->type === config('backend.appServiceType.exclusive');
         });
         $listActivity = AppExpActivityService::getAll($language->id);
+        $listFaq = \Modules\BackEnd\Services\AppFaqService::getAll($language->id);
 
-        return view($this->baseView . 'detail',compact('title','itinerary','isEdit','readOnly','listExclusiveService','listInclusiveService','listActivity'));
+        return view($this->baseView . 'detail',compact('title','itinerary','isEdit','readOnly','listExclusiveService','listInclusiveService','listActivity','listFaq'));
     }
 
     public function store(ItineraryCreateUpdateRequest $request){
@@ -135,9 +137,10 @@ class ItineraryController extends Controller
 
         });
         $listActivity = AppExpActivityService::getAll($language->id);
+        $listFaq = \Modules\BackEnd\Services\AppFaqService::getAll($language->id);
 
         Logging::logInfo("Xem chi tiết hành trình. ","id = " . $id);
-        return view($this->baseView . 'detail',compact('title','itinerary','isEdit','readOnly','listExclusiveService','listInclusiveService','listActivity'));
+        return view($this->baseView . 'detail',compact('title','itinerary','isEdit','readOnly','listExclusiveService','listInclusiveService','listActivity','listFaq'));
     }
 
     public function update(ItineraryCreateUpdateRequest $request){

@@ -104,6 +104,8 @@ class AppItineraryService
                 $itinerary->itineraryActivities()->sync($pivotData);
             }
 
+            self::syncFaqs($itinerary, $data['listFaqId'] ?? []);
+
             if(!empty($listItineraryDay)){
                 collect($listItineraryDay)->each(function($day,$idx) use($itinerary){
                     $dayEntity = $itinerary->itineraryDays()->create(['day' => $idx + 1]);
@@ -172,6 +174,8 @@ class AppItineraryService
             else {
                 $itinerary->itineraryActivities()->sync([]);
             }
+
+            self::syncFaqs($itinerary, $data['listFaqId'] ?? []);
 
             if(!empty($listItineraryDay)){
                 $existingDayIds = [];
@@ -243,11 +247,28 @@ class AppItineraryService
         });
     }
 
+    /** Itinerary FAQs in the order submitted; only FAQs of the itinerary's language. */
+    private static function syncFaqs(AppItinerary $itinerary, array $faqIds): void
+    {
+        $valid = \Modules\BackEnd\Entities\AppFaq::whereIn('id', $faqIds)
+            ->where('language_id', $itinerary->language_id)
+            ->pluck('id')
+            ->all();
+        $pivot = [];
+        foreach (array_values(array_unique(array_map('intval', $faqIds))) as $i => $id) {
+            if (in_array($id, $valid, true)) {
+                $pivot[$id] = ['ord' => $i + 1];
+            }
+        }
+        $itinerary->itineraryFaqs()->sync($pivot);
+    }
+
     public static function findJoin($id,$languageId){
         return AppItinerary
             ::with([
                 'itineraryServices',
                 'itineraryActivities',
+                'itineraryFaqs',
                 'itineraryDays',
                 'itineraryDays.itineraryDayDetails',
                 'galleryImages'

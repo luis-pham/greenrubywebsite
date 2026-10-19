@@ -37,6 +37,8 @@ class ItineraryCreateUpdateRequest extends FormRequest
             'start_time'      => ['nullable', 'date_format:H:i'], // chỉ giờ:phút (24h format),
             'listServiceId'   => ['nullable', 'array'],
             'listActivityId'  => ['nullable', 'array'],
+            'listFaqId'       => ['nullable', 'array'],
+            'listFaqId.*'     => ['integer'],
             'bay'             => ['required','max:256'],
             'itinerary_days'    => ['required', 'array','size:'.$this->input('duration')],
             'itinerary_days.*.itinerary_day_details'       => ['required', 'array', 'min:1'],

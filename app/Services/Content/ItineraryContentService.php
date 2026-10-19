@@ -192,7 +192,8 @@ class ItineraryContentService
                 ->map(fn ($cabin) => CabinContentService::summary($cabin))
                 ->values(),
             // Only an "itinerary" page-config FAQ list (none exists today); the hub's generic FAQ fallback is not reused here.
-            'faqs' => self::pageConfig($language, false)['faqs'],
+            // FAQs picked for this itinerary (admin itinerary form), else the itinerary page config list.
+            'faqs' => self::itineraryFaqs($itinerary) ?: self::pageConfig($language, false)['faqs'],
             'alternate' => self::alternate($itinerary, $language),
             'updatedAt' => CabinContentService::isoDate($itinerary->getRawOriginal('updated_at') ?: $itinerary->getRawOriginal('created_at')),
         ]);
@@ -253,6 +254,18 @@ class ItineraryContentService
      * There is no app_page_config for page code "itinerary" today; any keys added later are passed
      * through camelCased. FAQs fall back to what the Blade /itinerary page renders (AppFaqService::getPaging).
      */
+    protected static function itineraryFaqs(AppItinerary $itinerary): array
+    {
+        return $itinerary->itineraryFaqs()->get()
+            ->map(fn ($f) => [
+                'question' => self::plain($f->question),
+                'answerHtml' => safe_html((string) $f->answer),
+            ])
+            ->filter(fn ($f) => $f['question'])
+            ->values()
+            ->all();
+    }
+
     public static function pageConfig(AdLanguage $language, bool $faqFallback = true): array
     {
         $config = FeUtils::getPageConfigByCode(PageCodeConsts::ITINERARY, (int) $language->id);
