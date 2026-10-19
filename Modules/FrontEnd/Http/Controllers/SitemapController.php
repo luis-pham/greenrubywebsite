@@ -136,6 +136,7 @@ class SitemapController extends Controller
 
         // Services, gallery and FAQ hubs live in their own sitemaps (sitemap-service/-category-gallery/-category-faq).
         $entries = array_merge($entries, $this->nextOnlyEntries(self::ECO_DASHBOARD_PATH, '', 'monthly', '0.6'));
+        $entries = array_merge($entries, $this->nextOnlyEntries(self::BRAND_FACTS_PATH, '', 'monthly', '0.6'));
 
         return response()->view($this->baseView . __FUNCTION__, [
             'entries' => $entries,
@@ -471,6 +472,9 @@ class SitemapController extends Controller
 
     /** Must match `segments.ecoDashboard` in greenruby-web/src/lib/i18n.ts. */
     private const ECO_DASHBOARD_PATH = ['en' => 'eco-dashboard', 'vi' => 'bao-cao-sinh-thai'];
+
+    /** Must match `segments.brandFacts` in greenruby-web/src/lib/i18n.ts. */
+    private const BRAND_FACTS_PATH = ['en' => 'about-us/brand-facts', 'vi' => 'gioi-thieu/thong-tin-thuong-hieu'];
 
     /**
      * One entry per language for a page that exists only on the Next.js frontend, keyed by language code
