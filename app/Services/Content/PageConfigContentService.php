@@ -40,6 +40,7 @@ class PageConfigContentService
         PageCodeConsts::TERMS_AND_CONDITIONS,
         PageCodeConsts::PRIVACY_POLICIES,
         PageCodeConsts::PAYMENT_METHODS,
+        self::ECO_DASHBOARD,
     ];
 
     /** Blade pages rendered with robots "noindex, follow". */
@@ -50,7 +51,6 @@ class PageConfigContentService
         PageCodeConsts::TERMS_AND_CONDITIONS,
         PageCodeConsts::PRIVACY_POLICIES,
         PageCodeConsts::PAYMENT_METHODS,
-        self::ECO_DASHBOARD,
     ];
 
     /** Next.js-only page (no Blade controller): SEO comes from app_page, null when empty so the frontend keeps its own copy. */
