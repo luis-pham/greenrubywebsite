@@ -84,7 +84,7 @@ class CabinController extends Controller
         try {
             $language = LanguageUtils::getCurrentLanguage();
             $data = $request->only([
-                'group_id', 'cruise_id', 'name', 'summary', 'content', 'image_link', 'image_gallery', 'view', 'cabin_class',
+                'group_id', 'cruise_id', 'name', 'summary', 'seo_title', 'seo_description', 'content', 'image_link', 'image_gallery', 'view', 'cabin_class',
                 'capacity',
                 'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant',
                 'area', 'discount_percent', 'ord',
@@ -250,7 +250,7 @@ class CabinController extends Controller
 
             try {
             $data = $request->only([
-                'group_id', 'cruise_id', 'name', 'summary', 'content', 'image_link', 'image_gallery', 'view', 'cabin_class',
+                'group_id', 'cruise_id', 'name', 'summary', 'seo_title', 'seo_description', 'content', 'image_link', 'image_gallery', 'view', 'cabin_class',
                 'capacity',
                 'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant',
                 'area', 'discount_percent', 'ord',

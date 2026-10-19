@@ -172,6 +172,7 @@ CabinSummary & {
   pricing: { showPublic: boolean; currency: 'USD'|'VND'; fromPrice: number|null; matrix: { duration: number; guest: number; price: number }[] };
   cruise: { id: number; name: string; slug: string } | null;
   otherCabins: CabinSummary[];               // same cruise, excluding this one
+  seo: Seo;                                  // seo_title ?: "{name} · {cruise name}"; seo_description ?: summary
   alternate: { lang: Lang; id: number } | null;
   updatedAt: string|null;
 }
@@ -419,7 +420,7 @@ Mirrors `GalleryController@index` + `GalleryService`. Query: `lang`, `category` 
 ```ts
 {
   seo: Seo;                                     // app_page "gallery"
-  categories: { slug: string; name: string; count: number /* own items, VR excluded */ }[];  // config order
+  categories: { slug: string; name: string; count: number /* own items, VR excluded */; seo: Seo /* "SEO danh mục" section, null = frontend default */ }[];  // config order
   canonicalCategorySlug: string | null;         // null = "All"
   items: { src: string; thumbnail: string; title: string|null; alt: string|null; type: 'image'|'video'|'360' }[];
   pagination: Pagination;
@@ -451,7 +452,7 @@ Mirrors `FaqController@index` / `@category`. Query: `lang`, `group` (optional gr
 
 ```ts
 {
-  seo: Seo;                       // title: group name, or "FAQ"/"Câu hỏi thường gặp" (+ " - Page N"); description: group seo_description ?: website-description
+  seo: Seo;                       // group: seo_title ?: name; hub: app_page "faq" seo_title ?: "FAQ"/"Câu hỏi thường gặp" (+ " - Page N"); description: group / app_page seo_description ?: website-description
   group: GroupRef | null;         // current group (null = all)
   groups: (GroupRef & { count: number })[];  // filter tabs, admin order (count ignores k)
   items: FaqItem[];

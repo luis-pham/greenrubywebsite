@@ -137,6 +137,12 @@ class CabinContentService
                 ? ['id' => (int) $cruise->id, 'name' => $cruise->name, 'slug' => self::slug($cruise->name)]
                 : null,
             'otherCabins' => $otherCabins,
+            // seo_title ?: "{cabin} · {ship}" (what the frontend showed before the column existed); seo_description ?: summary.
+            'seo' => [
+                'title' => ItineraryContentService::clean($cabin->seo_title)
+                    ?? ($cruise ? $cabin->name . ' · ' . $cruise->name : $cabin->name),
+                'description' => ItineraryContentService::clean($cabin->seo_description) ?? ItineraryContentService::clean($cabin->summary),
+            ],
             'alternate' => self::alternate($cabin, $language),
             'updatedAt' => self::isoDate($cabin->getRawOriginal('updated_at') ?: $cabin->getRawOriginal('created_at')),
         ];

@@ -118,7 +118,7 @@ class GalleryService
         }
         $map = self::slugMap();
         return collect(array_keys($pageConfig))
-            ->filter(fn($item) => !str_ends_with($item, "-vr-360"))
+            ->filter(fn($item) => str_starts_with($item, 'gallery-file') && !str_ends_with($item, "-vr-360"))
             ->mapWithKeys(function ($item) use ($map, $langCode) {
                 $friendlySlug = $map[$item][$langCode] ?? $map[$item]['en'] ?? $item;
                 return [$friendlySlug => __('frontend::page.' . $item)];

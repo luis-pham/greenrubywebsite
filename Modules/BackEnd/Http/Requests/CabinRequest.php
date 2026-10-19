@@ -97,6 +97,8 @@ class CabinRequest extends FormRequest
             'group_id' => 'required|integer|exists:app_group,id',
             'cruise_id' => 'required|exists:app_cruise,id',
             'summary' => 'required|max:200',
+            'seo_title' => 'nullable|max:65',
+            'seo_description' => 'nullable|max:255',
             'content' => 'nullable',
             'discount_percent' => 'nullable|numeric|min:0|max:100',
             'ord' => 'nullable|integer',

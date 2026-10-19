@@ -89,6 +89,15 @@
                             <label class="facility-dynamic-label" data-label-key="label_content">{{ __('backend::cabin.label_content') }}</label>
                             {{ Form::textarea('content', old('content'), ['class' => 'form-control tinymce facility-dynamic-placeholder', 'data-placeholder-key' => 'placeholder_content', 'placeholder' => __('backend::cabin.placeholder_content'), 'rows' => 2, 'autocomplete' => 'off']) }}
                         </div>
+                        <div class="form-group mt-3">
+                            <label>Tiêu đề SEO</label>
+                            {{ Form::text('seo_title', old('seo_title'), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng tên phòng · tên tàu', 'maxlength' => 65, 'autocomplete' => 'off']) }}
+                            <small class="form-text text-muted">Tối đa 65 ký tự. Có dấu "|" hoặc chữ "Green Ruby Cruises" thì dùng nguyên chuỗi, nếu không sẽ tự thêm " | Green Ruby Cruises".</small>
+                        </div>
+                        <div class="form-group mb-0">
+                            <label>Mô tả SEO</label>
+                            {{ Form::text('seo_description', old('seo_description'), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng mô tả ngắn', 'maxlength' => 255, 'autocomplete' => 'off']) }}
+                        </div>
                     </div>
                 </div>
 

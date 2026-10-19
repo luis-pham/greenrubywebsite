@@ -58,8 +58,12 @@ class FaqContentService
         $rows = AppFaqService::getPaging($param + ['page' => $page, 'pageSize' => $perPage], $languageId);
 
         $config = Utilities::getAllConfig($language);
-        $title = $group ? $group->name : __('frontend::faq.page_title', [], $language->code);
-        $description = $group ? ItineraryContentService::clean($group->seo_description) : null;
+        // Group: seo_title ?: name. Hub: app_page "faq" SEO (admin page config), else the translated page title.
+        $hubSeo = $group ? null : PageConfigContentService::seo('faq', $language);
+        $title = $group
+            ? (ItineraryContentService::clean($group->seo_title) ?? $group->name)
+            : ($hubSeo['title'] ?? __('frontend::faq.page_title', [], $language->code));
+        $description = $group ? ItineraryContentService::clean($group->seo_description) : $hubSeo['description'];
 
         return [
             'seo' => [

@@ -61,14 +61,25 @@ class GalleryContentService
         $config = FeUtils::getPageConfigByCode(PageCodeConsts::GALLERY, (int) $language->id);
 
         return collect($config)
-            ->filter(fn ($value, $key) => !str_ends_with($key, '-vr-360'))
+            ->filter(fn ($value, $key) => self::isCategoryKey($key))
             ->map(fn ($value, $key) => [
                 'slug' => GalleryService::getLocalizedSlugForConfigKey($key, $language->code) ?? $key,
                 'name' => __('frontend::page.' . $key, [], $language->code),
                 'count' => count(PageConfigContentService::gallery($value)),
+                // "SEO danh mục" section of the gallery page config; null = frontend default.
+                'seo' => [
+                    'title' => ItineraryContentService::clean($config['seo-title-' . $key] ?? null),
+                    'description' => ItineraryContentService::clean($config['seo-description-' . $key] ?? null),
+                ],
             ])
             ->values()
             ->all();
+    }
+
+    /** Gallery page config also holds the per-category SEO textboxes ("seo-title-…"): only "gallery-file…" keys are categories. */
+    public static function isCategoryKey(string $key): bool
+    {
+        return str_starts_with($key, 'gallery-file') && !str_ends_with($key, '-vr-360');
     }
 
     /** Blade caption is the file "title"; alt prefers the description. */
