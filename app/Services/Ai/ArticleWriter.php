@@ -59,8 +59,8 @@ class ArticleWriter
         $this->policy = new LinkPolicy();
     }
 
-    /** @return int the new article id */
-    public function draft(object $plan): int
+    /** @return int the article id (new, or $existingId when rewriting an existing article in place) */
+    public function draft(object $plan, ?int $existingId = null): int
     {
         $this->usage = array_map(fn () => 0, $this->usage);
         $lang = $plan->lang === 'vi' ? 'vi' : 'en';
@@ -73,7 +73,7 @@ class ArticleWriter
 
         [$html, $removedLinks, $blockedLinks, $deadLinks] = $this->checkLinks($reviewed['html'], $links['paths']);
 
-        return $this->save($plan, $lang, $reviewed, $html, [
+        return $this->save($plan, $lang, $reviewed, $html, $existingId, [
             'model' => $this->model,
             'generated_at' => now()->toIso8601String(),
             // The review merges the writer's open questions into its own list.
@@ -456,7 +456,7 @@ class ArticleWriter
         return $flags;
     }
 
-    private function save(object $plan, string $lang, array $d, string $html, array $meta): int
+    private function save(object $plan, string $lang, array $d, string $html, ?int $existingId, array $meta): int
     {
         $langId = ArticleController::LANGS[$lang];
         $categoryId = $plan->category_slug
@@ -468,11 +468,20 @@ class ArticleWriter
             $seoTitle = rtrim(mb_substr($seoTitle, 0, 62), " ,:;|-") . '…';
         }
 
-        $a = new AppArticle();
-        $a->language_id = $langId;
-        $a->category_id = $categoryId;
-        $a->title = mb_substr(trim($d['title']), 0, 255);
-        $a->slug = AppArticleService::resolveUniqueSlug($d['slug'] ?: $d['title'], $categoryId, $langId);
+        if ($existingId) {
+            // Rewrite in place: keep id, slug, category and publish state; back up the previous version.
+            $a = AppArticle::findOrFail($existingId);
+            \Illuminate\Support\Facades\Storage::disk('local')->put("ai-rewrite-backup-{$a->id}-" . now()->format('YmdHis') . '.json', json_encode($a->getAttributes(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+            $a->title = mb_substr(trim($d['title']), 0, 255);
+            $a->updated_at = now();
+            $a->updated_by = (int) (DB::table('ad_user')->where('status', 1)->orderBy('id')->value('id') ?? 1);
+        } else {
+            $a = new AppArticle();
+            $a->language_id = $langId;
+            $a->category_id = $categoryId;
+            $a->title = mb_substr(trim($d['title']), 0, 255);
+            $a->slug = AppArticleService::resolveUniqueSlug($d['slug'] ?: $d['title'], $categoryId, $langId);
+        }
         $a->lead = (string) HtmlSanitizer::clean(trim($d['lead']));
         $a->content = (string) HtmlSanitizer::clean($html);
         $a->seo_title = $seoTitle;
@@ -480,14 +489,18 @@ class ArticleWriter
         $a->focus_keyword = $plan->primary_kw;
         $a->evidence_status = $plan->evidence;
         $a->ai_meta = json_encode($meta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        $a->is_published = 0;
-        $a->is_featured = 0;
-        $a->publish_date = now();
-        $a->created_at = now();
-        $a->created_by = (int) (DB::table('ad_user')->where('status', 1)->orderBy('id')->value('id') ?? 1);
+        if (!$existingId) {
+            $a->is_published = 0;
+            $a->is_featured = 0;
+            $a->publish_date = now();
+            $a->created_at = now();
+            $a->created_by = (int) (DB::table('ad_user')->where('status', 1)->orderBy('id')->value('id') ?? 1);
+        }
         $a->save();
 
-        DB::table('app_article_plan')->where('id', $plan->id)->update(['article_id' => $a->id, 'updated_at' => now()]);
+        if (!empty($plan->id)) {
+            DB::table('app_article_plan')->where('id', $plan->id)->update(['article_id' => $a->id, 'updated_at' => now()]);
+        }
         Log::info('AI draft saved', ['plan' => $plan->code, 'article' => $a->id, 'cost_usd' => $meta['cost_usd']]);
 
         return (int) $a->id;
