@@ -115,6 +115,23 @@ class VietnameseEditorTest extends TestCase
         $this->assertStringContainsString('[IMAGE: hang Sáng Tối', $out['html']);
     }
 
+    public function testDeletionsAndLargeCutsAreFlagged()
+    {
+        $para = '<p>Nếu yêu thích không gian yên tĩnh, Lan Hạ là lựa chọn đáng cân nhắc. Với gia đình có người lớn tuổi, nên lưu ý những điểm phải leo nhiều bậc đá.</p>';
+        $doc = ['html' => $para . '<p>Hạ Long đông hơn.</p>'];
+        [$out, $applied, $flagged] = VietnameseEditor::applyEdits($doc, [
+            $this->issue($para, ''),
+            $this->issue('<p>Hạ Long đông hơn.</p>', '<p>Hạ Long đông khách hơn.</p>'),
+        ]);
+        $this->assertStringContainsString('người lớn tuổi', $out['html']);
+        $this->assertCount(1, $flagged);
+        $this->assertStringContainsString('Xoá', $flagged[0]['reason']);
+        $this->assertCount(1, $applied, 'short rewording is still applied');
+
+        [, , $flagged] = VietnameseEditor::applyEdits($doc, [$this->issue($para, '<p>Lan Hạ hợp với người thích yên tĩnh.</p>')]);
+        $this->assertCount(1, $flagged, 'cutting a long paragraph by more than half is a content decision');
+    }
+
     public function testMissingOrAmbiguousOriginalIsNotApplied()
     {
         $doc = ['html' => '<p>đi chậm. Rồi lại đi chậm.</p>'];

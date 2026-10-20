@@ -36,6 +36,7 @@ Code, not the model, decides what gets applied. An edit is applied only when:
 - the numbers in original and revision are identical;
 - hrefs and `[IMAGE…]`, `[VIDEO…]`, `[CẦN XÁC NHẬN…]` placeholders are identical (anchor text may change);
 - `original` occurs exactly once in that field.
+- the edit does not delete the passage or cut a passage longer than 60 characters by more than half (removing content is an editorial decision, not a wording fix).
 
 Everything else is stored as `flagged` or `unapplied` in `ai_meta.vi_review` for the human editor. This is what keeps the pass from changing facts, service status (current / planned / design figure) or links while improving the wording.
 

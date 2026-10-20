@@ -145,7 +145,7 @@ TXT;
 
     /**
      * Applies safe edits: meaning kept, original found exactly once, same numbers, same links and
-     * placeholders. @return array{0: array, 1: array, 2: array, 3: array} doc, applied, flagged, unapplied
+     * placeholders, nothing deleted or cut by more than half. @return array{0: array, 1: array, 2: array, 3: array} doc, applied, flagged, unapplied
      */
     public static function applyEdits(array $doc, array $issues): array
     {
@@ -159,6 +159,12 @@ TXT;
             }
             if (!empty($i['meaning_changed'])) {
                 $flagged[] = $i + ['reason' => 'Đổi nghĩa: cần người biên tập quyết định'];
+                continue;
+            }
+            $before = mb_strlen(trim(strip_tags($orig)));
+            $after = mb_strlen(trim(strip_tags($rev)));
+            if ($after === 0 || ($before > 60 && $after < $before * 0.5)) {
+                $flagged[] = $i + ['reason' => 'Xoá hoặc cắt hơn một nửa đoạn: có thể mất thông tin, cần người biên tập quyết định'];
                 continue;
             }
             if (self::digits($orig) !== self::digits($rev)) {

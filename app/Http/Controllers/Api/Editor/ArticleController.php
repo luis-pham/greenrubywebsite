@@ -223,7 +223,7 @@ class ArticleController extends Controller
             $a->lead = $in['lead'] === null ? '' : (string) HtmlSanitizer::clean(trim($in['lead']));
         }
         if (array_key_exists('content', $in)) {
-            $a->content = (string) HtmlSanitizer::clean($in['content'] ?? '');
+            $a->content = self::relativeOwnLinks((string) HtmlSanitizer::clean($in['content'] ?? ''));
         }
         if (array_key_exists('isFeatured', $in)) {
             $a->is_featured = $in['isFeatured'] ? 1 : 0;
@@ -342,5 +342,22 @@ class ArticleController extends Controller
             'aiMeta' => $a->ai_meta ? json_decode($a->ai_meta, true) : null,
             'plan' => $plan ? PlanController::item($plan) : null,
         ];
+    }
+
+    /**
+     * Links to our own site pasted from the browser (www., or the write. app when the editor previews a path)
+     * become relative paths, so they never point at the writing app and open in the same tab.
+     */
+    public static function relativeOwnLinks(string $html): string
+    {
+        return preg_replace_callback('/<a\\b[^>]*>/i', function ($m) {
+            $tag = $m[0];
+            if (!preg_match('#href="https?://(?:www\\.|write\\.)?greenrubycruises\\.com(/[^"]*)?"#i', $tag, $h)) {
+                return $tag;
+            }
+            $tag = str_replace($h[0], 'href="' . (($h[1] ?? '') ?: '/') . '"', $tag);
+
+            return preg_replace('/\\s(target|rel)="[^"]*"/i', '', $tag);
+        }, $html);
     }
 }
