@@ -71,6 +71,15 @@ return [
         'disable_tls_verify' => env('PAYMENT_DISABLE_TLS_VERIFY', false),
     ],
 
+    // AI drafting of blog articles (articles:ai-draft-run). The key may be unscoped, hence the workspace id.
+    'anthropic' => [
+        'key' => env('ANTHROPIC_API_KEY'),
+        'workspace' => env('ANTHROPIC_WORKSPACE_ID'),
+        'model' => env('AI_WRITER_MODEL', 'claude-opus-5-5'),
+        // Public site the drafts are written for: llms-full.txt (product facts) and sitemaps (link list).
+        'site' => env('AI_SITE_URL', 'https://greenrubycruises.com'),
+    ],
+
     'content_api' => [
         'key' => env('CONTENT_API_KEY'),
     ],

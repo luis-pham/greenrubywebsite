@@ -34,4 +34,7 @@ Route::middleware('editor.auth')->group(function () {
     Route::post('/plan/import', [PlanController::class, 'import']);
     Route::put('/plan/{id}', [PlanController::class, 'update'])->whereNumber('id');
     Route::post('/plan/{id}/start', [PlanController::class, 'start'])->whereNumber('id');
+    Route::post('/plan/ai-draft', [PlanController::class, 'aiQueue']);
+    Route::post('/plan/ai-cancel', [PlanController::class, 'aiCancel']);
+    Route::get('/plan/ai-status', [PlanController::class, 'aiStatus']);
 });

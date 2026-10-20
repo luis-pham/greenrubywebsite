@@ -117,6 +117,52 @@ class PlanController extends Controller
         return response()->json(['item' => self::item(DB::table('app_article_plan')->where('id', $id)->first())]);
     }
 
+    /**
+     * Queues plan items for AI drafting (articles:ai-draft-run). {ids: [..]} or {} for every item that is
+     * still an idea without an article. Items being written by hand are never queued.
+     */
+    public function aiQueue(Request $request)
+    {
+        $ids = array_map('intval', (array) $request->input('ids', []));
+        $q = DB::table('app_article_plan')->where('status', 'idea')->whereNull('article_id')
+            ->where(fn ($w) => $w->whereNull('ai_status')->orWhereIn('ai_status', ['error']));
+        if ($ids) {
+            $q->whereIn('id', $ids);
+        }
+        $n = $q->update(['ai_status' => 'queued', 'ai_error' => null, 'ai_queued_at' => now(), 'updated_at' => now()]);
+
+        return response()->json(['queued' => $n] + $this->aiSummary());
+    }
+
+    public function aiCancel()
+    {
+        DB::table('app_article_plan')->where('ai_status', 'queued')->update(['ai_status' => null, 'ai_queued_at' => null]);
+
+        return response()->json($this->aiSummary());
+    }
+
+    public function aiStatus()
+    {
+        return response()->json($this->aiSummary());
+    }
+
+    private function aiSummary(): array
+    {
+        $rows = DB::table('app_article_plan')->whereNotNull('ai_status')->get(['code', 'title', 'ai_status', 'ai_error', 'ai_finished_at', 'article_id']);
+        $running = $rows->firstWhere('ai_status', 'running');
+        $cost = (float) DB::table('app_article')->whereNotNull('ai_meta')->get(['ai_meta'])
+            ->sum(fn ($a) => (float) (json_decode($a->ai_meta, true)['cost_usd'] ?? 0));
+
+        return [
+            'configured' => (bool) config('services.anthropic.key'),
+            'queued' => $rows->where('ai_status', 'queued')->count(),
+            'done' => $rows->where('ai_status', 'done')->count(),
+            'errors' => $rows->where('ai_status', 'error')->map(fn ($r) => ['code' => $r->code, 'title' => $r->title, 'error' => $r->ai_error])->values(),
+            'running' => $running ? ['code' => $running->code, 'title' => $running->title] : null,
+            'costUsd' => round($cost, 2),
+        ];
+    }
+
     /** Creates the draft article for a plan item (title, focus keyword, category from the plan). */
     public function start(int $id)
     {
@@ -172,6 +218,8 @@ class PlanController extends Controller
             'siblings' => json_decode($p->siblings ?: '[]', true) ?: [],
             'note' => $p->note,
             'evidence' => $p->evidence ?? null,
+            'aiStatus' => $p->ai_status ?? null,
+            'aiError' => $p->ai_error ?? null,
             'status' => $p->status,
             'articleId' => $p->article_id ? (int) $p->article_id : null,
         ];

@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "anthropic-ai/sdk": "^0.59.0",
         "artesaos/seotools": "^1.0",
         "ezyang/htmlpurifier": "^4.19",
         "fruitcake/laravel-cors": "^2.0",

@@ -33,10 +33,14 @@ class ArticleController extends Controller
             ->select('app_article.id', 'app_article.language_id', 'app_article.category_id', 'app_article.title', 'app_article.slug',
                 'app_article.publish_date', 'app_article.is_published', 'app_article.is_featured', 'app_article.image_link',
                 'app_article.focus_keyword', 'app_article.evidence_status', 'app_article.created_at', 'app_article.updated_at',
+                DB::raw('(app_article.ai_meta IS NOT NULL) as ai_draft'),
                 'app_category.name as category_name', 'app_category.slug as category_slug', 'app_article_plan.code as plan_code');
 
         if ($lang = self::LANGS[$request->query('lang')] ?? null) {
             $q->where('app_article.language_id', $lang);
+        }
+        if ($request->query('ai')) {
+            $q->whereNotNull('app_article.ai_meta');
         }
         if ($cat = (int) $request->query('category')) {
             $q->where('app_article.category_id', $cat);
@@ -309,6 +313,7 @@ class ArticleController extends Controller
             'imageLink' => $a->image_link ?: null,
             'focusKeyword' => $a->focus_keyword,
             'evidenceStatus' => $a->evidence_status ?? null,
+            'aiDraft' => (bool) ($a->ai_draft ?? ($a->ai_meta ?? null)),
             'url' => self::url($a),
             'translationId' => $linked ? $translationId : null,
             'planCode' => $a->plan_code ?? null,
@@ -334,6 +339,7 @@ class ArticleController extends Controller
             'seoDescription' => $a->seo_description,
             'isPublished' => (int) $a->is_published === 1,
             'translation' => $translation,
+            'aiMeta' => $a->ai_meta ? json_decode($a->ai_meta, true) : null,
             'plan' => $plan ? PlanController::item($plan) : null,
         ];
     }
