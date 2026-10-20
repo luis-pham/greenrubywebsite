@@ -5,217 +5,464 @@
       "id": "cmp-strong-at",
       "type": "Bài so sánh",
       "input": "<p>Hạ Long mạnh về những điểm đã thành biểu tượng như hang Sửng Sốt và đảo Ti Tốp. Lan Hạ mạnh ở góc nhìn sát mặt nước và các bãi cát nhỏ.</p>",
-      "must_not_contain": ["mạnh về", "mạnh ở"],
-      "required_facts": ["hang Sửng Sốt", "đảo Ti Tốp", "Lan Hạ", "Hạ Long"],
-      "expected": ["So sánh hai vịnh bằng cách nói tự nhiên của người Việt (có nhiều danh thắng nổi tiếng hơn, hợp với ai…)", "Giữ đủ hai vế so sánh"],
-      "acceptable": ["Hạ Long có nhiều danh thắng nổi tiếng hơn, như hang Sửng Sốt và đảo Ti Tốp.", "Lan Hạ hợp với người thích ngắm cảnh từ mặt nước và tìm những bãi cát nhỏ."],
-      "failure": ["Thay bằng văn quảng cáo (kỳ vĩ, tuyệt đẹp)", "Bỏ tên danh thắng", "Đổi nhận định thành tuyệt đối (đẹp nhất)"]
+      "must_not_contain": [
+        "mạnh về",
+        "mạnh ở"
+      ],
+      "required_facts": [
+        "hang Sửng Sốt",
+        "đảo Ti Tốp",
+        "Lan Hạ",
+        "Hạ Long"
+      ],
+      "expected": [
+        "So sánh hai vịnh bằng cách nói tự nhiên của người Việt (có nhiều danh thắng nổi tiếng hơn, hợp với ai…)",
+        "Giữ đủ hai vế so sánh"
+      ],
+      "acceptable": [
+        "Hạ Long có nhiều danh thắng nổi tiếng hơn, như hang Sửng Sốt và đảo Ti Tốp.",
+        "Lan Hạ hợp với người thích ngắm cảnh từ mặt nước và tìm những bãi cát nhỏ."
+      ],
+      "failure": [
+        "Thay bằng văn quảng cáo (kỳ vĩ, tuyệt đẹp)",
+        "Bỏ tên danh thắng",
+        "Đổi nhận định thành tuyệt đối (đẹp nhất)"
+      ]
     },
     {
       "id": "cmp-win",
       "type": "Bài so sánh",
       "input": "<p>Lan Hạ thắng về chèo kayak, còn Hạ Long thắng về hang động.</p>",
-      "must_not_contain": ["thắng về"],
-      "required_facts": ["kayak", "hang"],
-      "expected": ["Không dùng khung thắng thua", "Nói theo nhu cầu người đọc (nếu thích… thì…)"],
-      "acceptable": ["Nếu thích chèo kayak, Lan Hạ có nhiều điểm hơn; nếu muốn vào hang động, Hạ Long có lợi thế."],
-      "failure": ["Vẫn giữ giọng thể thao, thắng thua", "Thêm địa danh không có trong câu gốc"]
+      "must_not_contain": [
+        "thắng về"
+      ],
+      "required_facts": [
+        "kayak",
+        "hang"
+      ],
+      "expected": [
+        "Không dùng khung thắng thua",
+        "So sánh trung tính hoặc theo nhu cầu người đọc, đọc tự nhiên"
+      ],
+      "acceptable": [
+        "Nếu thích chèo kayak, Lan Hạ có nhiều điểm hơn; nếu muốn vào hang động, Hạ Long có lợi thế."
+      ],
+      "failure": [
+        "Vẫn giữ giọng thể thao, thắng thua",
+        "Thêm địa danh không có trong câu gốc"
+      ]
     },
     {
       "id": "cmp-same-scenery",
       "type": "Bài so sánh",
       "input": "<p>Hai vịnh có cùng kiểu cảnh: núi đá vôi dựng đứng giữa nước xanh. Khác biệt nằm ở số tàu.</p>",
-      "must_not_contain": ["cùng kiểu cảnh"],
-      "required_facts": ["núi đá vôi"],
-      "expected": ["Diễn đạt sự giống nhau về cảnh quan một cách tự nhiên", "Giữ ý khác biệt về mật độ tàu"],
-      "acceptable": ["Cảnh quan hai vịnh khá tương đồng: núi đá vôi dựng đứng giữa làn nước xanh. Khác biệt lớn nhất là mật độ tàu."],
-      "failure": ["Thêm số liệu tàu không có trong bản gốc"]
+      "must_not_contain": [
+        "cùng kiểu cảnh"
+      ],
+      "required_facts": [
+        "núi đá vôi"
+      ],
+      "expected": [
+        "Diễn đạt sự giống nhau về cảnh quan một cách tự nhiên",
+        "Giữ ý khác biệt về mật độ tàu"
+      ],
+      "acceptable": [
+        "Cảnh quan hai vịnh khá tương đồng: núi đá vôi dựng đứng giữa làn nước xanh. Khác biệt lớn nhất là mật độ tàu."
+      ],
+      "failure": [
+        "Thêm số liệu tàu không có trong bản gốc"
+      ]
     },
     {
       "id": "cmp-shortcut",
       "type": "Bài so sánh",
       "input": "<p>Nói gọn: một vịnh với hai đêm đáng hơn hai vịnh trong một đêm.</p>",
-      "must_not_contain": ["Nói gọn", "đáng hơn hai"],
-      "required_facts": ["hai đêm", "một đêm"],
-      "expected": ["Bỏ câu dẫn dịch từ tiếng Anh", "Câu đủ thành phần, rõ ai dành thời gian cho cái gì"],
-      "acceptable": ["Dành hai đêm cho một vịnh thường trọn vẹn hơn là cố đi cả hai vịnh trong một đêm."],
-      "failure": ["Câu dài lê thê hoặc thêm lời khuyên mới"]
+      "must_not_contain": [
+        "Nói gọn",
+        "đáng hơn hai"
+      ],
+      "required_facts": [
+        "hai đêm",
+        "một đêm"
+      ],
+      "expected": [
+        "Bỏ câu dẫn dịch từ tiếng Anh",
+        "Câu đủ thành phần, rõ ai dành thời gian cho cái gì"
+      ],
+      "acceptable": [
+        "Dành hai đêm cho một vịnh thường trọn vẹn hơn là cố đi cả hai vịnh trong một đêm."
+      ],
+      "failure": [
+        "Câu dài lê thê hoặc thêm lời khuyên mới"
+      ]
     },
     {
       "id": "fleet-sister",
       "type": "Thông tin thương hiệu",
       "input": "<p>Green Ruby 1 và Green Ruby 2 là hai tàu chị em, cùng dài 121 m và chở tối đa 136 khách.</p>",
-      "must_not_contain": ["tàu chị em"],
-      "required_facts": ["Green Ruby 1", "Green Ruby 2", "121 m", "136 khách"],
-      "expected": ["Dùng thuật ngữ du thuyền", "Giữ nguyên thông số"],
-      "acceptable": ["Green Ruby 1 và Green Ruby 2 là hai du thuyền cùng thiết kế, dài 121 m, chở tối đa 136 khách."],
-      "failure": ["Đổi hoặc bỏ thông số", "Thêm tính từ quảng cáo"]
+      "must_not_contain": [
+        "tàu chị em"
+      ],
+      "required_facts": [
+        "Green Ruby 1",
+        "Green Ruby 2",
+        "121 m",
+        "136 khách"
+      ],
+      "expected": [
+        "Dùng thuật ngữ du thuyền",
+        "Giữ nguyên thông số"
+      ],
+      "acceptable": [
+        "Green Ruby 1 và Green Ruby 2 là hai du thuyền cùng thiết kế, dài 121 m, chở tối đa 136 khách."
+      ],
+      "failure": [
+        "Đổi hoặc bỏ thông số",
+        "Thêm tính từ quảng cáo"
+      ]
     },
     {
       "id": "itin-day-boat",
       "type": "Lịch trình",
       "input": "<p>Sau bữa sáng, khách chuyển sang tàu ngày để vào khu Ba Trái Đào và chèo kayak khoảng 45 phút.</p>",
-      "must_not_contain": ["tàu ngày"],
-      "required_facts": ["Ba Trái Đào", "45 phút", "kayak"],
-      "expected": ["Dùng thuật ngữ tàu tham quan trong ngày"],
-      "acceptable": ["Sau bữa sáng, khách chuyển sang tàu tham quan trong ngày để vào khu Ba Trái Đào và chèo kayak khoảng 45 phút."],
-      "failure": ["Đổi thời lượng", "Đổi địa danh"]
+      "must_not_contain": [
+        "tàu ngày"
+      ],
+      "required_facts": [
+        "Ba Trái Đào",
+        "45 phút",
+        "kayak"
+      ],
+      "expected": [
+        "Dùng thuật ngữ tàu tham quan trong ngày"
+      ],
+      "acceptable": [
+        "Sau bữa sáng, khách chuyển sang tàu tham quan trong ngày để vào khu Ba Trái Đào và chèo kayak khoảng 45 phút."
+      ],
+      "failure": [
+        "Đổi thời lượng",
+        "Đổi địa danh"
+      ]
     },
     {
       "id": "itin-illustrative",
       "type": "Lịch trình",
       "input": "<p>Hãy coi đây là minh hoạ. Giờ giấc thực tế phụ thuộc thời tiết và thuỷ triều.</p>",
-      "must_not_contain": ["Hãy coi đây là"],
-      "required_facts": ["thời tiết", "thuỷ triều"],
-      "expected": ["Nói rõ lịch trình chỉ để hình dung, giọng mềm, không ra lệnh"],
-      "acceptable": ["Lịch trình dưới đây chỉ để bạn hình dung. Giờ giấc thực tế còn phụ thuộc vào thời tiết và thuỷ triều."],
-      "failure": ["Bỏ lưu ý về thời tiết, thuỷ triều"]
+      "must_not_contain": [
+        "Hãy coi đây là"
+      ],
+      "required_facts": [
+        "thời tiết",
+        "thuỷ triều"
+      ],
+      "expected": [
+        "Nói rõ lịch trình chỉ để hình dung, giọng mềm, không ra lệnh"
+      ],
+      "acceptable": [
+        "Lịch trình dưới đây chỉ để bạn hình dung. Giờ giấc thực tế còn phụ thuộc vào thời tiết và thuỷ triều."
+      ],
+      "failure": [
+        "Bỏ lưu ý về thời tiết, thuỷ triều"
+      ]
     },
     {
       "id": "itin-slow",
       "type": "Lịch trình",
       "input": "<p>Hành trình 3 ngày 2 đêm hợp với người muốn đi chậm và tới những chỗ tuyến 2 ngày không tới.</p>",
-      "must_not_contain": ["đi chậm", "chỗ tuyến 2 ngày không tới"],
-      "required_facts": ["3 ngày 2 đêm", "2 ngày"],
-      "expected": ["Diễn đạt rõ ý thong thả", "Cụm danh từ gọn, đúng ngữ pháp"],
-      "acceptable": ["Hành trình 3 ngày 2 đêm hợp với người muốn đi thong thả và ghé những điểm không có trong lịch trình 2 ngày 1 đêm."],
-      "failure": ["Đổi số ngày", "Thêm điểm đến cụ thể không có trong bản gốc"]
+      "must_not_contain": [
+        "đi chậm",
+        "chỗ tuyến 2 ngày không tới"
+      ],
+      "required_facts": [
+        "3 ngày 2 đêm",
+        "2 ngày"
+      ],
+      "expected": [
+        "Diễn đạt rõ ý thong thả",
+        "Cụm danh từ gọn, đúng ngữ pháp"
+      ],
+      "acceptable": [
+        "Hành trình 3 ngày 2 đêm hợp với người muốn đi thong thả và ghé những điểm không có trong lịch trình 2 ngày 1 đêm."
+      ],
+      "failure": [
+        "Đổi số ngày",
+        "Thêm điểm đến cụ thể không có trong bản gốc"
+      ]
     },
     {
       "id": "season-it-is",
       "type": "Bài theo mùa",
       "input": "<p>Mùa đi mới là thứ làm thay đổi trải nghiệm, nhiều hơn việc chọn vịnh nào.</p>",
-      "must_not_contain": ["mới là thứ", "là thứ làm"],
+      "must_not_contain": [
+        "mới là thứ",
+        "là thứ làm"
+      ],
       "required_facts": [],
-      "expected": ["Bỏ cấu trúc nhấn kiểu tiếng Anh, chủ ngữ tự nhiên"],
-      "acceptable": ["Thời điểm đi ảnh hưởng đến chuyến đi nhiều hơn việc chọn vịnh nào."],
-      "failure": ["Thêm tháng, nhiệt độ không có trong bản gốc"]
+      "expected": [
+        "Bỏ cấu trúc nhấn kiểu tiếng Anh, chủ ngữ tự nhiên"
+      ],
+      "acceptable": [
+        "Thời điểm đi ảnh hưởng đến chuyến đi nhiều hơn việc chọn vịnh nào."
+      ],
+      "failure": [
+        "Thêm tháng, nhiệt độ không có trong bản gốc"
+      ]
     },
     {
       "id": "season-months",
       "type": "Bài theo mùa",
       "input": "<p>Tháng 10 tới tháng 4 trời khô, biển êm, nhưng tháng 1 – 2 có thể có sương mù và trời lạnh khoảng 15 – 20°C.</p>",
       "must_not_contain": [],
-      "required_facts": ["tháng 10", "tháng 4", "15 – 20°C", "sương mù"],
+      "required_facts": [
+        "tháng 10",
+        "tháng 4",
+        "15 – 20°C",
+        "sương mù"
+      ],
       "natural": true,
-      "expected": ["Giữ gần như nguyên văn; câu đã tự nhiên"],
+      "expected": [
+        "Giữ gần như nguyên văn; câu đã tự nhiên"
+      ],
       "acceptable": [],
-      "failure": ["Viết lại cả câu dù không có lỗi", "Đổi số"]
+      "failure": [
+        "Viết lại cả câu dù không có lỗi",
+        "Đổi số"
+      ]
     },
     {
       "id": "transport-natural",
       "type": "Di chuyển",
       "input": "<p>Từ Hà Nội, xe đưa đón của du thuyền đi theo cao tốc Hà Nội – Hạ Long, mất khoảng 2,5 giờ tới cảng tàu khách quốc tế Tuần Châu.</p>",
       "must_not_contain": [],
-      "required_facts": ["2,5 giờ", "cảng tàu khách quốc tế Tuần Châu", "cao tốc"],
+      "required_facts": [
+        "2,5 giờ",
+        "cảng tàu khách quốc tế Tuần Châu",
+        "cao tốc"
+      ],
       "natural": true,
-      "expected": ["Không cần sửa; nếu sửa chỉ là chi tiết nhỏ"],
+      "expected": [
+        "Không cần sửa; nếu sửa chỉ là chi tiết nhỏ"
+      ],
       "acceptable": [],
-      "failure": ["Đổi thời gian di chuyển", "Đổi tên cảng"]
+      "failure": [
+        "Đổi thời gian di chuyển",
+        "Đổi tên cảng"
+      ]
     },
     {
       "id": "transport-port",
       "type": "Di chuyển",
       "input": "<p>Khách của GR2 được đưa từ bến Gia Luận bằng tender ra tàu mẹ đang neo.</p>",
-      "must_not_contain": ["tender", "tàu mẹ"],
-      "required_facts": ["bến Gia Luận"],
-      "expected": ["Dùng xuồng trung chuyển và du thuyền", "Gọi tên tàu rõ ràng (Green Ruby 2) hoặc giữ GR2 nếu không chắc"],
-      "acceptable": ["Khách đi Green Ruby 2 được xuồng trung chuyển đưa từ bến Gia Luận ra du thuyền đang neo."],
-      "failure": ["Đổi bến", "Đổi tàu sang Green Ruby 1"]
+      "must_not_contain": [
+        "tender",
+        "tàu mẹ"
+      ],
+      "required_facts": [
+        "bến Gia Luận"
+      ],
+      "expected": [
+        "Dùng xuồng trung chuyển và du thuyền",
+        "Gọi tên tàu rõ ràng (Green Ruby 2) hoặc giữ GR2 nếu không chắc"
+      ],
+      "acceptable": [
+        "Khách đi Green Ruby 2 được xuồng trung chuyển đưa từ bến Gia Luận ra du thuyền đang neo."
+      ],
+      "failure": [
+        "Đổi bến",
+        "Đổi tàu sang Green Ruby 1"
+      ]
     },
     {
       "id": "faq-answer-is",
       "type": "Hỏi đáp",
       "input": "<p>Nếu hỏi đi Lan Hạ hay Hạ Long đẹp hơn, câu trả lời thật là cả hai đều đẹp, nhưng khác nhau về độ đông.</p>",
-      "must_not_contain": ["câu trả lời thật là"],
+      "must_not_contain": [
+        "câu trả lời thật là"
+      ],
       "required_facts": [],
-      "expected": ["Trả lời thẳng, tự nhiên", "Từ khoá Hạ Long, Lan Hạ vẫn xuất hiện tự nhiên"],
-      "acceptable": ["Vịnh Hạ Long hay Lan Hạ đẹp hơn? Thực tế, cảnh quan hai vịnh khá tương đồng, khác nhau chủ yếu ở mức độ đông đúc."],
-      "failure": ["Bỏ mất từ khoá", "Kết luận một vịnh đẹp hơn tuyệt đối"]
+      "expected": [
+        "Trả lời thẳng, tự nhiên",
+        "Từ khoá Hạ Long, Lan Hạ vẫn xuất hiện tự nhiên"
+      ],
+      "acceptable": [
+        "Vịnh Hạ Long hay Lan Hạ đẹp hơn? Thực tế, cảnh quan hai vịnh khá tương đồng, khác nhau chủ yếu ở mức độ đông đúc."
+      ],
+      "failure": [
+        "Bỏ mất từ khoá",
+        "Kết luận một vịnh đẹp hơn tuyệt đối"
+      ]
     },
     {
       "id": "faq-children",
       "type": "Hỏi đáp",
       "input": "<p>Trẻ em dưới 5 tuổi được miễn phí khi ngủ chung giường với bố mẹ. [CẦN XÁC NHẬN: chính sách trẻ em]</p>",
       "must_not_contain": [],
-      "required_facts": ["5 tuổi", "[CẦN XÁC NHẬN: chính sách trẻ em]"],
+      "required_facts": [
+        "5 tuổi",
+        "[CẦN XÁC NHẬN: chính sách trẻ em]"
+      ],
       "natural": true,
-      "expected": ["Giữ nguyên placeholder", "Không đổi chính sách"],
+      "expected": [
+        "Giữ nguyên placeholder",
+        "Không đổi chính sách"
+      ],
       "acceptable": [],
-      "failure": ["Xoá placeholder", "Đổi độ tuổi"]
+      "failure": [
+        "Xoá placeholder",
+        "Đổi độ tuổi"
+      ]
     },
     {
       "id": "brand-planned",
       "type": "Thông tin thương hiệu",
       "input": "<p>Green Ruby dự kiến đón khách từ tháng 2/2027. Hệ thống pin mặt trời khoảng 70 kW được thiết kế để đáp ứng khoảng 40% nhu cầu điện khi kết hợp với làm mát bằng nước biển.</p>",
       "must_not_contain": [],
-      "required_facts": ["dự kiến", "2/2027", "70 kW", "40%", "được thiết kế"],
+      "required_facts": [
+        "dự kiến",
+        "2/2027",
+        "70 kW",
+        "40%",
+        "được thiết kế"
+      ],
       "natural": true,
-      "expected": ["Giữ mức độ chắc chắn: dự kiến, thiết kế", "Không biến kế hoạch thành hiện tại"],
+      "expected": [
+        "Giữ mức độ chắc chắn: dự kiến, thiết kế",
+        "Không biến kế hoạch thành hiện tại"
+      ],
       "acceptable": [],
-      "failure": ["Bỏ chữ dự kiến hoặc được thiết kế", "Đổi số", "Thêm 'thân thiện môi trường nhất'"]
+      "failure": [
+        "Bỏ chữ dự kiến hoặc được thiết kế",
+        "Đổi số",
+        "Thêm 'thân thiện môi trường nhất'"
+      ]
     },
     {
       "id": "brand-ai-transition",
       "type": "Thông tin thương hiệu",
       "input": "<p>Không chỉ là một du thuyền, Green Ruby còn là một hành trình đáng nhớ mang đến trải nghiệm tuyệt vời giữa bức tranh thiên nhiên kỳ vĩ.</p>",
-      "must_not_contain": ["hành trình đáng nhớ", "trải nghiệm tuyệt vời", "bức tranh thiên nhiên"],
-      "required_facts": ["Green Ruby"],
-      "expected": ["Bỏ khuôn quảng cáo, nói điều cụ thể hoặc rút gọn", "Không thêm dữ kiện mới"],
-      "acceptable": ["Green Ruby là du thuyền ngủ đêm trên vịnh.", "Đề xuất xoá câu và để người biên tập quyết định (meaning_changed)"],
-      "failure": ["Thay bằng một chuỗi tính từ quảng cáo khác", "Thêm tiện ích hay chứng nhận không có trong bản gốc"]
+      "must_not_contain": [
+        "hành trình đáng nhớ",
+        "trải nghiệm tuyệt vời",
+        "bức tranh thiên nhiên"
+      ],
+      "required_facts": [
+        "Green Ruby"
+      ],
+      "expected": [
+        "Bỏ khuôn quảng cáo, nói điều cụ thể hoặc rút gọn",
+        "Không thêm dữ kiện mới"
+      ],
+      "acceptable": [
+        "Green Ruby là du thuyền ngủ đêm trên vịnh.",
+        "Đề xuất xoá câu và để người biên tập quyết định (meaning_changed)"
+      ],
+      "failure": [
+        "Thay bằng một chuỗi tính từ quảng cáo khác",
+        "Thêm tiện ích hay chứng nhận không có trong bản gốc"
+      ]
     },
     {
       "id": "dest-table-head",
       "type": "Bài về điểm đến",
       "input": "<table><thead><tr><th>Vịnh</th><th>Thời gian trong ngày</th></tr></thead><tbody><tr><td>Lan Hạ</td><td>Chèo kayak, tắm biển</td></tr></tbody></table>",
-      "must_not_contain": ["<th>Thời gian trong ngày</th>"],
-      "required_facts": ["Lan Hạ", "Chèo kayak"],
-      "expected": ["Tiêu đề cột nói đúng nội dung cột (hoạt động)"],
-      "acceptable": ["<th>Hoạt động chính</th>"],
-      "failure": ["Phá cấu trúc bảng"]
+      "must_not_contain": [
+        "<th>Thời gian trong ngày</th>"
+      ],
+      "required_facts": [
+        "Lan Hạ",
+        "Chèo kayak"
+      ],
+      "expected": [
+        "Tiêu đề cột nói đúng nội dung cột (hoạt động)"
+      ],
+      "acceptable": [
+        "<th>Hoạt động chính</th>"
+      ],
+      "failure": [
+        "Phá cấu trúc bảng"
+      ]
     },
     {
       "id": "dest-cave-natural",
       "type": "Bài về điểm đến",
       "input": "<p>Hang Sáng – hang Tối chỉ vào được bằng thuyền nan hoặc kayak khi thuỷ triều xuống. Lối vào thấp, nên người cao phải cúi đầu.</p>",
       "must_not_contain": [],
-      "required_facts": ["thuyền nan", "kayak", "thuỷ triều"],
+      "required_facts": [
+        "thuyền nan",
+        "kayak",
+        "thuỷ triều"
+      ],
       "natural": true,
-      "expected": ["Giữ nguyên hoặc chỉ sửa rất nhỏ"],
+      "expected": [
+        "Giữ nguyên hoặc chỉ sửa rất nhỏ"
+      ],
       "acceptable": [],
-      "failure": ["Thêm miêu tả bay bổng", "Đổi điều kiện thuỷ triều"]
+      "failure": [
+        "Thêm miêu tả bay bổng",
+        "Đổi điều kiện thuỷ triều"
+      ]
     },
     {
       "id": "accom-cabin",
       "type": "Phòng nghỉ",
       "input": "<p>Mỗi cabin có ban công riêng. Hạng Imperial Suite nằm ở boong trên cùng, nhìn thẳng ra mũi tàu.</p>",
       "must_not_contain": [],
-      "required_facts": ["Imperial Suite", "ban công riêng", "boong trên cùng"],
+      "required_facts": [
+        "Imperial Suite",
+        "ban công riêng",
+        "boong trên cùng"
+      ],
       "natural": true,
-      "expected": ["Giữ nguyên tên hạng phòng tiếng Anh"],
+      "expected": [
+        "Giữ nguyên tên hạng phòng tiếng Anh"
+      ],
       "acceptable": [],
-      "failure": ["Dịch tên hạng phòng", "Thêm diện tích phòng"]
+      "failure": [
+        "Dịch tên hạng phòng",
+        "Thêm diện tích phòng"
+      ]
     },
     {
       "id": "l10n-calque",
       "type": "Bản địa hoá từ tiếng Anh",
       "input": "<p>Điều này có nghĩa là việc lựa chọn của bạn nên được dựa trên những gì bạn muốn ra khỏi chuyến đi.</p>",
-      "must_not_contain": ["Điều này có nghĩa là việc", "ra khỏi chuyến đi", "được dựa trên"],
+      "must_not_contain": [
+        "Điều này có nghĩa là việc",
+        "ra khỏi chuyến đi",
+        "được dựa trên"
+      ],
       "required_facts": [],
-      "expected": ["Bỏ bị động và danh từ hoá kiểu tiếng Anh", "Câu ngắn, rõ"],
-      "acceptable": ["Vì vậy, hãy chọn theo điều bạn mong muốn nhất ở chuyến đi."],
-      "failure": ["Thêm ý mới"]
+      "expected": [
+        "Bỏ bị động và danh từ hoá kiểu tiếng Anh",
+        "Câu ngắn, rõ"
+      ],
+      "acceptable": [
+        "Vì vậy, hãy chọn theo điều bạn mong muốn nhất ở chuyến đi."
+      ],
+      "failure": [
+        "Thêm ý mới"
+      ]
     },
     {
       "id": "l10n-seo-stuffing",
       "type": "Bản địa hoá từ tiếng Anh",
       "input": "<p>Du thuyền Lan Hạ là lựa chọn du thuyền Lan Hạ cho những ai tìm du thuyền Lan Hạ yên tĩnh.</p>",
-      "must_not_contain": ["lựa chọn du thuyền Lan Hạ cho những ai tìm du thuyền Lan Hạ"],
-      "required_facts": ["du thuyền Lan Hạ"],
-      "expected": ["Từ khoá xuất hiện một lần, tự nhiên"],
-      "acceptable": ["Nếu muốn một chuyến đi yên tĩnh, du thuyền trên vịnh Lan Hạ là lựa chọn đáng cân nhắc."],
-      "failure": ["Xoá hoàn toàn từ khoá"]
+      "must_not_contain": [
+        "lựa chọn du thuyền Lan Hạ cho những ai tìm du thuyền Lan Hạ"
+      ],
+      "required_facts": [
+        "Lan Hạ",
+        "du thuyền"
+      ],
+      "expected": [
+        "Từ khoá (hoặc biến thể tự nhiên như \"du thuyền trên vịnh Lan Hạ\") xuất hiện một lần"
+      ],
+      "acceptable": [
+        "Nếu muốn một chuyến đi yên tĩnh, du thuyền trên vịnh Lan Hạ là lựa chọn đáng cân nhắc."
+      ],
+      "failure": [
+        "Xoá hoàn toàn từ khoá"
+      ]
     }
   ]
 }

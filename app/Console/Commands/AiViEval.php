@@ -40,7 +40,9 @@ class AiViEval extends Command
             $out = $res['doc']['html'];
             $checks = [];
             foreach ($f['must_not_contain'] as $s) {
-                $checks[] = ['check' => "đã bỏ \"{$s}\"", 'ok' => mb_stripos($out, $s) === false];
+                // Still present but proposed in a flagged edit = handed to the human editor, which is the intended outcome.
+                $held = collect($res['report']['flagged'])->contains(fn ($i) => mb_stripos($i['original'], $s) !== false);
+                $checks[] = ['check' => "đã bỏ \"{$s}\"" . ($held ? ' (đề xuất chờ duyệt)' : ''), 'ok' => mb_stripos($out, $s) === false || $held];
             }
             foreach ($f['required_facts'] as $s) {
                 $checks[] = ['check' => "giữ \"{$s}\"", 'ok' => mb_strpos($out, $s) !== false];

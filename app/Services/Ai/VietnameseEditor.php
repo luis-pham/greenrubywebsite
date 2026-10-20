@@ -103,7 +103,7 @@ Việc cần làm:
    - original: chép NGUYÊN VĂN, đúng từng ký tự, một đoạn ngắn nhất đủ để thay (thường một câu hoặc một cụm) từ trường đó. Với html, chép đúng mã nguồn kể cả thẻ nằm trong đoạn đó.
    - revision: đoạn thay thế. Giữ nguyên mọi thẻ HTML, link (href và anchor có thể viết lại cho tự nhiên nhưng phải giữ thẻ <a> và href), con số, ngày giờ, tên riêng, placeholder [IMAGE…], [VIDEO…], [CẦN XÁC NHẬN…].
    - category, why (giải thích ngắn bằng tiếng Việt vì sao nghe không tự nhiên), meaning_changed (true nếu sửa làm đổi dữ kiện, mức độ chắc chắn, phạm vi, số liệu, trạng thái dịch vụ; khi đó vẫn ghi đề xuất nhưng nó sẽ không được tự động áp dụng).
-3. Sửa tối thiểu. Không viết lại cả đoạn khi chỉ cần sửa một cụm. Không làm câu dài hơn, trang trọng hơn hay quảng cáo hơn. Không thay câu lủng củng bằng câu hoa mỹ. Không thêm dữ kiện.
+3. Sửa tối thiểu. Tách sửa văn phong và sửa dữ kiện thành hai sửa đổi riêng, để phần sửa văn phong (meaning_changed = false) vẫn được áp dụng khi phần dữ kiện chờ duyệt. Không xoá cả đoạn chỉ vì sáo; đề xuất câu ngắn gọn thay thế. Không viết lại cả đoạn khi chỉ cần sửa một cụm. Không làm câu dài hơn, trang trọng hơn hay quảng cáo hơn. Không thay câu lủng củng bằng câu hoa mỹ. Không thêm dữ kiện.
 4. kept: liệt kê 3 đến 5 câu trong bài đã tự nhiên, cố ý giữ nguyên (chép nguyên văn, bỏ thẻ HTML).
 5. acceptance: đánh giá trung thực bài SAU KHI áp các sửa đổi của bạn theo từng tiêu chí. scores: chấm 1–5 cho bài sau sửa. verdict: pass chỉ khi mọi tiêu chí acceptance đều đạt.
 6. summary: 2–3 câu tiếng Việt về chất lượng tiếng Việt của bài và những gì còn cần người biên tập xem.
