@@ -71,6 +71,15 @@ class ArticleWriter
         $draft = $this->write($brief, $links, $research, $lang);
         $reviewed = $this->review($brief, $links, $draft, $lang);
 
+        $viReview = null;
+        if ($lang === 'vi') {
+            // Separate native-Vietnamese editorial pass (surgical edits; meaning-changing ones only flagged).
+            $type = ['I' => 'Bài thông tin / hướng dẫn', 'C' => 'Bài so sánh, tư vấn lựa chọn', 'T' => 'Bài tư vấn đặt chỗ'][$plan->intent] ?? 'Bài thông tin';
+            $res = (new VietnameseEditor($this))->review($reviewed, $type . '. Chủ đề: ' . $plan->title . '. Từ khoá chính: ' . $plan->primary_kw);
+            $reviewed = array_merge($reviewed, $res['doc']);
+            $viReview = $res['report'];
+        }
+
         [$html, $removedLinks, $blockedLinks, $deadLinks] = $this->checkLinks($reviewed['html'], $links['paths']);
 
         return $this->save($plan, $lang, $reviewed, $html, $existingId, [
@@ -83,7 +92,8 @@ class ArticleWriter
             'removed_links' => $removedLinks,
             'blocked_links' => $blockedLinks,
             'dead_links' => $deadLinks,
-            'flags' => $this->flags($html, $lang),
+            'flags' => array_merge($this->flags($html, $lang), $lang === 'vi' ? VietnameseEditor::lint(VietnameseEditor::plain(['html' => $html] + $reviewed)) : []),
+            'vi_review' => $viReview,
             'usage' => $this->usage,
             'cost_usd' => $this->cost(),
         ]);
@@ -91,7 +101,7 @@ class ArticleWriter
 
     /* ---------------------------------------------------------------- context */
 
-    private function systemBlocks(): array
+    private function systemBlocks(string $lang = 'en'): array
     {
         // Identical for every article and language, so the long prefix is cached once for the whole run.
         $text = "You write blog drafts for greenrubycruises.com, the website of Green Ruby Cruises (Ha Long Bay and Lan Ha Bay, Vietnam). "
@@ -103,7 +113,17 @@ class ArticleWriter
             . "Live data from the website (itinerary programmes, cabins, experiences, FAQ, policies). Where it conflicts with brand_facts, brand_facts wins.\n"
             . $this->productFacts() . "\n</product_data>";
 
-        return [['type' => 'text', 'text' => $text, 'cacheControl' => ['type' => 'ephemeral', 'ttl' => '1h']]];
+        $blocks = [['type' => 'text', 'text' => $text, 'cacheControl' => ['type' => 'ephemeral', 'ttl' => '1h']]];
+        if ($lang === 'vi') {
+            // Second cached block for Vietnamese work: the shared prefix above stays cached for both languages.
+            $blocks[] = ['type' => 'text', 'cacheControl' => ['type' => 'ephemeral', 'ttl' => '1h'], 'text' =>
+                "Bài viết bằng tiếng Việt. Hướng dẫn biên tập tiếng Việt dưới đây được ưu tiên hơn style guide tiếng Anh về giọng văn, câu chữ, SEO và định dạng; style guide tiếng Anh vẫn áp dụng cho dữ kiện, link, placeholder và HTML.\n\n"
+                . "<vi_style_guide>\n" . file_get_contents(resource_path('ai/style-guide-vi.md')) . "\n</vi_style_guide>\n\n"
+                . "<vi_terminology>\n" . file_get_contents(resource_path('ai/vi-terminology.md')) . "\n</vi_terminology>\n\n"
+                . "<ten_chinh_thuc_tieng_viet>\nTên chính thức trên website tiếng Việt (dùng đúng các tên này, không tự dịch tên sản phẩm):\n" . VietnameseEditor::officialNames() . "\n</ten_chinh_thuc_tieng_viet>"];
+        }
+
+        return $blocks;
     }
 
     private function productFacts(): string
@@ -284,7 +304,13 @@ class ArticleWriter
             . "html (the article body as HTML per the style guide, starting with the direct-answer paragraph, with [IMAGE]/[VIDEO] placeholders and [CẦN XÁC NHẬN: …] where facts are missing); "
             . "needs_confirmation (every open question the editor must answer before publishing, written in Vietnamese); sources (the external sources you relied on); notes (short notes to the editor in Vietnamese).";
 
-        return $this->structured($prompt, 'high');
+        if ($lang === 'vi') {
+            $prompt .= "\n\nBài này viết bằng tiếng Việt cho người Việt. Soạn trực tiếp bằng tiếng Việt theo vi_style_guide: ghi chú nghiên cứu, dữ liệu sản phẩm và sự thật thương hiệu bằng tiếng Anh chỉ là nguồn dữ kiện, không dịch từng câu, không giữ cấu trúc câu tiếng Anh. "
+                . "Các quy tắc giọng văn tiếng Anh (câu thật ngắn, so sánh thắng thua, phán đoán gọn) không áp dụng nguyên xi: viết như một tạp chí du lịch tiếng Việt biên tập tốt, câu dài ngắn tự nhiên. "
+                . "Từ khoá chính đặt tự nhiên theo mục SEO của vi_style_guide, được dùng biến thể có dấu, không chèn nguyên văn gượng ép. Dùng đúng thuật ngữ trong vi_terminology và tên chính thức tiếng Việt. Mọi trường (title, slug không dấu, lead, SEO) bằng tiếng Việt.";
+        }
+
+        return $this->structured($prompt, 'high', $lang);
     }
 
     private function review(string $brief, array $links, array $draft, string $lang): array
@@ -301,14 +327,27 @@ class ArticleWriter
             . "- Voice: it must read like an experienced travel specialist giving specific, honest advice. Rewrite every sentence that uses the banned AI-slop wording or says something generic that could describe any destination. Remove invented experiences or anecdotes.\n"
             . "- Keywords and links: the primary keyword appears naturally in the title, the first two sentences, one H2 and near the end, never stuffed; internal links sit inside sentences with descriptive anchors.\n"
             . "In notes, list in Vietnamese what you changed and anything the editor should look at. needs_confirmation: one merged list without duplicates (combine questions about the same thing into one), in Vietnamese.";
+        if ($lang === 'vi') {
+            $prompt .= "\nThe article is in Vietnamese. In this pass fix facts, links, structure and SEO only; keep the Vietnamese wording unless a fact is wrong (a native Vietnamese editor reviews the style next). Never replace Vietnamese phrasing with English-style structures.";
+        }
 
-        return $this->structured($prompt, 'medium');
+        return $this->structured($prompt, 'medium', $lang);
     }
 
-    /** Streams one structured-output call and returns the decoded JSON. */
-    private function structured(string $prompt, string $effort): array
+    /** Streams one structured-output call for an article draft and returns the decoded JSON. */
+    private function structured(string $prompt, string $effort, string $lang = 'en'): array
     {
-        $schema = [
+        $data = $this->structuredCall($prompt, $effort, self::articleSchema(), $lang);
+        if (empty($data['html'])) {
+            throw new RuntimeException('Draft has no html');
+        }
+
+        return $data;
+    }
+
+    private static function articleSchema(): array
+    {
+        return [
             'type' => 'object',
             'properties' => [
                 'title' => ['type' => 'string'],
@@ -329,11 +368,15 @@ class ArticleWriter
             'required' => ['title', 'slug', 'seo_title', 'seo_description', 'lead', 'html', 'needs_confirmation', 'sources', 'notes'],
             'additionalProperties' => false,
         ];
+    }
 
+    /** One streamed structured-output call with the cached system prompt (+ the Vietnamese block for vi). */
+    public function structuredCall(string $prompt, string $effort, array $schema, string $lang = 'en'): array
+    {
         $stream = $this->client->beta->messages->createStream(
             model: $this->model,
             maxTokens: 64000,
-            system: $this->systemBlocks(),
+            system: $this->systemBlocks($lang),
             messages: [['role' => 'user', 'content' => $prompt]],
             thinking: ['type' => 'adaptive'],
             outputConfig: ['effort' => $effort, 'format' => ['type' => 'json_schema', 'schema' => $schema]],
@@ -360,8 +403,8 @@ class ArticleWriter
             throw new RuntimeException('Draft cut off at max_tokens');
         }
         $data = json_decode($json, true);
-        if (!is_array($data) || empty($data['html'])) {
-            throw new RuntimeException('Draft is not valid JSON (stop: ' . ($stop ?? 'none') . ')');
+        if (!is_array($data)) {
+            throw new RuntimeException('Response is not valid JSON (stop: ' . ($stop ?? 'none') . ')');
         }
 
         return $data;
@@ -528,6 +571,16 @@ class ArticleWriter
         $this->usage['cache_write'] += (int) ($u->cacheCreationInputTokens ?? 0);
         $this->usage['output'] += (int) ($u->outputTokens ?? 0);
         $this->usage['searches'] += (int) ($u->serverToolUse->webSearchRequests ?? 0);
+    }
+
+    public function resetUsage(): void
+    {
+        $this->usage = array_map(fn () => 0, $this->usage);
+    }
+
+    public function usage(): array
+    {
+        return $this->usage + ['cost_usd' => $this->cost()];
     }
 
     private function cost(): float
