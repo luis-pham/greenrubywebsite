@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\Api\Editor\ArticleController;
 use App\Services\Ai\ArticleWriter;
 use App\Services\Ai\VietnameseEditor;
+use App\Support\FrontendRevalidator;
 use App\Support\HtmlSanitizer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -61,10 +63,11 @@ class AiViEdit extends Command
             'lead' => (string) HtmlSanitizer::clean($after['lead']),
             'seo_title' => mb_substr($after['seo_title'], 0, 65),
             'seo_description' => mb_substr($after['seo_description'], 0, 255),
-            'content' => (string) HtmlSanitizer::clean($after['html']),
+            'content' => ArticleController::relativeOwnLinks((string) HtmlSanitizer::clean($after['html'])),
             'ai_meta' => json_encode($meta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
             'updated_at' => now(),
         ]);
+        FrontendRevalidator::send(['articles', 'article:' . $a->id]);
         $this->info('Saved.');
 
         return self::SUCCESS;
