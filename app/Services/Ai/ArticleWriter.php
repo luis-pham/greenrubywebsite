@@ -36,6 +36,7 @@ class ArticleWriter
     private const BETAS = ['server-side-fallback-2026-07-01'];
 
     private Client $client;
+    private LinkPolicy $policy;
     private string $model;
     private string $site;
     private ?string $productFacts = null;
@@ -55,6 +56,7 @@ class ArticleWriter
         $this->client = new Client(apiKey: $key, requestOptions: ['extraHeaders' => $headers, 'timeout' => 900.0, 'maxRetries' => 3]);
         $this->model = (string) config('services.anthropic.model', 'claude-opus-5-5');
         $this->site = rtrim((string) config('services.anthropic.site'), '/');
+        $this->policy = new LinkPolicy();
     }
 
     /** @return int the new article id */
@@ -69,16 +71,18 @@ class ArticleWriter
         $draft = $this->write($brief, $links, $research, $lang);
         $reviewed = $this->review($brief, $links, $draft, $lang);
 
-        [$html, $removedLinks] = $this->keepKnownLinks($reviewed['html'], $links['paths']);
+        [$html, $removedLinks, $blockedLinks, $deadLinks] = $this->checkLinks($reviewed['html'], $links['paths']);
 
         return $this->save($plan, $lang, $reviewed, $html, [
             'model' => $this->model,
             'generated_at' => now()->toIso8601String(),
             // The review merges the writer's open questions into its own list.
             'needs_confirmation' => array_values(array_unique($reviewed['needs_confirmation'] ?? [])),
-            'sources' => $this->mergeSources($reviewed['sources'] ?? [], $researchSources),
+            'sources' => array_values(array_filter($this->mergeSources($reviewed['sources'] ?? [], $researchSources), fn ($x) => !$this->policy->isBlocked($x['url']))),
             'review_notes' => $reviewed['notes'] ?? '',
             'removed_links' => $removedLinks,
+            'blocked_links' => $blockedLinks,
+            'dead_links' => $deadLinks,
             'flags' => $this->flags($html, $lang),
             'usage' => $this->usage,
             'cost_usd' => $this->cost(),
@@ -223,7 +227,8 @@ class ArticleWriter
         $prompt = "<brief>\n{$brief}\n</brief>\n\n"
             . "Research this article before it is written. Use web search to find: what people searching \"{$plan->primary_kw}\" want to know (the questions top results answer), "
             . "and accurate, current facts about the places, weather, transport, culture or rules the article will cover. Prefer official and reputable sources. "
-            . "Do not research Green Ruby itself: its facts are in brand_facts and product_data.\n\n"
+            . "Do not research Green Ruby itself: its facts are in brand_facts and product_data. "
+            . "Do not use competitors as sources: cruise operators, cruise booking or comparison sites, travel agencies, OTAs (Viator, Klook, Agoda, Booking, Traveloka…) or review platforms (TripAdvisor). Prefer official sources (UNESCO, the Ha Long Bay management board, Vietnamese government and tourism authorities, weather services), recognised publishers and reference works.\n\n"
             . "Return concise research notes in English: 1) reader questions to answer, 2) facts, each followed by its source URL, 3) points that are uncertain or that change often (fees, hours, regulations).";
 
         $messages = [['role' => 'user', 'content' => $prompt]];
@@ -237,7 +242,7 @@ class ArticleWriter
                 messages: $messages,
                 thinking: ['type' => 'adaptive'],
                 outputConfig: ['effort' => 'medium'],
-                tools: [BetaWebSearchTool20260209::with(maxUses: 6)],
+                tools: [BetaWebSearchTool20260209::with(maxUses: 6, blockedDomains: $this->policy->searchBlocklist())],
                 betas: self::BETAS,
                 fallbacks: 'default',
             );
@@ -271,6 +276,7 @@ class ArticleWriter
         $prompt = "<brief>\n{$brief}\n</brief>\n\n"
             . "<internal_links language=\"{$lang}\">\nThe only internal URLs you may link to (path | page):\n{$links['text']}\n</internal_links>\n\n"
             . "<research_notes>\n{$research}\n</research_notes>\n\n"
+            . "External links: only to official or editorial sources (government, UNESCO, the Ha Long Bay management board, tourism authorities, recognised travel publishers, reference works). Never link to cruise operators, cruise booking or comparison sites, travel agencies, OTAs, review platforms, or pages about other cruise ships: they are competitors.\n"
             . "Write the article now, following the style guide and using only brand_facts and product_data for anything about Green Ruby and research_notes (with their sources) for everything else.\n"
             . "Fields: title (the H1, natural, contains the primary keyword or a close variant, no year unless the brief needs one); slug (short, lowercase, hyphens, no year); "
             . "seo_title (max 60 characters including spaces, contains the primary keyword; the site adds the brand only if missing, so you may end with \" | Green Ruby\" when it fits); "
@@ -289,7 +295,7 @@ class ArticleWriter
             . "You are the editor. Check the draft line by line and return the corrected article in the same fields:\n"
             . "- Every statement about Green Ruby must match brand_facts or product_data exactly; rewrite or replace with [CẦN XÁC NHẬN: …] anything that does not (dates, prices, certifications, services, reviews, awards).\n"
             . "- Remove banned wording, hype and any em dash character; keep design figures labelled as design estimates; Halal and Green Globe only as in progress.\n"
-            . "- Keep only internal links from the list; make anchors descriptive; make sure required links that are linkable are present.\n"
+            . "- Keep only internal links from the list; make anchors descriptive; make sure required links that are linkable are present. Remove every external link to a competitor (cruise operators, cruise or tour booking sites, travel agencies, OTAs, TripAdvisor, pages about other cruise ships); keep 1 to 4 links to official or editorial sources.\n"
             . "- Check structure: direct answer first, question-style H2s, table where comparing, placeholders for media, no H1, allowed tags only.\n"
             . "- Check seo_title length (60 max) and seo_description length (120 to 155).\n"
             . "- Voice: it must read like an experienced travel specialist giving specific, honest advice. Rewrite every sentence that uses the banned AI-slop wording or says something generic that could describe any destination. Remove invented experiences or anecdotes.\n"
@@ -363,28 +369,69 @@ class ArticleWriter
 
     /* ---------------------------------------------------------------- checks and save */
 
-    /** Unwraps internal links that are not in the link list (keeps the text). */
-    private function keepKnownLinks(string $html, array $paths): array
+    /**
+     * Link checks on the final HTML (the link text always stays):
+     * internal links not in the link list are unwrapped; external links to competitors (LinkPolicy) are
+     * unwrapped; external links that are gone (404/410, unreachable) are unwrapped.
+     * @return array{0: string, 1: array, 2: array, 3: array} html, removed internal, blocked, dead
+     */
+    public function checkLinks(string $html, ?array $paths): array
     {
-        $known = array_flip($paths);
-        $removed = [];
-        $html = preg_replace_callback('#<a\s[^>]*href="([^"]*)"[^>]*>(.*?)</a>#is', function ($m) use ($known, &$removed) {
+        $known = $paths === null ? null : array_flip($paths);
+        $removed = $blocked = $dead = [];
+        $html = preg_replace_callback('#<a\s[^>]*href="([^"]*)"[^>]*>(.*?)</a>#is', function ($m) use ($known, &$removed, &$blocked, &$dead) {
             $href = html_entity_decode($m[1]);
             $path = preg_replace('#^https?://(www\.)?greenrubycruises\.com#i', '', $href);
-            $internal = str_starts_with($path, '/');
-            if (!$internal) {
-                return $m[0];
-            }
-            $clean = rtrim(strtok($path, '?#') ?: '/', '/') ?: '/';
-            if (isset($known[$clean])) {
-                return str_replace($m[1], htmlspecialchars($clean), $m[0]);
-            }
-            $removed[] = $href;
+            if (str_starts_with($path, '/')) {
+                if ($known === null) {
+                    return $m[0];
+                }
+                $clean = rtrim(strtok($path, '?#') ?: '/', '/') ?: '/';
+                if (isset($known[$clean])) {
+                    return str_replace($m[1], htmlspecialchars($clean), $m[0]);
+                }
+                $removed[] = $href;
 
-            return $m[2];
+                return $m[2];
+            }
+            if (!preg_match('#^https?://#i', $href)) {
+                return $m[0]; // mailto:, tel:
+            }
+            if ($this->policy->isBlocked($href)) {
+                $blocked[] = $href;
+
+                return $m[2];
+            }
+            if ($this->isDead($href)) {
+                $dead[] = $href;
+
+                return $m[2];
+            }
+
+            return $m[0];
         }, $html);
 
-        return [$html, $removed];
+        return [$html, $removed, $blocked, $dead];
+    }
+
+    /** Only clear failures count: 404/410 or no connection. Sites that refuse bots (403, 405, 429) are kept. */
+    private function isDead(string $url): bool
+    {
+        $ua = ['User-Agent' => 'Mozilla/5.0 (compatible; GreenRubyLinkCheck/1.0; +https://greenrubycruises.com)'];
+        try {
+            $res = Http::withHeaders($ua)->timeout(10)->head($url);
+            if (in_array($res->status(), [404, 410], true)) {
+                $res = Http::withHeaders($ua)->timeout(15)->get($url);
+            }
+
+            return in_array($res->status(), [404, 410], true);
+        } catch (\Throwable $e) {
+            try {
+                return in_array(Http::withHeaders($ua)->timeout(15)->get($url)->status(), [404, 410], true);
+            } catch (\Throwable $e2) {
+                return true;
+            }
+        }
     }
 
     private function flags(string $html, string $lang): array
