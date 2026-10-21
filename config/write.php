@@ -7,7 +7,9 @@
 | (articles, plan, media library). Saving, publishing, uploads and AI actions still need a login.
 | Turn on to share drafts with the team, then off again:
 |   .env  WRITE_PUBLIC_VIEW=true|false
-|   docker exec green-ruby-cms php artisan config:cache
+|   docker restart green-ruby-cms && docker exec green-ruby-cms php artisan config:cache
+| (.env is bind-mounted as a single file: editors replace the file, so the container only sees the
+| change after a restart.)
 */
 
 return [
