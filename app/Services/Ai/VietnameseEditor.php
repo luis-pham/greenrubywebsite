@@ -23,7 +23,7 @@ class VietnameseEditor
     /** Known translationese and formula patterns (deterministic lint; the model review is the real check). */
     public const PATTERNS = [
         'tàu chị em' => '/(*UCP)tàu chị em/iu',
-        'tàu ngày' => '/(*UCP)\btàu ngày\b(?! càng)/iu',
+        'tàu ngày' => '/(*UCP)(?<!xuống )(?<!lên )(?<!rời )\btàu ngày\b(?!\s*(càng|cuối|đầu|thứ|hôm|đó|\d))/iu',
         '"mạnh ở/về" (dịch "strong at")' => '/(*UCP)\bmạnh (ở|về)\b/iu',
         '"thắng về" (so sánh thắng thua)' => '/(*UCP)\bthắng về\b/iu',
         '"Nói gọn:"' => '/(*UCP)\bnói gọn\s*:/iu',

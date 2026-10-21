@@ -64,6 +64,8 @@ class VietnameseEditorTest extends TestCase
             ['Ngày càng nhiều du khách chọn ở lại hai đêm.'],
             ['Gió mạnh nhất vào tháng 7.'],
             ['Tàu chạy chậm lại khi vào gần hang.'],
+            ['Giờ lên tàu, giờ xuống tàu ngày cuối.'],
+            ['Khách rời tàu ngày thứ hai lúc 10:30.'],
             ['Lan Hạ mang lại cảm giác gần gũi với thiên nhiên hơn.'],
         ];
     }
