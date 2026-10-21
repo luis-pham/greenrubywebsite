@@ -63,7 +63,11 @@ class AuthController extends Controller
 
     public function me()
     {
-        return response()->json(['user' => self::user(Auth::guard('admin')->user())]);
+        $user = Auth::guard('admin')->user();
+
+        return response()->json(['user' => $user
+            ? self::user($user)
+            : ['id' => 0, 'username' => 'guest', 'fullname' => 'Khách (chỉ xem)', 'guest' => true]]);
     }
 
     private static function user(AdUser $user): array

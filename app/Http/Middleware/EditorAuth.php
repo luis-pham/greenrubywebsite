@@ -13,6 +13,7 @@ use Modules\BackEnd\Entities\AdUser;
  * httpOnly cookie "gr_write" (or "Authorization: Bearer"). Writes must also carry "X-Editor: 1":
  * a cross-site form cannot set that header, which is what protects the cookie from CSRF.
  * The admin user becomes the current user, so created_by/updated_by are filled as in the CMS.
+ * With config write.public_view, GET requests without a login pass as a read-only guest.
  */
 class EditorAuth
 {
@@ -26,12 +27,15 @@ class EditorAuth
         }
 
         $user = self::userFromToken(self::tokenFrom($request));
-        if (!$user) {
-            return response()->json(['message' => 'Unauthenticated'], 401);
+        if (!$user && !(config('write.public_view') && $request->isMethodSafe())) {
+            return response()->json(['message' => config('write.public_view') ? 'Chế độ xem: đăng nhập để sửa.' : 'Unauthenticated'], 401);
         }
 
+        // Without a user here the request is a read-only guest (write.public_view).
         Auth::shouldUse('admin');
-        Auth::guard('admin')->setUser($user);
+        if ($user) {
+            Auth::guard('admin')->setUser($user);
+        }
 
         $response = $next($request);
         $response->headers->set('Cache-Control', 'no-store');
