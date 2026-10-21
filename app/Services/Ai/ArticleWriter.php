@@ -299,7 +299,7 @@ class ArticleWriter
             . "External links: only to official or editorial sources (government, UNESCO, the Ha Long Bay management board, tourism authorities, recognised travel publishers, reference works). Never link to cruise operators, cruise booking or comparison sites, travel agencies, OTAs, review platforms, or pages about other cruise ships: they are competitors.\n"
             . "Write the article now, following the style guide and using only brand_facts and product_data for anything about Green Ruby and research_notes (with their sources) for everything else.\n"
             . "Fields: title (the H1, natural, contains the primary keyword or a close variant, no year unless the brief needs one); slug (short, lowercase, hyphens, no year); "
-            . "seo_title (max 60 characters including spaces, contains the primary keyword; the site adds the brand only if missing, so you may end with \" | Green Ruby\" when it fits); "
+            . "seo_title (max 60 characters including spaces, contains the primary keyword, no brand suffix: the site appends \" | Green Ruby Cruises\"); "
             . "seo_description (120 to 155 characters, contains the primary keyword); lead (one or two sentences shown under the title and in the blog list, plain text); "
             . "html (the article body as HTML per the style guide, starting with the direct-answer paragraph, with [IMAGE]/[VIDEO] placeholders and [CẦN XÁC NHẬN: …] where facts are missing); "
             . "needs_confirmation (every open question the editor must answer before publishing, written in Vietnamese); sources (the external sources you relied on); notes (short notes to the editor in Vietnamese).";
