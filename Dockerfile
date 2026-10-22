@@ -1,5 +1,5 @@
 # Sử dụng PHP 8.2 với Apache
-FROM php:8.2-apache
+FROM php:8.2.35-apache
 
 # Thiết lập thư mục làm việc
 WORKDIR /var/www/html
