@@ -60,6 +60,22 @@ RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/uploads.ini
 
+# Cấu hình bảo mật PHP: không hiện lỗi ra trình duyệt, ghi lỗi ra log container, ẩn phiên bản PHP
+RUN { \
+    echo "expose_php = Off"; \
+    echo "display_errors = Off"; \
+    echo "display_startup_errors = Off"; \
+    echo "log_errors = On"; \
+    echo "error_log = /dev/stderr"; \
+    echo "session.cookie_secure = 1"; \
+    echo "session.cookie_httponly = 1"; \
+    echo "session.use_strict_mode = 1"; \
+    } > /usr/local/etc/php/conf.d/zz-security.ini
+
+# Ẩn phiên bản Apache trong header Server và trang lỗi
+RUN { echo "ServerTokens Prod"; echo "ServerSignature Off"; } > /etc/apache2/conf-available/zz-security.conf \
+    && a2enconf zz-security
+
 # Cấu hình OPcache cho production
 RUN echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/opcache.ini \
     && echo "opcache.memory_consumption=128" >> /usr/local/etc/php/conf.d/opcache.ini \
