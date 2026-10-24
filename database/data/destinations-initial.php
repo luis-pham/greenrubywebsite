@@ -400,7 +400,7 @@ HTML,
             ['title' => 'Wikipedia (Vietnamese): Hang Sửng Sốt (Bo Hon Island, with Luon Cave)', 'url' => 'https://vi.wikipedia.org/wiki/Hang_S%E1%BB%ADng_S%E1%BB%91t'],
             ['title' => 'Photo with GPS: Luon Cave, Jakub Hałun (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Hang_Lu%E1%BB%93n_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1452_3806.jpg'],
         ],
-        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief. Verified (Ha Long Bay Management Department): NE of Bo Hon, ~13 km from Tuan Chau, route no. 2, bamboo boat/kayak only, crouch at high tide, several hundred rhesus macaques; kayak/bamboo service in the Luon area. Estimates, not sourced: 45-60 min stop, 30-45 min on the water. Management Board hours: 7h30-17h30 (16/4-31/10), 7h30-17h00 (1/11-15/4), not shown yet. Not published: tunnel length/height, tide thresholds, boat fees.",
+        'editor_notes' => "EN and VI rewritten 2026-10-24 from the editorial briefs. Verified (Ha Long Bay Management Department): NE of Bo Hon, ~13 km from Tuan Chau, route no. 2, bamboo boat/kayak only, crouch at high tide, several hundred rhesus macaques; kayak/bamboo service in the Luon area. Estimates, not sourced: 45-60 min stop, 30-45 min on the water. Management Board hours: 7h30-17h30 (16/4-31/10), 7h30-17h00 (1/11-15/4), not shown yet. Official prices on the VI services page (updated 2024-11-09): kayak 50,000 VND/turn/2 people, bamboo boat 30,000 VND/person/turn; not published yet. Not published: tunnel length/height, tide thresholds.",
         'en' => [
             'slug' => 'luon-cave',
             'name' => 'Luon Cave',
@@ -514,44 +514,114 @@ HTML,
             'slug' => 'hang-luon',
             'name' => 'Hang Luồn',
             'image_alt' => 'Thuyền nan đi qua vòm đá hang Luồn vào áng nước kín, vịnh Hạ Long',
-            'seo_title' => 'Hang Luồn, vịnh Hạ Long: chèo kayak hay đi đò nan?',
-            'seo_description' => 'Hang Luồn là hang nước xuyên qua núi đá dẫn vào một áng kín trên vịnh Hạ Long. Đi kayak hay đò nan, thủy triều, trẻ em và cần chuẩn bị gì.',
-            'summary' => 'Hang nước thấp xuyên qua đảo Bồ Hòn, dẫn vào một áng nước được vách núi bao quanh. Du khách đi qua bằng kayak hoặc ngồi đò nan do người dân địa phương chèo.',
+            'image_credit' => 'Ảnh: Jakub Hałun, CC BY 4.0, qua Wikimedia Commons',
+            'seo_title' => 'Hang Luồn Hạ Long: Chèo Kayak, Đi Đò Nan & Kinh Nghiệm',
+            'seo_description' => 'Hang Luồn ở đâu, có gì chơi? Khám phá trải nghiệm chèo kayak, đi đò nan qua hang, ngắm khỉ vàng và những lưu ý khi tham quan vịnh Hạ Long.',
+            'summary' => 'Hang Luồn nằm trên đảo Bồ Hòn, giữa vịnh Hạ Long, nổi tiếng với lối đi xuyên qua vòm đá thấp dẫn vào một hồ nước được núi đá vôi bao quanh. Du khách có thể tự chèo kayak hoặc ngồi đò nan để khám phá khu vực bên trong hang, nơi đôi khi có thể bắt gặp những đàn khỉ sống trên vách núi.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Hang Luồn', 'url' => 'https://halongbay.com.vn/places/31-hang-luon'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Dịch vụ chèo đò, chèo kayak', 'url' => 'https://halongbay.com.vn/vi/p/94-dich-vu-cheo-do-cheo-kayak'],
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Wikimedia Commons – Ảnh Hang Luồn của Jakub Hałun', 'url' => 'https://commons.wikimedia.org/wiki/File:Hang_Lu%E1%BB%93n_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1452_3806.jpg'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Hang Luồn xuyên qua đảo Bồ Hòn ở trung tâm vịnh Hạ Long, cùng đảo với hang Sửng Sốt. Đúng như tên gọi, đây không phải hang để đi bộ bên trong mà là một vòm đá sát mặt nước, thuyền luồn qua để vào phía trong.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Qua khỏi vòm đá là một áng nước kín, bốn bề là vách núi dựng đứng phủ cây. Mặt nước phẳng lặng, tiếng ồn ngoài vịnh gần như mất hẳn, và đây là một trong những nơi dễ nhất để ngắm núi đá vôi ở ngang tầm mặt nước. Thỉnh thoảng có thể thấy khỉ trên vách đá.</p>
-<h2>Hoạt động</h2>
+<h2>Hang Luồn ở đâu?</h2>
+<p>Hang Luồn nằm ở phía đông bắc đảo Bồ Hòn, thuộc khu vực trung tâm vịnh Hạ Long, cách cảng tàu khách quốc tế Tuần Châu khoảng 13 km đường thủy.</p>
+<p>Đây là một điểm tham quan trên tuyến số 2 của vịnh Hạ Long, cùng với <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a> và <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a>. Ba địa điểm này thường được kết hợp trong các chuyến tham quan vịnh trong ngày hoặc hành trình du thuyền nghỉ đêm.</p>
+<p>Khác với hang Sửng Sốt, nơi du khách đi bộ qua những khoang hang rộng lớn, Hang Luồn là một đường hầm tự nhiên nằm sát mặt nước. Muốn vào bên trong, du khách phải đi bằng kayak hoặc đò nan, luồn qua vòm đá nối mặt vịnh với hồ nước phía trong.</p>
+<h2>Hang Luồn có gì đặc biệt?</h2>
+<p>Điều thú vị nhất ở Hang Luồn là khung cảnh thay đổi ngay sau khi đi qua cửa hang.</p>
+<p>Nhìn từ ngoài vịnh, cửa hang giống một vòm đá thấp nằm dưới chân núi. Khi thuyền đi qua, phía trước mở ra một khoảng nước được bao quanh bởi những vách đá vôi cao, có cây xanh mọc trên các sườn núi.</p>
+<p>Khu vực hồ khá kín gió, mặt nước thường êm hơn bên ngoài. Du khách có thể chèo thuyền dọc theo chân núi, quan sát những vách đá dựng đứng và các mảng cây mọc trong khe đá.</p>
+<p>Đây cũng là nơi sinh sống của khỉ vàng. Nếu may mắn, bạn có thể bắt gặp chúng di chuyển trên vách núi hoặc giữa những tán cây. Tuy nhiên, khỉ là động vật hoang dã nên không phải chuyến tham quan nào cũng nhìn thấy.</p>
+<p>Không có những khoang hang lớn hay hệ thống lối đi bộ như ở hang Sửng Sốt. Trải nghiệm chính tại Hang Luồn là ngồi trên mặt nước, đi qua một vòm đá tự nhiên rồi khám phá khoảng hồ nằm sâu bên trong đảo.</p>
+<h2>Những hoạt động nên trải nghiệm tại Hang Luồn</h2>
+<h3>Chèo kayak xuyên qua Hang Luồn</h3>
+<p>Chèo kayak là một trong những hoạt động được nhiều du khách lựa chọn khi đến Hang Luồn.</p>
+<p>Sau khi mặc áo phao và nghe hướng dẫn, bạn sẽ tự chèo thuyền từ khu vực bến nổi đến cửa hang. Vòm đá khá thấp nên ở một số thời điểm, người ngồi trên kayak cần cúi xuống khi đi qua.</p>
+<p>Qua khỏi cửa hang, bạn có thể chèo chậm quanh hồ, ngắm những vách đá vôi và chụp ảnh trước khi quay trở ra theo lối cũ.</p>
+<p>Quãng đường chèo không quá dài, mặt nước trong hồ thường tương đối êm nên người mới cũng có thể tham gia khi điều kiện an toàn cho phép. Tuy nhiên, bạn vẫn cần làm theo hướng dẫn và biết cách điều khiển thuyền cơ bản.</p>
+<h3>Ngồi đò nan tham quan hồ nước</h3>
+<p>Nếu không muốn tự chèo, bạn có thể chọn đi đò nan do người lái đò địa phương chèo.</p>
+<p>Đò đưa khách qua vòm hang và đi một vòng trong khu vực hồ. Bạn chỉ cần ngồi trên thuyền để ngắm cảnh, chụp ảnh và quan sát những vách núi xung quanh.</p>
+<p>Hình thức này phù hợp với những người không quen chèo kayak, muốn vận động ít hơn hoặc đi cùng gia đình có trẻ nhỏ, người lớn tuổi.</p>
+<p>Dù vậy, việc bước xuống đò vẫn đòi hỏi giữ thăng bằng, và khả năng tham gia còn phụ thuộc vào điều kiện sức khỏe cũng như quy định an toàn của đơn vị vận hành.</p>
+<h3>Quan sát khỉ vàng trên vách núi</h3>
+<p>Khu vực đảo Bồ Hòn có những đàn khỉ vàng sinh sống tự nhiên. Chúng thường xuất hiện trên các mỏm đá, sườn núi hoặc giữa những tán cây gần mặt nước.</p>
+<p>Khi đi thuyền trong hồ, đôi lúc bạn có thể nhìn thấy khỉ di chuyển dọc vách núi hoặc ngồi trên những cành cây.</p>
+<p>Du khách nên quan sát từ xa, không gọi dụ, ném thức ăn hay tìm cách tiếp cận. Việc cho động vật hoang dã ăn có thể khiến chúng thay đổi tập tính và gây nguy hiểm cho cả người lẫn khỉ.</p>
+<h2>Nên chèo kayak hay đi đò nan ở Hang Luồn?</h2>
+<p>Cả hai hình thức đều đưa du khách qua cửa hang và tham quan hồ nước phía trong. Khác biệt chủ yếu nằm ở cách trải nghiệm.</p>
+<p><strong>Chèo kayak</strong> phù hợp nếu bạn thích vận động, muốn tự điều khiển thuyền và chủ động quan sát cảnh vật theo tốc độ của mình. Bạn sẽ cần dùng sức tay để chèo và phối hợp với người ngồi cùng nếu đi kayak đôi.</p>
+<p><strong>Đi đò nan</strong> phù hợp nếu bạn muốn thư thả ngắm cảnh, chụp ảnh hoặc không muốn mất sức chèo thuyền. Người lái đò sẽ điều khiển thuyền trong suốt chuyến tham quan.</p>
+<p>Nếu chưa từng chèo kayak và không tự tin khi xuống nước, đò nan thường là lựa chọn đơn giản hơn. Dù chọn cách nào, bạn vẫn có thể khám phá phần hồ nằm phía sau vòm đá.</p>
+<h2>Cách đi đến Hang Luồn</h2>
+<p>Hang Luồn không có đường bộ nối với đất liền. Du khách thường đến đây bằng tàu tham quan vịnh Hạ Long hoặc du thuyền có lịch trình ghé Hang Luồn.</p>
+<p>Các chuyến đi thường xuất phát từ cảng tàu khách quốc tế Tuần Châu hoặc những cảng được cấp phép tại khu vực Hạ Long. Xem thêm <a href="/vi/cam-nang/ha-noi-di-ha-long">hướng dẫn di chuyển từ Hà Nội đến Hạ Long</a>.</p>
+<p>Khi đến gần Hang Luồn, tàu dừng tại khu vực bến nổi để du khách chuyển sang kayak hoặc đò nan. Nhân viên tại điểm tham quan hướng dẫn mặc áo phao, lên xuống thuyền và di chuyển qua cửa hang.</p>
+<p>Hang Luồn nằm trong lịch trình dự kiến của du thuyền <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a>, với hoạt động chèo kayak hoặc tham quan bằng đò nan.</p>
+<h2>Tham quan Hang Luồn mất bao lâu?</h2>
+<p>Thông thường, du khách nên dành khoảng 45–60 phút cho điểm dừng tại Hang Luồn, bao gồm thời gian lên xuống thuyền, tham quan hồ và quay lại tàu.</p>
+<p>Riêng thời gian chèo kayak hoặc ngồi đò thường khoảng 30–45 phút, tùy lượng khách, cách tổ chức của đơn vị vận hành và điều kiện trong ngày.</p>
+<p>Vào những thời điểm đông khách, bạn có thể phải chờ một chút tại bến nổi để các đoàn lần lượt lên xuống thuyền.</p>
+<p>Nếu đi theo tour hoặc du thuyền nghỉ đêm, nên tuân thủ giờ tập trung do hướng dẫn viên thông báo, tránh tự ý kéo dài thời gian tham quan.</p>
+<h2>Khi đến Hang Luồn cần lưu ý gì?</h2>
+<p>Cửa Hang Luồn khá thấp, đặc biệt vào những ngày thủy triều lên cao. Khi đi qua, bạn có thể phải cúi người để tránh chạm đầu vào trần đá.</p>
+<p>Mực nước thay đổi theo thủy triều nên khoảng trống dưới vòm hang không phải lúc nào cũng giống nhau. Nếu nước lên quá cao hoặc thời tiết không đảm bảo, hoạt động đi thuyền qua hang có thể bị hạn chế hoặc tạm dừng.</p>
+<p>Toàn bộ chuyến tham quan diễn ra trên mặt nước. Không có đường đi bộ xuyên hang, và du khách sẽ quay trở ra qua chính cửa hang đã đi vào.</p>
+<p>Một số điều nên chuẩn bị:</p>
 <ul>
-<li><strong>Chèo kayak</strong>: tự chèo qua hang và dạo quanh áng. Mặt nước kín gió nên không cần biết chèo trước.</li>
-<li><strong>Đi đò nan</strong>: ngồi thuyền để người lái đò địa phương chèo. Phù hợp với trẻ em, người lớn tuổi và ai không muốn tự chèo.</li>
+<li>Mặc áo phao trong suốt thời gian chèo kayak hoặc ngồi đò.</li>
+<li>Cho điện thoại, máy ảnh và đồ có giá trị vào túi chống nước.</li>
+<li>Mặc quần áo thoải mái, không ngại bị nước bắn vào.</li>
+<li>Không đứng lên hoặc nghiêng người quá nhiều khi thuyền đang di chuyển.</li>
+<li>Làm theo hướng dẫn khi đi qua đoạn vòm đá thấp.</li>
+<li>Không cho khỉ ăn hoặc cố tiếp cận khỉ trên vách núi.</li>
 </ul>
-<h2>Cách đến</h2>
-<p>Tàu neo ở bến nổi gần cửa hang, nơi có sẵn kayak và đò nan. Du khách được phát áo phao trước khi xuống thuyền.</p>
-<h2>Khi đến nơi</h2>
-<p>Vòm hang thấp nên khi đi qua phải cúi người. Thuyền có qua được hay không, khoảng trống trên đầu còn bao nhiêu, đều phụ thuộc thủy triều. Buổi chiều có thể phải chờ một chút vì các đoàn lần lượt vào.</p>
-<h2>Lưu ý khi tham quan</h2>
-<ul>
-<li>Bước từ bến xuống kayak hay đò cần giữ thăng bằng; đội tàu sẽ hỗ trợ.</li>
-<li>Cho điện thoại vào túi chống nước và mặc đồ không ngại ướt.</li>
-<li>Không cho khỉ ăn và không lại gần khỉ.</li>
-</ul>
-<h2>Thời tiết và mùa</h2>
-<p>Gió mạnh, mưa to hoặc triều quá cao có thể khiến việc qua hang không an toàn; khi đó hoạt động sẽ được rút ngắn hoặc thay thế. Mùa bão, tàu trên vịnh có thể bị tạm dừng hoàn toàn.</p>
+<p>Tắm biển không phải hoạt động thông thường tại Hang Luồn. Du khách nên ở trên thuyền và không tự ý xuống nước.</p>
+<h2>Người lớn tuổi và trẻ nhỏ có tham quan Hang Luồn được không?</h2>
+<p>Trẻ em và người lớn tuổi vẫn có thể tham quan Hang Luồn nếu sức khỏe phù hợp và đáp ứng yêu cầu an toàn của đơn vị tổ chức.</p>
+<p>Với trẻ nhỏ, đi đò nan thường thuận tiện hơn vì không phải tự chèo. Trẻ cần mặc áo phao đúng kích cỡ và có người lớn đi cùng theo quy định.</p>
+<p>Người lớn tuổi có thể lựa chọn đò nan để hạn chế vận động. Tuy nhiên, việc bước từ bến nổi xuống thuyền đòi hỏi giữ thăng bằng, nhất là khi có sóng hoặc mặt bến chuyển động.</p>
+<p>Đối với người sử dụng xe lăn hoặc gặp khó khăn khi di chuyển, hoạt động này có thể không phù hợp do điều kiện lên xuống thuyền. Bạn nên trao đổi trước với đơn vị tổ chức để được tư vấn.</p>
+<h2>Nên đi Hang Luồn vào tháng mấy?</h2>
+<p>Hang Luồn có thể tham quan quanh năm, tùy điều kiện thời tiết, thủy triều và hoạt động của tàu du lịch trên vịnh.</p>
+<p>Từ khoảng tháng 4 đến tháng 10, thời tiết thường ấm hơn, thuận lợi cho những hoạt động ngoài trời như chèo kayak. Tuy nhiên, mùa hè cũng có thể xuất hiện mưa lớn, gió mạnh hoặc bão khiến lịch trình bị thay đổi.</p>
+<p>Từ tháng 11 đến tháng 3, thời tiết mát hoặc lạnh hơn. Nếu đi đò nan vào ngày nhiều gió, bạn nên mang thêm áo khoác mỏng.</p>
+<p>Riêng với Hang Luồn, thủy triều là yếu tố quan trọng không kém thời tiết. Vì cửa hang nằm thấp sát mặt nước, mực nước dâng cao có thể khiến thuyền không đủ khoảng trống để đi qua an toàn.</p>
+<p>Đơn vị vận hành và nhân viên tại điểm tham quan sẽ căn cứ vào điều kiện thực tế để quyết định có tổ chức hoạt động hay không. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">du lịch Hạ Long mùa nào đẹp nhất</a>.</p>
+<h2>Tham quan Hang Luồn cùng Green Ruby Cruises</h2>
+<p>Hang Luồn nằm trong hai hành trình dự kiến của du thuyền Green Ruby 1 trên vịnh Hạ Long.</p>
+<p><strong><a href="/vi/hanh-trinh/2-ngay-1-dem-mot-thoang-ha-long-1-9.html">2 ngày 1 đêm – Một Thoáng Hạ Long</a></strong><br>Hành trình nghỉ đêm kết hợp chèo kayak hoặc đi đò nan tại Hang Luồn, tham quan đảo Ti Tốp và khám phá hang Sửng Sốt.</p>
+<p><strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-ha-long-1-8.html">3 ngày 2 đêm – Dấu Ấn Hạ Long</a></strong><br>Hành trình dài hơn với thêm một ngày khám phá các địa điểm khác trên vịnh, bên cạnh những điểm tham quan quen thuộc của tuyến số 2.</p>
+<p><em>Các điểm dừng trên thuộc lịch trình dự kiến của Green Ruby 1. Thời gian và hoạt động thực tế sẽ được xác nhận khi tàu đi vào vận hành, đồng thời có thể thay đổi theo thời tiết, thủy triều và quy định của cơ quan quản lý.</em></p>
+<h2>Điểm đến gần và liên quan</h2>
+<h3><a href="/vi/dia-diem-tham-quan/hang-sung-sot">Hang Sửng Sốt</a></h3>
+<p>Nằm cùng đảo Bồ Hòn với Hang Luồn, nổi tiếng với những khoang hang rộng, nhiều khối thạch nhũ và lối đi bộ xuyên núi.</p>
+<h3><a href="/vi/dia-diem-tham-quan/dao-ti-top">Đảo Ti Tốp</a></h3>
+<p>Điểm dừng có bãi tắm nhỏ dưới chân đảo và cầu thang lên đỉnh ngắm toàn cảnh vịnh Hạ Long.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Đảo Bồ Hòn, trung tâm vịnh Hạ Long'],
-                ['label' => 'Loại hình', 'value' => 'Hang nước xuyên núi dẫn vào áng kín'],
-                ['label' => 'Cách đến', 'value' => 'Kayak hoặc đò nan từ bến nổi'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1 giờ trên mặt nước (ước tính)'],
-                ['label' => 'Phụ thuộc', 'value' => 'Thủy triều và thời tiết trong ngày'],
+                ['label' => 'Vị trí', 'value' => 'Đảo Bồ Hòn, vịnh Hạ Long, Quảng Ninh'],
+                ['label' => 'Khoảng cách', 'value' => 'Khoảng 13 km từ cảng Tuần Châu'],
+                ['label' => 'Tuyến tham quan', 'value' => 'Tuyến số 2 vịnh Hạ Long'],
+                ['label' => 'Đặc điểm', 'value' => 'Hang nước xuyên núi dẫn vào hồ kín'],
+                ['label' => 'Hoạt động', 'value' => 'Chèo kayak, đi đò nan, ngắm cảnh'],
+                ['label' => 'Cách đến', 'value' => 'Tàu tham quan hoặc du thuyền'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 45–60 phút'],
+                ['label' => 'Đi bộ xuyên hang', 'value' => 'Không'],
+                ['label' => 'Động vật hoang dã', 'value' => 'Có thể bắt gặp khỉ vàng'],
+                ['label' => 'Điều kiện tham quan', 'value' => 'Phụ thuộc thời tiết và thủy triều'],
             ],
             'faq' => [
-                ['q' => 'Ở hang Luồn nên chèo kayak hay đi đò nan?', 'a' => 'Chọn kayak nếu bạn muốn tự khám phá và không ngại ướt một chút. Chọn đò nan nếu muốn được chèo giúp, đi cùng trẻ nhỏ hoặc muốn rảnh tay chụp ảnh.'],
-                ['q' => 'Chưa chèo kayak bao giờ có đi được không?', 'a' => 'Được. Áng nước kín gió, quãng chèo ngắn. Đội tàu sẽ hướng dẫn trước và bắt buộc mặc áo phao.'],
-                ['q' => 'Trẻ em có qua hang Luồn được không?', 'a' => 'Được, thường là ngồi đò nan cùng người lớn. Trẻ mặc áo phao suốt thời gian trên thuyền.'],
-                ['q' => 'Green Ruby dự kiến ghé hang Luồn khi nào?', 'a' => 'Chiều ngày đầu tiên trong cả hai hành trình vịnh Hạ Long của Green Ruby 1, trước khi đến đảo Ti Tốp. Lịch trình có thể điều chỉnh trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Hang Luồn có gì đặc biệt?', 'a' => 'Hang Luồn là một đường hầm đá vôi nằm sát mặt nước, nối vịnh Hạ Long với một hồ nước được núi đá bao quanh. Du khách khám phá hang bằng kayak hoặc đò nan thay vì đi bộ như ở những hang động lớn.'],
+                ['q' => 'Ở Hang Luồn nên chèo kayak hay đi đò nan?', 'a' => 'Nếu thích vận động và muốn tự chèo thuyền, bạn nên chọn kayak. Nếu muốn ngồi thư giãn, chụp ảnh và không cần tự chèo, đò nan sẽ phù hợp hơn. Cả hai hình thức đều tham quan cùng khu vực hồ phía trong hang.'],
+                ['q' => 'Chưa chèo kayak bao giờ có tham gia được không?', 'a' => 'Có thể. Tuyến chèo tại Hang Luồn tương đối ngắn và hồ thường kín gió, phù hợp với nhiều người mới bắt đầu. Tuy nhiên, bạn cần mặc áo phao, nghe hướng dẫn và chỉ tham gia khi điều kiện an toàn cho phép.'],
+                ['q' => 'Trẻ em có qua Hang Luồn được không?', 'a' => 'Trẻ em có thể tham gia đi đò nan nếu đáp ứng quy định về độ tuổi, áo phao và người đi kèm của đơn vị vận hành. Đối với chèo kayak, cần kiểm tra điều kiện cụ thể trước chuyến đi.'],
+                ['q' => 'Có thể đi bộ vào Hang Luồn không?', 'a' => 'Không. Phần nền hang ngập nước nên du khách phải đi bằng kayak hoặc đò nan để qua cửa hang và vào hồ bên trong.'],
+                ['q' => 'Tham quan Hang Luồn mất bao lâu?', 'a' => 'Thời gian cho cả điểm dừng thường khoảng 45–60 phút, trong đó hoạt động trên mặt nước có thể kéo dài khoảng 30–45 phút. Thời gian thực tế tùy lịch trình và lượng khách trong ngày.'],
+                ['q' => 'Hang Luồn có khỉ không?', 'a' => 'Có. Khu vực này là nơi sinh sống của khỉ vàng. Du khách đôi khi có thể thấy chúng trên vách đá hoặc giữa các tán cây, nhưng không phải lúc nào khỉ cũng xuất hiện.'],
+                ['q' => 'Green Ruby dự kiến ghé Hang Luồn khi nào?', 'a' => 'Theo lịch trình dự kiến của Green Ruby 1, du khách sẽ tham quan Hang Luồn vào khoảng 15:30 ngày đầu tiên trong cả hai hành trình 2 ngày 1 đêm và 3 ngày 2 đêm. Thời gian có thể điều chỉnh theo thủy triều, thời tiết và yêu cầu vận hành.'],
             ],
         ],
     ],
