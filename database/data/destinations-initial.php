@@ -400,49 +400,114 @@ HTML,
             ['title' => 'Wikipedia (Vietnamese): Hang Sửng Sốt (Bo Hon Island, with Luon Cave)', 'url' => 'https://vi.wikipedia.org/wiki/Hang_S%E1%BB%ADng_S%E1%BB%91t'],
             ['title' => 'Photo with GPS: Luon Cave, Jakub Hałun (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Hang_Lu%E1%BB%93n_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1452_3806.jpg'],
         ],
-        'editor_notes' => "Monkeys: often reported by visitors, kept as 'sometimes seen'. Not published: tunnel length/height, tide thresholds, boat fees.",
+        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief. Verified (Ha Long Bay Management Department): NE of Bo Hon, ~13 km from Tuan Chau, route no. 2, bamboo boat/kayak only, crouch at high tide, several hundred rhesus macaques; kayak/bamboo service in the Luon area. Estimates, not sourced: 45-60 min stop, 30-45 min on the water. Management Board hours: 7h30-17h30 (16/4-31/10), 7h30-17h00 (1/11-15/4), not shown yet. Not published: tunnel length/height, tide thresholds, boat fees.",
         'en' => [
             'slug' => 'luon-cave',
             'name' => 'Luon Cave',
             'image_alt' => 'Rowing boats passing under the rock arch of Luon Cave into the enclosed lagoon, Ha Long Bay',
-            'seo_title' => 'Luon Cave, Ha Long Bay: Kayak or Bamboo Boat to the Lagoon',
-            'seo_description' => 'Luon Cave in Ha Long Bay is a low sea tunnel into an enclosed lagoon. How the visit works by kayak or bamboo boat, tides, children and what to bring.',
-            'summary' => 'A low, water-level tunnel through Bo Hon Island that opens into a lagoon enclosed by cliffs. You pass through by kayak or in a bamboo boat rowed by local boatmen.',
+            'seo_title' => 'Luon Cave, Ha Long Bay: Kayaking, Bamboo Boats & Guide',
+            'seo_description' => 'Explore Luon Cave in Ha Long Bay by kayak or bamboo boat. Learn about the lagoon, wildlife, tides, visiting time and what to expect before your trip.',
+            'summary' => 'Luon Cave is a low limestone passage on Bo Hon Island in Ha Long Bay. Visitors travel through it by kayak or bamboo boat to reach a sheltered lagoon surrounded by steep, forested cliffs. Unlike the bay’s larger caves, Luon Cave is explored entirely from the water.',
+            'sources' => [
+                ['title' => 'Ha Long Bay Management Department – Luon Cave', 'url' => 'https://halongbay.com.vn/en/places/31-hang-luon'],
+                ['title' => 'Ha Long Bay Management Department – Kayaking and Bamboo Boat Services', 'url' => 'https://halongbay.com.vn/en/p/94-dich-vu-cheo-do-cheo-kayak'],
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Wikimedia Commons – Luon Cave Photograph', 'url' => 'https://commons.wikimedia.org/wiki/File:Hang_Lu%E1%BB%93n_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1452_3806.jpg'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Luon Cave cuts through Bo Hon Island in central Ha Long Bay, the same island as Sung Sot Cave. "Luon" means to pass through, and that is exactly what you do: the cave is a short tunnel at sea level rather than a chamber to walk in.</p>
-<h2>Why it is worth visiting</h2>
-<p>On the other side of the arch is a lagoon closed in on all sides by steep, wooded cliffs. The water is calm, the noise of the main bay drops away, and it is one of the easiest places in Ha Long Bay to get close to the karst at water level. Macaques are sometimes seen on the cliffs.</p>
-<h2>Activities</h2>
-<ul>
-<li><strong>Kayaking</strong>: paddle yourself through the tunnel and around the lagoon. No previous experience is needed for this sheltered water.</li>
-<li><strong>Bamboo boat</strong>: sit back while a local boatman rows. This suits children, older travellers and anyone who prefers not to paddle.</li>
-</ul>
-<h2>How visitors reach it</h2>
-<p>Boats moor at a floating pier near the cave mouth, where kayaks and bamboo boats wait. Life jackets are handed out before you set off.</p>
-<h2>What to expect on arrival</h2>
-<p>The arch is low, so you duck as you pass under it. Whether boats can go through, and how much headroom there is, depends on the tide. In the afternoon there can be a short wait as groups take turns.</p>
+<h2>Where is Luon Cave?</h2>
+<p>Luon Cave lies on the northeastern side of Bo Hon Island, in central Ha Long Bay, approximately 13 km from Tuan Chau International Marina.</p>
+<p>It is part of Ha Long Bay’s sightseeing Route 2, along with nearby <a href="/destinations/sung-sot-cave">Sung Sot Cave</a> and <a href="/destinations/ti-top-island">Ti Top Island</a>. These attractions are often combined on day trips and overnight cruises.</p>
+<p>The name “Luon” refers to passing through. Here, the cave is a natural tunnel connecting the open bay with a lagoon hidden inside the limestone island.</p>
+<p>There is no walking path through the cave. Visitors enter and leave by kayak or bamboo rowing boat.</p>
+<h2>What makes Luon Cave worth visiting?</h2>
+<p>The most interesting part of Luon Cave is what lies beyond its entrance.</p>
+<p>From the outside, you see a low opening in the limestone cliff. Passing underneath brings you into a lagoon enclosed by high rock walls, with trees and other vegetation growing along the slopes.</p>
+<p>The water is generally more sheltered than the open bay. You can paddle along the edge of the lagoon, look up at the limestone cliffs and take in the surroundings without travelling far from the cave entrance.</p>
+<p>Wild macaques also live around Bo Hon Island and are sometimes spotted on the rocks or among the trees. Sightings are not guaranteed, and visitors should keep their distance.</p>
+<p>It is a different experience from visiting <a href="/destinations/sung-sot-cave">Sung Sot Cave</a>, where you walk through large chambers. At Luon Cave, the limestone formations are best appreciated from a small boat, close to the water.</p>
+<h2>Things to do at Luon Cave</h2>
+<h3>Kayaking through Luon Cave</h3>
+<p>Kayaking is one of the most popular ways to visit Luon Cave.</p>
+<p>After putting on a life jacket and receiving basic instructions, you paddle towards the cave entrance. The passage is low, so you may need to lean forward as you move beneath the rock ceiling.</p>
+<p>Beyond the tunnel, the lagoon opens up. You can paddle around the sheltered water, take photographs and enjoy views of the cliffs before returning through the same passage.</p>
+<p>The route is relatively short and is generally suitable for beginners when conditions are calm. You do not usually need previous kayaking experience, although you should be comfortable sitting in a small boat and following safety instructions.</p>
+<h3>Taking a bamboo boat</h3>
+<p>If you would rather not paddle, a bamboo boat is a good alternative.</p>
+<p>These small boats are rowed by local boatmen, allowing passengers to sit back and enjoy the journey through the cave and around the lagoon.</p>
+<p>Bamboo boats can be a more comfortable choice for families with children, older visitors or anyone who prefers a less physically demanding activity.</p>
+<p>They also leave your hands free for photographs, although it is worth protecting your phone or camera from splashes.</p>
+<h3>Looking for wildlife around the lagoon</h3>
+<p>The wooded cliffs around Luon Cave provide habitat for macaques and other wildlife.</p>
+<p>You may see monkeys moving along the rocks or resting in the trees. They are wild animals, so avoid approaching them, making noise to attract them or offering food.</p>
+<p>Even without a wildlife sighting, there is plenty to observe along the lagoon’s limestone walls, particularly where plants have taken root in cracks above the water.</p>
+<h2>Kayak or bamboo boat: which should you choose?</h2>
+<p>Both options follow a similar route through the cave and into the lagoon, but the experience is slightly different.</p>
+<p>Choose a <strong>kayak</strong> if you enjoy being active and want to explore at your own pace. You will paddle the boat yourself, so some movement and coordination are required.</p>
+<p>Choose a <strong>bamboo boat</strong> if you prefer to relax, take photographs or avoid the physical effort of paddling. A local boatman handles the rowing.</p>
+<p>For visitors who are unsure about kayaking, the bamboo boat is often the simpler option. Either way, you will see the same main attraction: the lagoon beyond the limestone passage.</p>
+<h2>How to get to Luon Cave</h2>
+<p>Luon Cave is accessible only by boat as part of a trip into Ha Long Bay.</p>
+<p>Most visitors arrive on a day cruise or overnight cruise departing from Tuan Chau or another authorised passenger port in the Ha Long area. See <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a>.</p>
+<p>Sightseeing boats stop near a floating platform by the cave entrance. Passengers then transfer to kayaks or bamboo boats for the visit.</p>
+<p>Life jackets are provided, and local staff help organise boarding and departures.</p>
+<p><a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a> includes Luon Cave in its planned Ha Long Bay itineraries, with kayaking or a bamboo boat ride among the scheduled activities.</p>
+<h2>How long does a visit to Luon Cave take?</h2>
+<p>Allow approximately 45–60 minutes for the full stop, including boarding, the boat ride and returning to your cruise (estimate).</p>
+<p>The time actually spent on the water is often around 30–45 minutes, depending on the number of visitors, the chosen activity and local conditions.</p>
+<p>During busy periods, you may need to wait briefly at the floating platform while other groups board or return their boats.</p>
+<p>If you are visiting on an organised cruise, follow your guide’s departure time rather than planning to stay longer.</p>
+<h2>What to expect when you arrive</h2>
+<p>The first thing you will notice is how low the cave entrance sits above the water.</p>
+<p>Depending on the tide, passengers may need to duck when passing underneath. At higher water levels, there may not be enough clearance for boats to enter safely.</p>
+<p>The passage is shaded, but it is relatively short. Once through, you emerge into the lagoon, surrounded by limestone cliffs.</p>
+<p>There is no dry cave floor or walking trail to explore. The visit takes place entirely on the water, and you return through the same entrance.</p>
+<p>Luon Cave can be busy when several cruise groups arrive together, but traffic is managed around the boarding area and cave passage.</p>
 <h2>Accessibility and practical tips</h2>
+<p>Visiting Luon Cave involves stepping from a floating platform into a small boat. This requires some balance and may be difficult for visitors with limited mobility.</p>
+<p>Bamboo boats require less physical effort than kayaks, but they are not necessarily wheelchair-accessible. Ask your cruise operator about boarding assistance if you have mobility concerns.</p>
+<p>Before setting off:</p>
 <ul>
-<li>Stepping from the pier into a kayak or bamboo boat needs some balance; the crew helps with boarding.</li>
-<li>Keep phones in a dry bag and wear clothes that can get splashed.</li>
+<li>Wear the provided life jacket throughout the activity.</li>
+<li>Keep your phone, camera and valuables in a waterproof bag.</li>
+<li>Wear comfortable clothes that can get splashed.</li>
+<li>Follow instructions when passing beneath the low cave ceiling.</li>
+<li>Avoid standing up or leaning over the side of the boat.</li>
 <li>Do not feed or approach the monkeys.</li>
 </ul>
-<h2>Weather and seasonal limits</h2>
-<p>Strong wind, heavy rain or a very high tide can make the passage unsafe, and the visit may then be shortened or replaced. In storm season, sailings in the bay can be suspended altogether.</p>
+<p>Swimming is not part of the standard Luon Cave visit. Remain in your boat unless local staff explicitly advise otherwise.</p>
+<h2>Best time to visit Luon Cave</h2>
+<p>Luon Cave can be visited throughout the year, depending on weather, tides and cruise operations.</p>
+<p>From roughly April to October, the weather is generally warmer, making kayaking and bamboo boat rides more comfortable. Summer can also bring heavy rain, strong winds and tropical storms that disrupt activities on the bay.</p>
+<p>From November to March, conditions are often cooler. A light jacket may be useful on windy days, particularly when sitting in a bamboo boat.</p>
+<p>The tide is especially important at Luon Cave. Because the passage is low, high water can reduce the space beneath the rock ceiling and sometimes prevent boats from entering.</p>
+<p>Your cruise crew and the local operators will decide whether the visit can go ahead safely on the day. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Explore Luon Cave with Green Ruby Cruises</h2>
+<p>Luon Cave is included in the planned Ha Long Bay itineraries aboard Green Ruby 1.</p>
+<p><strong><a href="/itinerary/the-halong-escape-2-days-1-night-3-4.html">The Halong Escape – 2 Days 1 Night</a></strong><br>An overnight cruise combining a kayak or bamboo boat visit to Luon Cave with Ti Top Island and Sung Sot Cave.</p>
+<p><strong><a href="/itinerary/the-halong-immersion-3-days-2-nights-3-3.html">The Halong Immersion – 3 Days 2 Nights</a></strong><br>A longer Ha Long Bay journey with additional time to explore beyond the main sightseeing route.</p>
+<p><em>These are planned stops. Final itineraries and timings will be confirmed when Green Ruby’s sailings begin and may change due to tides, weather, local regulations or operational conditions.</em></p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Bo Hon Island, central Ha Long Bay'],
-                ['label' => 'Type', 'value' => 'Sea-level tunnel leading to an enclosed lagoon'],
-                ['label' => 'Access', 'value' => 'Kayak or bamboo rowing boat from a floating pier'],
-                ['label' => 'Typical visit', 'value' => 'About 1 hour on the water (estimate)'],
-                ['label' => 'Depends on', 'value' => 'Tide and weather on the day'],
+                ['label' => 'Location', 'value' => 'Bo Hon Island, central Ha Long Bay, Vietnam'],
+                ['label' => 'Sightseeing route', 'value' => 'Ha Long Bay Route 2'],
+                ['label' => 'Known for', 'value' => 'Water-level limestone tunnel and enclosed lagoon'],
+                ['label' => 'Main activities', 'value' => 'Kayaking and bamboo boat rides'],
+                ['label' => 'Access', 'value' => 'By cruise boat, followed by kayak or bamboo boat'],
+                ['label' => 'Typical visit', 'value' => 'Approximately 45–60 minutes'],
+                ['label' => 'Walking access', 'value' => 'No walking route through the cave'],
+                ['label' => 'Wildlife', 'value' => 'Macaques may be seen along the cliffs'],
+                ['label' => 'Conditions', 'value' => 'Dependent on tides, weather and local safety rules'],
             ],
             'faq' => [
-                ['q' => 'Should I choose a kayak or a bamboo boat at Luon Cave?', 'a' => 'Kayak if you want to explore at your own pace and are comfortable getting a little wet. Choose the bamboo boat if you would rather be rowed, are travelling with young children, or want to take photos.'],
-                ['q' => 'Do I need kayaking experience?', 'a' => 'No. The lagoon is sheltered and the route is short. The crew gives a briefing, and life jackets are compulsory.'],
-                ['q' => 'Can children go through Luon Cave?', 'a' => 'Yes, usually in a bamboo boat with an adult. Children wear life jackets throughout.'],
-                ['q' => 'When does Green Ruby plan to visit Luon Cave?', 'a' => 'On the first afternoon of both Ha Long Bay itineraries of Green Ruby 1, before Ti Top Island. The schedule is provisional until sailings begin, expected in February 2027.'],
+                ['q' => 'What is special about Luon Cave?', 'a' => 'Luon Cave is a natural limestone tunnel that leads into a lagoon surrounded by steep cliffs. Unlike larger caves in Ha Long Bay, it is explored by kayak or bamboo boat rather than on foot.'],
+                ['q' => 'Should I choose a kayak or a bamboo boat at Luon Cave?', 'a' => 'Choose a kayak if you enjoy paddling and want a more active experience. A bamboo boat is better if you prefer to sit back while a local boatman rows. Both take visitors through the cave and into the lagoon.'],
+                ['q' => 'Do I need kayaking experience to visit Luon Cave?', 'a' => 'No previous experience is usually required. The kayaking route is short and the lagoon is sheltered, but conditions vary. Follow the safety briefing and choose a bamboo boat if you are uncomfortable paddling.'],
+                ['q' => 'Can children visit Luon Cave?', 'a' => 'Children can generally join a bamboo boat ride when the operator permits it and suitable life jackets are available. Kayaking age restrictions may vary, so check with your cruise operator before the trip.'],
+                ['q' => 'Can you walk through Luon Cave?', 'a' => 'No. Luon Cave is a water-level passage with no pedestrian path. Visitors travel through it by kayak or bamboo rowing boat.'],
+                ['q' => 'How long does it take to explore Luon Cave?', 'a' => 'The activity on the water typically takes around 30–45 minutes. Allow approximately 45–60 minutes for the full cruise stop, including boarding and returning to the main boat.'],
+                ['q' => 'Are there monkeys at Luon Cave?', 'a' => 'Wild macaques live around the limestone cliffs and are sometimes visible from the lagoon. Sightings depend on their movements, and visitors should not feed or approach them.'],
+                ['q' => 'When does Green Ruby plan to visit Luon Cave?', 'a' => 'Luon Cave is included in Green Ruby 1’s planned 2-day/1-night and 3-day/2-night Ha Long Bay itineraries. The published 2-day itinerary schedules the visit for approximately 3:30 PM on the first day. All stops remain subject to weather, tidal conditions and operational requirements.'],
             ],
         ],
         'vi' => [
