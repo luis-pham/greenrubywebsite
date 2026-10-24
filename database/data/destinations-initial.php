@@ -1219,48 +1219,144 @@ HTML,
         'image_credit' => null,
         'itineraries' => ['en' => [1, 2], 'vi' => [5, 7]],
         'sources' => [$unesco, $catBaMab],
-        'editor_notes' => "Needs verified coordinates and a photo of this exact cave: the hero is the owner's photo of kayaking through a limestone cave in Lan Ha Bay (media library 2026-10-21), and its alt text says only that. Not published: passage lengths, tide thresholds.",
+        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief; slug dark-and-bright-cave -> dark-bright-cave (308 in next.config). Verified: GR2 times 15:30 (2D1N) / 15:00 (3D2N) and Gia Luan boarding (itinerary pages); kayak suspension from 1 Feb 2026 per Indochina Sails notice citing 483/TB-UBND (operator source, no official notice found). GR2 itinerary pages still say 'kayak or bamboo boat'. Needs verified coordinates and a photo of this exact cave: the hero is the owner's photo of kayaking through a limestone cave in Lan Ha Bay (media library 2026-10-21), and its alt text says only that. Not published: passage lengths, tide thresholds.",
         'en' => [
-            'slug' => 'dark-and-bright-cave',
+            'slug' => 'dark-bright-cave',
             'name' => 'Dark & Bright Cave',
             'image_alt' => 'Kayakers paddling through a limestone cave arch in Lan Ha Bay',
-            'seo_title' => 'Dark and Bright Cave, Lan Ha Bay: Kayaking Guide',
-            'seo_description' => 'Dark and Bright Cave in Lan Ha Bay is explored by kayak or bamboo boat. How the visit works, tides, who it suits and when Green Ruby plans to stop.',
-            'summary' => 'A pair of sea-level passages in Lan Ha Bay, one dim and enclosed, the other open to daylight, explored by kayak or bamboo boat. A calm first taste of the bay at water level.',
+            'seo_title' => 'Dark & Bright Cave, Lan Ha Bay: Bamboo Boat & Visitor Guide',
+            'seo_description' => 'Explore Dark & Bright Cave in Lan Ha Bay by bamboo boat. Discover its limestone passages, sheltered lagoon, tide conditions and current kayaking rules.',
+            'summary' => 'Dark & Bright Cave, also known as Hang Sang Toi, is a pair of limestone passages in Lan Ha Bay, near Cat Ba Island. The best-known route leads beneath a low rock arch into a sheltered lagoon surrounded by steep, forested cliffs. Visitors explore the area by small rowing boat, getting a close view of the limestone landscape from the water.',
+            'sources' => [
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'UNESCO – Cat Ba Biosphere Reserve', 'url' => 'https://www.unesco.org/en/mab/cat-ba'],
+                ['title' => 'Indochina Sails – Continued Kayak Suspension in Lan Ha Bay', 'url' => 'https://www.indochinasails.com/en/blog/kayak-suspension-enhanced-bamboo-boat-experience-in-lan-ha-bay.html'],
+                ['title' => 'Green Ruby Cruises – The Lan Ha Escape, 2 Days 1 Night', 'url' => 'https://greenrubycruises.com/itinerary/the-lan-ha-escape-2-days-1-night-4-2.html'],
+                ['title' => 'Green Ruby Cruises – The Lan Ha Immersion, 3 Days 2 Nights', 'url' => 'https://greenrubycruises.com/itinerary/the-lan-ha-immersion-3-days-2-nights-4-1.html'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Dark &amp; Bright Cave is in Lan Ha Bay, the quieter waters off the east coast of Cat Ba Island. Lan Ha belongs to the Cat Ba Archipelago, part of the Ha Long Bay – Cat Ba Archipelago World Heritage Site since 2023 and a UNESCO Biosphere Reserve since 2004.</p>
-<h2>Why it is worth visiting</h2>
-<p>The name describes the experience. One passage is low and dim, and you paddle through half-light with the rock close overhead. The other opens to daylight, with the green of the cliffs reflected in still water. Because Lan Ha sees fewer boats than central Ha Long Bay, the visit usually feels unhurried.</p>
-<h2>Activities</h2>
-<ul>
-<li><strong>Kayaking</strong> through the passages and along the cliffs.</li>
-<li><strong>Bamboo boat</strong>, rowed by a local boatman, for those who prefer not to paddle.</li>
-</ul>
-<h2>How visitors reach it</h2>
-<p>The ship anchors nearby and guests transfer by tender to where kayaks and bamboo boats are launched. Life jackets are provided.</p>
-<h2>What to expect on arrival</h2>
-<p>The guide gives a short briefing on the route and the tide before launching. In the dark passage you will need to keep your head low; the bright side is open and easy.</p>
+<h2>Where is Dark &amp; Bright Cave?</h2>
+<p>Dark &amp; Bright Cave lies in Lan Ha Bay, off the eastern side of Cat Ba Island in northern Vietnam.</p>
+<p>The cave area is part of the Cat Ba Archipelago, where hundreds of limestone islands rise from the water. It is reached by boat and is a regular sightseeing stop on Lan Ha Bay cruises.</p>
+<p>The wider archipelago has two important UNESCO designations. Cat Ba was recognised as a UNESCO Biosphere Reserve in 2004, and in 2023 the archipelago was added to the Ha Long Bay World Heritage property, now officially known as Ha Long Bay–Cat Ba Archipelago.</p>
+<p>Unlike caves such as <a href="/destinations/sung-sot-cave">Sung Sot</a>, which visitors explore on foot, Dark &amp; Bright Cave is a water-level attraction. The main experience is travelling beneath the limestone arch and into the lagoon beyond.</p>
+<h2>What makes Dark &amp; Bright Cave special?</h2>
+<p>The appeal of Dark &amp; Bright Cave is the change in scenery as you pass beneath the rock.</p>
+<p>Approaching by boat, you see a low opening at the base of a limestone island. Beyond it lies a lagoon enclosed by high cliffs, with trees and other vegetation growing along the rock faces.</p>
+<p>The surrounding cliffs shelter the water, although conditions still depend on the weather and tide. From a small boat, you can look up at the limestone formations and follow the shoreline at a much slower pace than you would on a larger cruise ship.</p>
+<p>The name refers to two contrasting passages. The darker passage receives little natural light, while the brighter opening leads into the lagoon.</p>
+<p>Visitors should not assume that both passages are open. Access depends on water levels, safety restrictions and the routes currently authorised for sightseeing.</p>
+<p>For many guests, the main attraction is the brighter passage and the quiet stretch of water beyond it.</p>
+<h2>Dark Cave and Bright Cave: what’s the difference?</h2>
+<p>Although the site is commonly called Dark &amp; Bright Cave, the two passages are not identical.</p>
+<h3>Bright Cave (Hang Sang)</h3>
+<p>Bright Cave is the passage most closely associated with the familiar photographs of this area.</p>
+<p>A low limestone arch connects the surrounding bay with an enclosed lagoon. Small rowing boats travel beneath the rock ceiling before emerging into daylight on the other side.</p>
+<p>The lagoon is bordered by steep limestone walls, with vegetation clinging to the cliffs above the water.</p>
+<p>The experience is relatively gentle, although passengers may need to lower their heads when passing beneath the arch, depending on the tide.</p>
+<h3>Dark Cave (Hang Toi)</h3>
+<p>Dark Cave is the less illuminated passage, with a more enclosed interior and limited natural light.</p>
+<p>Unlike Bright Cave, it is not necessarily accessible during regular sightseeing visits. Water levels and safety restrictions can limit entry, and the route may be closed altogether.</p>
+<p>If your main reason for visiting is to explore the darker passage, check with your cruise operator beforehand. Booking a trip to Dark &amp; Bright Cave does not guarantee entry into both caves.</p>
+<h2>Things to do at Dark &amp; Bright Cave</h2>
+<h3>Take a bamboo boat through Bright Cave</h3>
+<p>A locally rowed bamboo boat is the main way to experience the cave area under the current kayaking restrictions.</p>
+<p>After putting on a life jacket and receiving boarding instructions, you sit in a small boat while a local rower guides it towards the limestone opening.</p>
+<p>As you pass beneath the arch, the rock ceiling comes close overhead. The boat then emerges into the lagoon, where you can look around at the cliffs and vegetation before returning through the passage.</p>
+<p>Because someone else handles the rowing, you can concentrate on the scenery and take photographs.</p>
+<p>The ride is suitable for many visitors who prefer not to paddle, although getting into and out of the boat still requires some balance.</p>
+<h3>Explore the sheltered lagoon</h3>
+<p>The lagoon beyond Bright Cave is one of the main reasons people visit.</p>
+<p>High limestone cliffs surround the water, leaving relatively little of the open bay visible from inside. Trees and shrubs grow from cracks in the rock, sometimes extending over the water’s edge.</p>
+<p>From the boat, you can observe the changing shapes of the limestone walls and the reflections on the water.</p>
+<p>There is no need to rush through the lagoon. The experience is about spending time close to the landscape rather than reaching a viewpoint or walking through a series of chambers.</p>
+<h3>Kayaking when regulations permit</h3>
+<p>Dark &amp; Bright Cave has long been known as a kayaking destination.</p>
+<p>However, kayaking services in Lan Ha Bay, including the Dark &amp; Bright Cave area, remain subject to a temporary suspension under local regulations as of October 2026.</p>
+<p>Until permission is restored, visitors should not expect to kayak through the cave. Authorised rowing-boat services may be offered instead.</p>
+<p>If kayaking is an important part of your holiday, confirm the activity directly with your cruise operator before booking.</p>
+<h2>Bamboo boat or kayak: what should visitors know?</h2>
+<p>Historically, visitors could choose between paddling a kayak themselves and taking a bamboo boat rowed by a local boat operator.</p>
+<p>The two experiences are different.</p>
+<p>A kayak gives you more control over the pace and direction of travel, but requires physical effort and confidence handling a small boat.</p>
+<p>A bamboo boat is more relaxed. Passengers remain seated while the rower navigates the cave passage and lagoon.</p>
+<p>Under the current restrictions, bamboo boat visits are the more relevant option at Dark &amp; Bright Cave.</p>
+<p>Activities may change if local authorities revise the rules, so the experience available on your travel date should always be confirmed in advance.</p>
+<h2>How to get to Dark &amp; Bright Cave</h2>
+<p>Dark &amp; Bright Cave is accessible by boat as part of a Lan Ha Bay sightseeing trip or overnight cruise.</p>
+<p>Visitors may travel from Cat Ba Island or join cruises that begin with check-in at Tuan Chau International Marina. See <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a>.</p>
+<p>The transfer arrangements depend on the operator and the ship’s boarding location.</p>
+<p>Large cruise ships do not enter the cave. Instead, guests reach the designated boarding area and transfer to smaller boats for the water-level visit.</p>
+<p>Life jackets are provided, and local staff assist with boarding and explain the permitted route.</p>
+<p>Dark &amp; Bright Cave is included in the planned itineraries of <a href="/cruise/green-ruby-2-4.html">Green Ruby 2</a>, which operates its Lan Ha Bay programmes from the Gia Luan side of Cat Ba.</p>
+<h2>How long does a visit to Dark &amp; Bright Cave take?</h2>
+<p>Allow approximately 60–90 minutes for the full stop, including boat transfers, boarding, the rowing-boat trip and returning to the cruise.</p>
+<p>The time spent inside the cave passage itself is much shorter. Most of the experience involves travelling around the lagoon and enjoying the surrounding scenery.</p>
+<p>The exact duration depends on the sightseeing route, the number of boats using the area, the tide and the cruise schedule.</p>
+<p>Your guide will confirm the available time before the activity begins.</p>
+<h2>What to expect when you arrive</h2>
+<p>You will usually arrive near the cave area on a sightseeing or transfer boat before boarding a smaller rowing boat.</p>
+<p>The crew will explain where to sit, how to wear the life jacket and what to do when passing beneath the limestone arch.</p>
+<p>At certain tide levels, the space between the water and the cave ceiling can be limited. Passengers may be asked to lean forward or lower their heads.</p>
+<p>Once through the brighter passage, the boat enters the lagoon.</p>
+<p>There is no conventional walking route through the cave, and the visit takes place on the water.</p>
+<p>Although the lagoon is sheltered, several tour groups may arrive at similar times, particularly during busy travel periods. A quiet visit cannot be guaranteed.</p>
 <h2>Accessibility and practical tips</h2>
+<p>Visiting Dark &amp; Bright Cave requires transferring into a small boat, which may move slightly as passengers board.</p>
+<p>This can be difficult for visitors with limited mobility. Bamboo boats require less physical effort than kayaks, but they are not necessarily wheelchair-accessible.</p>
+<p>Before setting off:</p>
 <ul>
-<li>Getting into a kayak or bamboo boat needs some balance; the crew helps with boarding.</li>
-<li>Bring a dry bag for your phone and expect to get a little wet.</li>
-<li>Children usually travel by bamboo boat with an adult.</li>
+<li>Wear the provided life jacket throughout the boat trip.</li>
+<li>Follow the crew’s instructions when boarding and passing beneath low rock.</li>
+<li>Keep phones, cameras and valuables in a waterproof bag.</li>
+<li>Wear comfortable clothing and footwear suitable for boat transfers.</li>
+<li>Remain seated while the boat is moving.</li>
+<li>Do not touch or damage the limestone formations.</li>
+<li>Keep the lagoon clean and take all rubbish back with you.</li>
 </ul>
-<h2>Weather and seasonal limits</h2>
-<p>Whether the passages can be entered depends on the tide and the weather. In strong wind or heavy rain the activity may be changed, and storm warnings can suspend sailings.</p>
+<p>Families travelling with young children should confirm age restrictions, life jacket sizes and boarding arrangements with their cruise operator.</p>
+<h2>Best time to visit Dark &amp; Bright Cave</h2>
+<p>Dark &amp; Bright Cave can be visited throughout the year when weather, tides and local operating conditions allow.</p>
+<p>From April to October, temperatures are generally warmer, but this period also brings heavy rain, thunderstorms and the possibility of tropical storms.</p>
+<p>From November to March, cooler weather can make the trip comfortable for sightseeing, although sitting in an open rowing boat may feel chilly on windy days.</p>
+<p>For this particular attraction, the tide matters as much as the season.</p>
+<p>The cave entrance sits close to the water, so high tide can reduce the clearance beneath the limestone arch. At certain water levels, entry may be restricted or temporarily suspended.</p>
+<p>Cruise operators and local staff determine the safe route on the day. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Explore Dark &amp; Bright Cave with Green Ruby Cruises</h2>
+<p>Dark &amp; Bright Cave is included in both planned Lan Ha Bay itineraries aboard <a href="/cruise/green-ruby-2-4.html">Green Ruby 2</a>.</p>
+<p><strong><a href="/itinerary/the-lan-ha-escape-2-days-1-night-4-2.html">The Lan Ha Escape – 2 Days 1 Night</a></strong><br>A one-night cruise combining the Dark &amp; Bright Cave area with Lan Ha Bay’s limestone scenery and a planned visit to <a href="/destinations/ao-ech-lagoon">Ao Ech Lagoon</a>.</p>
+<p><strong><a href="/itinerary/the-lan-ha-immersion-3-days-2-nights-4-1.html">The Lan Ha Immersion – 3 Days 2 Nights</a></strong><br>A longer journey that includes Dark &amp; Bright Cave, with an additional day planned for <a href="/destinations/viet-hai-village">Viet Hai Village</a> and a beach visit.</p>
+<p><em>These are planned activities. Final sightseeing arrangements will be confirmed when Green Ruby’s sailings begin. Rowing-boat and kayaking options are subject to the regulations in force on the travel date, as well as weather, tides and operational conditions.</em></p>
+<h2>Nearby places and related experiences</h2>
+<h3><a href="/destinations/ao-ech-lagoon">Ao Ech Lagoon</a></h3>
+<p>A sheltered area of Lan Ha Bay known for its limestone scenery and water-based activities, subject to local regulations.</p>
+<h3><a href="/destinations/viet-hai-village">Viet Hai Village</a></h3>
+<p>A small village on Cat Ba Island, surrounded by forested hills and reached on tours that combine boat travel with a walk, bicycle ride or electric buggy.</p>
+<h3>Ba Trai Dao Beach</h3>
+<p>A scenic area of Lan Ha Bay known for its group of limestone islets and sandy beaches. Swimming and access depend on local conditions and authorised routes.</p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Lan Ha Bay, east of Cat Ba Island'],
-                ['label' => 'Type', 'value' => 'Two sea-level passages, one dim and one open'],
-                ['label' => 'Access', 'value' => 'Kayak or bamboo boat'],
-                ['label' => 'Typical visit', 'value' => 'About 1 to 1.5 hours (estimate)'],
-                ['label' => 'Depends on', 'value' => 'Tide and weather on the day'],
+                ['label' => 'Location', 'value' => 'Lan Ha Bay, near Cat Ba Island, Hai Phong, Vietnam'],
+                ['label' => 'Also known as', 'value' => 'Hang Sang Toi, Dark and Bright Cave'],
+                ['label' => 'Type', 'value' => 'Water-level limestone passages and enclosed lagoon'],
+                ['label' => 'Main attraction', 'value' => 'Boat passage beneath a limestone arch and lagoon scenery'],
+                ['label' => 'Access', 'value' => 'By sightseeing boat or cruise, followed by a small rowing boat'],
+                ['label' => 'Typical visit', 'value' => 'Approximately 60–90 minutes'],
+                ['label' => 'Kayaking', 'value' => 'Temporarily suspended under local regulations as of October 2026'],
+                ['label' => 'Walking access', 'value' => 'No conventional walking route through the cave'],
+                ['label' => 'Conditions', 'value' => 'Dependent on tides, weather and local operating rules'],
+                ['label' => 'UNESCO status', 'value' => 'Part of the Ha Long Bay–Cat Ba Archipelago World Heritage Site'],
             ],
             'faq' => [
-                ['q' => 'Do I need to know how to kayak?', 'a' => 'No. The water is sheltered and the guide briefs everyone before setting off. If you prefer, you can take a bamboo boat instead.'],
-                ['q' => 'Is the dark passage suitable for people who dislike enclosed spaces?', 'a' => 'It is short, but low and dim. If enclosed spaces bother you, the bamboo boat lets you stay on the open, bright side.'],
-                ['q' => 'When does Green Ruby plan to visit Dark & Bright Cave?', 'a' => 'On the first afternoon of both Lan Ha Bay itineraries of Green Ruby 2. Times are provisional until sailings begin, expected in February 2027.'],
+                ['q' => 'Where is Dark & Bright Cave?', 'a' => 'Dark & Bright Cave is in Lan Ha Bay, near Cat Ba Island in northern Vietnam. It belongs to the Cat Ba Archipelago, which forms part of the UNESCO-listed Ha Long Bay–Cat Ba Archipelago World Heritage Site.'],
+                ['q' => 'What is special about Dark & Bright Cave?', 'a' => 'The site is known for its low limestone passages and a sheltered lagoon enclosed by steep, forested cliffs. Visitors can pass beneath a rock arch by small boat and explore the lagoon from water level.'],
+                ['q' => 'What is the difference between Dark Cave and Bright Cave?', 'a' => 'Bright Cave has an opening that leads into a lagoon illuminated by daylight. Dark Cave is more enclosed and receives less natural light. Access to the darker passage may be restricted, so visiting the area does not guarantee entry into both caves.'],
+                ['q' => 'Can you kayak at Dark & Bright Cave?', 'a' => 'Kayaking has traditionally been offered here, but the activity remains suspended under local regulations as of October 2026. Visitors should confirm whether any restrictions have changed before travelling. Rowed bamboo boat visits may be available as an alternative.'],
+                ['q' => 'Do I need kayaking experience to visit Dark & Bright Cave?', 'a' => 'No kayaking experience is needed for a bamboo boat ride because a local boat operator handles the rowing. Kayaking is currently subject to restrictions and should not be assumed to be available.'],
+                ['q' => 'Is Dark & Bright Cave suitable for people who dislike enclosed spaces?', 'a' => 'The brighter passage is relatively short, but its ceiling can feel low, particularly at higher tide levels. You may need to duck while passing underneath. Visitors uncomfortable in confined spaces should discuss the route with their guide before boarding.'],
+                ['q' => 'Can children visit Dark & Bright Cave?', 'a' => 'Children can generally join permitted rowing-boat activities when suitable life jackets are available and the operator’s age and safety requirements are met. Young children should be accompanied by an adult.'],
+                ['q' => 'How long does it take to visit Dark & Bright Cave?', 'a' => 'Allow around 60–90 minutes for the full stop, including transfers and the boat trip. The exact duration depends on local conditions and the cruise itinerary.'],
+                ['q' => 'When does Green Ruby plan to visit Dark & Bright Cave?', 'a' => 'Dark & Bright Cave is included in both Green Ruby 2’s planned Lan Ha Bay itineraries. The published 2-day/1-night itinerary schedules the visit for approximately 3:30 PM on the first day, while the 3-day/2-night itinerary currently lists it at approximately 3:00 PM on the first day. Activities and timings remain subject to local regulations, weather, tides and operational requirements.'],
             ],
         ],
         'vi' => [
