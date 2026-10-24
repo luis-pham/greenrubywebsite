@@ -940,57 +940,149 @@ HTML,
         'bay' => 'ha-long',
         'category' => 'cave',
         'ord' => 5,
-        'latitude' => null,
-        'longitude' => null,
+        'latitude' => 20.815834,
+        'longitude' => 107.122354,
         'coords_verified' => false,
-        'coords_source' => null,
-        'image' => null,
+        'coords_source' => 'From the 2026-10-24 editorial brief; source not yet confirmed (not shown on the map until verified)',
+        'image' => ['file' => 'tien-ong-cave-ha-long-bay.jpg', 'link' => '/2026/10/24/tien-ong-cave-ha-long-bay.jpg'],
         'image_credit' => null,
         'itineraries' => ['en' => [3], 'vi' => [8]],
         'sources' => [$unesco],
-        'editor_notes' => "Needs: verified coordinates, a genuine photo (none licensed found on Wikimedia Commons), and an official source for the archaeological finds (the copy only says traces of prehistoric habitation have been recorded, as in the published itinerary). Not published: steps, size, fees.",
+        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief. Verified: Cai Tai islet, ~18 km from Tuan Chau, Hang Ren/Hang Duc, Soi Nhu culture 10,000-8,000 BP, 2017 exhibition (Management Board); Andersson 1938, excavation 6/11-31/12/2007 (National Museum of History). Route 3 per tour listings (numbering varies). Cover image supplied by the owner 2026-10-24 (confirm it is a real photo). Coordinates from the brief, unverified. Old note: Needs: verified coordinates, a genuine photo (none licensed found on Wikimedia Commons), and an official source for the archaeological finds (the copy only says traces of prehistoric habitation have been recorded, as in the published itinerary). Not published: steps, size, fees.",
         'en' => [
             'slug' => 'tien-ong-cave',
             'name' => 'Tien Ong Cave',
-            'image_alt' => '',
-            'seo_title' => 'Tien Ong Cave, Ha Long Bay: A Quieter Cave Visit',
-            'seo_description' => 'Tien Ong Cave is a smaller, quieter cave in Ha Long Bay known for traces of prehistoric habitation. What a visit involves and how it fits Green Ruby\'s 3-day plan.',
-            'summary' => 'A smaller cave in the quieter eastern part of Ha Long Bay, named after a rock formation likened to an old sage. It is also known for traces of prehistoric habitation recorded inside.',
+            'image_alt' => 'Lit stalactites and stalagmites inside Tien Ong Cave, with the wide cave mouth opening onto Ha Long Bay',
+            'seo_title' => 'Tien Ong Cave, Ha Long Bay: Archaeology & Visiting Guide',
+            'seo_description' => 'Explore Tien Ong Cave in Ha Long Bay, home to prehistoric remains dating back 8,000–10,000 years. Discover its archaeology, location and visiting tips.',
+            'summary' => 'Tien Ong Cave is a limestone cave on Cai Tai Islet in Ha Long Bay, known for its wide entrance, unusual rock formations and evidence of human habitation dating back 8,000–10,000 years. Visitors can explore the cave on foot and see an archaeological exhibition showing how people lived in this area long before Ha Long Bay became a tourist destination.',
+            'sources' => [
+                ['title' => 'Ha Long Bay Management Department – Tien Ong Cave', 'url' => 'https://halongbay.com.vn/en/places/35-tien-ong-cave'],
+                ['title' => 'Ha Long Bay Management Department – Exploring the Archaeological Museum Inside Tien Ong Cave', 'url' => 'https://halongbay.com.vn/en/p/269-kham-pha-bao-tang-khao-co-trong-long-hang-tien-ong'],
+                ['title' => 'Vietnam National Museum of History – Archaeological Excavations at Tien Ong Cave', 'url' => 'https://baotanglichsu.vn/vi/Articles/1502/49134/khai-quat-khao-co-di-tich-hang-tien-ong-tren-vinh-ha-long.html'],
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Tien Ong Cave is in the eastern part of Ha Long Bay, away from the central cluster of Sung Sot, Luon and Ti Top. Boats that visit it usually combine it with the fishing village of Cua Van nearby.</p>
-<h2>Why it is worth visiting</h2>
-<p>Tien Ong means "fairy old man", after a formation that local stories liken to an elderly sage. The cave is smaller and far less busy than Sung Sot, which makes it easier to take your time. It is also of interest for its past: traces of prehistoric habitation have been recorded in the cave, a reminder that people lived among these islands thousands of years before tourism.</p>
-<h2>How visitors reach it</h2>
-<p>Visits are made from a day boat, which moors close to the cave. A short climb on steps and uneven ground leads to the entrance.</p>
-<h2>What to expect on arrival</h2>
-<p>Expect a compact cave with lit formations and a guide explaining its stories and history. Because fewer boats come this way, it is usually quiet.</p>
+<h2>Where is Tien Ong Cave?</h2>
+<p>Tien Ong Cave is located on Cai Tai Islet, in the Hang Trai island group of Ha Long Bay, approximately 18 km from Tuan Chau International Marina.</p>
+<p>It lies near <a href="/destinations/cua-van-floating-village">Cua Van Floating Village</a>, and both sites are part of Ha Long Bay’s sightseeing Route 3. Cruises visiting this area often combine the cave with a boat tour around the former fishing village.</p>
+<p>Tien Ong is farther from the main sightseeing stops around <a href="/destinations/sung-sot-cave">Sung Sot Cave</a>, <a href="/destinations/luon-cave">Luon Cave</a> and <a href="/destinations/ti-top-island">Ti Top Island</a>. It is therefore more commonly included in longer excursions and 3-day/2-night cruise itineraries.</p>
+<p>The cave is also known locally as Hang Ren and was referred to as Hang Duc in early archaeological records.</p>
+<h2>What makes Tien Ong Cave special?</h2>
+<p>Tien Ong Cave is worth visiting for two reasons: its limestone formations and its archaeological history.</p>
+<p>The cave has a broad entrance and a series of chambers and smaller recesses. Stalactites hang from the ceiling, while stalagmites rise from the cave floor. One formation resembles an elderly man with long hair and a beard, giving the cave its name.</p>
+<p>In Vietnamese, <em>Tien Ong</em> refers to a legendary old sage or immortal. Local tradition associates the human-like rock formation with this figure.</p>
+<p>But the cave’s most significant feature is found closer to the ground.</p>
+<p>Archaeologists have uncovered evidence that prehistoric people lived here thousands of years ago. The discoveries include stone tools, animal bones and large deposits of shells left by people who used the cave.</p>
+<p>Today, parts of this archaeological record are presented in an exhibition inside the cave, allowing visitors to see how the site connects Ha Long Bay’s landscape with its much older human history.</p>
+<h2>The prehistoric history of Tien Ong Cave</h2>
+<p>Tien Ong Cave is one of the important archaeological sites associated with the Soi Nhu culture in the Ha Long Bay region.</p>
+<p>Archaeological research indicates that people occupied the cave approximately 8,000–10,000 years ago, during the transition from the late Pleistocene to the early Holocene.</p>
+<p>These early inhabitants lived in a landscape very different from the Ha Long Bay we see today. Sea levels were lower, and areas now covered by water were once dry land.</p>
+<p>The people who used the cave relied on resources available around them, including animals and freshwater molluscs. Archaeologists have found thick deposits of discarded shells, along with animal remains and stone and bone tools.</p>
+<p>The findings suggest that the cave served as a place of human occupation rather than simply a temporary shelter.</p>
+<p>In 2007, excavations by Vietnamese archaeologists helped establish the site’s age and significance. Earlier research had also been conducted here, including work by Swedish archaeologist J. G. Andersson in 1938.</p>
+<p>These discoveries have helped researchers better understand prehistoric settlement and changing environments in what is now Ha Long Bay.</p>
+<h2>What can you see inside Tien Ong Cave?</h2>
+<h3>Limestone formations and the old sage</h3>
+<p>The entrance to Tien Ong Cave is unusually wide, allowing natural light into its outer section.</p>
+<p>Inside, the rock surfaces are marked by stalactites, stalagmites and smaller cavities formed over long periods as water moved through the limestone.</p>
+<p>One stalagmite resembles the face and figure of an elderly man. This formation is the source of the cave’s present name.</p>
+<p>The cave is illuminated for visitors, making it possible to examine the formations as you follow the designated walking route.</p>
+<h3>Archaeological remains</h3>
+<p>What distinguishes Tien Ong from many other sightseeing caves in Ha Long Bay is the evidence preserved in its floor deposits.</p>
+<p>Excavations have revealed stone implements, bone tools, animal remains and layers of freshwater snail shells.</p>
+<p>These objects tell us something about how prehistoric communities obtained food, made tools and adapted to their surroundings.</p>
+<p>Rather than imagining the cave only as a natural attraction, visitors can see it as a place where people once spent part of their everyday lives.</p>
+<h3>The archaeological exhibition</h3>
+<p>In 2017, the Ha Long Bay Management Board worked with the Vietnam Institute of Archaeology and Quang Ninh Museum to establish an archaeological exhibition inside Tien Ong Cave.</p>
+<p>The exhibition presents information and material connected with the site’s prehistoric occupation, helping visitors understand the discoveries made during archaeological investigations.</p>
+<p>If you are particularly interested in history, allow time to read the displays rather than walking straight through the cave.</p>
+<p>Exhibition access and individual displays may change, so follow the information available on the day of your visit.</p>
+<h2>How is Tien Ong Cave different from Sung Sot Cave?</h2>
+<p>Both caves are part of Ha Long Bay’s limestone landscape, but they offer quite different experiences.</p>
+<p><a href="/destinations/sung-sot-cave">Sung Sot Cave</a> is known for its large chambers, elaborate rock formations and established walking route. It is one of the best-known stops on the bay’s main sightseeing circuit.</p>
+<p>Tien Ong Cave is particularly interesting for its archaeological evidence. Its broad entrance, relatively accessible cave floor and on-site displays make it a place to learn about the people who lived in the region long before modern tourism.</p>
+<p>Tien Ong is also on a different sightseeing route, so it generally receives visitors travelling farther into the bay.</p>
+<p>If you are mainly interested in dramatic cave scenery, Sung Sot is likely to be the stronger choice. If you enjoy archaeology, early human history or less heavily visited parts of Ha Long Bay, Tien Ong offers something different.</p>
+<h2>How to get to Tien Ong Cave</h2>
+<p>Tien Ong Cave is accessible by boat as part of a Ha Long Bay sightseeing tour or cruise.</p>
+<p>Most visitors travel from Tuan Chau International Marina or another authorised passenger port in the Ha Long area. See <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a>.</p>
+<p>Because the cave is on sightseeing Route 3, it is not included in every day trip or overnight cruise.</p>
+<p>Boats visiting the cave stop near the island, and passengers continue on foot from the landing area to the entrance.</p>
+<p>The approach involves a short walk with some steps and uneven surfaces. Once inside, visitors follow the designated route through the accessible parts of the cave.</p>
+<p><a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a> includes Tien Ong Cave in its planned 3-day/2-night Ha Long Bay itinerary, alongside Cua Van Floating Village and a pearl farm visit.</p>
+<h2>How long does a visit to Tien Ong Cave take?</h2>
+<p>Allow approximately 30–45 minutes for a typical visit, including the walk from the landing area, time inside the cave and returning to the boat (estimate).</p>
+<p>Visitors interested in the archaeological displays may wish to spend longer reading the information and looking at the exhibits.</p>
+<p>The duration also depends on the tour schedule, walking pace and number of visitors.</p>
+<p>For an organised cruise, check the time allocated by your guide before entering.</p>
+<h2>What to expect when you arrive</h2>
+<p>Tien Ong Cave has a wide entrance rather than the narrow opening found at some other caves around Ha Long Bay.</p>
+<p>The floor lies only a few metres above sea level, so the approach is relatively short. There may still be steps, uneven surfaces and damp areas that require care.</p>
+<p>Inside, visitors will find limestone formations and sections associated with the archaeological history of the cave.</p>
+<p>It is generally less busy than Sung Sot Cave because fewer sightseeing itineraries travel along Route 3. However, visitor numbers vary, and the cave is not guaranteed to be quiet at every time of day.</p>
+<p>Your guide may explain the local story behind the cave’s name and the archaeological discoveries made here.</p>
 <h2>Accessibility and practical tips</h2>
+<p>Tien Ong Cave is explored on foot and involves walking over surfaces that may be uneven or damp.</p>
+<p>The route is not designed for wheelchair access, and visitors with limited mobility should ask their cruise operator about the approach and walking conditions before travelling.</p>
+<p>A few things worth remembering:</p>
 <ul>
-<li>Steps and uneven ground at the entrance: not suitable for wheelchairs.</li>
-<li>Wear shoes with grip; surfaces inside can be damp.</li>
-<li>Please do not touch the formations.</li>
+<li>Wear shoes with good grip rather than slippery sandals.</li>
+<li>Watch your footing on steps and damp surfaces.</li>
+<li>Follow the designated walking route.</li>
+<li>Do not touch or damage stalactites, stalagmites or archaeological deposits.</li>
+<li>Avoid using flash where photography restrictions apply.</li>
+<li>Allow enough time to read the archaeological displays if history interests you.</li>
 </ul>
-<h2>Weather and seasonal limits</h2>
-<p>As with every stop in the bay, the visit depends on boats being allowed to sail. Day-boat excursions are the first to be cut short in strong wind or storm warnings.</p>
+<p>The cave is a protected natural and archaeological site. Removing stones, shells or other material is not permitted.</p>
+<h2>Best time to visit Tien Ong Cave</h2>
+<p>Tien Ong Cave can be visited throughout the year when weather and cruise operations allow.</p>
+<p>Because most of the visit takes place inside the cave, seasonal temperatures are less important than the conditions affecting boat travel across Ha Long Bay.</p>
+<p>From April to October, the weather is generally warmer, but heavy rain, strong winds and tropical storms can disrupt cruises.</p>
+<p>From November to March, conditions are usually cooler. Walking to the cave may be more comfortable, although damp weather can still make steps and pathways slippery.</p>
+<p>Visits may be shortened, rescheduled or cancelled when authorities restrict boat movements for safety reasons. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Explore Tien Ong Cave with Green Ruby Cruises</h2>
+<p>Tien Ong Cave is included in Green Ruby 1’s planned 3-day/2-night journey through Ha Long Bay.</p>
+<p><strong><a href="/itinerary/the-halong-immersion-3-days-2-nights-3-3.html">The Halong Immersion – 3 Days 2 Nights</a></strong><br>On the second day, guests transfer to a dedicated day boat to visit Cua Van Floating Village, Tien Ong Cave and a pearl cultivation facility.</p>
+<p>The cave adds a historical perspective to the journey, showing that Ha Long Bay has been part of human life for thousands of years.</p>
+<p><em>These are planned stops. Final timings and activities will be confirmed when Green Ruby’s sailings begin and may change due to weather, local regulations or operational conditions.</em></p>
+<h2>Nearby places and related experiences</h2>
+<h3><a href="/destinations/cua-van-floating-village">Cua Van Floating Village</a></h3>
+<p>A former fishing village where families once lived in floating homes. Visitors can explore the sheltered cove by bamboo boat or kayak and learn about the area’s fishing heritage.</p>
+<h3><a href="/destinations/sung-sot-cave">Sung Sot Cave</a></h3>
+<p>One of Ha Long Bay’s best-known caves, with large limestone chambers and an established walking route through Bo Hon Island.</p>
+<h3><a href="/destinations/ti-top-island">Ti Top Island</a></h3>
+<p>A small island known for its crescent-shaped beach and hilltop viewpoint overlooking the limestone islands of Ha Long Bay.</p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Eastern Ha Long Bay, near Cua Van'],
-                ['label' => 'Type', 'value' => 'Small limestone cave'],
-                ['label' => 'Access', 'value' => 'Day boat, then a short climb on steps'],
-                ['label' => 'Typical visit', 'value' => 'About 45 minutes (estimate)'],
-                ['label' => 'Known for', 'value' => 'A quiet visit and traces of prehistoric habitation'],
+                ['label' => 'Location', 'value' => 'Cai Tai Islet, Hang Trai area, Ha Long Bay'],
+                ['label' => 'Distance', 'value' => 'Approximately 18 km from Tuan Chau International Marina'],
+                ['label' => 'Sightseeing route', 'value' => 'Ha Long Bay Route 3'],
+                ['label' => 'Known for', 'value' => 'Prehistoric archaeological remains and limestone formations'],
+                ['label' => 'Archaeological period', 'value' => 'Approximately 8,000–10,000 years ago'],
+                ['label' => 'Cultural association', 'value' => 'Soi Nhu culture'],
+                ['label' => 'Main activity', 'value' => 'Walking through the cave and viewing archaeological displays'],
+                ['label' => 'Access', 'value' => 'By sightseeing boat or cruise, followed by a short walk'],
+                ['label' => 'Typical visit', 'value' => 'Approximately 30–45 minutes'],
+                ['label' => 'Accessibility', 'value' => 'Uneven walking surfaces; not wheelchair-accessible'],
             ],
             'faq' => [
-                ['q' => 'How is Tien Ong Cave different from Sung Sot Cave?', 'a' => 'It is much smaller and sees far fewer visitors. Sung Sot impresses with scale; Tien Ong is a slower, quieter visit with a focus on the cave\'s history and legends.'],
-                ['q' => 'Is Tien Ong Cave on the 2 days 1 night cruise?', 'a' => 'No. In Green Ruby\'s current plan it is part of the day-boat excursion on the second day of the Halong Immersion (3 days 2 nights) on Green Ruby 1, together with Cua Van. The plan is provisional until sailings begin, expected in February 2027.'],
-                ['q' => 'Is it a difficult visit?', 'a' => 'Not usually. The climb to the entrance is short, but there are steps and uneven ground, so it is not suitable for wheelchairs.'],
+                ['q' => 'Where is Tien Ong Cave?', 'a' => 'Tien Ong Cave is located on Cai Tai Islet in the Hang Trai island group of Ha Long Bay, approximately 18 km from Tuan Chau International Marina. It is part of sightseeing Route 3, near Cua Van Floating Village.'],
+                ['q' => 'Why is it called Tien Ong Cave?', 'a' => 'The name comes from a limestone formation that resembles an elderly man with long hair and a beard. Local tradition associates it with the image of a legendary old sage or immortal.'],
+                ['q' => 'How old is Tien Ong Cave?', 'a' => 'The limestone cave itself formed through geological processes over a much longer period. Archaeological evidence shows that people occupied the site approximately 8,000–10,000 years ago.'],
+                ['q' => 'What archaeological discoveries were made at Tien Ong Cave?', 'a' => 'Excavations uncovered stone tools, bone implements, animal remains and large deposits of mollusc shells. These findings help explain how prehistoric communities lived and obtained food in the Ha Long Bay region.'],
+                ['q' => 'How is Tien Ong Cave different from Sung Sot Cave?', 'a' => 'Sung Sot Cave is best known for its large chambers and spectacular limestone formations. Tien Ong Cave is especially significant for its prehistoric archaeological remains and on-site exhibition. The caves are also on different sightseeing routes.'],
+                ['q' => 'Is Tien Ong Cave difficult to visit?', 'a' => 'The walk is relatively short, but the approach and cave floor include uneven or potentially slippery surfaces. Visitors should wear suitable footwear. The site is not wheelchair-accessible.'],
+                ['q' => 'How long does it take to explore Tien Ong Cave?', 'a' => 'Allow approximately 30–45 minutes for a typical visit, depending on your walking pace and how much time you spend looking at the archaeological displays.'],
+                ['q' => 'Is Tien Ong Cave included in a 2-day/1-night Ha Long Bay cruise?', 'a' => 'Not in Green Ruby’s currently planned 2-day/1-night itinerary. Tien Ong Cave is included in the longer 3-day/2-night programme aboard Green Ruby 1.'],
+                ['q' => 'When does Green Ruby plan to visit Tien Ong Cave?', 'a' => 'Tien Ong Cave is scheduled for approximately 11:30 AM on the second day of Green Ruby 1’s planned 3-day/2-night itinerary. The visit remains subject to weather, local regulations and operational conditions.'],
             ],
         ],
         'vi' => [
             'slug' => 'hang-tien-ong',
             'name' => 'Hang Tiên Ông',
-            'image_alt' => '',
+            'image_alt' => 'Thạch nhũ được chiếu sáng trong hang Tiên Ông, cửa hang rộng nhìn ra vịnh Hạ Long',
             'seo_title' => 'Hang Tiên Ông, vịnh Hạ Long: hang nhỏ, yên tĩnh',
             'seo_description' => 'Hang Tiên Ông là hang nhỏ, ít khách ở phía đông vịnh Hạ Long, gắn với dấu tích cư trú thời tiền sử. Tham quan thế nào và nằm trong lịch trình nào của Green Ruby.',
             'summary' => 'Hang nhỏ ở vùng phía đông yên tĩnh của vịnh Hạ Long, được đặt tên theo khối thạch nhũ giống một ông tiên. Trong hang từng ghi nhận dấu tích cư trú của người tiền sử.',
