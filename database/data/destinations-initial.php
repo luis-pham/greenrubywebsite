@@ -1525,7 +1525,7 @@ HTML,
             'name' => 'Viet Hai Village',
             'image_alt' => 'Paddy fields and forested limestone hills in the valley of Viet Hai, Cat Ba Island',
             'seo_title' => 'Viet Hai Village, Cat Ba: Cycling, Local Life & Visitor Guide',
-            'seo_description' => 'Visit Viet Hai Village on Cat Ba Island: ride 5 km from the pier by bike or electric cart to rice fields, village lunch and local life near Lan Ha Bay.',
+            'seo_description' => 'Visit Viet Hai Village on Cat Ba Island. Discover the 5 km cycling route, electric carts, rural scenery, local food and how to get there from Lan Ha Bay.',
             'summary' => 'Viet Hai Village is a small rural community on Cat Ba Island, surrounded by forested limestone hills near Lan Ha Bay. Most visitors arrive by boat, then travel about 5 km inland by bicycle, electric cart or on foot. The journey leads through a narrow valley to a working village with rice fields, gardens, family homes and small local businesses.',
             'sources' => [
                 ['title' => 'UNESCO – Cat Ba Biosphere Reserve', 'url' => 'https://www.unesco.org/en/mab/cat-ba'],
