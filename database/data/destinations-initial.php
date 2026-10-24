@@ -641,48 +641,158 @@ HTML,
             ['title' => 'Wikipedia: Hạ Long Bay (fishing villages of the bay)', 'url' => 'https://en.wikipedia.org/wiki/H%E1%BA%A1_Long_Bay'],
             ['title' => 'Photo with GPS: Cua Van Floating Village, David Stanley (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Cua_Van_Floating_Village.jpg'],
         ],
-        'editor_notes' => "VI rewritten 2026-10-24 from the editorial brief. Verified: route 3, ~20 km from Tuan Chau, resettlement from 2014, Centre opened 19/5/2006 (Management Board Cua Van page); Centre closed to visitors from 25/4/2024 (Board notice via Nguoi Quan Sat 18/4/2024); Yagi damage 9/2024, restoration planned 2026 (Bao Quang Ninh); giao duyen singing resumed (Quang Ninh portal 17/3/2026). EN copy still says resettled without a year. Old note: Resettlement: copy says most families now live on land, without a year. Confirm the year (widely reported as 2014) and current number of households with Quang Ninh / Ha Long Bay Management Board before adding them. Not published: floating culture centre opening times, boat fees.",
+        'editor_notes' => "VI rewritten 2026-10-24 from the editorial brief. Verified: route 3, ~20 km from Tuan Chau, resettlement from 2014, Centre opened 19/5/2006 (Management Board Cua Van page); Centre closed to visitors from 25/4/2024 (Board notice via Nguoi Quan Sat 18/4/2024); Yagi damage 9/2024, restoration planned 2026 (Bao Quang Ninh); giao duyen singing resumed (Quang Ninh portal 17/3/2026). EN rewritten 2026-10-24 too (2014 relocation, Centre closure from VTV 15/4/2024, giao duyen page). Old note: Resettlement: copy says most families now live on land, without a year. Confirm the year (widely reported as 2014) and current number of households with Quang Ninh / Ha Long Bay Management Board before adding them. Not published: floating culture centre opening times, boat fees.",
         'en' => [
             'slug' => 'cua-van-floating-village',
             'name' => 'Cua Van Floating Village',
             'image_alt' => 'Floating houses and fishing boats moored below limestone cliffs at Cua Van, Ha Long Bay',
-            'seo_title' => 'Cua Van Floating Village, Ha Long Bay: What to Know',
-            'seo_description' => 'Cua Van is one of Ha Long Bay\'s traditional fishing villages. What a visit involves today, how you get around, respectful photography and Green Ruby\'s plan.',
-            'summary' => 'One of the traditional fishing villages of Ha Long Bay, where houses, fish pens and boats float in a sheltered cove. Visits are by rowing boat, with a focus on how the community has lived on the water.',
+            'seo_title' => 'Cua Van Floating Village, Ha Long Bay: History & Visiting Guide',
+            'seo_description' => 'Discover Cua Van Floating Village in Ha Long Bay. Learn about its fishing heritage, bamboo boat tours, the 2014 relocation and what visitors can see today.',
+            'summary' => 'Cua Van Floating Village is a former fishing community tucked between the limestone islands of Ha Long Bay. For generations, families lived in houses built on floating rafts and made their living from the sea. Today, visitors can explore the sheltered cove by bamboo boat or kayak and learn about a way of life that has largely moved ashore.',
+            'sources' => [
+                ['title' => 'Ha Long Bay Management Department – Cua Van Floating Cultural Centre', 'url' => 'https://halongbay.com.vn/en/places/37-cua-van-floating-cutural-center'],
+                ['title' => 'VTV – Suspension of Visits to Cua Van Floating Cultural Centre', 'url' => 'https://vtv.vn/doi-song/tam-dung-don-khach-toi-trung-tam-van-hoa-noi-cua-van-tren-vinh-ha-long-20240415083201442.htm'],
+                ['title' => 'Ha Long Bay Management Department – Preserving Giao Duyen Folk Singing', 'url' => 'https://halongbay.com.vn/index.php/en/p/413-tiep-tuc-trien-khai-tap-luyen-som-dua-hat-giao-duyen-tro-lai-bieu-dien-phuc-vu-khach-tham-quan-vinh-ha-long'],
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Wikimedia Commons – Cua Van Floating Village, photograph by David Stanley', 'url' => 'https://commons.wikimedia.org/wiki/File:Cua_Van_Floating_Village.jpg'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Cua Van sits in a sheltered stretch of water in the eastern part of Ha Long Bay, further from the busiest cruise routes than Sung Sot or Ti Top. It is one of the bay's traditional fishing communities, alongside villages such as Ba Hang, Cong Tau and Vong Vieng.</p>
-<h2>Why it is worth visiting</h2>
-<p>For generations, families here lived on floating houses, fished and farmed fish and shellfish in pens beside their homes. Most families have since moved to homes on land, and the village is quieter than older photographs suggest. A visit is still one of the few ways to understand the bay as a place where people live and work, rather than only as scenery.</p>
-<h2>Activities</h2>
+<h2>Where is Cua Van Floating Village?</h2>
+<p>Cua Van lies in a sheltered cove in Ha Long Bay, approximately 20 km by water from Tuan Chau International Marina.</p>
+<p>The village is surrounded by limestone islands that provide natural protection from wind and waves. This made the area a suitable place for fishing families to anchor their boats, build floating homes and raise seafood in fish pens.</p>
+<p>Cua Van is part of Ha Long Bay’s sightseeing Route 3, farther from the main cruise stops around <a href="/destinations/sung-sot-cave">Sung Sot Cave</a>, <a href="/destinations/luon-cave">Luon Cave</a> and <a href="/destinations/ti-top-island">Ti Top Island</a> on Route 2.</p>
+<p>Because of its location, Cua Van is more commonly visited on longer excursions and overnight cruises than on short sightseeing trips.</p>
+<h2>What makes Cua Van Floating Village special?</h2>
+<p>Cua Van tells a different story about Ha Long Bay.</p>
+<p>Most visitors come to the bay for its limestone islands, caves and beaches. At Cua Van, the focus is on the people who once made their homes among those islands.</p>
+<p>For generations, fishing families lived in wooden houses supported by floating rafts. Small boats were their main means of transport, and daily life revolved around fishing, maintaining nets and tending seafood pens beside their homes.</p>
+<p>Children grew up on the water. Neighbours travelled between houses by boat, and work depended on the tides, weather and fishing grounds.</p>
+<p>That life has changed considerably.</p>
+<p>In 2014, the authorities relocated the bay’s floating-village communities to homes on the mainland, improving access to schools, healthcare and other essential services.</p>
+<p>As a result, Cua Van is no longer the busy residential village shown in many older photographs. Some floating structures remain for conservation and tourism, and people with connections to the former community continue to work on the bay.</p>
+<p>A visit today offers a chance to understand this history, rather than observe an unchanged fishing village.</p>
+<h2>The history of Cua Van Fishing Village</h2>
+<p>Cua Van was one of several traditional fishing settlements in Ha Long Bay, alongside communities such as Ba Hang, Cong Tau and Vung Vieng.</p>
+<p>Life on the water required practical knowledge passed down through generations. Families learned where to fish, how to maintain boats and nets, and how to protect their homes when the weather changed.</p>
+<p>Fishing and aquaculture provided a livelihood, while small rowing boats connected households across the sheltered cove.</p>
+<p>Living offshore also brought difficulties. Access to education, medical care and basic services was limited, particularly during bad weather.</p>
+<p>The relocation programme in 2014 marked a turning point. Former residents settled on land, and many moved into different kinds of work. Some remained connected to the sea through fishing, boat services and tourism.</p>
+<p>Today, the floating houses and remaining structures offer a glimpse of the village’s past, while local guides and boat operators help keep its stories alive.</p>
+<h2>Things to do at Cua Van Floating Village</h2>
+<h3>Take a bamboo boat ride around the village</h3>
+<p>A bamboo boat is one of the easiest ways to explore Cua Van.</p>
+<p>Visitors transfer from their cruise boat to a smaller rowing boat, usually operated by someone from the local community.</p>
+<p>The boat moves slowly through the sheltered water, passing floating structures and areas associated with the former village.</p>
+<p>Along the way, you can look at the limestone cliffs surrounding the cove and see how the location offered protection for families who once lived here.</p>
+<p>Depending on the tour, your guide or boat operator may explain how people built their floating homes, fished for a living and adapted to life on the water.</p>
+<p>The ride requires little physical effort, making it a suitable choice for visitors who prefer a relaxed experience.</p>
+<h3>Kayak through the sheltered cove</h3>
+<p>Kayaking is another way to explore Cua Van, where the activity is available and conditions allow.</p>
+<p>You can paddle through designated areas of the cove, following the route and safety instructions provided by local operators.</p>
+<p>The surrounding limestone islands help shelter the water, although wind and weather can still affect kayaking conditions.</p>
+<p>Keep a safe distance from floating structures, working boats and areas that are not open to visitors.</p>
+<p>If you are new to kayaking or would rather focus on the scenery, a bamboo boat may be the more comfortable choice.</p>
+<h3>Learn about fishing traditions and local culture</h3>
+<p>Cua Van is associated with the fishing traditions of Ha Long Bay, including the songs once shared among the village’s residents.</p>
+<p>One of these traditions is <em>hat giao duyen</em>, a form of Vietnamese call-and-response folk singing, often performed by men and women exchanging verses.</p>
+<p>The songs reflect relationships, everyday life and the experiences of people who lived and worked on the water.</p>
+<p>Efforts to preserve and revive this tradition have continued, including performances associated with Cua Van.</p>
+<p>However, cultural performances are not necessarily included in every visit. If you would like to hear traditional singing, check with your cruise operator about current arrangements.</p>
+<h3>Photograph the floating village and limestone scenery</h3>
+<p>Cua Van sits among steep limestone islands, with sheltered water and scattered floating structures.</p>
+<p>From a small boat, you can photograph the wider cove, the remaining raft houses and the cliffs rising behind them.</p>
+<p>Some older images of Cua Van show a much larger floating community than exists today. Keep that difference in mind when comparing historical photographs with the present-day village.</p>
+<p>If you want to photograph boat operators or people working on the water, ask permission first. Do not board floating houses or other structures unless visitors are specifically allowed to enter.</p>
+<h2>Do people still live at Cua Van Floating Village?</h2>
+<p>This is one of the most important things to know before visiting.</p>
+<p>Cua Van was once home to families who lived permanently on floating rafts. In 2014, the authorities relocated the fishing communities of Ha Long Bay to the mainland.</p>
+<p>Today, Cua Van is no longer a large residential community on the water.</p>
+<p>The people you meet may include boat operators, former residents, their families, conservation staff and others involved in tourism.</p>
+<p>Some floating houses have been preserved to represent the village’s history, but visitors should not expect to see the same everyday household activities shown in older travel photographs.</p>
+<p>The experience is now primarily about the area’s history, cultural heritage and the surrounding landscape.</p>
+<h2>Cua Van Floating Cultural Centre</h2>
+<p>The Cua Van Floating Cultural Centre opened in 2006 to help preserve and explain the heritage of Ha Long Bay’s fishing communities.</p>
+<p>Its exhibitions included photographs, objects and information about traditional fishing, floating homes and everyday life on the water.</p>
+<p>The centre also supported cultural activities, including traditional folk singing.</p>
+<p>However, it suspended visitor access on 25 April 2024 for maintenance and repairs. The facilities were subsequently damaged by Typhoon Yagi in September 2024.</p>
+<p>As of the latest information reviewed for this article, the centre’s reopening has not been confirmed.</p>
+<p>Visitors may still be able to explore the surrounding village area by bamboo boat or kayak, but this should not be confused with access to the cultural centre itself.</p>
+<h2>How to get to Cua Van Floating Village</h2>
+<p>Cua Van is accessible only by boat.</p>
+<p>Most visitors reach the area on organised Ha Long Bay tours or overnight cruises departing from Tuan Chau or another authorised passenger port. See <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a>.</p>
+<p>Because the village is on sightseeing Route 3, not every Ha Long Bay cruise includes it.</p>
+<p>Once in the area, passengers usually transfer from the main sightseeing boat to smaller bamboo rowing boats or kayaks.</p>
+<p>The route, activities and time available depend on the tour operator and local conditions.</p>
+<p>If Cua Van is one of the places you particularly want to visit, check that it appears by name in your cruise itinerary before booking.</p>
+<h2>How long should you spend at Cua Van?</h2>
+<p>Allow approximately 60–90 minutes for a typical visit around Cua Van, depending on the activities included.</p>
+<p>A straightforward bamboo boat ride may take less time, while a programme with cultural interpretation or other activities may take longer.</p>
+<p>This estimate does not include travelling to the village from the harbour or from other sightseeing stops.</p>
+<p>On an overnight cruise, the duration will depend on the ship’s published schedule and the activities available on the day.</p>
+<h2>What to expect when you arrive</h2>
+<p>Cua Van is generally quieter than the busiest sightseeing areas of Ha Long Bay, although tour groups may still arrive at similar times.</p>
+<p>The visit takes place mainly on the water, where you can see remaining floating structures and the limestone islands surrounding the cove.</p>
+<p>The facilities are relatively simple. There may be working boats or aquaculture equipment nearby, and some areas may carry the ordinary smells associated with fishing and seafood production.</p>
+<p>Importantly, Cua Van is not a recreated village with residents performing everyday life for tourists. It is a former community whose history is now preserved and interpreted through the site and local tourism activities.</p>
+<p>Understanding this before arriving can make the visit more meaningful.</p>
+<h2>Visiting respectfully</h2>
+<p>Cua Van’s history belongs to the families who once lived here and the people who continue to work around the village.</p>
+<p>A few things worth remembering:</p>
 <ul>
-<li>A rowing-boat tour between the floating houses and fish farms, usually rowed by local residents.</li>
-<li>Time with a guide to talk about fishing, aquaculture and how life on the water has changed.</li>
+<li>Ask permission before taking close-up photographs of people.</li>
+<li>Do not board floating houses or working rafts without permission.</li>
+<li>Wear the provided life jacket during boat or kayak activities.</li>
+<li>Avoid dropping rubbish into the water.</li>
+<li>Keep noise to a reasonable level around people working.</li>
+<li>Follow your boat operator’s instructions, especially when boarding and disembarking.</li>
 </ul>
-<h2>How visitors reach it</h2>
-<p>Larger boats stop at the edge of the village. You transfer to small rowing boats to move between the houses.</p>
-<h2>What to expect on arrival</h2>
-<p>This is a working and lived-in place, not an attraction built for visitors. Expect a slow pace, the smell of fish farming in places, and simple facilities.</p>
-<h2>Respectful visiting</h2>
-<ul>
-<li>Ask before photographing people or the inside of homes.</li>
-<li>Keep voices down and follow your rower's directions.</li>
-<li>If you want to buy something, buy directly from residents.</li>
-</ul>
-<h2>Accessibility and weather</h2>
-<p>Boarding the small rowing boats needs some balance; the crew helps. Visits depend on calm water and may be shortened in wind or rain, and cancelled when storms suspend sailings.</p>
+<p>If you are interested in the village’s history, ask your guide about the 2014 relocation and how former residents have adapted to life on the mainland.</p>
+<h2>Can children and older visitors visit Cua Van?</h2>
+<p>A bamboo boat ride can be a good option for families because passengers do not need to paddle.</p>
+<p>However, transferring from a larger boat to a small rowing boat requires some balance and care.</p>
+<p>Children should wear properly fitted life jackets and be accompanied by adults according to the operator’s rules.</p>
+<p>Older visitors or anyone with limited mobility should ask about boarding assistance before the trip.</p>
+<p>Kayaking may have additional age, fitness or safety requirements. Small rowing boats are not necessarily wheelchair-accessible.</p>
+<h2>Best time to visit Cua Van Floating Village</h2>
+<p>Cua Van can be visited throughout the year when weather and cruise operations allow.</p>
+<p>From April to October, the warmer weather is generally comfortable for outdoor activities such as kayaking. However, summer also brings periods of heavy rain, strong winds and tropical storms.</p>
+<p>From November to March, conditions are often cooler. A light jacket can be useful when sitting in an open rowing boat, especially on windy days.</p>
+<p>The cove is sheltered by limestone islands, but strong winds, heavy rain or official weather warnings can still affect boat operations.</p>
+<p>Tours may be shortened, changed or cancelled when conditions are unsafe. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Visit Cua Van with Green Ruby Cruises</h2>
+<p>Cua Van Floating Village is included in the planned 3-day/2-night Ha Long Bay itinerary aboard <a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a>.</p>
+<p><strong><a href="/itinerary/the-halong-immersion-3-days-2-nights-3-3.html">The Halong Immersion – 3 Days 2 Nights</a></strong><br>The second day takes guests beyond the main sightseeing route on a dedicated day boat, with planned visits to Cua Van Floating Village, <a href="/destinations/tien-ong-cave">Tien Ong Cave</a> and a pearl farm.</p>
+<p>Cua Van provides a different perspective on Ha Long Bay, connecting its limestone scenery with the history of the fishing communities who once made their homes here.</p>
+<p><em>These are planned stops. Final timings and activities will be confirmed when Green Ruby’s sailings begin and may change due to weather, local regulations or operational requirements.</em></p>
+<h2>Nearby places and related experiences</h2>
+<h3><a href="/destinations/tien-ong-cave">Tien Ong Cave</a></h3>
+<p>An archaeological cave in Ha Long Bay, known for evidence of prehistoric human habitation and its limestone formations.</p>
+<h3><a href="/destinations/sung-sot-cave">Sung Sot Cave</a></h3>
+<p>One of Ha Long Bay’s best-known limestone caves, with large chambers, stalactites and stalagmites, and a walking route through the island.</p>
+<h3><a href="/destinations/ti-top-island">Ti Top Island</a></h3>
+<p>A small island with a crescent-shaped beach and a steep stairway leading to a viewpoint overlooking Ha Long Bay.</p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Eastern Ha Long Bay, in a sheltered cove'],
-                ['label' => 'Type', 'value' => 'Traditional fishing village with floating houses'],
-                ['label' => 'Access', 'value' => 'Rowing boat from the day boat'],
-                ['label' => 'Typical visit', 'value' => 'About 1 to 1.5 hours (estimate)'],
-                ['label' => 'Good to know', 'value' => 'A lived-in community: ask before taking photos'],
+                ['label' => 'Location', 'value' => 'Ha Long Bay, Quang Ninh Province, Vietnam'],
+                ['label' => 'Distance', 'value' => 'Approximately 20 km by water from Tuan Chau Marina'],
+                ['label' => 'Sightseeing route', 'value' => 'Ha Long Bay Route 3'],
+                ['label' => 'Known for', 'value' => 'Traditional floating-village history and fishing heritage'],
+                ['label' => 'Main activities', 'value' => 'Bamboo boat rides, kayaking and cultural interpretation'],
+                ['label' => 'Access', 'value' => 'By sightseeing boat or cruise, followed by a smaller boat'],
+                ['label' => 'Typical visit', 'value' => 'Approximately 60–90 minutes'],
+                ['label' => 'Former residents', 'value' => 'Fishing communities relocated ashore in 2014'],
+                ['label' => 'Cultural centre', 'value' => 'Visitor access suspended; reopening not confirmed'],
+                ['label' => 'Good to know', 'value' => 'The village is no longer a permanent residential community'],
             ],
             'faq' => [
-                ['q' => 'Do people still live in Cua Van floating village?', 'a' => 'Some do, but most families who once lived on the water have moved to homes on land. The village remains a working place for fishing and aquaculture.'],
-                ['q' => 'How do you get around the village?', 'a' => 'By small rowing boat, usually rowed by local residents. Your larger boat waits at the edge of the village.'],
-                ['q' => 'Is Cua Van on the 2 days 1 night cruise?', 'a' => 'No. On Green Ruby\'s current plan, Cua Van is visited by day boat on the second day of the Halong Immersion (3 days 2 nights) itinerary of Green Ruby 1. The plan is provisional until sailings begin, expected in February 2027.'],
+                ['q' => 'Where is Cua Van Floating Village?', 'a' => 'Cua Van is located in Ha Long Bay, Quang Ninh Province, Vietnam, approximately 20 km by water from Tuan Chau International Marina. It is part of the bay’s sightseeing Route 3.'],
+                ['q' => 'What is Cua Van Floating Village known for?', 'a' => 'Cua Van is known for its history as a fishing community that lived in floating houses surrounded by limestone islands. Today, visitors come to explore the sheltered cove and learn about the traditional way of life on the water.'],
+                ['q' => 'Do people still live in Cua Van Floating Village?', 'a' => 'The original floating-village community was relocated to the mainland in 2014. Cua Van is no longer a large residential village, although local people continue to work in tourism and other activities on the bay.'],
+                ['q' => 'Can you visit Cua Van by kayak?', 'a' => 'Kayaking is available in designated areas when local operators and weather conditions allow. Visitors can also explore the village area by bamboo rowing boat.'],
+                ['q' => 'Is the Cua Van Floating Cultural Centre open?', 'a' => 'The centre suspended visitor access in April 2024 for repairs and was subsequently damaged by Typhoon Yagi. Its reopening has not been confirmed in the information reviewed for this article. Check the latest local notices before travelling.'],
+                ['q' => 'How long does it take to visit Cua Van?', 'a' => 'A typical visit takes approximately 60–90 minutes, depending on the activities included. Travel time from the port or other cruise stops is additional.'],
+                ['q' => 'Is Cua Van included in a 2-day/1-night Ha Long Bay cruise?', 'a' => 'Not all overnight cruises include Cua Van. Green Ruby’s planned 2-day/1-night itinerary does not visit the village. It is included in the longer 3-day/2-night programme aboard Green Ruby 1.'],
+                ['q' => 'When does Green Ruby plan to visit Cua Van?', 'a' => 'Cua Van is scheduled for approximately 10:00 AM on the second day of Green Ruby 1’s planned 3-day/2-night itinerary. The stop and its activities remain subject to weather, local regulations and operational conditions.'],
             ],
         ],
         'vi' => [
