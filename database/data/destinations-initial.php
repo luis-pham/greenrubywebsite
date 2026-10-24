@@ -47,7 +47,7 @@ return [
             'content' => <<<'HTML'
 <p><em>Opening hours and visitor arrangements may change. Confirm the latest information before travelling.</em></p>
 <h2>Where is Sung Sot Cave?</h2>
-<p>Sung Sot Cave is located on Bo Hon Island, in the central area of Ha Long Bay. The island is also home to <a href="/destinations/luon-cave">Luon Cave</a>, while <a href="/destinations/titop-island">Ti Top Island</a> is nearby.</p>
+<p>Sung Sot Cave is located on Bo Hon Island, in the central area of Ha Long Bay. The island is also home to <a href="/destinations/luon-cave">Luon Cave</a>, while <a href="/destinations/ti-top-island">Ti Top Island</a> is nearby.</p>
 <p>These three attractions are commonly included on the same sightseeing route, making Sung Sot Cave a popular stop on both day trips and overnight cruises.</p>
 <h2>What makes Sung Sot Cave worth visiting?</h2>
 <p>The name <em>Sung Sot</em> means “surprise” in Vietnamese, a reference to the unexpectedly large spaces hidden behind the cave’s relatively small entrance.</p>
@@ -88,7 +88,7 @@ return [
 <h2>Nearby attractions</h2>
 <h3><a href="/destinations/luon-cave">Luon Cave</a></h3>
 <p>Located on the same island, Luon Cave offers a different experience, with visitors exploring a sheltered lagoon by kayak or bamboo boat.</p>
-<h3><a href="/destinations/titop-island">Ti Top Island</a></h3>
+<h3><a href="/destinations/ti-top-island">Ti Top Island</a></h3>
 <p>Known for its beach and hillside viewpoint, Ti Top Island is another popular stop on Ha Long Bay sightseeing routes.</p>
 <p>These attractions can complement a visit to Sung Sot Cave, although the stops included depend on your chosen cruise.</p>
 HTML,
@@ -209,51 +209,88 @@ HTML,
             ['title' => 'Wikipedia: Ti Tốp Island', 'url' => 'https://en.wikipedia.org/wiki/Ti_T%E1%BB%91p_Island'],
             ['title' => 'Photo with GPS: Summit of Ti Top Island (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Summit_of_Ti_Top_Island.jpg'],
         ],
-        'editor_notes' => "English Wikipedia lists 20.862601, 107.067218, about 1.5 km west of the summit photo GPS used here; the photo position matches 'opposite Sung Sot' and the bay geography. Not published: number of steps (sources vary), beach opening hours, lifeguard arrangements. Hero photo is the owner's upload (media library 2026-10-21).",
+        'editor_notes' => "English Wikipedia lists 20.862601, 107.067218, about 1.5 km west of the summit photo GPS used here; the photo position matches 'opposite Sung Sot' and the bay geography. EN rewritten 2026-10-24 from the editorial brief; slug changed titop-island -> ti-top-island (308 redirect in greenruby-web next.config). Verified: route no. 2, ~12 km from Tuan Chau, former name Cat Nang, statue 2015 (Ha Long Bay Management Department); 400+ steps (Quang Ninh portal). Estimates, not sourced: 45-60 min visit, 15-20 min climb. Hero photo is the owner's upload (media library 2026-10-21).",
         'en' => [
-            'slug' => 'titop-island',
+            'slug' => 'ti-top-island',
             'name' => 'Ti Top Island',
             'image_alt' => 'Ha Long Bay seen from the summit of Ti Top Island',
-            'seo_title' => 'Ti Top Island (Titop), Ha Long Bay: Beach & Viewpoint Guide',
-            'seo_description' => 'Ti Top Island in Ha Long Bay: why it carries a cosmonaut\'s name, the climb to the summit viewpoint, swimming at the beach, timing and practical tips.',
-            'summary' => 'A small island in central Ha Long Bay with a crescent of sand on one side and a viewpoint at the top, reached by a steep stairway. It is named after Soviet cosmonaut Gherman Titov.',
+            'seo_title' => 'Ti Top Island, Ha Long Bay: Beach, Viewpoint & 400 Steps',
+            'seo_description' => 'Explore Ti Top Island in Ha Long Bay, from its crescent-shaped beach to the 400-step summit viewpoint. Find out what to expect and how to visit.',
+            'summary' => 'Ti Top Island is a popular stop on Ha Long Bay cruises, known for its small crescent-shaped beach and hilltop viewpoint. Visitors can swim at the foot of the island or climb more than 400 steps for a wide view across the bay.',
+            'sources' => [
+                ['title' => 'Ha Long Bay Management Department – Ti Top Island', 'url' => 'https://halongbay.com.vn/en/places/3-dao-titop'],
+                ['title' => 'Quang Ninh Provincial Portal – Ti Top Beach', 'url' => 'https://quangninh.gov.vn/Sites/en-us/Trang/ChiTietTinTuc.aspx?nid=6624'],
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Ti Top lies about 7–8 km south-east of Bai Chay, in the central part of Ha Long Bay and opposite Bo Hon Island, home of Sung Sot and Luon caves. Most boats sailing this part of the bay stop here.</p>
-<h2>Why it is worth visiting</h2>
-<p>The island combines the two things most visitors want from a stop: a swim and a view. The beach is a narrow crescent of pale sand at the foot of the island. From the summit, the view takes in the karst islands around Bo Hon and the boats anchored between them.</p>
-<p>The name has an unusual origin. On 22 January 1962, President Ho Chi Minh visited the island with Gherman Titov, the second person to orbit the Earth, and named it after him. A monument to Titov stands on the island.</p>
-<h2>Things to do</h2>
-<ul>
-<li>Climb to the summit viewpoint for the panorama, ideally in the softer light of late afternoon.</li>
-<li>Swim from the beach in the marked area when conditions allow.</li>
-<li>Stay on the sand if you prefer: the beach and the pier area are at sea level.</li>
-</ul>
-<h2>How visitors reach it</h2>
-<p>Tenders and day boats land at the island's pier, next to the beach. The path to the top is a steep stairway with railings and a few resting points on the way.</p>
-<h2>What to expect on arrival</h2>
-<p>Ti Top is popular, and the beach and stairway can be busy in the afternoon, when many cruises arrive. The climb is short but steep and can be hot in summer.</p>
+<h2>Where is Ti Top Island?</h2>
+<p>Ti Top Island lies in central Ha Long Bay, roughly 12 km from Tuan Chau International Marina. It is part of the bay’s sightseeing Route 2, which also includes <a href="/destinations/sung-sot-cave">Sung Sot Cave</a> and <a href="/destinations/luon-cave">Luon Cave</a> on nearby Bo Hon Island.</p>
+<p>The island is reached by boat, usually as part of a day trip or overnight Ha Long Bay cruise.</p>
+<h2>Why visit Ti Top Island?</h2>
+<p>There are two main reasons to stop here: the beach and the view.</p>
+<p>Ti Top Beach curves around one side of the island, with a small stretch of pale sand at the foot of the limestone hill. It is a convenient place for a swim during a cruise, although it can get crowded when several boats arrive together.</p>
+<p>The viewpoint is the bigger draw for many visitors. From the top, you can look out over the surrounding limestone islands, narrow channels and cruise boats moving through the bay.</p>
+<p>The island also has an unusual history. On 22 January 1962, President Ho Chi Minh visited with Soviet cosmonaut Gherman Titov, the second person to orbit Earth. The island, previously known as Cat Nang, was renamed in Titov’s honour. A statue of the cosmonaut stands on the island today.</p>
+<h2>Things to do on Ti Top Island</h2>
+<h3>Climb to the Ti Top viewpoint</h3>
+<p>The climb involves more than 400 stone steps. It is not particularly long, but the stairs are steep, and the heat can make the ascent tiring.</p>
+<p>There are places to pause along the way. At the top, the viewpoint overlooks a broad stretch of Ha Long Bay. If the weather is clear, you can see layers of limestone islands stretching into the distance.</p>
+<h3>Swim at Ti Top Beach</h3>
+<p>The beach is small, but it offers a chance to get into the water during a sightseeing cruise.</p>
+<p>Swimming is permitted only when local conditions allow. Follow the designated swimming areas and your guide’s instructions, especially when boat traffic is heavy.</p>
+<h3>Relax by the shore</h3>
+<p>You do not have to climb the hill to enjoy the stop. Visitors who prefer to stay at sea level can spend their time on the beach, take photographs or simply watch the boats coming and going.</p>
+<h2>How to get to Ti Top Island</h2>
+<p>Ti Top Island is accessible by boat, not by road. Most visitors arrive on organised day tours or overnight cruises departing from the Ha Long or Tuan Chau port areas.</p>
+<p>Boats stop at the island’s landing pier. From there, the beach is close by, while the stairway to the viewpoint begins further up the island.</p>
+<p><a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a> includes Ti Top Island in its planned Ha Long Bay itineraries.</p>
+<h2>How long do you need at Ti Top Island?</h2>
+<p>Allow around 45–60 minutes for a typical visit (estimate).</p>
+<p>That is usually enough time to climb to the viewpoint, take photographs and return to the pier. If you would rather swim, you can spend the stop at the beach instead.</p>
+<p>Trying to do both may feel rushed, particularly on a busy day. Check how much time your guide has allocated before setting off up the stairs.</p>
+<h2>What to expect when you arrive</h2>
+<p>Ti Top is one of the better-known stops in Ha Long Bay. The pier, beach and stairs can become busy, particularly in the afternoon when several cruise groups arrive around the same time.</p>
+<p>The climb is exposed in places, so it can feel hotter than expected during summer. The steps may also be slippery after rain.</p>
+<p>Comfortable footwear is useful if you plan to go to the summit. Bring water, sun protection and swimwear if you intend to use the beach.</p>
 <h2>Accessibility and practical tips</h2>
+<p>The summit is reached by a steep stairway and is not wheelchair-accessible. Visitors who cannot manage the climb can remain near the beach and pier, although boarding and disembarking may still involve steps or uneven surfaces.</p>
+<p>A few things worth knowing:</p>
 <ul>
-<li>The summit is reached only by stairs. The beach is accessible from the pier without climbing.</li>
-<li>Bring swimwear, a towel, water and sun protection.</li>
-<li>Swim only where and when the crew says it is safe.</li>
+<li>Wear shoes with a good grip for the climb.</li>
+<li>Carry drinking water, particularly in warm weather.</li>
+<li>Bring a towel and swimwear if you plan to swim.</li>
+<li>Keep an eye on your group’s departure time.</li>
+<li>Follow the crew’s advice about swimming and weather conditions.</li>
 </ul>
-<h2>Weather and seasonal limits</h2>
-<p>Swimming is most comfortable from about May to October, when the water is warm, but this is also the season when storms can stop sailings. In winter the climb is pleasant, though fewer people swim.</p>
+<h2>Best time to visit Ti Top Island</h2>
+<p>Ti Top can be visited throughout the year, subject to weather and cruise operations.</p>
+<p>From May to October, the warmer water makes swimming more appealing, but summer also brings heavier rain and a greater risk of storms.</p>
+<p>From November to April, cooler conditions can make the climb more comfortable. Swimming may be less appealing, especially during the colder winter months.</p>
+<p>For the viewpoint, clear visibility matters more than the season. Haze, cloud and rain can all affect how much of the bay you can see. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Visit Ti Top Island with Green Ruby Cruises</h2>
+<p>Ti Top Island is included in the planned Ha Long Bay routes aboard Green Ruby 1.</p>
+<p><strong><a href="/itinerary/the-halong-escape-2-days-1-night-3-4.html">The Halong Escape – 2 Days 1 Night</a></strong><br>A short overnight cruise combining Ti Top Island, Luon Cave and Sung Sot Cave.</p>
+<p><strong><a href="/itinerary/the-halong-immersion-3-days-2-nights-3-3.html">The Halong Immersion – 3 Days 2 Nights</a></strong><br>A longer Ha Long Bay journey with an additional day to explore beyond the main sightseeing route.</p>
+<p><em>These are planned stops. Final routes and timings will be confirmed once Green Ruby’s sailings begin and may change due to weather or port-authority instructions.</em></p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Central Ha Long Bay, about 7–8 km south-east of Bai Chay'],
-                ['label' => 'Highlights', 'value' => 'Summit viewpoint, small sand beach'],
-                ['label' => 'Access', 'value' => 'Boat to the island pier; steep stairway to the summit'],
-                ['label' => 'Typical visit', 'value' => 'About 1 hour (estimate)'],
-                ['label' => 'Name', 'value' => 'After cosmonaut Gherman Titov, who visited in January 1962'],
+                ['label' => 'Location', 'value' => 'Central Ha Long Bay, Vietnam'],
+                ['label' => 'Known for', 'value' => 'Hilltop viewpoint and crescent-shaped beach'],
+                ['label' => 'Steps to summit', 'value' => 'More than 400'],
+                ['label' => 'Access', 'value' => 'By sightseeing boat or cruise'],
+                ['label' => 'Typical visit', 'value' => 'Approximately 45–60 minutes'],
+                ['label' => 'Swimming', 'value' => 'Permitted when conditions allow'],
+                ['label' => 'Former name', 'value' => 'Cat Nang Island'],
+                ['label' => 'Named after', 'value' => 'Soviet cosmonaut Gherman Titov'],
+                ['label' => 'Also spelled', 'value' => 'Titop Island'],
             ],
             'faq' => [
-                ['q' => 'Why is it called Ti Top Island?', 'a' => 'President Ho Chi Minh named the island after Soviet cosmonaut Gherman Titov, who visited with him on 22 January 1962. "Ti Top" is the Vietnamese rendering of Titov.'],
-                ['q' => 'Can you swim at Ti Top beach?', 'a' => 'Yes, in the designated area when sea conditions allow. Water is warmest from late spring to autumn. The crew decides on the day whether swimming is safe.'],
-                ['q' => 'How hard is the climb to the top?', 'a' => 'It is a short but steep stairway with railings. Most reasonably fit visitors manage it at a steady pace; in summer, go slowly and carry water.'],
-                ['q' => 'When does Green Ruby plan to stop at Ti Top?', 'a' => 'On both Ha Long Bay itineraries of Green Ruby 1, in the late afternoon of the first day, after Luon Cave. Times are provisional until the ship enters service, expected in February 2027.'],
+                ['q' => 'Why is it called Ti Top Island?', 'a' => 'The island was named after Soviet cosmonaut Gherman Titov, who visited Ha Long Bay with President Ho Chi Minh on 22 January 1962. It was previously known as Cat Nang Island.'],
+                ['q' => 'Can you swim at Ti Top Beach?', 'a' => 'Yes, swimming is one of the main activities at Ti Top Beach. It depends on sea conditions and local safety instructions, so follow the advice of your cruise crew.'],
+                ['q' => 'How many steps are there on Ti Top Island?', 'a' => 'There are more than 400 stone steps leading to the viewpoint. The climb is steep but manageable for many visitors with reasonable mobility. Allow extra time in hot or wet weather.'],
+                ['q' => 'How long does it take to climb Ti Top Island?', 'a' => 'Allow roughly 15–20 minutes to reach the top, depending on your pace and how busy the stairs are. You will also need time to enjoy the view and walk back down.'],
+                ['q' => 'Is Ti Top Island worth visiting?', 'a' => 'Yes, particularly if you want a high viewpoint over Ha Long Bay. The beach is relatively small, so the climb and panoramic view are often the more memorable parts of the visit.'],
+                ['q' => 'When does Green Ruby plan to visit Ti Top Island?', 'a' => 'Ti Top Island is included in Green Ruby 1’s planned 2-day/1-night and 3-day/2-night Ha Long Bay itineraries. The published 2-day itinerary schedules the stop for approximately 4:30 PM on the first day. All stops remain subject to weather, local regulations and operational conditions.'],
             ],
         ],
         'vi' => [
