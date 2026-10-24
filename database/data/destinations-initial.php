@@ -30,7 +30,7 @@ return [
             ['title' => 'Wikipedia (Vietnamese): Hang Sửng Sốt', 'url' => 'https://vi.wikipedia.org/wiki/Hang_S%E1%BB%ADng_S%E1%BB%91t'],
             ['title' => 'Photo: Sung Sot Cave, Jakub Hałun (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Sung_Sot_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1556_3854.jpg'],
         ],
-        'editor_notes' => "EN updated 2026-10-24 from the editorial brief; opening hours from the Ha Long Bay Management Board 'Visiting time' page (updated 2024-11-06): 7h30-17h30 (16/4-31/10), 7h30-17h00 (1/11-15/4). Not published: exact number of steps, cave size, ticket prices. The 1901 French naming story is on vi.wikipedia only; left out until confirmed by the Management Board.",
+        'editor_notes' => "EN and VI updated 2026-10-24 from the editorial briefs; opening hours from the Ha Long Bay Management Board 'Visiting time' page (updated 2024-11-06): 7h30-17h30 (16/4-31/10), 7h30-17h00 (1/11-15/4). Not published: exact number of steps, cave size, ticket prices. The 1901 French naming story is on vi.wikipedia only; left out until confirmed by the Management Board.",
         'en' => [
             'slug' => 'sung-sot-cave',
             'name' => 'Sung Sot Cave',
@@ -112,41 +112,84 @@ HTML,
         'vi' => [
             'slug' => 'hang-sung-sot',
             'name' => 'Hang Sửng Sốt',
+            'heading' => 'Hang Sửng Sốt (Hạ Long): Kinh nghiệm tham quan',
             'image_alt' => 'Thạch nhũ được chiếu sáng dưới trần cao của khoang chính hang Sửng Sốt, vịnh Hạ Long',
+            'image_credit' => 'Ảnh: Jakub Hałun, CC BY 4.0, qua Wikimedia Commons',
             'seo_title' => 'Hang Sửng Sốt, vịnh Hạ Long: kinh nghiệm tham quan',
-            'seo_description' => 'Hang Sửng Sốt có gì, đường lên hang ra sao, tham quan mất bao lâu, ai nên cân nhắc khi leo bậc và lịch ghé dự kiến của du thuyền Green Ruby.',
-            'summary' => 'Hang Sửng Sốt nằm trên đảo Bồ Hòn, giữa vịnh Hạ Long. Cửa hang nhỏ nhưng bên trong mở ra hai khoang rộng, du khách lên hang theo lối bậc đá từ bến thuyền.',
+            'seo_description' => 'Hang Sửng Sốt trên đảo Bồ Hòn, vịnh Hạ Long: giờ tham quan, cách đến, mất bao lâu, đường lên hang, vé tham quan và các điểm gần đó.',
+            'summary' => 'Hang Sửng Sốt là một trong những hang động nổi tiếng nhất vịnh Hạ Long, nằm trên đảo Bồ Hòn. Phía sau cửa hang không quá lớn là hai khoang đá vôi rộng, có nhiều thạch nhũ với hình dáng độc đáo. Để đến cửa hang, du khách cần đi bộ lên một đoạn cầu thang đá từ bến thuyền.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Thời gian đón khách tham quan', 'url' => 'https://halongbay.com.vn/p/71-thoi-gian-don-tra-khach-ve-cang-ben'],
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay – Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Wikidata – Sung Sot Cave', 'url' => 'https://www.wikidata.org/wiki/Q10765376'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Hang Sửng Sốt nằm lưng chừng núi đá vôi trên đảo Bồ Hòn, khu vực trung tâm vịnh Hạ Long. Cùng đảo có hang Luồn, gần đó là đảo Ti Tốp, nên ba điểm này thường nằm chung một tuyến tham quan.</p>
-<h2>Vì sao nên lên hang</h2>
-<p>Tên hang nói đúng cảm giác của người mới đến: cửa vào khá hẹp, nhưng bước qua là một không gian rộng hơn nhiều so với tưởng tượng. Hang gồm hai khoang chính. Khoang đầu thấp, giống một sảnh lớn; khoang sau rộng và cao hơn hẳn, thạch nhũ và măng đá phủ kín vách và trần. Hệ thống đèn màu làm nổi các khối đá, hướng dẫn viên thường kể những tích truyện dân gian gắn với từng hình thù.</p>
-<h2>Đường lên hang</h2>
-<p>Tàu neo ở bến dưới chân đảo. Từ bến, lối bậc đá dẫn lên cửa hang qua những tán cây. Bên trong có lối đi lát đá và lan can chạy qua cả hai khoang; cuối hang là điểm nhìn xuống khu neo đậu của tàu trước khi xuống bậc trở lại bến.</p>
-<h2>Khi đến nơi</h2>
-<p>Đây là một trong những hang được ghé thăm nhiều nhất vịnh Hạ Long, nên bạn sẽ đi chung lối với các đoàn khác, nhất là giữa buổi sáng và cuối tuần. Trong hang khá ấm và ẩm, ánh sáng dịu, mặt đá có chỗ trơn.</p>
-<h2>Lưu ý khi tham quan</h2>
+<p><em>Giờ mở cửa và quy định tham quan có thể thay đổi. Bạn nên kiểm tra thông tin trước chuyến đi.</em></p>
+<h2>Hang Sửng Sốt nằm ở đâu?</h2>
+<p>Hang Sửng Sốt nằm trên đảo Bồ Hòn, thuộc khu vực trung tâm vịnh Hạ Long. Hang nằm ở vị trí cao hơn mặt biển nên du khách phải leo một đoạn cầu thang đá để lên cửa hang.</p>
+<p>Cùng trên đảo Bồ Hòn còn có <a href="/vi/dia-diem-tham-quan/hang-luon">hang Luồn</a>, trong khi <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a> nằm không xa. Ba địa điểm này thường xuất hiện trong các chương trình tham quan vịnh Hạ Long, kết hợp khám phá hang động, chèo kayak và ngắm cảnh từ trên cao.</p>
+<h2>Hang Sửng Sốt có gì đặc biệt?</h2>
+<p>Điểm thú vị của hang Sửng Sốt nằm ở sự tương phản giữa cửa hang và không gian bên trong. Sau khi đi qua lối vào tương đối nhỏ, du khách sẽ đến hai khoang hang rộng với nhiều khối thạch nhũ được hình thành qua thời gian dài.</p>
+<p>Khoang đầu tiên có không gian thấp hơn, với nhiều nhũ đá trên trần và vách. Đi sâu vào bên trong, khoang thứ hai mở ra rộng và cao hơn, tạo nên khung cảnh đặc trưng của hang Sửng Sốt.</p>
+<p>Lối đi được bố trí qua các khoang để du khách quan sát những khối thạch nhũ, măng đá với hình dáng khác nhau. Một số hình thù gắn với các câu chuyện dân gian và thường được hướng dẫn viên giới thiệu trong chuyến tham quan.</p>
+<p>Ở khu vực gần lối ra, bạn còn có thể ngắm nhìn cảnh núi đá vôi và tàu thuyền neo đậu trên vịnh.</p>
+<h2>Đến hang Sửng Sốt bằng cách nào?</h2>
+<p>Hang Sửng Sốt nằm trên đảo nên không thể đến trực tiếp bằng đường bộ. Du khách cần đi tàu tham quan vịnh Hạ Long hoặc chọn hành trình du thuyền có điểm dừng tại hang.</p>
+<p>Sau khi tàu cập bến dưới chân đảo, bạn sẽ đi bộ theo cầu thang đá lên cửa hang. Bên trong đã có lối đi dành cho khách tham quan, với những đoạn cầu thang và lan can hỗ trợ.</p>
+<p>Du khách tham quan theo tuyến đường quy định trước khi trở xuống khu vực bến thuyền.</p>
+<h2>Tham quan hang Sửng Sốt mất bao lâu?</h2>
+<p>Một chuyến tham quan hang Sửng Sốt thường mất khoảng <strong>45–60 phút</strong>, bao gồm thời gian leo bậc đá, đi qua các khoang hang và ngắm cảnh.</p>
+<p>Thời gian thực tế phụ thuộc vào tốc độ di chuyển, lượng khách tại thời điểm tham quan và lịch trình của tàu.</p>
+<p>Nếu đi cùng người lớn tuổi hoặc trẻ nhỏ, bạn nên dành thêm thời gian cho việc lên xuống cầu thang.</p>
+<h2>Đường lên hang Sửng Sốt có khó không?</h2>
+<p>Đường lên hang có nhiều bậc đá. Bên trong hang cũng có những đoạn lên xuống và bề mặt có thể ẩm, trơn khi thời tiết mưa hoặc độ ẩm cao.</p>
+<p>Một số lưu ý khi tham quan:</p>
 <ul>
-<li>Phải leo khá nhiều bậc ở bên ngoài và đi tiếp một số bậc trong hang. Hang không phù hợp với xe lăn hay người khó leo cầu thang.</li>
-<li>Nên đi giày đế bám và mang theo nước. Trong hang thường ấm nên không cần áo khoác.</li>
-<li>Trẻ nhỏ cần được bế ở một số đoạn bậc.</li>
-<li>Nếu không muốn leo, bạn có thể báo trước với đội tàu để ở lại trên du thuyền.</li>
+<li>Nên mang giày thể thao hoặc giày có đế bám tốt.</li>
+<li>Chuẩn bị nước uống, nhất là vào những ngày nóng.</li>
+<li>Đi chậm và chú ý ở các đoạn cầu thang hoặc nền đá ẩm.</li>
+<li>Trẻ nhỏ cần có người lớn đi cùng và hỗ trợ khi lên xuống bậc đá.</li>
+<li>Người gặp khó khăn khi di chuyển nên cân nhắc trước khi tham quan.</li>
 </ul>
-<h2>Thời tiết và mùa</h2>
-<p>Mưa không ảnh hưởng đến bên trong hang, nhưng chuyến tham quan phụ thuộc vào việc tàu có được phép ra vịnh hay không. Khi có cảnh báo bão, thường từ tháng 6 đến tháng 10, cơ quan chức năng có thể tạm dừng tàu du lịch và lịch ghé hang sẽ bị hủy hoặc đổi.</p>
+<p>Hang không có lối đi phù hợp cho xe lăn. Nếu đi cùng người lớn tuổi hoặc người có vấn đề về vận động, bạn nên trao đổi trước với đơn vị tổ chức tour.</p>
+<h2>Nên tham quan hang Sửng Sốt vào thời điểm nào?</h2>
+<p>Hang Sửng Sốt đón khách quanh năm theo lịch và quy định của cơ quan quản lý.</p>
+<p>Vào mùa hè, thời tiết bên ngoài thường nóng ẩm, vì vậy đoạn leo cầu thang lên cửa hang có thể khiến bạn mất sức hơn. Mùa thu và những ngày thời tiết mát mẻ thường thuận tiện hơn cho việc đi bộ.</p>
+<p>Hang cũng là điểm tham quan nổi tiếng nên có thể khá đông, đặc biệt vào cuối tuần, ngày lễ hoặc khi nhiều đoàn tàu đến cùng lúc.</p>
+<p>Nếu muốn tham quan thong thả, bạn có thể hỏi đơn vị tổ chức về thời gian dự kiến ghé hang.</p>
+<p>Khi có thời tiết nguy hiểm, hoạt động tàu du lịch trên vịnh có thể bị tạm dừng theo quy định của cơ quan chức năng. Vì vậy, lịch tham quan hang cũng có thể thay đổi.</p>
+<h2>Vé tham quan hang Sửng Sốt</h2>
+<p>Hang Sửng Sốt thuộc tuyến tham quan có thu phí trên vịnh Hạ Long. Vé tham quan thường được mua cùng chương trình đi tàu hoặc bao gồm trong gói du thuyền đã đặt.</p>
+<p>Nếu đi theo tour, bạn nên kiểm tra phần dịch vụ bao gồm để biết phí tham quan hang đã được tính trong giá hay chưa.</p>
+<p>Đối với khách đặt du thuyền nghỉ đêm, phí tham quan các điểm có trong lịch trình thường được bao gồm theo điều kiện của từng gói dịch vụ.</p>
+<h2>Tham quan hang Sửng Sốt cùng Green Ruby Cruises</h2>
+<p>Theo chương trình dự kiến, hang Sửng Sốt là một trong những điểm tham quan thuộc một số hành trình của <a href="/vi/du-thuyen/green-ruby-1-1.html"><strong>Green Ruby 1</strong></a> trên vịnh Hạ Long.</p>
+<p>Du thuyền Green Ruby 1 được thiết kế cho các chuyến nghỉ đêm kết hợp tham quan danh thắng, trải nghiệm hoạt động trên vịnh và nghỉ dưỡng.</p>
+<p>Thời gian ghé hang và các điểm tham quan sẽ được xác nhận theo chương trình chính thức, tùy thuộc điều kiện thời tiết và quy định khai thác tại thời điểm khởi hành.</p>
+<p>Bạn có thể tham khảo <a href="/vi/hanh-trinh">các hành trình dự kiến của Green Ruby 1</a> để lựa chọn chuyến đi phù hợp.</p>
+<h2>Những địa điểm gần hang Sửng Sốt</h2>
+<h3><a href="/vi/dia-diem-tham-quan/hang-luon">Hang Luồn</a></h3>
+<p>Nằm trên cùng đảo Bồ Hòn, hang Luồn nổi bật với khu vực mặt nước được bao quanh bởi núi đá vôi. Du khách có thể khám phá bằng thuyền kayak hoặc thuyền nan theo chương trình tham quan.</p>
+<h3><a href="/vi/dia-diem-tham-quan/dao-ti-top">Đảo Ti Tốp</a></h3>
+<p>Đảo Ti Tốp được biết đến với bãi tắm và điểm ngắm cảnh trên cao. Nếu có đủ thời gian và thể lực, bạn có thể leo lên điểm quan sát để ngắm toàn cảnh một phần vịnh Hạ Long.</p>
+<p>Việc kết hợp các địa điểm này phụ thuộc vào tuyến tham quan và lịch trình của từng du thuyền.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Đảo Bồ Hòn, trung tâm vịnh Hạ Long'],
-                ['label' => 'Loại hình', 'value' => 'Hang đá vôi, hai khoang chính'],
-                ['label' => 'Cách đến', 'value' => 'Tàu cập bến chân đảo, đi bộ lên lối bậc đá'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1 giờ kể cả leo bậc (ước tính)'],
-                ['label' => 'Khả năng tiếp cận', 'value' => 'Nhiều bậc, không phù hợp xe lăn'],
+                ['label' => 'Vị trí', 'value' => 'Đảo Bồ Hòn, vịnh Hạ Long, Quảng Ninh'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Sung Sot Cave (Surprise Cave)'],
+                ['label' => 'Cách di chuyển', 'value' => 'Đi tàu tham quan hoặc du thuyền'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 45–60 phút'],
+                ['label' => 'Mức độ di chuyển', 'value' => 'Trung bình, cần leo bậc đá và đi bộ trong hang'],
+                ['label' => 'Giờ tham quan', 'value' => '7h30–17h30 (16/4–31/10); 7h30–17h00 (1/11–15/4). Có thể thay đổi, nên kiểm tra trước chuyến đi.'],
+                ['label' => 'Vé tham quan', 'value' => 'Thuộc vé tham quan tuyến có hang Sửng Sốt; thường đã bao gồm trong giá tour theo chương trình'],
             ],
             'faq' => [
-                ['q' => 'Tham quan hang Sửng Sốt mất bao lâu?', 'a' => 'Bạn nên dành khoảng một giờ tính từ lúc lên bến đến khi quay lại, gồm cả leo bậc và đi hết hai khoang. Những buổi sáng đông khách có thể lâu hơn một chút.'],
-                ['q' => 'Người lớn tuổi và trẻ nhỏ có đi hang Sửng Sốt được không?', 'a' => 'Tùy vào khả năng leo bậc. Đường lên cửa hang là một lối bậc đá dài, trong hang còn thêm một số bậc. Trẻ em vẫn đi được, nhưng bé nhỏ cần người lớn bế ở vài đoạn.'],
-                ['q' => 'Hang Sửng Sốt có đông không?', 'a' => 'Đây là một trong những điểm đông khách nhất vịnh Hạ Long. Đi sớm thường vắng hơn, vì vậy Green Ruby dự kiến ghé hang vào buổi sáng.'],
-                ['q' => 'Du thuyền Green Ruby nào ghé hang Sửng Sốt?', 'a' => 'Hang Sửng Sốt nằm trong cả hai hành trình vịnh Hạ Long của Green Ruby 1, vào sáng ngày cuối. Các hành trình vịnh Lan Hạ của Green Ruby 2 không ghé hang này. Lịch trình có thể điều chỉnh trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Tham quan hang Sửng Sốt mất bao lâu?', 'a' => 'Thông thường khoảng 45–60 phút, bao gồm thời gian đi bộ lên cửa hang, tham quan bên trong và trở xuống bến thuyền. Nếu đi vào giờ đông khách, thời gian có thể kéo dài hơn.'],
+                ['q' => 'Người lớn tuổi và trẻ nhỏ có tham quan hang Sửng Sốt được không?', 'a' => 'Có thể, nếu sức khỏe và khả năng đi lại phù hợp. Tuy nhiên, đường lên hang có nhiều bậc đá, vì vậy người gặp khó khăn khi leo cầu thang nên cân nhắc trước khi tham quan. Trẻ nhỏ cần có người lớn đi cùng.'],
+                ['q' => 'Hang Sửng Sốt có đông khách không?', 'a' => 'Hang Sửng Sốt là một trong những điểm tham quan nổi tiếng của vịnh Hạ Long nên có thể đông vào cuối tuần, ngày lễ và những thời điểm nhiều đoàn tàu đến cùng lúc.'],
+                ['q' => 'Có thể tự đi tham quan hang Sửng Sốt không?', 'a' => 'Bạn cần sử dụng phương tiện đường thủy để đến đảo Bồ Hòn. Có thể chọn tàu tham quan trong ngày hoặc du thuyền nghỉ đêm có lịch trình ghé hang Sửng Sốt.'],
+                ['q' => 'Có cần mua vé riêng để vào hang Sửng Sốt không?', 'a' => 'Phí tham quan hang thuộc hệ thống vé tham quan theo tuyến trên vịnh Hạ Long. Nếu đặt tour hoặc du thuyền, bạn nên kiểm tra xem khoản phí này đã nằm trong giá dịch vụ hay chưa.'],
+                ['q' => 'Du thuyền Green Ruby nào dự kiến ghé hang Sửng Sốt?', 'a' => 'Hang Sửng Sốt dự kiến nằm trong một số chương trình tham quan của Green Ruby 1 trên vịnh Hạ Long. Các điểm dừng và thời gian tham quan sẽ được xác nhận trong lịch trình chính thức.'],
             ],
         ],
     ],

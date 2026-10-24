@@ -102,7 +102,7 @@ class DestinationsImportCommand extends Command
             'coords_source' => $shared['coords_source'],
             'image_link' => $image['link'] ?? null,
             'image_alt' => $image ? ($local['image_alt'] ?? null) : null,
-            'image_credit' => $shared['image_credit'] ?? null,
+            'image_credit' => $local['image_credit'] ?? $shared['image_credit'] ?? null,
             'status' => $status,
             'editor_notes' => $shared['editor_notes'] ?? null,
             'fact_checked_at' => '2026-10-24',
