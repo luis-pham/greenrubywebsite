@@ -1519,7 +1519,7 @@ HTML,
             ['title' => 'Wikipedia (Vietnamese): Vườn quốc gia Cát Bà (communes incl. Việt Hải)', 'url' => 'https://vi.wikipedia.org/wiki/V%C6%B0%E1%BB%9Dn_qu%E1%BB%91c_gia_C%C3%A1t_B%C3%A0'],
             ['title' => 'Photo with GPS: Paddy fields in Việt Hải, Jakub Hałun (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Vi%E1%BB%87t_H%E1%BA%A3i,_C%C3%A1t_B%C3%A0_Island,_Vietnam,_20240131_1211_4613.jpg'],
         ],
-        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief. Verified: ~5 km pier-to-village road (CatBa.com, Hai Phong News), GR2 3D2N day 2 10:00 village / 12:00 lunch / 14:00 beach (itinerary page). Brief's Hai Phong source used the oauth.congdoanhaiphong.vn mirror (bad SSL); replaced with haiphongnews.gov.vn. Old note: Not published: distance from the pier to the village (sources vary), household numbers, buggy/bike fees. 2025 administrative changes renamed local units; copy avoids commune/district names.",
+        'editor_notes' => "EN and VI rewritten 2026-10-24 from the editorial briefs (copy does not claim the village has no road link to the rest of the island). Verified: ~5 km pier-to-village road (CatBa.com, Hai Phong News), GR2 3D2N day 2 10:00 village / 12:00 lunch / 14:00 beach (itinerary page). Brief's Hai Phong source used the oauth.congdoanhaiphong.vn mirror (bad SSL); replaced with haiphongnews.gov.vn. Old note: Not published: distance from the pier to the village (sources vary), household numbers, buggy/bike fees. 2025 administrative changes renamed local units; copy avoids commune/district names.",
         'en' => [
             'slug' => 'viet-hai-village',
             'name' => 'Viet Hai Village',
@@ -1681,45 +1681,156 @@ HTML,
             'slug' => 'lang-viet-hai',
             'name' => 'Làng Việt Hải',
             'image_alt' => 'Ruộng lúa và núi đá vôi phủ rừng trong thung lũng Việt Hải, đảo Cát Bà',
-            'seo_title' => 'Làng Việt Hải, Cát Bà: đi thế nào, có gì?',
-            'seo_description' => 'Việt Hải là làng nhỏ trong thung lũng thuộc Vườn quốc gia Cát Bà. Cách đến bằng thuyền, đi bộ, xe đạp hay xe điện, nên chuẩn bị gì và cần biết gì.',
-            'summary' => 'Ngôi làng nhỏ nằm trong thung lũng trên đảo Cát Bà, bốn bề núi đá phủ rừng, thuộc khu vực Vườn quốc gia Cát Bà. Du khách đến bằng thuyền rồi đi bộ, đạp xe hoặc đi xe điện vào làng.',
+            'seo_title' => 'Làng Việt Hải Cát Bà: Đạp Xe, Xe Điện & Kinh Nghiệm Tham Quan',
+            'seo_description' => 'Làng Việt Hải ở đâu, có gì chơi? Kinh nghiệm đạp xe hoặc đi xe điện 5 km từ bến vào làng, ngắm ruộng lúa, ăn trưa và tham quan từ vịnh Lan Hạ.',
+            'summary' => 'Làng Việt Hải nằm trong một thung lũng trên đảo Cát Bà, được bao quanh bởi những dãy núi đá vôi phủ rừng. Từ vịnh Lan Hạ, du khách đi thuyền đến bến Việt Hải, sau đó đạp xe hoặc đi xe điện khoảng 5 km để vào làng. Trên đường là những đoạn núi rừng, ruộng lúa, vườn cây và những ngôi nhà nằm rải rác trong thung lũng.',
+            'sources' => [
+                ['title' => 'UNESCO – Khu dự trữ sinh quyển Cát Bà', 'url' => 'https://www.unesco.org/en/mab/cat-ba'],
+                ['title' => 'UNESCO – Di sản vịnh Hạ Long – quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Vietnam Airlines – Khám phá làng Việt Hải', 'url' => 'https://www.vietnamairlines.com/go/vi/plan-book/travel/travel-guide/viet-hai-village'],
+                ['title' => 'CatBa.com – Hướng dẫn tham quan làng Việt Hải', 'url' => 'https://catba.com/vi/destinations/viet-hai-village/'],
+                ['title' => 'Green Ruby Cruises – 3 ngày 2 đêm: Dấu Ấn Lan Hạ', 'url' => 'https://greenrubycruises.com/vi/hanh-trinh/3-ngay-2-dem-dau-an-lan-ha-2-7.html'],
+                ['title' => 'Wikimedia Commons – Ảnh ruộng lúa Việt Hải của Jakub Hałun', 'url' => 'https://commons.wikimedia.org/wiki/File:Vi%E1%BB%87t_H%E1%BA%A3i,_C%C3%A1t_B%C3%A0_Island,_Vietnam,_20240131_1211_4613.jpg'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Việt Hải nằm trong một thung lũng phía đông đảo Cát Bà, hướng ra vịnh Lan Hạ. Làng thuộc khu vực Vườn quốc gia Cát Bà, thành lập năm 1986; quần đảo Cát Bà là Khu dự trữ sinh quyển thế giới từ năm 2004.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Sau một hai ngày trên mặt nước, Việt Hải mang lại nhịp sống khác hẳn: ruộng lúa, vườn rau, những nếp nhà lác đác và núi xanh dựng đứng xung quanh. Đây là góc ít khách du thuyền nhìn thấy, nơi đời sống vẫn gắn với ruộng vườn hơn là du lịch.</p>
-<h2>Hoạt động</h2>
+<h2>Làng Việt Hải ở đâu?</h2>
+<p>Làng Việt Hải nằm ở phía đông đảo Cát Bà, thuộc thành phố Hải Phòng, trong khu vực Vườn quốc gia Cát Bà.</p>
+<p>Ngôi làng nằm giữa một thung lũng được bao quanh bởi những dãy núi đá vôi và rừng cây. Từ phía vịnh Lan Hạ, con đường dẫn vào làng đi qua khu vực núi rừng trước khi mở ra những cánh đồng và khu dân cư.</p>
+<p>Vườn quốc gia Cát Bà được thành lập năm 1986. Quần đảo Cát Bà được UNESCO công nhận là Khu dự trữ sinh quyển thế giới năm 2004 và trở thành một phần của Di sản Thiên nhiên Thế giới vịnh Hạ Long – quần đảo Cát Bà từ năm 2023.</p>
+<p>Do vị trí nằm sâu trong đảo, Việt Hải từng có điều kiện đi lại khó khăn hơn nhiều khu dân cư khác ở Cát Bà. Ngày nay, làng đã phát triển các dịch vụ phục vụ du khách, đặc biệt là xe đạp, xe điện, homestay và ăn uống.</p>
+<p>Việt Hải thường xuất hiện trong những hành trình khám phá vịnh Lan Hạ dài ngày, khi du khách có thêm thời gian rời tàu để tìm hiểu cảnh quan và đời sống trên đảo.</p>
+<h2>Làng Việt Hải có gì đặc biệt?</h2>
+<p>Điểm thú vị của Việt Hải bắt đầu từ chính con đường dẫn vào làng.</p>
+<p>Sau thời gian ngắm những đảo đá vôi trên vịnh Lan Hạ, du khách lên bờ, tiếp tục di chuyển qua một con đường nhỏ chạy giữa các dãy núi. Có đoạn hai bên là cây rừng, có đoạn mở ra thung lũng với đồng ruộng và những ngôi nhà nằm dưới chân núi.</p>
+<p>Khung cảnh ở đây khác với những điểm tham quan trên mặt nước. Thay vì hang động, bãi tắm hay các đảo đá giữa biển, bạn sẽ thấy ruộng lúa, vườn rau, cây ăn quả và những con đường làng.</p>
+<p>Việt Hải vẫn có người dân sinh sống, làm nông nghiệp và kinh doanh các dịch vụ phục vụ khách du lịch. Một số gia đình mở homestay, nhà hàng hoặc cho thuê xe đạp, trong khi những hộ khác vẫn duy trì công việc gắn với ruộng vườn và nghề biển.</p>
+<p>Vì vậy, Việt Hải không phải một ngôi làng được giữ nguyên như hàng chục năm trước. Nhà cửa, đường sá và sinh kế của người dân đã thay đổi cùng với sự phát triển của du lịch.</p>
+<p>Điều đáng trải nghiệm ở đây là sự kết hợp giữa cảnh quan núi rừng Cát Bà và đời sống của một cộng đồng đang tiếp tục phát triển.</p>
+<h2>Đời sống người dân làng Việt Hải</h2>
+<p>Trong nhiều năm, vị trí nằm giữa núi rừng khiến việc đi lại và giao thương của người dân Việt Hải không thuận tiện.</p>
+<p>Người dân chủ yếu dựa vào những nguồn sinh kế phù hợp với điều kiện địa phương như trồng trọt, chăn nuôi và các công việc liên quan đến biển.</p>
+<p>Ruộng lúa, vườn rau và cây ăn quả vẫn là một phần của cảnh quan làng. Tuy nhiên, diện tích canh tác và hình ảnh đồng ruộng thay đổi theo mùa vụ.</p>
+<p>Khi du lịch Cát Bà và vịnh Lan Hạ phát triển, nhiều gia đình bắt đầu tham gia cung cấp dịch vụ lưu trú, ăn uống, vận chuyển và hướng dẫn tham quan.</p>
+<p>Ngày nay, khi đi qua làng, bạn có thể bắt gặp cả những ngôi nhà dân, khu vườn đang canh tác lẫn những cơ sở phục vụ du khách.</p>
+<p>Việt Hải vì thế vừa là nơi sinh sống của người dân địa phương, vừa là một điểm du lịch cộng đồng. Du khách nên nhìn nhận nơi này như một ngôi làng đang vận hành bình thường, không phải khu trưng bày nếp sống truyền thống.</p>
+<h2>Những hoạt động nên trải nghiệm tại làng Việt Hải</h2>
+<h3>Đạp xe từ bến Việt Hải vào làng</h3>
+<p>Đạp xe là một trong những hoạt động được nhiều du khách lựa chọn khi đến Việt Hải.</p>
+<p>Từ bến tàu, con đường dài khoảng 5 km dẫn vào làng, đi qua những đoạn núi đá vôi, cây rừng và các khoảng thung lũng.</p>
+<p>Đường đã được trải nhựa hoặc bê tông ở phần lớn tuyến di chuyển, thuận tiện cho xe đạp và xe điện. Tuy nhiên, không phải toàn bộ đều bằng phẳng. Một số đoạn có khúc cua hoặc dốc nhẹ nên bạn vẫn cần chú ý khi điều khiển xe.</p>
+<p>Khi đến gần làng, khung cảnh dần thay đổi. Những đoạn đường giữa núi mở ra cánh đồng, vườn cây và các ngôi nhà nằm dọc đường.</p>
+<p>Nếu không quá vội, bạn có thể đạp xe chậm, dừng tại những vị trí an toàn để ngắm cảnh hoặc chụp ảnh.</p>
+<p>Không cần là người đạp xe chuyên nghiệp, nhưng bạn nên biết điều khiển xe thành thạo và có sức khỏe phù hợp. Vào mùa hè, thời tiết nóng ẩm có thể khiến quãng đường trở nên mệt hơn.</p>
+<h3>Đi xe điện tham quan Việt Hải</h3>
+<p>Nếu không muốn đạp xe, bạn có thể lựa chọn xe điện để đi từ bến vào làng.</p>
+<p>Xe điện chạy trên tuyến đường dẫn qua núi rừng và thung lũng, giúp du khách ngắm cảnh mà không phải vận động nhiều.</p>
+<p>Đây là lựa chọn thuận tiện cho những gia đình có trẻ nhỏ, người lớn tuổi hoặc những ai muốn dành thời gian đi bộ trong làng thay vì đạp xe trên đường vào.</p>
+<p>Tùy chương trình, xe điện có thể đưa khách đến điểm tập trung trong làng rồi tiếp tục tham quan bằng cách đi bộ.</p>
+<p>Số lượng xe, điểm đón và thời gian sử dụng phụ thuộc vào đơn vị tổ chức. Nếu có nhu cầu đi xe điện, bạn nên báo trước với hướng dẫn viên hoặc bộ phận đặt tour.</p>
+<h3>Đi bộ khám phá đường làng và ruộng vườn</h3>
+<p>Khi đã vào Việt Hải, bạn có thể dành thời gian đi bộ qua những con đường nhỏ giữa khu dân cư.</p>
+<p>Dọc đường là ruộng lúa, vườn rau, cây ăn quả và những ngôi nhà của người dân. Tùy mùa vụ, bạn có thể bắt gặp cảnh làm đất, chăm sóc cây trồng hoặc thu hoạch.</p>
+<p>Việt Hải không có một công trình lớn mà du khách bắt buộc phải ghé. Phần lớn trải nghiệm nằm ở việc quan sát cảnh quan, đi dạo và tìm hiểu cuộc sống trong làng.</p>
+<p>Nên đi theo đường chung và những lối được phép tham quan. Ruộng lúa, vườn cây và sân nhà đều có thể là khu vực sinh hoạt hoặc sản xuất riêng của người dân.</p>
+<h3>Dùng bữa với các món ăn địa phương</h3>
+<p>Một số hành trình tham quan Việt Hải có tổ chức bữa trưa tại nhà hàng trong làng.</p>
+<p>Thực đơn có thể gồm các món ăn Việt Nam quen thuộc như cơm, rau, cá, thịt và những món chế biến theo cách của cơ sở phục vụ.</p>
+<p>Món ăn thay đổi theo chương trình và nguyên liệu sẵn có. Không nên mặc định mọi thực phẩm trong bữa ăn đều được nuôi trồng ngay tại Việt Hải.</p>
+<p>Sau buổi sáng đạp xe hoặc đi bộ, bữa trưa trong làng cũng là dịp để nghỉ ngơi trước khi quay lại bến tàu.</p>
+<p>Nếu ăn chay, có dị ứng thực phẩm hoặc yêu cầu chế độ ăn riêng, bạn nên thông báo trước với đơn vị tổ chức.</p>
+<h3>Tìm hiểu du lịch cộng đồng tại Việt Hải</h3>
+<p>Việt Hải đang phát triển nhiều dịch vụ du lịch dựa trên điều kiện tự nhiên và đời sống địa phương.</p>
+<p>Ngoài nông nghiệp, một số người dân tham gia vận hành homestay, nhà hàng, dịch vụ xe điện, xe đạp và các hoạt động phục vụ khách tham quan.</p>
+<p>Qua câu chuyện của hướng dẫn viên hoặc người dân, bạn có thể tìm hiểu cách làng thay đổi khi du lịch trở thành một nguồn thu nhập mới.</p>
+<p>Một số gia đình có đón khách, nhưng không phải nhà nào cũng mở cửa tham quan. Vì vậy, bạn nên hỏi trước khi bước vào sân nhà hoặc muốn tìm hiểu một hoạt động sản xuất cụ thể.</p>
+<h2>Nên đạp xe hay đi xe điện vào làng Việt Hải?</h2>
+<p>Cả hai hình thức đều đi qua tuyến đường chính từ bến Việt Hải vào làng, nhưng phù hợp với những nhu cầu khác nhau.</p>
+<p><strong>Đạp xe</strong> thích hợp nếu bạn thích vận động, muốn tự điều khiển tốc độ và có thời gian quan sát cảnh vật dọc đường. Tuyến dài khoảng 5 km, có một số đoạn dốc nhẹ nên cần biết đi xe và có thể lực phù hợp.</p>
+<p><strong>Đi xe điện</strong> phù hợp nếu bạn muốn tham quan nhẹ nhàng hơn, đi cùng trẻ nhỏ hoặc không muốn đạp xe trong thời tiết nóng.</p>
+<p>Đi bộ toàn bộ quãng đường cũng là một lựa chọn, nhưng với khoảng 5 km mỗi chiều, thời gian di chuyển sẽ lâu hơn đáng kể.</p>
+<p>Nếu tham gia du thuyền có thời gian dừng giới hạn, đi xe đạp hoặc xe điện thường hợp lý hơn. Sau khi vào làng, bạn vẫn có thể dành thời gian đi bộ quanh khu dân cư và ruộng vườn.</p>
+<h2>Cách đi đến làng Việt Hải</h2>
+<p>Du khách có thể đến Việt Hải theo đường thủy hoặc đi bộ qua các tuyến rừng trong khu vực Vườn quốc gia Cát Bà.</p>
+<p>Đối với khách tham quan vịnh Lan Hạ, cách phổ biến nhất là đi tàu đến bến Việt Hải.</p>
+<p>Từ bến, tiếp tục di chuyển khoảng 5 km theo con đường dẫn vào thung lũng bằng xe đạp, xe điện hoặc đi bộ.</p>
+<p>Nếu lưu trú tại khu vực Cát Bà, bạn có thể tìm các chuyến tàu phù hợp từ bến Bèo, sau đó sắp xếp phương tiện vào làng.</p>
+<p>Một lựa chọn khác là trekking xuyên Vườn quốc gia Cát Bà để đến Việt Hải. Đây là hành trình dài, đòi hỏi nhiều thời gian, thể lực và sự chuẩn bị, thường cần người dẫn đường am hiểu tuyến rừng.</p>
+<p>Đối với khách đi du thuyền nghỉ đêm, phương tiện đưa đón và chương trình trong làng thường được sắp xếp theo lịch trình của tàu. Xem thêm <a href="/vi/cam-nang/ha-noi-di-ha-long">cách đi từ Hà Nội đến Hạ Long</a> để đến cảng lên tàu.</p>
+<p>Làng Việt Hải nằm trong hành trình dự kiến 3 ngày 2 đêm của <a href="/vi/du-thuyen/green-ruby-2-2.html">Green Ruby 2</a> trên vịnh Lan Hạ.</p>
+<h2>Tham quan làng Việt Hải mất bao lâu?</h2>
+<p>Bạn nên dành khoảng 2–3 giờ để đi từ bến vào làng, đạp xe hoặc đi xe điện, sau đó đi bộ tham quan khu vực dân cư.</p>
+<p>Nếu chương trình bao gồm bữa trưa, tổng thời gian có thể kéo dài khoảng nửa ngày.</p>
+<p>Quãng đường từ bến vào làng cũng là một phần đáng trải nghiệm, nên không nhất thiết phải di chuyển thật nhanh để đến nơi.</p>
+<p>Nếu muốn trekking xuyên Vườn quốc gia Cát Bà hoặc nghỉ lại qua đêm, bạn sẽ cần kế hoạch riêng và nhiều thời gian hơn.</p>
+<p>Với hành trình du thuyền, hãy theo giờ tập trung của hướng dẫn viên vì chương trình trong ngày có thể còn những điểm dừng khác trên vịnh Lan Hạ.</p>
+<h2>Khi đến làng Việt Hải cần lưu ý gì?</h2>
+<p>Việt Hải là một ngôi làng nhỏ nhưng đã có các hoạt động du lịch phục vụ khách trong và ngoài nước.</p>
+<p>Dọc đường, bạn có thể gặp xe điện, xe đạp và các đoàn tham quan cùng di chuyển. Khi vào khu dân cư, hai bên đường có nhà ở, vườn cây và những cơ sở dịch vụ.</p>
+<p>Vào mùa hè, thời tiết có thể nóng và ẩm, nhất là khi đạp xe giữa trưa. Sau mưa, những lối đi nhỏ ngoài đường chính có thể lầy hoặc trơn.</p>
+<p>Cánh đồng cũng thay đổi theo mùa. Có thời điểm lúa xanh, có lúc đang thu hoạch hoặc ruộng được để nghỉ. Vì vậy, không nên kỳ vọng lúc nào Việt Hải cũng có những cánh đồng lúa xanh như trong ảnh quảng cáo.</p>
+<p>Một số lưu ý khi tham quan:</p>
 <ul>
-<li>Đi bộ hoặc đạp xe trên con đường bê tông giữa đồng ruộng và nhà dân.</li>
-<li>Đi xe điện nếu muốn vào làng mà không tốn sức.</li>
-<li>Dùng bữa với các món địa phương trong làng.</li>
+<li>Mang theo nước uống, mũ và kem chống nắng khi cần.</li>
+<li>Sử dụng giày hoặc dép phù hợp nếu dự định đạp xe, đi bộ.</li>
+<li>Chuẩn bị thuốc chống côn trùng, đặc biệt vào mùa nóng ẩm.</li>
+<li>Không tự ý đi vào ruộng hoặc vườn cây của người dân.</li>
+<li>Xin phép trước khi chụp ảnh cận mặt người dân hoặc khu vực nhà riêng.</li>
+<li>Không hái rau, quả hoặc cây trồng khi chưa được đồng ý.</li>
+<li>Giữ vệ sinh và mang rác về đúng nơi quy định.</li>
 </ul>
-<h2>Cách đến</h2>
-<p>Thuyền cập một bến nhỏ ở cửa thung lũng. Từ bến có đường bê tông dẫn vào làng, dành cho người đi bộ, xe đạp và xe điện.</p>
-<h2>Khi đến nơi</h2>
-<p>Làng nhỏ và thuần nông, tiện nghi đơn giản. Mùa hè nóng ẩm, sau mưa đường có thể lầy. Có nhà đón khách, có nhà chỉ đơn giản là nơi người dân sinh sống.</p>
-<h2>Lưu ý khi tham quan</h2>
-<ul>
-<li>Đường vào làng phần lớn bằng phẳng; xe điện giúp người không đi bộ xa được vẫn tham quan thoải mái.</li>
-<li>Mang mũ, đồ chống nắng, nước uống và thuốc chống côn trùng.</li>
-<li>Hỏi trước khi chụp ảnh người dân và không đi vào ruộng.</li>
-</ul>
-<h2>Thời tiết và mùa</h2>
-<p>Chuyến thăm phụ thuộc vào thuyền đưa đón từ vịnh, nên gió lớn hoặc cảnh báo bão có thể khiến chuyến đi bị hủy. Cánh đồng đổi màu theo mùa vụ: xanh khi lúa đang lớn, nâu hoặc ngập nước vào những thời điểm khác.</p>
+<p>Nếu muốn tìm hiểu đời sống địa phương, bạn có thể hỏi hướng dẫn viên về nghề nông, các sản phẩm được trồng trong làng và sự phát triển của du lịch cộng đồng.</p>
+<h2>Trẻ em và người lớn tuổi có đi Việt Hải được không?</h2>
+<p>Việt Hải phù hợp với nhiều nhóm du khách vì có thể lựa chọn hình thức di chuyển theo sức khỏe và sở thích.</p>
+<p>Trẻ lớn đã biết đi xe đạp có thể tham gia đạp xe theo đoàn khi có phương tiện phù hợp và đáp ứng yêu cầu của đơn vị tổ chức.</p>
+<p>Với trẻ nhỏ, xe điện thường thuận tiện hơn. Phụ huynh nên kiểm tra trước điều kiện chỗ ngồi và các quy định an toàn.</p>
+<p>Người lớn tuổi cũng có thể đi xe điện để hạn chế vận động, sau đó đi bộ một đoạn ngắn trong làng.</p>
+<p>Tuy nhiên, việc đến Việt Hải vẫn cần di chuyển bằng tàu và lên xuống phương tiện. Một số đường làng hoặc lối đi quanh ruộng có thể không bằng phẳng.</p>
+<p>Đối với người sử dụng xe lăn hoặc gặp khó khăn khi di chuyển, cần hỏi trước về khả năng hỗ trợ thực tế. Xe điện không đồng nghĩa với việc toàn bộ hành trình phù hợp cho xe lăn.</p>
+<h2>Nên đi làng Việt Hải vào tháng mấy?</h2>
+<p>Việt Hải có thể tham quan quanh năm khi điều kiện thời tiết và giao thông cho phép.</p>
+<p>Từ tháng 4 đến tháng 10, thời tiết thường ấm hơn, cây cối phát triển xanh tốt. Tuy nhiên, đây cũng là thời điểm có thể xuất hiện nắng nóng, mưa lớn và bão, ảnh hưởng đến hoạt động ngoài trời cũng như tàu đưa đón.</p>
+<p>Từ tháng 11 đến tháng 3, thời tiết thường mát hoặc lạnh hơn, thuận lợi cho việc đạp xe và đi bộ vào những ngày khô ráo.</p>
+<p>Cảnh quan đồng ruộng không cố định quanh năm. Màu sắc của ruộng lúa và vườn cây thay đổi theo thời điểm gieo trồng, sinh trưởng và thu hoạch.</p>
+<p>Nếu mục đích chính là đạp xe, bạn nên ưu tiên ngày ít mưa, nhiệt độ vừa phải. Những ngày nắng gắt hoặc mưa kéo dài có thể khiến việc di chuyển kém thoải mái hơn.</p>
+<p>Khi có cảnh báo gió mạnh, bão hoặc điều kiện không bảo đảm an toàn đường thủy, chuyến tham quan có thể bị điều chỉnh hoặc hủy. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">đi Hạ Long mùa nào đẹp</a>.</p>
+<h2>Tham quan làng Việt Hải cùng Green Ruby Cruises</h2>
+<p>Làng Việt Hải là một trong những điểm dừng dự kiến của du thuyền <a href="/vi/du-thuyen/green-ruby-2-2.html">Green Ruby 2</a> trong hành trình vịnh Lan Hạ 3 ngày 2 đêm.</p>
+<p><strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-lan-ha-2-7.html">3 ngày 2 đêm – Dấu Ấn Lan Hạ</a></strong><br>Trong ngày thứ hai, du khách dự kiến chuyển sang tàu tham quan để đến bến Việt Hải, sau đó lựa chọn đạp xe hoặc đi xe điện vào làng.</p>
+<p>Chương trình có thời gian tìm hiểu đời sống địa phương và dùng bữa trưa tại làng trước khi tiếp tục hành trình khám phá vịnh Lan Hạ.</p>
+<p>Việt Hải mang đến trải nghiệm khác với những điểm tham quan trên biển: rời du thuyền trong vài giờ để đi qua núi rừng, đồng ruộng và tìm hiểu một cộng đồng đang sinh sống trên đảo Cát Bà.</p>
+<p><em>Đây là lịch trình dự kiến của Green Ruby 2. Điểm dừng, giờ tham quan và phương tiện thực tế sẽ được xác nhận khi tàu chính thức vận hành, đồng thời có thể điều chỉnh theo điều kiện thời tiết và yêu cầu của cơ quan quản lý.</em></p>
+<h2>Những địa điểm gần và liên quan</h2>
+<h3><a href="/vi/dia-diem-tham-quan/hang-sang-toi">Hang Sáng – Tối</a></h3>
+<p>Khu vực hang đá vôi sát mặt nước trên vịnh Lan Hạ, nơi du khách có thể đi đò nan qua vòm đá để vào áng nước nằm giữa những vách núi cao.</p>
+<h3>Vườn quốc gia Cát Bà</h3>
+<p>Khu vực bảo tồn thiên nhiên với rừng trên núi đá vôi, hệ động thực vật đa dạng và nhiều tuyến đi bộ xuyên rừng. Một số tuyến trekking có thể kết nối với làng Việt Hải.</p>
+<h3>Vịnh Lan Hạ</h3>
+<p>Vùng vịnh nằm phía đông đảo Cát Bà, có nhiều đảo đá vôi, bãi cát nhỏ và các vùng nước được núi đá bao quanh. Đây là nơi tổ chức các hành trình du thuyền kết hợp nghỉ dưỡng và tham quan làng Việt Hải.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Phía đông đảo Cát Bà, hướng ra vịnh Lan Hạ'],
-                ['label' => 'Loại hình', 'value' => 'Làng nông nghiệp trong thung lũng núi đá'],
-                ['label' => 'Cách đến', 'value' => 'Thuyền đến bến nhỏ, rồi đi bộ, xe đạp hoặc xe điện'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng nửa ngày kể cả bữa trưa (ước tính)'],
-                ['label' => 'Khu bảo tồn', 'value' => 'Khu vực Vườn quốc gia Cát Bà (thành lập 1986)'],
+                ['label' => 'Vị trí', 'value' => 'Đảo Cát Bà, thành phố Hải Phòng'],
+                ['label' => 'Khu vực', 'value' => 'Vườn quốc gia Cát Bà, gần vịnh Lan Hạ'],
+                ['label' => 'Loại hình', 'value' => 'Làng quê, điểm du lịch cộng đồng'],
+                ['label' => 'Cảnh quan', 'value' => 'Thung lũng, ruộng lúa, núi đá vôi và rừng'],
+                ['label' => 'Cách đến', 'value' => 'Tàu đến bến Việt Hải, sau đó đi xe đạp, xe điện hoặc đi bộ'],
+                ['label' => 'Quãng đường từ bến', 'value' => 'Khoảng 5 km'],
+                ['label' => 'Hoạt động chính', 'value' => 'Đạp xe, đi xe điện, tham quan làng, ăn trưa'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 2–3 giờ, lâu hơn nếu có bữa trưa'],
+                ['label' => 'Khu bảo tồn', 'value' => 'Vườn quốc gia Cát Bà, thành lập năm 1986'],
+                ['label' => 'UNESCO', 'value' => 'Thuộc khu vực quần đảo Cát Bà, Khu dự trữ sinh quyển thế giới từ năm 2004'],
             ],
             'faq' => [
-                ['q' => 'Đến làng Việt Hải bằng cách nào?', 'a' => 'Đi thuyền đến một bến nhỏ, sau đó theo đường bê tông vào thung lũng bằng cách đi bộ, đạp xe hoặc đi xe điện. Không cần đi đường bộ xuyên đảo Cát Bà.'],
-                ['q' => 'Đường vào Việt Hải có xa không?', 'a' => 'Đường khá bằng phẳng, dễ đi, nhưng trời nóng sẽ thấy xa hơn. Xe điện là lựa chọn nhẹ nhàng nhất.'],
-                ['q' => 'Trẻ em đi Việt Hải có phù hợp không?', 'a' => 'Phù hợp. Đường vào làng yên tĩnh và phần lớn bằng phẳng. Nhớ mang đồ chống nắng và thuốc chống côn trùng.'],
-                ['q' => 'Hành trình nào của Green Ruby ghé Việt Hải?', 'a' => 'Theo kế hoạch hiện tại, Việt Hải nằm trong chuyến tàu ngày của ngày thứ hai, hành trình 3 ngày 2 đêm vịnh Lan Hạ trên Green Ruby 2, có bữa trưa trong làng. Hành trình 2 ngày 1 đêm không ghé. Lịch trình có thể điều chỉnh trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Làng Việt Hải nằm ở đâu?', 'a' => 'Làng Việt Hải nằm trên đảo Cát Bà, thuộc thành phố Hải Phòng, trong khu vực Vườn quốc gia Cát Bà. Du khách đi từ vịnh Lan Hạ thường đến bến Việt Hải bằng tàu rồi tiếp tục di chuyển vào làng.'],
+                ['q' => 'Làng Việt Hải có gì chơi?', 'a' => 'Các hoạt động phổ biến gồm đạp xe từ bến vào làng, đi xe điện qua núi rừng, đi bộ ngắm ruộng vườn, tìm hiểu đời sống địa phương và dùng bữa tại các nhà hàng trong làng.'],
+                ['q' => 'Đến làng Việt Hải bằng cách nào?', 'a' => 'Cách phổ biến nhất là đi tàu đến bến Việt Hải, sau đó đạp xe hoặc đi xe điện khoảng 5 km để vào làng. Ngoài ra còn có các tuyến trekking từ khu vực Vườn quốc gia Cát Bà dành cho người có sự chuẩn bị phù hợp.'],
+                ['q' => 'Từ bến Việt Hải vào làng bao xa?', 'a' => 'Quãng đường khoảng 5 km, đi qua những đoạn núi đá vôi và cây rừng trước khi đến khu vực đồng ruộng và nhà dân.'],
+                ['q' => 'Đạp xe vào làng Việt Hải có khó không?', 'a' => 'Tuyến đường phù hợp với nhiều người đã biết đi xe đạp, nhưng có những đoạn cua và dốc nhẹ. Mùa hè nóng ẩm có thể khiến việc đạp xe mệt hơn. Nếu không tự tin, bạn có thể lựa chọn xe điện.'],
+                ['q' => 'Có thể đi bộ từ bến Việt Hải vào làng không?', 'a' => 'Có, nhưng quãng đường khoảng 5 km mỗi chiều. Nếu chỉ có vài giờ tham quan theo lịch trình du thuyền, đi xe đạp hoặc xe điện thường thuận tiện hơn.'],
+                ['q' => 'Trẻ em có tham quan làng Việt Hải được không?', 'a' => 'Có. Trẻ em có thể tham quan cùng gia đình. Tùy độ tuổi và khả năng vận động, phụ huynh có thể chọn xe điện hoặc xe đạp khi đơn vị tổ chức có phương tiện phù hợp.'],
+                ['q' => 'Làng Việt Hải có chỗ ăn trưa không?', 'a' => 'Có. Trong làng có các cơ sở phục vụ ăn uống, và một số hành trình du lịch có tổ chức bữa trưa tại đây. Thực đơn tùy nhà hàng và chương trình cụ thể.'],
+                ['q' => 'Có thể ngủ lại làng Việt Hải không?', 'a' => 'Có. Việt Hải có các homestay và cơ sở lưu trú nhỏ. Nếu muốn ở lại qua đêm, bạn cần sắp xếp phương tiện và nơi lưu trú riêng, thay vì theo lịch tham quan ngắn của du thuyền.'],
+                ['q' => 'Hành trình nào của Green Ruby ghé làng Việt Hải?', 'a' => 'Làng Việt Hải nằm trong lịch trình dự kiến của Green Ruby 2 ở chương trình 3 ngày 2 đêm – Dấu Ấn Lan Hạ. Chương trình 2 ngày 1 đêm – Một Thoáng Lan Hạ hiện không bao gồm điểm dừng này.'],
+                ['q' => 'Green Ruby dự kiến ghé làng Việt Hải khi nào?', 'a' => 'Theo hành trình dự kiến, Green Ruby 2 sẽ đưa khách tham quan làng Việt Hải vào khoảng 10:00 ngày thứ hai, sau đó dùng bữa trưa trong làng khoảng 12:00. Thời gian và hoạt động thực tế sẽ được xác nhận theo lịch vận hành chính thức, điều kiện thời tiết và quy định tại thời điểm khởi hành.'],
             ],
         ],
     ],
