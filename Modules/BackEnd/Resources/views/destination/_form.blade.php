@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label>Đường dẫn (slug)</label>
                     {{ Form::text('slug', $value('slug'), ['class' => 'form-control', 'maxlength' => 120, 'placeholder' => 'Để trống = tạo từ tên', 'autocomplete' => 'off']) }}
-                    <small class="text-muted">Trang: /destinations/<b>slug</b> (EN) hoặc /vi/diem-den/<b>slug</b> (VI). <span class="text-danger">Đổi slug của trang đã xuất bản sẽ làm hỏng liên kết cũ.</span></small>
+                    <small class="text-muted">Trang: /destinations/<b>slug</b> (EN) hoặc /vi/dia-diem-tham-quan/<b>slug</b> (VI). <span class="text-danger">Đổi slug của trang đã xuất bản sẽ làm hỏng liên kết cũ.</span></small>
                 </div>
                 <div class="form-group">
                     <label>Mô tả ngắn <span class="text-danger">*</span></label>

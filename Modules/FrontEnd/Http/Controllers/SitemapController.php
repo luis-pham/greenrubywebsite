@@ -526,7 +526,7 @@ class SitemapController extends Controller
     }
 
     /** Must match `segments.destinations` in greenruby-web/src/lib/i18n.ts. */
-    private const DESTINATIONS_SEGMENT = ['en' => 'destinations', 'vi' => 'diem-den'];
+    private const DESTINATIONS_SEGMENT = ['en' => 'destinations', 'vi' => 'dia-diem-tham-quan'];
 
     /** Must match `segments.guideFirstTime` / `segments.guideTransfer` in greenruby-web/src/lib/i18n.ts. */
     private const GUIDE_PATHS = [
