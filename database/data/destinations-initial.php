@@ -297,46 +297,90 @@ HTML,
             'slug' => 'dao-ti-top',
             'name' => 'Đảo Ti Tốp',
             'image_alt' => 'Vịnh Hạ Long nhìn từ đỉnh đảo Ti Tốp',
-            'seo_title' => 'Đảo Ti Tốp, vịnh Hạ Long: bãi tắm, đỉnh núi và kinh nghiệm',
-            'seo_description' => 'Đảo Ti Tốp có gì: nguồn gốc tên đảo, đường lên đỉnh ngắm toàn cảnh vịnh Hạ Long, tắm biển, thời điểm nên đến và những lưu ý thực tế.',
-            'summary' => 'Hòn đảo nhỏ giữa vịnh Hạ Long, một bên là bãi cát hình lưỡi liềm, trên đỉnh là điểm ngắm cảnh, lên bằng lối bậc dốc. Đảo mang tên nhà du hành vũ trụ Liên Xô Gherman Titov.',
+            'seo_title' => 'Đảo Ti Tốp Hạ Long: 400 Bậc Leo Núi, Bãi Tắm & Kinh Nghiệm',
+            'seo_description' => 'Đảo Ti Tốp ở đâu, có gì chơi? Tìm hiểu đường leo khoảng 400 bậc lên đỉnh, bãi tắm Ti Tốp, thời gian tham quan và kinh nghiệm đi đảo.',
+            'summary' => 'Đảo Ti Tốp nằm giữa vịnh Hạ Long, nổi tiếng với bãi tắm nhỏ hình vầng trăng khuyết và điểm ngắm cảnh trên đỉnh núi. Du khách có thể tắm biển dưới chân đảo hoặc leo khoảng 400 bậc đá để nhìn toàn cảnh vịnh từ trên cao.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Đảo Ti Tốp', 'url' => 'https://halongbay.com.vn/en/places/3-dao-titop'],
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Báo VietNamNet – Đảo Ti Tốp trên vịnh Hạ Long', 'url' => 'https://vietnamnet.vn/dao-ti-top-nam-nghieng-la-mat-khach-ru-nhau-tam-giai-nhiet-leo-nui-o-ha-long-2163857.html'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Đảo Ti Tốp cách Bãi Cháy khoảng 7–8 km về phía đông nam, nằm ở khu trung tâm vịnh Hạ Long, đối diện đảo Bồ Hòn, nơi có hang Sửng Sốt và hang Luồn. Phần lớn tàu đi tuyến này đều ghé đảo.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Ti Tốp có đủ hai thứ mà du khách mong đợi ở một điểm dừng: tắm biển và ngắm cảnh. Bãi cát nhỏ, cong như vầng trăng khuyết dưới chân đảo. Từ đỉnh đảo nhìn ra là những đảo đá quanh Bồ Hòn và các con tàu neo giữa vịnh.</p>
-<p>Tên đảo có một câu chuyện riêng. Ngày 22/1/1962, Chủ tịch Hồ Chí Minh cùng nhà du hành vũ trụ Gherman Titov, người thứ hai bay vòng quanh Trái Đất, lên thăm đảo, và Bác đã đặt tên đảo theo tên ông. Trên đảo có tượng đài Titov.</p>
-<h2>Có thể làm gì</h2>
+<h2>Đảo Ti Tốp ở đâu?</h2>
+<p>Đảo Ti Tốp nằm ở khu vực trung tâm vịnh Hạ Long, cách Bãi Cháy khoảng 7–8 km về phía đông nam và cách cảng tàu khách quốc tế Tuần Châu khoảng 12 km đường thủy.</p>
+<p>Đảo nằm gần đảo Bồ Hòn, nơi có <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a> và <a href="/vi/dia-diem-tham-quan/hang-luon">hang Luồn</a>. Đây đều là những điểm tham quan thuộc tuyến số 2 trên vịnh Hạ Long, thường được kết hợp trong các chuyến tham quan trong ngày và hành trình du thuyền nghỉ đêm.</p>
+<p>Du khách chỉ có thể đến đảo bằng tàu. Từ bến cập tàu, đi bộ một đoạn ngắn là tới bãi tắm và lối lên đỉnh núi.</p>
+<h2>Đảo Ti Tốp có gì đặc biệt?</h2>
+<p>Điểm hấp dẫn nhất của Ti Tốp là du khách có thể vừa tắm biển, vừa ngắm vịnh Hạ Long từ trên cao trong cùng một điểm dừng.</p>
+<p>Bãi tắm nằm ngay dưới chân núi, có dải cát cong hình lưỡi liềm. Bãi không rộng, nhưng là một trong những nơi du khách có thể xuống tắm trong hành trình tham quan khu vực trung tâm vịnh.</p>
+<p>Nếu thích ngắm cảnh, bạn có thể leo lên đỉnh đảo. Từ đây, những đảo đá vôi nằm xen giữa mặt nước hiện ra khá rõ. Vào ngày trời quang, có thể nhìn thấy các con tàu di chuyển giữa những dãy núi đá ở phía xa. Đây cũng là một trong những góc chụp ảnh quen thuộc nhất của vịnh Hạ Long.</p>
+<p>Ngoài cảnh quan, Ti Tốp còn gắn với một câu chuyện lịch sử. Ngày 22/1/1962, Chủ tịch Hồ Chí Minh cùng nhà du hành vũ trụ Liên Xô Gherman Titov đến thăm đảo. Sau chuyến thăm, Bác Hồ đặt tên đảo theo tên ông Titov, người thứ hai bay vào quỹ đạo Trái Đất.</p>
+<p>Trước đó, đảo từng được gọi là Cát Nàng. Ngày nay, tượng đài Gherman Titov được đặt trên đảo để ghi nhớ chuyến thăm lịch sử này.</p>
+<h2>Những hoạt động nên trải nghiệm trên đảo Ti Tốp</h2>
+<h3>Leo lên đỉnh đảo ngắm toàn cảnh vịnh Hạ Long</h3>
+<p>Đường lên đỉnh Ti Tốp có khoảng 400 bậc đá, với lan can và một số vị trí có thể dừng nghỉ. Quãng đường không quá dài nhưng khá dốc, nhất là đoạn gần đỉnh.</p>
+<p>Nếu đi với tốc độ vừa phải, bạn nên dành khoảng 15–20 phút để leo lên. Vào mùa hè, thời tiết nóng và độ ẩm cao có thể khiến việc leo bậc thang mất sức hơn.</p>
+<p>Lên tới điểm ngắm cảnh, bạn có thể nhìn bao quát vùng biển xung quanh, những đảo đá lớn nhỏ và các con tàu đang neo đậu trên vịnh.</p>
+<p>Nếu thích chụp ảnh, nên dành thêm một chút thời gian trên đỉnh thay vì vội vàng xuống ngay. Vào ngày có nắng, ánh sáng cuối chiều thường dịu hơn, nhưng tầm nhìn còn phụ thuộc vào mây, sương và thời tiết thực tế.</p>
+<h3>Tắm biển tại bãi tắm Ti Tốp</h3>
+<p>Bãi tắm Ti Tốp nằm dưới chân đảo, ngay gần khu vực cầu tàu. Bãi có hình vòng cung, diện tích không lớn nên đôi khi khá đông khách, nhất là vào mùa hè.</p>
+<p>Đây là lựa chọn phù hợp nếu bạn muốn xuống nước thư giãn sau thời gian ngồi tàu tham quan vịnh.</p>
+<p>Hoạt động tắm biển phụ thuộc vào điều kiện thời tiết, tình trạng mặt biển và quy định tại điểm tham quan. Du khách cần tắm trong khu vực cho phép và tuân thủ hướng dẫn an toàn.</p>
+<h3>Nghỉ ngơi và chụp ảnh bên bờ biển</h3>
+<p>Không nhất thiết phải leo núi mới có thể tận hưởng thời gian ở Ti Tốp.</p>
+<p>Nếu đi cùng trẻ nhỏ, người lớn tuổi hoặc đơn giản là không muốn vận động nhiều, bạn có thể nghỉ ngơi tại bãi biển, chụp ảnh những đảo đá xung quanh hoặc quan sát tàu thuyền ra vào bến.</p>
+<p>Khu vực gần bãi tắm cũng có một số tiện ích cơ bản phục vụ du khách.</p>
+<h2>Cách đi đến đảo Ti Tốp</h2>
+<p>Đảo Ti Tốp không có đường bộ nối với đất liền. Cách phổ biến nhất để đến đây là tham gia tour tham quan vịnh Hạ Long hoặc đi du thuyền có lịch trình ghé đảo.</p>
+<p>Các chuyến tham quan thường xuất phát từ cảng tàu khách quốc tế Tuần Châu hoặc các cảng được cấp phép tại khu vực Hạ Long. Xem thêm <a href="/vi/cam-nang/ha-noi-di-ha-long">hướng dẫn di chuyển từ Hà Nội đến Hạ Long</a>.</p>
+<p>Ti Tốp thuộc tuyến tham quan số 2, thường kết hợp với hang Sửng Sốt và hang Luồn. Tùy lịch trình, du khách có thể đến đảo vào buổi sáng hoặc buổi chiều.</p>
+<p>Trong các hành trình dự kiến của <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a>, đảo Ti Tốp là một điểm dừng để du khách lựa chọn leo núi ngắm cảnh hoặc tắm biển.</p>
+<h2>Tham quan đảo Ti Tốp mất bao lâu?</h2>
+<p>Thông thường, bạn nên dành khoảng 45–60 phút để tham quan đảo Ti Tốp.</p>
+<p>Nếu muốn lên đỉnh, hãy tính cả thời gian leo lên, nghỉ ngắm cảnh và đi xuống. Tổng thời gian có thể khoảng 40–50 phút, tùy thể lực và lượng khách trên cầu thang.</p>
+<p>Nếu chỉ tắm biển hoặc nghỉ tại bãi cát, thời gian tham quan sẽ thoải mái hơn.</p>
+<p>Trong trường hợp muốn vừa leo núi vừa tắm biển, bạn nên hỏi hướng dẫn viên trước để biết chính xác tàu dừng tại đảo bao lâu. Vào ngày đông khách, việc di chuyển lên xuống đỉnh có thể mất nhiều thời gian hơn dự kiến.</p>
+<h2>Những điều cần biết trước khi lên đảo</h2>
+<p>Ti Tốp là điểm tham quan nổi tiếng nên thường có nhiều đoàn khách ghé cùng lúc. Cầu tàu, bãi biển và lối lên đỉnh có thể đông vào những khung giờ cao điểm.</p>
+<p>Đường lên đỉnh chủ yếu là bậc đá. Một số đoạn khá dốc, có thể trơn sau mưa. Nếu định leo núi, bạn nên mang giày hoặc dép có độ bám tốt, tránh đi dép quá trơn.</p>
+<p>Một vài lưu ý khi tham quan:</p>
 <ul>
-<li>Leo lên đỉnh ngắm toàn cảnh, đẹp nhất vào cuối chiều khi nắng dịu.</li>
-<li>Tắm biển trong khu vực quy định khi điều kiện cho phép.</li>
-<li>Hoặc chỉ nghỉ ở bãi cát: bãi tắm và khu cầu tàu nằm sát mặt nước.</li>
+<li>Mang theo nước uống, nhất là trong những ngày nắng nóng.</li>
+<li>Chuẩn bị đồ bơi, khăn tắm nếu muốn xuống biển.</li>
+<li>Sử dụng mũ, kính râm và kem chống nắng khi cần.</li>
+<li>Không tự ý bơi ra ngoài khu vực được phép.</li>
+<li>Để ý giờ tập trung của đoàn, tránh lên đỉnh quá sát giờ tàu rời bến.</li>
 </ul>
-<h2>Cách đến</h2>
-<p>Xuồng và tàu ngày cập cầu tàu ngay cạnh bãi tắm. Lối lên đỉnh là các bậc dốc có tay vịn, dọc đường có chỗ dừng nghỉ.</p>
-<h2>Khi đến nơi</h2>
-<p>Ti Tốp khá đông, nhất là buổi chiều khi nhiều tàu cùng ghé. Đường lên đỉnh không dài nhưng dốc, mùa hè khá nóng.</p>
-<h2>Lưu ý khi tham quan</h2>
-<ul>
-<li>Muốn lên đỉnh chỉ có cách leo bậc. Từ cầu tàu ra bãi tắm thì không phải leo.</li>
-<li>Mang đồ bơi, khăn, nước uống và đồ chống nắng.</li>
-<li>Chỉ xuống nước khi đội tàu xác nhận an toàn.</li>
-</ul>
-<h2>Thời tiết và mùa</h2>
-<p>Từ khoảng tháng 5 đến tháng 10 nước ấm, tắm biển dễ chịu nhất, nhưng đây cũng là mùa có thể có bão khiến tàu tạm dừng. Mùa đông leo núi mát mẻ hơn, nhưng ít người xuống tắm.</p>
+<p>Đỉnh đảo chỉ có thể lên bằng cầu thang, không phù hợp với người gặp khó khăn khi leo bậc hoặc sử dụng xe lăn. Khu vực bãi tắm dễ tiếp cận hơn, nhưng việc lên xuống tàu vẫn có thể cần bước qua bậc hoặc cầu dẫn.</p>
+<h2>Nên đi đảo Ti Tốp vào tháng mấy?</h2>
+<p>Đảo Ti Tốp có thể tham quan quanh năm, miễn là thời tiết và hoạt động tàu du lịch cho phép.</p>
+<p>Từ tháng 5 đến tháng 10, thời tiết thường nóng, nước biển ấm hơn, phù hợp với hoạt động tắm biển. Tuy nhiên, đây cũng là giai đoạn có thể xuất hiện mưa lớn, áp thấp nhiệt đới hoặc bão, khiến lịch trình trên vịnh phải thay đổi.</p>
+<p>Từ tháng 11 đến tháng 4, thời tiết thường mát hoặc lạnh hơn. Việc leo núi có thể dễ chịu hơn những ngày hè nắng gắt, nhưng nước biển khá lạnh vào một số thời điểm nên ít người xuống tắm.</p>
+<p>Nếu mục đích chính là lên đỉnh ngắm cảnh, bạn nên chú ý dự báo về mưa, sương mù và tầm nhìn. Một ngày trời quang sẽ giúp quan sát vịnh rõ hơn, bất kể mùa nào. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">du lịch Hạ Long mùa nào đẹp nhất</a>.</p>
+<h2>Tham quan đảo Ti Tốp cùng Green Ruby Cruises</h2>
+<p>Đảo Ti Tốp nằm trong lịch trình dự kiến của du thuyền Green Ruby 1 tại vịnh Hạ Long.</p>
+<p><strong><a href="/vi/hanh-trinh/2-ngay-1-dem-mot-thoang-ha-long-1-9.html">2 ngày 1 đêm – Một Thoáng Hạ Long</a></strong><br>Hành trình nghỉ đêm trên vịnh, kết hợp tham quan đảo Ti Tốp, hang Luồn và hang Sửng Sốt.</p>
+<p><strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-ha-long-1-8.html">3 ngày 2 đêm – Dấu Ấn Hạ Long</a></strong><br>Hành trình dài hơn, có thêm thời gian khám phá những địa điểm khác trên vịnh Hạ Long.</p>
+<p><em>Các điểm dừng trên thuộc kế hoạch đã công bố của Green Ruby 1. Lịch trình chính thức sẽ được xác nhận khi tàu đi vào hoạt động và có thể thay đổi theo điều kiện thực tế.</em></p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Trung tâm vịnh Hạ Long, cách Bãi Cháy khoảng 7–8 km về phía đông nam'],
-                ['label' => 'Điểm nổi bật', 'value' => 'Điểm ngắm cảnh trên đỉnh, bãi cát nhỏ'],
-                ['label' => 'Cách đến', 'value' => 'Tàu cập cầu tàu; lên đỉnh bằng lối bậc dốc'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1 giờ (ước tính)'],
-                ['label' => 'Tên gọi', 'value' => 'Theo tên nhà du hành vũ trụ Gherman Titov, người thăm đảo tháng 1/1962'],
+                ['label' => 'Vị trí', 'value' => 'Khu vực trung tâm vịnh Hạ Long, Quảng Ninh'],
+                ['label' => 'Khoảng cách', 'value' => 'Cách Bãi Cháy khoảng 7–8 km; cách cảng Tuần Châu khoảng 12 km'],
+                ['label' => 'Tuyến tham quan', 'value' => 'Tuyến số 2 vịnh Hạ Long'],
+                ['label' => 'Điểm nổi bật', 'value' => 'Bãi tắm hình lưỡi liềm, đỉnh ngắm cảnh'],
+                ['label' => 'Đường lên đỉnh', 'value' => 'Khoảng 400 bậc đá'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 45–60 phút'],
+                ['label' => 'Cách di chuyển', 'value' => 'Tàu tham quan hoặc du thuyền'],
+                ['label' => 'Tên cũ', 'value' => 'Cát Nàng'],
+                ['label' => 'Nguồn gốc tên gọi', 'value' => 'Đặt theo tên nhà du hành vũ trụ Gherman Titov năm 1962'],
             ],
             'faq' => [
-                ['q' => 'Vì sao đảo có tên Ti Tốp?', 'a' => 'Chủ tịch Hồ Chí Minh đặt tên đảo theo tên nhà du hành vũ trụ Liên Xô Gherman Titov, người cùng Bác lên thăm đảo ngày 22/1/1962. "Ti Tốp" là cách đọc phiên âm tên Titov.'],
-                ['q' => 'Có tắm biển ở đảo Ti Tốp được không?', 'a' => 'Được, trong khu vực quy định và khi biển êm. Nước ấm nhất từ cuối xuân đến mùa thu. Đội tàu sẽ quyết định trong ngày có cho xuống nước hay không.'],
-                ['q' => 'Leo lên đỉnh Ti Tốp có mệt không?', 'a' => 'Đường lên không dài nhưng dốc, có tay vịn. Người có sức khỏe bình thường đều đi được nếu đi đều chân; mùa hè nên đi chậm và mang theo nước.'],
-                ['q' => 'Green Ruby dự kiến ghé đảo Ti Tốp khi nào?', 'a' => 'Trong cả hai hành trình vịnh Hạ Long của Green Ruby 1, vào cuối chiều ngày đầu, sau khi thăm hang Luồn. Giờ giấc có thể thay đổi trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Vì sao đảo có tên Ti Tốp?', 'a' => 'Tên đảo được đặt theo nhà du hành vũ trụ Liên Xô Gherman Titov. Ngày 22/1/1962, ông cùng Chủ tịch Hồ Chí Minh đến thăm đảo và Bác Hồ đã đặt tên đảo theo tên ông. Trước đó, đảo từng có tên là Cát Nàng.'],
+                ['q' => 'Đảo Ti Tốp có tắm biển được không?', 'a' => 'Có. Dưới chân đảo có bãi tắm dành cho du khách. Tuy nhiên, việc tắm biển chỉ được thực hiện khi điều kiện thời tiết và quy định an toàn tại điểm tham quan cho phép.'],
+                ['q' => 'Leo lên đỉnh Ti Tốp có bao nhiêu bậc?', 'a' => 'Lối lên đỉnh có khoảng 400 bậc đá. Đường khá dốc nhưng có lan can và một số vị trí dừng nghỉ. Du khách có sức khỏe bình thường thường có thể hoàn thành quãng đường này nếu đi chậm và nghỉ khi cần.'],
+                ['q' => 'Leo lên đỉnh đảo Ti Tốp mất bao lâu?', 'a' => 'Thông thường mất khoảng 15–20 phút để lên tới điểm ngắm cảnh, tùy thể lực và lượng khách. Bạn nên tính thêm thời gian chụp ảnh, nghỉ ngơi và đi xuống.'],
+                ['q' => 'Có nên đi đảo Ti Tốp không?', 'a' => 'Nếu muốn ngắm vịnh Hạ Long từ trên cao, Ti Tốp là một điểm dừng đáng cân nhắc. Bãi tắm tương đối nhỏ, nhưng góc nhìn từ đỉnh đảo là trải nghiệm nổi bật nhất ở đây.'],
+                ['q' => 'Green Ruby dự kiến ghé đảo Ti Tốp khi nào?', 'a' => 'Theo lịch trình dự kiến, Green Ruby 1 sẽ ghé đảo Ti Tốp vào khoảng 16:30 ngày đầu tiên trong các hành trình vịnh Hạ Long 2 ngày 1 đêm và 3 ngày 2 đêm. Thời gian thực tế có thể điều chỉnh theo thời tiết, quy định của cơ quan quản lý và lịch vận hành.'],
             ],
         ],
     ],
