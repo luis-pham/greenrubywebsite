@@ -24,6 +24,8 @@ use Modules\BackEnd\Entities\AppCruise;
 use Modules\BackEnd\Entities\AppExpActivity;
 use Modules\BackEnd\Entities\AppFaq;
 use App\Services\Content\CabinContentService;
+use App\Services\Content\ContentTranslations;
+use Modules\BackEnd\Entities\AppDestination;
 
 class SitemapController extends Controller
 {
@@ -82,9 +84,11 @@ class SitemapController extends Controller
         }
 
         $cabinUpdatedAt = \Modules\BackEnd\Entities\AppCabin::query()->max(\DB::raw('COALESCE(updated_at, created_at)'));
+        $destinationUpdatedAt = AppDestination::where('status', 'published')->max(\DB::raw('COALESCE(updated_at, created_at)'));
 
         return response()->view($this->baseView . __FUNCTION__, [
             'cabinUpdatedAt' => $cabinUpdatedAt,
+            'destinationUpdatedAt' => $destinationUpdatedAt,
             'article' => $article,
             'experience' => $experience,
             'service' => $service,
@@ -137,6 +141,9 @@ class SitemapController extends Controller
         // Services, gallery and FAQ hubs live in their own sitemaps (sitemap-service/-category-gallery/-category-faq).
         $entries = array_merge($entries, $this->nextOnlyEntries(self::ECO_DASHBOARD_PATH, '', 'monthly', '0.6'));
         $entries = array_merge($entries, $this->nextOnlyEntries(self::BRAND_FACTS_PATH, '', 'monthly', '0.6'));
+        foreach (self::GUIDE_PATHS as $paths) {
+            $entries = array_merge($entries, $this->nextOnlyEntries($paths, '', 'monthly', '0.8'));
+        }
 
         return response()->view($this->baseView . __FUNCTION__, [
             'entries' => $entries,
@@ -466,6 +473,66 @@ class SitemapController extends Controller
 
         return response()->view($this->baseView . 'entries', ['entries' => $entries])->header('Content-Type', 'text/xml');
     }
+
+    /**
+     * Destinations hub and details (Next.js only). Details are listed per language; hreflang only for
+     * explicitly linked, published pairs (ContentTranslations type "destination").
+     */
+    public function destination()
+    {
+        $defaultLanguage = AdLanguageService::getDefaultLanguage();
+        $languages = AdLanguageService::getAll()->keyBy('id');
+        $prefix = fn (string $code) => $code === $defaultLanguage->code ? '/' : '/' . $code . '/';
+        $hubUrl = fn (string $code) => url($prefix($code) . (self::DESTINATIONS_SEGMENT[$code] ?? 'destinations'));
+        $detailUrl = fn (string $code, string $slug) => $hubUrl($code) . '/' . $slug;
+
+        $rows = AppDestination::where('status', 'published')->orderBy('ord')->orderBy('id')->get();
+        $latest = $rows->max(fn ($d) => $d->getRawOriginal('updated_at') ?: $d->getRawOriginal('created_at'));
+        $entries = $latest
+            ? $this->nextOnlyEntries(self::DESTINATIONS_SEGMENT, Carbon::parse($latest)->format('Y-m-d\TH:i:sP'), 'weekly', '0.8')
+            : [];
+
+        $byId = $rows->keyBy('id');
+        foreach ($rows as $d) {
+            $language = $languages->get($d->language_id);
+            if (!$language) {
+                continue;
+            }
+            $url = $detailUrl($language->code, $d->slug);
+            $alternates = [];
+            foreach ($languages as $other) {
+                if ($other->id === $language->id) {
+                    continue;
+                }
+                $counterpart = $byId->get(ContentTranslations::linkedId('destination', (int) $d->id, (int) $other->id));
+                if ($counterpart) {
+                    $links = [$language->code => $url, $other->code => $detailUrl($other->code, $counterpart->slug)];
+                    foreach ($links as $code => $href) {
+                        $alternates[] = ['hreflang' => $code, 'url' => $href];
+                    }
+                    $alternates[] = ['hreflang' => 'x-default', 'url' => $links[$defaultLanguage->code] ?? $url];
+                }
+            }
+            $entries[] = $this->makeUrlEntry(
+                $url,
+                Carbon::parse($d->getRawOriginal('updated_at') ?: $d->getRawOriginal('created_at'))->format('Y-m-d\TH:i:sP'),
+                'monthly',
+                '0.7',
+                $alternates
+            );
+        }
+
+        return response()->view($this->baseView . 'entries', ['entries' => $entries])->header('Content-Type', 'text/xml');
+    }
+
+    /** Must match `segments.destinations` in greenruby-web/src/lib/i18n.ts. */
+    private const DESTINATIONS_SEGMENT = ['en' => 'destinations', 'vi' => 'diem-den'];
+
+    /** Must match `segments.guideFirstTime` / `segments.guideTransfer` in greenruby-web/src/lib/i18n.ts. */
+    private const GUIDE_PATHS = [
+        ['en' => 'guides/first-time-halong-bay-cruise', 'vi' => 'cam-nang/lan-dau-di-du-thuyen-ha-long'],
+        ['en' => 'guides/hanoi-to-halong-bay', 'vi' => 'cam-nang/ha-noi-di-ha-long'],
+    ];
 
     /** Must match `segments.cabin` in greenruby-web/src/lib/i18n.ts. */
     private const CABIN_SEGMENT = ['vi' => 'phong-nghi'];

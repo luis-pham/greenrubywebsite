@@ -100,5 +100,23 @@ return [
     'itineraryBay' => [
         1 => 'Vịnh Hạ Long',
         2 => 'Vịnh Lan Hạ'
-    ]
+    ],
+    // Destinations (app_destination): stored keys are language-neutral, the frontend translates them.
+    'destinationBay' => [
+        'ha-long' => 'Vịnh Hạ Long',
+        'lan-ha' => 'Vịnh Lan Hạ',
+    ],
+    'destinationCategory' => [
+        'cave' => 'Hang động',
+        'island' => 'Đảo & bãi biển',
+        'village' => 'Làng chài & làng quê',
+        'lagoon' => 'Áng & khu chèo kayak',
+        'other' => 'Khác',
+    ],
+    // Only "published" rows reach the Content API, the sitemap and the website.
+    'destinationStatus' => [
+        'draft' => 'Bản nháp',
+        'review' => 'Chờ kiểm duyệt',
+        'published' => 'Đã xuất bản',
+    ],
 ];

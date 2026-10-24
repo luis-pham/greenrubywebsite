@@ -702,6 +702,42 @@ Contact details (hotline, e-mail, address, WhatsApp, socials) come from `GET /si
 
 Tags: `content`, `pages`, `page:{code}`, plus the entity tags of hydrated pickers: about-us/booking `itineraries`; service `services`, `cabins`; exp-activity `experiences`; article `articles`; gallery `gallery`; legal codes `legal`.
 
+### 4.11 `GET /destinations` and `GET /destinations/{slug}`
+
+Destinations of the Next.js `/destinations` hub (admin: Quản lý du thuyền → Điểm đến; table `app_destination`, one row per
+language, EN/VI pairs in `content_translations` type `destination`). Only `status = published` rows are returned; `editor_notes`
+and the editorial status never are. Coordinates are sent only when an editor ticked "verified".
+
+```ts
+type DestinationSummary = {
+  id: number; slug: string; name: string;
+  bay: 'ha-long' | 'lan-ha';
+  category: 'cave' | 'island' | 'village' | 'lagoon' | 'other';
+  summary: string|null;
+  image: { src: string; alt: string; credit: string|null } | null;
+  coordinates: { lat: number; lng: number } | null;   // verified only
+  isGreenRubyStop: boolean;                            // linked to at least one listed itinerary
+  itineraryIds: number[];                              // those itineraries (same language)
+};
+// GET /destinations
+{ seo: Seo /* app_page "destinations", null when empty */; items: DestinationSummary[] /* admin order */ }
+// GET /destinations/{slug}  (404 for unknown or unpublished slugs; slugs are per language)
+DestinationSummary & {
+  contentHtml: string|null;
+  facts: { label: string; value: string }[];
+  faq: { question: string; answer: string }[];      // plain text
+  sources: { title: string; url: string }[];
+  itineraries: { cruiseId; itineraryId; slug; name; cruiseName; duration; bay }[];
+  related: DestinationSummary[];                     // 3: same bay first, then same category
+  seo: Seo; alternate: { lang; slug } | null;        // explicit translation link to a published row only
+  factCheckedAt: string|null; updatedAt: string|null;
+}
+```
+
+Tags: `content`, `destinations`, `destination:{slug}`, `page:destinations`. Import/refresh the first eight with
+`php artisan destinations:import [--update] [--status=review]` (data: `database/data/destinations-initial.php`).
+`GET /pages/{code}` also accepts `destinations`, `guide-first-time` and `guide-transfer` (SEO only; null when empty).
+
 ---
 
 ## 5. Cache tags
@@ -716,11 +752,12 @@ The frontend tags each cached fetch with the tags listed under each endpoint. Af
 | `category` (blog) | `articles` |
 | `config` (site settings) | `site` |
 | `cruise` | `cruises`, `cabins`, `itineraries`, `cruise:{id}` |
+| `destination` | `destinations` |
 | `exp-activity` | `experiences`, `itineraries`, `cruises`, `gallery`, `experience:{id}` |
 | `faq` | `faqs` |
 | `file` (media library) | `content` (everything) |
 | `group` | `cabins`, `experiences`, `services`, `faqs` |
-| `itinerary` | `itineraries`, `cruises`, `itinerary:{id}` |
+| `itinerary` | `itineraries`, `cruises`, `destinations`, `itinerary:{id}` |
 | `menuFrontEnd` | `site` |
 | `page-config` (`{pageCode}`) | `pages`, `page:{pageCode}`, plus: article → `articles`, `legal`; exp-activity → `experiences`; faq → `faqs`; gallery → `gallery`; itinerary → `itineraries`; service → `services`; legal / safety-policies / terms-and-conditions / privacy-policies / payment-methods → `legal` |
 | `service` | `services`, `itineraries`, `cruises` |

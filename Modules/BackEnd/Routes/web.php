@@ -223,6 +223,21 @@ Route::prefix('admincp')->middleware(['auth:admin', 'language.backend'])->group(
     Route::post('/{languageCode}/amenity/destroy', 'AmenityController@destroy')->name(Utilities::bindRouteNameMultiLanguage('backend.amenity.destroy'))->where('languageCode', $listLanguageCode)->middleware('can:group-amenity-delete');
     Route::post('/{languageCode}/amenity/order-update', 'AmenityController@orderUpdate')->name(Utilities::bindRouteNameMultiLanguage('backend.amenity.orderUpdate'))->where('languageCode', $listLanguageCode)->middleware('can:group-amenity-update');
 
+    Route::get('/destination', 'DestinationController@index')->name('backend.destination.index')->middleware('can:destination-read');
+    Route::get('/destination/create', 'DestinationController@create')->name('backend.destination.create')->middleware('can:destination-create');
+    Route::post('/destination/store', 'DestinationController@store')->name('backend.destination.store')->middleware('can:destination-create');
+    Route::get('/destination/edit/{id}', 'DestinationController@edit')->name('backend.destination.edit')->middleware('can:destination-update');
+    Route::post('/destination/update/{id}', 'DestinationController@update')->name('backend.destination.update')->middleware('can:destination-update');
+    Route::post('/destination/destroy', 'DestinationController@destroy')->name('backend.destination.destroy')->middleware('can:destination-delete');
+    Route::post('/destination/order-update', 'DestinationController@orderUpdate')->name('backend.destination.orderUpdate')->middleware('can:destination-update');
+    Route::get('/{languageCode}/destination', 'DestinationController@index')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.index'))->where('languageCode', $listLanguageCode)->middleware('can:destination-read');
+    Route::get('/{languageCode}/destination/create', 'DestinationController@create')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.create'))->where('languageCode', $listLanguageCode)->middleware('can:destination-create');
+    Route::post('/{languageCode}/destination/store', 'DestinationController@store')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.store'))->where('languageCode', $listLanguageCode)->middleware('can:destination-create');
+    Route::get('/{languageCode}/destination/edit/{id}', 'DestinationController@edit')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.edit'))->where('languageCode', $listLanguageCode)->middleware('can:destination-update');
+    Route::post('/{languageCode}/destination/update/{id}', 'DestinationController@update')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.update'))->where('languageCode', $listLanguageCode)->middleware('can:destination-update');
+    Route::post('/{languageCode}/destination/destroy', 'DestinationController@destroy')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.destroy'))->where('languageCode', $listLanguageCode)->middleware('can:destination-delete');
+    Route::post('/{languageCode}/destination/order-update', 'DestinationController@orderUpdate')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.orderUpdate'))->where('languageCode', $listLanguageCode)->middleware('can:destination-update');
+
     Route::get('/testimonial', 'TestimonialController@index')->name('backend.testimonial.index')->middleware('can:group-testimonial-read');
     Route::get('/testimonial/show/{id}', 'TestimonialController@show')->name('backend.testimonial.show')->middleware('can:group-testimonial-read');
     Route::get('/testimonial/create', 'TestimonialController@create')->name('backend.testimonial.create')->middleware('can:group-testimonial-create');

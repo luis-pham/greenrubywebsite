@@ -35,6 +35,7 @@ class ContentTranslations
         'article' => ['table' => 'app_article', 'name' => 'title', 'label' => 'Tin tức'],
         'article_category' => ['table' => 'app_category', 'name' => 'name', 'label' => 'Chuyên mục tin tức'],
         'faq_group' => ['table' => 'app_group', 'name' => 'name', 'label' => 'Chuyên mục câu hỏi thường gặp'],
+        'destination' => ['table' => 'app_destination', 'name' => 'name', 'label' => 'Điểm đến'],
     ];
 
     /** Per-request cache: type => [entity_id => ['group' => key, 'language_id' => id]]. */
@@ -164,6 +165,8 @@ class ContentTranslations
                 'article' => ArticleContentService::alternateFor($id, $source)['id'] ?? null,
                 'article_category' => FeHreflangUtils::findArticleCategoryCounterpart(AppCategory::find($id), (int) $target->id)?->id,
                 'faq_group' => FeHreflangUtils::findFaqGroupCounterpart(AppGroup::find($id), (int) $target->id)?->id,
+                // Destinations have no heuristic: only explicit links count.
+                'destination' => self::linkedId('destination', $id, (int) $target->id),
             };
         } catch (\Throwable) {
             return null;

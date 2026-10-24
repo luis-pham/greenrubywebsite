@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Content\ArticleController;
 use App\Http\Controllers\Api\Content\CabinController;
 use App\Http\Controllers\Api\Content\ContactController;
 use App\Http\Controllers\Api\Content\CruiseController;
+use App\Http\Controllers\Api\Content\DestinationController;
 use App\Http\Controllers\Api\Content\ExperienceController;
 use App\Http\Controllers\Api\Content\FaqController;
 use App\Http\Controllers\Api\Content\GalleryController;
@@ -36,6 +37,11 @@ Route::get('/itineraries/{cruiseId}/{itineraryId}', [ItineraryController::class,
 Route::get('/experiences', [ExperienceController::class, 'index'])->name('api.content.experiences.index');
 Route::get('/experiences/{id}', [ExperienceController::class, 'show'])
     ->name('api.content.experiences.show');
+
+Route::get('/destinations', [DestinationController::class, 'index'])->name('api.content.destinations.index');
+Route::get('/destinations/{slug}', [DestinationController::class, 'show'])
+    ->where('slug', '[a-z0-9\-]+')
+    ->name('api.content.destinations.show');
 
 Route::get('/services', [ServiceController::class, 'index'])->name('api.content.services.index');
 

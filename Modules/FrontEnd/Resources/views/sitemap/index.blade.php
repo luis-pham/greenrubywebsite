@@ -58,4 +58,10 @@
             <lastmod>{{ Carbon\Carbon::parse($faq->updated_at ?: $faq->created_at)->format('Y-m-d\TH:i:sP') }}</lastmod>
         </sitemap>
     @endif
+    @if ($destinationUpdatedAt)
+        <sitemap>
+            <loc>{{ route('frontend.sitemap.destination') }}</loc>
+            <lastmod>{{ Carbon\Carbon::parse($destinationUpdatedAt)->format('Y-m-d\TH:i:sP') }}</lastmod>
+        </sitemap>
+    @endif
 </sitemapindex>
