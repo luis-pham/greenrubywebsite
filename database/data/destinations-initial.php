@@ -1519,50 +1519,162 @@ HTML,
             ['title' => 'Wikipedia (Vietnamese): Vườn quốc gia Cát Bà (communes incl. Việt Hải)', 'url' => 'https://vi.wikipedia.org/wiki/V%C6%B0%E1%BB%9Dn_qu%E1%BB%91c_gia_C%C3%A1t_B%C3%A0'],
             ['title' => 'Photo with GPS: Paddy fields in Việt Hải, Jakub Hałun (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Vi%E1%BB%87t_H%E1%BA%A3i,_C%C3%A1t_B%C3%A0_Island,_Vietnam,_20240131_1211_4613.jpg'],
         ],
-        'editor_notes' => "Not published: distance from the pier to the village (sources vary), household numbers, buggy/bike fees. 2025 administrative changes renamed local units; copy avoids commune/district names.",
+        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief. Verified: ~5 km pier-to-village road (CatBa.com, Hai Phong News), GR2 3D2N day 2 10:00 village / 12:00 lunch / 14:00 beach (itinerary page). Brief's Hai Phong source used the oauth.congdoanhaiphong.vn mirror (bad SSL); replaced with haiphongnews.gov.vn. Old note: Not published: distance from the pier to the village (sources vary), household numbers, buggy/bike fees. 2025 administrative changes renamed local units; copy avoids commune/district names.",
         'en' => [
             'slug' => 'viet-hai-village',
             'name' => 'Viet Hai Village',
             'image_alt' => 'Paddy fields and forested limestone hills in the valley of Viet Hai, Cat Ba Island',
-            'seo_title' => 'Viet Hai Village, Cat Ba Island: How to Visit',
-            'seo_description' => 'Viet Hai is a small farming village in a valley of Cat Ba National Park. How visitors get there by boat, bike or electric cart, what to expect and practical tips.',
-            'summary' => 'A small farming village in a valley on Cat Ba Island, surrounded by forested limestone hills inside the Cat Ba National Park area. Visitors arrive by boat and continue on foot, by bike or by electric cart.',
+            'seo_title' => 'Viet Hai Village, Cat Ba: Cycling, Local Life & Visitor Guide',
+            'seo_description' => 'Visit Viet Hai Village on Cat Ba Island: ride 5 km from the pier by bike or electric cart to rice fields, village lunch and local life near Lan Ha Bay.',
+            'summary' => 'Viet Hai Village is a small rural community on Cat Ba Island, surrounded by forested limestone hills near Lan Ha Bay. Most visitors arrive by boat, then travel about 5 km inland by bicycle, electric cart or on foot. The journey leads through a narrow valley to a working village with rice fields, gardens, family homes and small local businesses.',
+            'sources' => [
+                ['title' => 'UNESCO – Cat Ba Biosphere Reserve', 'url' => 'https://www.unesco.org/en/mab/cat-ba'],
+                ['title' => 'UNESCO World Heritage Centre – Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'CatBa.com – Viet Hai Village Visitor Guide', 'url' => 'https://catba.com/destinations/viet-hai-village/'],
+                ['title' => 'Hai Phong News – Viet Hai, an Island Within an Island', 'url' => 'https://haiphongnews.gov.vn/tourism/viet-hai-an-island-within-an-island-an-ancient-village-forgotten-by-time-in-the-heart-of-the-cat-ba-heritage-site-ct874.html'],
+                ['title' => 'Green Ruby Cruises – The Lan Ha Immersion, 3 Days 2 Nights', 'url' => 'https://greenrubycruises.com/itinerary/the-lan-ha-immersion-3-days-2-nights-4-1.html'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Viet Hai lies in a valley on the eastern side of Cat Ba Island, facing Lan Ha Bay. The village is within the area of Cat Ba National Park, established in 1986, and the Cat Ba Archipelago has been a UNESCO Biosphere Reserve since 2004.</p>
-<h2>Why it is worth visiting</h2>
-<p>After a day or two on the water, Viet Hai is a change of pace: rice fields, vegetable gardens, scattered houses and steep green hills on every side. It shows a side of the region that cruise passengers rarely see, where life runs on farming rather than tourism.</p>
-<h2>Activities</h2>
+<h2>Where is Viet Hai Village?</h2>
+<p>Viet Hai Village lies in a valley on the eastern side of Cat Ba Island, within the Cat Ba National Park area in Hai Phong, northern Vietnam.</p>
+<p>The village is surrounded by limestone mountains and forest, with access to the coast through a narrow route leading towards Lan Ha Bay.</p>
+<p>Its location kept Viet Hai relatively isolated for much of its history. Before road access and tourism services developed, residents relied heavily on boats and walking trails through the surrounding hills.</p>
+<p>Cat Ba National Park was established in 1986. The wider Cat Ba Archipelago was recognised as a UNESCO Biosphere Reserve in 2004 and became part of the Ha Long Bay–Cat Ba Archipelago World Heritage Site in 2023.</p>
+<p>Today, Viet Hai is a regular stop on longer Lan Ha Bay cruises, particularly those offering cycling and village visits.</p>
+<h2>What makes Viet Hai Village worth visiting?</h2>
+<p>Viet Hai offers a different experience from spending the day on a cruise ship.</p>
+<p>After travelling between the limestone islands of Lan Ha Bay, you arrive at a small pier and follow a road inland. The route passes through forested hills before opening into a valley with cultivated fields, vegetable gardens and houses along the roadside.</p>
+<p>The village is still home to local families. Agriculture remains part of daily life, alongside fishing-related work, homestays, small restaurants and tourism services.</p>
+<p>It is not an abandoned village or a place preserved exactly as it was decades ago. Modern buildings and visitor facilities now sit alongside fields and older homes.</p>
+<p>That mixture is part of what makes the visit interesting. Viet Hai shows how a rural community on Cat Ba Island has adapted as tourism has become another source of income.</p>
+<p>For cruise passengers, the change of scenery is immediate: from open water and limestone islands to a narrow country road, farmland and wooded hills.</p>
+<h2>Life in Viet Hai Village</h2>
+<p>Viet Hai has long been a small community whose location made everyday travel more difficult than in villages connected to Cat Ba’s main roads.</p>
+<p>Residents traditionally depended on a combination of farming, fishing and the natural resources around them.</p>
+<p>Rice fields, vegetable gardens and fruit trees still form part of the landscape, although the amount under cultivation and the appearance of the fields change with the season.</p>
+<p>As visitor numbers increased, some families began offering homestays, meals, bicycle rentals and other services.</p>
+<p>Tourism has brought new sources of income, but it has also changed the village. Not every building is traditional, and not every activity visitors encounter reflects the way people lived in the past.</p>
+<p>Viet Hai is best understood as a functioning rural community rather than an outdoor museum.</p>
+<h2>Things to do in Viet Hai Village</h2>
+<h3>Cycle from Viet Hai Pier to the village</h3>
+<p>Cycling is one of the most enjoyable ways to explore Viet Hai.</p>
+<p>From the pier, a paved road runs roughly 5 km inland, passing between limestone hills and through forested stretches before reaching the village.</p>
+<p>Parts of the route are relatively gentle, although there are bends and some gradients. The ride is manageable for many recreational cyclists, but the heat can make it more tiring during summer.</p>
+<p>As you approach the village, the scenery changes from rocky hills and dense vegetation to open fields, gardens and houses.</p>
+<p>Cycling lets you experience this transition at a comfortable pace, with opportunities to stop where it is safe and permitted.</p>
+<p>You do not need to be an experienced cyclist, but you should be confident riding a bicycle and following your guide’s instructions.</p>
+<h3>Explore Viet Hai by electric cart</h3>
+<p>If you prefer not to cycle, an electric cart is a practical alternative.</p>
+<p>These small vehicles travel along the road between the pier and the village, allowing passengers to see the landscape without the physical effort of cycling.</p>
+<p>An electric cart can be particularly useful for families with young children, older visitors or anyone who finds longer walks difficult.</p>
+<p>The journey follows much of the same route used by cyclists, so you can still enjoy the views of the forest, limestone hills and farmland.</p>
+<p>Availability and seating arrangements depend on the local operator and your cruise programme.</p>
+<h3>Walk through the village</h3>
+<p>Once in Viet Hai, you can spend time walking along the village lanes.</p>
+<p>You may see rice fields, vegetable plots, small gardens, traditional houses and more recent buildings used by local families or tourism businesses.</p>
+<p>There is no single monument or landmark that defines the visit. Much of its appeal lies in looking around, observing the countryside and learning about the community from your guide.</p>
+<p>Keep to public roads and permitted paths. Agricultural fields and family gardens are working spaces, not open areas for visitors to wander through.</p>
+<h3>Enjoy a local Vietnamese lunch</h3>
+<p>Some Lan Ha Bay cruise itineraries include lunch in Viet Hai.</p>
+<p>Depending on the restaurant and programme, the meal may feature Vietnamese home-style dishes prepared with vegetables, rice, fish or other locally available ingredients.</p>
+<p>Menus vary, and not every ingredient will necessarily come from the village itself.</p>
+<p>A village lunch offers a welcome change from eating on board, particularly when it follows a morning of cycling or walking.</p>
+<p>If you have dietary restrictions or food allergies, inform your cruise operator in advance.</p>
+<h3>Learn about community tourism</h3>
+<p>Viet Hai has developed homestays, restaurants and visitor activities alongside its traditional livelihoods.</p>
+<p>A guided visit can help explain how local families have adapted to tourism and how their income now comes from several different activities.</p>
+<p>Some households welcome visitors, while others remain private homes. Access depends on the arrangements made by your guide and the residents themselves.</p>
+<p>Rather than expecting a staged display of rural life, treat the visit as an opportunity to understand how people live in this particular part of Cat Ba.</p>
+<h2>Cycling or electric cart: which should you choose?</h2>
+<p>Both options take visitors along the main route between Viet Hai Pier and the village, but they offer different levels of activity.</p>
+<p><strong>Choose a bicycle</strong> if you enjoy cycling, want to experience the landscape at your own pace and are comfortable riding on a road with occasional slopes.</p>
+<p><strong>Choose an electric cart</strong> if you would rather avoid physical exertion, are travelling with younger children or prefer a seated journey.</p>
+<p>Walking all the way from the pier is also possible, but the distance is substantial for a short cruise stop. At around 5 km each way, it takes more time than most standard itineraries allow.</p>
+<p>For visitors who want to take photographs or explore the village on foot, a practical option is to use a bicycle or electric cart for the journey inland and spend the remaining time walking around the village.</p>
+<h2>How to get to Viet Hai Village</h2>
+<p>Most cruise visitors reach Viet Hai from Lan Ha Bay by boat.</p>
+<p>The boat stops at Viet Hai Pier, on the coastal side of Cat Ba Island. From there, a paved road runs approximately 5 km inland to the village.</p>
+<p>Visitors usually continue by bicycle, electric cart or, if time and fitness allow, on foot.</p>
+<p>Independent travellers can also arrange boat transport from the Cat Ba area. Another option is to hike through Cat Ba National Park, but that is a much longer trip requiring suitable preparation, route information and often a local guide.</p>
+<p>For guests on an organised Lan Ha Bay cruise, transport from the pier and time in the village are normally planned as part of the day’s programme. See <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a> for the journey to the port.</p>
+<p>Viet Hai is included in <a href="/cruise/green-ruby-2-4.html">Green Ruby 2</a>’s planned 3-day/2-night itinerary.</p>
+<h2>How long should you spend in Viet Hai Village?</h2>
+<p>Allow around 2–3 hours for a typical visit, including travelling between the pier and village, cycling or walking, and time to look around.</p>
+<p>If your programme includes lunch, the visit may take closer to half a day.</p>
+<p>The journey from the pier is part of the experience, so it is worth allowing enough time to enjoy the scenery rather than treating it simply as a transfer.</p>
+<p>Visitors who want to hike, stay overnight or explore the national park will need considerably more time.</p>
+<p>On a cruise, follow the published schedule and your guide’s instructions, as the day may include other stops around Lan Ha Bay.</p>
+<h2>What to expect when you arrive</h2>
+<p>Viet Hai is small and rural, but it is also an established destination for visitors to Cat Ba.</p>
+<p>You will see farmland, houses, local businesses and services catering to tour groups. Depending on the time of day, some roads and village stops may be busy with bicycles and electric carts.</p>
+<p>The rice fields will not always be green. At different times of year, you may see newly planted crops, mature rice, harvested fields or waterlogged plots.</p>
+<p>Summer can be hot and humid, particularly when cycling. After rain, paths away from the paved road may be muddy.</p>
+<p>Facilities are more limited than in Cat Ba’s main tourist areas, so bring anything essential with you from the cruise.</p>
+<h2>Visiting Viet Hai respectfully</h2>
+<p>Viet Hai is a working village where people live, grow food and run businesses.</p>
+<p>A few things worth remembering:</p>
 <ul>
-<li>Walk or cycle the paved path between the fields and houses.</li>
-<li>Ride an electric cart if you prefer to cover the distance without effort.</li>
-<li>Stop for a meal of local dishes in the village.</li>
+<li>Ask permission before photographing residents at close range or entering private property.</li>
+<li>Stay on public roads and permitted paths around farmland.</li>
+<li>Do not pick fruit or vegetables without permission.</li>
+<li>Keep noise to a reasonable level near people’s homes.</li>
+<li>Avoid leaving rubbish in the village or surrounding forest.</li>
+<li>Support local businesses if you choose to buy food, drinks or souvenirs.</li>
 </ul>
-<h2>How visitors reach it</h2>
-<p>Boats land at a small pier near the mouth of the valley. From there a paved path leads inland to the village, used by walkers, bicycles and electric carts.</p>
-<h2>What to expect on arrival</h2>
-<p>The village is small and rural, with simple facilities. Expect heat and humidity in summer and mud after rain. Some homes welcome visitors; others are simply homes.</p>
-<h2>Accessibility and practical tips</h2>
-<ul>
-<li>The path is mostly level, and electric carts make the visit possible for those who cannot walk far.</li>
-<li>Bring a hat, sun protection, water and insect repellent.</li>
-<li>Ask before photographing people, and keep to the path in fields.</li>
-</ul>
-<h2>Weather and seasonal limits</h2>
-<p>The visit relies on the boat transfer from the bay, so strong wind or storm warnings can cancel it. The rice fields change with the seasons, green during the growing months and brown or flooded at other times.</p>
+<p>If you are interested in village life, ask your guide about the local crops, traditional livelihoods and the growth of tourism in the area.</p>
+<h2>Is Viet Hai suitable for children and older visitors?</h2>
+<p>Viet Hai can be a good stop for families because the activities can be adjusted to different fitness levels.</p>
+<p>Children who can cycle confidently may enjoy the ride, provided that suitable bicycles or seats are available and the operator’s rules allow it.</p>
+<p>For younger children, electric carts are often more practical.</p>
+<p>Older visitors can also use an electric cart to avoid the longer ride or walk, then explore a shorter section of the village on foot.</p>
+<p>However, reaching Viet Hai still involves boat transfers, and some village paths may be uneven. Electric carts should not be assumed to provide full wheelchair accessibility.</p>
+<p>Discuss any mobility requirements with your cruise operator before travelling.</p>
+<h2>Best time to visit Viet Hai Village</h2>
+<p>Viet Hai can be visited throughout the year, subject to weather and boat operations.</p>
+<p>From April to October, the weather is generally warmer and the valley can be lush and green. This is also the period when heat, humidity, heavy rain and occasional storms may affect outdoor activities.</p>
+<p>From November to March, cooler conditions can make cycling and walking more comfortable, although cloudy or wet days are still possible.</p>
+<p>The appearance of the fields varies with the planting and harvesting cycles, so do not expect the same green rice landscape at every time of year.</p>
+<p>If cycling is your main interest, a dry day with moderate temperatures is usually preferable to a particularly hot or rainy one.</p>
+<p>Visits can be changed or cancelled when strong winds or storm warnings prevent safe boat travel in Lan Ha Bay. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Visit Viet Hai Village with Green Ruby Cruises</h2>
+<p>Viet Hai Village is included in the planned 3-day/2-night Lan Ha Bay programme aboard <a href="/cruise/green-ruby-2-4.html">Green Ruby 2</a>.</p>
+<p><strong><a href="/itinerary/the-lan-ha-immersion-3-days-2-nights-4-1.html">The Lan Ha Immersion – 3 Days 2 Nights</a></strong><br>On the second day, guests transfer to a dedicated day boat for a visit to Viet Hai Village. The planned programme includes travelling into the village by bicycle, on foot or by electric cart, followed by a Vietnamese lunch.</p>
+<p>The afternoon continues with a planned beach stop in Lan Ha Bay, subject to local conditions.</p>
+<p>Viet Hai adds a different side of Cat Ba to the journey: a chance to leave the water for a few hours and see the farmland, homes and forested hills beyond the bay.</p>
+<p><em>These are planned activities. Final arrangements will be confirmed when Green Ruby’s sailings begin. Stops and timings may be adjusted due to weather, local regulations or operational requirements.</em></p>
+<h2>Nearby places and related experiences</h2>
+<h3><a href="/destinations/dark-bright-cave">Dark &amp; Bright Cave</a></h3>
+<p>A water-level limestone passage in Lan Ha Bay leading to a lagoon enclosed by steep cliffs. Visitors explore the area by locally rowed boat when conditions permit.</p>
+<h3>Cat Ba National Park</h3>
+<p>A protected area of limestone forests and walking trails, known for its biodiversity and natural landscape. Longer hiking routes require appropriate planning.</p>
+<h3>Lan Ha Bay</h3>
+<p>The coastal bay east of Cat Ba Island, with limestone islands, sheltered waterways and sandy beaches. It is the setting for cruises that combine time on the water with visits to Viet Hai.</p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Eastern Cat Ba Island, facing Lan Ha Bay'],
-                ['label' => 'Type', 'value' => 'Farming village in a limestone valley'],
-                ['label' => 'Access', 'value' => 'Boat to a small pier, then on foot, by bike or electric cart'],
-                ['label' => 'Typical visit', 'value' => 'Half a day including lunch (estimate)'],
-                ['label' => 'Protected area', 'value' => 'Cat Ba National Park area (est. 1986)'],
+                ['label' => 'Location', 'value' => 'Eastern Cat Ba Island, Hai Phong, Vietnam'],
+                ['label' => 'Type', 'value' => 'Rural village and community tourism destination'],
+                ['label' => 'Landscape', 'value' => 'Limestone valley, farmland and surrounding forest'],
+                ['label' => 'Protected area', 'value' => 'Cat Ba National Park area'],
+                ['label' => 'UNESCO designation', 'value' => 'Cat Ba Biosphere Reserve, recognised in 2004'],
+                ['label' => 'Access', 'value' => 'Boat to Viet Hai Pier, then bicycle, electric cart or walking'],
+                ['label' => 'Distance from pier', 'value' => 'Approximately 5 km'],
+                ['label' => 'Main activities', 'value' => 'Cycling, village walks, electric cart rides and local meals'],
+                ['label' => 'Typical visit', 'value' => '2–3 hours; longer with lunch'],
+                ['label' => 'Best for', 'value' => 'Rural scenery, light cycling and learning about local life'],
+                ['label' => 'Conditions', 'value' => 'Dependent on weather and safe boat access'],
             ],
             'faq' => [
-                ['q' => 'How do you get to Viet Hai village?', 'a' => 'By boat to a small pier, then along a paved path into the valley on foot, by bicycle or by electric cart. There is no need to drive across Cat Ba Island.'],
-                ['q' => 'Is the walk to Viet Hai long?', 'a' => 'It is a gentle, mostly level route, but in summer heat it can feel long. Electric carts are the easy option.'],
-                ['q' => 'Is Viet Hai suitable for children?', 'a' => 'Yes. The path is quiet and mostly level. Bring sun protection and insect repellent.'],
-                ['q' => 'Which Green Ruby cruise visits Viet Hai?', 'a' => 'In the current plan, Viet Hai is visited by day boat on the second day of the Lan Ha Immersion (3 days 2 nights) on Green Ruby 2, with lunch in the village. It is not part of the 2 days 1 night route. The plan is provisional until sailings begin, expected in February 2027.'],
+                ['q' => 'Where is Viet Hai Village?', 'a' => 'Viet Hai Village is on the eastern side of Cat Ba Island, within the Cat Ba National Park area in Hai Phong, Vietnam. Most cruise visitors reach it by boat from Lan Ha Bay and then travel inland from Viet Hai Pier.'],
+                ['q' => 'What is Viet Hai Village known for?', 'a' => 'Viet Hai is known for its rural valley setting, rice fields, forested limestone hills and village cycling routes. Visitors can learn about local farming, community tourism and everyday life on Cat Ba Island.'],
+                ['q' => 'How do you get to Viet Hai Village?', 'a' => 'Most visitors arrive by boat at Viet Hai Pier, then travel about 5 km inland by bicycle, electric cart or on foot. Longer hiking routes through Cat Ba National Park are another option for suitably prepared visitors.'],
+                ['q' => 'How far is Viet Hai Village from the pier?', 'a' => 'The road from Viet Hai Pier to the village is approximately 5 km. It passes through limestone hills and forested scenery before entering the agricultural valley.'],
+                ['q' => 'Is the bike ride to Viet Hai difficult?', 'a' => 'The route is suitable for many visitors who can ride a bicycle confidently. There are some bends and gradients, and summer heat can make the journey more tiring. Electric carts are an alternative.'],
+                ['q' => 'Can you walk from the pier to Viet Hai Village?', 'a' => 'Yes, but the walk is around 5 km each way. It may take too long for a standard cruise stop, especially if lunch or other activities are scheduled. A bicycle or electric cart is usually more practical.'],
+                ['q' => 'Is Viet Hai Village suitable for children?', 'a' => 'Yes, depending on the activities and transport available. Families with young children may prefer an electric cart, while older children who are confident cyclists may be able to join a guided bike ride.'],
+                ['q' => 'Can you eat lunch in Viet Hai Village?', 'a' => 'Yes. Some local restaurants and cruise programmes offer meals in the village. Menus and dietary options vary, so check with your cruise operator in advance.'],
+                ['q' => 'Can you stay overnight in Viet Hai?', 'a' => 'Yes. The village has homestays and small accommodation providers. Overnight stays are a separate experience from the shorter visits usually included in Lan Ha Bay cruises.'],
+                ['q' => 'Which Green Ruby cruise visits Viet Hai Village?', 'a' => 'Viet Hai Village is included in Green Ruby 2’s planned 3-day/2-night Lan Ha Bay itinerary, The Lan Ha Immersion. It is not listed as a stop on the standard 2-day/1-night Lan Ha Escape programme.'],
+                ['q' => 'When does Green Ruby plan to visit Viet Hai Village?', 'a' => 'The published 3-day/2-night itinerary schedules Viet Hai Village for approximately 10:00 AM on the second day, followed by lunch in the village at around 12:00 PM. Activities and timings remain provisional until Green Ruby’s sailings begin and may change due to weather, local regulations or operational conditions.'],
             ],
         ],
         'vi' => [
