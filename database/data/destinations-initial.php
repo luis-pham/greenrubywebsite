@@ -948,7 +948,7 @@ HTML,
         'image_credit' => null,
         'itineraries' => ['en' => [3], 'vi' => [8]],
         'sources' => [$unesco],
-        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief. Verified: Cai Tai islet, ~18 km from Tuan Chau, Hang Ren/Hang Duc, Soi Nhu culture 10,000-8,000 BP, 2017 exhibition (Management Board); Andersson 1938, excavation 6/11-31/12/2007 (National Museum of History). Route 3 per tour listings (numbering varies). Cover image supplied by the owner 2026-10-24 (confirm it is a real photo). Coordinates from the brief, unverified. Old note: Needs: verified coordinates, a genuine photo (none licensed found on Wikimedia Commons), and an official source for the archaeological finds (the copy only says traces of prehistoric habitation have been recorded, as in the published itinerary). Not published: steps, size, fees.",
+        'editor_notes' => "EN and VI rewritten 2026-10-24 from the editorial briefs. Verified: cave area ~1000 m2 (National Museum of History); Cai Tai islet, ~18 km from Tuan Chau, Hang Ren/Hang Duc, Soi Nhu culture 10,000-8,000 BP, 2017 exhibition (Management Board); Andersson 1938, excavation 6/11-31/12/2007 (National Museum of History). Route 3 per tour listings (numbering varies). Cover image supplied by the owner 2026-10-24 (confirm it is a real photo). Coordinates from the brief, unverified. Old note: Needs: verified coordinates, a genuine photo (none licensed found on Wikimedia Commons), and an official source for the archaeological finds (the copy only says traces of prehistoric habitation have been recorded, as in the published itinerary). Not published: steps, size, fees.",
         'en' => [
             'slug' => 'tien-ong-cave',
             'name' => 'Tien Ong Cave',
@@ -1083,38 +1083,127 @@ HTML,
             'slug' => 'hang-tien-ong',
             'name' => 'Hang Tiên Ông',
             'image_alt' => 'Thạch nhũ được chiếu sáng trong hang Tiên Ông, cửa hang rộng nhìn ra vịnh Hạ Long',
-            'seo_title' => 'Hang Tiên Ông, vịnh Hạ Long: hang nhỏ, yên tĩnh',
-            'seo_description' => 'Hang Tiên Ông là hang nhỏ, ít khách ở phía đông vịnh Hạ Long, gắn với dấu tích cư trú thời tiền sử. Tham quan thế nào và nằm trong lịch trình nào của Green Ruby.',
-            'summary' => 'Hang nhỏ ở vùng phía đông yên tĩnh của vịnh Hạ Long, được đặt tên theo khối thạch nhũ giống một ông tiên. Trong hang từng ghi nhận dấu tích cư trú của người tiền sử.',
+            'seo_title' => 'Hang Tiên Ông Hạ Long: Di Chỉ Khảo Cổ & Kinh Nghiệm Tham Quan',
+            'seo_description' => 'Hang Tiên Ông ở đâu, có gì? Tìm hiểu di chỉ khảo cổ văn hóa Soi Nhụ, dấu tích cư trú 8.000–10.000 năm, thạch nhũ hình ông tiên và kinh nghiệm tham quan.',
+            'summary' => 'Hang Tiên Ông nằm trên hòn Cái Tai, giữa vịnh Hạ Long, nổi bật với cửa hang rộng, những khối thạch nhũ có hình dáng đặc biệt và dấu tích cư trú của người tiền sử cách đây khoảng 8.000–10.000 năm. Đến đây, du khách không chỉ được ngắm cảnh hang động mà còn có thể tìm hiểu về cuộc sống của cư dân cổ từng sinh sống trên vùng đất nay đã trở thành vịnh Hạ Long.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Hang Tiên Ông', 'url' => 'https://halongbay.com.vn/places/35-hang-tien-ong'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Khám phá “Bảo tàng” khảo cổ trong lòng hang Tiên Ông', 'url' => 'https://halongbay.com.vn/p/269-kham-pha-bao-tang-khao-co-trong-long-hang-tien-ong'],
+                ['title' => 'Bảo tàng Lịch sử Quốc gia – Khai quật khảo cổ di tích hang Tiên Ông', 'url' => 'https://baotanglichsu.vn/vi/Articles/1502/49134/khai-quat-khao-co-di-tich-hang-tien-ong-tren-vinh-ha-long.html'],
+                ['title' => 'Bảo tàng Lịch sử Quốc gia – Khám phá hang Tiên Ông, hành trình tìm về Hạ Long thời tiền sử', 'url' => 'https://baotanglichsu.vn/vi/Articles/3127/61922/kham-pha-hang-tien-ong-hanh-trinh-tim-ve-ha-long-thoi-tien-su-phan-1.html'],
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Hang Tiên Ông nằm ở phía đông vịnh Hạ Long, xa cụm Sửng Sốt, hang Luồn và Ti Tốp ở trung tâm. Tàu ghé hang thường kết hợp thăm làng chài Cửa Vạn gần đó.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Hang mang tên Tiên Ông theo một khối thạch nhũ mà dân gian ví như ông tiên đang ngồi. So với Sửng Sốt, hang nhỏ hơn và vắng hơn nhiều, nên bạn có thể thong thả ngắm. Hang còn đáng chú ý vì quá khứ của nó: tại đây đã ghi nhận dấu tích cư trú của người tiền sử, cho thấy con người đã sống giữa các đảo đá này từ hàng nghìn năm trước khi có du lịch.</p>
-<h2>Cách đến</h2>
-<p>Du khách đến hang bằng tàu ngày, tàu neo gần cửa hang. Đi thêm một đoạn ngắn qua bậc và nền đá không bằng phẳng là tới cửa hang.</p>
-<h2>Khi đến nơi</h2>
-<p>Hang không lớn, có đèn chiếu sáng thạch nhũ, hướng dẫn viên kể về truyền thuyết và lịch sử của hang. Vì ít tàu qua lại nên thường khá yên tĩnh.</p>
-<h2>Lưu ý khi tham quan</h2>
+<h2>Hang Tiên Ông ở đâu?</h2>
+<p>Hang Tiên Ông nằm trên hòn Cái Tai, thuộc khu vực đảo Hang Trai ở phía nam vịnh Hạ Long, cách cảng tàu khách quốc tế Tuần Châu khoảng 18 km đường thủy.</p>
+<p>Hang nằm gần <a href="/vi/dia-diem-tham-quan/lang-chai-cua-van">làng chài Cửa Vạn</a>, cùng thuộc tuyến tham quan số 3 của vịnh Hạ Long. Những chuyến tàu đi qua khu vực này thường kết hợp tham quan hang với trải nghiệm tìm hiểu đời sống ngư dân ở Cửa Vạn.</p>
+<p>So với các điểm quen thuộc như <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a>, <a href="/vi/dia-diem-tham-quan/hang-luon">Hang Luồn</a> hay <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a>, Hang Tiên Ông nằm xa hơn trên tuyến tham quan khác. Vì vậy, địa điểm này thường được đưa vào những hành trình dài, đặc biệt là các chuyến du thuyền 3 ngày 2 đêm.</p>
+<p>Hang còn được biết đến với tên gọi dân gian là hang Rền, hoặc hang Đục trong những tài liệu khảo cổ trước đây.</p>
+<h2>Hang Tiên Ông có gì đặc biệt?</h2>
+<p>Điều khiến Hang Tiên Ông đáng chú ý không chỉ nằm ở cảnh quan đá vôi, mà còn ở những dấu vết con người để lại từ hàng nghìn năm trước.</p>
+<p>Hang có cửa rộng, nền đá tương đối cao so với mặt biển và nhiều ngách nhỏ phía trong. Trên trần và dọc các vách hang là những khối nhũ đá hình thành qua thời gian dài.</p>
+<p>Nổi bật trong số đó là một khối măng đá có hình dáng giống ông lão với khuôn mặt hiền hậu, râu tóc dài. Người dân liên tưởng đến hình ảnh một ông tiên trong chuyện dân gian và từ đó gọi nơi này là Hang Tiên Ông.</p>
+<p>Tuy nhiên, giá trị đặc biệt hơn của hang nằm ngay dưới nền đất.</p>
+<p>Các cuộc khảo cổ đã phát hiện công cụ đá, công cụ xương, xương động vật và những lớp vỏ ốc tích tụ từ thời tiền sử. Đây là bằng chứng cho thấy con người từng sử dụng hang làm nơi cư trú từ khoảng 8.000–10.000 năm trước.</p>
+<p>Vì vậy, khi tham quan Hang Tiên Ông, du khách có thể tìm hiểu cả quá trình hình thành cảnh quan đá vôi lẫn lịch sử cư trú của con người ở vùng Hạ Long.</p>
+<h2>Dấu tích người tiền sử tại Hang Tiên Ông</h2>
+<p>Hang Tiên Ông là một trong những di chỉ khảo cổ gắn với văn hóa Soi Nhụ, thuộc giai đoạn đầu thời đại Đá mới ở khu vực Hạ Long.</p>
+<p>Theo các nghiên cứu khảo cổ, con người đã cư trú tại đây cách ngày nay khoảng 8.000–10.000 năm.</p>
+<p>Thời điểm đó, cảnh quan khu vực này khác nhiều so với hiện tại. Mực nước biển thấp hơn, nhiều vùng ngày nay chìm dưới nước từng là đất liền hoặc vùng ven những dòng suối.</p>
+<p>Cư dân cổ sử dụng các nguồn thức ăn sẵn có trong môi trường xung quanh, trong đó có ốc suối, ốc núi và động vật nhỏ. Họ dùng những công cụ thô sơ làm từ đá và xương để phục vụ cuộc sống.</p>
+<p>Trong hang, các nhà khảo cổ tìm thấy những lớp vỏ nhuyễn thể tích tụ với số lượng lớn, cùng nhiều công cụ và di vật khác. Những lớp trầm tích này giúp các nhà nghiên cứu xác định phần nào môi trường sống, nguồn thức ăn và hoạt động của cư dân thời đó.</p>
+<p>Năm 1938, nhà khảo cổ học người Thụy Điển J. G. Andersson đã nghiên cứu địa điểm này và gọi là hang Đục.</p>
+<p>Đến cuối năm 2007, Bảo tàng Lịch sử Việt Nam phối hợp với cơ quan văn hóa tỉnh Quảng Ninh tiến hành khai quật để làm rõ hơn các tầng văn hóa và giá trị khảo cổ của hang.</p>
+<p>Những phát hiện tại Hang Tiên Ông góp phần bổ sung hiểu biết về lịch sử cư trú của con người ở Hạ Long từ trước khi vùng vịnh có cảnh quan biển đảo như ngày nay.</p>
+<h2>Những điều đáng xem khi tham quan Hang Tiên Ông</h2>
+<h3>Ngắm thạch nhũ và khối đá hình ông tiên</h3>
+<p>Cửa Hang Tiên Ông khá rộng, cho phép ánh sáng tự nhiên chiếu vào khu vực phía ngoài.</p>
+<p>Bên trong là những khối nhũ đá với nhiều hình dáng khác nhau, có nơi buông xuống từ trần hang, có nơi nhô lên từ nền đá. Các ngách nhỏ nằm dọc theo vách tạo nên cấu trúc khá phức tạp.</p>
+<p>Điểm được nhắc đến nhiều nhất là khối măng đá trông giống một ông lão có râu tóc dài. Đây cũng là hình ảnh gắn với tên gọi Hang Tiên Ông.</p>
+<p>Du khách có thể quan sát các khối nhũ đá và tìm hiểu câu chuyện dân gian đằng sau tên hang trong lúc đi theo lối tham quan.</p>
+<h3>Tìm hiểu những dấu tích cư trú thời tiền sử</h3>
+<p>Khác với nhiều hang động trên vịnh Hạ Long chủ yếu được biết đến nhờ cảnh quan, Hang Tiên Ông còn lưu giữ những dấu tích sinh hoạt của cư dân cổ.</p>
+<p>Trong các đợt khai quật, nhà khảo cổ đã phát hiện công cụ đá, công cụ xương, xương động vật và lượng lớn vỏ nhuyễn thể.</p>
+<p>Đặc biệt, những lớp vỏ ốc suối và ốc núi cho thấy nguồn thức ăn mà cư dân thời đó từng khai thác.</p>
+<p>Những dấu tích này giúp người xem hiểu rằng khu vực vịnh Hạ Long không chỉ có giá trị về địa chất và cảnh quan, mà còn gắn với lịch sử sinh sống lâu dài của con người.</p>
+<h3>Tham quan khu trưng bày khảo cổ trong hang</h3>
+<p>Từ năm 2017, Hang Tiên Ông được tổ chức thêm không gian giới thiệu khảo cổ ngay tại di tích.</p>
+<p>Khu trưng bày cung cấp thông tin về những cuộc nghiên cứu, quá trình khai quật và các dấu tích liên quan đến đời sống người tiền sử.</p>
+<p>Nếu quan tâm đến lịch sử, bạn nên dành thời gian đọc các bảng giới thiệu thay vì chỉ đi qua để ngắm thạch nhũ.</p>
+<p>Nội dung trưng bày và khu vực được phép tiếp cận có thể thay đổi theo tình trạng bảo tồn, vì vậy cần tuân thủ hướng dẫn tại điểm tham quan.</p>
+<h2>Hang Tiên Ông khác hang Sửng Sốt thế nào?</h2>
+<p>Cả Hang Tiên Ông và <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a> đều là hang đá vôi trên vịnh Hạ Long, nhưng mỗi nơi có nét đáng chú ý riêng.</p>
+<p>Hang Sửng Sốt nổi tiếng với những khoang hang lớn, hệ thống thạch nhũ phong phú và lối tham quan được tổ chức qua nhiều khu vực. Đây là một trong những điểm dừng phổ biến nhất của tuyến tham quan số 2.</p>
+<p>Hang Tiên Ông lại có giá trị nổi bật về khảo cổ. Bên cạnh những khối nhũ đá tự nhiên, hang còn lưu giữ bằng chứng về cuộc sống của cư dân tiền sử thuộc văn hóa Soi Nhụ.</p>
+<p>Do nằm trên tuyến tham quan khác, Hang Tiên Ông cũng thường có ít đoàn khách hơn hang Sửng Sốt, dù lượng khách thực tế còn tùy thời điểm.</p>
+<p>Nếu muốn ngắm những khoang hang rộng và hệ thống thạch nhũ, hang Sửng Sốt là lựa chọn phù hợp. Còn nếu thích tìm hiểu lịch sử, khảo cổ và những địa điểm ít đông đúc hơn, Hang Tiên Ông sẽ mang đến một trải nghiệm khác.</p>
+<h2>Cách đi đến Hang Tiên Ông</h2>
+<p>Du khách đến Hang Tiên Ông bằng tàu tham quan vịnh Hạ Long hoặc du thuyền có lịch trình đi qua tuyến số 3.</p>
+<p>Các chuyến đi thường xuất phát từ cảng Tuần Châu hoặc những cảng tàu khách được cấp phép tại khu vực Hạ Long. Xem thêm <a href="/vi/cam-nang/ha-noi-di-ha-long">cách đi từ Hà Nội đến Hạ Long</a>.</p>
+<p>Do nằm cách xa các điểm tham quan thuộc tuyến số 2, không phải chương trình du lịch Hạ Long nào cũng ghé Hang Tiên Ông.</p>
+<p>Khi đến khu vực hang, tàu dừng tại điểm được phép, sau đó du khách đi bộ từ nơi cập tàu lên cửa hang. Đường đi không quá dài nhưng có bậc và một số đoạn nền đá gồ ghề.</p>
+<p>Trong lịch trình dự kiến của <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a>, Hang Tiên Ông nằm trong chương trình tham quan ngày thứ hai của hành trình Hạ Long 3 ngày 2 đêm, cùng với làng chài Cửa Vạn và hoạt động tìm hiểu nghề nuôi cấy ngọc trai.</p>
+<h2>Tham quan Hang Tiên Ông mất bao lâu?</h2>
+<p>Bạn nên dành khoảng 30–45 phút cho một lượt tham quan Hang Tiên Ông, bao gồm thời gian di chuyển từ khu vực cập tàu, đi bộ trong hang và quay trở lại.</p>
+<p>Nếu quan tâm đến khảo cổ, bạn có thể cần thêm thời gian để đọc thông tin trưng bày và quan sát các dấu tích được giới thiệu.</p>
+<p>Thời gian thực tế cũng phụ thuộc vào tốc độ di chuyển, lượng khách tại điểm tham quan và lịch trình của tàu.</p>
+<p>Nếu tham gia tour hoặc du thuyền nghỉ đêm, bạn nên hỏi hướng dẫn viên về thời gian tập trung trước khi vào hang.</p>
+<h2>Khi đến Hang Tiên Ông cần lưu ý gì?</h2>
+<p>Hang Tiên Ông có cửa khá rộng, không phải đi qua lối hẹp kéo dài như một số hang động khác.</p>
+<p>Nền hang nằm cao hơn mực nước biển vài mét, nhưng đường đi vẫn có những đoạn gồ ghề, có thể ẩm hoặc trơn sau mưa.</p>
+<p>Bên trong hang có nhiều khối nhũ đá và những khu vực mang giá trị khảo cổ cần được bảo vệ.</p>
+<p>Một số lưu ý khi tham quan:</p>
 <ul>
-<li>Lối vào có bậc và nền đá gồ ghề, không phù hợp xe lăn.</li>
-<li>Nên đi giày đế bám, nền trong hang có chỗ ẩm ướt.</li>
-<li>Không chạm tay vào thạch nhũ.</li>
+<li>Mang giày hoặc dép có độ bám tốt.</li>
+<li>Đi cẩn thận trên những đoạn có bậc và nền đá không bằng phẳng.</li>
+<li>Không chạm tay, bẻ hoặc làm hư hại thạch nhũ.</li>
+<li>Không nhặt đá, vỏ ốc hay bất kỳ vật liệu nào trong khu vực di tích.</li>
+<li>Đi theo lối được phép, không tự ý vào các ngách hang.</li>
+<li>Tuân thủ quy định về chụp ảnh và sử dụng đèn flash tại khu trưng bày.</li>
 </ul>
-<h2>Thời tiết và mùa</h2>
-<p>Như mọi điểm trên vịnh, chuyến thăm phụ thuộc việc tàu có được ra khơi hay không. Khi gió mạnh hoặc có cảnh báo bão, các chuyến tàu ngày thường bị cắt giảm đầu tiên.</p>
+<p>Đối với người đi lại khó khăn hoặc sử dụng xe lăn, lối vào và nền đá bên trong có thể không phù hợp. Nên hỏi trước đơn vị tổ chức về điều kiện tiếp cận thực tế.</p>
+<h2>Nên tham quan Hang Tiên Ông vào tháng mấy?</h2>
+<p>Hang Tiên Ông có thể tham quan quanh năm khi thời tiết và hoạt động tàu du lịch cho phép.</p>
+<p>Vì phần lớn thời gian tham quan diễn ra bên trong hang, mùa nóng hay mùa lạnh không tạo ra khác biệt lớn như với những hoạt động tắm biển hoặc chèo kayak.</p>
+<p>Từ khoảng tháng 4 đến tháng 10, thời tiết thường ấm hơn, nhưng cũng có thể xuất hiện mưa lớn, gió mạnh hoặc bão khiến lịch trình tham quan vịnh thay đổi.</p>
+<p>Từ tháng 11 đến tháng 3, thời tiết thường mát hoặc lạnh hơn. Việc đi bộ có thể dễ chịu hơn vào những ngày không mưa, nhưng các bậc đá và lối đi vẫn có thể ẩm ướt.</p>
+<p>Khi có cảnh báo thời tiết xấu, tàu tham quan có thể phải thay đổi tuyến, rút ngắn hành trình hoặc tạm dừng hoạt động theo quy định. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">đi Hạ Long mùa nào đẹp</a>.</p>
+<h2>Tham quan Hang Tiên Ông cùng Green Ruby Cruises</h2>
+<p>Hang Tiên Ông nằm trong lịch trình dự kiến của du thuyền Green Ruby 1 trên vịnh Hạ Long.</p>
+<p><strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-ha-long-1-8.html">3 ngày 2 đêm – Dấu Ấn Hạ Long</a></strong><br>Trong ngày thứ hai, du khách dự kiến chuyển sang tàu tham quan riêng để khám phá làng chài Cửa Vạn, Hang Tiên Ông và khu vực nuôi cấy ngọc trai.</p>
+<p>Điểm dừng tại Hang Tiên Ông mang đến cơ hội tìm hiểu thêm về lịch sử cư trú của con người trên vùng vịnh, bên cạnh những trải nghiệm ngắm cảnh và nghỉ dưỡng trong hành trình.</p>
+<p><em>Các hoạt động trên thuộc lịch trình dự kiến của Green Ruby 1. Thời gian và điểm dừng chính thức sẽ được xác nhận khi tàu đi vào vận hành và có thể điều chỉnh theo điều kiện thực tế.</em></p>
+<h2>Những địa điểm gần và liên quan</h2>
+<h3><a href="/vi/dia-diem-tham-quan/lang-chai-cua-van">Làng chài Cửa Vạn</a></h3>
+<p>Làng chài nổi truyền thống của vịnh Hạ Long, nơi nhiều thế hệ ngư dân từng sinh sống trên những ngôi nhà bè. Ngày nay, du khách có thể tham quan khu vực làng và tìm hiểu lịch sử cộng đồng vạn chài.</p>
+<h3><a href="/vi/dia-diem-tham-quan/hang-sung-sot">Hang Sửng Sốt</a></h3>
+<p>Hang động nổi tiếng trên đảo Bồ Hòn, có những khoang hang lớn và hệ thống thạch nhũ phong phú. Đây là điểm tham quan phù hợp để so sánh với Hang Tiên Ông về cảnh quan và trải nghiệm.</p>
+<h3><a href="/vi/dia-diem-tham-quan/dao-ti-top">Đảo Ti Tốp</a></h3>
+<p>Hòn đảo có bãi tắm nhỏ hình lưỡi liềm và lối leo lên đỉnh núi để ngắm toàn cảnh vịnh Hạ Long.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Phía đông vịnh Hạ Long, gần Cửa Vạn'],
-                ['label' => 'Loại hình', 'value' => 'Hang đá vôi nhỏ'],
-                ['label' => 'Cách đến', 'value' => 'Tàu ngày, sau đó đi bộ ngắn lên bậc'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 45 phút (ước tính)'],
-                ['label' => 'Đáng chú ý', 'value' => 'Yên tĩnh, có dấu tích cư trú thời tiền sử'],
+                ['label' => 'Vị trí', 'value' => 'Hòn Cái Tai, khu vực đảo Hang Trai, vịnh Hạ Long'],
+                ['label' => 'Khoảng cách', 'value' => 'Khoảng 18 km từ cảng Tuần Châu'],
+                ['label' => 'Tuyến tham quan', 'value' => 'Tuyến số 3 vịnh Hạ Long'],
+                ['label' => 'Loại hình', 'value' => 'Hang đá vôi, di chỉ khảo cổ'],
+                ['label' => 'Diện tích hang', 'value' => 'Khoảng 1.000 m²'],
+                ['label' => 'Điểm nổi bật', 'value' => 'Thạch nhũ hình ông tiên, dấu tích cư trú tiền sử'],
+                ['label' => 'Niên đại cư trú', 'value' => 'Khoảng 8.000–10.000 năm trước'],
+                ['label' => 'Văn hóa khảo cổ', 'value' => 'Văn hóa Soi Nhụ'],
+                ['label' => 'Cách đến', 'value' => 'Tàu tham quan hoặc du thuyền, sau đó đi bộ'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 30–45 phút (ước tính)'],
+                ['label' => 'Điều kiện tiếp cận', 'value' => 'Có bậc đá và nền không bằng phẳng'],
             ],
             'faq' => [
-                ['q' => 'Hang Tiên Ông khác hang Sửng Sốt thế nào?', 'a' => 'Hang Tiên Ông nhỏ hơn nhiều và ít khách hơn. Sửng Sốt gây ấn tượng bằng quy mô; Tiên Ông là chuyến thăm chậm rãi, yên tĩnh, thiên về lịch sử và truyền thuyết của hang.'],
-                ['q' => 'Hành trình 2 ngày 1 đêm có ghé hang Tiên Ông không?', 'a' => 'Không. Theo kế hoạch hiện tại của Green Ruby, hang Tiên Ông nằm trong chuyến tàu ngày của ngày thứ hai, hành trình 3 ngày 2 đêm vịnh Hạ Long trên Green Ruby 1, cùng với làng chài Cửa Vạn. Lịch trình có thể điều chỉnh trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
-                ['q' => 'Đi hang Tiên Ông có vất vả không?', 'a' => 'Thường không. Đoạn lên cửa hang ngắn, nhưng có bậc và nền đá gồ ghề nên không phù hợp xe lăn.'],
+                ['q' => 'Hang Tiên Ông ở đâu?', 'a' => 'Hang Tiên Ông nằm trên hòn Cái Tai, thuộc khu vực đảo Hang Trai ở vịnh Hạ Long, tỉnh Quảng Ninh. Hang cách cảng Tuần Châu khoảng 18 km đường thủy và nằm gần làng chài Cửa Vạn.'],
+                ['q' => 'Vì sao gọi là Hang Tiên Ông?', 'a' => 'Tên hang bắt nguồn từ một khối măng đá có hình dáng giống ông lão với khuôn mặt hiền hậu, râu tóc dài. Người dân liên tưởng đến hình ảnh ông tiên trong chuyện dân gian và gọi nơi này là Hang Tiên Ông.'],
+                ['q' => 'Hang Tiên Ông có giá trị khảo cổ gì?', 'a' => 'Hang Tiên Ông là di chỉ khảo cổ gắn với văn hóa Soi Nhụ. Tại đây, các nhà nghiên cứu phát hiện công cụ đá, công cụ xương, xương động vật và những lớp vỏ nhuyễn thể, cho thấy con người từng cư trú trong hang từ khoảng 8.000–10.000 năm trước.'],
+                ['q' => 'Hang Tiên Ông có phải hang động tiền sử không?', 'a' => 'Có. Những dấu tích khảo cổ cho thấy đây từng là nơi cư trú của con người thời tiền sử. Tuy nhiên, cần phân biệt tuổi địa chất của hang đá vôi với niên đại cư trú của con người: con số 8.000–10.000 năm nói về dấu tích con người, không phải tuổi hình thành của hang.'],
+                ['q' => 'Hang Tiên Ông khác hang Sửng Sốt thế nào?', 'a' => 'Hang Sửng Sốt nổi bật với các khoang hang lớn và hệ thống thạch nhũ. Hang Tiên Ông cũng có nhũ đá tự nhiên nhưng đặc biệt hơn ở những dấu tích cư trú thời tiền sử và giá trị khảo cổ. Hai hang thuộc các tuyến tham quan khác nhau.'],
+                ['q' => 'Đi Hang Tiên Ông có vất vả không?', 'a' => 'Quãng đường tham quan tương đối ngắn, nhưng có bậc đá và một số đoạn gồ ghề hoặc ẩm ướt. Người có sức khỏe bình thường thường có thể tham quan nếu đi cẩn thận. Địa điểm không phù hợp với xe lăn do điều kiện lối đi.'],
+                ['q' => 'Tham quan Hang Tiên Ông mất bao lâu?', 'a' => 'Thông thường nên dành khoảng 30–45 phút, tùy lịch trình, tốc độ đi bộ và thời gian tìm hiểu khu trưng bày khảo cổ.'],
+                ['q' => 'Hành trình Hạ Long 2 ngày 1 đêm có ghé Hang Tiên Ông không?', 'a' => 'Theo lịch trình dự kiến của Green Ruby, hành trình 2 ngày 1 đêm không ghé Hang Tiên Ông. Địa điểm này nằm trong chương trình 3 ngày 2 đêm của Green Ruby 1.'],
+                ['q' => 'Green Ruby dự kiến ghé Hang Tiên Ông khi nào?', 'a' => 'Theo chương trình dự kiến, Green Ruby 1 sẽ ghé Hang Tiên Ông vào khoảng 11:30 ngày thứ hai của hành trình 3 ngày 2 đêm – Dấu Ấn Hạ Long. Thời gian và hoạt động thực tế có thể thay đổi theo thời tiết, lịch vận hành và quy định của cơ quan quản lý.'],
             ],
         ],
     ],
