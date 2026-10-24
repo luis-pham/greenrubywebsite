@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Content;
 
 use App\Http\Controllers\Controller;
 use App\Services\Content\ContentMenuBuilder;
+use App\Services\Content\PageConfigContentService;
 use Illuminate\Http\Request;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\BackEnd\Services\AdLanguageService;
@@ -33,6 +34,8 @@ class SiteController extends Controller
                 'primary' => ContentMenuBuilder::build('primary-menu', $language),
                 'footer' => ContentMenuBuilder::build('footer-menu', $language),
             ],
+            // app_page codes switched off in the admin (destinations, travel guides): not linked anywhere.
+            'hiddenPages' => PageConfigContentService::hiddenCodes($language),
         ]);
     }
 }

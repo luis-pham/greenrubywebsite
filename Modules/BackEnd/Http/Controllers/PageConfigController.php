@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Modules\BackEnd\Helpers\LanguageUtils;
 use Modules\BackEnd\Helpers\Logging;
 use Modules\BackEnd\Helpers\Utilities;
+use App\Services\Content\PageConfigContentService;
 use Modules\BackEnd\Services\AppPageService;
 use Modules\BackEnd\Services\AppPageConfigService;
 use Modules\BackEnd\Services\AppPageSectionService;
@@ -59,15 +60,19 @@ class PageConfigController extends Controller
             $data = $request->all();
 
             if (array_key_exists('seo_title', $data) || array_key_exists('seo_description', $data)) {
-                AppPageService::update([
+                $pageData = [
                     'id' => $page->id,
                     'seo_title' => $data['seo_title'] ?? '',
                     'seo_description' => $data['seo_description'] ?? '',
-                ], $language->id);
+                ];
+                if (PageConfigContentService::hideable($pageCode)) {
+                    $pageData['is_visible'] = !empty($data['is_visible']);
+                }
+                AppPageService::update($pageData, $language->id);
             }
 
             foreach ($data as $key => $value) {
-                if ($key == '_token' || $key === 'seo_title' || $key === 'seo_description') {
+                if ($key == '_token' || $key === 'seo_title' || $key === 'seo_description' || $key === 'is_visible') {
                     continue;
                 }
 

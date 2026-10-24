@@ -60,6 +60,30 @@ class PageConfigContentService
     /** Destinations hub and travel guides, also Next.js-only: empty SEO is returned as null like the eco dashboard. */
     public const NEXT_ONLY_GUIDES = ['destinations', 'guide-first-time', 'guide-transfer'];
 
+    /** Pages with a show/hide switch (app_page.is_visible): the Next.js-only hubs. */
+    public static function hideable(?string $code): bool
+    {
+        return in_array($code, self::NEXT_ONLY_GUIDES, true);
+    }
+
+    /** False only when the editor switched the page off for this language. */
+    public static function visible(string $code, AdLanguage $language): bool
+    {
+        if (!self::hideable($code)) {
+            return true;
+        }
+        $flag = DB::table('app_page')->where('code', $code)->where('language_id', $language->id)->value('is_visible');
+
+        return $flag === null || (bool) $flag;
+    }
+
+    /** Codes of the pages switched off for this language (site payload: footer, llms.txt, guide links). */
+    public static function hiddenCodes(AdLanguage $language): array
+    {
+        return DB::table('app_page')->whereIn('code', self::NEXT_ONLY_GUIDES)->where('language_id', $language->id)
+            ->where('is_visible', false)->pluck('code')->values()->all();
+    }
+
     /** GET /pages/{code} payload, or null for codes that are not exposed. */
     public static function page(string $code, AdLanguage $language): ?array
     {
@@ -71,6 +95,7 @@ class PageConfigContentService
             'code' => $code,
             'seo' => self::seo($code, $language),
             'noIndex' => in_array($code, self::NO_INDEX_CODES, true),
+            'visible' => self::visible($code, $language),
             'config' => (object) self::decode($code, $language),
         ];
 

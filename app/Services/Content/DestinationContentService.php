@@ -23,6 +23,8 @@ class DestinationContentService
 
         return [
             'seo' => PageConfigContentService::seo(self::PAGE_CODE, $language),
+            // Hub switched off in the admin: the frontend 404s the hub; items are empty, so details 404 too.
+            'visible' => PageConfigContentService::visible(self::PAGE_CODE, $language),
             'items' => $rows->map(fn ($d) => self::summary($d, $stops))->values()->all(),
         ];
     }
@@ -84,17 +86,19 @@ class DestinationContentService
         ];
     }
 
-    /** Published destinations of the language, in admin order. */
+    /** Published destinations of the language, in admin order; none while the hub is switched off. */
     public static function published(AdLanguage $language)
     {
-        return AppDestination::where('language_id', $language->id)->where('status', 'published')->orderBy('ord')->orderBy('id');
+        $query = AppDestination::where('language_id', $language->id)->where('status', 'published')->orderBy('ord')->orderBy('id');
+
+        return PageConfigContentService::visible(self::PAGE_CODE, $language) ? $query : $query->whereRaw('1 = 0');
     }
 
     /** Explicit translation link only (destinations have no heuristic counterpart). */
     public static function alternate(AppDestination $d, AdLanguage $language): ?array
     {
         $target = ItineraryContentService::otherLanguage($language);
-        if (!$target) {
+        if (!$target || !PageConfigContentService::visible(self::PAGE_CODE, $target)) {
             return null;
         }
         $id = ContentTranslations::linkedId('destination', (int) $d->id, (int) $target->id);

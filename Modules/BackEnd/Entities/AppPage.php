@@ -13,6 +13,7 @@ class AppPage extends BaseModel
         'description',
         'seo_title',
         'seo_description',
+        'is_visible',
         'created_at',
         'created_by',
         'updated_at',

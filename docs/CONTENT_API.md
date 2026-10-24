@@ -103,6 +103,8 @@ Sample (en, trimmed):
  "menus":{"primary":[{"name":"Home","url":"/","target":"_self","children":[]}],"footer":[{"name":"Explore","url":"#","target":"_self","children":[{"name":"Our Cruises","url":"/#section-cruise","target":"_self","children":[]}]}]}}
 ```
 
+`hiddenPages` lists the app_page codes switched off in the admin for this language (`destinations`, `guide-first-time`, `guide-transfer`; see 4.11): the frontend does not link to them.
+
 Tags: `content`, `site`, `site:{lang}`.
 
 ### 3.2 `GET /pages/homepage`
@@ -737,6 +739,8 @@ DestinationSummary & {
 Tags: `content`, `destinations`, `destination:{slug}`, `page:destinations`. Import/refresh the first eight with
 `php artisan destinations:import [--update] [--status=review]` (data: `database/data/destinations-initial.php`).
 `GET /pages/{code}` also accepts `destinations`, `guide-first-time` and `guide-transfer` (SEO only; null when empty).
+
+**Show/hide switch** (`app_page.is_visible`, admin: "Hiển thị trên website" on the page's SEO card, per language): for these three codes `GET /pages/{code}` returns `visible`, and `GET /destinations` returns `visible` plus no items (so every detail 404s) while the hub is off. Hidden pages are dropped from the sitemaps and `hiddenPages` in `GET /site`; saving the page revalidates `site` (and `destinations`).
 
 ---
 

@@ -26,10 +26,20 @@
                         {{ Form::text('seo_title', old('seo_title', $page->seo_title), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng title mặc định của trang', 'maxlength' => 65, 'autocomplete' => 'off']) }}
                         <small class="form-text text-muted">Tối đa 65 ký tự. Khi có giá trị, dùng nguyên chuỗi (không nối thêm brand/slogan).</small>
                     </div>
-                    <div class="form-group mb-0">
+                    <div class="form-group {{ \App\Services\Content\PageConfigContentService::hideable($pageCode) ? '' : 'mb-0' }}">
                         <label>SEO Description</label>
                         {{ Form::text('seo_description', old('seo_description', $page->seo_description), ['class' => 'form-control', 'placeholder' => 'Để trống = dùng mô tả website mặc định', 'maxlength' => 255, 'autocomplete' => 'off']) }}
                     </div>
+                    @if (\App\Services\Content\PageConfigContentService::hideable($pageCode))
+                        <div class="form-group mb-0">
+                            <input type="hidden" name="is_visible" value="0">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="is_visible" name="is_visible" value="1" {{ old('is_visible', $page->is_visible ?? 1) ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="is_visible">Hiển thị trên website</label>
+                            </div>
+                            <small class="form-text text-muted">Tắt = trang (và các bài con, với Điểm đến) trả về 404, bị gỡ khỏi sitemap, footer, llms.txt; link tới trang thành chữ thường. Bật lại là trang lên ngay.</small>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

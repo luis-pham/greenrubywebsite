@@ -1,6 +1,8 @@
 <?php
 namespace Modules\FrontEnd\Http\Controllers;
 
+use App\Services\Content\PageConfigContentService;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -141,8 +143,8 @@ class SitemapController extends Controller
         // Services, gallery and FAQ hubs live in their own sitemaps (sitemap-service/-category-gallery/-category-faq).
         $entries = array_merge($entries, $this->nextOnlyEntries(self::ECO_DASHBOARD_PATH, '', 'monthly', '0.6'));
         $entries = array_merge($entries, $this->nextOnlyEntries(self::BRAND_FACTS_PATH, '', 'monthly', '0.6'));
-        foreach (self::GUIDE_PATHS as $paths) {
-            $entries = array_merge($entries, $this->nextOnlyEntries($paths, '', 'monthly', '0.8'));
+        foreach (self::GUIDE_PATHS as $code => $paths) {
+            $entries = array_merge($entries, $this->nextOnlyEntries($this->visiblePaths($code, $paths), '', 'monthly', '0.8'));
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
@@ -486,10 +488,13 @@ class SitemapController extends Controller
         $hubUrl = fn (string $code) => url($prefix($code) . (self::DESTINATIONS_SEGMENT[$code] ?? 'destinations'));
         $detailUrl = fn (string $code, string $slug) => $hubUrl($code) . '/' . $slug;
 
-        $rows = AppDestination::where('status', 'published')->orderBy('ord')->orderBy('id')->get();
+        // Languages whose hub is switched off in the admin list neither the hub nor its details.
+        $hubPaths = $this->visiblePaths('destinations', self::DESTINATIONS_SEGMENT);
+        $visibleIds = $languages->filter(fn ($l) => isset($hubPaths[$l->code]))->keys()->all();
+        $rows = AppDestination::where('status', 'published')->whereIn('language_id', $visibleIds)->orderBy('ord')->orderBy('id')->get();
         $latest = $rows->max(fn ($d) => $d->getRawOriginal('updated_at') ?: $d->getRawOriginal('created_at'));
         $entries = $latest
-            ? $this->nextOnlyEntries(self::DESTINATIONS_SEGMENT, Carbon::parse($latest)->format('Y-m-d\TH:i:sP'), 'weekly', '0.8')
+            ? $this->nextOnlyEntries($hubPaths, Carbon::parse($latest)->format('Y-m-d\TH:i:sP'), 'weekly', '0.8')
             : [];
 
         $byId = $rows->keyBy('id');
@@ -528,11 +533,24 @@ class SitemapController extends Controller
     /** Must match `segments.destinations` in greenruby-web/src/lib/i18n.ts. */
     private const DESTINATIONS_SEGMENT = ['en' => 'destinations', 'vi' => 'dia-diem-tham-quan'];
 
-    /** Must match `segments.guideFirstTime` / `segments.guideTransfer` in greenruby-web/src/lib/i18n.ts. */
+    /** app_page code => paths; must match `segments.guideFirstTime` / `segments.guideTransfer` in greenruby-web/src/lib/i18n.ts. */
     private const GUIDE_PATHS = [
-        ['en' => 'guides/first-time-halong-bay-cruise', 'vi' => 'cam-nang/lan-dau-di-du-thuyen-ha-long'],
-        ['en' => 'guides/hanoi-to-halong-bay', 'vi' => 'cam-nang/ha-noi-di-ha-long'],
+        'guide-first-time' => ['en' => 'guides/first-time-halong-bay-cruise', 'vi' => 'cam-nang/lan-dau-di-du-thuyen-ha-long'],
+        'guide-transfer' => ['en' => 'guides/hanoi-to-halong-bay', 'vi' => 'cam-nang/ha-noi-di-ha-long'],
     ];
+
+    /** Drops the languages in which the page is switched off (app_page.is_visible). */
+    private function visiblePaths(string $code, array $pathByLanguage): array
+    {
+        $visible = [];
+        foreach (AdLanguageService::getAll() as $language) {
+            if (isset($pathByLanguage[$language->code]) && PageConfigContentService::visible($code, $language)) {
+                $visible[$language->code] = $pathByLanguage[$language->code];
+            }
+        }
+
+        return $visible;
+    }
 
     /** Must match `segments.cabin` in greenruby-web/src/lib/i18n.ts. */
     private const CABIN_SEGMENT = ['vi' => 'phong-nghi'];

@@ -33,6 +33,7 @@ class AppPageService
             $obj->description = array_key_exists('description', $data) ? $data['description'] : $obj->description;
             $obj->seo_title = array_key_exists('seo_title', $data) ? $data['seo_title'] : $obj->seo_title;
             $obj->seo_description = array_key_exists('seo_description', $data) ? $data['seo_description'] : $obj->seo_description;
+            $obj->is_visible = array_key_exists('is_visible', $data) ? (bool) $data['is_visible'] : $obj->is_visible;
             $obj->save();
         }
     }

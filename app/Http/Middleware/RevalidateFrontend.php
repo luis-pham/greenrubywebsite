@@ -46,9 +46,13 @@ class RevalidateFrontend
      */
     protected const PAGE_CODE_TAGS = [
         'article' => ['articles', 'legal'],
+        // Show/hide switch: the site payload lists hidden pages (footer, guide links, llms.txt).
+        'destinations' => ['destinations', 'site'],
         'exp-activity' => ['experiences'],
         'faq' => ['faqs'],
         'gallery' => ['gallery'],
+        'guide-first-time' => ['site'],
+        'guide-transfer' => ['site'],
         'itinerary' => ['itineraries'],
         'legal' => ['legal'],
         'payment-methods' => ['legal'],
