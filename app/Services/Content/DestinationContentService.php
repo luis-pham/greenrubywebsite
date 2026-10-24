@@ -47,6 +47,7 @@ class DestinationContentService
             ->all();
 
         return array_merge($summary, [
+            'heading' => ItineraryContentService::clean($d->heading) ?? $d->name,
             'contentHtml' => PageConfigContentService::html($d->content),
             'facts' => array_values($d->facts ?? []),
             'faq' => array_values(array_map(fn ($f) => ['question' => $f['q'], 'answer' => $f['a']], $d->faq ?? [])),

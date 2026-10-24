@@ -10,6 +10,7 @@ class AppDestination extends BaseModel
         'language_id',
         'slug',
         'name',
+        'heading',
         'bay',
         'category',
         'summary',

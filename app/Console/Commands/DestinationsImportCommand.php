@@ -15,6 +15,7 @@ use Modules\BackEnd\Services\AppDestinationService;
  *   destinations:import                 create missing destinations (existing slugs are left untouched)
  *   destinations:import --update        also overwrite existing rows with the file's content
  *   destinations:import --status=review import as "Chờ kiểm duyệt" instead of published
+ *   destinations:import --update --only=sung-sot-cave   refresh one row (other rows untouched)
  *
  * Images listed with a "file" are copied from database/data/destination-images into the upload folder
  * and registered in the media library (app_file) when missing. Each pair is linked in
@@ -23,7 +24,7 @@ use Modules\BackEnd\Services\AppDestinationService;
  */
 class DestinationsImportCommand extends Command
 {
-    protected $signature = 'destinations:import {file? : PHP file returning the destination pairs} {--update} {--status=published} {--dry-run}';
+    protected $signature = 'destinations:import {file? : PHP file returning the destination pairs} {--update} {--status=published} {--only=* : import only these slugs (either language)} {--dry-run}';
 
     protected $description = 'Import destinations (EN/VI pairs) for the destinations hub';
 
@@ -63,7 +64,11 @@ class DestinationsImportCommand extends Command
 
     private function importOne(array $shared, array $local, int $languageId, array $itineraryIds, string $status): ?int
     {
+        $only = (array) $this->option('only');
         $existing = AppDestination::where('language_id', $languageId)->where('slug', $local['slug'])->first();
+        if ($only !== [] && !in_array($local['slug'], $only, true)) {
+            return $existing ? (int) $existing->id : null;
+        }
         if ($existing && !$this->option('update')) {
             $this->line("skip  {$local['slug']} (exists, id {$existing->id})");
 
@@ -83,13 +88,14 @@ class DestinationsImportCommand extends Command
         $data = [
             'slug' => $local['slug'],
             'name' => $local['name'],
+            'heading' => $local['heading'] ?? null,
             'bay' => $shared['bay'],
             'category' => $shared['category'],
             'summary' => $local['summary'],
             'content' => trim($local['content']),
             'facts' => $local['facts'] ?? [],
             'faq' => $local['faq'] ?? [],
-            'sources' => $shared['sources'] ?? [],
+            'sources' => $local['sources'] ?? $shared['sources'] ?? [], // per-language override allowed
             'latitude' => $shared['latitude'],
             'longitude' => $shared['longitude'],
             'coords_verified' => $shared['coords_verified'],

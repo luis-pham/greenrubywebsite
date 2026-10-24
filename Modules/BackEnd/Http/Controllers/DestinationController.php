@@ -21,7 +21,7 @@
         private $baseView = 'backend::destination.';
 
         private const INPUT = [
-            'name', 'slug', 'bay', 'category', 'summary', 'content', 'facts', 'faq', 'sources',
+            'name', 'heading', 'slug', 'bay', 'category', 'summary', 'content', 'facts', 'faq', 'sources',
             'latitude', 'longitude', 'coords_verified', 'coords_source', 'image_link', 'image_alt', 'image_credit',
             'status', 'editor_notes', 'fact_checked_at', 'seo_title', 'seo_description', 'ord', 'itinerary_ids',
         ];

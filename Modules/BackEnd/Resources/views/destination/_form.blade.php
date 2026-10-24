@@ -17,7 +17,11 @@
                 <div class="form-group">
                     <label>Tên điểm đến <span class="text-danger">*</span></label>
                     {{ Form::text('name', $value('name'), ['class' => 'form-control', 'maxlength' => 150, 'placeholder' => 'Ví dụ: Sung Sot Cave / Hang Sửng Sốt', 'autocomplete' => 'off']) }}
-                    <small class="text-muted">Cũng là tiêu đề H1 của trang.</small>
+                    <small class="text-muted">Hiển thị trên thẻ, bản đồ, breadcrumb; là H1 nếu không nhập tiêu đề trang bên dưới.</small>
+                </div>
+                <div class="form-group">
+                    <label>Tiêu đề trang (H1)</label>
+                    {{ Form::text('heading', $value('heading'), ['class' => 'form-control', 'maxlength' => 160, 'placeholder' => 'Để trống = dùng tên điểm đến. Ví dụ: Sung Sot Cave (Surprise Cave): A Visitor\'s Guide', 'autocomplete' => 'off']) }}
                 </div>
                 <div class="form-group">
                     <label>Đường dẫn (slug)</label>

@@ -12,6 +12,7 @@ class DestinationRequest extends FormRequest
     {
         return [
             'name' => 'required|max:150',
+            'heading' => 'nullable|max:160',
             'slug' => 'nullable|max:120',
             'bay' => ['required', Rule::in(array_keys(config('backend.destinationBay')))],
             'category' => ['required', Rule::in(array_keys(config('backend.destinationCategory')))],

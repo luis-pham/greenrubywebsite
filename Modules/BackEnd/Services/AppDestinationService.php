@@ -10,7 +10,7 @@ class AppDestinationService
 {
     /** Form fields copied as-is onto the row. */
     private const FIELDS = [
-        'name', 'bay', 'category', 'summary', 'content', 'latitude', 'longitude', 'coords_source',
+        'name', 'heading', 'bay', 'category', 'summary', 'content', 'latitude', 'longitude', 'coords_source',
         'image_link', 'image_alt', 'image_credit', 'status', 'editor_notes', 'fact_checked_at',
         'seo_title', 'seo_description', 'ord',
     ];

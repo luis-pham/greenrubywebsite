@@ -30,45 +30,83 @@ return [
             ['title' => 'Wikipedia (Vietnamese): Hang Sửng Sốt', 'url' => 'https://vi.wikipedia.org/wiki/Hang_S%E1%BB%ADng_S%E1%BB%91t'],
             ['title' => 'Photo: Sung Sot Cave, Jakub Hałun (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Sung_Sot_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1556_3854.jpg'],
         ],
-        'editor_notes' => "Not published: exact number of steps, cave area/size figures, entrance fee and opening hours (no official source found). The 1901 French naming story is on vi.wikipedia only; left out until confirmed by the Ha Long Bay Management Board.",
+        'editor_notes' => "EN updated 2026-10-24 from the editorial brief; opening hours from the Ha Long Bay Management Board 'Visiting time' page (updated 2024-11-06): 7h30-17h30 (16/4-31/10), 7h30-17h00 (1/11-15/4). Not published: exact number of steps, cave size, ticket prices. The 1901 French naming story is on vi.wikipedia only; left out until confirmed by the Management Board.",
         'en' => [
             'slug' => 'sung-sot-cave',
             'name' => 'Sung Sot Cave',
+            'heading' => 'Sung Sot Cave (Surprise Cave): A Visitor\'s Guide',
             'image_alt' => 'Lit stalactites and the high ceiling of the main chamber in Sung Sot Cave, Ha Long Bay',
             'seo_title' => 'Sung Sot Cave (Surprise Cave), Ha Long Bay: Visitor Guide',
-            'seo_description' => 'What to expect at Sung Sot Cave in Ha Long Bay: the climb to the entrance, the two chambers, how long a visit takes, accessibility and when Green Ruby plans to stop.',
-            'summary' => "Sung Sot, the 'Surprise Cave', is a large limestone cave on Bo Hon Island in central Ha Long Bay. A modest entrance opens into two high chambers, reached by a stone stairway from the boat pier.",
+            'seo_description' => 'Sung Sot Cave (Surprise Cave) on Bo Hon Island, Ha Long Bay: opening hours, how to get there, how long a visit takes, the climb, tickets and nearby sights.',
+            'summary' => 'Sung Sot Cave, also known as Surprise Cave, is one of the best-known attractions in Ha Long Bay. Located on Bo Hon Island, it features two large limestone chambers filled with stalactites and stalagmites. Reaching the entrance involves a climb, but visitors are rewarded with impressive cave formations and views over the bay.',
+            'sources' => [
+                ['title' => 'Ha Long Bay Management Board — Visitor Opening Hours', 'url' => 'https://halongbay.com.vn/en/p/71-thoi-gian-don-tra-khach-ve-cang-ben'],
+                ['title' => 'UNESCO World Heritage Centre — Ha Long Bay–Cat Ba Archipelago', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Wikidata — Sung Sot Cave', 'url' => 'https://www.wikidata.org/wiki/Q10765376'],
+            ],
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Sung Sot is set high in the limestone of Bo Hon Island, in the central part of Ha Long Bay. Luon Cave is on the same island and Ti Top Island lies close by, so the three are usually visited on the same route.</p>
-<h2>Why it is worth the climb</h2>
-<p>The Vietnamese name means "surprise", and it describes the first impression well: a small opening in the rock leads into a much larger space than you expect. The cave has two main chambers. The first is lower and shaped like a hall; the second is far larger, with stalactites and stalagmites along the walls and ceiling. The formations are lit with coloured lights, and guides point out shapes that local stories connect with legends of the bay.</p>
-<h2>How visitors reach it</h2>
-<p>Cruise and day boats moor at a pier at the foot of the island. From there a stone stairway climbs through trees to the entrance. Inside, a paved path with railings leads through both chambers, and the route ends near a lookout over the moorings before steps take you back down.</p>
-<h2>What to expect on arrival</h2>
-<p>Sung Sot is one of the most visited caves in Ha Long Bay, so you will share the path with other groups, especially in the middle of the morning and at weekends. The air inside is warm and humid, the light is low, and some surfaces can be damp.</p>
-<h2>Accessibility and practical tips</h2>
+<p><em>Opening hours and visitor arrangements may change. Confirm the latest information before travelling.</em></p>
+<h2>Where is Sung Sot Cave?</h2>
+<p>Sung Sot Cave is located on Bo Hon Island, in the central area of Ha Long Bay. The island is also home to <a href="/destinations/luon-cave">Luon Cave</a>, while <a href="/destinations/titop-island">Ti Top Island</a> is nearby.</p>
+<p>These three attractions are commonly included on the same sightseeing route, making Sung Sot Cave a popular stop on both day trips and overnight cruises.</p>
+<h2>What makes Sung Sot Cave worth visiting?</h2>
+<p>The name <em>Sung Sot</em> means “surprise” in Vietnamese, a reference to the unexpectedly large spaces hidden behind the cave’s relatively small entrance.</p>
+<p>The cave has two main chambers. The first introduces visitors to its limestone formations, while the second opens into a much larger space with a high ceiling and striking stalactites and stalagmites.</p>
+<p>Walkways and lighting make it possible to explore the chambers without specialist equipment. Guides often point out rock formations associated with local legends.</p>
+<p>The climb also brings you to an elevated viewpoint overlooking part of the bay.</p>
+<h2>How do you get to Sung Sot Cave?</h2>
+<p>Sung Sot Cave is accessible by boat. Most visitors arrive as part of a Ha Long Bay sightseeing tour or an overnight cruise.</p>
+<p>Boats stop at the island’s landing area, where a stone stairway leads up towards the entrance. Inside, visitors follow a designated walking route through the chambers before returning towards the pier.</p>
+<p>You cannot reach the cave directly by road.</p>
+<h2>How long does a visit take?</h2>
+<p>Allow approximately <strong>45–60 minutes</strong> for a typical visit, although the actual time depends on your walking pace, the number of visitors and the schedule of your tour.</p>
+<p>If you enjoy photography or prefer to take the stairs slowly, allow some additional time where your itinerary permits.</p>
+<h2>Is Sung Sot Cave difficult to visit?</h2>
+<p>The main challenge is the stairway leading to the cave, followed by steps and uneven surfaces along the walking route.</p>
 <ul>
-<li>The visit involves a long flight of steps outside and more steps inside. It is not suitable for wheelchairs or for anyone who finds stairs difficult.</li>
-<li>Wear shoes with good grip and bring water. A light layer is rarely needed: the cave is usually warm.</li>
-<li>Young children will need to be carried on parts of the stairway.</li>
-<li>If you would rather not climb, tell the crew in advance; staying on board is always an option.</li>
+<li>Wear comfortable shoes with good grip.</li>
+<li>Bring drinking water, especially during warmer months.</li>
+<li>Take care on damp steps and walkways.</li>
+<li>Supervise young children near stairways and railings.</li>
+<li>Ask your cruise operator about accessibility if anyone in your group has difficulty walking.</li>
 </ul>
-<h2>Weather and seasonal limits</h2>
-<p>Rain does not affect the inside of the cave, but every visit depends on boats being allowed to sail. During storm warnings, mostly between June and October, the authorities can suspend sailings in the bay and planned visits may be cancelled or rescheduled.</p>
+<p>The route is not wheelchair accessible. Travellers with limited mobility should discuss their needs with the tour operator before booking.</p>
+<h2>When is the best time to visit?</h2>
+<p>Sung Sot Cave is a popular attraction throughout the year. The busiest periods often coincide with groups arriving on scheduled sightseeing tours.</p>
+<p>Early or later visits may be less crowded, depending on the day’s boat schedules.</p>
+<p>During summer, conditions around the island can be hot and humid. In winter, the climb may feel more comfortable, although mist and rain can affect the views outside.</p>
+<p>Rain does not necessarily prevent a cave visit, but wet steps require extra care. During severe weather, boat operations may be suspended by local authorities.</p>
+<h2>Tickets and entrance fees</h2>
+<p>Sung Sot Cave is part of an established Ha Long Bay sightseeing route. Admission arrangements generally depend on the sightseeing ticket and tour package you choose.</p>
+<p>For visitors booking an organised cruise, entrance fees for scheduled attractions are often included in the fare.</p>
+<p>Check your booking confirmation to confirm which fees and activities are covered.</p>
+<h2>Visiting Sung Sot Cave with Green Ruby Cruises</h2>
+<p>Sung Sot Cave is planned as a sightseeing stop on selected <a href="/cruise/green-ruby-1-3.html"><strong>Green Ruby 1</strong></a> itineraries in Ha Long Bay.</p>
+<p>Green Ruby 1 is being prepared for overnight journeys that combine well-known attractions with time to relax on board. Sung Sot Cave is one of the destinations featured in its proposed sightseeing programme.</p>
+<p>The final route and visit times will depend on the confirmed itinerary, weather and local operating conditions.</p>
+<p><a href="/itinerary">Explore the planned Green Ruby 1 itineraries</a> to see how Sung Sot Cave fits into your cruise.</p>
+<h2>Nearby attractions</h2>
+<h3><a href="/destinations/luon-cave">Luon Cave</a></h3>
+<p>Located on the same island, Luon Cave offers a different experience, with visitors exploring a sheltered lagoon by kayak or bamboo boat.</p>
+<h3><a href="/destinations/titop-island">Ti Top Island</a></h3>
+<p>Known for its beach and hillside viewpoint, Ti Top Island is another popular stop on Ha Long Bay sightseeing routes.</p>
+<p>These attractions can complement a visit to Sung Sot Cave, although the stops included depend on your chosen cruise.</p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Bo Hon Island, central Ha Long Bay'],
-                ['label' => 'Type', 'value' => 'Limestone cave with two main chambers'],
-                ['label' => 'Access', 'value' => 'Boat to the island pier, then a stone stairway'],
-                ['label' => 'Typical visit', 'value' => 'About 1 hour including the climb (estimate)'],
-                ['label' => 'Accessibility', 'value' => 'Many steps; not wheelchair accessible'],
+                ['label' => 'Location', 'value' => 'Bo Hon Island, Ha Long Bay, Vietnam'],
+                ['label' => 'Also known as', 'value' => 'Surprise Cave'],
+                ['label' => 'Getting there', 'value' => 'By sightseeing boat or cruise'],
+                ['label' => 'Typical visit', 'value' => 'Around 45–60 minutes'],
+                ['label' => 'Walking difficulty', 'value' => 'Moderate, with steps and uneven surfaces'],
+                ['label' => 'Opening hours', 'value' => '7:30 AM–5:30 PM (16 April–31 October); 7:30 AM–5:00 PM (1 November–15 April). May change: confirm before travelling.'],
+                ['label' => 'Entrance fees', 'value' => 'Usually covered by the sightseeing route ticket or included in an organised cruise package'],
             ],
             'faq' => [
-                ['q' => 'How long does a visit to Sung Sot Cave take?', 'a' => 'Allow about an hour from the pier and back, including the climb and the walk through both chambers. Busy mornings can make it a little longer.'],
-                ['q' => 'Is Sung Sot Cave suitable for older travellers or young children?', 'a' => 'It depends on how comfortable you are with stairs. There is a long stone stairway to the entrance and further steps inside. Children can visit, but toddlers will need to be carried on parts of the route.'],
-                ['q' => 'Is Sung Sot Cave crowded?', 'a' => 'It is one of the busiest sights in Ha Long Bay. Early visits are usually calmer, which is why Green Ruby plans its stop for the morning.'],
-                ['q' => 'Do all Green Ruby cruises visit Sung Sot Cave?', 'a' => 'Sung Sot is a planned stop on both Ha Long Bay itineraries of Green Ruby 1, on the final morning. It is not part of the Lan Ha Bay itineraries of Green Ruby 2. Itineraries are provisional until sailings begin, expected in February 2027.'],
+                ['q' => 'How long does a visit to Sung Sot Cave take?', 'a' => 'Most visits take around 45–60 minutes, including the walk through the chambers. Allow additional time if your group moves slowly or the site is busy.'],
+                ['q' => 'Is Sung Sot Cave suitable for older travellers or young children?', 'a' => 'Many visitors can enjoy the cave, but reaching the entrance involves a climb and the walking route includes steps. Families with young children and travellers with limited mobility should consider these conditions before visiting.'],
+                ['q' => 'Is Sung Sot Cave crowded?', 'a' => 'It can be, especially when several sightseeing groups arrive at similar times. The number of visitors varies by season, day and tour schedule.'],
+                ['q' => 'Can you visit Sung Sot Cave without a cruise?', 'a' => 'You need a boat to reach Bo Hon Island. Visitors can join a licensed sightseeing boat or book a cruise itinerary that includes the cave.'],
+                ['q' => 'Do all Green Ruby cruises visit Sung Sot Cave?', 'a' => 'No. Sung Sot Cave is a planned stop on selected Green Ruby 1 itineraries in Ha Long Bay. Check the individual itinerary for the proposed attractions and confirmed schedule.'],
             ],
         ],
         'vi' => [
