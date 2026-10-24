@@ -629,10 +629,10 @@ HTML,
         'bay' => 'ha-long',
         'category' => 'village',
         'ord' => 4,
-        'latitude' => 20.801367,
-        'longitude' => 107.125097,
+        'latitude' => 20.800278,
+        'longitude' => 107.124333,
         'coords_verified' => true,
-        'coords_source' => 'GPS of a geotagged photo of the village (Wikimedia Commons, David Stanley)',
+        'coords_source' => 'Ha Long Bay Management Board, Cua Van page: 20°48\'1.00"N, 107°7\'27.60"E (photo GPS 20.801367, 107.125097 was ~150 m away)',
         'image' => ['file' => 'cua-van-floating-village-ha-long-bay.jpg', 'link' => '/2026/10/24/cua-van-floating-village-ha-long-bay.jpg'],
         'image_credit' => 'Photo: David Stanley, CC BY 4.0, via Wikimedia Commons',
         'itineraries' => ['en' => [3], 'vi' => [8]],
@@ -641,7 +641,7 @@ HTML,
             ['title' => 'Wikipedia: Hạ Long Bay (fishing villages of the bay)', 'url' => 'https://en.wikipedia.org/wiki/H%E1%BA%A1_Long_Bay'],
             ['title' => 'Photo with GPS: Cua Van Floating Village, David Stanley (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Cua_Van_Floating_Village.jpg'],
         ],
-        'editor_notes' => "Resettlement: copy says most families now live on land, without a year. Confirm the year (widely reported as 2014) and current number of households with Quang Ninh / Ha Long Bay Management Board before adding them. Not published: floating culture centre opening times, boat fees.",
+        'editor_notes' => "VI rewritten 2026-10-24 from the editorial brief. Verified: route 3, ~20 km from Tuan Chau, resettlement from 2014, Centre opened 19/5/2006 (Management Board Cua Van page); Centre closed to visitors from 25/4/2024 (Board notice via Nguoi Quan Sat 18/4/2024); Yagi damage 9/2024, restoration planned 2026 (Bao Quang Ninh); giao duyen singing resumed (Quang Ninh portal 17/3/2026). EN copy still says resettled without a year. Old note: Resettlement: copy says most families now live on land, without a year. Confirm the year (widely reported as 2014) and current number of households with Quang Ninh / Ha Long Bay Management Board before adding them. Not published: floating culture centre opening times, boat fees.",
         'en' => [
             'slug' => 'cua-van-floating-village',
             'name' => 'Cua Van Floating Village',
@@ -689,43 +689,140 @@ HTML,
             'slug' => 'lang-chai-cua-van',
             'name' => 'Làng chài Cửa Vạn',
             'image_alt' => 'Nhà bè và thuyền đánh cá neo dưới chân núi đá vôi ở làng chài Cửa Vạn, vịnh Hạ Long',
-            'seo_title' => 'Làng chài Cửa Vạn, vịnh Hạ Long: tham quan thế nào?',
-            'seo_description' => 'Làng chài Cửa Vạn trên vịnh Hạ Long hôm nay ra sao, tham quan bằng gì, lưu ý khi chụp ảnh người dân và lịch ghé dự kiến của Green Ruby.',
-            'summary' => 'Một trong những làng chài truyền thống của vịnh Hạ Long, nơi nhà bè, lồng bè nuôi cá và thuyền neo trong một vụng kín gió. Du khách đi đò quanh làng để hiểu nếp sống trên mặt nước.',
+            'image_credit' => 'Ảnh: David Stanley, CC BY 4.0, qua Wikimedia Commons',
+            'seo_title' => 'Làng Chài Cửa Vạn Hạ Long: Lịch Sử & Trải Nghiệm',
+            'seo_description' => 'Khám phá làng chài Cửa Vạn trên vịnh Hạ Long: lịch sử làng nổi, đời sống ngư dân, trải nghiệm đi đò nan, chèo kayak và những thay đổi hiện nay.',
+            'summary' => 'Làng chài Cửa Vạn nằm giữa những dãy núi đá vôi của vịnh Hạ Long, từng là nơi sinh sống của nhiều thế hệ ngư dân trên những ngôi nhà nổi. Ngày nay, du khách có thể ngồi đò nan hoặc chèo kayak tham quan khu vực làng, tìm hiểu nghề biển và những nét văn hóa còn được lưu giữ của cộng đồng vạn chài.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long – Trung tâm Văn hóa nổi Cửa Vạn', 'url' => 'https://halongbay.com.vn/places/37-trung-tam-van-hoa-noi-cua-van'],
+                ['title' => 'Cổng thông tin tỉnh Quảng Ninh – Life by the sea in Cua Van Fishing Village', 'url' => 'https://www.quangninh.gov.vn/Sites/en-us/Trang/ChiTietTinTuc.aspx?nid=7156'],
+                ['title' => 'Báo Quảng Ninh – Hồi sinh "bảo tàng sống" trong lòng vịnh', 'url' => 'https://baoquangninh.vn/hoi-sinh-bao-tang-song-trong-long-vinh-post3389317.html'],
+                ['title' => 'Người Quan Sát – Trung tâm Văn hóa nổi Cửa Vạn tạm dừng đón khách (4/2024)', 'url' => 'https://nguoiquansat.vn/lang-chai-co-hut-khach-du-lich-nhat-tai-vinh-ha-long-bat-ngo-dung-don-khach-127045.html'],
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Wikimedia Commons – Cua Van Floating Village', 'url' => 'https://commons.wikimedia.org/wiki/File:Cua_Van_Floating_Village.jpg'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Cửa Vạn nằm trong một vụng nước kín gió ở phía đông vịnh Hạ Long, cách xa các tuyến đông đúc như Sửng Sốt hay Ti Tốp. Đây là một trong những làng chài truyền thống của vịnh, cùng với Ba Hang, Cống Tàu và Vông Viêng.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Nhiều thế hệ ngư dân từng sống trên nhà bè, đánh bắt và nuôi cá, nuôi hải sản ngay cạnh nhà. Phần lớn các gia đình nay đã lên bờ sinh sống, nên làng yên ắng hơn nhiều so với những bức ảnh cũ. Dù vậy, đến Cửa Vạn vẫn là cách hiếm hoi để thấy vịnh Hạ Long là nơi con người sống và làm việc, chứ không chỉ là cảnh đẹp.</p>
-<h2>Hoạt động</h2>
+<h2>Làng chài Cửa Vạn ở đâu?</h2>
+<p>Làng chài Cửa Vạn nằm trong một vùng nước kín gió thuộc vịnh Hạ Long, cách cảng tàu khách quốc tế Tuần Châu khoảng 20 km đường thủy.</p>
+<p>Khu vực làng được những dãy núi đá vôi bao quanh, tạo thành một vụng nước tương đối yên ả. Đây từng là điều kiện thuận lợi để ngư dân neo đậu thuyền, dựng nhà bè và sinh sống bằng nghề đánh bắt hải sản.</p>
+<p>Cửa Vạn thuộc tuyến tham quan số 3 của vịnh Hạ Long, nằm xa hơn các điểm du lịch quen thuộc như <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a>, <a href="/vi/dia-diem-tham-quan/hang-luon">Hang Luồn</a> và <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a> trên tuyến số 2.</p>
+<p>Do khoảng cách từ cảng khá xa, Cửa Vạn thường xuất hiện trong các hành trình tham quan dài hoặc du thuyền nghỉ đêm, thay vì những chuyến đi ngắn chỉ ghé các điểm gần bờ.</p>
+<h2>Làng chài Cửa Vạn có gì đặc biệt?</h2>
+<p>Điều khiến Cửa Vạn khác với nhiều điểm tham quan trên vịnh Hạ Long là câu chuyện về con người từng sinh sống giữa biển.</p>
+<p>Trước đây, những ngôi nhà nổi được dựng trên bè, neo sát nhau trong vùng nước kín gió. Thuyền vừa là phương tiện đi lại, vừa gắn với công việc mưu sinh hằng ngày. Nhiều gia đình sống bằng nghề đánh bắt, nuôi trồng hải sản và truyền lại kinh nghiệm đi biển qua nhiều thế hệ.</p>
+<p>Cuộc sống ở đây từng gắn liền với con nước, thời tiết và những chuyến ra khơi. Trẻ em lớn lên trên nhà bè, người lớn làm việc trên thuyền, còn việc đi lại giữa các gia đình chủ yếu bằng những chiếc đò nhỏ.</p>
+<p>Tuy nhiên, Cửa Vạn ngày nay đã thay đổi nhiều. Từ năm 2014, phần lớn các hộ dân làng chài trên vịnh được di dời lên đất liền để có điều kiện sinh sống ổn định hơn, thuận tiện cho việc học hành, chăm sóc y tế và tiếp cận các dịch vụ thiết yếu.</p>
+<p>Vì vậy, du khách đến Cửa Vạn hiện nay sẽ không còn thấy một cộng đồng đông đúc sống thường xuyên trên mặt nước như trong những bức ảnh chụp nhiều năm trước.</p>
+<p>Thay vào đó là những dấu tích của làng nổi, các nhà bè được bảo tồn hoặc phục vụ hoạt động tham quan, cùng những người địa phương tiếp tục làm việc trên vịnh.</p>
+<p>Dù không còn giữ nguyên nhịp sống cũ, Cửa Vạn vẫn là nơi giúp du khách hiểu thêm về một phần lịch sử ít được nhắc đến của Hạ Long: cuộc sống của những gia đình từng coi mặt biển là quê nhà.</p>
+<h2>Lịch sử và đời sống của ngư dân Cửa Vạn</h2>
+<p>Trong nhiều thế hệ, cư dân Cửa Vạn đã thích nghi với cuộc sống trên mặt nước. Họ dựng nhà trên bè nổi, sử dụng thuyền nhỏ để đi lại và dựa vào nguồn lợi biển để sinh sống.</p>
+<p>Những công việc quen thuộc của người dân trước đây gồm đánh bắt cá, thả lưới, sửa ngư cụ và chăm sóc các lồng bè nuôi hải sản.</p>
+<p>Sống giữa vịnh cũng đồng nghĩa với việc phải thích nghi với những khó khăn riêng. Thời tiết xấu ảnh hưởng trực tiếp đến công việc, việc đưa trẻ đến trường không thuận tiện và khả năng tiếp cận dịch vụ y tế còn nhiều hạn chế.</p>
+<p>Việc di dời cư dân lên bờ từ năm 2014 đã làm thay đổi sâu sắc đời sống của các gia đình làng chài. Nhiều người chuyển sang nghề nghiệp khác, trong khi một số vẫn gắn bó với biển thông qua các hoạt động dịch vụ và du lịch.</p>
+<p>Ngày nay, khi đi đò quanh Cửa Vạn, du khách có thể nghe kể về cách người dân từng sinh sống, làm nghề và nuôi dạy con cái trên những ngôi nhà nổi.</p>
+<h2>Những hoạt động nên trải nghiệm tại làng chài Cửa Vạn</h2>
+<h3>Đi đò nan tham quan khu vực làng chài</h3>
+<p>Ngồi đò nan là một trong những cách phổ biến để khám phá Cửa Vạn.</p>
+<p>Từ tàu tham quan, du khách chuyển sang những chiếc đò nhỏ do người địa phương chèo. Đò đi chậm qua vùng nước giữa các dãy núi đá, tới những khu vực còn lưu giữ dấu tích của làng nổi.</p>
+<p>Trong lúc di chuyển, bạn có thể quan sát những ngôi nhà bè, các công trình nổi còn lại và khung cảnh núi đá bao quanh vụng nước.</p>
+<p>Đi đò nan không đòi hỏi nhiều sức lực, phù hợp với những người muốn thư thả ngắm cảnh và tìm hiểu về làng chài.</p>
+<p>Tùy chương trình tham quan, người chèo đò hoặc hướng dẫn viên có thể giới thiệu thêm về công việc đánh bắt, nghề nuôi trồng hải sản và cuộc sống trước đây của cư dân trên vịnh.</p>
+<h3>Chèo kayak quanh làng chài</h3>
+<p>Nếu thích tự mình khám phá, bạn có thể chọn chèo kayak tại những khu vực được phép.</p>
+<p>Khác với đi đò nan, kayak cho phép bạn chủ động điều khiển thuyền và di chuyển theo tuyến được hướng dẫn.</p>
+<p>Vùng nước quanh Cửa Vạn thường được núi đá che chắn, nhưng điều kiện thực tế vẫn phụ thuộc vào gió, sóng và thời tiết trong ngày.</p>
+<p>Khi chèo, cần giữ khoảng cách an toàn với các công trình nổi, tàu thuyền và khu vực không được phép tiếp cận.</p>
+<h3>Tìm hiểu văn hóa làng chài và hát giao duyên</h3>
+<p>Bên cạnh nghề cá, Cửa Vạn còn gắn với những nét văn hóa của cộng đồng ngư dân Hạ Long, trong đó có hát giao duyên.</p>
+<p>Đây là hình thức hát đối đáp nam nữ, từng gắn với sinh hoạt tinh thần của cư dân vùng biển. Lời hát thể hiện tình cảm, cuộc sống lao động và những câu chuyện quen thuộc của người dân vạn chài.</p>
+<p>Hoạt động hát giao duyên phục vụ khách tham quan tại Cửa Vạn đã được khôi phục trong năm 2026 sau thời gian gián đoạn.</p>
+<p>Tuy nhiên, chương trình biểu diễn không nhất thiết diễn ra trong mọi chuyến tham quan. Nếu muốn trải nghiệm, bạn nên hỏi trước đơn vị tổ chức về lịch biểu diễn.</p>
+<h3>Ngắm cảnh và chụp ảnh làng nổi</h3>
+<p>Cửa Vạn nằm trong một vùng nước được núi đá vôi bao quanh. Từ đò nhỏ, du khách có thể quan sát các vách núi ở khoảng cách gần và nhìn lại khung cảnh vùng làng chài từ mặt nước.</p>
+<p>Những ngôi nhà bè và thuyền gỗ cũng là hình ảnh gắn liền với lịch sử nơi đây.</p>
+<p>Nếu muốn chụp ảnh người chèo đò hoặc những người đang làm việc trên bè, bạn nên xin phép trước. Đối với nhà bè hoặc công trình không mở cửa đón khách, không tự ý bước lên chỉ để chụp ảnh.</p>
+<h2>Làng chài Cửa Vạn hiện nay còn người sinh sống không?</h2>
+<p>Đây là câu hỏi nhiều du khách quan tâm khi tìm hiểu về Cửa Vạn.</p>
+<p>Trước năm 2014, Cửa Vạn là một cộng đồng làng chài nổi có nhiều gia đình sinh sống lâu dài. Sau chương trình di dời của tỉnh Quảng Ninh, phần lớn cư dân đã chuyển lên đất liền.</p>
+<p>Vì vậy, Cửa Vạn hiện nay không còn là một khu dân cư nổi đông đúc như trước.</p>
+<p>Những người làm việc tại khu vực làng có thể là người dân địa phương, cư dân làng chài cũ hoặc người tham gia cung cấp dịch vụ du lịch và bảo tồn văn hóa.</p>
+<p>Du khách vẫn có thể tìm hiểu lịch sử của làng thông qua hoạt động tham quan, nhưng không nên kỳ vọng được chứng kiến đầy đủ sinh hoạt thường ngày của một làng nổi như cách đây nhiều thập kỷ.</p>
+<p>Đây là sự khác biệt quan trọng giữa Cửa Vạn trong những bức ảnh cũ và Cửa Vạn mà du khách nhìn thấy ngày nay.</p>
+<h2>Trung tâm Văn hóa nổi Cửa Vạn</h2>
+<p>Trung tâm Văn hóa nổi Cửa Vạn được thành lập năm 2006 nhằm giới thiệu và lưu giữ những giá trị văn hóa của cộng đồng ngư dân trên vịnh Hạ Long.</p>
+<p>Trước đây, nơi này trưng bày hình ảnh, tư liệu, hiện vật liên quan đến nghề cá và đời sống trên mặt nước. Trung tâm cũng từng tổ chức những hoạt động giới thiệu văn hóa truyền thống, trong đó có hát giao duyên.</p>
+<p>Tuy nhiên, Trung tâm đã tạm dừng đón khách từ ngày 25/4/2024 để phục vụ công tác sửa chữa, nâng cấp. Công trình sau đó tiếp tục chịu thiệt hại do bão Yagi vào tháng 9/2024.</p>
+<p>Các cơ quan chức năng đã xây dựng phương án phục hồi và bảo tồn những giá trị văn hóa tại đây.</p>
+<p>Tính đến thời điểm rà soát bài viết, du khách không nên mặc định Trung tâm đã mở cửa trở lại. Hoạt động đi đò và chèo kayak quanh khu vực làng chài vẫn có thể được tổ chức độc lập với việc tham quan bên trong Trung tâm.</p>
+<h2>Cách đi đến làng chài Cửa Vạn</h2>
+<p>Làng chài Cửa Vạn chỉ có thể đến bằng đường thủy.</p>
+<p>Du khách thường tham gia tour hoặc hành trình du thuyền có lịch trình đi qua tuyến số 3 của vịnh Hạ Long. Các chuyến đi có thể xuất phát từ cảng Tuần Châu hoặc những cảng được cấp phép khác. Xem thêm <a href="/vi/cam-nang/ha-noi-di-ha-long">hướng dẫn di chuyển từ Hà Nội đến Hạ Long</a>.</p>
+<p>Do vị trí nằm khá sâu trong vịnh, không phải tour Hạ Long nào cũng ghé Cửa Vạn.</p>
+<p>Khi đến khu vực làng, tàu du lịch dừng tại vị trí được phép, sau đó du khách chuyển sang đò nan hoặc kayak để tham quan.</p>
+<p>Nếu muốn đến Cửa Vạn, bạn nên kiểm tra tên điểm dừng trong lịch trình trước khi đặt chuyến đi, thay vì chỉ dựa vào mô tả chung là tham quan vịnh Hạ Long.</p>
+<h2>Tham quan làng chài Cửa Vạn mất bao lâu?</h2>
+<p>Thông thường, bạn có thể dành khoảng 60–90 phút để tham quan khu vực làng chài, tùy chương trình và hình thức trải nghiệm.</p>
+<p>Nếu chỉ ngồi đò nan ngắm cảnh, thời gian có thể ngắn hơn. Những chương trình kết hợp giới thiệu văn hóa hoặc các hoạt động khác có thể kéo dài lâu hơn.</p>
+<p>Thời gian trên chưa bao gồm quãng đường di chuyển từ cảng hoặc từ các điểm tham quan khác trên vịnh.</p>
+<p>Đối với du khách đi du thuyền nghỉ đêm, thời gian dừng tại Cửa Vạn sẽ phụ thuộc vào lịch trình cụ thể của tàu.</p>
+<h2>Những điều cần lưu ý khi tham quan làng chài</h2>
+<p>Khác với các bãi tắm hay hang động, Cửa Vạn là không gian gắn với lịch sử và sinh kế của một cộng đồng ngư dân. Vì vậy, cách ứng xử khi tham quan cũng cần được chú ý.</p>
+<p>Một vài điều nên nhớ:</p>
 <ul>
-<li>Ngồi đò nan len giữa nhà bè và lồng nuôi cá, thường do chính người dân trong làng chèo.</li>
-<li>Nghe hướng dẫn viên kể về nghề cá, nghề nuôi trồng và đời sống trên mặt nước đã đổi thay ra sao.</li>
+<li>Xin phép trước khi chụp ảnh cận mặt người dân hoặc người đang làm việc.</li>
+<li>Không tự ý bước lên nhà bè, công trình nổi hoặc khu vực không mở cửa cho khách.</li>
+<li>Mặc áo phao khi đi đò nan hoặc chèo kayak.</li>
+<li>Không xả rác hoặc làm rơi đồ xuống biển.</li>
+<li>Hạn chế gây tiếng ồn khi đi qua khu vực có người làm việc.</li>
+<li>Tuân thủ hướng dẫn của người chèo đò và hướng dẫn viên.</li>
 </ul>
-<h2>Cách đến</h2>
-<p>Tàu lớn dừng ở rìa làng, du khách chuyển sang đò nhỏ để đi giữa các nhà bè.</p>
-<h2>Khi đến nơi</h2>
-<p>Đây là nơi người dân sinh sống và làm ăn, không phải khu du lịch dựng lên cho khách. Nhịp sống chậm, có chỗ nặng mùi lồng bè, tiện nghi đơn giản.</p>
-<h2>Ứng xử khi tham quan</h2>
-<ul>
-<li>Hỏi trước khi chụp ảnh người dân hoặc bên trong nhà.</li>
-<li>Nói nhỏ và làm theo hướng dẫn của người chèo đò.</li>
-<li>Nếu muốn mua gì, hãy mua trực tiếp từ người dân.</li>
-</ul>
-<h2>Tiếp cận và thời tiết</h2>
-<p>Bước xuống đò nhỏ cần giữ thăng bằng, đội tàu sẽ hỗ trợ. Chuyến thăm cần mặt nước êm, có thể rút ngắn khi gió mưa và bị hủy khi tàu phải tạm dừng vì bão.</p>
+<p>Nếu muốn tìm hiểu sâu hơn về đời sống làng chài, bạn có thể hỏi hướng dẫn viên về quá trình di dời cư dân, nghề đánh bắt truyền thống và các hoạt động bảo tồn hiện nay.</p>
+<h2>Trẻ em và người lớn tuổi có đi Cửa Vạn được không?</h2>
+<p>Đi đò nan là hình thức tham quan tương đối nhẹ nhàng vì du khách không phải tự chèo.</p>
+<p>Tuy nhiên, việc chuyển từ tàu lớn sang đò nhỏ vẫn đòi hỏi giữ thăng bằng. Người lớn tuổi hoặc người gặp khó khăn khi di chuyển nên trao đổi trước với đơn vị tổ chức để được hỗ trợ.</p>
+<p>Trẻ em cần có người lớn đi cùng và mặc áo phao phù hợp. Điều kiện tham gia chèo kayak có thể khác nhau tùy độ tuổi và quy định của đơn vị vận hành.</p>
+<p>Đối với người sử dụng xe lăn, việc lên xuống đò nhỏ có thể gặp nhiều hạn chế. Nên kiểm tra khả năng hỗ trợ thực tế trước chuyến đi.</p>
+<h2>Nên tham quan làng chài Cửa Vạn vào thời gian nào?</h2>
+<p>Cửa Vạn có thể tham quan quanh năm khi thời tiết và điều kiện vận hành cho phép.</p>
+<p>Từ khoảng tháng 4 đến tháng 10, thời tiết thường ấm hơn, thích hợp cho các hoạt động ngoài trời. Tuy nhiên, mưa lớn, dông hoặc bão có thể khiến các chuyến tàu trên vịnh phải thay đổi hoặc tạm dừng.</p>
+<p>Từ tháng 11 đến tháng 3, thời tiết thường mát hoặc lạnh hơn. Những ngày nhiều gió, du khách nên mang áo khoác khi ngồi đò.</p>
+<p>Cửa Vạn nằm trong vùng nước khá kín gió, nhưng điều đó không có nghĩa là hoạt động chèo đò luôn được tổ chức trong mọi điều kiện thời tiết.</p>
+<p>Nếu gặp mưa lớn, gió mạnh hoặc có cảnh báo an toàn trên vịnh, lịch trình tham quan có thể bị rút ngắn, thay thế hoặc hủy bỏ. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">du lịch Hạ Long mùa nào đẹp nhất</a>.</p>
+<h2>Tham quan làng chài Cửa Vạn cùng Green Ruby Cruises</h2>
+<p>Làng chài Cửa Vạn là một trong những điểm dừng dự kiến của du thuyền <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a> trong hành trình khám phá vịnh Hạ Long 3 ngày 2 đêm.</p>
+<p><strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-ha-long-1-8.html">3 ngày 2 đêm – Dấu Ấn Hạ Long</a></strong><br>Bên cạnh các điểm tham quan quen thuộc như Hang Luồn, đảo Ti Tốp và hang Sửng Sốt, hành trình có thêm một ngày khám phá những khu vực xa hơn trên vịnh, trong đó có làng chài Cửa Vạn và <a href="/vi/dia-diem-tham-quan/hang-tien-ong">động Tiên Ông</a>.</p>
+<p>Cửa Vạn mang đến một góc nhìn khác về Hạ Long, không chỉ qua những dãy núi đá vôi mà còn qua câu chuyện về cộng đồng ngư dân từng sinh sống giữa vịnh.</p>
+<p><em>Đây là điểm dừng theo lịch trình dự kiến của Green Ruby 1. Thời gian, hoạt động và tuyến tham quan chính thức sẽ được xác nhận khi tàu đi vào vận hành và có thể điều chỉnh theo điều kiện thực tế.</em></p>
+<h2>Những địa điểm có thể kết hợp tham quan</h2>
+<h3><a href="/vi/dia-diem-tham-quan/hang-tien-ong">Động Tiên Ông</a></h3>
+<p>Hang động nằm trong khu vực vịnh Hạ Long, được biết đến với giá trị khảo cổ và những dấu tích cư trú của cư dân tiền sử.</p>
+<h3><a href="/vi/dia-diem-tham-quan/hang-sung-sot">Hang Sửng Sốt</a></h3>
+<p>Hang động nổi tiếng trên đảo Bồ Hòn, có những khoang hang rộng và hệ thống thạch nhũ được hình thành qua thời gian dài.</p>
+<h3><a href="/vi/dia-diem-tham-quan/dao-ti-top">Đảo Ti Tốp</a></h3>
+<p>Điểm tham quan có bãi tắm nhỏ dưới chân đảo và lối leo lên đỉnh để ngắm toàn cảnh vịnh Hạ Long.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Phía đông vịnh Hạ Long, trong vụng kín gió'],
-                ['label' => 'Loại hình', 'value' => 'Làng chài truyền thống với nhà bè'],
-                ['label' => 'Cách đến', 'value' => 'Đò nan từ tàu ngày'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1–1,5 giờ (ước tính)'],
-                ['label' => 'Cần biết', 'value' => 'Nơi người dân sinh sống: hỏi trước khi chụp ảnh'],
+                ['label' => 'Vị trí', 'value' => 'Vịnh Hạ Long, tỉnh Quảng Ninh'],
+                ['label' => 'Khoảng cách', 'value' => 'Khoảng 20 km đường thủy từ cảng Tuần Châu'],
+                ['label' => 'Tuyến tham quan', 'value' => 'Tuyến số 3 vịnh Hạ Long'],
+                ['label' => 'Loại hình', 'value' => 'Làng chài nổi truyền thống, điểm tham quan văn hóa'],
+                ['label' => 'Điểm nổi bật', 'value' => 'Nhà bè, lịch sử cư dân vạn chài, cảnh quan vùng nước kín'],
+                ['label' => 'Hoạt động', 'value' => 'Đi đò nan, chèo kayak, tìm hiểu văn hóa làng chài'],
+                ['label' => 'Cách đến', 'value' => 'Tàu tham quan hoặc du thuyền'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 60–90 phút'],
+                ['label' => 'Cư dân', 'value' => 'Phần lớn đã chuyển lên đất liền từ năm 2014'],
+                ['label' => 'Trung tâm Văn hóa nổi', 'value' => 'Tạm dừng đón khách, chờ xác nhận mở cửa trở lại'],
             ],
             'faq' => [
-                ['q' => 'Làng chài Cửa Vạn còn người ở không?', 'a' => 'Vẫn còn một số hộ, nhưng phần lớn các gia đình từng sống trên mặt nước đã lên bờ. Làng vẫn là nơi đánh bắt và nuôi trồng thủy sản.'],
-                ['q' => 'Tham quan làng chài bằng gì?', 'a' => 'Bằng đò nan nhỏ, thường do người dân trong làng chèo. Tàu lớn chờ ở rìa làng.'],
-                ['q' => 'Hành trình 2 ngày 1 đêm có ghé Cửa Vạn không?', 'a' => 'Không. Theo kế hoạch hiện tại, Cửa Vạn nằm trong ngày thứ hai của hành trình 3 ngày 2 đêm vịnh Hạ Long trên Green Ruby 1, đi bằng tàu ngày. Lịch trình có thể điều chỉnh trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Làng chài Cửa Vạn nằm ở đâu?', 'a' => 'Làng chài Cửa Vạn nằm trong vịnh Hạ Long, tỉnh Quảng Ninh, cách cảng Tuần Châu khoảng 20 km đường thủy. Đây là điểm tham quan thuộc tuyến số 3 của vịnh.'],
+                ['q' => 'Làng chài Cửa Vạn có gì đặc biệt?', 'a' => 'Cửa Vạn từng là nơi sinh sống của nhiều thế hệ ngư dân trên những ngôi nhà nổi. Ngày nay, du khách có thể tham quan bằng đò nan hoặc kayak và tìm hiểu về nghề cá, đời sống thủy cư và văn hóa truyền thống của người dân Hạ Long.'],
+                ['q' => 'Làng chài Cửa Vạn còn người ở không?', 'a' => 'Cửa Vạn không còn cộng đồng cư dân nổi đông đúc như trước. Từ năm 2014, phần lớn các hộ dân đã được di dời lên đất liền. Hoạt động tham quan và một số công việc gắn với nghề biển vẫn tiếp tục tại khu vực này.'],
+                ['q' => 'Có thể tham quan làng chài Cửa Vạn bằng cách nào?', 'a' => 'Du khách thường đến bằng tàu du lịch, sau đó chuyển sang đò nan hoặc kayak để khám phá khu vực làng. Những hình thức tham quan được tổ chức tùy điều kiện thực tế và quy định tại điểm đến.'],
+                ['q' => 'Trung tâm Văn hóa nổi Cửa Vạn có mở cửa không?', 'a' => 'Trung tâm đã tạm dừng đón khách từ ngày 25/4/2024 để phục vụ việc sửa chữa và sau đó bị ảnh hưởng bởi bão Yagi. Du khách nên kiểm tra thông báo mới nhất trước chuyến đi; hoạt động tham quan khu vực làng không đồng nghĩa với việc Trung tâm mở cửa.'],
+                ['q' => 'Tham quan làng chài Cửa Vạn mất bao lâu?', 'a' => 'Thời gian tham quan thường khoảng 1–1,5 giờ, tùy chương trình. Quãng đường đi tàu từ cảng đến Cửa Vạn chưa được tính trong khoảng thời gian này.'],
+                ['q' => 'Hành trình Hạ Long 2 ngày 1 đêm có ghé Cửa Vạn không?', 'a' => 'Theo lịch trình Green Ruby hiện công bố, chương trình 2 ngày 1 đêm không có điểm dừng tại Cửa Vạn. Làng chài nằm trong hành trình 3 ngày 2 đêm của Green Ruby 1.'],
+                ['q' => 'Green Ruby dự kiến ghé làng chài Cửa Vạn khi nào?', 'a' => 'Cửa Vạn nằm trong chương trình ngày thứ hai của hành trình 3 ngày 2 đêm – Dấu Ấn Hạ Long. Hoạt động và thời gian cụ thể có thể thay đổi khi tàu chính thức vận hành, tùy điều kiện thời tiết và quy định của cơ quan quản lý.'],
             ],
         ],
     ],
