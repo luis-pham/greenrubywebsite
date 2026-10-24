@@ -1219,7 +1219,7 @@ HTML,
         'image_credit' => null,
         'itineraries' => ['en' => [1, 2], 'vi' => [5, 7]],
         'sources' => [$unesco, $catBaMab],
-        'editor_notes' => "EN rewritten 2026-10-24 from the editorial brief; slug dark-and-bright-cave -> dark-bright-cave (308 in next.config). Verified: GR2 times 15:30 (2D1N) / 15:00 (3D2N) and Gia Luan boarding (itinerary pages); kayak suspension from 1 Feb 2026 per Indochina Sails notice citing 483/TB-UBND (operator source, no official notice found). GR2 itinerary pages still say 'kayak or bamboo boat'. Needs verified coordinates and a photo of this exact cave: the hero is the owner's photo of kayaking through a limestone cave in Lan Ha Bay (media library 2026-10-21), and its alt text says only that. Not published: passage lengths, tide thresholds.",
+        'editor_notes' => "EN and VI rewritten 2026-10-24 from the editorial briefs (VI slug kept, H1 'Hang Sáng – Tối' via heading); slug dark-and-bright-cave -> dark-bright-cave (308 in next.config). Verified: GR2 times 15:30 (2D1N) / 15:00 (3D2N) and Gia Luan boarding (itinerary pages); kayak suspension from 1 Feb 2026 per Indochina Sails notice citing 483/TB-UBND (operator source, no official notice found). GR2 itinerary pages still say 'kayak or bamboo boat'. Needs verified coordinates and a photo of this exact cave: the hero is the owner's photo of kayaking through a limestone cave in Lan Ha Bay (media library 2026-10-21), and its alt text says only that. Not published: passage lengths, tide thresholds.",
         'en' => [
             'slug' => 'dark-bright-cave',
             'name' => 'Dark & Bright Cave',
@@ -1362,44 +1362,143 @@ HTML,
         'vi' => [
             'slug' => 'hang-sang-toi',
             'name' => 'Hang Sáng Tối',
+            'heading' => 'Hang Sáng – Tối',
             'image_alt' => 'Du khách chèo kayak qua vòm hang đá vôi trên vịnh Lan Hạ',
-            'seo_title' => 'Hang Sáng Tối, vịnh Lan Hạ: kinh nghiệm chèo kayak',
-            'seo_description' => 'Hang Sáng Tối trên vịnh Lan Hạ được khám phá bằng kayak hoặc đò nan. Cách tham quan, thủy triều, ai nên đi và lịch ghé dự kiến của Green Ruby.',
-            'summary' => 'Hai lối hang sát mặt nước trên vịnh Lan Hạ, một bên tối và kín, một bên mở ra ánh sáng, khám phá bằng kayak hoặc đò nan. Cách nhẹ nhàng để làm quen với vịnh ở ngang tầm mặt nước.',
+            'seo_title' => 'Hang Sáng Tối Lan Hạ: Đi Đò Nan & Kinh Nghiệm Tham Quan',
+            'seo_description' => 'Hang Sáng Tối ở đâu, có gì đặc biệt? Tìm hiểu trải nghiệm đi đò nan, áng nước giữa núi đá, quy định chèo kayak và cách tham quan vịnh Lan Hạ.',
+            'summary' => 'Hang Sáng – Tối nằm trên vịnh Lan Hạ, gần đảo Cát Bà, nổi tiếng với những vòm đá vôi sát mặt nước và áng nước được núi đá bao quanh. Du khách có thể ngồi đò nan do người địa phương chèo, đi qua cửa Hang Sáng để ngắm những vách núi dựng đứng và cảnh vật bên trong. Đây là một trong những điểm tham quan giúp du khách quan sát cảnh quan đá vôi của vịnh Lan Hạ ở khoảng cách gần.',
+            'sources' => [
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'UNESCO – Khu dự trữ sinh quyển Cát Bà', 'url' => 'https://www.unesco.org/en/mab/cat-ba'],
+                ['title' => 'Indochina Sails – Thông tin tạm dừng kayak tại vịnh Lan Hạ', 'url' => 'https://www.indochinasails.com/en/blog/kayak-suspension-enhanced-bamboo-boat-experience-in-lan-ha-bay.html'],
+                ['title' => 'Green Ruby – 2 ngày 1 đêm: Một Thoáng Lan Hạ', 'url' => 'https://greenrubycruises.com/vi/hanh-trinh/2-ngay-1-dem-mot-thoang-lan-ha-2-5.html'],
+                ['title' => 'Green Ruby – 3 ngày 2 đêm: Dấu Ấn Lan Hạ', 'url' => 'https://greenrubycruises.com/vi/hanh-trinh/3-ngay-2-dem-dau-an-lan-ha-2-7.html'],
+            ],
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Hang Sáng Tối nằm trên vịnh Lan Hạ, vùng nước yên tĩnh phía đông đảo Cát Bà. Lan Hạ thuộc quần đảo Cát Bà, một phần của Di sản Thiên nhiên Thế giới vịnh Hạ Long – quần đảo Cát Bà từ năm 2023 và Khu dự trữ sinh quyển thế giới từ năm 2004.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Cái tên đã nói lên trải nghiệm. Một lối hang thấp và tối, thuyền đi trong ánh sáng lờ mờ, vòm đá ngay sát đầu. Lối còn lại mở ra ánh sáng, vách núi xanh in bóng trên mặt nước lặng. Lan Hạ ít tàu hơn trung tâm vịnh Hạ Long nên chuyến đi thường thong thả.</p>
-<h2>Hoạt động</h2>
+<h2>Hang Sáng – Tối ở đâu?</h2>
+<p>Hang Sáng – Tối nằm trên vịnh Lan Hạ, ở phía đông đảo Cát Bà, thuộc thành phố Hải Phòng.</p>
+<p>Khu vực này nằm trong quần đảo Cát Bà, nơi có hàng trăm đảo đá vôi lớn nhỏ, nhiều vũng nước kín và các hang xuyên núi nằm sát mặt biển.</p>
+<p>Năm 2004, quần đảo Cát Bà được UNESCO công nhận là Khu dự trữ sinh quyển thế giới. Đến năm 2023, quần đảo được bổ sung vào Di sản Thiên nhiên Thế giới vịnh Hạ Long, hình thành Di sản Thiên nhiên Thế giới vịnh Hạ Long – quần đảo Cát Bà.</p>
+<p>Khác với những hang động có lối đi bộ như <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a>, Hang Sáng – Tối được tham quan chủ yếu bằng thuyền nhỏ. Trải nghiệm nổi bật nhất là đi qua vòm đá tự nhiên để vào áng nước nằm giữa các dãy núi đá vôi.</p>
+<h2>Hang Sáng – Tối có gì đặc biệt?</h2>
+<p>Điều thú vị nhất khi đến Hang Sáng – Tối là sự thay đổi của khung cảnh sau khi thuyền đi qua cửa hang.</p>
+<p>Từ bên ngoài, cửa Hang Sáng là một vòm đá nằm thấp, gần sát mặt nước. Khi đò đi qua, phía trước mở ra một khoảng nước được bao quanh bởi những vách núi đá vôi cao, có cây xanh mọc dọc theo các khe đá.</p>
+<p>Áng nước phía trong được các dãy núi che chắn nên thường khá êm. Từ đò nhỏ, du khách có thể quan sát những mảng đá vôi, rễ cây bám vào vách núi và bóng cây phản chiếu trên mặt nước.</p>
+<p>Khu vực này có hai lối hang mang đặc điểm khác nhau. Hang Sáng thông ra khoảng nước có ánh sáng tự nhiên, còn Hang Tối kín và ít ánh sáng hơn.</p>
+<p>Tuy nhiên, không phải lúc nào cả hai hang cũng được phép tham quan. Việc đi qua từng lối phụ thuộc vào thủy triều, điều kiện an toàn và tuyến hoạt động được cơ quan quản lý cho phép.</p>
+<p>Trong các chương trình tham quan thông thường, Hang Sáng và áng nước phía sau là phần trải nghiệm chính.</p>
+<h2>Hang Sáng và Hang Tối khác nhau thế nào?</h2>
+<p>Mặc dù thường được gọi chung là Hang Sáng – Tối, hai hang có đặc điểm và điều kiện tiếp cận khác nhau.</p>
+<h3>Hang Sáng – Lối vào áng nước giữa núi đá</h3>
+<p>Hang Sáng là nơi du khách thường đi qua bằng đò nan trong hành trình tham quan.</p>
+<p>Cửa hang có dạng vòm đá thấp, nối vùng nước bên ngoài với một áng nước gần như được các vách núi bao quanh.</p>
+<p>Khi đi qua vòm hang, người ngồi trên đò có thể phải cúi đầu tùy vào mực nước thủy triều. Ra khỏi cửa hang, không gian phía trước mở rộng, với ánh sáng tự nhiên chiếu xuống mặt nước.</p>
+<p>Những vách đá vôi dựng đứng, cây xanh và mặt nước tương đối yên ả là hình ảnh đặc trưng của khu vực này.</p>
+<h3>Hang Tối – Lối hang ít ánh sáng</h3>
+<p>Hang Tối có không gian kín hơn và nhận được ít ánh sáng tự nhiên.</p>
+<p>So với Hang Sáng, việc tiếp cận Hang Tối khó khăn hơn do điều kiện bên trong và sự thay đổi của mực nước. Hang không phải lúc nào cũng mở cho các hoạt động tham quan thông thường.</p>
+<p>Vì vậy, khi đặt chuyến đi có điểm dừng Hang Sáng – Tối, bạn không nên mặc định rằng mình sẽ được đi xuyên qua cả hai hang.</p>
+<p>Nếu đặc biệt muốn tìm hiểu Hang Tối, hãy hỏi trước đơn vị tổ chức về tình trạng hoạt động và tuyến tham quan được phép.</p>
+<h2>Những hoạt động nên trải nghiệm tại Hang Sáng – Tối</h2>
+<h3>Ngồi đò nan đi qua Hang Sáng</h3>
+<p>Đi đò nan là hình thức tham quan phù hợp nhất tại Hang Sáng – Tối trong thời gian hoạt động kayak đang bị tạm dừng.</p>
+<p>Sau khi mặc áo phao và nghe hướng dẫn, du khách lên đò nhỏ do người lái đò địa phương chèo.</p>
+<p>Đò di chuyển chậm đến cửa hang, đi qua bên dưới vòm đá rồi tiếp tục vào áng nước phía trong.</p>
+<p>Khi đi qua cửa hang, bạn có thể phải cúi người vì khoảng cách từ mặt nước đến trần đá không quá cao.</p>
+<p>Qua khỏi vòm đá, đò đưa khách tham quan khu vực áng nước trước khi quay trở ra.</p>
+<p>Vì có người chèo đò, du khách không cần tự điều khiển thuyền. Bạn có thể dành thời gian ngắm cảnh, chụp ảnh và quan sát những vách đá vôi xung quanh.</p>
+<h3>Ngắm cảnh trong áng nước</h3>
+<p>Áng nước phía sau Hang Sáng là điểm hấp dẫn nhất của chuyến tham quan.</p>
+<p>Các vách núi đá vôi bao quanh tạo nên một khoảng nước tương đối tách biệt với vùng vịnh bên ngoài. Từ đò nhỏ, bạn có thể nhìn lên những sườn núi phủ cây và quan sát các khối đá ở khoảng cách gần.</p>
+<p>Không giống những điểm tham quan cần leo núi hoặc đi bộ qua hang, trải nghiệm tại đây khá nhẹ nhàng. Phần lớn thời gian du khách ngồi trên đò, đi chậm qua các khu vực được phép.</p>
+<p>Đây cũng là nơi phù hợp để chụp ảnh cảnh quan vịnh Lan Hạ từ mặt nước, đặc biệt khi trời quang và mặt nước ít gợn sóng.</p>
+<h3>Chèo kayak khi được phép hoạt động trở lại</h3>
+<p>Hang Sáng – Tối từng là một trong những điểm chèo kayak quen thuộc trên vịnh Lan Hạ.</p>
+<p>Trước đây, du khách có thể tự chèo kayak qua cửa hang và khám phá áng nước phía trong theo tuyến được hướng dẫn.</p>
+<p>Tuy nhiên, hoạt động chèo kayak trên vịnh Lan Hạ đang bị tạm dừng theo quy định của địa phương, bao gồm khu vực Hang Sáng – Tối.</p>
+<p>Tính đến ngày rà soát bài viết, chưa có thông tin xác nhận việc cho phép hoạt động này trở lại.</p>
+<p>Vì vậy, du khách không nên mặc định rằng hành trình tham quan Hang Sáng – Tối sẽ có kayak. Các hoạt động thực tế cần được xác nhận với đơn vị tổ chức trước chuyến đi.</p>
+<h2>Nên đi đò nan hay chèo kayak tại Hang Sáng – Tối?</h2>
+<p>Trước đây, du khách có thể lựa chọn giữa tự chèo kayak và ngồi đò nan do người địa phương chèo.</p>
+<p>Hai hình thức mang đến trải nghiệm khác nhau.</p>
+<p>Với kayak, bạn tự điều khiển thuyền và cần dùng sức để chèo. Hoạt động phù hợp với người thích vận động và muốn chủ động khám phá mặt nước.</p>
+<p>Với đò nan, người lái đò phụ trách di chuyển. Du khách chỉ cần ngồi trên thuyền để ngắm cảnh, chụp ảnh và nghe hướng dẫn.</p>
+<p>Trong thời gian kayak bị tạm dừng, đò nan là phương án tham quan phù hợp với quy định hiện hành.</p>
+<p>Nếu các quy định được điều chỉnh trong tương lai, bạn nên kiểm tra lại hoạt động được phép trước khi đặt tour.</p>
+<h2>Cách đi đến Hang Sáng – Tối</h2>
+<p>Hang Sáng – Tối chỉ có thể tiếp cận bằng đường thủy.</p>
+<p>Du khách thường đến đây trong các chuyến tham quan vịnh Lan Hạ hoặc hành trình du thuyền nghỉ đêm.</p>
+<p>Tùy chương trình, khách có thể xuất phát từ khu vực Cát Bà hoặc làm thủ tục tại cảng Tuần Châu rồi di chuyển sang vịnh Lan Hạ. Xem thêm <a href="/vi/cam-nang/ha-noi-di-ha-long">cách đi từ Hà Nội đến Hạ Long</a>.</p>
+<p>Tàu du lịch không trực tiếp đi xuyên qua hang. Khi đến điểm tham quan, du khách được hướng dẫn chuyển sang đò nan tại vị trí đón khách được phép.</p>
+<p>Nhân viên hỗ trợ mặc áo phao, lên xuống đò và phổ biến những lưu ý an toàn trước khi khởi hành.</p>
+<p>Hang Sáng – Tối nằm trong lịch trình dự kiến của du thuyền <a href="/vi/du-thuyen/green-ruby-2-2.html">Green Ruby 2</a>, phục vụ các hành trình nghỉ đêm trên vịnh Lan Hạ.</p>
+<h2>Tham quan Hang Sáng – Tối mất bao lâu?</h2>
+<p>Thông thường, du khách nên dành khoảng 60–90 phút cho toàn bộ điểm dừng tại Hang Sáng – Tối, bao gồm thời gian di chuyển sang khu vực lên đò, tham quan và quay trở lại tàu.</p>
+<p>Thời gian đi qua vòm hang khá ngắn. Phần lớn chuyến tham quan dành cho việc đi đò quanh áng nước, ngắm cảnh và chụp ảnh.</p>
+<p>Nếu có nhiều đoàn đến cùng lúc, du khách có thể phải chờ đến lượt lên đò.</p>
+<p>Thời gian thực tế còn phụ thuộc vào thủy triều, thời tiết và lịch trình của đơn vị tổ chức.</p>
+<h2>Khi đến Hang Sáng – Tối cần lưu ý gì?</h2>
+<p>Điểm cần chú ý nhất là vòm Hang Sáng nằm khá thấp so với mặt nước.</p>
+<p>Vào những thời điểm thủy triều lên cao, khoảng trống bên dưới vòm đá có thể giảm. Người ngồi trên đò phải cúi thấp đầu khi đi qua, hoặc hoạt động có thể bị tạm dừng nếu không đảm bảo an toàn.</p>
+<p>Trong suốt chuyến tham quan, du khách cần tuân thủ hướng dẫn của người chèo đò và nhân viên tại điểm đến.</p>
+<p>Một số điều nên chuẩn bị:</p>
 <ul>
-<li><strong>Chèo kayak</strong> qua các lối hang và men theo vách đá.</li>
-<li><strong>Đi đò nan</strong> do người lái đò địa phương chèo, cho ai không muốn tự chèo.</li>
+<li>Mặc áo phao trong suốt thời gian đi đò.</li>
+<li>Cho điện thoại, máy ảnh và vật dụng có giá trị vào túi chống nước.</li>
+<li>Mặc quần áo thoải mái, phù hợp với hoạt động trên mặt nước.</li>
+<li>Giữ thăng bằng khi bước từ bến hoặc tàu sang đò nhỏ.</li>
+<li>Không đứng lên hoặc nghiêng người quá nhiều khi đò đang di chuyển.</li>
+<li>Không chạm vào những khối đá hoặc làm hư hại cảnh quan trong hang.</li>
+<li>Không xả rác xuống nước.</li>
 </ul>
-<h2>Cách đến</h2>
-<p>Du thuyền neo gần đó, khách đi xuồng đến điểm xuống kayak và đò nan. Áo phao được phát trước khi xuất phát.</p>
-<h2>Khi đến nơi</h2>
-<p>Hướng dẫn viên phổ biến ngắn về lộ trình và thủy triều trước khi xuống nước. Trong lối hang tối cần cúi thấp người; phía hang sáng thì thoáng và dễ đi.</p>
-<h2>Lưu ý khi tham quan</h2>
-<ul>
-<li>Bước xuống kayak hay đò cần giữ thăng bằng; đội tàu sẽ hỗ trợ.</li>
-<li>Mang túi chống nước cho điện thoại và chuẩn bị tinh thần bị ướt một chút.</li>
-<li>Trẻ em thường đi đò nan cùng người lớn.</li>
-</ul>
-<h2>Thời tiết và mùa</h2>
-<p>Có vào được các lối hang hay không phụ thuộc thủy triều và thời tiết. Khi gió mạnh hoặc mưa to, hoạt động có thể thay đổi; khi có cảnh báo bão, tàu có thể phải tạm dừng.</p>
+<p>Hang Sáng – Tối không có lối đi bộ xuyên hang dành cho du khách. Hoạt động tham quan chủ yếu diễn ra trên mặt nước.</p>
+<h2>Trẻ em và người lớn tuổi có tham quan Hang Sáng – Tối được không?</h2>
+<p>Đi đò nan thường phù hợp với nhiều nhóm khách vì không đòi hỏi phải tự chèo.</p>
+<p>Trẻ em có thể tham gia nếu đáp ứng quy định của đơn vị vận hành, có áo phao đúng kích cỡ và được người lớn đi cùng.</p>
+<p>Người lớn tuổi cũng có thể lựa chọn đò nan để hạn chế vận động. Tuy nhiên, việc chuyển từ tàu hoặc bến sang đò nhỏ vẫn đòi hỏi giữ thăng bằng.</p>
+<p>Người có vấn đề về vận động hoặc sử dụng xe lăn nên hỏi trước đơn vị tổ chức về khả năng hỗ trợ lên xuống đò. Hình thức tham quan này không mặc nhiên phù hợp với mọi tình trạng sức khỏe.</p>
+<h2>Nên tham quan Hang Sáng – Tối vào tháng mấy?</h2>
+<p>Hang Sáng – Tối có thể tham quan quanh năm nếu thời tiết, thủy triều và hoạt động tàu du lịch cho phép.</p>
+<p>Từ tháng 4 đến tháng 10, thời tiết thường ấm hơn, thuận tiện cho các hoạt động ngoài trời. Tuy nhiên, đây cũng là thời gian có thể xảy ra mưa lớn, dông và bão.</p>
+<p>Từ tháng 11 đến tháng 3, thời tiết mát hoặc lạnh hơn. Nếu ngồi đò vào những ngày nhiều gió, bạn nên mang theo áo khoác mỏng.</p>
+<p>Đối với Hang Sáng – Tối, thủy triều có ảnh hưởng trực tiếp đến khả năng đi qua cửa hang. Khi nước dâng cao, khoảng cách giữa trần đá và mặt nước có thể không đủ để đò di chuyển an toàn.</p>
+<p>Vì vậy, một ngày thời tiết đẹp chưa chắc đã bảo đảm du khách có thể vào hang. Đơn vị vận hành sẽ căn cứ vào cả mực nước, tình trạng thời tiết và các quy định tại điểm tham quan. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">đi Hạ Long mùa nào đẹp</a>.</p>
+<h2>Tham quan Hang Sáng – Tối cùng Green Ruby Cruises</h2>
+<p>Hang Sáng – Tối là một trong những điểm tham quan dự kiến của du thuyền Green Ruby 2 trong các hành trình nghỉ đêm trên vịnh Lan Hạ.</p>
+<p><strong><a href="/vi/hanh-trinh/2-ngay-1-dem-mot-thoang-lan-ha-2-5.html">2 ngày 1 đêm – Một Thoáng Lan Hạ</a></strong><br>Hành trình nghỉ đêm kết hợp tham quan Hang Sáng – Tối, ngắm cảnh vịnh Lan Hạ và các hoạt động khác theo chương trình.</p>
+<p><strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-lan-ha-2-7.html">3 ngày 2 đêm – Dấu Ấn Lan Hạ</a></strong><br>Hành trình dài hơn với thêm thời gian khám phá <a href="/vi/dia-diem-tham-quan/lang-viet-hai">làng Việt Hải</a> trên đảo Cát Bà, các khu vực cảnh quan và bãi biển được phép tiếp cận.</p>
+<p><em>Các điểm dừng trên thuộc lịch trình dự kiến của Green Ruby 2. Hoạt động tham quan thực tế, bao gồm hình thức đi đò hoặc chèo kayak, sẽ tuân theo quy định có hiệu lực tại thời điểm khởi hành và có thể thay đổi do thời tiết, thủy triều hoặc yêu cầu vận hành.</em></p>
+<h2>Những địa điểm gần và liên quan</h2>
+<h3><a href="/vi/dia-diem-tham-quan/ao-ech">Ao Ếch</a></h3>
+<p>Khu vực mặt nước được bao quanh bởi những dãy núi đá vôi trên vịnh Lan Hạ, từng được biết đến với các hoạt động chèo kayak. Việc tổ chức hoạt động trên mặt nước phụ thuộc vào quy định hiện hành.</p>
+<h3><a href="/vi/dia-diem-tham-quan/lang-viet-hai">Làng Việt Hải</a></h3>
+<p>Ngôi làng nằm trên đảo Cát Bà, được bao quanh bởi rừng và núi đá. Du khách có thể khám phá làng bằng xe đạp, xe điện hoặc đi bộ tùy chương trình tham quan.</p>
+<h3>Bãi Ba Trái Đào</h3>
+<p>Khu vực nổi tiếng với những đảo đá vôi có hình dáng đặc biệt và các bãi cát nhỏ. Khả năng tiếp cận bãi biển phụ thuộc vào thời tiết, thủy triều và tuyến tham quan được phép.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Vịnh Lan Hạ, phía đông đảo Cát Bà'],
-                ['label' => 'Loại hình', 'value' => 'Hai lối hang sát mặt nước, một tối một sáng'],
-                ['label' => 'Cách đến', 'value' => 'Kayak hoặc đò nan'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1–1,5 giờ (ước tính)'],
-                ['label' => 'Phụ thuộc', 'value' => 'Thủy triều và thời tiết trong ngày'],
+                ['label' => 'Vị trí', 'value' => 'Vịnh Lan Hạ, khu vực quần đảo Cát Bà, Hải Phòng'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Dark & Bright Cave'],
+                ['label' => 'Loại hình', 'value' => 'Hang đá vôi sát mặt nước, áng nước kín'],
+                ['label' => 'Điểm nổi bật', 'value' => 'Vòm Hang Sáng và áng nước giữa các vách núi'],
+                ['label' => 'Hoạt động tham quan', 'value' => 'Đi đò nan, ngắm cảnh'],
+                ['label' => 'Chèo kayak', 'value' => 'Đang tạm dừng theo quy định được công bố'],
+                ['label' => 'Cách đến', 'value' => 'Tàu tham quan hoặc du thuyền, chuyển sang đò nhỏ'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 60–90 phút (ước tính)'],
+                ['label' => 'Đi bộ xuyên hang', 'value' => 'Không'],
+                ['label' => 'Điều kiện tham quan', 'value' => 'Phụ thuộc thủy triều, thời tiết và quy định an toàn'],
+                ['label' => 'Di sản UNESCO', 'value' => 'Thuộc khu vực vịnh Hạ Long – quần đảo Cát Bà'],
             ],
             'faq' => [
-                ['q' => 'Chưa biết chèo kayak có đi được không?', 'a' => 'Được. Mặt nước kín gió và hướng dẫn viên sẽ hướng dẫn trước khi xuất phát. Nếu muốn, bạn có thể đi đò nan.'],
-                ['q' => 'Người sợ không gian hẹp có nên vào hang tối không?', 'a' => 'Lối hang tối ngắn nhưng thấp và thiếu sáng. Nếu ngại không gian kín, bạn có thể đi đò nan và ở lại phía hang sáng thoáng đãng.'],
-                ['q' => 'Green Ruby dự kiến ghé hang Sáng Tối khi nào?', 'a' => 'Chiều ngày đầu tiên trong cả hai hành trình vịnh Lan Hạ của Green Ruby 2. Giờ giấc có thể thay đổi trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Hang Sáng – Tối nằm ở đâu?', 'a' => 'Hang Sáng – Tối nằm trên vịnh Lan Hạ, gần đảo Cát Bà, thuộc thành phố Hải Phòng. Khu vực này nằm trong quần đảo Cát Bà, một phần của Di sản Thiên nhiên Thế giới vịnh Hạ Long – quần đảo Cát Bà.'],
+                ['q' => 'Hang Sáng – Tối có gì đặc biệt?', 'a' => 'Đây là khu vực có hai lối hang đá vôi nằm sát mặt nước, trong đó Hang Sáng dẫn vào một áng nước được những vách núi cao bao quanh. Du khách thường đi đò nan qua vòm đá để ngắm cảnh bên trong.'],
+                ['q' => 'Hang Sáng và Hang Tối khác nhau thế nào?', 'a' => 'Hang Sáng có lối thông ra áng nước nhận được ánh sáng tự nhiên. Hang Tối kín hơn và ít ánh sáng, việc tiếp cận có thể bị hạn chế. Không phải chuyến tham quan nào cũng được đi qua cả hai hang.'],
+                ['q' => 'Hang Sáng – Tối có chèo kayak được không?', 'a' => 'Hoạt động chèo kayak tại khu vực này đang bị tạm dừng theo quy định địa phương tính đến tháng 10/2026. Du khách có thể tham quan bằng đò nan khi dịch vụ được phép hoạt động và điều kiện an toàn bảo đảm. Nên kiểm tra quy định mới nhất trước chuyến đi.'],
+                ['q' => 'Chưa biết chèo kayak có tham quan Hang Sáng – Tối được không?', 'a' => 'Có. Bạn không cần biết chèo kayak nếu tham quan bằng đò nan. Người lái đò sẽ điều khiển thuyền trong suốt chuyến đi.'],
+                ['q' => 'Người sợ không gian hẹp có nên đi Hang Sáng – Tối không?', 'a' => 'Vòm Hang Sáng tương đối thấp, người ngồi trên đò có thể phải cúi đầu khi đi qua. Đoạn qua vòm không dài, nhưng vẫn có thể gây khó chịu cho người sợ không gian kín. Bạn nên trao đổi trước với hướng dẫn viên để cân nhắc có tham gia hay không.'],
+                ['q' => 'Trẻ em có đi Hang Sáng – Tối được không?', 'a' => 'Trẻ em có thể tham gia đi đò nan nếu đáp ứng các yêu cầu về độ tuổi, áo phao và người đi kèm của đơn vị vận hành. Phụ huynh nên xác nhận điều kiện cụ thể trước chuyến đi.'],
+                ['q' => 'Tham quan Hang Sáng – Tối mất bao lâu?', 'a' => 'Thông thường nên dành khoảng 60–90 phút cho toàn bộ điểm dừng, bao gồm thời gian lên xuống đò và tham quan áng nước. Thời gian thực tế tùy lịch trình và điều kiện trong ngày.'],
+                ['q' => 'Green Ruby dự kiến ghé Hang Sáng – Tối khi nào?', 'a' => 'Hang Sáng – Tối nằm trong cả hai hành trình dự kiến của Green Ruby 2 trên vịnh Lan Hạ: 2 ngày 1 đêm – Một Thoáng Lan Hạ và 3 ngày 2 đêm – Dấu Ấn Lan Hạ. Thời gian ghé dự kiến vào buổi chiều ngày đầu tiên. Điểm dừng, giờ tham quan và hình thức trải nghiệm sẽ được xác nhận theo lịch vận hành, thời tiết, thủy triều và quy định địa phương.'],
             ],
         ],
     ],
