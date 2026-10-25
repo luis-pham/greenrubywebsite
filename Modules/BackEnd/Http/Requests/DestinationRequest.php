@@ -30,6 +30,7 @@ class DestinationRequest extends FormRequest
             'seo_description' => 'nullable|max:255',
             'sources.*.url' => 'nullable|url|max:500',
             'itinerary_ids' => 'nullable|array',
+            'experience_ids' => 'nullable|array',
         ];
     }
 

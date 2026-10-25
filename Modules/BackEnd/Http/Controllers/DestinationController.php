@@ -23,7 +23,7 @@
         private const INPUT = [
             'name', 'heading', 'slug', 'bay', 'category', 'summary', 'content', 'facts', 'faq', 'sources',
             'latitude', 'longitude', 'coords_verified', 'coords_source', 'image_link', 'image_alt', 'image_credit',
-            'status', 'editor_notes', 'fact_checked_at', 'seo_title', 'seo_description', 'ord', 'itinerary_ids',
+            'status', 'editor_notes', 'fact_checked_at', 'seo_title', 'seo_description', 'ord', 'itinerary_ids', 'experience_ids',
         ];
 
         public function index(Request $request)
@@ -47,8 +47,10 @@
 
             $itineraryOptions = AppDestinationService::itineraryOptions($language->id);
             $itineraryIds = [];
+            $experienceOptions = AppDestinationService::experienceOptions($language->id);
+            $experienceIds = [];
 
-            return view($this->baseView . __FUNCTION__, compact('title', 'itineraryOptions', 'itineraryIds'));
+            return view($this->baseView . __FUNCTION__, compact('title', 'itineraryOptions', 'itineraryIds', 'experienceOptions', 'experienceIds'));
         }
 
         public function store(DestinationRequest $request)
@@ -81,9 +83,11 @@
 
             $itineraryOptions = AppDestinationService::itineraryOptions($language->id);
             $itineraryIds = AppDestinationService::itineraryIds($obj->id);
+            $experienceOptions = AppDestinationService::experienceOptions($language->id);
+            $experienceIds = AppDestinationService::experienceIds($obj->id);
             $isLinked = ContentTranslations::isLinked('destination', (int) $obj->id);
 
-            return view($this->baseView . __FUNCTION__, compact('title', 'obj', 'itineraryOptions', 'itineraryIds', 'isLinked'));
+            return view($this->baseView . __FUNCTION__, compact('title', 'obj', 'itineraryOptions', 'itineraryIds', 'experienceOptions', 'experienceIds', 'isLinked'));
         }
 
         public function update(DestinationRequest $request, $id)

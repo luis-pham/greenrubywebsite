@@ -152,6 +152,16 @@
                     <small class="text-muted">Để trống nếu điểm đến không nằm trong hành trình Green Ruby: trang sẽ ghi rõ là điểm tham quan khác trong vùng.</small>
                 </div>
                 <div class="form-group">
+                    <label>Hoạt động trải nghiệm diễn ra tại đây</label>
+                    <input type="hidden" name="experience_ids[]" value="">
+                    <select name="experience_ids[]" class="form-control select2-destination" multiple>
+                        @foreach ($experienceOptions as $id => $name)
+                            <option value="{{ $id }}" {{ in_array($id, array_map('intval', old('experience_ids', $experienceIds))) ? 'selected' : '' }}>{{ $name }}</option>
+                        @endforeach
+                    </select>
+                    <small class="text-muted">Chỉ chọn khi hoạt động thực sự diễn ra ở điểm này (vd. kayak ở hang Luồn). Trang trải nghiệm và trang điểm đến sẽ link qua lại.</small>
+                </div>
+                <div class="form-group">
                     <label>Thứ tự</label>
                     {{ Form::number('ord', $value('ord'), ['class' => 'form-control', 'min' => 0]) }}
                 </div>

@@ -4,6 +4,7 @@ namespace Modules\BackEnd\Services;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Modules\BackEnd\Entities\AppDestination;
+use Modules\BackEnd\Entities\AppExpActivity;
 use Modules\BackEnd\Entities\AppItinerary;
 
 class AppDestinationService
@@ -36,6 +37,7 @@ class AppDestinationService
             $obj->created_at = now(); // BaseModel only stamps rows saved by a logged-in admin
             $obj->save();
             self::syncItineraries($obj->id, $data['itinerary_ids'] ?? [], $languageId);
+            self::syncExperiences($obj->id, $data, $languageId);
 
             return $obj->id;
         });
@@ -52,6 +54,7 @@ class AppDestinationService
             $obj->updated_at = now(); // also for CLI imports (sitemap lastmod)
             $obj->save();
             self::syncItineraries($obj->id, $data['itinerary_ids'] ?? [], $languageId);
+            self::syncExperiences($obj->id, $data, $languageId);
         });
     }
 
@@ -59,6 +62,7 @@ class AppDestinationService
     {
         $ids = AppDestination::whereIn('id', (array) $id)->where('language_id', $languageId)->pluck('id');
         DB::table('app_destination_itinerary')->whereIn('destination_id', $ids)->delete();
+        DB::table('app_destination_experience')->whereIn('destination_id', $ids)->delete();
         DB::table('content_translations')->where('entity_type', 'destination')->whereIn('entity_id', $ids)->delete();
         AppDestination::whereIn('id', $ids)->delete();
     }
@@ -106,6 +110,17 @@ class AppDestinationService
         return DB::table('app_destination_itinerary')->where('destination_id', $destinationId)->pluck('itinerary_id')->map(fn ($id) => (int) $id)->all();
     }
 
+    /** Experiences of the language, for the "takes place here" multi-select: id => name. */
+    public static function experienceOptions($languageId): array
+    {
+        return AppExpActivity::where('language_id', $languageId)->orderBy('id')->pluck('name', 'id')->all();
+    }
+
+    public static function experienceIds($destinationId): array
+    {
+        return DB::table('app_destination_experience')->where('destination_id', $destinationId)->pluck('experience_id')->map(fn ($id) => (int) $id)->all();
+    }
+
     /** URL slug: lowercase ASCII words joined by "-" (Vietnamese diacritics removed, đ -> d). */
     public static function slugify(?string $value): string
     {
@@ -149,6 +164,20 @@ class AppDestinationService
         }
 
         return $out;
+    }
+
+    /**
+     * Only when the form sent the field (it always does, via a hidden empty value), so a CLI import that knows
+     * nothing about experiences leaves the editor's choice alone.
+     */
+    private static function syncExperiences($destinationId, array $data, $languageId): void
+    {
+        if (!array_key_exists('experience_ids', $data)) {
+            return;
+        }
+        $valid = AppExpActivity::where('language_id', $languageId)->whereIn('id', array_map('intval', (array) $data['experience_ids']))->pluck('id');
+        DB::table('app_destination_experience')->where('destination_id', $destinationId)->delete();
+        DB::table('app_destination_experience')->insert($valid->map(fn ($id) => ['destination_id' => $destinationId, 'experience_id' => $id])->all());
     }
 
     private static function syncItineraries($destinationId, $itineraryIds, $languageId): void

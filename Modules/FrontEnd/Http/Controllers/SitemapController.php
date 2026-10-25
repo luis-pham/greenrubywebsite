@@ -535,6 +535,8 @@ class SitemapController extends Controller
 
     /** app_page code => paths; must match `segments.guideFirstTime` / `segments.guideTransfer` in greenruby-web/src/lib/i18n.ts. */
     private const GUIDE_PATHS = [
+        // Travel guide hub (navigation page; not switchable, so always listed).
+        'guides' => ['en' => 'guides', 'vi' => 'cam-nang'],
         'guide-first-time' => ['en' => 'guides/first-time-halong-bay-cruise', 'vi' => 'cam-nang/lan-dau-di-du-thuyen-ha-long'],
         'guide-transfer' => ['en' => 'guides/hanoi-to-halong-bay', 'vi' => 'cam-nang/ha-noi-di-ha-long'],
     ];

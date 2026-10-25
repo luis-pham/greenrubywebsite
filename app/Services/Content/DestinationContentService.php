@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Entities\AppDestination;
+use Modules\BackEnd\Entities\AppExpActivity;
 
 /**
  * Destination (app_destination) payloads for the Content API. Only published rows are exposed;
@@ -20,12 +21,13 @@ class DestinationContentService
     {
         $rows = self::published($language)->get();
         $stops = self::stops($rows->pluck('id')->all(), $language);
+        $experiences = self::experiences($rows->pluck('id')->all(), $language);
 
         return [
             'seo' => PageConfigContentService::seo(self::PAGE_CODE, $language),
             // Hub switched off in the admin: the frontend 404s the hub; items are empty, so details 404 too.
             'visible' => PageConfigContentService::visible(self::PAGE_CODE, $language),
-            'items' => $rows->map(fn ($d) => self::summary($d, $stops))->values()->all(),
+            'items' => $rows->map(fn ($d) => self::summary($d, $stops, $experiences))->values()->all(),
         ];
     }
 
@@ -38,7 +40,8 @@ class DestinationContentService
 
         $all = self::published($language)->get();
         $stops = self::stops($all->pluck('id')->all(), $language);
-        $summary = self::summary($d, $stops);
+        $experiences = self::experiences([$d->id], $language);
+        $summary = self::summary($d, $stops, $experiences);
 
         // Same bay first, then the same kind of place elsewhere: what a visitor would compare it with.
         $related = $all->where('id', '!=', $d->id)
@@ -55,6 +58,7 @@ class DestinationContentService
             'faq' => array_values(array_map(fn ($f) => ['question' => $f['q'], 'answer' => $f['a']], $d->faq ?? [])),
             'sources' => array_values($d->sources ?? []),
             'itineraries' => $stops->get($d->id, []),
+            'experiences' => $experiences->get($d->id, []),
             'related' => $related,
             'seo' => [
                 'title' => ItineraryContentService::clean($d->seo_title) ?? $d->name,
@@ -66,7 +70,7 @@ class DestinationContentService
         ]);
     }
 
-    public static function summary(AppDestination $d, Collection $stops): array
+    public static function summary(AppDestination $d, Collection $stops, ?Collection $experiences = null): array
     {
         $verified = $d->coords_verified && $d->latitude !== null && $d->longitude !== null;
 
@@ -83,6 +87,7 @@ class DestinationContentService
             'coordinates' => $verified ? ['lat' => (float) $d->latitude, 'lng' => (float) $d->longitude] : null,
             'isGreenRubyStop' => !empty($stops->get($d->id)),
             'itineraryIds' => array_column($stops->get($d->id, []), 'itineraryId'),
+            'experienceIds' => array_column(($experiences ?? collect())->get($d->id, []), 'id'),
         ];
     }
 
@@ -132,6 +137,27 @@ class DestinationContentService
                 'duration' => $it['duration'],
                 'bay' => $it['bay'],
             ])->sortBy('duration')->values()->all()
+        )->filter();
+    }
+
+    /** destination id => experiences of the language that take place there (editor's choice in the destination form). */
+    protected static function experiences(array $destinationIds, AdLanguage $language): Collection
+    {
+        if ($destinationIds === []) {
+            return collect();
+        }
+        $links = DB::table('app_destination_experience')->whereIn('destination_id', $destinationIds)->get();
+        if ($links->isEmpty()) {
+            return collect();
+        }
+        $rows = AppExpActivity::where('language_id', $language->id)->whereIn('id', $links->pluck('experience_id'))->get()->keyBy('id');
+
+        return $links->groupBy('destination_id')->map(
+            fn ($group) => $group->map(fn ($row) => $rows->get((int) $row->experience_id))->filter()->map(fn ($e) => [
+                'id' => (int) $e->id,
+                'slug' => CabinContentService::slug($e->name),
+                'name' => $e->name,
+            ])->values()->all()
         )->filter();
     }
 }
