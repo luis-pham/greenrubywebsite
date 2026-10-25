@@ -1,0 +1,232 @@
+{
+ "name": "2026-10-25 SEO safe fixes",
+ "reviewed": "2026-10-25 against a copy of production (green_ruby_seo_test)",
+ "revalidate": [
+  "content",
+  "pages",
+  "page:service",
+  "services",
+  "faqs",
+  "experiences",
+  "articles",
+  "site"
+ ],
+ "ops": [
+  {
+   "table": "app_page_config",
+   "id": 60,
+   "column": "value",
+   "type": "json_replace",
+   "old": "Michelin-Standard Banquet",
+   "new": "Wedding Banquet Menus",
+   "note": "EN services: remove unverified \"Michelin-Standard\""
+  },
+  {
+   "table": "app_page_config",
+   "id": 60,
+   "column": "value",
+   "type": "json_replace",
+   "old": "Wedding menus designed by 5-star chefs",
+   "new": "Menus planned with the onboard kitchen team for your celebration",
+   "note": "EN services: remove unverified \"5-star chefs\""
+  },
+  {
+   "table": "app_page_config",
+   "id": 59,
+   "column": "value",
+   "type": "json_replace",
+   "old": "Yến tiệc tiêu chuẩn Michelin\n\n",
+   "new": "Thực đơn tiệc cưới\n\n",
+   "note": "VI services: remove unverified \"tiêu chuẩn Michelin\""
+  },
+  {
+   "table": "app_page_config",
+   "id": 59,
+   "column": "value",
+   "type": "json_replace",
+   "old": "Thực đơn cưới được thiết kế bởi các đầu bếp 5 sao\n\n",
+   "new": "Thực đơn được lên cùng đội bếp trên tàu theo yêu cầu của bạn\n\n",
+   "note": "VI services: remove unverified \"đầu bếp 5 sao\""
+  },
+  {
+   "table": "app_faq",
+   "id": 56,
+   "column": "answer",
+   "type": "replace",
+   "old": "We're also eliminating single-use plastics across the vessel - refillable glass bottles, bulk amenities, and plastic-free supplier packaging - so nothing from your stay ends up in the bay.",
+   "new": "We are also removing single-use plastics from guest service, for example with refillable glass bottles and bulk amenities. This work is in progress and will be reported once the ships are operating.",
+   "note": "EN FAQ: align plastics claim with Brand Facts (\"being removed\")"
+  },
+  {
+   "table": "app_faq",
+   "id": 47,
+   "column": "answer",
+   "type": "replace",
+   "old": "A corkage fee of [amount] applies if you bring your own wine.",
+   "new": "A corkage fee applies if you bring your own wine; the reservations team confirms the current amount when you book.",
+   "note": "EN FAQ: remove raw \"[amount]\" placeholder"
+  },
+  {
+   "table": "app_exp_activity",
+   "id": 8,
+   "column": "content",
+   "type": "set",
+   "old": "Paddle through hidden lagoons and limestone caves of Ha Long Bay at your own pace.",
+   "new": "<p>Paddle through hidden lagoons and limestone caves of Ha Long Bay at your own pace.</p><h2>Where Green Ruby plans to kayak</h2><p>On both Ha Long Bay itineraries aboard Green Ruby 1, The Halong Escape and The Halong Immersion, the first afternoon includes Luon Cave at about 15:30: guests kayak or take a bamboo boat through the natural arch into the enclosed lagoon.</p><h2>Lan Ha Bay: kayaking suspended</h2><p>Kayaking on the bays of the Cat Ba Archipelago, including Lan Ha Bay, has been suspended by the local authorities since 15 November 2024 until operators meet the legal requirements. No reopening had been announced when this page was reviewed on 25 October 2026. On Green Ruby 2 itineraries, the Dark &amp; Bright Cave area is visited by rowed bamboo boat instead.</p><p>All water activities depend on the weather, the tide and the rules in force on the day, and life jackets are provided. Times come from the published itineraries and remain provisional until sailings begin, expected in February 2027.</p>",
+   "note": "EN kayaking: where it is planned + Lan Ha suspension (since 15/11/2024)"
+  },
+  {
+   "table": "app_exp_activity",
+   "id": 30,
+   "column": "content",
+   "type": "set",
+   "old": "Chèo kayak khám phá những đầm nước ẩn mình và hang đá vôi trong không gian yên bình.",
+   "new": "<p>Chèo kayak khám phá những đầm nước ẩn mình và hang đá vôi trong không gian yên bình.</p><h2>Green Ruby dự kiến chèo kayak ở đâu?</h2><p>Trên cả hai hành trình vịnh Hạ Long của Green Ruby 1, gồm 2 ngày 1 đêm – Một Thoáng Hạ Long và 3 ngày 2 đêm – Dấu Ấn Hạ Long, buổi chiều ngày đầu có điểm dừng hang Luồn vào khoảng 15:30: khách chèo kayak hoặc đi thuyền nan qua vòm đá tự nhiên vào hồ nước kín giữa các vách núi.</p><h2>Vịnh Lan Hạ: kayak đang tạm dừng</h2><p>Hoạt động chèo kayak trên các vịnh thuộc quần đảo Cát Bà, trong đó có vịnh Lan Hạ, đã được chính quyền địa phương tạm dừng từ ngày 15/11/2024 cho đến khi đáp ứng các điều kiện theo quy định. Đến ngày rà soát trang này (25/10/2026), chưa có thông báo cho phép hoạt động trở lại. Trên các hành trình của Green Ruby 2, khu hang Sáng Tối được tham quan bằng thuyền nan.</p><p>Mọi hoạt động trên mặt nước phụ thuộc thời tiết, thủy triều và quy định tại thời điểm tham quan; áo phao được trang bị đầy đủ. Giờ giấc lấy từ lịch trình đã công bố và chỉ là dự kiến cho tới khi tàu vận hành, dự kiến từ tháng 2/2027.</p>",
+   "note": "VI kayaking: same facts"
+  },
+  {
+   "table": "app_category",
+   "id": 25,
+   "column": "name",
+   "type": "set",
+   "old": "Hành trình",
+   "new": "Kinh nghiệm & lời khuyên",
+   "note": "VI blog category: stop sharing the label \"Hành trình\" with the itinerary hub (slug unchanged)"
+  },
+  {
+   "table": "app_category",
+   "id": 25,
+   "column": "seo_description",
+   "type": "set",
+   "old": null,
+   "new": "Bài viết giúp chuẩn bị chuyến du thuyền trên vịnh Hạ Long và vịnh Lan Hạ: chọn vịnh, chọn tàu, thời tiết từng tháng và những điều cần biết trước khi đặt.",
+   "note": "VI category: own meta description"
+  },
+  {
+   "table": "app_category",
+   "id": 571,
+   "column": "seo_description",
+   "type": "set",
+   "old": null,
+   "new": "Guides to Ha Long Bay and Lan Ha Bay for cruise travellers: how the two bays differ, what each route visits and how to choose between them.",
+   "note": "EN category: own meta description (was the site default, duplicated)"
+  },
+  {
+   "table": "app_category",
+   "id": 574,
+   "column": "seo_description",
+   "type": "set",
+   "old": null,
+   "new": "Practical planning for a Ha Long Bay cruise: weather month by month, when to go and what to know before you book.",
+   "note": "EN category: own meta description (was the site default, duplicated)"
+  },
+  {
+   "table": "app_article",
+   "id": 221,
+   "column": "seo_title",
+   "type": "set",
+   "old": "Eco-Friendly Luxury Cruise Ha Long Bay 2026 | Green Ruby",
+   "new": "Eco-Friendly Luxury Cruises in Ha Long Bay: A Complete Guide",
+   "note": "EN eco pillar: drop \"2026\" from the SEO title (URL unchanged)"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "seo_title",
+   "type": "set",
+   "old": "Kinh nghiệm du thuyền Hạ Long cao cấp | Green Ruby Cruises",
+   "new": "Chọn du thuyền Hạ Long cao cấp: tiêu chí và kinh nghiệm",
+   "note": "VI 240: title on its own intent (choosing), not the first-time guide's"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "seo_description",
+   "type": "set",
+   "old": "Kinh nghiệm chọn du thuyền Hạ Long cao cấp: so sánh các hành trình, hạng phòng, tiện nghi, giá vé và những lưu ý quan trọng trước khi đặt.",
+   "new": "Cách chọn du thuyền Hạ Long cao cấp: xếp hạng sao, cabin, sức chứa, điểm đón, giá gồm những gì và nên đặt trước bao lâu.",
+   "note": "VI 240: description on the choosing intent"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Nên chọn du thuyền vịnh Hạ Long hay Lan Hạ?</h2><p>Từ năm 2023, vịnh Lan Hạ và vịnh Hạ Long cùng nằm trong khu Di sản Thiên nhiên Thế giới <a target=\"_blank\" href=\"https://whc.unesco.org/en/list/672/\" rel=\"noreferrer noopener\">Vịnh Hạ Long – Quần đảo Cát Bà</a> được UNESCO công nhận. Khu di sản có diện tích 65.650 ha với 1.133 đảo và đảo đá, trải rộng trên địa phận Quảng Ninh và Hải Phòng. Vịnh Hạ Long được ghi danh lần đầu vào năm 1994, mở rộng năm 2000 và bổ sung khu vực quần đảo Cát Bà vào tháng 9/2023.</p><p>Hai vịnh có cảnh quan khá tương đồng, nổi bật với những đảo đá vôi giữa mặt nước xanh. Sự khác biệt chủ yếu nằm ở các điểm tham quan, mật độ tàu du lịch và những hoạt động mà du khách có thể trải nghiệm.</p><h3>Vịnh Hạ Long: Hang động và những danh thắng nổi tiếng</h3><p>Hang Sửng Sốt, đảo Ti Tốp, hang Luồn, làng chài Cửa Vạn, động Thiên Cung đều nằm ở phía Hạ Long và có mặt trong hầu hết lịch trình. Đổi lại, tàu qua lại dày hơn, nhất là quanh các điểm nổi tiếng. Hang Sửng Sốt là điểm tham quan nổi tiếng nên thường đông khách vào giờ cao điểm. Nếu muốn tham quan thoải mái hơn, bạn nên ưu tiên lịch trình ghé hang vào sáng sớm.</p><h3>Vịnh Lan Hạ: Không gian yên tĩnh và trải nghiệm chèo kayak</h3><p>Lan Hạ nằm phía nam Hạ Long, sát đảo Cát Bà thuộc Hải Phòng. Vịnh này ít tàu hơn, có nhiều vụng kín và bãi tắm hơn, nên hợp với người muốn chèo kayak, bơi và thư thả trên boong. Các điểm tham quan quen thuộc ở Lan Hạ là khu hang Sáng Tối, Ao Ếch và làng Việt Hải.</p><p>Vịnh Bái Tử Long ở phía đông bắc Hạ Long cũng khá yên tĩnh và có một số tàu khai thác. Bài này tập trung vào Hạ Long và Lan Hạ.</p><table><colgroup><col /><col /><col /></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\"><p>Tiêu chí</p></th><th colspan=\"1\" rowspan=\"1\"><p>Vịnh Hạ Long</p></th><th colspan=\"1\" rowspan=\"1\"><p>Vịnh Lan Hạ</p></th></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Di sản UNESCO</p></td><td colspan=\"1\" rowspan=\"1\"><p>Ghi danh từ 1994</p></td><td colspan=\"1\" rowspan=\"1\"><p>Cùng khu di sản từ 2023</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Mật độ tàu</p></td><td colspan=\"1\" rowspan=\"1\"><p>Đông, nhất là quanh các điểm nổi tiếng</p></td><td colspan=\"1\" rowspan=\"1\"><p>Thưa hơn</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Điểm dừng tiêu biểu</p></td><td colspan=\"1\" rowspan=\"1\"><p>Hang Sửng Sốt, đảo Ti Tốp, hang Luồn, Cửa Vạn</p></td><td colspan=\"1\" rowspan=\"1\"><p>Hang Sáng Tối, Ao Ếch, làng Việt Hải</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Hợp với</p></td><td colspan=\"1\" rowspan=\"1\"><p>Lần đầu đến, muốn thấy các điểm quen thuộc</p></td><td colspan=\"1\" rowspan=\"1\"><p>Người thích chèo kayak, bơi, không gian yên tĩnh</p></td></tr></tbody></table><p>Nếu lần đầu đến Hạ Long, bạn có thể ưu tiên hành trình tham quan hang Sửng Sốt, đảo Ti Tốp và những địa danh nổi tiếng khác hãy chọn Hạ Long. Nếu bạn đã từng đi Hạ Long, hoặc đi cùng gia đình có người lớn tuổi cần sự yên tĩnh, Lan Hạ đáng cân nhắc hơn. </p><p>Cả hai vịnh đều có những nét hấp dẫn riêng. Để tìm hiểu kỹ hơn về cảnh quan, điểm tham quan và trải nghiệm trên từng vịnh, bạn có thể đọc bài <a href=\"/vi/blog/hanh-trinh/nen-chon-du-thuyen-ha-long-hay-lan-ha.html\">Nên chọn du thuyền Hạ Long hay Lan Hạ?</a>.</p><p>Ngoài ra, bạn nên kiểm tra địa điểm làm thủ tục trước khi đặt. Nếu du thuyền Lan Hạ đón khách tại Tuần Châu như các tàu Hạ Long, thời gian di chuyển từ Hà Nội đến bến thường không có nhiều khác biệt.</p>",
+   "new": "<h2>Nên chọn du thuyền vịnh Hạ Long hay Lan Hạ?</h2><p>Từ năm 2023, vịnh Hạ Long và vịnh Lan Hạ cùng thuộc Di sản Thiên nhiên Thế giới <a href=\"https://whc.unesco.org/en/list/672/\">Vịnh Hạ Long – Quần đảo Cát Bà</a>. Cảnh quan hai vịnh khá tương đồng; khác biệt nằm ở điểm tham quan và mật độ tàu. Hạ Long có các danh thắng quen thuộc như hang Sửng Sốt, đảo Ti Tốp, hang Luồn và làng chài Cửa Vạn. Lan Hạ, sát đảo Cát Bà, ít tàu hơn, nhiều vụng kín và bãi tắm, với các điểm như khu hang Sáng Tối, Ao Ếch và làng Việt Hải.</p><p>Lưu ý: hoạt động chèo kayak trên các vịnh thuộc quần đảo Cát Bà, trong đó có vịnh Lan Hạ, đang tạm dừng theo thông báo của chính quyền địa phương từ ngày 15/11/2024. Khu hang Sáng Tối hiện được tham quan bằng thuyền nan.</p><p>So sánh chi tiết cảnh quan, điểm tham quan, thời tiết và cách di chuyển của hai vịnh có trong bài <a href=\"/vi/blog/hanh-trinh/nen-chon-du-thuyen-ha-long-hay-lan-ha.html\">Du thuyền Hạ Long hay Lan Hạ: đâu là lựa chọn phù hợp?</a></p>",
+   "note": "VI 240: summarise \"Nên chọn du thuyền vịnh Hạ Long hay Lan Hạ?\" and link to the page that owns it"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Du thuyền Hạ Long 2 ngày 1 đêm hay 3 ngày 2 đêm?</h2><p>Với hành trình 2 ngày 1 đêm, du khách thường lên tàu vào khoảng giữa trưa, tham gia các hoạt động trong buổi chiều, nghỉ đêm trên vịnh và trở về bến vào khoảng 11 giờ sáng hôm sau. Như vậy, thời gian thực tế trên du thuyền thường chưa đến 24 giờ.</p><p>Hành trình 3 ngày 2 đêm có thêm một ngày trọn vẹn để khám phá những điểm đến nằm ngoài tuyến tham quan ngắn ngày. Tùy lịch trình, du khách có thể ghé thăm làng chài, hang động, bãi biển hoặc trải nghiệm các hoạt động trên tàu.</p><p>Nếu di chuyển từ Hà Nội, thời gian đi và về thường mất tổng cộng khoảng 5 giờ. Vì vậy, lựa chọn hành trình 3 ngày 2 đêm sẽ giúp bạn có thêm thời gian nghỉ dưỡng và khám phá vịnh mà không phải mất thêm thời gian di chuyển đường bộ.</p><ul><li><p><strong>Chọn 2 ngày 1 đêm</strong> nếu bạn ghép vào chuyến Hà Nội ngắn ngày, muốn thử lần đầu, hoặc đi cùng trẻ nhỏ chưa quen ngủ trên tàu.</p></li><li><p><strong>Chọn 3 ngày 2 đêm</strong> nếu bạn muốn nghỉ thật sự, muốn xem làng chài và bãi tắm, hoặc đi vào mùa đông xuân khi sương mù có thể che mất cảnh một buổi.</p></li></ul><p>Thử tính đơn giản: xe đi và về Hà Nội mất khoảng 5 tiếng. Với chuyến một đêm, một phần không nhỏ thời gian của bạn nằm trên xe. Nếu ở lại thêm một đêm, bạn sẽ có nhiều thời gian khám phá vịnh hơn mà không phải di chuyển thêm từ Hà Nội.</p>",
+   "new": "<h2>Du thuyền Hạ Long 2 ngày 1 đêm hay 3 ngày 2 đêm?</h2><p>Hành trình 2 ngày 1 đêm thường lên tàu vào khoảng giữa trưa và về bến khoảng 11 giờ sáng hôm sau, nên thời gian trên tàu chưa đến 24 giờ. Hành trình 3 ngày 2 đêm có thêm một ngày trọn vẹn cho những điểm nằm xa hơn trên vịnh. Vì xe đi và về Hà Nội mất khoảng 5 tiếng, ở thêm một đêm giúp bạn có nhiều thời gian trên vịnh hơn mà không phải di chuyển thêm.</p><p>Cách chọn số đêm theo nhu cầu, kèm bảng so sánh, có trong <a href=\"/vi/cam-nang/lan-dau-di-du-thuyen-ha-long\">cẩm nang lần đầu đi du thuyền Hạ Long</a>.</p>",
+   "note": "VI 240: summarise \"Du thuyền Hạ Long 2 ngày 1 đêm hay 3 ngày 2 đêm?\" and link to the page that owns it"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Từ Hà Nội đến bến du thuyền Hạ Long mất bao lâu?</h2><p>Tuần Châu, bến xuất phát của nhiều du thuyền nghỉ đêm, cách Hà Nội khoảng 2,5 tiếng xe theo đường cao tốc. Có ba cách phổ biến: xe limousine ghép khách, xe riêng hoặc tự lái.</p><p>Xe đón từ Hà Nội thường khởi hành khoảng 8 giờ sáng để kịp làm thủ tục trước trưa. Với xe ghép, tính thêm thời gian xe đi vòng đón khách ở các khách sạn khác. Nếu đi máy bay, sân bay Cát Bi (Hải Phòng) cách khu bến khoảng 45 phút đến 1 tiếng.</p>",
+   "new": "<h2>Từ Hà Nội đến bến du thuyền Hạ Long mất bao lâu?</h2><p>Tuần Châu, bến xuất phát của nhiều du thuyền nghỉ đêm, cách Hà Nội khoảng 2,5 tiếng xe theo đường cao tốc; xe đón thường khởi hành khoảng 8 giờ sáng để kịp làm thủ tục trước trưa. Ưu nhược điểm của xe limousine ghép, xe riêng, xe khách và đường đi từ sân bay được so sánh trong <a href=\"/vi/cam-nang/ha-noi-di-ha-long\">cẩm nang Hà Nội đi Hạ Long</a>.</p>",
+   "note": "VI 240: summarise \"Từ Hà Nội đến bến du thuyền Hạ Long mất bao lâu?\" and link to the page that owns it"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Một ngày trên du thuyền Hạ Long có những hoạt động gì?</h2><p>Mỗi du thuyền có lịch trình riêng, nhưng các hành trình nghỉ đêm thường có những hoạt động tương đối giống nhau. Dưới đây là ví dụ về lịch trình ngày đầu tiên để bạn dễ hình dung.</p><ul><li><p>Khoảng 11:45 – 12:30: lên tàu, nghe hướng dẫn an toàn, nhận phòng.</p></li><li><p>Khoảng 13:00: ăn trưa trong lúc tàu chạy vào vịnh.</p></li><li><p>Khoảng 15:00 – 17:00: tham quan hang, chèo kayak hoặc đi thuyền nan, có thể kèm bơi hoặc leo núi ngắm cảnh.</p></li><li><p>Từ khoảng 17:00: ngắm hoàng hôn trên boong, lớp nấu ăn, nghỉ ngơi.</p></li><li><p>19:00: ăn tối, sau đó câu mực hoặc nghỉ sớm.</p></li></ul><p>Sáng hôm sau bắt đầu sớm: tập Thái cực quyền trên boong lúc hơn 6 giờ, ăn sáng nhẹ, thêm một điểm tham quan rồi trả phòng.</p><p>Chèo kayak là một trong những hoạt động đáng trải nghiệm khi đến Hạ Long và Lan Hạ. Từ chiếc kayak nhỏ, bạn có thể khám phá những vách núi đá vôi ở khoảng cách gần, len qua các cửa hang và ngắm nhìn cảnh quan từ một góc nhìn hoàn toàn khác so với trên boong du thuyền.</p><p>Nếu muốn tìm hiểu thêm, bạn có thể tham khảo trang giới thiệu<a href=\"/vi/hoat-dong-trai-nghiem/trai-nghiem-cheo-kayak-30.html\"> trải nghiệm chèo kayak trên vịnh</a>. Buổi tối, <a href=\"/vi/hoat-dong-trai-nghiem/cau-muc-32.html\">câu mực đêm</a> cũng là hoạt động thú vị, nhẹ nhàng và không đòi hỏi kinh nghiệm.</p><figure><img src=\"/upload/2026/10/21/cheo-kayak-qua-hang-da-voi-vinh-lan-ha.jpg\" alt=\"Chèo kayak qua hang đá vôi trên vịnh Lan Hạ\" /></figure>",
+   "new": "<h2>Một ngày trên du thuyền Hạ Long có những hoạt động gì?</h2><p>Các hành trình nghỉ đêm thường lên tàu khoảng 11:45–12:30, ăn trưa khi tàu vào vịnh, tham quan hang hoặc đi thuyền nan vào buổi chiều, ngắm hoàng hôn và ăn tối trên tàu; sáng hôm sau tập Thái cực quyền trên boong rồi thêm một điểm tham quan trước khi trả phòng. Ở vịnh Hạ Long, khách có thể <a href=\"/vi/hoat-dong-trai-nghiem/trai-nghiem-cheo-kayak-30.html\">chèo kayak</a> qua hang Luồn; ở vịnh Lan Hạ, kayak đang tạm dừng. Buổi tối có thể tham gia <a href=\"/vi/hoat-dong-trai-nghiem/cau-muc-32.html\">câu mực đêm</a>. Diễn biến từng giờ của ngày lên tàu có trong <a href=\"/vi/cam-nang/lan-dau-di-du-thuyen-ha-long\">cẩm nang cho chuyến đi đầu tiên</a>.</p>",
+   "note": "VI 240: summarise \"Một ngày trên du thuyền Hạ Long có những hoạt động gì?\" and link to the page that owns it"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Đi du thuyền Hạ Long cần chuẩn bị gì?</h2><h3>Hành lý và vật dụng cần mang theo</h3><p>Quần áo nhẹ, đồ bơi, kính râm, kem chống nắng, mũ, giày đế bám để leo bậc đá trong hang, thuốc cá nhân và hộ chiếu hoặc căn cước. Từ tháng 12 tới tháng 2, thêm áo khoác cho buổi tối trên boong, vì gió trên vịnh lạnh hơn trong phố.</p><h3>Đi du thuyền Hạ Long có dễ say sóng không?</h3><p>Hiếm khi. Vịnh được hàng nghìn đảo đá che chắn nên mặt nước thường êm, khác hẳn đi biển khơi. Nếu bạn dễ say, vẫn nên mang thuốc phòng.</p><h3>Lưu ý khi đi cùng trẻ em và người lớn tuổi</h3><p>Kayak thường đi trong vùng nước kín, có áo phao, và trẻ em phải đi cùng người lớn. Các điểm như Ti Tốp hay hang Sửng Sốt có nhiều bậc dốc. Nếu đi cùng người lớn tuổi, hãy hỏi tàu có thang máy giữa các tầng không và ở điểm nào có thể ở lại trên tàu. Chính sách giá trẻ em khác nhau giữa các hãng: hỏi rõ độ tuổi miễn phí và mức phụ thu.</p><h3>Kết nối internet và an toàn trên du thuyền</h3><p>Sóng di động giữa các đảo đá trên vịnh Hạ Long và Lan Hạ đôi khi không ổn định. Để cải thiện khả năng kết nối, du thuyền Green Ruby được trang bị hệ thống internet vệ tinh <strong>Starlink</strong>, giúp du khách truy cập internet, liên lạc và làm việc từ xa thuận tiện hơn trong suốt hành trình. Tuy nhiên, tốc độ và chất lượng kết nối có thể thay đổi tùy theo vị trí và điều kiện thực tế.</p><p>Về an toàn, du khách cần chú ý hướng dẫn của thủy thủ đoàn khi lên tàu và mặc áo phao trong các hoạt động dưới nước. Ngoài ra, bạn nên cân nhắc mua bảo hiểm du lịch cho toàn bộ chuyến đi và kiểm tra kỹ phạm vi bảo hiểm để chủ động hơn trước những tình huống phát sinh.</p>",
+   "new": "<h2>Đi du thuyền Hạ Long cần chuẩn bị gì?</h2><p>Nên mang quần áo nhẹ, đồ bơi, giày đế bám cho các bậc đá trong hang, kem chống nắng, thuốc cá nhân và hộ chiếu hoặc căn cước; từ tháng 12 đến tháng 2 thêm áo khoác cho buổi tối trên boong. Mặt vịnh được các đảo đá che chắn nên hiếm khi say sóng. Nếu đi cùng trẻ em hoặc người lớn tuổi, hãy hỏi trước chính sách giá trẻ em và những điểm có nhiều bậc dốc như đảo Ti Tốp, hang Sửng Sốt.</p><p>Sóng di động giữa các đảo đá đôi khi không ổn định. Green Ruby dự kiến trang bị internet vệ tinh Starlink trên tàu; chất lượng kết nối thực tế sẽ được công bố khi tàu vận hành. Danh sách chuẩn bị đầy đủ có trong <a href=\"/vi/cam-nang/lan-dau-di-du-thuyen-ha-long\">cẩm nang lần đầu đi du thuyền Hạ Long</a>.</p>",
+   "note": "VI 240: summarise \"Đi du thuyền Hạ Long cần chuẩn bị gì?\" and link to the page that owns it"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Nên đi du thuyền Hạ Long vào mùa nào?</h2><p>Hạ Long có thể đón khách du lịch vào nhiều thời điểm trong năm, nhưng mỗi mùa lại có những đặc điểm riêng. Nếu thích thời tiết mát mẻ, thuận lợi cho tham quan và ngắm cảnh, bạn có thể cân nhắc mùa thu hoặc mùa xuân. Trong khi đó, mùa hè phù hợp hơn với hoạt động tắm biển, nhưng cũng là giai đoạn cần lưu ý đến mưa bão.</p><p>Bảng dưới đây tóm tắt điều kiện thời tiết thường gặp theo mùa để bạn dễ lựa chọn thời điểm khởi hành.</p><table><colgroup><col /><col /><col /></colgroup><tbody><tr><th colspan=\"1\" rowspan=\"1\"><p>Thời gian</p></th><th colspan=\"1\" rowspan=\"1\"><p>Thời tiết thường gặp</p></th><th colspan=\"1\" rowspan=\"1\"><p>Nên lưu ý</p></th></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Tháng 10 – 11</p></td><td colspan=\"1\" rowspan=\"1\"><p>Mát, khô, dễ chịu</p></td><td colspan=\"1\" rowspan=\"1\"><p>Mùa cao điểm, nên đặt sớm</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Tháng 12 – 2</p></td><td colspan=\"1\" rowspan=\"1\"><p>Lạnh, đôi khi có sương mù</p></td><td colspan=\"1\" rowspan=\"1\"><p>Mang áo ấm cho buổi tối trên boong; nước lạnh, ít người tắm</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Tháng 3 – 4</p></td><td colspan=\"1\" rowspan=\"1\"><p>Dễ chịu, có thể mưa phùn, mù làm giảm tầm nhìn</p></td><td colspan=\"1\" rowspan=\"1\"><p>Vẫn là mùa cao điểm</p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Tháng 5 – 9</p></td><td colspan=\"1\" rowspan=\"1\"><p>Nóng, hợp bơi và chèo kayak</p></td><td colspan=\"1\" rowspan=\"1\"><p>Mùa mưa bão, lịch trình có thể đổi hoặc hủy vì an toàn</p></td></tr></tbody></table><p>Để lựa chọn thời điểm phù hợp hơn, bạn có thể tham khảo bài <a href=\"/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html\">Du lịch Hạ Long mùa nào đẹp nhất? Thời tiết 12 tháng trong năm</a>. Bài viết phân tích thời tiết từng tháng, nhiệt độ, lượng mưa và những điều cần lưu ý khi đi du thuyền vào mùa bão.</p>",
+   "new": "<h2>Nên đi du thuyền Hạ Long vào mùa nào?</h2><p>Tháng 10–11 mát, khô và là mùa cao điểm; tháng 12–2 lạnh, đôi khi có sương mù; tháng 3–4 dễ chịu nhưng có thể mưa phùn; tháng 5–9 nóng, hợp bơi nhưng là mùa mưa bão, lịch trình có thể đổi hoặc hủy vì an toàn. Thời tiết từng tháng, nhiệt độ và lượng mưa được phân tích trong bài <a href=\"/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html\">Du lịch Hạ Long mùa nào đẹp nhất?</a></p>",
+   "note": "VI 240: summarise the season section (the storm sub-section stays)"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "Hai du thuyền được đóng năm 2026 theo cùng một thiết kế",
+   "new": "Theo kế hoạch, hai du thuyền được đóng năm 2026 theo cùng một thiết kế",
+   "note": "VI 240: build year is planned (Brand Facts)"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Khu hang Sáng Tối (kayak hoặc thuyền nan), chèo kayak ở Ao Ếch sáng hôm sau</p>",
+   "new": "<p>Khu hang Sáng Tối (thuyền nan), Ao Ếch sáng hôm sau (kayak đang tạm dừng)</p>",
+   "note": "VI 240: Lan Ha kayak status in the itinerary table"
+  },
+  {
+   "table": "app_article",
+   "id": 240,
+   "column": "content",
+   "type": "replace",
+   "old": "Du khách có thể chèo kayak hoặc đi thuyền nan tại khu vực hang Sáng Tối vào buổi chiều, sau đó tiếp tục trải nghiệm chèo kayak tại Ao Ếch vào sáng hôm sau.",
+   "new": "Du khách tham quan khu hang Sáng Tối bằng thuyền nan vào buổi chiều và ghé Ao Ếch vào sáng hôm sau; chèo kayak trên vịnh Lan Hạ hiện đang tạm dừng theo quy định địa phương.",
+   "note": "VI 240: Lan Ha kayak status in the Green Ruby section"
+  }
+ ]
+}

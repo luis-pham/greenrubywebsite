@@ -1,0 +1,29 @@
+{
+ "name": "2026-10-25 remove early-bird promotion from the FAQ",
+ "reviewed": "2026-10-25, owner decision: temporarily remove the 15% early-booking promotion",
+ "revalidate": [
+  "content",
+  "faqs",
+  "pages"
+ ],
+ "ops": [
+  {
+   "table": "app_faq",
+   "id": 103,
+   "column": "answer",
+   "type": "replace",
+   "old": "Có. Chương trình đặt sớm đang chạy với mức giảm 15%. Nhóm đông và thuê nguyên tàu có giá riêng — liên hệ trực tiếp để được báo giá.",
+   "new": "Hiện chưa có chương trình ưu đãi đang áp dụng. Nhóm đông và thuê nguyên tàu có giá riêng — liên hệ trực tiếp để được báo giá.",
+   "note": "VI FAQ: remove the 15% early-booking promotion (owner decision 25/10/2026)"
+  },
+  {
+   "table": "app_faq",
+   "id": 23,
+   "column": "answer",
+   "type": "replace",
+   "old": "Yes. We run early-booking offers and special rates for groups and full-vessel charters. Contact us or see our Offers page for current promotions.",
+   "new": "Groups and full-vessel charters are quoted individually; contact us for a quote. No early-booking promotion is running at the moment.",
+   "note": "EN FAQ: remove the early-booking promotion (owner decision 25/10/2026)"
+  }
+ ]
+}
