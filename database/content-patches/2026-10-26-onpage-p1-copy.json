@@ -1,0 +1,684 @@
+{
+ "name": "2026-10-26 on-page P1 copy fixes",
+ "reviewed": "2026-10-26 against production (read-only); docs/seo-audit/17 A2, A3",
+ "revalidate": [
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 630,
+   "column": "description",
+   "type": "replace",
+   "old": "Pick up from Hanoi and transfer to Halong (approximately 2.5 hours).",
+   "new": "Pick-up in Hanoi and transfer to Ha Long (about 2.5 hours).",
+   "note": "EN itinerary 1 day 1 08:00 Transfer to Halong: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 631,
+   "column": "description",
+   "type": "replace",
+   "old": "Estimated Arrival at Halong Bay. Arrival to Tuan Chau VIP waiting Lounge. Check in process will start at the VIP Lounge (luggage check and transfer to the cruise). Welcome drinks / refreshing water served, or any items displayed at the Gift shop as guests allowed to order.",
+   "new": "Estimated arrival in Ha Long. Check-in starts at the Green Ruby VIP lounge at Tuan Chau, where the crew takes care of your luggage and its transfer to the ship. Welcome drinks and water are served, and items from the gift shop can be ordered.",
+   "note": "EN itinerary 1 day 1 10:45 VIP Lounge Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 632,
+   "column": "description",
+   "type": "replace",
+   "old": "Start to transfer the guests by tender boat to Gia Luan Pier (Hai Phong) to embark on the cruise in Lan Ha Bay.",
+   "new": "Guests are taken by tender boat to Gia Luan Pier (Hai Phong) to board the ship in Lan Ha Bay.",
+   "note": "EN itinerary 1 day 1 11:45 Embarkation: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 633,
+   "column": "description",
+   "type": "replace",
+   "old": "Safety Briefing & Itineraries will be given at the restaurant Dining Area in the cruise. Followed by bringing to their respective cabin assigned. Distribution of keys.",
+   "new": "A safety briefing and an overview of the itinerary are given in the restaurant, after which you are shown to your cabin and given your key.",
+   "note": "EN itinerary 1 day 1 12:30 Safety Briefing & Cabin Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 634,
+   "column": "description",
+   "type": "replace",
+   "old": "Lunch will be served as the cruise sails through hundreds of limestone islets and pristine beaches.",
+   "new": "Lunch is served as the ship sails among hundreds of limestone islets and small beaches.",
+   "note": "EN itinerary 1 day 1 12:45 Lunch on Board: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 635,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore the Dark & Bright Cave area by kayak or bamboo boat, surrounded by crystal-clear waters and natural caves. Kayaking: temporarily suspended under local regulations as of October 2026.",
+   "new": "Explore the Dark & Bright Cave area by kayak or bamboo boat, among clear water and natural caves. Kayaking: temporarily suspended under local regulations as of October 2026.",
+   "note": "EN itinerary 1 day 1 15:00 Dark & Bright Cave Exploration: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 636,
+   "column": "description",
+   "type": "replace",
+   "old": "Return to the main cruise, relax, enjoy the sunset, or join any activities onboard: Vietnamese cooking class; Happy Hour; spa onboard; onboard swimming at the Pool; Captain's Wheel & Engine Tour; Gallery & Alley boat tours.",
+   "new": "Back on the ship, relax and watch the sunset, or join the onboard activities: Vietnamese cooking class, happy hour, spa treatments, the pool, the Captain's Wheel & Engine Tour, and Gallery & Alley boat tours.",
+   "note": "EN itinerary 1 day 1 17:00 Sunset & Onboard Activities: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 637,
+   "column": "description",
+   "type": "replace",
+   "old": "Enjoy a deluxe dinner on board amidst the tranquil scenery of Lan Ha Bay. Schedule briefing for the next day. Menus introductions & Diet Preferences. Awarding of the winner for the cooking class.",
+   "new": "A deluxe dinner on board amid the calm of Lan Ha Bay. The crew briefs you on the next day's schedule, introduces the menus and notes any dietary preferences, and the cooking-class winner is announced.",
+   "note": "EN itinerary 1 day 1 19:00 Dinner & Evening Program: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 638,
+   "column": "description",
+   "type": "replace",
+   "old": "Squid fishing; Booking a Spa massage; Relaxing with a drink on deck or at the bar; Movies on widescreen projector at sundeck/bar/function room; Board Games at the restaurant or Reception area; Vegetables & Fruits carving conducted by the chef.",
+   "new": "Squid fishing, a spa massage (book on board), a drink on deck or at the bar, films on the big screen on the sundeck, in the bar or the function room, board games in the restaurant or reception area, and fruit and vegetable carving with the chef.",
+   "note": "EN itinerary 1 day 1 21:00 Late Night Leisure: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 639,
+   "column": "description",
+   "type": "replace",
+   "old": "Tai Chi – Sunrise Gentle Flow & Breathwork.",
+   "new": "A gentle Tai Chi session with breathing exercises at sunrise.",
+   "note": "EN itinerary 1 day 2 06:15 Tai Chi & Sunrise: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 640,
+   "column": "description",
+   "type": "replace",
+   "old": "Breakfast onboard (Buffet).",
+   "new": "Buffet breakfast on board.",
+   "note": "EN itinerary 1 day 2 07:00 Breakfast: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 642,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore Viet Hai by walking, biking & buggy car.",
+   "new": "Explore Viet Hai village on foot, by bicycle or by electric cart.",
+   "note": "EN itinerary 1 day 2 10:00 Viet Hai Village: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 643,
+   "column": "description",
+   "type": "replace",
+   "old": "Vietnamese Authentic Cuisine is served at the serene village.",
+   "new": "Lunch of authentic Vietnamese dishes in the village.",
+   "note": "EN itinerary 1 day 2 12:00 Village Lunch: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 644,
+   "column": "description",
+   "type": "replace",
+   "old": "Enjoy swimming at the wild & natural white sand beach at the bay.",
+   "new": "Swim at a natural white-sand beach in the bay, when conditions allow.",
+   "note": "EN itinerary 1 day 2 14:00 White Sand Beach Swimming: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 645,
+   "column": "description",
+   "type": "replace",
+   "old": "Return to the main boat. Relax or join the afternoon onboard activities: Vietnamese cooking class; Happy Hour; spa onboard; onboard swimming at the Pool; Captain's Wheel & Engine Tour; Gallery & Alley boat tours.",
+   "new": "Back on the ship, relax or join the afternoon activities: Vietnamese cooking class, happy hour, spa treatments, the pool, the Captain's Wheel & Engine Tour, and Gallery & Alley boat tours.",
+   "note": "EN itinerary 1 day 2 15:00 Return & Onboard Activities: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 646,
+   "column": "description",
+   "type": "replace",
+   "old": "Romantic Dinner on a private setting (Room, Sundeck, Pool side, Function).",
+   "new": "A romantic dinner in a private setting: in your cabin, on the sundeck, by the pool or in the function room.",
+   "note": "EN itinerary 1 day 2 19:00 Romantic Dinner: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 647,
+   "column": "description",
+   "type": "replace",
+   "old": "Squid fishing; Booking a Spa massage; Relaxing with a drink on deck or at the bar; Movies on widescreen projector at sundeck/bar/function room; Board Games at the restaurant or Reception area; Vegetables & Fruits carving conducted by the chef.",
+   "new": "Squid fishing, a spa massage (book on board), a drink on deck or at the bar, films on the big screen on the sundeck, in the bar or the function room, board games in the restaurant or reception area, and fruit and vegetable carving with the chef.",
+   "note": "EN itinerary 1 day 2 21:00 Late Night Leisure: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 648,
+   "column": "description",
+   "type": "replace",
+   "old": "Sunrise Gentle Flow & Breathwork – Tai Chi. The morning begins with gentle stretching and mindful breathing as sunrise illuminates the bay.",
+   "new": "Gentle Tai Chi and mindful breathing as the sun rises over the bay.",
+   "note": "EN itinerary 1 day 3 06:15 Tai Chi & Sunrise: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 649,
+   "column": "description",
+   "type": "replace",
+   "old": "Light Breakfast served (Buffet) onboard.",
+   "new": "Light buffet breakfast on board.",
+   "note": "EN itinerary 1 day 3 07:00 Light Breakfast: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 650,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore one of the bay's most magnificent caves, renowned for its vast cathedral-like chambers.",
+   "new": "Explore one of the bay's most impressive caves, known for its vast cathedral-like chambers.",
+   "note": "EN itinerary 1 day 3 08:00 Cave Exploration: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 651,
+   "column": "description",
+   "type": "replace",
+   "old": "Return the key, settle the bills at the reception, put out luggage outside cabin.",
+   "new": "Return your key, settle your bill at reception and leave your luggage outside the cabin.",
+   "note": "EN itinerary 1 day 3 09:00 Check-out: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 652,
+   "column": "description",
+   "type": "replace",
+   "old": "A leisurely brunch is served as the cruise returns to port, concluding a refined and memorable escape.",
+   "new": "A leisurely brunch is served as the ship returns to port, bringing the voyage to a close.",
+   "note": "EN itinerary 1 day 3 09:30 Brunch & Return to Port: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 735,
+   "column": "description",
+   "type": "replace",
+   "old": "Pick up from Hanoi and transfer to Halong (approximately 2.5 hours).",
+   "new": "Pick-up in Hanoi and transfer to Ha Long (about 2.5 hours).",
+   "note": "EN itinerary 2 day 1 08:00 Transfer to Halong: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 736,
+   "column": "description",
+   "type": "replace",
+   "old": "Estimated Arrival at Halong Bay. Arrival to Tuan Chau VIP waiting Lounge. Check in process will start at the VIP Lounge (luggage check and transfer to the cruise). Welcome drinks / refreshing water served, or any items displayed at the Gift shop as guests allowed to order.",
+   "new": "Estimated arrival in Ha Long. Check-in starts at the Green Ruby VIP lounge at Tuan Chau, where the crew takes care of your luggage and its transfer to the ship. Welcome drinks and water are served, and items from the gift shop can be ordered.",
+   "note": "EN itinerary 2 day 1 10:45 VIP Lounge Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 737,
+   "column": "description",
+   "type": "replace",
+   "old": "Start to transfer the guests by tender boat to Gia Luan Pier (Hai Phong) to embark on the cruise in Lan Ha Bay.",
+   "new": "Guests are taken by tender boat to Gia Luan Pier (Hai Phong) to board the ship in Lan Ha Bay.",
+   "note": "EN itinerary 2 day 1 11:45 Embarkation: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 738,
+   "column": "description",
+   "type": "replace",
+   "old": "Safety Briefing & Itineraries will be given at the restaurant Dining Area in the cruise. Followed by bringing to their respective cabin assigned. Distribution of keys.",
+   "new": "A safety briefing and an overview of the itinerary are given in the restaurant, after which you are shown to your cabin and given your key.",
+   "note": "EN itinerary 2 day 1 12:30 Safety Briefing & Cabin Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 739,
+   "column": "description",
+   "type": "replace",
+   "old": "Lunch will be served as the cruise sails through hundreds of limestone islets and pristine beaches.",
+   "new": "Lunch is served as the ship sails among hundreds of limestone islets and small beaches.",
+   "note": "EN itinerary 2 day 1 13:00 Lunch on Board: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 740,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore the Dark & Bright Cave area by kayak or bamboo boat, surrounded by crystal-clear waters and natural caves. Kayaking: temporarily suspended under local regulations as of October 2026.",
+   "new": "Explore the Dark & Bright Cave area by kayak or bamboo boat, among clear water and natural caves. Kayaking: temporarily suspended under local regulations as of October 2026.",
+   "note": "EN itinerary 2 day 1 15:30 Dark & Bright Cave Exploration: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 875,
+   "column": "description",
+   "type": "replace",
+   "old": "Return to the main cruise, relax, enjoy the sunset, or join any activities onboard: Vietnamese cooking class; Happy Hour; spa onboard; onboard swimming at the Pool; Captain's Wheel & Engine Tour; Gallery & Alley boat tours.",
+   "new": "Back on the ship, relax and watch the sunset, or join the onboard activities: Vietnamese cooking class, happy hour, spa treatments, the pool, the Captain's Wheel & Engine Tour, and Gallery & Alley boat tours.",
+   "note": "EN itinerary 2 day 1 17:00 Sunset & Onboard Activities: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 741,
+   "column": "description",
+   "type": "replace",
+   "old": "Enjoy a deluxe dinner on board amidst the tranquil scenery of Lan Ha Bay. Schedule briefing for the next day. Menus introductions & Diet Preferences. Awarding of the winner for the cooking class.",
+   "new": "A deluxe dinner on board amid the calm of Lan Ha Bay. The crew briefs you on the next day's schedule, introduces the menus and notes any dietary preferences, and the cooking-class winner is announced.",
+   "note": "EN itinerary 2 day 1 19:00 Dinner & Evening Program: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 742,
+   "column": "description",
+   "type": "replace",
+   "old": "Squid fishing; Booking a Spa massage; Relaxing with a drink on deck or at the bar; Movies on widescreen projector at sundeck/bar/function room; Board Games at the restaurant or Reception area; Vegetables & Fruits carving conducted by the chef.",
+   "new": "Squid fishing, a spa massage (book on board), a drink on deck or at the bar, films on the big screen on the sundeck, in the bar or the function room, board games in the restaurant or reception area, and fruit and vegetable carving with the chef.",
+   "note": "EN itinerary 2 day 1 21:00 Late Night Leisure: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 876,
+   "column": "description",
+   "type": "replace",
+   "old": "Start your day with a Tai Chi session and watch the sunrise from the sundeck.",
+   "new": "Start the day with Tai Chi on the sundeck as the sun rises.",
+   "note": "EN itinerary 2 day 2 06:30 Tai Chi & Sunrise: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 743,
+   "column": "description",
+   "type": "replace",
+   "old": "Light breakfast as the cruise sails toward Ao Ech area, a peaceful corner of the bay.",
+   "new": "Light breakfast as the ship sails towards Ao Ech, a peaceful corner of the bay.",
+   "note": "EN itinerary 2 day 2 07:00 Light Breakfast: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 744,
+   "column": "description",
+   "type": "replace",
+   "old": "Go kayaking/swimming around the boat at Ao Ech Lagoon, surrounded by emerald water and limestone cliffs. Kayaking: temporarily suspended under local regulations as of October 2026.",
+   "new": "Kayak or swim around the boat at Ao Ech Lagoon, among emerald water and limestone cliffs. Kayaking: temporarily suspended under local regulations as of October 2026.",
+   "note": "EN itinerary 2 day 2 07:45 Ao Ech Lagoon Kayaking: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 745,
+   "column": "description",
+   "type": "replace",
+   "old": "Check out and cruise back to the pier while enjoying the brunch served before disembarkation.",
+   "new": "Check out, then enjoy brunch as the ship cruises back towards the pier.",
+   "note": "EN itinerary 2 day 2 09:30 Check-out & Brunch: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 747,
+   "column": "description",
+   "type": "replace",
+   "old": "Disembark to Tuan Chau pier then transfer back to Hanoi. End of the trip.",
+   "new": "Disembark at Tuan Chau, then transfer back to Hanoi. End of the trip.",
+   "note": "EN itinerary 2 day 2 11:00 Disembarkation & Return: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 713,
+   "column": "description",
+   "type": "replace",
+   "old": "Pick up from Hanoi and transfer to Halong (approximately 2.5 hours).",
+   "new": "Pick-up in Hanoi and transfer to Ha Long (about 2.5 hours).",
+   "note": "EN itinerary 3 day 1 08:00 Transfer to Halong: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 714,
+   "column": "description",
+   "type": "replace",
+   "old": "Estimated Arrival at Halong Bay. Arrival to Tuan Chau VIP waiting Lounge. Check in process will start at the VIP Lounge (luggage check and transfer to the cruise). Welcome drinks / refreshing water served, or any items displayed at the Gift shop as guests allowed to order.",
+   "new": "Estimated arrival in Ha Long. Check-in starts at the Green Ruby VIP lounge at Tuan Chau, where the crew takes care of your luggage and its transfer to the ship. Welcome drinks and water are served, and items from the gift shop can be ordered.",
+   "note": "EN itinerary 3 day 1 10:45 VIP Lounge Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 715,
+   "column": "description",
+   "type": "replace",
+   "old": "Start to transfer the guests by tender boat to embark on the cruise in Halong Bay.",
+   "new": "Guests are taken by tender boat to board the ship in Ha Long Bay.",
+   "note": "EN itinerary 3 day 1 11:45 Embarkation: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 716,
+   "column": "description",
+   "type": "replace",
+   "old": "Safety Briefing & Itineraries will be given at the restaurant Dining Area in the cruise. Followed by bringing to their respective cabin assigned. Distribution of keys.",
+   "new": "A safety briefing and an overview of the itinerary are given in the restaurant, after which you are shown to your cabin and given your key.",
+   "note": "EN itinerary 3 day 1 12:30 Safety Briefing & Cabin Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 717,
+   "column": "description",
+   "type": "replace",
+   "old": "Lunch will be served as the cruise sails through hundreds of limestone islets and pristine beaches.",
+   "new": "Lunch is served as the ship sails among hundreds of limestone islets and small beaches.",
+   "note": "EN itinerary 3 day 1 13:00 Lunch on Board: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 718,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore the beautiful magnificent Luon Cave. Kayak or take a bamboo boat through a natural archway into a serene lagoon embraced by towering cliffs.",
+   "new": "Explore Luon Cave: kayak or take a bamboo boat through a natural archway into a quiet lagoon enclosed by tall cliffs.",
+   "note": "EN itinerary 3 day 1 15:30 Luon Cave Exploration: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 719,
+   "column": "description",
+   "type": "replace",
+   "old": "Visiting Titop Island. Swim in crystal-clear waters or ascend to the summit for a sweeping panoramic view of the bay.",
+   "new": "Visit Ti Top Island: swim in clear water when conditions allow, or climb to the summit for a panoramic view of the bay.",
+   "note": "EN itinerary 3 day 1 16:30 Ti Top Island: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 720,
+   "column": "description",
+   "type": "replace",
+   "old": "Return to the main cruise, relax, enjoy the sunset, or join any activities onboard: Vietnamese cooking class; Happy Hour; spa onboard; onboard swimming at the Pool; Captain's Wheel & Engine Tour; Gallery & Alley boat tours.",
+   "new": "Back on the ship, relax and watch the sunset, or join the onboard activities: Vietnamese cooking class, happy hour, spa treatments, the pool, the Captain's Wheel & Engine Tour, and Gallery & Alley boat tours.",
+   "note": "EN itinerary 3 day 1 17:30 Sunset & Onboard Activities: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 721,
+   "column": "description",
+   "type": "replace",
+   "old": "Enjoy a deluxe dinner on board amidst the tranquil scenery of Halong Bay. Schedule briefing for the next day. Menus introductions & Diet Preferences. Awarding of the winner for the cooking class.",
+   "new": "A deluxe dinner on board amid the calm of Ha Long Bay. The crew briefs you on the next day's schedule, introduces the menus and notes any dietary preferences, and the cooking-class winner is announced.",
+   "note": "EN itinerary 3 day 1 19:00 Dinner & Evening Program: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 722,
+   "column": "description",
+   "type": "replace",
+   "old": "Squid fishing; Booking a Spa massage; Relaxing with a drink on deck or at the bar; Movies on widescreen projector at sundeck/bar/function room; Board Games at the restaurant or Reception area; Vegetables & Fruits carving conducted by the chef.",
+   "new": "Squid fishing, a spa massage (book on board), a drink on deck or at the bar, films on the big screen on the sundeck, in the bar or the function room, board games in the restaurant or reception area, and fruit and vegetable carving with the chef.",
+   "note": "EN itinerary 3 day 1 21:00 Late Night Leisure: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 723,
+   "column": "description",
+   "type": "replace",
+   "old": "Sunrise Gentle Flow & Breathwork – contemplating the serenity of nature.",
+   "new": "Gentle Tai Chi and breathing exercises at sunrise.",
+   "note": "EN itinerary 3 day 2 06:15 Tai Chi & Sunrise: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 724,
+   "column": "description",
+   "type": "replace",
+   "old": "Breakfast served.",
+   "new": "Breakfast on board.",
+   "note": "EN itinerary 3 day 2 07:00 Breakfast: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 726,
+   "column": "description",
+   "type": "replace",
+   "old": "Visit Cua Van Fishing Village. Discover the authentic rhythm of life at one of the bay's most picturesque floating villages.",
+   "new": "Visit Cua Van, once one of the bay's best-known floating fishing villages. Its families moved ashore in 2014, and the village is now seen from the water by bamboo boat.",
+   "note": "EN itinerary 3 day 2 10:00 Cua Van Fishing Village: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 727,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore Tien Ong Cave, an archaeological cave rich with traces of ancient habitation.",
+   "new": "Explore Tien Ong Cave, an archaeological site with traces of prehistoric habitation.",
+   "note": "EN itinerary 3 day 2 11:30 Tien Ong Cave: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 728,
+   "column": "description",
+   "type": "replace",
+   "old": "Lunch is served on the day boat while cruising through serene waters.",
+   "new": "Lunch is served on the day boat as it cruises through calm water.",
+   "note": "EN itinerary 3 day 2 12:30 Lunch on Day Boat: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 729,
+   "column": "description",
+   "type": "replace",
+   "old": "Visit a pearl cultivation facility. Learn about the delicate art of pearl cultivation and craftsmanship.",
+   "new": "Visit a pearl farm and learn how pearls are cultivated and worked.",
+   "note": "EN itinerary 3 day 2 14:00 Pearl Farm Visit: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 730,
+   "column": "description",
+   "type": "replace",
+   "old": "Return to the main cruise & relax.",
+   "new": "Return to the ship and relax.",
+   "note": "EN itinerary 3 day 2 15:30 Return & Relax: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 731,
+   "column": "description",
+   "type": "replace",
+   "old": "Dinner & overnight on the bay.",
+   "new": "Dinner on board and a second night on the bay.",
+   "note": "EN itinerary 3 day 2 19:00 Dinner & Overnight: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 732,
+   "column": "description",
+   "type": "replace",
+   "old": "Sunrise Gentle Flow & Breathwork. The morning begins with gentle stretching and mindful breathing as sunrise illuminates the bay.",
+   "new": "Gentle stretching and mindful breathing as the sun rises over the bay.",
+   "note": "EN itinerary 3 day 3 06:15 Tai Chi & Sunrise: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 733,
+   "column": "description",
+   "type": "replace",
+   "old": "Visit Sung Sot Cave. Explore one of the bay's most magnificent caves, renowned for its vast cathedral-like chambers.",
+   "new": "Visit Sung Sot (Surprise) Cave, one of the bay's best-known caves, with vast cathedral-like chambers.",
+   "note": "EN itinerary 3 day 3 08:00 Sung Sot Cave: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 734,
+   "column": "description",
+   "type": "replace",
+   "old": "A leisurely brunch is served as the cruise returns to port, concluding a refined and memorable escape.",
+   "new": "A leisurely brunch is served as the ship returns to port, bringing the voyage to a close.",
+   "note": "EN itinerary 3 day 3 09:30 Brunch & Return to Port: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 804,
+   "column": "description",
+   "type": "replace",
+   "old": "Pick up from Hanoi and transfer to Halong (approximately 2.5 hours).",
+   "new": "Pick-up in Hanoi and transfer to Ha Long (about 2.5 hours).",
+   "note": "EN itinerary 4 day 1 08:00 Transfer to Halong: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 805,
+   "column": "description",
+   "type": "replace",
+   "old": "Estimated Arrival at Halong Bay. Arrival to Tuan Chau VIP waiting Lounge. Check in process will start at the VIP Lounge (luggage check and transfer to the cruise). Welcome drinks / refreshing water served, or any items displayed at the Gift shop as guests allowed to order.",
+   "new": "Estimated arrival in Ha Long. Check-in starts at the Green Ruby VIP lounge at Tuan Chau, where the crew takes care of your luggage and its transfer to the ship. Welcome drinks and water are served, and items from the gift shop can be ordered.",
+   "note": "EN itinerary 4 day 1 10:45 VIP Lounge Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 806,
+   "column": "description",
+   "type": "replace",
+   "old": "Start to transfer the guests by tender boat to embark on the cruise in Halong Bay.",
+   "new": "Guests are taken by tender boat to board the ship in Ha Long Bay.",
+   "note": "EN itinerary 4 day 1 11:45 Embarkation: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 807,
+   "column": "description",
+   "type": "replace",
+   "old": "Safety Briefing & Itineraries will be given at the restaurant Dining Area in the cruise. Followed by bringing to their respective cabin assigned. Distribution of keys.",
+   "new": "A safety briefing and an overview of the itinerary are given in the restaurant, after which you are shown to your cabin and given your key.",
+   "note": "EN itinerary 4 day 1 12:30 Safety Briefing & Cabin Check-in: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 808,
+   "column": "description",
+   "type": "replace",
+   "old": "Lunch will be served as the cruise sails through hundreds of limestone islets and pristine beaches.",
+   "new": "Lunch is served as the ship sails among hundreds of limestone islets and small beaches.",
+   "note": "EN itinerary 4 day 1 13:00 Lunch on Board: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 809,
+   "column": "description",
+   "type": "replace",
+   "old": "Explore the beautiful magnificent Luon Cave. Kayak or take a bamboo boat through a natural archway into a serene lagoon embraced by towering cliffs.",
+   "new": "Explore Luon Cave: kayak or take a bamboo boat through a natural archway into a quiet lagoon enclosed by tall cliffs.",
+   "note": "EN itinerary 4 day 1 15:30 Luon Cave Exploration: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 810,
+   "column": "description",
+   "type": "replace",
+   "old": "Visiting Titop Island. Swim in crystal-clear waters or ascend to the summit for a sweeping panoramic view of the bay.",
+   "new": "Visit Ti Top Island: swim in clear water when conditions allow, or climb to the summit for a panoramic view of the bay.",
+   "note": "EN itinerary 4 day 1 16:30 Ti Top Island: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 811,
+   "column": "description",
+   "type": "replace",
+   "old": "Return to the main cruise, relax, enjoy the sunset, or join any activities onboard: Vietnamese cooking class; Happy Hour; spa onboard; onboard swimming at the Pool; Captain's Wheel & Engine Tour; Gallery & Alley boat tours.",
+   "new": "Back on the ship, relax and watch the sunset, or join the onboard activities: Vietnamese cooking class, happy hour, spa treatments, the pool, the Captain's Wheel & Engine Tour, and Gallery & Alley boat tours.",
+   "note": "EN itinerary 4 day 1 17:30 Sunset & Onboard Activities: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 812,
+   "column": "description",
+   "type": "replace",
+   "old": "Enjoy a deluxe dinner on board amidst the tranquil scenery of Halong Bay. Schedule briefing for the next day. Menus introductions & Diet Preferences. Awarding of the winner for the cooking class.",
+   "new": "A deluxe dinner on board amid the calm of Ha Long Bay. The crew briefs you on the next day's schedule, introduces the menus and notes any dietary preferences, and the cooking-class winner is announced.",
+   "note": "EN itinerary 4 day 1 19:00 Dinner & Evening Program: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 813,
+   "column": "description",
+   "type": "replace",
+   "old": "Squid fishing; Booking a Spa massage; Relaxing with a drink on deck or at the bar; Movies on widescreen projector at sundeck/bar/function room; Board Games at the restaurant or Reception area; Vegetables & Fruits carving conducted by the chef.",
+   "new": "Squid fishing, a spa massage (book on board), a drink on deck or at the bar, films on the big screen on the sundeck, in the bar or the function room, board games in the restaurant or reception area, and fruit and vegetable carving with the chef.",
+   "note": "EN itinerary 4 day 1 21:00 Late Night Leisure: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 814,
+   "column": "description",
+   "type": "replace",
+   "old": "Morning Contemplation – while enjoying the beautiful sunrise. Light Breakfast while the morning begins with gentle stretching and mindful breathing as sunrise illuminates the bay.",
+   "new": "Watch the sunrise with gentle stretching and mindful breathing, followed by a light breakfast.",
+   "note": "EN itinerary 4 day 2 06:15 Morning Contemplation & Breakfast: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 815,
+   "column": "description",
+   "type": "replace",
+   "old": "Visit Sung Sot (Surprise) Cave. Explore one of the bay's most magnificent caves, renowned for its vast cathedral-like chambers.",
+   "new": "Visit Sung Sot (Surprise) Cave, one of the bay's best-known caves, with vast cathedral-like chambers.",
+   "note": "EN itinerary 4 day 2 08:00 Sung Sot Cave: edited English"
+  },
+  {
+   "table": "app_itinerary_day_detail",
+   "id": 816,
+   "column": "description",
+   "type": "replace",
+   "old": "A leisurely brunch is served as the cruise returns to port, concluding a refined and memorable escape.",
+   "new": "A leisurely brunch is served as the ship returns to port, bringing the voyage to a close.",
+   "note": "EN itinerary 4 day 2 09:30 Brunch & Return to Port: edited English"
+  },
+  {
+   "table": "app_exp_activity",
+   "id": 7,
+   "column": "summary",
+   "type": "replace",
+   "old": "Awaken body & mind with gentle morning flow.",
+   "new": "Close the day with a guided 30-minute meditation on deck as the bay settles into evening calm.",
+   "note": "EN Evening Meditation (19:00): summary said 'morning flow'"
+  },
+  {
+   "table": "app_page_config",
+   "id": 33,
+   "column": "value",
+   "type": "replace",
+   "old": "Join thousands of satisfied guests who have experienced the Green Ruby difference. Book now and receive our exclusive sustainability package.",
+   "new": "Green Ruby 1 and Green Ruby 2 are expected to begin sailing in February 2027. Send us your preferred dates and our reservations team will hold a cabin for you.",
+   "note": "EN home: no guests yet (pre-launch) and no approved offer"
+  },
+  {
+   "table": "app_page_config",
+   "id": 16,
+   "column": "value",
+   "type": "replace",
+   "old": "Hãy cùng hàng nghìn du khách hài lòng trải nghiệm sự khác biệt của Green Ruby. Đặt chỗ ngay hôm nay để nhận gói ưu đãi phát triển bền vững độc quyền",
+   "new": "Green Ruby 1 và Green Ruby 2 dự kiến bắt đầu hoạt động từ tháng 2/2027. Gửi ngày bạn mong muốn, đội đặt chỗ sẽ giữ phòng cho bạn.",
+   "note": "VI home: chưa có khách (chưa vận hành) và không có ưu đãi đã duyệt"
+  },
+  {
+   "table": "app_page_config",
+   "id": 72,
+   "column": "value",
+   "type": "replace",
+   "old": "Book today to receive special offers and secure a luxurious experience in Ha Long Bay.",
+   "new": "Tell us your dates and plans, and our team will arrange transfers, celebrations and private events around your voyage.",
+   "note": "EN services: no approved offer"
+  },
+  {
+   "table": "app_page_config",
+   "id": 71,
+   "column": "value",
+   "type": "replace",
+   "old": "Đặt ngay hôm nay để nhận ưu đãi đặc biệt và tận hưởng trải nghiệm đẳng cấp tại Vịnh Hạ Long.",
+   "new": "Cho chúng tôi biết ngày đi và mong muốn của bạn, đội ngũ Green Ruby sẽ sắp xếp đưa đón, tiệc kỷ niệm và sự kiện riêng phù hợp với hành trình.",
+   "note": "VI dịch vụ: FAQ ghi hiện chưa có ưu đãi"
+  }
+ ]
+}
