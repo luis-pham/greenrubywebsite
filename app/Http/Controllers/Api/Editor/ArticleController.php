@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api\Editor;
 
 use App\Services\Content\ContentTranslations;
+use App\Services\Seo\SeoGuard;
 use App\Support\FrontendRevalidator;
 use App\Support\HtmlSanitizer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Modules\BackEnd\Entities\AppArticle;
@@ -103,6 +105,14 @@ class ArticleController extends Controller
         $a = self::findOrFail($id);
         $wasLive = self::status($a) !== 'draft';
         $this->fill($a, $request);
+        // Publishing guard (docs/seo-audit/14, G3): going live with a keyword another URL owns needs an
+        // override with a reason by an allowed role; the decision is logged either way.
+        if (!$wasLive && self::status($a) !== 'draft') {
+            $gate = SeoGuard::gate('publish', 'article', $a->id, SeoGuard::candidateFromArticle($a), Auth::guard('admin')->id(), $request->input('seoOverrideReason'));
+            if (!$gate['allowed']) {
+                return response()->json(['message' => 'Bài trùng từ khóa với một URL đã có, chưa đăng.', 'seo' => $gate['report'], 'canOverride' => $gate['canOverride']], 409);
+            }
+        }
         $a->save();
 
         if ($wasLive || self::status($a) !== 'draft') {
@@ -290,7 +300,7 @@ class ArticleController extends Controller
         return ((int) $a->language_id === 1 ? '/vi' : '') . '/blog/' . $a->category_slug . '/' . $a->slug . '.html';
     }
 
-    private static function date($value): ?string
+    public static function date($value): ?string
     {
         return $value ? Carbon::parse($value)->format('Y-m-d\TH:i') : null;
     }

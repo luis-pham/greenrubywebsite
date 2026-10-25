@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Editor;
 
+use App\Services\Seo\SeoGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Modules\BackEnd\Entities\AppArticle;
@@ -129,9 +131,21 @@ class PlanController extends Controller
         if ($ids) {
             $q->whereIn('id', $ids);
         }
-        $n = $q->update(['ai_status' => 'queued', 'ai_error' => null, 'ai_queued_at' => now(), 'updated_at' => now()]);
+        // Pre-writing guard: an item whose keyword is already owned elsewhere is not drafted (unless overridden).
+        $allowed = [];
+        $blocked = [];
+        foreach ($q->get() as $plan) {
+            $gate = SeoGuard::gate('ai_queue', 'plan', (int) $plan->id, SeoGuard::candidateFromPlan($plan), Auth::guard('admin')->id());
+            if ($gate['allowed']) {
+                $allowed[] = $plan->id;
+            } else {
+                $blocked[] = ['id' => (int) $plan->id, 'code' => $plan->code, 'title' => $plan->title, 'report' => $gate['report']];
+            }
+        }
+        $n = $allowed ? DB::table('app_article_plan')->whereIn('id', $allowed)
+            ->update(['ai_status' => 'queued', 'ai_error' => null, 'ai_queued_at' => now(), 'updated_at' => now()]) : 0;
 
-        return response()->json(['queued' => $n] + $this->aiSummary());
+        return response()->json(['queued' => $n, 'blocked' => $blocked] + $this->aiSummary());
     }
 
     public function aiCancel()
@@ -164,12 +178,16 @@ class PlanController extends Controller
     }
 
     /** Creates the draft article for a plan item (title, focus keyword, category from the plan). */
-    public function start(int $id)
+    public function start(Request $request, int $id)
     {
         $plan = DB::table('app_article_plan')->where('id', $id)->first();
         abort_if(!$plan, 404);
         if ($plan->article_id && AppArticle::where('id', $plan->article_id)->exists()) {
             return response()->json(['articleId' => (int) $plan->article_id]);
+        }
+        $gate = SeoGuard::gate('plan_start', 'plan', $id, SeoGuard::candidateFromPlan($plan), Auth::guard('admin')->id(), $request->input('seoOverrideReason'));
+        if (!$gate['allowed']) {
+            return response()->json(['message' => 'Từ khóa của mục này đã có URL sở hữu.', 'seo' => $gate['report'], 'canOverride' => $gate['canOverride']], 409);
         }
 
         $lang = ArticleController::LANGS[$plan->lang] ?? 2;

@@ -72,7 +72,9 @@ class AuthController extends Controller
 
     private static function user(AdUser $user): array
     {
-        return ['id' => $user->id, 'username' => $user->username, 'fullname' => $user->fullname ?: $user->username];
+        return ['id' => $user->id, 'username' => $user->username, 'fullname' => $user->fullname ?: $user->username,
+            // May override a blocking cannibalization check (config seo.override_roles).
+            'canOverrideSeo' => \App\Services\Seo\SeoGuard::canOverride((int) $user->id)];
     }
 
     private static function cookie(Request $request, string $value, int $minutes): Cookie

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Editor\ArticleController;
 use App\Http\Controllers\Api\Editor\AuthController;
 use App\Http\Controllers\Api\Editor\MediaController;
 use App\Http\Controllers\Api\Editor\PlanController;
+use App\Http\Controllers\Api\Editor\SeoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +38,12 @@ Route::middleware('editor.auth')->group(function () {
     Route::post('/plan/ai-draft', [PlanController::class, 'aiQueue']);
     Route::post('/plan/ai-cancel', [PlanController::class, 'aiCancel']);
     Route::get('/plan/ai-status', [PlanController::class, 'aiStatus']);
+    Route::post('/plan/{id}/override', [SeoController::class, 'overridePlan'])->whereNumber('id');
+
+    // SEO governance: cannibalization check, keyword ownership registry, guard log (docs/seo-audit/14).
+    Route::get('/seo/check', [SeoController::class, 'check']);
+    Route::get('/seo/owners', [SeoController::class, 'owners']);
+    Route::post('/seo/owners', [SeoController::class, 'storeOwner']);
+    Route::put('/seo/owners/{id}', [SeoController::class, 'updateOwner'])->whereNumber('id');
+    Route::get('/seo/log', [SeoController::class, 'log']);
 });
