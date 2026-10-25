@@ -1,0 +1,39 @@
+{
+ "name": "2026-10-25 Starlink written as planned",
+ "reviewed": "2026-10-25 against production content (read-only); owner: Starlink is planned until in service",
+ "revalidate": [
+  "content",
+  "faqs",
+  "articles",
+  "pages"
+ ],
+ "ops": [
+  {
+   "table": "app_faq",
+   "id": 60,
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>Connectivity in the bay is traditionally weak, so we're equipping our vessels with Starlink satellite internet to provide reliable WiFi where most boats can't - though we also encourage guests to unplug and enjoy the bay.</p>",
+   "new": "<p>Mobile signal in the bay is often weak, so Starlink satellite internet is planned on board both Green Ruby ships for more reliable WiFi. Actual speeds and coverage will be published once the ships are sailing (expected February 2027). We also encourage guests to unplug and enjoy the bay.</p>",
+   "note": "EN FAQ: Starlink is planned, not installed (owner 25/10/2026)"
+  },
+  {
+   "table": "app_faq",
+   "id": 110,
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>Có. Chúng tôi trang bị Starlink — internet vệ tinh tốc độ cao, kết nối ổn định ngay giữa vịnh.</p>",
+   "new": "<p>Dự kiến có. Green Ruby dự kiến trang bị internet vệ tinh Starlink trên cả hai tàu để kết nối ổn định hơn giữa vịnh. Tốc độ và vùng phủ sóng thực tế sẽ được công bố khi tàu vận hành (dự kiến tháng 2/2027).</p>",
+   "note": "VI FAQ: Starlink ghi dự kiến (chủ đầu tư 25/10/2026)"
+  },
+  {
+   "table": "app_article",
+   "id": 221,
+   "column": "content",
+   "type": "replace",
+   "old": "<tr><td>Connectivity</td><td>Starlink satellite internet</td></tr>",
+   "new": "<tr><td>Connectivity</td><td>Starlink satellite internet (planned)</td></tr>",
+   "note": "EN article 221 fact table: Starlink planned"
+  }
+ ]
+}
