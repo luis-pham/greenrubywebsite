@@ -1846,47 +1846,49 @@ HTML,
         'image_credit' => null,
         'itineraries' => ['en' => [2], 'vi' => [5]],
         'sources' => [$unesco, $catBaMab],
-        'editor_notes' => "Needs verified coordinates. Hero is the owner's photo described in the media library as kayaking at Ao Ech (2026-10-21). The origin of the name (frog shape) is not confirmed and is left out.",
+        'editor_notes' => "Needs verified coordinates. Hero is the owner's photo described in the media library as kayaking at Ao Ech (2026-10-21). The origin of the name (frog shape) is not confirmed and is left out. Before publishing: replace the kayaking hero, since Lan Ha kayaking is suspended (as of October 2026).",
         'en' => [
             'slug' => 'ao-ech-lagoon',
             'name' => 'Ao Ech Lagoon',
             'image_alt' => 'Kayaking on calm water at Ao Ech lagoon in Lan Ha Bay',
-            'seo_title' => 'Ao Ech Lagoon (Frog Lake), Lan Ha Bay: Kayak & Swim',
-            'seo_description' => 'Ao Ech is a sheltered lagoon in Lan Ha Bay for early-morning kayaking and swimming. What to expect, who it suits, conditions and Green Ruby\'s plan.',
-            'summary' => 'A sheltered stretch of water among limestone islets in Lan Ha Bay, used for kayaking and swimming when the sea is calm. Early morning is the quietest time.',
+            'seo_title' => 'Ao Ech Lagoon (Frog Lake), Lan Ha Bay: What to Expect',
+            'seo_description' => 'Ao Ech is a sheltered lagoon in Lan Ha Bay, quietest in the early morning. Kayaking status, swimming conditions, what to expect and Green Ruby\'s plan.',
+            'summary' => 'A sheltered stretch of water among limestone islets in Lan Ha Bay, quietest in the early morning. Kayaking in Lan Ha Bay is temporarily suspended under local regulations (as of October 2026).',
             'content' => <<<'HTML'
 <h2>Where it is</h2>
 <p>Ao Ech, often translated as Frog Lake or Frog Lagoon, is in Lan Ha Bay, among the islets off the east coast of Cat Ba Island. It is part of the Cat Ba Archipelago, which joined the Ha Long Bay World Heritage Site in 2023.</p>
 <h2>Why it is worth visiting</h2>
-<p>The lagoon is protected by limestone on most sides, so the water is usually flat even when the open bay is choppy. That makes it a good place for an unhurried paddle or a swim, with cliffs close by and few other boats, especially early in the day.</p>
+<p>The lagoon is protected by limestone on most sides, so the water is usually flat even when the open bay is choppy. Cliffs rise close by and there are few other boats, especially early in the day.</p>
 <h2>Activities</h2>
 <ul>
-<li>Kayaking around the lagoon and along the cliffs.</li>
-<li>Swimming near the boat when the crew confirms conditions are safe.</li>
+<li>Taking in the lagoon and cliffs from the deck as the ship anchors nearby.</li>
+<li>Swimming near the boat, only when local rules allow and the crew confirms conditions are safe.</li>
+<li>Kayaking: temporarily suspended in Lan Ha Bay under local regulations as of October 2026. It will only be offered again if the rules change.</li>
 </ul>
 <h2>How visitors reach it</h2>
-<p>The ship anchors close by. Kayaks are launched from the ship or from a tender, and swimmers enter the water from the boat.</p>
+<p>The ship anchors close by; the lagoon is seen from the ship or, where permitted, from the water near the boat.</p>
 <h2>What to expect on arrival</h2>
 <p>In the early morning the light is soft and the lagoon is quiet. Later in the day more boats arrive from Cat Ba and the Ha Long side.</p>
 <h2>Accessibility and practical tips</h2>
 <ul>
-<li>Life jackets are required for kayaking. Swimmers should stay within the area the crew indicates.</li>
+<li>Swimmers should stay within the area the crew indicates.</li>
 <li>Water temperature varies a lot through the year: warm from about May to October, cool in winter.</li>
 <li>Anyone can stay on board and enjoy the view from deck.</li>
 </ul>
 <h2>Weather and seasonal limits</h2>
-<p>Kayaking and swimming depend on wind, visibility and water conditions on the morning, and storm warnings can suspend sailings.</p>
+<p>Swimming depends on local rules and on wind, visibility and water conditions on the morning, and storm warnings can suspend sailings.</p>
 HTML,
             'facts' => [
                 ['label' => 'Location', 'value' => 'Lan Ha Bay, off the east coast of Cat Ba Island'],
                 ['label' => 'Type', 'value' => 'Sheltered lagoon among limestone islets'],
-                ['label' => 'Activities', 'value' => 'Kayaking, swimming in suitable conditions'],
+                ['label' => 'Activities', 'value' => 'Lagoon views; swimming when rules and conditions allow'],
+                ['label' => 'Kayaking', 'value' => 'Temporarily suspended under local regulations as of October 2026'],
                 ['label' => 'Typical visit', 'value' => 'About 1.5 hours (estimate)'],
                 ['label' => 'Best time', 'value' => 'Early morning, when it is quietest'],
             ],
             'faq' => [
-                ['q' => 'Can you swim at Ao Ech?', 'a' => 'Yes, near the boat when the crew confirms conditions are safe. The water is warmest from late spring to autumn.'],
-                ['q' => 'Is Ao Ech suitable for beginners?', 'a' => 'Yes. The lagoon is sheltered and usually calm, and life jackets are compulsory.'],
+                ['q' => 'Can you swim at Ao Ech?', 'a' => 'Only near the boat, when local rules allow and the crew confirms conditions are safe. The water is warmest from late spring to autumn.'],
+                ['q' => 'Can you kayak at Ao Ech?', 'a' => 'Not at present. Kayaking in Lan Ha Bay is temporarily suspended under local regulations as of October 2026. Green Ruby will only offer it again if the rules change.'],
                 ['q' => 'When does Green Ruby plan to visit Ao Ech?', 'a' => 'On the morning of the second day of the Lan Ha Escape (2 days 1 night) on Green Ruby 2, before brunch and the return to port. Times are provisional until sailings begin, expected in February 2027.'],
             ],
         ],
@@ -1894,42 +1896,44 @@ HTML,
             'slug' => 'ao-ech',
             'name' => 'Ao Ếch',
             'image_alt' => 'Chèo kayak trên mặt nước phẳng lặng ở Ao Ếch, vịnh Lan Hạ',
-            'seo_title' => 'Ao Ếch, vịnh Lan Hạ: chèo kayak và tắm biển',
-            'seo_description' => 'Ao Ếch là vùng nước kín gió trên vịnh Lan Hạ, hợp để chèo kayak và tắm biển buổi sáng sớm. Có gì, ai nên đi, điều kiện thời tiết và lịch của Green Ruby.',
-            'summary' => 'Vùng nước kín gió giữa các đảo đá vôi trên vịnh Lan Hạ, dùng để chèo kayak và tắm biển khi biển êm. Sáng sớm là lúc vắng và đẹp nhất.',
+            'seo_title' => 'Ao Ếch, vịnh Lan Hạ: có gì và cần biết gì',
+            'seo_description' => 'Ao Ếch là vùng nước kín gió trên vịnh Lan Hạ, yên tĩnh nhất vào sáng sớm. Tình trạng chèo kayak, điều kiện tắm biển, cần biết gì và lịch của Green Ruby.',
+            'summary' => 'Vùng nước kín gió giữa các đảo đá vôi trên vịnh Lan Hạ, vắng và đẹp nhất vào sáng sớm. Chèo kayak trên vịnh Lan Hạ đang tạm dừng theo quy định địa phương (cập nhật tháng 10/2026).',
             'content' => <<<'HTML'
 <h2>Vị trí</h2>
 <p>Ao Ếch nằm trên vịnh Lan Hạ, giữa các đảo nhỏ ngoài khơi bờ đông đảo Cát Bà. Khu vực này thuộc quần đảo Cát Bà, được đưa vào Di sản Thiên nhiên Thế giới cùng vịnh Hạ Long từ năm 2023.</p>
 <h2>Vì sao nên ghé</h2>
-<p>Áng nước được núi đá che chắn gần hết các phía, nên mặt nước thường phẳng lặng kể cả khi ngoài vịnh có sóng. Đây là chỗ lý tưởng để thong thả chèo thuyền hay bơi một vòng, vách đá ở ngay bên cạnh và ít tàu qua lại, nhất là vào buổi sớm.</p>
+<p>Áng nước được núi đá che chắn gần hết các phía, nên mặt nước thường phẳng lặng kể cả khi ngoài vịnh có sóng. Vách đá ở ngay bên cạnh và ít tàu qua lại, nhất là vào buổi sớm.</p>
 <h2>Hoạt động</h2>
 <ul>
-<li>Chèo kayak quanh áng và men theo vách đá.</li>
-<li>Bơi gần tàu khi đội tàu xác nhận điều kiện an toàn.</li>
+<li>Ngắm áng nước và vách đá từ boong khi du thuyền neo gần đó.</li>
+<li>Bơi gần tàu, chỉ khi quy định địa phương cho phép và đội tàu xác nhận an toàn.</li>
+<li>Chèo kayak: đang tạm dừng trên vịnh Lan Hạ theo quy định địa phương (cập nhật tháng 10/2026). Chỉ tổ chức lại khi quy định thay đổi.</li>
 </ul>
 <h2>Cách đến</h2>
-<p>Du thuyền neo gần Ao Ếch. Kayak được thả từ tàu hoặc từ xuồng, người bơi xuống nước ngay từ tàu.</p>
+<p>Du thuyền neo gần Ao Ếch; du khách ngắm áng từ trên tàu hoặc, khi được phép, xuống nước ngay cạnh tàu.</p>
 <h2>Khi đến nơi</h2>
 <p>Sáng sớm ánh sáng dịu và mặt nước yên ắng. Càng về trưa càng có thêm tàu từ Cát Bà và phía Hạ Long kéo đến.</p>
 <h2>Lưu ý khi tham quan</h2>
 <ul>
-<li>Bắt buộc mặc áo phao khi chèo kayak. Người bơi chỉ bơi trong khu vực đội tàu chỉ định.</li>
+<li>Người bơi chỉ bơi trong khu vực đội tàu chỉ định.</li>
 <li>Nhiệt độ nước thay đổi nhiều theo mùa: ấm từ khoảng tháng 5 đến tháng 10, mùa đông khá lạnh.</li>
 <li>Ai không muốn xuống nước có thể ở lại ngắm cảnh trên boong.</li>
 </ul>
 <h2>Thời tiết và mùa</h2>
-<p>Chèo kayak và tắm biển phụ thuộc gió, tầm nhìn và điều kiện mặt nước buổi sáng hôm đó; khi có cảnh báo bão, tàu có thể phải tạm dừng.</p>
+<p>Tắm biển phụ thuộc quy định địa phương và gió, tầm nhìn, điều kiện mặt nước buổi sáng hôm đó; khi có cảnh báo bão, tàu có thể phải tạm dừng.</p>
 HTML,
             'facts' => [
                 ['label' => 'Vị trí', 'value' => 'Vịnh Lan Hạ, ngoài khơi bờ đông đảo Cát Bà'],
                 ['label' => 'Loại hình', 'value' => 'Áng nước kín gió giữa các đảo đá vôi'],
-                ['label' => 'Hoạt động', 'value' => 'Chèo kayak, tắm biển khi điều kiện cho phép'],
+                ['label' => 'Hoạt động', 'value' => 'Ngắm cảnh; tắm biển khi quy định và điều kiện cho phép'],
+                ['label' => 'Chèo kayak', 'value' => 'Tạm dừng theo quy định địa phương (cập nhật tháng 10/2026)'],
                 ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1,5 giờ (ước tính)'],
                 ['label' => 'Thời điểm đẹp', 'value' => 'Sáng sớm, lúc vắng nhất'],
             ],
             'faq' => [
-                ['q' => 'Có tắm biển ở Ao Ếch được không?', 'a' => 'Được, bơi gần tàu khi đội tàu xác nhận an toàn. Nước ấm nhất từ cuối xuân đến mùa thu.'],
-                ['q' => 'Người mới chèo kayak có đi Ao Ếch được không?', 'a' => 'Được. Áng nước kín gió, thường rất êm, và bắt buộc mặc áo phao.'],
+                ['q' => 'Có tắm biển ở Ao Ếch được không?', 'a' => 'Chỉ bơi gần tàu, khi quy định địa phương cho phép và đội tàu xác nhận an toàn. Nước ấm nhất từ cuối xuân đến mùa thu.'],
+                ['q' => 'Có chèo kayak ở Ao Ếch được không?', 'a' => 'Hiện chưa. Chèo kayak trên vịnh Lan Hạ đang tạm dừng theo quy định địa phương (cập nhật tháng 10/2026). Green Ruby chỉ tổ chức lại khi quy định thay đổi.'],
                 ['q' => 'Green Ruby dự kiến ghé Ao Ếch khi nào?', 'a' => 'Sáng ngày thứ hai của hành trình 2 ngày 1 đêm vịnh Lan Hạ trên Green Ruby 2, trước bữa brunch và khi tàu quay về bến. Giờ giấc có thể thay đổi trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
             ],
         ],
