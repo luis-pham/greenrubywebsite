@@ -1,0 +1,48 @@
+{
+ "name": "2026-10-26 blog index SEO: Travel Journal naming",
+ "reviewed": "2026-10-26 against production (read-only); owner approved IA phase 2 (docs/seo-audit/16 item 3)",
+ "revalidate": [
+  "content",
+  "pages",
+  "articles",
+  "page:article"
+ ],
+ "ops": [
+  {
+   "table": "app_page",
+   "id": 4,
+   "column": "seo_title",
+   "type": "replace",
+   "old": "Ha Long & Lan Ha Bay Cruise Guides | Green Ruby Cruises",
+   "new": "Travel Journal: Ha Long Bay & Lan Ha Bay | Green Ruby Cruises",
+   "note": "EN /blog: journal, not 'cruise guides' (owned by the first-time guide and the /guides hub)"
+  },
+  {
+   "table": "app_page",
+   "id": 4,
+   "column": "seo_description",
+   "type": "replace",
+   "old": "Expert guides on eco cruising, Lan Ha vs Ha Long Bay, best time to visit, and sustainable travel in Vietnam.",
+   "new": "Articles on Ha Long Bay and Lan Ha Bay: when to go, how the two bays compare, and eco-friendly cruising in Vietnam.",
+   "note": "EN /blog description"
+  },
+  {
+   "table": "app_page",
+   "id": 3,
+   "column": "seo_title",
+   "type": "replace",
+   "old": "Cẩm Nang Du Thuyền Hạ Long & Lan Hạ | Green Ruby Cruises",
+   "new": "Nhật ký hành trình: vịnh Hạ Long & Lan Hạ | Green Ruby Cruises",
+   "note": "VI /vi/blog: 'cẩm nang du thuyền hạ long' belongs to the VI first-time guide"
+  },
+  {
+   "table": "app_page",
+   "id": 3,
+   "column": "seo_description",
+   "type": "replace",
+   "old": "Cẩm nang du thuyền xanh, so sánh Lan Hạ và Hạ Long, thời điểm đẹp nhất, du lịch bền vững tại Việt Nam.",
+   "new": "Bài viết về vịnh Hạ Long và Lan Hạ: đi mùa nào, so sánh hai vịnh và du thuyền xanh tại Việt Nam.",
+   "note": "VI /vi/blog description"
+  }
+ ]
+}
