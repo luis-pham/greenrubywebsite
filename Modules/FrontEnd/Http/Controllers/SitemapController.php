@@ -143,6 +143,7 @@ class SitemapController extends Controller
         // Services, gallery and FAQ hubs live in their own sitemaps (sitemap-service/-category-gallery/-category-faq).
         $entries = array_merge($entries, $this->nextOnlyEntries(self::ECO_DASHBOARD_PATH, '', 'monthly', '0.6'));
         $entries = array_merge($entries, $this->nextOnlyEntries(self::BRAND_FACTS_PATH, '', 'monthly', '0.6'));
+        $entries = array_merge($entries, $this->nextOnlyEntries(self::BOOKING_TERMS_PATH, '', 'yearly', '0.3'));
         foreach (self::GUIDE_PATHS as $code => $paths) {
             $entries = array_merge($entries, $this->nextOnlyEntries($this->visiblePaths($code, $paths), '', 'monthly', '0.8'));
         }
@@ -534,6 +535,9 @@ class SitemapController extends Controller
     private const DESTINATIONS_SEGMENT = ['en' => 'destinations', 'vi' => 'dia-diem-tham-quan'];
 
     /** app_page code => paths; must match `segments.guideFirstTime` / `segments.guideTransfer` in greenruby-web/src/lib/i18n.ts. */
+    // Booking Terms & Conditions (Next.js only, published 27/10/2026; indexable, unlike the other legal pages).
+    private const BOOKING_TERMS_PATH = ['en' => 'booking-terms-and-conditions', 'vi' => 'dieu-khoan-dat-tour'];
+
     private const GUIDE_PATHS = [
         // Travel guide hub (navigation page; not switchable, so always listed).
         'guides' => ['en' => 'guides', 'vi' => 'cam-nang'],
