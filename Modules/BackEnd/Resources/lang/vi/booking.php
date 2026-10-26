@@ -142,4 +142,11 @@ return [
     'quote_event_business_seminar' => 'Hội thảo kinh doanh',
     'quote_event_wedding' => 'Tiệc cưới',
     'quote_event_birthday_party' => 'Tiệc sinh nhật',
+    'modal_payment_plan' => 'Hình thức thanh toán',
+    'plan_deposit' => 'Đặt cọc',
+    'plan_full' => 'Thanh toán toàn bộ',
+    'modal_amount_paid' => 'Đã thanh toán',
+    'modal_balance' => 'Còn lại',
+    'modal_balance_due' => 'hạn',
+    'modal_terms' => 'Điều khoản đặt chỗ đã đồng ý',
 ];

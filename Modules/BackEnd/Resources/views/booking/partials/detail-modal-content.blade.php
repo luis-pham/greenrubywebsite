@@ -60,6 +60,22 @@
     </div>
 </div>
 
+@if(($booking->payment_plan ?? null) !== null || ($booking->terms_version ?? null) !== null)
+    {{-- Deposit/balance and Booking Terms acceptance (migration 2026_10_27_000001). --}}
+    <div class="rounded border {{ $booking->balanceAmount() > 0 ? 'border-warning' : '' }} bg-light p-3 mb-4 small">
+        @if($booking->payment_plan !== null)
+            <div><strong>{{ __('backend::booking.modal_payment_plan') }}:</strong> {{ __('backend::booking.plan_' . $booking->payment_plan) }}</div>
+            <div><strong>{{ __('backend::booking.modal_amount_paid') }}:</strong> {{ $formatMoney($booking->amount_paid) }}</div>
+            @if($booking->balanceAmount() > 0)
+                <div><strong>{{ __('backend::booking.modal_balance') }}:</strong> {{ $formatMoney($booking->balanceAmount()) }}@if($booking->balance_due_date) · {{ __('backend::booking.modal_balance_due') }} {{ $booking->balance_due_date->format('d/m/Y') }}@endif</div>
+            @endif
+        @endif
+        @if($booking->terms_version !== null)
+            <div><strong>{{ __('backend::booking.modal_terms') }}:</strong> {{ $booking->terms_version }} · {{ optional($booking->terms_accepted_at)->format('d/m/Y H:i') }} · {{ strtoupper((string) $booking->terms_locale) }}</div>
+        @endif
+    </div>
+@endif
+
 <div class="row mb-4">
     <div class="col-md-6 mb-3 mb-md-0">
         <h6 class="pl-2 mb-2">{{ __('backend::booking.modal_customer_info') }}</h6>

@@ -132,4 +132,11 @@ return [
     'quote_event_business_seminar' => 'Business seminar',
     'quote_event_wedding' => 'Wedding',
     'quote_event_birthday_party' => 'Birthday Party',
+    'modal_payment_plan' => 'Payment plan',
+    'plan_deposit' => 'Deposit',
+    'plan_full' => 'Full payment',
+    'modal_amount_paid' => 'Paid',
+    'modal_balance' => 'Balance',
+    'modal_balance_due' => 'due',
+    'modal_terms' => 'Booking terms accepted',
 ];

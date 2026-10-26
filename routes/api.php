@@ -16,6 +16,7 @@ Route::get('/booking/suggest-by-cabin', [\App\Http\Controllers\Api\BookingApiCon
 Route::get('/booking/suggest-by-cruise', [\App\Http\Controllers\Api\BookingApiController::class, 'suggestByCruise']);
 Route::get('/booking/itinerary/{id}', [\App\Http\Controllers\Api\BookingApiController::class, 'itineraryDetail']);
 Route::get('/booking/departure-dates', [\App\Http\Controllers\Api\BookingApiController::class, 'departureDates']);
+Route::get('/booking/policy', [PaymentController::class, 'policy']);
 
 Route::middleware('throttle:sensitive-api')->group(function () {
     Route::post('/quote-request', [\App\Http\Controllers\Api\QuoteRequestController::class, 'store']);

@@ -12,7 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Payments\BookingPricer;
+use App\Payments\BookingSchema;
 use App\Payments\PaymentManager;
+use App\Payments\PaymentPlan;
+use App\Payments\TermsAcceptance;
 use App\Support\SafeRedirect;
 use Modules\BackEnd\Entities\AdLanguage;
 
@@ -28,9 +31,32 @@ class PaymentController extends Controller
         $this->pricer = $pricer;
     }
 
+    /**
+     * GET /api/booking/policy: what the booking page must offer and ask for. Both switches are off
+     * until TPX approves (config/booking.php); the page then behaves exactly as before.
+     */
+    public function policy()
+    {
+        $termsRequired = TermsAcceptance::required();
+
+        return response()->json([
+            'success' => true,
+            'deposit_enabled' => PaymentPlan::enabled(),
+            'deposit_percent' => (int) config('booking.deposit_percent', 30),
+            'balance_days_before' => (int) config('booking.balance_days_before', 30),
+            'terms_required' => $termsRequired,
+            'terms_version' => $termsRequired ? (string) config('booking.terms_version') : null,
+            'today' => PaymentPlan::today()->toDateString(),
+        ]);
+    }
+
     public function storeInquiry(Request $request)
     {
         $data = $request->validate([
+            'terms' => 'sometimes|array',
+            'terms.accepted' => 'sometimes|boolean',
+            'terms.version' => 'sometimes|nullable|string|max:32',
+            'terms.locale' => 'sometimes|nullable|string|max:8',
             'booking' => 'required|array',
             'booking.full_name' => 'required|string|max:255',
             'booking.email' => 'sometimes|nullable|email',
@@ -70,6 +96,11 @@ class PaymentController extends Controller
             $currency = $this->resolveCurrencyFromDefaultLanguage();
         }
         $currency = strtolower($currency);
+
+        $terms = $this->acceptedTerms($data);
+        if (isset($terms['error'])) {
+            return $this->termsError($terms['error']);
+        }
 
         try {
             DB::beginTransaction();
@@ -119,7 +150,10 @@ class PaymentController extends Controller
                 'tax_amount' => 0,
                 'total_amount' => $totalAmount,
                 'status' => config('statuses.booking.pending', 'pending'),
-            ]);
+            ] + (BookingSchema::ready() ? ['payment_status' => Booking::PAYMENT_UNPAID] + ($terms ?? []) : []));
+            if (BookingSchema::ready()) {
+                $payment->update(['booking_id' => $booking->id]);
+            }
             $this->storeLineItems($booking, $bookingData, $priced, $currency);
             DB::commit();
 
@@ -174,6 +208,11 @@ class PaymentController extends Controller
             'currency' => 'sometimes|string',
             'description' => 'sometimes|string',
             'return_base' => 'sometimes|string',
+            'payment_plan' => 'sometimes|nullable|string|in:deposit,full',
+            'terms' => 'sometimes|array',
+            'terms.accepted' => 'sometimes|boolean',
+            'terms.version' => 'sometimes|nullable|string|max:32',
+            'terms.locale' => 'sometimes|nullable|string|max:8',
             'booking' => 'sometimes|array',
             'booking.departure_date' => 'sometimes|nullable|date',
             'booking.itinerary_id' => 'sometimes|nullable',
@@ -222,7 +261,22 @@ class PaymentController extends Controller
                 ], 400);
             }
             $currency = $priced['currency'];
-            $amountForGateway = $priced['total'];
+
+            $terms = $this->acceptedTerms($data);
+            if (isset($terms['error'])) {
+                return $this->termsError($terms['error']);
+            }
+
+            // Deposit or full payment (rules 1-3). Null while deposits are switched off: full payment, as before.
+            $plan = $this->planFor($bookingData, (float) $priced['total'], $currency, $data['payment_plan'] ?? null);
+            if (isset($plan['error'])) {
+                return response()->json([
+                    'success' => false,
+                    'code' => $plan['error'],
+                    'message' => 'Ngày khởi hành không hợp lệ cho hành trình đã chọn. Vui lòng chọn lại ngày khởi hành.',
+                ], 422);
+            }
+            $amountForGateway = $plan ? $plan['due_now'] : $priced['total'];
 
             $amountForDb = $this->toStorageAmount($amountForGateway, $currency);
 
@@ -246,6 +300,9 @@ class PaymentController extends Controller
             }
 
             $description = $data['description'] ?? 'Payment';
+            if (($plan['plan'] ?? null) === PaymentPlan::DEPOSIT) {
+                $description = 'Deposit ' . (int) config('booking.deposit_percent', 30) . '% - ' . $description;
+            }
             $returnBase = SafeRedirect::normalize($data['return_base'] ?? null);
             $internalTxId = uniqid('tx_', true);
             $statusToken = $this->generateStatusToken($internalTxId);
@@ -260,14 +317,15 @@ class PaymentController extends Controller
                     'amount' => $amountForDb,
                     'currency' => $currency,
                     'status' => Payment::defaultStatus(),
-                ]);
+                ] + (BookingSchema::ready() ? ['purpose' => $plan['plan'] ?? PaymentPlan::FULL] : []));
 
                 $bookingData = $data['booking'] ?? null;
                 if ($bookingData && !empty($bookingData['full_name'])) {
                     $bookingCode = 'BK' . date('Ymd') . strtoupper(substr(uniqid(), -6));
                     $subtotalCabins = $this->toStorageAmount($priced['subtotal_cabins'], $currency);
                     $subtotalAmenities = $this->toStorageAmount($priced['subtotal_amenities'], $currency);
-                    $totalAmount = $amountForDb;
+                    // The booking keeps the full price; the payment holds what is charged now (all of it, or the deposit).
+                    $totalAmount = $this->toStorageAmount($priced['total'], $currency);
                     $itineraryId = BookingPricer::parseItineraryId($bookingData['itinerary_id'] ?? null);
                     $rawEmail = isset($bookingData['email']) ? trim((string) $bookingData['email']) : '';
                     $booking = Booking::create([
@@ -290,7 +348,14 @@ class PaymentController extends Controller
                         'tax_amount' => 0,
                         'total_amount' => $totalAmount,
                         'status' => config('statuses.booking.pending', 'pending'),
-                    ]);
+                    ] + (BookingSchema::ready() ? [
+                        'payment_plan' => $plan['plan'] ?? PaymentPlan::FULL,
+                        'payment_status' => Booking::PAYMENT_UNPAID,
+                        'balance_due_date' => $plan['balance_due_date'] ?? null,
+                    ] + ($terms ?? []) : []));
+                    if (BookingSchema::ready()) {
+                        $payment->update(['booking_id' => $booking->id]);
+                    }
                     $this->storeLineItems($booking, $bookingData, $priced, $currency);
                     PaymentCustomer::create([
                         'payment_id' => $payment->id,
@@ -331,14 +396,20 @@ class PaymentController extends Controller
                 'provider_tx_id' => $result->providerTxId,
                 'payment_url' => $result->paymentUrl,
                 'status_token' => $statusToken,
-            ]);
+            ] + ($plan ? [
+                'payment_plan' => $plan['plan'],
+                'currency' => $currency,
+                'amount_due_now' => $plan['due_now'],
+                'balance_amount' => $plan['balance'],
+                'balance_due_date' => $plan['balance_due_date'],
+            ] : []));
         } catch (\Throwable $e) {
             Log::error('Payment init error', ['exception' => $e]);
 
             if (isset($internalTxId)) {
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
                 if ($payment && $payment->status === Payment::statusPending()) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusFailed(),
                         'error_code' => 'payment_init_error',
                         'error_message' => $e->getMessage(),
@@ -418,6 +489,13 @@ class PaymentController extends Controller
                     'discount_amount' => $this->fromStorageAmount($booking->discount_amount, $currency),
                     'tax_amount' => $this->fromStorageAmount($booking->tax_amount, $currency),
                     'total_amount' => $this->fromStorageAmount($booking->total_amount, $currency),
+                ] + (BookingSchema::ready() && $booking->payment_plan !== null ? [
+                    'payment_plan' => $booking->payment_plan,
+                    'payment_status' => $booking->payment_status,
+                    'amount_paid' => $this->fromStorageAmount($booking->amount_paid, $currency),
+                    'balance_amount' => $this->fromStorageAmount($booking->balanceAmount(), $currency),
+                    'balance_due_date' => $booking->balance_due_date ? $booking->balance_due_date->toDateString() : null,
+                ] : []) + [
                     'cabins' => $booking->cabins->map(function (BookingCabin $cabin) use ($currency) {
                         return [
                             'cabin_name' => $cabin->cabin_name,
@@ -481,7 +559,7 @@ class PaymentController extends Controller
         }
 
         if ($payment->status === Payment::statusPending()) {
-            $payment->update([
+            $payment->markIfPending([
                 'status' => Payment::statusCanceled(),
                 'error_code' => 'user_cancelled',
                 'error_message' => 'User cancelled payment session',
@@ -517,7 +595,7 @@ class PaymentController extends Controller
                 if (!$this->isValidStatusToken($internalTxId, $request->query('st'))) {
                     Log::warning('Payment callback: cancel ignored, invalid status token', ['tx' => $internalTxId]);
                 } elseif ($payment->status === Payment::statusPending()) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusCanceled(),
                         'error_code' => 'user_cancelled',
                         'error_message' => 'User cancelled (callback)',
@@ -555,6 +633,62 @@ class PaymentController extends Controller
                 'message' => 'Xử lý kết quả thanh toán thất bại.',
             ], 500);
         }
+    }
+
+    /**
+     * Booking attributes recording the guest's acceptance of the Booking Terms, [] when acceptance is
+     * not required (yet), or ['error' => code].
+     */
+    protected function acceptedTerms(array $data): array
+    {
+        if (!TermsAcceptance::required()) {
+            return [];
+        }
+        [$attributes, $error] = TermsAcceptance::check($data['terms'] ?? null);
+
+        return $error ? ['error' => $error] : $attributes;
+    }
+
+    protected function termsError(string $code)
+    {
+        $messages = [
+            'terms_required' => 'Vui lòng đọc và đồng ý với Điều khoản đặt du thuyền trước khi xác nhận. / Please accept the Booking Terms & Conditions to continue.',
+            'terms_version_mismatch' => 'Điều khoản đặt du thuyền vừa được cập nhật. Vui lòng tải lại trang. / The Booking Terms have been updated. Please reload the page.',
+            'terms_not_configured' => 'Tạm thời chưa thể đặt chỗ trực tuyến. Vui lòng liên hệ chúng tôi. / Online booking is temporarily unavailable. Please contact us.',
+        ];
+        Log::warning('Booking refused: terms', ['code' => $code]);
+
+        return response()->json([
+            'success' => false,
+            'code' => $code,
+            'message' => $messages[$code] ?? $messages['terms_required'],
+        ], $code === 'terms_version_mismatch' ? 409 : ($code === 'terms_not_configured' ? 503 : 422));
+    }
+
+    /**
+     * @return array{plan: string, due_now: float, balance: float, balance_due_date: ?string}|array{error: string}|null
+     *         null while deposits are switched off (full payment, as before)
+     */
+    protected function planFor(array $bookingData, float $total, string $currency, ?string $requested): ?array
+    {
+        if (!PaymentPlan::enabled()) {
+            return null;
+        }
+        $date = (string) ($bookingData['departure_date'] ?? '');
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+            return ['error' => 'departure_date_required'];
+        }
+        if (PaymentPlan::daysBefore($date) < 0) {
+            return ['error' => 'departure_date_past'];
+        }
+        if (!PaymentPlan::isScheduledDeparture($bookingData['itinerary_id'] ?? null, $date)) {
+            return ['error' => 'departure_date_unknown'];
+        }
+        $plan = PaymentPlan::choose($requested, $date);
+
+        return ['plan' => $plan]
+            + PaymentPlan::amounts($total, $currency, $plan)
+            + ['balance_due_date' => $plan === PaymentPlan::DEPOSIT ? PaymentPlan::balanceDueDate($date) : null];
     }
 
     protected function resolveCurrencyFromBooking(array $bookingData): ?string

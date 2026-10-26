@@ -62,10 +62,55 @@ class Booking extends Model
         'tax_amount',
         'total_amount',
         'status',
+        'payment_plan',
+        'payment_status',
+        'amount_paid',
+        'balance_due_date',
+        'terms_version',
+        'terms_accepted_at',
+        'terms_locale',
     ];
+
+    public const PAYMENT_UNPAID = 'unpaid';
+    public const PAYMENT_DEPOSIT_PAID = 'deposit_paid';
+    public const PAYMENT_PAID = 'paid';
+
+    /**
+     * Sum of this booking's succeeded payments (the first via bookings.payment_id, later ones via
+     * payments.booking_id) and the resulting payment_status. Requires migration 2026_10_27_000001.
+     */
+    public function refreshPaidAmount(): void
+    {
+        $paid = (int) Payment::where('status', Payment::statusSucceeded())
+            ->where(function ($q) {
+                $q->where('booking_id', $this->id);
+                if ($this->payment_id) {
+                    $q->orWhere('id', $this->payment_id);
+                }
+            })
+            ->sum('amount');
+
+        $this->update([
+            'amount_paid' => $paid,
+            'payment_status' => $paid <= 0 ? self::PAYMENT_UNPAID : ($paid >= (int) $this->total_amount ? self::PAYMENT_PAID : self::PAYMENT_DEPOSIT_PAID),
+        ]);
+    }
+
+    /** Outstanding amount in storage units (0 for bookings made before deposits existed). */
+    public function balanceAmount(): int
+    {
+        if ($this->payment_plan === null) {
+            return 0;
+        }
+
+        return max(0, (int) $this->total_amount - (int) $this->amount_paid);
+    }
 
     protected $casts = [
         'departure_date' => 'date',
+        'balance_due_date' => 'date',
+        'terms_accepted_at' => 'datetime',
+        'amount_paid' => 'integer',
         'subtotal_cabins' => 'integer',
         'subtotal_amenities' => 'integer',
         'discount_amount' => 'integer',

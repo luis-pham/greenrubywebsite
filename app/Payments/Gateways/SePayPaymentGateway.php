@@ -188,7 +188,7 @@ class SePayPaymentGateway implements PaymentGatewayInterface
                     $update['provider_tx_id'] = (string) $order['order_id'];
                 }
 
-                $payment->update($update);
+                $payment->markIfPending($update);
             }
 
             return new PaymentStatusResult(
@@ -275,13 +275,13 @@ class SePayPaymentGateway implements PaymentGatewayInterface
         }
 
         if ($isSuccess) {
-            $payment->update([
+            $payment->markIfPending([
                 'status' => Payment::statusSucceeded(),
                 'provider_tx_id' => $providerTxId ?? $payment->provider_tx_id,
                 'completed_at' => now(),
             ]);
         } elseif ($isFailed) {
-            $payment->update([
+            $payment->markIfPending([
                 'status' => Payment::statusFailed(),
                 'error_code' => $data['error_code'] ?? 'sepay_failed',
                 'error_message' => $data['error_message'] ?? 'Thanh toán qua SePay thất bại.',

@@ -121,7 +121,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
                 if ($orderStatus === 'COMPLETED' && $captureStatus === 'COMPLETED') {
                     $payment = Payment::where('internal_tx_id', $internalTxId)->first();
                     if ($payment && $payment->status === Payment::statusPending()) {
-                        $payment->update([
+                        $payment->markIfPending([
                             'status' => Payment::statusSucceeded(),
                             'provider_tx_id' => $orderId,
                             'completed_at' => now(),
@@ -146,7 +146,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
             if (strpos($message, 'already captured') !== false || strpos($message, 'already completed') !== false) {
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
                 if ($payment && $payment->status === Payment::statusPending()) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusSucceeded(),
                         'provider_tx_id' => $orderId,
                         'completed_at' => now(),
@@ -162,7 +162,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
 
             $payment = Payment::where('internal_tx_id', $internalTxId)->first();
             if ($payment && $payment->status === Payment::statusPending()) {
-                $payment->update([
+                $payment->markIfPending([
                     'status' => Payment::statusFailed(),
                     'error_code' => 'paypal_capture_' . str_replace([' ', '-'], '_', strtolower($issue)),
                     'error_message' => $desc,
@@ -174,7 +174,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
             Log::error('PayPal capture error', ['tx' => $internalTxId, 'error' => $e->getMessage()]);
             $payment = Payment::where('internal_tx_id', $internalTxId)->first();
             if ($payment && $payment->status === Payment::statusPending()) {
-                $payment->update([
+                $payment->markIfPending([
                     'status' => Payment::statusFailed(),
                     'error_code' => 'paypal_capture_error',
                     'error_message' => $e->getMessage(),
@@ -215,7 +215,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
                     if (!$this->captureAmountMatches($payment, $this->extractCaptureAmount($data))) {
                         return new PaymentStatusResult($internalTxId, 'failed', $orderId, $data);
                     }
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusSucceeded(),
                         'completed_at' => now(),
                     ]);
@@ -235,7 +235,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
 
             if ($status === 'APPROVED' && in_array($captureStatus, ['DECLINED', 'FAILED'], true)) {
                 if ($payment && $payment->status === Payment::statusPending()) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusFailed(),
                         'error_code' => 'paypal_capture_' . strtolower($captureStatus),
                         'error_message' => 'Payment capture ' . strtolower($captureStatus) . ' by PayPal',
@@ -255,7 +255,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
 
             if ($errorMsg !== null) {
                 if ($payment && $payment->status === Payment::statusPending()) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusCanceled(),
                         'error_code' => 'paypal_order_' . strtolower($status),
                         'error_message' => $errorMsg,
@@ -309,7 +309,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
                 if ($payment && $payment->status === Payment::statusPending()
                     && $this->captureAmountMatches($payment, $resource['amount'] ?? null)) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusSucceeded(),
                         'provider_tx_id' => $resource['id'] ?? $payment->provider_tx_id,
                         'completed_at' => now(),
@@ -326,7 +326,7 @@ class PaypalPaymentGateway implements PaymentGatewayInterface
             $payment = $internalTxId ? Payment::where('internal_tx_id', $internalTxId)->first()
                 : ($orderId ? Payment::where('provider_tx_id', $orderId)->first() : null);
             if ($payment && $payment->status === Payment::statusPending()) {
-                $payment->update([
+                $payment->markIfPending([
                     'status' => Payment::statusFailed(),
                     'error_code' => 'paypal_' . strtolower(str_replace('.', '_', $eventType)),
                     'error_message' => 'Payment denied or approval reversed by PayPal',

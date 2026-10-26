@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Payments\BookingSchema;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\BookingConfirmationMail;
@@ -51,9 +53,48 @@ class Payment extends Model
         return $gateways ? array_keys($gateways) : config('payment.methods', ['stripe', 'paypal']);
     }
 
+    /**
+     * Applies $attributes only if the payment is still pending, under a row lock. Webhooks, the return
+     * URL and status polling can report the same payment at the same moment; with the lock exactly one
+     * of them moves it out of "pending", so the booking update and the emails in booted() run once.
+     *
+     * @return bool whether this call made the change
+     */
+    public function markIfPending(array $attributes): bool
+    {
+        $changed = DB::transaction(function () use ($attributes) {
+            $current = static::whereKey($this->getKey())->lockForUpdate()->first();
+            if (!$current || $current->status !== self::statusPending()) {
+                return $current;
+            }
+            $current->update($attributes);
+
+            return [$current];
+        });
+
+        $current = is_array($changed) ? $changed[0] : $changed;
+        if ($current) {
+            $this->setRawAttributes($current->getAttributes(), true);
+        }
+
+        return is_array($changed);
+    }
+
+    /** The booking this payment is for: payments.booking_id when set, otherwise bookings.payment_id. */
+    public function resolveBooking(): ?Booking
+    {
+        if (!empty($this->attributes['booking_id'])) {
+            return Booking::find($this->attributes['booking_id']);
+        }
+
+        return $this->booking()->first();
+    }
+
     protected $fillable = [
+        'booking_id',
         'internal_tx_id',
         'gateway',
+        'purpose',
         'provider_tx_id',
         'amount',
         'currency',
@@ -76,11 +117,15 @@ class Payment extends Model
                 $originalStatus = $payment->getOriginal('status');
 
                 if ($payment->status === $succeeded && $originalStatus !== $succeeded) {
-                    if ($payment->booking) {
-                        $payment->booking->update(['status' => config('statuses.booking.confirmed', 'confirmed')]);
+                    $target = $payment->resolveBooking();
+                    if ($target) {
+                        $target->update(['status' => config('statuses.booking.confirmed', 'confirmed')]);
+                        if (BookingSchema::ready()) {
+                            $target->refreshPaidAmount();
+                        }
                     }
-                    
-                    $booking = $payment->booking()->with(['cabins', 'amenities', 'payment'])->first();
+
+                    $booking = $target ? Booking::with(['cabins', 'amenities', 'payment'])->find($target->id) : null;
                     if ($booking) {
                         try {
                             $customerEmail = $booking->email ? trim((string) $booking->email) : '';
@@ -125,6 +170,10 @@ class Payment extends Model
 
                 if ($payment->status === $failed && $originalStatus !== $failed) {
                     $booking = $payment->booking()->with(['cabins', 'amenities'])->first();
+                    // A failed balance payment must not fail a booking whose deposit was paid.
+                    if ($booking && BookingSchema::ready() && (int) $booking->amount_paid > 0) {
+                        $booking = null;
+                    }
                     if ($booking) {
                         $booking->update(['status' => config('statuses.booking.failed', 'failed')]);
                         

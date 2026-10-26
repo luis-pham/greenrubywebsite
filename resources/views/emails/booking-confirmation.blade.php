@@ -97,17 +97,28 @@
         $totalAmount = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->total_amount, $booking->currency, false);
     @endphp
     <p>Total Amount: {{ strtoupper($booking->currency) }} {{ $totalAmount }}</p>
+    @if (($booking->payment_plan ?? null) === 'deposit')
+        @php
+            $paid = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->amount_paid, $booking->currency, false);
+            $balance = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->balanceAmount(), $booking->currency, false);
+        @endphp
+        <p>Deposit Paid: {{ strtoupper($booking->currency) }} {{ $paid }}</p>
+        <p>Balance Due: {{ strtoupper($booking->currency) }} {{ $balance }}@if ($booking->balance_due_date) by {{ $booking->balance_due_date->format('d/m/Y') }}@endif</p>
+        <p>Our reservations team will send you the payment details for the balance.</p>
+    @endif
     <p>Payment Methods:</p>
     <p class="list-item">• {{ $paymentMethodLabel }}</p>
 </div>
 
 <hr>
 
+{{-- Same schedule as the FAQ and the Booking Terms (TPX rule 4); charges apply to the total booking value. --}}
 <p class="section-title">CANCELLATION POLICY</p>
 <div class="section">
-    <p class="list-item">• Cancellation 7 days before departure: Free</p>
-    <p class="list-item">• Cancellation 3–7 days before departure: 50% charge</p>
-    <p class="list-item">• Cancellation under 3 days before departure: 100% charge</p>
+    <p class="list-item">• 30 days or more before departure: no charge, 100% refund of the cruise amount paid</p>
+    <p class="list-item">• 15–29 days before departure: 50% of the total booking value</p>
+    <p class="list-item">• 7–14 days before departure: 75% of the total booking value</p>
+    <p class="list-item">• 0–6 days before departure or no-show: 100% of the total booking value</p>
 </div>
 
 <p style="margin-top: 20px;">If you have any special requests or require further assistance, please do not hesitate to contact us.</p>

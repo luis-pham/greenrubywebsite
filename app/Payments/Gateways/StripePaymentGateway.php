@@ -108,7 +108,7 @@ class StripePaymentGateway implements PaymentGatewayInterface
                 if (!$this->sessionAmountMatches($payment, $data)) {
                     return new PaymentStatusResult($internalTxId, 'failed', $sessionId, $data);
                 }
-                $payment->update([
+                $payment->markIfPending([
                     'status' => Payment::statusSucceeded(),
                     'completed_at' => now(),
                 ]);
@@ -117,7 +117,7 @@ class StripePaymentGateway implements PaymentGatewayInterface
         }
         if ($status === 'expired') {
             if ($payment && $payment->status === Payment::statusPending()) {
-                $payment->update([
+                $payment->markIfPending([
                     'status' => Payment::statusCanceled(),
                     'completed_at' => now(),
                 ]);
@@ -150,7 +150,7 @@ class StripePaymentGateway implements PaymentGatewayInterface
             if ($internalTxId) {
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
                 if ($payment && $payment->status === Payment::statusPending() && $this->sessionAmountMatches($payment, $object)) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusSucceeded(),
                         'provider_tx_id' => $object['id'] ?? $payment->provider_tx_id,
                         'completed_at' => now(),
@@ -165,7 +165,7 @@ class StripePaymentGateway implements PaymentGatewayInterface
             if ($internalTxId) {
                 $payment = Payment::where('internal_tx_id', $internalTxId)->first();
                 if ($payment && $payment->status === Payment::statusPending()) {
-                    $payment->update([
+                    $payment->markIfPending([
                         'status' => Payment::statusFailed(),
                         'error_code' => $object['last_payment_error']['code'] ?? null,
                         'error_message' => $object['last_payment_error']['message'] ?? null,

@@ -44,7 +44,7 @@ final class AmountGuard
         ]);
 
         if ($payment->status === Payment::statusPending()) {
-            $payment->update([
+            $payment->markIfPending([
                 'status' => Payment::statusFailed(),
                 'error_code' => 'amount_mismatch',
                 'error_message' => sprintf(
