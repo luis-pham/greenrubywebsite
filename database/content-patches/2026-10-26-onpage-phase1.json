@@ -1,0 +1,153 @@
+{
+ "name": "2026-10-26 on-page SEO phase 1",
+ "reviewed": "2026-10-26 against production content (synced to green_ruby_seo_test); docs/seo-audit/18",
+ "revalidate": [
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_page",
+   "id": 24,
+   "column": "seo_title",
+   "type": "replace",
+   "old": "Ha Long & Lan Ha Bay Cruise 2D1N, 3D2N | Green Ruby Cruises",
+   "new": "Ha Long & Lan Ha Bay Cruise Itineraries: 2D1N, 3D2N | Green Ruby",
+   "note": "EN /itinerary title: owned keyword \"cruise itinerary\""
+  },
+  {
+   "table": "app_page",
+   "id": 23,
+   "column": "seo_title",
+   "type": "replace",
+   "old": "Du Thuyền Hạ Long & Lan Hạ 2N1Đ, 3N2Đ | Green Ruby Cruises",
+   "new": "Lịch trình du thuyền Hạ Long & Lan Hạ: 2N1Đ, 3N2Đ | Green Ruby",
+   "note": "VI /vi/hanh-trinh title: owned keyword \"lịch trình du thuyền hạ long\""
+  },
+  {
+   "table": "app_cabin",
+   "id": 67,
+   "column": "summary",
+   "type": "replace",
+   "old": "Infinity-style saltwater pool on the Sundeck — open sky, open ocean, no horizon in sight.",
+   "new": "Infinity-style saltwater pool on the Sundeck, with open sky and wide views across the bay.",
+   "note": "EN Sundeck Pool (facility 67): \"open ocean, no horizon in sight\" contradicted itself"
+  },
+  {
+   "table": "app_cabin",
+   "id": 67,
+   "column": "content",
+   "type": "replace",
+   "old": "Infinity-style saltwater pool on the Sundeck — open sky, open ocean, no horizon in sight.",
+   "new": "Infinity-style saltwater pool on the Sundeck, with open sky and wide views across the bay.",
+   "note": "EN Sundeck Pool (facility 67): \"open ocean, no horizon in sight\" contradicted itself"
+  },
+  {
+   "table": "app_cabin",
+   "id": 86,
+   "column": "summary",
+   "type": "replace",
+   "old": "Infinity-style saltwater pool on the Sundeck — open sky, open ocean, no horizon in sight.",
+   "new": "Infinity-style saltwater pool on the Sundeck, with open sky and wide views across the bay.",
+   "note": "EN Sundeck Pool (facility 86): \"open ocean, no horizon in sight\" contradicted itself"
+  },
+  {
+   "table": "app_cabin",
+   "id": 86,
+   "column": "content",
+   "type": "replace",
+   "old": "Infinity-style saltwater pool on the Sundeck — open sky, open ocean, no horizon in sight.",
+   "new": "Infinity-style saltwater pool on the Sundeck, with open sky and wide views across the bay.",
+   "note": "EN Sundeck Pool (facility 86): \"open ocean, no horizon in sight\" contradicted itself"
+  },
+  {
+   "table": "app_cabin",
+   "id": 24,
+   "column": "summary",
+   "type": "replace",
+   "old": "GreenRuby's signature suite",
+   "new": "Green Ruby's signature suite",
+   "note": "EN cabin 24: brand name spelled \"GreenRuby\""
+  },
+  {
+   "table": "app_cabin",
+   "id": 72,
+   "column": "summary",
+   "type": "replace",
+   "old": "GreenRuby's signature suite",
+   "new": "Green Ruby's signature suite",
+   "note": "EN cabin 72: brand name spelled \"GreenRuby\""
+  },
+  {
+   "table": "app_cabin",
+   "id": 9,
+   "column": "summary",
+   "type": "replace",
+   "old": "GreenRuby’s premier suite",
+   "new": "Green Ruby’s premier suite",
+   "note": "EN cabin 9: brand name spelled \"GreenRuby\""
+  },
+  {
+   "table": "app_cabin",
+   "id": 9,
+   "column": "content",
+   "type": "replace",
+   "old": "GreenRuby’s premier suite",
+   "new": "Green Ruby’s premier suite",
+   "note": "EN cabin 9: brand name spelled \"GreenRuby\""
+  },
+  {
+   "table": "app_cabin",
+   "id": 74,
+   "column": "summary",
+   "type": "replace",
+   "old": "GreenRuby’s premier suite",
+   "new": "Green Ruby’s premier suite",
+   "note": "EN cabin 74: brand name spelled \"GreenRuby\""
+  },
+  {
+   "table": "app_cabin",
+   "id": 74,
+   "column": "content",
+   "type": "replace",
+   "old": "GreenRuby’s premier suite",
+   "new": "Green Ruby’s premier suite",
+   "note": "EN cabin 74: brand name spelled \"GreenRuby\""
+  },
+  {
+   "table": "app_article",
+   "id": 221,
+   "column": "content",
+   "type": "replace",
+   "old": "kayaking in the Dark &amp; Bright Cave area and Ao Ech Lagoon.",
+   "new": "the Dark &amp; Bright Cave area by bamboo boat and Ao Ech Lagoon (kayaking temporarily suspended under local regulations as of October 2026).",
+   "note": "EN #221: Lan Ha kayaking is suspended (owner-approved wording)"
+  },
+  {
+   "table": "app_article",
+   "id": 221,
+   "column": "content",
+   "type": "replace",
+   "old": "<p>See how we measure our footprint on the <a href=\"/eco-dashboard\">eco impact dashboard</a>, or <a href=\"/contact\">contact our reservations team</a>.</p>",
+   "new": "<p>See how we measure our footprint on the <a href=\"/eco-dashboard\">eco impact dashboard</a>, or <a href=\"/contact\">contact our reservations team</a>.</p><h2>Sources</h2><ul><li><a href=\"https://greenglobe.com/green-globe-standard\" target=\"_blank\" rel=\"noopener\">Green Globe: the Green Globe Standard</a> (44 mandatory core criteria in four areas: sustainable management, social/economic, cultural heritage, environmental)</li><li><a href=\"https://www.imo.org/en/OurWork/Environment/Pages/Sewage-Default.aspx\" target=\"_blank\" rel=\"noopener\">International Maritime Organization: prevention of pollution by sewage from ships (MARPOL Annex IV)</a></li><li><a href=\"https://eur-lex.europa.eu/eli/dir/2024/825/oj\" target=\"_blank\" rel=\"noopener\">EUR-Lex: Directive (EU) 2024/825 on empowering consumers for the green transition</a></li><li><a href=\"https://whc.unesco.org/en/list/672\" target=\"_blank\" rel=\"noopener\">UNESCO World Heritage Centre: Ha Long Bay – Cat Ba Archipelago</a></li></ul>",
+   "note": "EN #221: sources for the certification, sewage and EU green-claims statements"
+  },
+  {
+   "table": "app_article",
+   "id": 221,
+   "column": "seo_description",
+   "type": "replace",
+   "old": "How to choose a genuinely eco-friendly luxury cruise in Ha Long Bay in 2026: what certifications mean, how to spot greenwashing and why Lan Ha is quieter.",
+   "new": "How to choose a genuinely eco-friendly luxury cruise in Ha Long Bay: what certifications mean, how to spot greenwashing and why Lan Ha Bay is quieter.",
+   "note": "EN #221: no year in the description"
+  },
+  {
+   "table": "app_article",
+   "id": 236,
+   "column": "content",
+   "type": "replace",
+   "old": "<p>When authorities issue restrictions because of dangerous weather, tourist boats may be required to remain in port, return to safe anchorage or change their itineraries. These decisions are made for passenger and crew safety.</p>",
+   "new": "<p>When authorities issue restrictions because of dangerous weather, tourist boats may be required to remain in port, return to safe anchorage or change their itineraries. These decisions are made for passenger and crew safety. Ahead of Typhoon Wipha on 20 July 2025, for example, Quang Ninh’s inland waterway port authority stopped issuing departure permits to Ha Long Bay tourist boats (<a href=\"https://news.tuoitre.vn/ha-long-bay-tourist-boats-banned-from-departing-as-typhoon-wipha-nears-103250720163544717.htm\" target=\"_blank\" rel=\"noopener\">Tuoi Tre News</a>).</p>",
+   "note": "EN #236: source for weather suspensions"
+  }
+ ]
+}
