@@ -6,10 +6,10 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Deposit or full payment for an online booking (TPX rules 1-3, config/booking.php):
- *  - departing more than `balance_days_before` days from today: 30% deposit by default, full payment optional;
+ * Deposit or full payment for a retail booking (TPX decision 2, config/booking.php):
+ *  - departing more than `deposit_min_days` (45) days from today: 30% deposit by default, full payment optional;
  *  - otherwise: full payment;
- *  - the balance is due `balance_days_before` days before departure.
+ *  - the balance is due `balance_days_before` (30) days before departure.
  * Days are Vietnam calendar days. Amounts are major units (USD dollars, whole VND), like BookingPricer.
  */
 final class PaymentPlan
@@ -39,7 +39,7 @@ final class PaymentPlan
     /** @return string[] plans the guest may choose, the default first */
     public static function options(string $departureDate, ?CarbonImmutable $today = null): array
     {
-        return self::daysBefore($departureDate, $today) > (int) config('booking.balance_days_before', 30)
+        return self::daysBefore($departureDate, $today) > (int) config('booking.deposit_min_days', 45)
             ? [self::DEPOSIT, self::FULL]
             : [self::FULL];
     }

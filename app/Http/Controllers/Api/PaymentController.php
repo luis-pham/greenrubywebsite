@@ -11,8 +11,10 @@ use App\Models\PaymentCustomer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Payments\BookingAudit;
 use App\Payments\BookingPricer;
 use App\Payments\BookingSchema;
+use App\Payments\PaymentLink;
 use App\Payments\PaymentManager;
 use App\Payments\PaymentPlan;
 use App\Payments\TermsAcceptance;
@@ -43,6 +45,7 @@ class PaymentController extends Controller
             'success' => true,
             'deposit_enabled' => PaymentPlan::enabled(),
             'deposit_percent' => (int) config('booking.deposit_percent', 30),
+            'deposit_min_days' => (int) config('booking.deposit_min_days', 45),
             'balance_days_before' => (int) config('booking.balance_days_before', 30),
             'terms_required' => $termsRequired,
             'terms_version' => $termsRequired ? (string) config('booking.terms_version') : null,
@@ -426,6 +429,196 @@ class PaymentController extends Controller
         }
     }
 
+    /**
+     * GET /api/booking/payment-link?t=…: what a guest's secure link is for (TPX decisions 3 and 6), so the
+     * /booking/pay page can show the booking, the amount and, for a new booking, the deposit or full choice.
+     */
+    public function paymentLink(Request $request)
+    {
+        [$booking, $purpose, $error] = $this->resolvePaymentLink($request->query('t'));
+        if ($error) {
+            return $error;
+        }
+        $currency = strtolower((string) $booking->currency);
+        $major = fn ($amount) => $this->fromStorageAmount((int) $amount, $currency);
+        $termsRequired = $this->linkNeedsTerms($booking, $purpose);
+
+        $plans = [];
+        if ($purpose === PaymentLink::BOOKING) {
+            $date = $booking->departure_date->toDateString();
+            $options = PaymentPlan::enabled() ? PaymentPlan::options($date) : [PaymentPlan::FULL];
+            foreach ($options as $plan) {
+                $amounts = PaymentPlan::amounts($major($booking->total_amount), $currency, $plan);
+                $plans[] = ['plan' => $plan, 'amount_due_now' => $amounts['due_now'], 'balance_amount' => $amounts['balance'],
+                    'balance_due_date' => $plan === PaymentPlan::DEPOSIT ? PaymentPlan::balanceDueDate($date) : null];
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'purpose' => $purpose,
+            'booking' => [
+                'code' => $booking->code,
+                'full_name' => $booking->full_name,
+                'itinerary_name' => $booking->itinerary_name,
+                'cruise_name' => $booking->cruise_name,
+                'departure_date' => $booking->departure_date->toDateString(),
+                'guests_total' => $booking->guests_total,
+                'currency' => $currency,
+                'total_amount' => $major($booking->total_amount),
+                'amount_paid' => $major($booking->amount_paid),
+                'balance_amount' => $major($booking->balanceAmount()),
+                'balance_due_date' => $booking->balance_due_date ? $booking->balance_due_date->toDateString() : null,
+            ],
+            'plans' => $plans,
+            'methods' => $currency === 'vnd' ? ['sepay'] : ['stripe', 'paypal'],
+            'terms_required' => $termsRequired,
+            'terms_version' => $termsRequired ? (string) config('booking.terms_version') : null,
+        ]);
+    }
+
+    /** POST /api/booking/payment-link: the guest pays through their link (and accepts the terms when asked). */
+    public function payPaymentLink(Request $request)
+    {
+        $data = $request->validate([
+            't' => 'required|string|max:1000',
+            'method' => 'required|string|in:' . implode(',', Payment::validMethods()),
+            'payment_plan' => 'sometimes|nullable|string|in:deposit,full',
+            'return_base' => 'sometimes|string',
+            'terms' => 'sometimes|array',
+            'terms.accepted' => 'sometimes|boolean',
+            'terms.version' => 'sometimes|nullable|string|max:32',
+            'terms.locale' => 'sometimes|nullable|string|max:8',
+        ]);
+        [$booking, $purpose, $error] = $this->resolvePaymentLink($data['t']);
+        if ($error) {
+            return $error;
+        }
+        $currency = strtolower((string) $booking->currency);
+        $method = $data['method'];
+        if (($currency === 'vnd') !== ($method === 'sepay')) {
+            return response()->json(['success' => false, 'code' => 'currency_method_mismatch', 'reason' => $currency === 'vnd' ? 'vnd_only' : 'usd_only',
+                'message' => 'Phương thức thanh toán không phù hợp với đơn vị tiền tệ của đặt chỗ.'], 400);
+        }
+
+        $bookingChanges = [];
+        if ($this->linkNeedsTerms($booking, $purpose)) {
+            [$terms, $termsError] = TermsAcceptance::check($data['terms'] ?? null);
+            if ($termsError) {
+                return $this->termsError($termsError);
+            }
+            $bookingChanges += $terms;
+        }
+
+        $total = $this->fromStorageAmount((int) $booking->total_amount, $currency);
+        if ($purpose === PaymentLink::BOOKING) {
+            $date = $booking->departure_date->toDateString();
+            $plan = PaymentPlan::enabled() ? PaymentPlan::choose($data['payment_plan'] ?? null, $date) : PaymentPlan::FULL;
+            $dueNow = PaymentPlan::amounts($total, $currency, $plan)['due_now'];
+            $bookingChanges += ['payment_plan' => $plan, 'balance_due_date' => $plan === PaymentPlan::DEPOSIT ? PaymentPlan::balanceDueDate($date) : null];
+            $paymentPurpose = $plan;
+        } else {
+            $dueNow = $this->fromStorageAmount($booking->balanceAmount(), $currency);
+            $paymentPurpose = 'balance';
+        }
+
+        $internalTxId = uniqid('tx_', true);
+        $statusToken = $this->generateStatusToken($internalTxId);
+        [$successUrl, $cancelUrl] = $this->buildCallbackUrls($request, $method, $internalTxId, SafeRedirect::normalize($data['return_base'] ?? null), $statusToken);
+
+        try {
+            DB::transaction(function () use ($booking, $bookingChanges, $internalTxId, $method, $dueNow, $currency, $paymentPurpose, $request) {
+                if ($bookingChanges) {
+                    $booking->update($bookingChanges);
+                }
+                $payment = Payment::create([
+                    'internal_tx_id' => $internalTxId,
+                    'booking_id' => $booking->id,
+                    'gateway' => $method,
+                    'purpose' => $paymentPurpose,
+                    'amount' => $this->toStorageAmount($dueNow, $currency),
+                    'currency' => $currency,
+                    'status' => Payment::defaultStatus(),
+                ]);
+                PaymentCustomer::create([
+                    'payment_id' => $payment->id,
+                    'full_name' => $booking->full_name,
+                    'email' => $booking->email,
+                    'phone' => $booking->phone,
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent() ? mb_substr($request->userAgent(), 0, 255) : null,
+                    'gateway_payload' => ['link_purpose' => $paymentPurpose],
+                ]);
+            });
+            BookingAudit::log($booking->id, 'link.payment_started', null, ['purpose' => $paymentPurpose, 'method' => $method, 'tx' => $internalTxId] + (isset($bookingChanges['terms_version']) ? ['terms_version' => $bookingChanges['terms_version']] : []));
+
+            $description = ($paymentPurpose === 'balance' ? 'Balance' : ($paymentPurpose === PaymentPlan::DEPOSIT ? 'Deposit ' . (int) config('booking.deposit_percent', 30) . '%' : 'Payment')) . ' - ' . $booking->code;
+            $result = $this->payments->init([
+                'method' => $method,
+                'amount' => $dueNow,
+                'currency' => $currency,
+                'description' => $description,
+                'internal_tx_id' => $internalTxId,
+                'success_url' => $successUrl,
+                'cancel_url' => $cancelUrl,
+            ]);
+            if ($result->providerTxId) {
+                Payment::where('internal_tx_id', $internalTxId)->update(['provider_tx_id' => $result->providerTxId]);
+            }
+
+            return response()->json([
+                'success' => true,
+                'internal_tx_id' => $result->internalTxId,
+                'payment_url' => $result->paymentUrl,
+                'status_token' => $statusToken,
+                'amount_due_now' => $dueNow,
+                'currency' => $currency,
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('Payment link init error', ['booking' => $booking->code, 'exception' => $e]);
+            $payment = Payment::where('internal_tx_id', $internalTxId)->first();
+            if ($payment) {
+                $payment->markIfPending(['status' => Payment::statusFailed(), 'error_code' => 'payment_init_error', 'error_message' => $e->getMessage(), 'completed_at' => now()]);
+            }
+
+            return response()->json(['success' => false, 'code' => 'payment_init_error', 'message' => 'Khởi tạo thanh toán thất bại.'], 500);
+        }
+    }
+
+    /** @return array{0: ?Booking, 1: ?string, 2: ?\Illuminate\Http\JsonResponse} */
+    protected function resolvePaymentLink(?string $token): array
+    {
+        $fail = fn (string $code, int $status, string $message) => [null, null, response()->json(['success' => false, 'code' => $code, 'message' => $message], $status)];
+
+        if (!BookingAudit::ready()) {
+            return $fail('link_unavailable', 503, 'Tạm thời chưa thể thanh toán qua đường dẫn. Vui lòng liên hệ chúng tôi.');
+        }
+        $link = PaymentLink::parse($token);
+        $booking = $link ? Booking::where('code', $link['code'])->first() : null;
+        if (!$booking) {
+            return $fail('link_invalid', 410, 'Đường dẫn thanh toán không hợp lệ hoặc đã hết hạn. Vui lòng liên hệ chúng tôi để nhận đường dẫn mới.');
+        }
+        $cancelled = in_array($booking->status, [Booking::statusCancelled(), Booking::statusFailed()], true);
+        $departed = !$booking->departure_date || PaymentPlan::daysBefore($booking->departure_date->toDateString()) < 0;
+        $due = $link['purpose'] === PaymentLink::BOOKING
+            ? $booking->netPaid() === 0 && in_array($booking->payment_status, [null, Booking::PAYMENT_UNPAID], true) && (int) $booking->total_amount > 0
+            : in_array($booking->payment_status, [Booking::PAYMENT_DEPOSIT_PAID, Booking::PAYMENT_OVERDUE], true) && $booking->balanceAmount() > 0;
+        if ($cancelled || $departed || !$due) {
+            return $fail('nothing_due', 409, 'Đặt chỗ này không còn khoản nào cần thanh toán qua đường dẫn. Vui lòng liên hệ chúng tôi nếu cần hỗ trợ.');
+        }
+        if ($this->linkNeedsTerms($booking, $link['purpose']) && (string) config('booking.terms_version') === '') {
+            return $fail('terms_not_configured', 503, 'Tạm thời chưa thể thanh toán qua đường dẫn. Vui lòng liên hệ chúng tôi.');
+        }
+
+        return [$booking, $link['purpose'], null];
+    }
+
+    /** Decision 6: a guest booking through our team accepts the terms personally on the link page. */
+    protected function linkNeedsTerms(Booking $booking, string $purpose): bool
+    {
+        return $purpose === PaymentLink::BOOKING || $booking->terms_version === null;
+    }
+
     public function status(Request $request)
     {
         $internalTxId = $request->query('internal_tx_id') ?: $request->query('tx');
@@ -468,7 +661,9 @@ class PaymentController extends Controller
 
         $bookingPayload = null;
         if ($canViewBooking) {
-            $booking = Booking::with(['cabins', 'amenities'])->where('payment_id', $payment->id)->first();
+            // Balance and link payments point at their booking through payments.booking_id.
+            $target = $payment->resolveBooking();
+            $booking = $target ? Booking::with(['cabins', 'amenities'])->find($target->id) : null;
             if ($booking) {
                 $currency = $booking->currency ?? 'usd';
                 $bookingPayload = [

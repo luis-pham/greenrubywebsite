@@ -152,6 +152,11 @@ Route::prefix('admincp')->middleware(['auth:admin', 'language.backend'])->group(
     Route::post('/booking-manager/destroy', 'BookingController@destroy')->name('backend.booking.destroy')->middleware('can:booking-manager-delete');
     Route::post('/booking-manager/quote-destroy', 'BookingController@destroyQuote')->name('backend.booking.quoteDestroy')->middleware('can:booking-manager-delete');
     Route::post('/booking-manager/quote-status/{id}', 'BookingController@quoteStatus')->name('backend.booking.quoteStatus')->middleware('can:booking-manager-update');
+    // Payment links and refunds with approval (TPX decisions 3, 5, 6). Finance-only steps are checked in RefundService.
+    Route::post('/booking-manager/payment-link/{id}', 'BookingController@sendPaymentLink')->name('backend.booking.paymentLink')->middleware('can:booking-manager-update');
+    Route::post('/booking-manager/refund-request/{id}', 'BookingController@requestRefund')->name('backend.booking.refundRequest')->middleware('can:booking-manager-update');
+    Route::post('/booking-manager/refund-decision/{refundId}', 'BookingController@decideRefund')->name('backend.booking.refundDecision')->middleware('can:booking-manager-update');
+    Route::post('/booking-manager/refund-processed/{refundId}', 'BookingController@processRefund')->name('backend.booking.refundProcessed')->middleware('can:booking-manager-update');
     Route::get('/{languageCode}/booking-manager', 'BookingController@index')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.index'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-read');
     Route::get('/{languageCode}/booking-manager/show/{id}', 'BookingController@show')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.show'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-read');
     Route::get('/{languageCode}/booking-manager/detail/{id}', 'BookingController@detailModal')->name(Utilities::bindRouteNameMultiLanguage('backend.booking.detail'))->where('languageCode', $listLanguageCode)->middleware('can:booking-manager-read');

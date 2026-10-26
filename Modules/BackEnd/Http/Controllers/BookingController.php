@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\BookingCancellationMail;
+use App\Mail\BookingPaymentMail;
+use App\Models\PaymentRefund;
+use App\Payments\BookingAudit;
+use App\Payments\PaymentLink;
+use App\Payments\PaymentPlan;
+use App\Payments\RefundService;
 use Modules\BackEnd\Helpers\Utilities;
 
 class BookingController extends Controller
@@ -162,7 +168,146 @@ class BookingController extends Controller
             return abort(404);
         }
 
-        return view($this->baseView . 'show', compact('title', 'booking'));
+        $ops = $this->paymentOperations($booking);
+
+        return view($this->baseView . 'show', compact('title', 'booking', 'ops'));
+    }
+
+    /**
+     * Money panel of the booking page (TPX decisions 3, 5, 6): links, notifications sent, refunds with
+     * approval and the audit trail. Null until migration 2026_10_27_000002 has run.
+     */
+    private function paymentOperations(Booking $booking): ?array
+    {
+        if (!BookingAudit::ready()) {
+            return null;
+        }
+        $userId = $this->adminId();
+        $suggestions = [];
+        foreach (PaymentRefund::REASONS as $reason) {
+            $suggestions[$reason] = RefundService::suggest($booking, $reason);
+        }
+        $names = DB::table('ad_user')->pluck('username', 'id');
+
+        return [
+            'linkPurpose' => $this->linkPurpose($booking),
+            'termsConfigured' => (string) config('booking.terms_version') !== '',
+            'notifications' => DB::table('booking_notifications')->where('booking_id', $booking->id)->orderBy('sent_at')->get(),
+            'refunds' => $booking->refunds()->get(),
+            'audit' => DB::table('booking_audit_log')->where('booking_id', $booking->id)->orderByDesc('id')->limit(50)->get(),
+            'refundable' => RefundService::refundable($booking),
+            'suggestions' => $suggestions,
+            'isFinance' => RefundService::isFinance($userId),
+            'userId' => $userId,
+            'names' => $names,
+        ];
+    }
+
+    /** Which secure link this booking can be sent: acceptance + first payment, or the balance. */
+    private function linkPurpose(Booking $booking): ?string
+    {
+        if (in_array($booking->status, [Booking::statusCancelled(), Booking::statusFailed()], true) || !$booking->departure_date
+            || PaymentPlan::daysBefore($booking->departure_date->toDateString()) < 0) {
+            return null;
+        }
+        if ($booking->netPaid() === 0 && in_array($booking->payment_status, [null, Booking::PAYMENT_UNPAID], true) && (int) $booking->total_amount > 0) {
+            return PaymentLink::BOOKING;
+        }
+        if (in_array($booking->payment_status, [Booking::PAYMENT_DEPOSIT_PAID, Booking::PAYMENT_OVERDUE], true) && $booking->balanceAmount() > 0) {
+            return PaymentLink::BALANCE;
+        }
+
+        return null;
+    }
+
+    private function adminId(): ?int
+    {
+        $id = \Auth::guard('admin')->id() ?? \Auth::id();
+
+        return $id === null ? null : (int) $id;
+    }
+
+    /** Reservations sends the guest a secure link to accept the terms and pay, or to pay the balance. */
+    public function sendPaymentLink($id, Request $request)
+    {
+        $id = $request->route('id') ?? $id;
+        $booking = Booking::find($id);
+        $purpose = $booking && BookingAudit::ready() ? $this->linkPurpose($booking) : null;
+        if (!$purpose) {
+            return redirect()->back()->withErrors(__('backend::booking.link_not_available'));
+        }
+        if ($purpose === PaymentLink::BOOKING && (string) config('booking.terms_version') === '') {
+            return redirect()->back()->withErrors(__('backend::booking.link_terms_not_configured'));
+        }
+        if (!$booking->email) {
+            return redirect()->back()->withErrors(__('backend::booking.link_no_email'));
+        }
+        $departureEnd = $booking->departure_date->copy()->endOfDay()->getTimestamp();
+        $expires = $purpose === PaymentLink::BOOKING
+            ? min(now()->addDays((int) config('booking.payment_link_days', 14))->getTimestamp(), $departureEnd)
+            : $departureEnd;
+        $url = PaymentLink::url($booking, $purpose, $expires);
+
+        try {
+            Mail::to($booking->email)->send(new BookingPaymentMail($booking, $purpose === PaymentLink::BOOKING ? 'payment_link' : 'balance_request', $url, ['expires' => $expires]));
+        } catch (\Throwable $e) {
+            Log::error('Payment link email failed', ['booking' => $booking->code, 'error' => $e->getMessage()]);
+
+            return redirect()->back()->withErrors(__('backend::booking.link_email_failed'));
+        }
+        BookingAudit::log($booking->id, 'link.sent', $this->adminId(), ['purpose' => $purpose, 'to' => $booking->email, 'expires' => date('c', $expires)]);
+
+        return redirect()->back()->with('flash-message', __('backend::booking.link_sent', ['email' => $booking->email]));
+    }
+
+    public function requestRefund($id, Request $request)
+    {
+        $id = $request->route('id') ?? $id;
+        $booking = Booking::findOrFail($id);
+        $data = $request->validate([
+            'amount' => 'required|numeric|min:0.01',
+            'reason' => 'required|string|in:' . implode(',', PaymentRefund::REASONS),
+            'note' => 'nullable|string|max:2000',
+        ]);
+        $amount = strtolower((string) $booking->currency) === 'usd' ? (int) round($data['amount'] * 100) : (int) round($data['amount']);
+
+        try {
+            RefundService::request($booking, $amount, $data['reason'], $data['note'] ?? null, (int) $this->adminId());
+        } catch (\DomainException $e) {
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
+        }
+
+        return redirect()->back()->with('flash-message', __('backend::booking.refund_requested'));
+    }
+
+    public function decideRefund($refundId, Request $request)
+    {
+        $refundId = $request->route('refundId') ?? $refundId;
+        $refund = PaymentRefund::findOrFail($refundId);
+        $data = $request->validate(['decision' => 'required|in:approve,reject', 'note' => 'nullable|string|max:2000']);
+
+        try {
+            RefundService::decide($refund, $data['decision'] === 'approve', $data['note'] ?? null, (int) $this->adminId());
+        } catch (\DomainException $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
+
+        return redirect()->back()->with('flash-message', __('backend::booking.refund_decided'));
+    }
+
+    public function processRefund($refundId, Request $request)
+    {
+        $refundId = $request->route('refundId') ?? $refundId;
+        $refund = PaymentRefund::findOrFail($refundId);
+        $data = $request->validate(['provider_reference' => 'required|string|max:191']);
+
+        try {
+            RefundService::markProcessed($refund, $data['provider_reference'], (int) $this->adminId());
+        } catch (\DomainException $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
+
+        return redirect()->back()->with('flash-message', __('backend::booking.refund_processed'));
     }
 
     public function detailModal($id, Request $request)
@@ -257,6 +402,14 @@ class BookingController extends Controller
                 return response()->json(['success' => false, 'message' => __('backend::booking.delete_only_cancelled')]);
             }
             return redirect()->back()->withErrors(__('backend::booking.delete_only_cancelled'));
+        }
+
+        // Money was received: keep the booking and its payments for the audit trail (TPX decision 5).
+        if (BookingAudit::ready() && (int) $booking->amount_paid > 0) {
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'message' => __('backend::booking.delete_paid_blocked')]);
+            }
+            return redirect()->back()->withErrors(__('backend::booking.delete_paid_blocked'));
         }
 
         DB::beginTransaction();

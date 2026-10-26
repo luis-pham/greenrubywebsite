@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Payments\BookingAudit;
 use App\Payments\BookingSchema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -122,6 +123,9 @@ class Payment extends Model
                         $target->update(['status' => config('statuses.booking.confirmed', 'confirmed')]);
                         if (BookingSchema::ready()) {
                             $target->refreshPaidAmount();
+                            BookingAudit::log($target->id, 'payment.succeeded', null, [
+                                'payment_id' => $payment->id, 'gateway' => $payment->gateway, 'purpose' => $payment->purpose ?? null, 'amount' => (int) $payment->amount,
+                            ]);
                         }
                     }
 

@@ -23,6 +23,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Needs a cron calling `php artisan schedule:run` every minute in production (check before
+        // switching BOOKING_BALANCE_COLLECTION_ENABLED on). The command itself is a no-op while it is off.
+        $schedule->command('bookings:collect-balances')
+            ->dailyAt('09:00')
+            ->timezone('Asia/Ho_Chi_Minh')
+            ->withoutOverlapping();
     }
 
     /**

@@ -104,6 +104,10 @@
             </p>
         </div>
     </div>
+
+    @if($ops)
+        @include('backend::booking.partials.payment-operations', ['booking' => $booking, 'ops' => $ops])
+    @endif
 @endsection
 
 @section('scripts')

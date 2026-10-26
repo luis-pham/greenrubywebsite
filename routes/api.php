@@ -17,12 +17,14 @@ Route::get('/booking/suggest-by-cruise', [\App\Http\Controllers\Api\BookingApiCo
 Route::get('/booking/itinerary/{id}', [\App\Http\Controllers\Api\BookingApiController::class, 'itineraryDetail']);
 Route::get('/booking/departure-dates', [\App\Http\Controllers\Api\BookingApiController::class, 'departureDates']);
 Route::get('/booking/policy', [PaymentController::class, 'policy']);
+Route::get('/booking/payment-link', [PaymentController::class, 'paymentLink']);
 
 Route::middleware('throttle:sensitive-api')->group(function () {
     Route::post('/quote-request', [\App\Http\Controllers\Api\QuoteRequestController::class, 'store']);
     Route::post('/booking/inquiry', [PaymentController::class, 'storeInquiry']);
     Route::post('/payment/init', [PaymentController::class, 'init']);
     Route::post('/payment/cancel', [PaymentController::class, 'cancel']);
+    Route::post('/booking/payment-link', [PaymentController::class, 'payPaymentLink']);
 });
 
 Route::get('/payment/status', [PaymentController::class, 'status']);

@@ -69,15 +69,23 @@ class Booking extends Model
         'terms_version',
         'terms_accepted_at',
         'terms_locale',
+        'amount_refunded',
+        'payment_overdue_at',
+        'cure_deadline_at',
     ];
 
     public const PAYMENT_UNPAID = 'unpaid';
     public const PAYMENT_DEPOSIT_PAID = 'deposit_paid';
     public const PAYMENT_PAID = 'paid';
+    /** Balance not received by the due date; the formal notice and cure period have started. */
+    public const PAYMENT_OVERDUE = 'payment_overdue';
+    public const PAYMENT_PARTIALLY_REFUNDED = 'partially_refunded';
+    public const PAYMENT_REFUNDED = 'refunded';
 
     /**
      * Sum of this booking's succeeded payments (the first via bookings.payment_id, later ones via
-     * payments.booking_id) and the resulting payment_status. Requires migration 2026_10_27_000001.
+     * payments.booking_id) and the resulting payment_status. Requires migration 2026_10_27_000001;
+     * refunds and the overdue state need 2026_10_27_000002.
      */
     public function refreshPaidAmount(): void
     {
@@ -89,21 +97,44 @@ class Booking extends Model
                 }
             })
             ->sum('amount');
+        $refunded = (int) ($this->attributes['amount_refunded'] ?? 0);
 
-        $this->update([
-            'amount_paid' => $paid,
-            'payment_status' => $paid <= 0 ? self::PAYMENT_UNPAID : ($paid >= (int) $this->total_amount ? self::PAYMENT_PAID : self::PAYMENT_DEPOSIT_PAID),
-        ]);
+        if ($refunded > 0) {
+            $status = $refunded >= $paid ? self::PAYMENT_REFUNDED : self::PAYMENT_PARTIALLY_REFUNDED;
+        } elseif ($paid <= 0) {
+            $status = self::PAYMENT_UNPAID;
+        } elseif ($paid >= (int) $this->total_amount) {
+            $status = self::PAYMENT_PAID;
+        } else {
+            $status = $this->payment_overdue_at ? self::PAYMENT_OVERDUE : self::PAYMENT_DEPOSIT_PAID;
+        }
+
+        $changes = ['amount_paid' => $paid, 'payment_status' => $status];
+        if ($status === self::PAYMENT_PAID && array_key_exists('cure_deadline_at', $this->attributes)) {
+            $changes['cure_deadline_at'] = null;
+        }
+        $this->update($changes);
     }
 
-    /** Outstanding amount in storage units (0 for bookings made before deposits existed). */
+    /** Outstanding amount in storage units (0 for bookings made before deposits existed, or once refunds started). */
     public function balanceAmount(): int
     {
-        if ($this->payment_plan === null) {
+        if ($this->payment_plan === null || (int) ($this->attributes['amount_refunded'] ?? 0) > 0) {
             return 0;
         }
 
         return max(0, (int) $this->total_amount - (int) $this->amount_paid);
+    }
+
+    /** Received and not refunded, in storage units. */
+    public function netPaid(): int
+    {
+        return max(0, (int) $this->amount_paid - (int) ($this->attributes['amount_refunded'] ?? 0));
+    }
+
+    public function refunds()
+    {
+        return $this->hasMany(PaymentRefund::class)->orderBy('id');
     }
 
     protected $casts = [
@@ -111,6 +142,9 @@ class Booking extends Model
         'balance_due_date' => 'date',
         'terms_accepted_at' => 'datetime',
         'amount_paid' => 'integer',
+        'amount_refunded' => 'integer',
+        'payment_overdue_at' => 'datetime',
+        'cure_deadline_at' => 'datetime',
         'subtotal_cabins' => 'integer',
         'subtotal_amenities' => 'integer',
         'discount_amount' => 'integer',

@@ -102,9 +102,13 @@
             $paid = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->amount_paid, $booking->currency, false);
             $balance = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->balanceAmount(), $booking->currency, false);
         @endphp
-        <p>Deposit Paid: {{ strtoupper($booking->currency) }} {{ $paid }}</p>
-        <p>Balance Due: {{ strtoupper($booking->currency) }} {{ $balance }}@if ($booking->balance_due_date) by {{ $booking->balance_due_date->format('d/m/Y') }}@endif</p>
-        <p>Our reservations team will send you the payment details for the balance.</p>
+        @if ($booking->balanceAmount() > 0)
+            <p>Deposit Paid: {{ strtoupper($booking->currency) }} {{ $paid }}</p>
+            <p>Balance Due: {{ strtoupper($booking->currency) }} {{ $balance }}@if ($booking->balance_due_date) by {{ $booking->balance_due_date->format('d/m/Y') }}@endif</p>
+            <p>We will email you a secure link to pay the balance about 45 days before departure.</p>
+        @else
+            <p>Paid: {{ strtoupper($booking->currency) }} {{ $paid }} (paid in full)</p>
+        @endif
     @endif
     <p>Payment Methods:</p>
     <p class="list-item">• {{ $paymentMethodLabel }}</p>
