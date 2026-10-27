@@ -1916,47 +1916,66 @@ HTML,
         'vi' => [
             'slug' => 'ao-ech',
             'name' => 'Ao Ếch',
+            'heading' => 'Ao Ếch (vịnh Lan Hạ): Vị trí, trải nghiệm và kinh nghiệm tham quan',
             'image_alt' => 'Mặt nước phẳng lặng phản chiếu các đảo đá vôi trên vịnh Lan Hạ',
             'image_credit' => 'Ảnh: Christophe95, CC BY-SA 4.0, qua Wikimedia Commons',
-            'seo_title' => 'Ao Ếch, vịnh Lan Hạ: có gì và cần biết gì',
-            'seo_description' => 'Ao Ếch là vùng nước kín gió trên vịnh Lan Hạ, yên tĩnh nhất vào sáng sớm. Tình trạng chèo kayak, điều kiện tắm biển, cần biết gì và lịch của Green Ruby.',
-            'summary' => 'Vùng nước kín gió giữa các đảo đá vôi trên vịnh Lan Hạ, vắng và đẹp nhất vào sáng sớm. Chèo kayak trên vịnh Lan Hạ đang tạm dừng theo quy định địa phương (cập nhật tháng 10/2026).',
+            'seo_title' => 'Ao Ếch Vịnh Lan Hạ: Vị Trí, Trải Nghiệm & Kinh Nghiệm',
+            'seo_description' => 'Khám phá Ao Ếch trên vịnh Lan Hạ, Cát Bà: vị trí, cảnh quan, cách di chuyển, thời điểm tham quan, hoạt động và những lưu ý an toàn.',
+            'summary' => 'Ao Ếch là vùng nước kín gió giữa các đảo đá vôi trên vịnh Lan Hạ, ngoài khơi bờ đông đảo Cát Bà, Hải Phòng. Ở đây không có hang động, bãi tắm hay điểm ngắm toàn cảnh. Du khách đến vì mặt nước phẳng lặng, vách đá ở ngay bên cạnh và một góc vịnh yên tĩnh hơn, đẹp nhất vào sáng sớm.',
             'content' => <<<'HTML'
-<h2>Vị trí</h2>
-<p>Ao Ếch nằm trên vịnh Lan Hạ, giữa các đảo nhỏ ngoài khơi bờ đông đảo Cát Bà. Khu vực này thuộc quần đảo Cát Bà, được đưa vào Di sản Thiên nhiên Thế giới cùng vịnh Hạ Long từ năm 2023.</p>
-<h2>Vì sao nên ghé</h2>
-<p>Áng nước được núi đá che chắn gần hết các phía, nên mặt nước thường phẳng lặng kể cả khi ngoài vịnh có sóng. Vách đá ở ngay bên cạnh và ít tàu qua lại, nhất là vào buổi sớm.</p>
-<h2>Hoạt động</h2>
+<p><em>Việc tắm biển và chèo kayak ở Ao Ếch phụ thuộc vào quy định địa phương, thời tiết và lịch trình của từng du thuyền. Hãy kiểm tra quy định hiện hành trước chuyến đi.</em></p>
+<h2>Ao Ếch nằm ở đâu trên vịnh Lan Hạ?</h2>
+<p>Ao Ếch nằm giữa các đảo đá vôi ngoài khơi bờ đông đảo Cát Bà, trên vịnh Lan Hạ, thành phố Hải Phòng. Khu vực này thuộc quần đảo Cát Bà, được UNESCO đưa vào Di sản Thiên nhiên Thế giới năm 2023 với tên gọi chung Vịnh Hạ Long – Quần đảo Cát Bà. Vùng biển quanh Cát Bà cũng nằm trong Khu dự trữ sinh quyển Cát Bà, thuộc Chương trình Con người và Sinh quyển của UNESCO.</p>
+<p>Trong tiếng Anh, Ao Ếch thường được gọi là Ao Ech Lagoon hoặc Frog Pond, dịch sát nghĩa tên tiếng Việt.</p>
+<h2>Ao Ếch có gì đặc biệt?</h2>
+<p>Các đảo đá vôi bao quanh gần kín Ao Ếch, nên mặt nước bên trong thường phẳng lặng kể cả khi ngoài vịnh có sóng. Những buổi sáng lặng gió, vách đá và cây xanh bám trên sườn núi in bóng xuống mặt nước.</p>
+<p>Ở đây không có công trình nào: không lối đi bộ, cổng soát vé, hàng quán hay điểm ngắm cảnh. Cái hay của Ao Ếch nằm ở chính điều đó. Đây là chỗ để thong thả ngắm cảnh chừng một giờ và, khi được phép, xuống nước bơi.</p>
+<p>Ao Ếch cũng không phải lúc nào cũng vắng. Các tàu khác cùng đi trong khu vực này, và mức độ đông đúc tùy mùa, tùy ngày trong tuần và giờ bạn đến.</p>
+<h2>Những trải nghiệm tại Ao Ếch</h2>
+<h3>Ngắm cảnh từ boong tàu</h3>
+<p>Cách đơn giản nhất để ngắm Ao Ếch là đứng trên boong khi tàu chạy vào hoặc neo gần đó. Ánh nắng buổi sáng trên vách đá và mặt nước phẳng khiến đây là một trong những chỗ chụp ảnh phong cảnh đẹp của vịnh Lan Hạ. Nếu không muốn xuống nước, bạn ở lại trên tàu cũng không bỏ lỡ nhiều.</p>
+<h3>Tắm biển</h3>
+<p>Khi quy định địa phương cho phép và đội tàu đánh giá điều kiện an toàn, khách có thể được bơi gần tàu. Chỉ bơi trong khu vực đội tàu chỉ định, mặc áo phao theo hướng dẫn và không tự ý xuống nước, dù mặt biển trông có vẻ êm. Gió, tầm nhìn kém, sóng hoặc quy định thay đổi đều có thể khiến hoạt động này bị hủy ngay trong ngày.</p>
+<h3>Chèo kayak ở Ao Ếch</h3>
+<p>Nhờ mặt nước kín gió, Ao Ếch từng là một trong những điểm chèo kayak quen thuộc nhất của vịnh Lan Hạ, và phần lớn ảnh chụp nơi này đều có kayak. Tuy nhiên, theo thông tin cập nhật tháng 10/2026, hoạt động chèo kayak trên vịnh Lan Hạ đang tạm dừng theo quy định địa phương.</p>
+<p>Đừng lên kế hoạch chuyến đi dựa vào việc chèo kayak ở đây, trừ khi cơ quan chức năng đã cho phép trở lại và đơn vị vận hành xác nhận cho chuyến của bạn. Các bài viết cũ và ảnh quảng cáo có thể không còn đúng với quy định hiện nay.</p>
+<h2>Đến Ao Ếch bằng cách nào?</h2>
+<p>Chỉ có thể đi bằng tàu. Ao Ếch không có đường bộ; khách đến đây theo các chuyến tham quan vịnh Lan Hạ trong ngày hoặc du thuyền ngủ đêm. Tàu neo ở đâu và khách được làm gì tùy tuyến đi và điều kiện hôm đó.</p>
+<h2>Nên đi Ao Ếch vào thời điểm nào?</h2>
+<p>Sáng sớm là đẹp nhất: ánh sáng dịu hơn và thường ít tàu hơn so với cuối ngày.</p>
+<p>Từ khoảng tháng 5 đến tháng 10, trời và nước ấm, hợp để tắm biển, nhưng đây cũng là mùa mưa, có nguy cơ bão. Từ tháng 11 đến tháng 4, trời mát nên ngắm cảnh trên boong dễ chịu hơn, nhưng nước lạnh nên ít người muốn bơi. Khi có cảnh báo thời tiết xấu, cơ quan chức năng có thể tạm dừng tàu ra vịnh Lan Hạ, và lịch tham quan sẽ phải đổi hoặc hủy.</p>
+<p>Xem thêm thời tiết từng tháng trong bài <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">Du lịch Hạ Long mùa nào đẹp nhất?</a></p>
+<h2>Những lưu ý khi tham quan Ao Ếch</h2>
 <ul>
-<li>Ngắm áng nước và vách đá từ boong khi du thuyền neo gần đó.</li>
-<li>Bơi gần tàu, chỉ khi quy định địa phương cho phép và đội tàu xác nhận an toàn.</li>
-<li>Chèo kayak: đang tạm dừng trên vịnh Lan Hạ theo quy định địa phương (cập nhật tháng 10/2026). Chỉ tổ chức lại khi quy định thay đổi.</li>
+<li><strong>Mang đồ bơi</strong> nếu lịch trình có tắm biển, nhưng nên chuẩn bị tinh thần là hoạt động này có thể bị hủy vì thời tiết hoặc quy định.</li>
+<li><strong>Chống nắng:</strong> trên mặt nước gần như không có bóng râm, nên mang mũ, kính râm và kem chống nắng.</li>
+<li><strong>Giữ điện thoại khô ráo</strong> bằng túi chống nước nếu xuống nước.</li>
+<li><strong>Làm theo hướng dẫn của đội tàu</strong> về chỗ bơi và giờ bơi.</li>
+<li><strong>Đi cùng trẻ nhỏ:</strong> trẻ phải có người lớn trông và mặc áo phao theo quy định.</li>
+<li><strong>Hỏi trước khi đặt chỗ</strong> nếu trong đoàn có người đi lại khó khăn: xuống nước từ tàu hoặc thuyền nhỏ không phù hợp với tất cả mọi người.</li>
 </ul>
-<h2>Cách đến</h2>
-<p>Du thuyền neo gần Ao Ếch; du khách ngắm áng từ trên tàu hoặc, khi được phép, xuống nước ngay cạnh tàu.</p>
-<h2>Khi đến nơi</h2>
-<p>Sáng sớm ánh sáng dịu và mặt nước yên ắng. Càng về trưa càng có thêm tàu từ Cát Bà và phía Hạ Long kéo đến.</p>
-<h2>Lưu ý khi tham quan</h2>
-<ul>
-<li>Người bơi chỉ bơi trong khu vực đội tàu chỉ định.</li>
-<li>Nhiệt độ nước thay đổi nhiều theo mùa: ấm từ khoảng tháng 5 đến tháng 10, mùa đông khá lạnh.</li>
-<li>Ai không muốn xuống nước có thể ở lại ngắm cảnh trên boong.</li>
-</ul>
-<h2>Thời tiết và mùa</h2>
-<p>Tắm biển phụ thuộc quy định địa phương và gió, tầm nhìn, điều kiện mặt nước buổi sáng hôm đó; khi có cảnh báo bão, tàu có thể phải tạm dừng.</p>
+<h2>Tham quan Ao Ếch cùng Green Ruby Cruises</h2>
+<p>Ao Ếch là điểm dừng dự kiến trong chương trình vịnh Lan Hạ của du thuyền <a href="/vi/du-thuyen/green-ruby-2-2.html">Green Ruby 2</a>, do chúng tôi vận hành. Trong hành trình <a href="/vi/hanh-trinh/2-ngay-1-dem-mot-thoang-lan-ha-2-5.html">2 Ngày 1 Đêm – Một Thoáng Lan Hạ</a>, tàu dự kiến đến Ao Ếch vào sáng ngày thứ hai, sau buổi tập Thái cực quyền đón bình minh trên boong và bữa sáng nhẹ, rồi dành thời gian ở đây trước bữa brunch và lúc tàu quay về bến.</p>
+<p>Tắm biển và các hoạt động dưới nước chỉ được tổ chức khi cơ quan chức năng cho phép và đội tàu xác nhận an toàn. Green Ruby 2 đang chuẩn bị đưa vào khai thác, dự kiến từ tháng 2/2027, nên giờ ghé có thể còn thay đổi.</p>
 HTML,
             'facts' => [
-                ['label' => 'Vị trí', 'value' => 'Vịnh Lan Hạ, ngoài khơi bờ đông đảo Cát Bà'],
-                ['label' => 'Loại hình', 'value' => 'Áng nước kín gió giữa các đảo đá vôi'],
-                ['label' => 'Hoạt động', 'value' => 'Ngắm cảnh; tắm biển khi quy định và điều kiện cho phép'],
-                ['label' => 'Chèo kayak', 'value' => 'Tạm dừng theo quy định địa phương (cập nhật tháng 10/2026)'],
-                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1,5 giờ (ước tính)'],
-                ['label' => 'Thời điểm đẹp', 'value' => 'Sáng sớm, lúc vắng nhất'],
+                ['label' => 'Vị trí', 'value' => 'Vịnh Lan Hạ, ngoài khơi bờ đông đảo Cát Bà, Hải Phòng'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Ao Ech Lagoon, Frog Pond'],
+                ['label' => 'Cảnh quan', 'value' => 'Vùng nước kín gió, có các đảo đá vôi bao quanh'],
+                ['label' => 'Hoạt động', 'value' => 'Ngắm cảnh, chụp ảnh từ boong; tắm biển khi quy định và điều kiện cho phép'],
+                ['label' => 'Chèo kayak', 'value' => 'Đang tạm dừng theo quy định địa phương (cập nhật tháng 10/2026); cần kiểm tra trước chuyến đi'],
+                ['label' => 'Cách đến', 'value' => 'Chỉ bằng tàu, theo chuyến tham quan hoặc du thuyền trên vịnh Lan Hạ'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 1,5 giờ, tùy lịch trình'],
+                ['label' => 'Thời điểm đẹp', 'value' => 'Sáng sớm, ánh sáng dịu và ít tàu hơn'],
             ],
             'faq' => [
-                ['q' => 'Có tắm biển ở Ao Ếch được không?', 'a' => 'Chỉ bơi gần tàu, khi quy định địa phương cho phép và đội tàu xác nhận an toàn. Nước ấm nhất từ cuối xuân đến mùa thu.'],
-                ['q' => 'Có chèo kayak ở Ao Ếch được không?', 'a' => 'Hiện chưa. Chèo kayak trên vịnh Lan Hạ đang tạm dừng theo quy định địa phương (cập nhật tháng 10/2026). Green Ruby chỉ tổ chức lại khi quy định thay đổi.'],
-                ['q' => 'Green Ruby dự kiến ghé Ao Ếch khi nào?', 'a' => 'Sáng ngày thứ hai của hành trình 2 ngày 1 đêm vịnh Lan Hạ trên Green Ruby 2, trước bữa brunch và khi tàu quay về bến. Giờ giấc có thể thay đổi trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
+                ['q' => 'Ao Ếch nằm ở đâu?', 'a' => 'Trên vịnh Lan Hạ, giữa các đảo đá vôi ngoài khơi bờ đông đảo Cát Bà, Hải Phòng. Trong tiếng Anh, nơi này được gọi là Ao Ech Lagoon hoặc Frog Pond.'],
+                ['q' => 'Ao Ếch có gì để tham quan?', 'a' => 'Chủ yếu là cảnh quan: mặt nước kín gió, vách đá vôi và cây xanh ngay bên cạnh. Khách ngắm cảnh, chụp ảnh từ tàu và, khi được phép, bơi gần tàu. Ở đây không có hang động hay công trình trên bờ.'],
+                ['q' => 'Có được tắm biển ở Ao Ếch không?', 'a' => 'Có thể, khi quy định địa phương cho phép và đội tàu xác nhận điều kiện an toàn trong ngày. Nước ấm nhất từ khoảng tháng 5 đến tháng 10.'],
+                ['q' => 'Có chèo kayak ở Ao Ếch được không?', 'a' => 'Hiện chưa. Theo thông tin cập nhật tháng 10/2026, chèo kayak trên vịnh Lan Hạ đang tạm dừng theo quy định địa phương. Hãy kiểm tra quy định mới nhất và chương trình đã được đơn vị vận hành xác nhận trước khi đi.'],
+                ['q' => 'Tham quan Ao Ếch mất bao lâu?', 'a' => 'Khoảng 1,5 giờ với phần lớn lịch trình du thuyền, tùy hành trình, thời tiết và các hoạt động được phép hôm đó.'],
+                ['q' => 'Trẻ em có tham quan Ao Ếch được không?', 'a' => 'Có. Trẻ em có thể ngắm cảnh từ boong tàu. Việc xuống bơi tùy độ tuổi, quy định an toàn của đơn vị vận hành và điều kiện trong ngày.'],
+                ['q' => 'Green Ruby dự kiến ghé Ao Ếch khi nào?', 'a' => 'Vào sáng ngày thứ hai của hành trình 2 Ngày 1 Đêm – Một Thoáng Lan Hạ trên Green Ruby 2, trước bữa brunch và khi tàu quay về bến. Giờ giấc có thể thay đổi trước khi tàu chính thức hoạt động, dự kiến từ tháng 2/2027.'],
             ],
         ],
     ],
