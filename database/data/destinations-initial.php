@@ -1846,50 +1846,67 @@ HTML,
         'image_credit' => null,
         'itineraries' => ['en' => [2], 'vi' => [5]],
         'sources' => [$unesco, $catBaMab],
-        'editor_notes' => "Needs verified coordinates. Hero is the owner's photo described in the media library as kayaking at Ao Ech (2026-10-21). The origin of the name (frog shape) is not confirmed and is left out. Before publishing: replace the kayaking hero, since Lan Ha kayaking is suspended (as of October 2026).",
+        'editor_notes' => "Needs verified coordinates. Hero is the owner's photo described in the media library as kayaking at Ao Ech (2026-10-21). The origin of the name (frog shape) is not confirmed and is left out; only the literal meaning of 'ao' (pond) and 'ếch' (frog) is given. EN rewritten 2026-10-27 from the owner's brief: visit length checked against the Lan Ha Escape day 2 schedule (Ao Ech 07:45, check-out 09:30). STILL TO DO: replace the kayaking hero, since Lan Ha kayaking is suspended (as of October 2026).",
         'en' => [
             'slug' => 'ao-ech-lagoon',
             'name' => 'Ao Ech Lagoon',
+            'heading' => 'Ao Ech Lagoon (Frog Pond) in Lan Ha Bay',
             'image_alt' => 'Kayaking on calm water at Ao Ech lagoon in Lan Ha Bay',
-            'seo_title' => 'Ao Ech Lagoon (Frog Lake), Lan Ha Bay: What to Expect',
-            'seo_description' => 'Ao Ech is a sheltered lagoon in Lan Ha Bay, quietest in the early morning. Kayaking status, swimming conditions, what to expect and Green Ruby\'s plan.',
-            'summary' => 'A sheltered stretch of water among limestone islets in Lan Ha Bay, quietest in the early morning. Kayaking in Lan Ha Bay is temporarily suspended under local regulations (as of October 2026).',
+            'seo_title' => 'Ao Ech Lagoon (Frog Pond), Lan Ha Bay: Visitor Guide',
+            'seo_description' => 'Discover Ao Ech Lagoon, also known as Frog Pond, in Lan Ha Bay. Learn where it is, what to expect, swimming conditions and practical cruise tips.',
+            'summary' => 'Ao Ech, also called Frog Pond or Frog Lagoon, is a sheltered stretch of water among the limestone islands of Lan Ha Bay, off the east coast of Cat Ba Island. There is no cave, beach or viewpoint to visit here. People come for flat water, cliffs close at hand and a quieter corner of the bay, ideally early in the morning.',
             'content' => <<<'HTML'
-<h2>Where it is</h2>
-<p>Ao Ech, often translated as Frog Lake or Frog Lagoon, is in Lan Ha Bay, among the islets off the east coast of Cat Ba Island. It is part of the Cat Ba Archipelago, which joined the Ha Long Bay World Heritage Site in 2023.</p>
-<h2>Why it is worth visiting</h2>
-<p>The lagoon is protected by limestone on most sides, so the water is usually flat even when the open bay is choppy. Cliffs rise close by and there are few other boats, especially early in the day.</p>
-<h2>Activities</h2>
+<p><em>Swimming and kayaking at Ao Ech depend on local regulations, the weather and your cruise itinerary. Check the current rules before you travel.</em></p>
+<h2>Where is Ao Ech in Lan Ha Bay?</h2>
+<p>Ao Ech lies among the limestone islands off the east coast of Cat Ba Island, in Lan Ha Bay, Hai Phong. The area is part of the Cat Ba Archipelago, which UNESCO added to the World Heritage property in 2023 under the name Ha Long Bay – Cat Ba Archipelago. The waters around Cat Ba are also part of the Cat Ba Biosphere Reserve, recognised under UNESCO’s Man and the Biosphere Programme.</p>
+<p>In Vietnamese, <em>ao</em> means pond and <em>ếch</em> means frog, which is where the English names Frog Pond and Frog Lagoon come from.</p>
+<h2>What is Ao Ech like?</h2>
+<p>Limestone islands close in around most of the lagoon, so the water inside is often flat when the open bay is choppy. On a still morning, the cliffs and the trees clinging to them are mirrored on the surface.</p>
+<p>Nothing has been built here: no walkways, ticket gate, shops or viewpoint. That is the appeal. Ao Ech is a place to slow down for an hour, look around and, when it is allowed, get into the water.</p>
+<p>It is not always empty. Other boats use the same waters, and how busy it feels depends on the season, the day of the week and the time you arrive.</p>
+<h2>Things to do at Ao Ech</h2>
+<h3>Take in the view from the deck</h3>
+<p>The easiest way to see Ao Ech is from the sundeck, as the ship sails in or lies at anchor nearby. Morning light on the cliffs and calm water make it one of the better places in Lan Ha Bay for landscape photography. Staying on board is a perfectly good way to enjoy the stop.</p>
+<h3>Swimming</h3>
+<p>When local regulations allow it and the crew judges conditions safe, guests may be able to swim near the ship. Swimming takes place only in the area the crew marks out, with life jackets as instructed. Wind, poor visibility, rough water or a change in local rules can cancel it on the day.</p>
+<h3>Kayaking at Ao Ech</h3>
+<p>Its sheltered water made Ao Ech one of the best-known kayaking spots in Lan Ha Bay, and most photos of the lagoon show kayaks. As of October 2026, however, kayaking in Lan Ha Bay is reported to be temporarily suspended under local regulations.</p>
+<p>Do not plan your trip around kayaking here unless the authorities have lifted the restriction and your cruise operator confirms it for your departure. Older articles and promotional photos may not reflect the current rules.</p>
+<h2>How do you get to Ao Ech?</h2>
+<p>Only by boat. There is no road access, and the lagoon is visited on Lan Ha Bay sightseeing trips and overnight cruises. Where a ship can anchor, and what guests can do there, depends on the route and the conditions on the day.</p>
+<h2>When is the best time to visit?</h2>
+<p>Early morning is the best time: the light is softer and there are usually fewer boats around than later in the day.</p>
+<p>From about May to October the air and water are warm, which suits swimming, but this is also the rainy season, with a risk of tropical storms. The cooler months are more comfortable for sightseeing from the deck, though the water is less inviting. When severe weather is forecast, the authorities can suspend sailings in Lan Ha Bay, and planned visits are then changed or cancelled.</p>
+<p>For month-by-month conditions, see our guide to the <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">best time to visit Halong Bay</a>.</p>
+<h2>Practical tips</h2>
 <ul>
-<li>Taking in the lagoon and cliffs from the deck as the ship anchors nearby.</li>
-<li>Swimming near the boat, only when local rules allow and the crew confirms conditions are safe.</li>
-<li>Kayaking: temporarily suspended in Lan Ha Bay under local regulations as of October 2026. It will only be offered again if the rules change.</li>
+<li><strong>Bring swimwear</strong> if your itinerary includes a swim, and be ready for it to be cancelled because of the weather or local rules.</li>
+<li><strong>Protect yourself from the sun.</strong> There is little shade on the water, so bring a hat, sunglasses and sunscreen.</li>
+<li><strong>Keep your phone dry</strong> in a waterproof pouch if you go in the water.</li>
+<li><strong>Follow the crew’s instructions</strong> on where and when to swim.</li>
+<li><strong>Ask about access before you book.</strong> Getting into the water from a ship or small boat is not suitable for everyone.</li>
 </ul>
-<h2>How visitors reach it</h2>
-<p>The ship anchors close by; the lagoon is seen from the ship or, where permitted, from the water near the boat.</p>
-<h2>What to expect on arrival</h2>
-<p>In the early morning the light is soft and the lagoon is quiet. Later in the day more boats arrive from Cat Ba and the Ha Long side.</p>
-<h2>Accessibility and practical tips</h2>
-<ul>
-<li>Swimmers should stay within the area the crew indicates.</li>
-<li>Water temperature varies a lot through the year: warm from about May to October, cool in winter.</li>
-<li>Anyone can stay on board and enjoy the view from deck.</li>
-</ul>
-<h2>Weather and seasonal limits</h2>
-<p>Swimming depends on local rules and on wind, visibility and water conditions on the morning, and storm warnings can suspend sailings.</p>
+<h2>Visiting Ao Ech with Green Ruby Cruises</h2>
+<p>Ao Ech is a planned stop on <a href="/cruise/green-ruby-2-4.html">Green Ruby 2</a>’s Lan Ha Bay programme. On <a href="/itinerary/the-lan-ha-escape-2-days-1-night-4-2.html">The Lan Ha Escape – 2 Days 1 Night</a>, the ship is scheduled to reach the lagoon on the second morning, after sunrise Tai Chi on the sundeck and a light breakfast, with time at Ao Ech before brunch and the cruise back to the pier.</p>
+<p>Swimming and other water activities will only be offered when the local authorities allow them and the crew confirms it is safe. Green Ruby 2 is preparing to enter service, provisionally from February 2027, so stop times may still change.</p>
 HTML,
             'facts' => [
-                ['label' => 'Location', 'value' => 'Lan Ha Bay, off the east coast of Cat Ba Island'],
-                ['label' => 'Type', 'value' => 'Sheltered lagoon among limestone islets'],
-                ['label' => 'Activities', 'value' => 'Lagoon views; swimming when rules and conditions allow'],
-                ['label' => 'Kayaking', 'value' => 'Temporarily suspended under local regulations as of October 2026'],
-                ['label' => 'Typical visit', 'value' => 'About 1.5 hours (estimate)'],
-                ['label' => 'Best time', 'value' => 'Early morning, when it is quietest'],
+                ['label' => 'Location', 'value' => 'Lan Ha Bay, off the east coast of Cat Ba Island, Hai Phong, Vietnam'],
+                ['label' => 'Also known as', 'value' => 'Frog Pond, Frog Lagoon'],
+                ['label' => 'Landscape', 'value' => 'Sheltered water surrounded by limestone islands'],
+                ['label' => 'Things to do', 'value' => 'Views from the deck and photography; swimming when local rules and conditions allow'],
+                ['label' => 'Kayaking', 'value' => 'Reported as temporarily suspended under local regulations as of October 2026; confirm before travelling'],
+                ['label' => 'Getting there', 'value' => 'By boat only, on a Lan Ha Bay sightseeing trip or cruise'],
+                ['label' => 'Typical visit', 'value' => 'About 1.5 hours, depending on the itinerary'],
+                ['label' => 'Best time', 'value' => 'Early morning, for softer light and fewer boats'],
             ],
             'faq' => [
-                ['q' => 'Can you swim at Ao Ech?', 'a' => 'Only near the boat, when local rules allow and the crew confirms conditions are safe. The water is warmest from late spring to autumn.'],
-                ['q' => 'Can you kayak at Ao Ech?', 'a' => 'Not at present. Kayaking in Lan Ha Bay is temporarily suspended under local regulations as of October 2026. Green Ruby will only offer it again if the rules change.'],
-                ['q' => 'When does Green Ruby plan to visit Ao Ech?', 'a' => 'On the morning of the second day of the Lan Ha Escape (2 days 1 night) on Green Ruby 2, before brunch and the return to port. Times are provisional until sailings begin, expected in February 2027.'],
+                ['q' => 'Where is Ao Ech Lagoon?', 'a' => 'In Lan Ha Bay, among the limestone islands off the east coast of Cat Ba Island in Hai Phong, northern Vietnam. In English it is also called Frog Pond or Frog Lagoon.'],
+                ['q' => 'Can you swim at Ao Ech?', 'a' => 'Sometimes. Swimming near the ship is possible when local regulations allow it and the crew confirms conditions are safe on the day. The water is warmest from about May to October.'],
+                ['q' => 'Can you kayak at Ao Ech?', 'a' => 'Not at present. As of October 2026, kayaking in Lan Ha Bay is reported to be temporarily suspended under local regulations. Check the latest rules and your cruise operator’s confirmed programme before you travel.'],
+                ['q' => 'How long does a visit to Ao Ech take?', 'a' => 'Around 1.5 hours on most cruise schedules, but it depends on the itinerary, the weather and the activities permitted that day.'],
+                ['q' => 'Is Ao Ech suitable for families with children?', 'a' => 'Children can enjoy the scenery from the deck. Whether they can swim depends on their age, the cruise operator’s safety rules and the conditions on the day.'],
+                ['q' => 'When does Green Ruby plan to visit Ao Ech?', 'a' => 'On the second morning of The Lan Ha Escape – 2 Days 1 Night aboard Green Ruby 2, before brunch and the return to the pier. Times are provisional until sailings begin, expected in February 2027.'],
             ],
         ],
         'vi' => [
