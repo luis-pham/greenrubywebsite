@@ -1979,4 +1979,179 @@ HTML,
             ],
         ],
     ],
+    [
+        'bay' => 'ha-long',
+        'category' => 'cave',
+        'ord' => 9,
+        'latitude' => null,
+        'longitude' => null,
+        'coords_verified' => false,
+        'coords_source' => null,
+        'image' => ['file' => 'thien-cung-cave-ha-long-bay.jpg', 'link' => '/2026/10/27/thien-cung-cave-ha-long-bay.jpg'],
+        'image_credit' => 'Photo: xiquinhosilva, CC BY 2.0, via Wikimedia Commons',
+        'itineraries' => ['en' => [], 'vi' => []],
+        'sources' => [
+            ['title' => 'Ha Long Bay Management Board: visiting hours', 'url' => 'https://halongbay.com.vn/en/p/71-thoi-gian-don-tra-khach-ve-cang-ben'],
+            ['title' => 'Ha Long Bay Management Board: sightseeing routes and entrance fees', 'url' => 'https://halongbay.com.vn/en/p/57-mien-giam-phi-tham-quan-vinh-ha-long'],
+            ['title' => 'Ha Long Bay Management Board: route VHL1', 'url' => 'https://halongbay.com.vn/tours/1-hanh-trinh-vhl1-cang-tau-dong-thien-cung-hang-dau-go-hon-cho-da-hang-ba-hang-hon-dinh-huong-hon-trong-mai'],
+            ['title' => 'Vietnam National Authority of Tourism: Động Thiên Cung (Vietnamese)', 'url' => 'https://vietnamtourism.vn/index.php/tourism/items/58/8'],
+            ['title' => 'Quang Ninh Provincial Portal: tourism resources (Dau Go Cave)', 'url' => 'https://www.quangninh.gov.vn/Sites/en-us/Trang/ChiTietBVGioiThieu.aspx?bvid=138'],
+            $unesco,
+            ['title' => 'Photo: Thien Cung Cave, xiquinhosilva (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Thien_Cung_Cave_(32074503963).jpg'],
+        ],
+        'editor_notes' => "Added 2026-10-27 from the owner's EN/VI briefs. NOT a Green Ruby stop (no itinerary), so the page shows the 'not a stop' label. Checked: hours (Management Board visiting-hours page, updated 2024-11-06, lists Thiên Cung Grotto); Route 1 stops and day fee 250,000 VND (routes/fees page, updated 2024-11-02, fee since 1/4/2017 per Decision 4278/2016/QĐ-UBND); 20 m above sea level, westernmost point of the heritage area, white formations, name meaning (VHL1 route page); opened to visitors 1/5/1998 and the father dragon / mother dragon legend (VNAT). Changed from the brief: entrance height 25 m -> about 20 m (VNAT says 'entrance at 25 m' without a reference level; the Management Board says 20 m above sea level); legend 'Dragon King and May' -> father/mother dragon (no source found for May); 'southwestern part of the bay' -> western edge of the heritage area. Not published: cave area (Management Board floor ~3,000 m² vs VNAT ~10,000 m²), the 1901 inscription. Coordinates left empty: Wikidata Q124453533 points to Ninh Binh (20.216, 105.914) and vi.wikipedia gives only a rounded point. Hero identified as Thien Cung by its Commons/Flickr title only. The hub card for Thien Cung was removed from greenruby-web otherPlaces when this page went live (Dau Go stays hub-only).",
+        'en' => [
+            'slug' => 'thien-cung-cave',
+            'name' => 'Thien Cung Cave',
+            'heading' => 'Thien Cung Cave (Heavenly Palace): A Visitor\'s Guide',
+            'image_alt' => 'Lit stalactites and stalagmites above visitors on the walkway inside Thien Cung Cave, Ha Long Bay',
+            'seo_title' => 'Thien Cung Cave (Heavenly Palace): Visitor Guide & Hours',
+            'seo_description' => 'Explore Thien Cung Cave in Ha Long Bay. Find its location, opening hours, how to get there, walking conditions, tickets and practical visitor tips.',
+            'summary' => 'Thien Cung Cave, also known as Heavenly Palace Cave, is one of the best-known caves in Ha Long Bay. It sits on Dau Go Island, at the western edge of the World Heritage area, and people come for its dense, brightly lit stalactites and stalagmites rather than for the size of any one chamber. It is a stop on the bay\'s sightseeing Route 1, not on a Green Ruby itinerary.',
+            'content' => <<<'HTML'
+<p><em>Opening hours, routes and ticket prices are set by the Ha Long Bay Management Board and can change. Confirm the latest information before you travel.</em></p>
+<h2>Where is Thien Cung Cave?</h2>
+<p>Thien Cung Cave is on Dau Go Island, which the Ha Long Bay Management Board describes as the westernmost point of the World Heritage area. The cave sits about 20 metres above sea level, so a visit starts with a path and a flight of stone steps up from the boat landing.</p>
+<p>Dau Go Cave is on the same island, and the two are visited together on the bay’s sightseeing Route 1, which leaves from Tuan Chau International Cruise Port or Ha Long International Cruise Port.</p>
+<h2>What makes Thien Cung Cave worth visiting?</h2>
+<p><em>Thiên Cung</em> means “Heavenly Palace”. According to the Management Board, the name comes from the cave’s bright white stalactites and stalagmites, which look as if they were carved from crystal and leave visitors feeling they have stepped into a palace.</p>
+<p>What stays with you is the density and variety of the formations rather than the size of a single chamber. Along the walkway you pass stalactites hanging from the ceiling, stalagmites rising from the floor and columns where the two have joined. Some are thin and delicate, others look like curtains or pillars. Coloured lighting picks out the shapes: some visitors love the effect, others would rather see the limestone in plain light.</p>
+<p>The Vietnam National Authority of Tourism links the cave to a legend about the love and parting of a father dragon and a mother dragon, and guides often point out formations said to recall the story. The cave opened to visitors in 1998.</p>
+<h2>How do you get to Thien Cung Cave?</h2>
+<p>Only by boat. Most visitors come on a Route 1 sightseeing boat or a tour that includes the route. After landing on Dau Go Island, you follow a path and steps to the entrance. Inside, walkways and stairs lead through the chambers, with handrails in places. Take care where the floor is damp.</p>
+<p>Not every Ha Long Bay trip goes to Thien Cung. If the cave matters to you, check that the route or tour you book lists it by name.</p>
+<h2>How long does a visit take?</h2>
+<p>Allow about <strong>30–60 minutes</strong>, including the walk up from the landing and time in the chambers. The actual time depends on the boat schedule, how busy the cave is and how quickly your group moves.</p>
+<h2>Is Thien Cung Cave difficult to visit?</h2>
+<p>The main effort is the climb to the entrance, followed by more stairs and changes in level inside. The route is not step-free and is not suitable for wheelchairs.</p>
+<ul>
+<li>Wear shoes with good grip.</li>
+<li>Bring water, especially in the hot months.</li>
+<li>Take wet steps slowly.</li>
+<li>Keep young children close on stairways and near railings.</li>
+<li>Allow extra time if you are travelling with older relatives.</li>
+<li>If anyone in your group has trouble with stairs, ask the tour operator before booking.</li>
+</ul>
+<h2>Opening hours and the best time to visit</h2>
+<p>The Management Board lists Thien Cung’s visiting hours as <strong>7:30 AM–5:30 PM from 16 April to 31 October</strong> and <strong>7:30 AM–5:00 PM from 1 November to 15 April</strong>.</p>
+<p>In summer the climb to the entrance is hot and humid, especially around midday; spring and autumn are more comfortable for walking. As one of the bay’s best-known caves, it gets crowded when several boats arrive together, and at weekends and on public holidays. Outdoor steps turn slippery in the rain, and in severe weather the authorities can suspend sailings.</p>
+<p>For month-by-month conditions, see our guide to the <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">best time to visit Halong Bay</a>.</p>
+<h2>Thien Cung Cave tickets and entrance fees</h2>
+<p>Thien Cung is on <strong>Ha Long Bay sightseeing Route 1</strong>, together with Dau Go Cave, Cho Da Islet, Ba Hang Cave, Dinh Huong Islet and Trong Mai (Cock and Hen) Islet. The Management Board lists the Route 1 day-visit fee as <strong>250,000 VND per person</strong>. The boat is booked separately or comes as part of a tour.</p>
+<p>If you are on an organised tour, check whether the route fee is included in your price. Fees and route arrangements can change, so confirm the current rate with the Management Board or your tour operator.</p>
+<h2>Thien Cung Cave and Green Ruby Cruises</h2>
+<p>Thien Cung Cave is not a stop on any Green Ruby itinerary. <a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a> is being prepared for overnight cruises in Ha Long Bay with planned visits to <a href="/destinations/sung-sot-cave">Sung Sot Cave</a>, <a href="/destinations/ti-top-island">Ti Top Island</a> and <a href="/destinations/luon-cave">Luon Cave</a>, which are on a different part of the bay.</p>
+<p>If you would like to see Thien Cung as well, plan a Route 1 trip on a separate day: a cruise check-in at Tuan Chau leaves little room for a sightseeing trip beforehand.</p>
+<h2>Nearby attractions</h2>
+<h3>Dau Go Cave</h3>
+<p>On the same island, Dau Go Cave is one of the first caves discovered in Ha Long Bay, with three large chambers. French visitors in the late 19th century called it the Grotte des Merveilles, and President Ho Chi Minh visited it. It is usually seen together with Thien Cung on Route 1.</p>
+<h3>Ba Hang Cave</h3>
+<p>Also on Route 1: three small caves close together that open onto two saltwater lakes, among islands covered in forest all year.</p>
+<h3>Trong Mai (Cock and Hen) Islet</h3>
+<p>Two rocks facing each other across the water, chosen as a symbol of Ha Long tourism. They are the last stop on Route 1.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Location', 'value' => 'Dau Go Island, Ha Long Bay, Quang Ninh, Vietnam'],
+                ['label' => 'Vietnamese name', 'value' => 'Động Thiên Cung'],
+                ['label' => 'Also known as', 'value' => 'Heavenly Palace Cave, Thien Cung Grotto'],
+                ['label' => 'Entrance', 'value' => 'About 20 m above sea level, reached by steps'],
+                ['label' => 'Getting there', 'value' => 'By boat on sightseeing Route 1, or a tour that includes it'],
+                ['label' => 'Typical visit', 'value' => 'About 30–60 minutes'],
+                ['label' => 'Walking difficulty', 'value' => 'Moderate: stairs and some uneven, sometimes damp surfaces'],
+                ['label' => 'Opening hours', 'value' => '7:30 AM–5:30 PM (16 April–31 October); 7:30 AM–5:00 PM (1 November–15 April). May change: confirm before travelling.'],
+                ['label' => 'Entrance fee', 'value' => 'Route 1: 250,000 VND per person, as listed by the Management Board (boat not included)'],
+                ['label' => 'Green Ruby', 'value' => 'Not a Green Ruby stop'],
+            ],
+            'faq' => [
+                ['q' => 'Where is Thien Cung Cave?', 'a' => 'On Dau Go Island in Ha Long Bay, Quang Ninh, at the western edge of the World Heritage area. You reach it by boat, then climb steps to an entrance about 20 m above sea level.'],
+                ['q' => 'How long does it take to visit Thien Cung Cave?', 'a' => 'Around 30–60 minutes, depending on your boat schedule, your walking pace and how busy the cave is.'],
+                ['q' => 'How much is the Thien Cung Cave entrance fee?', 'a' => 'The cave is on sightseeing Route 1, for which the Ha Long Bay Management Board lists a day-visit fee of 250,000 VND per person. The boat costs extra unless your tour includes it. Check the current price before you go.'],
+                ['q' => 'Is Thien Cung Cave suitable for older travellers or children?', 'a' => 'Many families and older visitors manage it, but there are steps up to the entrance and more stairs inside. Anyone with limited mobility should check the walking involved before booking.'],
+                ['q' => 'Is Thien Cung Cave the same as Sung Sot Cave?', 'a' => 'No. They are two different caves. Thien Cung is on Dau Go Island and on sightseeing Route 1; Sung Sot is on Bo Hon Island and on Route 2.'],
+                ['q' => 'Can you visit Thien Cung Cave without an overnight cruise?', 'a' => 'Yes. Route 1 runs as a day trip from Tuan Chau or Ha Long International Cruise Port, so an overnight cruise is not needed.'],
+                ['q' => 'Is Thien Cung Cave included in Green Ruby itineraries?', 'a' => 'No. Green Ruby 1’s planned Ha Long Bay itineraries visit Sung Sot Cave, Ti Top Island and Luon Cave instead. To see Thien Cung, book a Route 1 sightseeing trip on another day.'],
+            ],
+        ],
+        'vi' => [
+            'slug' => 'dong-thien-cung',
+            'name' => 'Động Thiên Cung',
+            'heading' => 'Động Thiên Cung (Hạ Long): Kinh nghiệm tham quan',
+            'image_alt' => 'Thạch nhũ được chiếu sáng phía trên lối đi có du khách trong động Thiên Cung, vịnh Hạ Long',
+            'image_credit' => 'Ảnh: xiquinhosilva, CC BY 2.0, qua Wikimedia Commons',
+            'seo_title' => 'Động Thiên Cung Hạ Long: Vị Trí, Giá Vé & Kinh Nghiệm',
+            'seo_description' => 'Khám phá động Thiên Cung trên đảo Đầu Gỗ, vịnh Hạ Long: vị trí, giờ mở cửa, tuyến tham quan, đường đi, giá vé và những lưu ý khi đến động.',
+            'summary' => 'Động Thiên Cung nằm trên đảo Đầu Gỗ, điểm cực tây của khu di sản vịnh Hạ Long, và là một trong những hang động nổi tiếng nhất của vịnh. Du khách đến đây vì hệ thống thạch nhũ dày đặc, được chiếu sáng, hơn là vì một khoang hang thật lớn. Động thuộc tuyến tham quan số 1 của vịnh, không nằm trong hành trình của Green Ruby.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long: thời gian đón khách tham quan', 'url' => 'https://halongbay.com.vn/en/p/71-thoi-gian-don-tra-khach-ve-cang-ben'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long: tuyến tham quan và phí tham quan', 'url' => 'https://halongbay.com.vn/en/p/57-mien-giam-phi-tham-quan-vinh-ha-long'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long: hành trình VHL1', 'url' => 'https://halongbay.com.vn/tours/1-hanh-trinh-vhl1-cang-tau-dong-thien-cung-hang-dau-go-hon-cho-da-hang-ba-hang-hon-dinh-huong-hon-trong-mai'],
+                ['title' => 'Cục Du lịch Quốc gia Việt Nam: Động Thiên Cung', 'url' => 'https://vietnamtourism.vn/index.php/tourism/items/58/8'],
+                ['title' => 'Cổng thông tin tỉnh Quảng Ninh: tài nguyên du lịch (hang Đầu Gỗ)', 'url' => 'https://www.quangninh.gov.vn/Sites/en-us/Trang/ChiTietBVGioiThieu.aspx?bvid=138'],
+                ['title' => 'UNESCO: Vịnh Hạ Long – Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Ảnh: Thien Cung Cave, xiquinhosilva (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Thien_Cung_Cave_(32074503963).jpg'],
+            ],
+            'content' => <<<'HTML'
+<p><em>Giờ mở cửa, tuyến tham quan và giá vé do Ban Quản lý vịnh Hạ Long quy định và có thể thay đổi. Hãy kiểm tra thông tin mới nhất trước chuyến đi.</em></p>
+<h2>Động Thiên Cung nằm ở đâu?</h2>
+<p>Động Thiên Cung nằm trên đảo Đầu Gỗ, nơi Ban Quản lý vịnh Hạ Long gọi là điểm cực tây của khu di sản. Động ở độ cao khoảng 20 m so với mực nước biển, nên từ bến thuyền bạn phải đi bộ theo lối mòn và leo một đoạn bậc đá mới tới cửa động.</p>
+<p>Hang Đầu Gỗ nằm ngay trên cùng đảo. Hai hang thường được tham quan cùng nhau trên tuyến tham quan số 1 của vịnh, xuất phát từ cảng tàu khách quốc tế Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long.</p>
+<h2>Động Thiên Cung có gì đặc biệt?</h2>
+<p>Thiên Cung nghĩa là cung điện trên trời. Theo Ban Quản lý vịnh Hạ Long, tên gọi này đến từ hệ thống măng đá, nhũ đá trắng sáng như được chạm khắc từ pha lê, khiến du khách có cảm giác như bước vào một cung điện.</p>
+<p>Điều đọng lại sau chuyến tham quan là mật độ và sự đa dạng của thạch nhũ, chứ không phải độ rộng của một khoang hang. Dọc lối đi, bạn sẽ gặp nhũ đá rủ xuống từ trần, măng đá mọc lên từ nền và những cột đá hình thành khi hai loại này nối liền nhau. Có khối mảnh và thanh, có khối như tấm rèm hay cột trụ. Đèn màu làm nổi bật hình khối: có người rất thích, có người lại muốn được ngắm đá vôi dưới ánh sáng tự nhiên hơn.</p>
+<p>Theo Cục Du lịch Quốc gia Việt Nam, động gắn với truyền thuyết về cuộc tình và sự chia tay của Rồng bố, Rồng mẹ. Hướng dẫn viên thường chỉ cho khách những khối đá được cho là gợi lại câu chuyện này. Động mở cửa đón khách từ năm 1998.</p>
+<h2>Đến động Thiên Cung bằng cách nào?</h2>
+<p>Chỉ có thể đi bằng tàu. Phần lớn du khách đi tàu tham quan tuyến số 1 hoặc theo tour có tuyến này. Tàu cập đảo Đầu Gỗ, bạn đi bộ theo lối lên và leo bậc tới cửa động. Bên trong có lối đi, cầu thang và lan can ở một số đoạn. Hãy cẩn thận ở những chỗ nền đá ẩm.</p>
+<p>Không phải chuyến tham quan vịnh Hạ Long nào cũng ghé động Thiên Cung. Nếu bạn nhất định muốn đến đây, hãy kiểm tra tuyến hoặc tour mình đặt có ghi rõ tên động.</p>
+<h2>Tham quan động Thiên Cung mất bao lâu?</h2>
+<p>Bạn nên dành khoảng <strong>30 – 60 phút</strong>, tính cả đoạn đi bộ từ bến lên và thời gian trong các khoang hang. Thời gian thực tế tùy lịch tàu, lượng khách và tốc độ di chuyển của đoàn.</p>
+<h2>Đường lên động Thiên Cung có khó không?</h2>
+<p>Đoạn vất vả nhất là leo bậc lên cửa động; bên trong còn nhiều cầu thang và lối đi lên xuống. Lối tham quan không có đường dành cho xe lăn.</p>
+<ul>
+<li>Đi giày có đế bám tốt.</li>
+<li>Mang theo nước uống, nhất là vào những tháng nóng.</li>
+<li>Đi thật cẩn thận ở những bậc đá ướt.</li>
+<li>Giữ trẻ nhỏ ở gần, nhất là ở cầu thang và chỗ có lan can.</li>
+<li>Dành thêm thời gian nếu đi cùng người lớn tuổi.</li>
+<li>Nếu trong đoàn có người khó leo cầu thang, hãy hỏi đơn vị tổ chức trước khi đặt tour.</li>
+</ul>
+<h2>Giờ mở cửa và thời điểm nên đi</h2>
+<p>Theo Ban Quản lý vịnh Hạ Long, động Thiên Cung mở cửa <strong>7:30 – 17:30 từ 16/4 đến 31/10</strong> và <strong>7:30 – 17:00 từ 1/11 đến 15/4</strong>.</p>
+<p>Mùa hè, đoạn leo lên cửa động khá nóng và oi, nhất là giữa trưa; mùa xuân và mùa thu đi bộ dễ chịu hơn. Vì là một trong những hang nổi tiếng nhất vịnh, động thường đông khi nhiều tàu đến cùng lúc, vào cuối tuần và ngày lễ. Trời mưa, bậc đá ngoài trời dễ trơn; khi thời tiết xấu, cơ quan chức năng có thể tạm dừng tàu ra vịnh.</p>
+<p>Xem thêm thời tiết từng tháng trong bài <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">Du lịch Hạ Long mùa nào đẹp nhất?</a></p>
+<h2>Vé tham quan động Thiên Cung</h2>
+<p>Động Thiên Cung thuộc <strong>tuyến tham quan số 1 của vịnh Hạ Long</strong>, cùng hang Đầu Gỗ, hòn Chó Đá, hang Ba Hang, hòn Đỉnh Hương và hòn Trống Mái. Ban Quản lý vịnh Hạ Long niêm yết phí tham quan tuyến số 1 theo ngày là <strong>250.000 đồng/người</strong>. Tiền tàu tính riêng, hoặc đã có trong giá tour.</p>
+<p>Nếu đi tour, hãy hỏi rõ phí tham quan đã gồm trong giá hay chưa. Giá vé và tuyến tham quan có thể thay đổi, nên kiểm tra lại với Ban Quản lý hoặc đơn vị tổ chức trước khi đi.</p>
+<h2>Động Thiên Cung có trong hành trình của Green Ruby không?</h2>
+<p>Động Thiên Cung không phải điểm dừng trong hành trình nào của Green Ruby. Du thuyền <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a> do chúng tôi vận hành đang chuẩn bị cho các chuyến ngủ đêm trên vịnh Hạ Long, với các điểm ghé dự kiến là <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a>, <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a> và <a href="/vi/dia-diem-tham-quan/hang-luon">hang Luồn</a>, ở một khu vực khác của vịnh.</p>
+<p>Nếu muốn ghé thêm động Thiên Cung, bạn nên đi tuyến số 1 vào một ngày khác: hôm lên du thuyền, lịch làm thủ tục ở Tuần Châu gần như không còn chỗ cho một chuyến tham quan trước đó.</p>
+<h2>Các địa điểm gần động Thiên Cung</h2>
+<h3>Hang Đầu Gỗ</h3>
+<p>Nằm trên cùng đảo, hang Đầu Gỗ là một trong những hang được phát hiện sớm nhất trên vịnh Hạ Long, gồm ba ngăn lớn. Du khách Pháp cuối thế kỷ 19 gọi đây là Grotte des Merveilles, và Chủ tịch Hồ Chí Minh từng đến thăm hang. Hang thường được ghé cùng động Thiên Cung trên tuyến số 1.</p>
+<h3>Hang Ba Hang</h3>
+<p>Cũng thuộc tuyến số 1: ba hang nhỏ nằm sát nhau, thông với hai hồ nước mặn, giữa những đảo phủ rừng quanh năm.</p>
+<h3>Hòn Trống Mái</h3>
+<p>Hai khối đá đứng đối diện nhau giữa mặt nước, được chọn làm biểu tượng của du lịch Hạ Long. Đây là điểm cuối của tuyến số 1.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Vị trí', 'value' => 'Đảo Đầu Gỗ, vịnh Hạ Long, Quảng Ninh'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Thien Cung Cave, Heavenly Palace Cave'],
+                ['label' => 'Cửa động', 'value' => 'Cao khoảng 20 m so với mực nước biển, đi lên bằng bậc đá'],
+                ['label' => 'Cách đến', 'value' => 'Đi tàu tham quan tuyến số 1, hoặc tour có tuyến này'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 30 – 60 phút'],
+                ['label' => 'Mức độ đi lại', 'value' => 'Trung bình: nhiều cầu thang, có đoạn nền đá không bằng phẳng, dễ ẩm'],
+                ['label' => 'Giờ mở cửa', 'value' => '7:30 – 17:30 (16/4 – 31/10); 7:30 – 17:00 (1/11 – 15/4). Có thể thay đổi, nên kiểm tra trước khi đi.'],
+                ['label' => 'Phí tham quan', 'value' => 'Tuyến số 1: 250.000 đồng/người theo niêm yết của Ban Quản lý (chưa gồm tiền tàu)'],
+                ['label' => 'Green Ruby', 'value' => 'Không phải điểm dừng của Green Ruby'],
+            ],
+            'faq' => [
+                ['q' => 'Động Thiên Cung nằm ở đâu?', 'a' => 'Trên đảo Đầu Gỗ, vịnh Hạ Long, tỉnh Quảng Ninh, ở điểm cực tây của khu di sản. Bạn đi tàu tới đảo, rồi leo bậc lên cửa động ở độ cao khoảng 20 m so với mực nước biển.'],
+                ['q' => 'Tham quan động Thiên Cung mất bao lâu?', 'a' => 'Khoảng 30 – 60 phút, tùy lịch tàu, tốc độ đi bộ và lượng khách trong động.'],
+                ['q' => 'Vé tham quan động Thiên Cung bao nhiêu tiền?', 'a' => 'Động thuộc tuyến tham quan số 1, có phí theo ngày là 250.000 đồng/người theo niêm yết của Ban Quản lý vịnh Hạ Long. Tiền tàu tính riêng, trừ khi đã có trong giá tour. Nên kiểm tra lại giá trước khi đi.'],
+                ['q' => 'Người lớn tuổi và trẻ nhỏ có tham quan động Thiên Cung được không?', 'a' => 'Được, nếu sức khỏe và khả năng đi lại cho phép. Đường lên cửa động phải leo bậc và bên trong có nhiều cầu thang, nên người khó đi lại cần cân nhắc trước.'],
+                ['q' => 'Động Thiên Cung và hang Sửng Sốt có phải là một không?', 'a' => 'Không. Đây là hai hang khác nhau: động Thiên Cung trên đảo Đầu Gỗ thuộc tuyến tham quan số 1, còn hang Sửng Sốt trên đảo Bồ Hòn thuộc tuyến số 2.'],
+                ['q' => 'Có thể tham quan động Thiên Cung trong ngày không?', 'a' => 'Có. Tuyến số 1 chạy trong ngày, xuất phát từ cảng Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long, nên không cần đi du thuyền ngủ đêm.'],
+                ['q' => 'Du thuyền Green Ruby có ghé động Thiên Cung không?', 'a' => 'Không. Các hành trình dự kiến của Green Ruby 1 trên vịnh Hạ Long ghé hang Sửng Sốt, đảo Ti Tốp và hang Luồn. Nếu muốn đến động Thiên Cung, bạn nên đặt chuyến tham quan tuyến số 1 vào một ngày khác.'],
+            ],
+        ],
+    ],
 ];
