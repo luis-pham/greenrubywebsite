@@ -1999,7 +1999,7 @@ HTML,
             $unesco,
             ['title' => 'Photo: Thien Cung Cave, xiquinhosilva (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Thien_Cung_Cave_(32074503963).jpg'],
         ],
-        'editor_notes' => "Added 2026-10-27 from the owner's EN/VI briefs. NOT a Green Ruby stop (no itinerary), so the page shows the 'not a stop' label. Checked: hours (Management Board visiting-hours page, updated 2024-11-06, lists Thiên Cung Grotto); Route 1 stops and day fee 250,000 VND (routes/fees page, updated 2024-11-02, fee since 1/4/2017 per Decision 4278/2016/QĐ-UBND); 20 m above sea level, westernmost point of the heritage area, white formations, name meaning (VHL1 route page); opened to visitors 1/5/1998 and the father dragon / mother dragon legend (VNAT). Changed from the brief: entrance height 25 m -> about 20 m (VNAT says 'entrance at 25 m' without a reference level; the Management Board says 20 m above sea level); legend 'Dragon King and May' -> father/mother dragon (no source found for May); 'southwestern part of the bay' -> western edge of the heritage area. Not published: cave area (Management Board floor ~3,000 m² vs VNAT ~10,000 m²), the 1901 inscription. Coordinates left empty: Wikidata Q124453533 points to Ninh Binh (20.216, 105.914) and vi.wikipedia gives only a rounded point. Hero identified as Thien Cung by its Commons/Flickr title only. The hub card for Thien Cung was removed from greenruby-web otherPlaces when this page went live (Dau Go stays hub-only).",
+        'editor_notes' => "Added 2026-10-27 from the owner's EN/VI briefs. NOT a Green Ruby stop (no itinerary), so the page shows the 'not a stop' label. Checked: hours (Management Board visiting-hours page, updated 2024-11-06, lists Thiên Cung Grotto); Route 1 stops and day fee 250,000 VND (routes/fees page, updated 2024-11-02, fee since 1/4/2017 per Decision 4278/2016/QĐ-UBND); 20 m above sea level, westernmost point of the heritage area, white formations, name meaning (VHL1 route page); opened to visitors 1/5/1998 and the father dragon / mother dragon legend (VNAT). Changed from the brief: entrance height 25 m -> about 20 m (VNAT says 'entrance at 25 m' without a reference level; the Management Board says 20 m above sea level); legend 'Dragon King and May' -> father/mother dragon (no source found for May); 'southwestern part of the bay' -> western edge of the heritage area. Not published: cave area (Management Board floor ~3,000 m² vs VNAT ~10,000 m²), the 1901 inscription. Coordinates left empty: Wikidata Q124453533 points to Ninh Binh (20.216, 105.914) and vi.wikipedia gives only a rounded point. Hero identified as Thien Cung by its Commons/Flickr title only. The hub card for Thien Cung was removed from greenruby-web otherPlaces when this page went live; Dau Go got its own page the same day and is linked here.",
         'en' => [
             'slug' => 'thien-cung-cave',
             'name' => 'Thien Cung Cave',
@@ -2012,7 +2012,7 @@ HTML,
 <p><em>Opening hours, routes and ticket prices are set by the Ha Long Bay Management Board and can change. Confirm the latest information before you travel.</em></p>
 <h2>Where is Thien Cung Cave?</h2>
 <p>Thien Cung Cave is on Dau Go Island, which the Ha Long Bay Management Board describes as the westernmost point of the World Heritage area. The cave sits about 20 metres above sea level, so a visit starts with a path and a flight of stone steps up from the boat landing.</p>
-<p>Dau Go Cave is on the same island, and the two are visited together on the bay’s sightseeing Route 1, which leaves from Tuan Chau International Cruise Port or Ha Long International Cruise Port.</p>
+<p><a href="/destinations/dau-go-cave">Dau Go Cave</a> is on the same island, and the two are visited together on the bay’s sightseeing Route 1, which leaves from Tuan Chau International Cruise Port or Ha Long International Cruise Port.</p>
 <h2>What makes Thien Cung Cave worth visiting?</h2>
 <p><em>Thiên Cung</em> means “Heavenly Palace”. According to the Management Board, the name comes from the cave’s bright white stalactites and stalagmites, which look as if they were carved from crystal and leave visitors feeling they have stepped into a palace.</p>
 <p>What stays with you is the density and variety of the formations rather than the size of a single chamber. Along the walkway you pass stalactites hanging from the ceiling, stalagmites rising from the floor and columns where the two have joined. Some are thin and delicate, others look like curtains or pillars. Coloured lighting picks out the shapes: some visitors love the effect, others would rather see the limestone in plain light.</p>
@@ -2043,8 +2043,8 @@ HTML,
 <p>Thien Cung Cave is not a stop on any Green Ruby itinerary. <a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a> is being prepared for overnight cruises in Ha Long Bay with planned visits to <a href="/destinations/sung-sot-cave">Sung Sot Cave</a>, <a href="/destinations/ti-top-island">Ti Top Island</a> and <a href="/destinations/luon-cave">Luon Cave</a>, which are on a different part of the bay.</p>
 <p>If you would like to see Thien Cung as well, plan a Route 1 trip on a separate day: a cruise check-in at Tuan Chau leaves little room for a sightseeing trip beforehand.</p>
 <h2>Nearby attractions</h2>
-<h3>Dau Go Cave</h3>
-<p>On the same island, Dau Go Cave is one of the first caves discovered in Ha Long Bay, with three large chambers. French visitors in the late 19th century called it the Grotte des Merveilles, and President Ho Chi Minh visited it. It is usually seen together with Thien Cung on Route 1.</p>
+<h3><a href="/destinations/dau-go-cave">Dau Go Cave</a></h3>
+<p>About 300 metres away on the same island, Dau Go Cave is one of the largest caves in the bay, with three chambers and a wide entrance that lets daylight into the first. French publications called it the Grotte des Merveilles, and President Ho Chi Minh visited it. It is usually seen together with Thien Cung on Route 1.</p>
 <h3>Ba Hang Cave</h3>
 <p>Also on Route 1: three small caves close together that open onto two saltwater lakes, among islands covered in forest all year.</p>
 <h3>Trong Mai (Cock and Hen) Islet</h3>
@@ -2094,7 +2094,7 @@ HTML,
 <p><em>Giờ mở cửa, tuyến tham quan và giá vé do Ban Quản lý vịnh Hạ Long quy định và có thể thay đổi. Hãy kiểm tra thông tin mới nhất trước chuyến đi.</em></p>
 <h2>Động Thiên Cung nằm ở đâu?</h2>
 <p>Động Thiên Cung nằm trên đảo Đầu Gỗ, nơi Ban Quản lý vịnh Hạ Long gọi là điểm cực tây của khu di sản. Động ở độ cao khoảng 20 m so với mực nước biển, nên từ bến thuyền bạn phải đi bộ theo lối mòn và leo một đoạn bậc đá mới tới cửa động.</p>
-<p>Hang Đầu Gỗ nằm ngay trên cùng đảo. Hai hang thường được tham quan cùng nhau trên tuyến tham quan số 1 của vịnh, xuất phát từ cảng tàu khách quốc tế Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long.</p>
+<p><a href="/vi/dia-diem-tham-quan/hang-dau-go">Hang Đầu Gỗ</a> nằm ngay trên cùng đảo. Hai hang thường được tham quan cùng nhau trên tuyến tham quan số 1 của vịnh, xuất phát từ cảng tàu khách quốc tế Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long.</p>
 <h2>Động Thiên Cung có gì đặc biệt?</h2>
 <p>Thiên Cung nghĩa là cung điện trên trời. Theo Ban Quản lý vịnh Hạ Long, tên gọi này đến từ hệ thống măng đá, nhũ đá trắng sáng như được chạm khắc từ pha lê, khiến du khách có cảm giác như bước vào một cung điện.</p>
 <p>Điều đọng lại sau chuyến tham quan là mật độ và sự đa dạng của thạch nhũ, chứ không phải độ rộng của một khoang hang. Dọc lối đi, bạn sẽ gặp nhũ đá rủ xuống từ trần, măng đá mọc lên từ nền và những cột đá hình thành khi hai loại này nối liền nhau. Có khối mảnh và thanh, có khối như tấm rèm hay cột trụ. Đèn màu làm nổi bật hình khối: có người rất thích, có người lại muốn được ngắm đá vôi dưới ánh sáng tự nhiên hơn.</p>
@@ -2125,8 +2125,8 @@ HTML,
 <p>Động Thiên Cung không phải điểm dừng trong hành trình nào của Green Ruby. Du thuyền <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a> do chúng tôi vận hành đang chuẩn bị cho các chuyến ngủ đêm trên vịnh Hạ Long, với các điểm ghé dự kiến là <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a>, <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a> và <a href="/vi/dia-diem-tham-quan/hang-luon">hang Luồn</a>, ở một khu vực khác của vịnh.</p>
 <p>Nếu muốn ghé thêm động Thiên Cung, bạn nên đi tuyến số 1 vào một ngày khác: hôm lên du thuyền, lịch làm thủ tục ở Tuần Châu gần như không còn chỗ cho một chuyến tham quan trước đó.</p>
 <h2>Các địa điểm gần động Thiên Cung</h2>
-<h3>Hang Đầu Gỗ</h3>
-<p>Nằm trên cùng đảo, hang Đầu Gỗ là một trong những hang được phát hiện sớm nhất trên vịnh Hạ Long, gồm ba ngăn lớn. Du khách Pháp cuối thế kỷ 19 gọi đây là Grotte des Merveilles, và Chủ tịch Hồ Chí Minh từng đến thăm hang. Hang thường được ghé cùng động Thiên Cung trên tuyến số 1.</p>
+<h3><a href="/vi/dia-diem-tham-quan/hang-dau-go">Hang Đầu Gỗ</a></h3>
+<p>Cách động Thiên Cung khoảng 300 m trên cùng đảo, hang Đầu Gỗ là một trong những hang lớn nhất vịnh, gồm ba ngăn, cửa hang rộng đón ánh sáng tự nhiên vào ngăn đầu tiên. Người Pháp từng gọi đây là Grotte des Merveilles, và Chủ tịch Hồ Chí Minh từng đến thăm hang. Hang thường được ghé cùng động Thiên Cung trên tuyến số 1.</p>
 <h3>Hang Ba Hang</h3>
 <p>Cũng thuộc tuyến số 1: ba hang nhỏ nằm sát nhau, thông với hai hồ nước mặn, giữa những đảo phủ rừng quanh năm.</p>
 <h3>Hòn Trống Mái</h3>
@@ -2151,6 +2151,213 @@ HTML,
                 ['q' => 'Động Thiên Cung và hang Sửng Sốt có phải là một không?', 'a' => 'Không. Đây là hai hang khác nhau: động Thiên Cung trên đảo Đầu Gỗ thuộc tuyến tham quan số 1, còn hang Sửng Sốt trên đảo Bồ Hòn thuộc tuyến số 2.'],
                 ['q' => 'Có thể tham quan động Thiên Cung trong ngày không?', 'a' => 'Có. Tuyến số 1 chạy trong ngày, xuất phát từ cảng Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long, nên không cần đi du thuyền ngủ đêm.'],
                 ['q' => 'Du thuyền Green Ruby có ghé động Thiên Cung không?', 'a' => 'Không. Các hành trình dự kiến của Green Ruby 1 trên vịnh Hạ Long ghé hang Sửng Sốt, đảo Ti Tốp và hang Luồn. Nếu muốn đến động Thiên Cung, bạn nên đặt chuyến tham quan tuyến số 1 vào một ngày khác.'],
+            ],
+        ],
+    ],
+    [
+        'bay' => 'ha-long',
+        'category' => 'cave',
+        'ord' => 10,
+        'latitude' => null,
+        'longitude' => null,
+        'coords_verified' => false,
+        'coords_source' => null,
+        'image' => ['file' => 'dau-go-cave-ha-long-bay.jpg', 'link' => '/2026/10/27/dau-go-cave-ha-long-bay.jpg'],
+        'image_credit' => 'Photo: Mustang Joe, CC0, via Wikimedia Commons',
+        'itineraries' => ['en' => [], 'vi' => []],
+        'sources' => [
+            ['title' => 'Ha Long Bay Management Board: Đầu Gỗ Cave (Vietnamese)', 'url' => 'https://halongbay.com.vn/p/572-hang-dau-go-hang-dong-reu-phong-co-kinh-tren-vinh-ha-long'],
+            ['title' => 'Ha Long Bay Management Board: The Wonders of Ha Long Bay', 'url' => 'https://halongbay.com.vn/en/p/118-nhung-ky-quan-tren-vinh-ha-long'],
+            ['title' => 'Ha Long Bay Management Board: visiting hours', 'url' => 'https://halongbay.com.vn/en/p/71-thoi-gian-don-tra-khach-ve-cang-ben'],
+            ['title' => 'Ha Long Bay Management Board: sightseeing routes and entrance fees', 'url' => 'https://halongbay.com.vn/en/p/57-mien-giam-phi-tham-quan-vinh-ha-long'],
+            ['title' => 'Quang Ninh Newspaper: Emperor Khai Dinh’s northern tour and the stele at Đầu Gỗ Cave (Vietnamese)', 'url' => 'https://baoquangninh.vn/ve-chuyen-ngu-gia-bac-tuan-cua-vua-khai-dinh-va-tam-bia-da-o-hang-dau-go-2452480.html'],
+            ['title' => 'Showcaves.com: Dau Go Cave', 'url' => 'https://www.showcaves.com/english/vn/showcaves/DauGo.html'],
+            $unesco,
+            ['title' => 'Photo: Dau Go cave, Mustang Joe (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Dau_Go_cave,_H%E1%BA%A1_Long_Bay,_Vietnam_(54146979492).jpg'],
+        ],
+        'editor_notes' => "Added 2026-10-27 from the owner's EN/VI briefs. NOT a Green Ruby stop (no itinerary). Checked: 3 km from Tuan Chau, 6 km from Bai Chay, >5,000 m², entrance ~17 m wide x 12 m high, 300 m east of Thien Cung (Management Board pages 118 and 572); three chambers and their character, 'Grotte des Merveilles', Ho Chi Minh visit 10/1957, Dư địa chí name story (page 572); Tran Hung Dao stakes legend and 'Giấu Gỗ' (page 118); ~90 steps (page 572 + showcaves); Bach Dang 1288 and 'legend, not documented' (showcaves); hours (page 71); Route 1 fee (page 57). Khai Dinh stele: dated 22/3 of Khải Định year 3 = 1918 per Báo Quảng Ninh 2019 (Đinh Khắc Thuân, text restored 2009); page 572 says 1919, the provincial portal 1917, so the page says 1918 and mentions the other years. Changed from the brief: entrance height not given (Management Board pages say 27 m and 21 m); moss and ferns dropped (page 572 only says some plants grow in the first chamber); 'Wooden Head Cave' alias dropped; Grotte des Merveilles left undated (1937, 1938 or late 19th c. depending on source). Not published: formation age (~2 million years, page 118). Coordinates empty: vi.wikipedia (20.9083, 107.0208) and showcaves (20.9112, 107.0187) are ~400 m apart. Hero: CC0 photo titled 'Dau Go cave' (2024-11-12).",
+        'en' => [
+            'slug' => 'dau-go-cave',
+            'name' => 'Dau Go Cave',
+            'heading' => 'Dau Go Cave (Wooden Stakes Cave): A Visitor\'s Guide',
+            'image_alt' => 'Shafts of daylight falling through the entrance into the first chamber of Dau Go Cave, Ha Long Bay',
+            'seo_title' => 'Dau Go Cave (Wooden Stakes Cave): Visitor Guide & Tips',
+            'seo_description' => 'Explore Dau Go Cave in Ha Long Bay: three limestone chambers, its Bach Dang legend, opening hours, tickets, steps and practical visiting tips.',
+            'summary' => 'Dau Go Cave is one of the largest caves in Ha Long Bay, on Dau Go Island about 300 metres from Thien Cung Cave. A wide entrance lets daylight into the first of its three chambers, and its name is tied to a local legend about the wooden stakes used against the Mongol fleet in the 13th century. It is on the bay\'s sightseeing Route 1, not on a Green Ruby itinerary.',
+            'content' => <<<'HTML'
+<p><em>Opening hours, routes and ticket prices are set by the Ha Long Bay Management Board and can change. Confirm the latest information before you travel.</em></p>
+<h2>Where is Dau Go Cave?</h2>
+<p>Dau Go Cave is on Dau Go Island, in the western part of Ha Long Bay. The Ha Long Bay Management Board puts it about 3 km from Tuan Chau and about 6 km from Bai Chay, and about 300 metres east of <a href="/destinations/thien-cung-cave">Thien Cung Cave</a> on the same island.</p>
+<p>The two caves are on the bay’s sightseeing Route 1 and are usually visited on the same trip. From the boat landing, about 90 steep stone steps lead up to the entrance.</p>
+<h2>What makes Dau Go Cave worth visiting?</h2>
+<p>Size and light. The cave covers more than 5,000 square metres, and its entrance, roughly 17 metres wide and 12 metres high, lets daylight reach well inside. That makes the first chamber feel quite different from caves lit only by lamps. Deeper in, the daylight fades and artificial lighting takes over.</p>
+<p>The visit passes through three chambers, each with its own character.</p>
+<h3>First chamber: daylight and weathered stone</h3>
+<p>The largest and brightest of the three. Light from the entrance falls on stalactites and stalagmites weathered by air and moisture, which gives them the aged, mossy look the Management Board describes as <em>rêu phong, cổ kính</em>. Some plants grow where the daylight reaches.</p>
+<h3>Second chamber: white columns</h3>
+<p>Here the formations change: large stone columns and whiter stalactites that see little sun. European visitors compared the shapes to Angkor Wat, Angkor Thom and the Leaning Tower of Pisa, and French publications called the cave the Grotte des Merveilles, the Cave of Wonders.</p>
+<h3>Third chamber: quiet and narrow</h3>
+<p>The smallest and stillest part of the cave. Shallow pools lie on the floor, and guides point out formations said to look like a banyan tree beside a village wharf, a familiar image of the northern Vietnamese countryside.</p>
+<h2>Why is it called Dau Go Cave?</h2>
+<p><em>Đầu Gỗ</em> literally means “head of wood”, and in English the cave is often called the Wooden Stakes Cave. There are several explanations for the name.</p>
+<p>The best known links it to General Tran Hung Dao, who defeated the Mongol Yuan fleet at the Battle of Bach Dang in 1288 by planting sharpened wooden stakes in the riverbed and luring the enemy ships onto them as the tide fell. According to local legend, the stakes were hidden in this cave beforehand, and the Management Board notes that “Đầu Gỗ” may be a corruption of “Giấu Gỗ”, meaning hidden wood. The battle is well documented; the cave’s part in it is a legend, not established history.</p>
+<p>Other explanations are more down to earth. The provincial gazetteer <em>Dư địa chí Quảng Ninh</em> says the islands look like the end of a log, and another story holds that fishermen sheltering here from storms left pieces of wood behind after repairing their boats.</p>
+<h2>Emperor Khai Dinh’s stele and other visitors</h2>
+<p>At the entrance stands a stone stele from the visit of Emperor Khai Dinh of the Nguyen dynasty during his tour of northern Vietnam. It carries a preface and a poem in which he praises the cave and names it <em>Ngũ sắc tường vân</em>, “auspicious clouds of five colours”. The stele is dated 1918, although some sources give 1917 or 1919. Its full text was restored in 2009 by the Han-Nom scholar Dinh Khac Thuan.</p>
+<p>President Ho Chi Minh visited the cave in October 1957.</p>
+<h2>How do you get to Dau Go Cave?</h2>
+<p>Only by boat. Route 1 leaves from Tuan Chau International Cruise Port or Ha Long International Cruise Port, and many day tours follow it. After landing on Dau Go Island, you climb the steps to the entrance and follow the walkway through the three chambers.</p>
+<p>Not every Ha Long Bay trip stops at Dau Go. If the cave matters to you, check that the route or tour you book lists it by name.</p>
+<h2>How long does a visit take?</h2>
+<p>Allow about <strong>30–60 minutes</strong>, including the climb, the walk through the chambers and the way back down to the landing. If your trip also includes Thien Cung Cave, allow extra time for the second cave and the short walk between them.</p>
+<h2>Is Dau Go Cave difficult to visit?</h2>
+<p>The main effort is the climb: about 90 steep stone steps from the landing to the entrance, followed by more stairs and changes in level inside. The route is not step-free and is not suitable for wheelchairs.</p>
+<ul>
+<li>Wear shoes with good grip.</li>
+<li>Bring water for the climb, especially in the hot months.</li>
+<li>Take damp steps and uneven ground slowly.</li>
+<li>Keep young children close on the stairs and near railings.</li>
+<li>Do not touch the formations or leave the marked path.</li>
+<li>If anyone in your group has trouble with stairs, ask the tour operator before booking.</li>
+</ul>
+<h2>Opening hours and the best time to visit</h2>
+<p>The Management Board lists Dau Go Cave’s visiting hours as <strong>7:30 AM–5:30 PM from 16 April to 31 October</strong> and <strong>7:30 AM–5:00 PM from 1 November to 15 April</strong>.</p>
+<p>Spring and autumn are the most comfortable seasons for the climb. In summer the outdoor stairway is hot and humid, although the cave itself gives some relief from the sun. The steps and the landing get busy when several boats arrive together, and at weekends and on public holidays. Rain makes the outdoor steps slippery, and in severe weather the authorities can suspend sailings.</p>
+<p>For month-by-month conditions, see our guide to the <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">best time to visit Halong Bay</a>.</p>
+<h2>Dau Go Cave tickets and entrance fees</h2>
+<p>Dau Go Cave is on <strong>Ha Long Bay sightseeing Route 1</strong>, together with Thien Cung Cave, Cho Da Islet, Ba Hang Cave, Dinh Huong Islet and Trong Mai (Cock and Hen) Islet. The Management Board lists the Route 1 day-visit fee as <strong>250,000 VND per person</strong>. The boat is booked separately or comes as part of a tour.</p>
+<p>If you are on an organised tour, check whether the route fee is included in your price. Fees and route arrangements can change, so confirm the current rate with the Management Board or your tour operator.</p>
+<h2>Dau Go Cave and Green Ruby Cruises</h2>
+<p>Dau Go Cave is not a stop on any Green Ruby itinerary. <a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a> is being prepared for overnight cruises in Ha Long Bay with planned visits to <a href="/destinations/sung-sot-cave">Sung Sot Cave</a>, <a href="/destinations/ti-top-island">Ti Top Island</a> and <a href="/destinations/luon-cave">Luon Cave</a>, on a different part of the bay.</p>
+<p>If you would like to see Dau Go and Thien Cung as well, plan a Route 1 trip on a separate day: a cruise check-in at Tuan Chau leaves little room for a sightseeing trip beforehand.</p>
+<h2>Nearby attractions</h2>
+<h3><a href="/destinations/thien-cung-cave">Thien Cung Cave</a></h3>
+<p>About 300 metres away on the same island, Thien Cung, the Heavenly Palace, is known for its dense, brightly lit stalactites and stalagmites. Seeing both caves on one trip shows two quite different cave interiors.</p>
+<h3>Ba Hang Cave</h3>
+<p>Also on Route 1: three small caves close together that open onto two saltwater lakes, among islands covered in forest all year.</p>
+<h3>Trong Mai (Cock and Hen) Islet</h3>
+<p>Two rocks facing each other across the water, chosen as a symbol of Ha Long tourism. They are the last stop on Route 1.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Location', 'value' => 'Dau Go Island, Ha Long Bay, Quang Ninh, Vietnam'],
+                ['label' => 'Vietnamese name', 'value' => 'Hang Đầu Gỗ'],
+                ['label' => 'Also known as', 'value' => 'Wooden Stakes Cave, Grotte des Merveilles'],
+                ['label' => 'Size', 'value' => 'More than 5,000 m², in three chambers'],
+                ['label' => 'Entrance', 'value' => 'About 17 m wide and 12 m high, up about 90 steep stone steps'],
+                ['label' => 'Getting there', 'value' => 'By boat on sightseeing Route 1, or a tour that includes it'],
+                ['label' => 'Typical visit', 'value' => 'About 30–60 minutes'],
+                ['label' => 'Walking difficulty', 'value' => 'Moderate: steep steps, then stairs and uneven ground inside'],
+                ['label' => 'Opening hours', 'value' => '7:30 AM–5:30 PM (16 April–31 October); 7:30 AM–5:00 PM (1 November–15 April). May change: confirm before travelling.'],
+                ['label' => 'Entrance fee', 'value' => 'Route 1: 250,000 VND per person, as listed by the Management Board (boat not included)'],
+                ['label' => 'Green Ruby', 'value' => 'Not a Green Ruby stop'],
+            ],
+            'faq' => [
+                ['q' => 'Where is Dau Go Cave?', 'a' => 'On Dau Go Island in the western part of Ha Long Bay, Quang Ninh, about 3 km from Tuan Chau and 300 metres from Thien Cung Cave. You reach it by sightseeing boat.'],
+                ['q' => 'How long does it take to visit Dau Go Cave?', 'a' => 'Around 30–60 minutes, including the steps up to the entrance and the walk through the three chambers.'],
+                ['q' => 'How many steps are there at Dau Go Cave?', 'a' => 'About 90 steep stone steps lead from the boat landing to the entrance, and there are more stairs and changes in level inside.'],
+                ['q' => 'How much is the Dau Go Cave entrance fee?', 'a' => 'The cave is on sightseeing Route 1, for which the Ha Long Bay Management Board lists a day-visit fee of 250,000 VND per person; the same route includes Thien Cung Cave. The boat costs extra unless your tour includes it.'],
+                ['q' => 'Is Dau Go Cave suitable for older travellers or children?', 'a' => 'Many visitors manage it, but the steep stairway can be hard for anyone with limited mobility. Keep children close, and check the walking involved before booking if stairs are a problem.'],
+                ['q' => 'Is Dau Go Cave the same as Thien Cung Cave?', 'a' => 'No. They are two caves on the same island, about 300 metres apart, and both are on Route 1. Dau Go is known for its size and the daylight in its first chamber; Thien Cung for its dense, lit formations.'],
+                ['q' => 'Is Dau Go Cave the same as Sung Sot Cave?', 'a' => 'No. Dau Go is on Dau Go Island and on sightseeing Route 1; Sung Sot is on Bo Hon Island and on Route 2.'],
+                ['q' => 'Can you visit Dau Go Cave without an overnight cruise?', 'a' => 'Yes. Route 1 runs as a day trip from Tuan Chau or Ha Long International Cruise Port, so an overnight cruise is not needed.'],
+                ['q' => 'Is Dau Go Cave included in Green Ruby itineraries?', 'a' => 'No. Green Ruby 1’s planned Ha Long Bay itineraries visit Sung Sot Cave, Ti Top Island and Luon Cave instead. To see Dau Go, book a Route 1 sightseeing trip on another day.'],
+            ],
+        ],
+        'vi' => [
+            'slug' => 'hang-dau-go',
+            'name' => 'Hang Đầu Gỗ',
+            'heading' => 'Hang Đầu Gỗ (Hạ Long): Vị trí, lịch sử và kinh nghiệm tham quan',
+            'image_alt' => 'Những vệt nắng chiếu qua cửa hang vào ngăn đầu tiên của hang Đầu Gỗ, vịnh Hạ Long',
+            'image_credit' => 'Ảnh: Mustang Joe, CC0, qua Wikimedia Commons',
+            'seo_title' => 'Hang Đầu Gỗ Hạ Long: Lịch Sử, Giá Vé & Kinh Nghiệm',
+            'seo_description' => 'Khám phá hang Đầu Gỗ trên vịnh Hạ Long: vị trí, truyền thuyết trận Bạch Đằng, ba khoang hang, giờ mở cửa, vé và kinh nghiệm tham quan.',
+            'summary' => 'Hang Đầu Gỗ là một trong những hang lớn nhất vịnh Hạ Long, nằm trên đảo Đầu Gỗ, cách động Thiên Cung khoảng 300 m. Cửa hang rộng đón ánh sáng tự nhiên vào ngăn đầu tiên trong ba ngăn hang, và tên gọi của hang gắn với truyền thuyết về những cọc gỗ đánh giặc Nguyên Mông thế kỷ 13. Hang thuộc tuyến tham quan số 1 của vịnh, không nằm trong hành trình của Green Ruby.',
+            'sources' => [
+                ['title' => 'Ban Quản lý vịnh Hạ Long: Hang Đầu Gỗ, hang động rêu phong “cổ kính”', 'url' => 'https://halongbay.com.vn/p/572-hang-dau-go-hang-dong-reu-phong-co-kinh-tren-vinh-ha-long'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long: Những kỳ quan trên vịnh Hạ Long', 'url' => 'https://halongbay.com.vn/en/p/118-nhung-ky-quan-tren-vinh-ha-long'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long: thời gian đón khách tham quan', 'url' => 'https://halongbay.com.vn/en/p/71-thoi-gian-don-tra-khach-ve-cang-ben'],
+                ['title' => 'Ban Quản lý vịnh Hạ Long: tuyến tham quan và phí tham quan', 'url' => 'https://halongbay.com.vn/en/p/57-mien-giam-phi-tham-quan-vinh-ha-long'],
+                ['title' => 'Báo Quảng Ninh: Về chuyến ngự giá Bắc tuần của vua Khải Định và tấm bia đá ở hang Đầu Gỗ', 'url' => 'https://baoquangninh.vn/ve-chuyen-ngu-gia-bac-tuan-cua-vua-khai-dinh-va-tam-bia-da-o-hang-dau-go-2452480.html'],
+                ['title' => 'Showcaves.com: Dau Go Cave', 'url' => 'https://www.showcaves.com/english/vn/showcaves/DauGo.html'],
+                ['title' => 'UNESCO: Vịnh Hạ Long – Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Ảnh: Dau Go cave, Mustang Joe (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Dau_Go_cave,_H%E1%BA%A1_Long_Bay,_Vietnam_(54146979492).jpg'],
+            ],
+            'content' => <<<'HTML'
+<p><em>Giờ mở cửa, tuyến tham quan và giá vé do Ban Quản lý vịnh Hạ Long quy định và có thể thay đổi. Hãy kiểm tra thông tin mới nhất trước chuyến đi.</em></p>
+<h2>Hang Đầu Gỗ nằm ở đâu?</h2>
+<p>Hang Đầu Gỗ nằm trên đảo Đầu Gỗ, ở phía tây vịnh Hạ Long. Theo Ban Quản lý vịnh Hạ Long, hang cách Tuần Châu khoảng 3 km, cách khu du lịch Bãi Cháy khoảng 6 km, và cách <a href="/vi/dia-diem-tham-quan/dong-thien-cung">động Thiên Cung</a> khoảng 300 m về phía đông, trên cùng đảo.</p>
+<p>Hai hang đều thuộc tuyến tham quan số 1 của vịnh và thường được ghé trong cùng một chuyến. Từ bến thuyền, bạn leo khoảng 90 bậc đá dốc để lên cửa hang.</p>
+<h2>Hang Đầu Gỗ có gì đặc biệt?</h2>
+<p>Rộng và sáng. Hang rộng hơn 5.000 m², cửa hang rộng khoảng 17 m, cao khoảng 12 m, nên ánh sáng mặt trời rọi được khá sâu vào trong. Vì vậy ngăn đầu tiên trông khác hẳn những hang chỉ có ánh đèn. Càng vào sâu, ánh sáng tự nhiên càng yếu dần và đèn chiếu sáng thay thế.</p>
+<p>Đường tham quan đi qua ba ngăn hang, mỗi ngăn một vẻ.</p>
+<h3>Ngăn thứ nhất: ánh sáng tự nhiên và vẻ rêu phong</h3>
+<p>Đây là ngăn rộng và sáng nhất. Ánh sáng từ cửa hang chiếu lên những nhũ đá, măng đá đã chịu phong hóa lâu năm, tạo nên vẻ mà Ban Quản lý vịnh Hạ Long gọi là “rêu phong, cổ kính”. Ở những chỗ có nắng, một số loài cây mọc được trên đá.</p>
+<h3>Ngăn thứ hai: những cột đá trắng</h3>
+<p>Ở ngăn này, cảnh hang thay đổi: các cột đá lớn và nhũ đá trắng sáng hơn vì ít chịu nắng. Du khách châu Âu từng ví những hình khối ở đây với Angkor Wat, Angkor Thom hay tháp nghiêng Pisa, và người Pháp gọi hang là Grotte des Merveilles, nghĩa là “Động của các kỳ quan”.</p>
+<h3>Ngăn thứ ba: hẹp và tĩnh lặng</h3>
+<p>Ngăn nhỏ và yên tĩnh nhất. Dưới nền có những vũng nước nông, và hướng dẫn viên thường chỉ cho khách những khối nhũ đá gợi hình ảnh “cây đa, bến nước” quen thuộc của làng quê Bắc Bộ.</p>
+<h2>Vì sao có tên hang Đầu Gỗ?</h2>
+<p>Có nhiều cách giải thích tên hang. Trong tiếng Anh, hang thường được gọi là Wooden Stakes Cave, nghĩa là hang cọc gỗ; nhiều người cũng quen gọi là động Đầu Gỗ.</p>
+<p>Câu chuyện được nhắc đến nhiều nhất gắn với Hưng Đạo Đại vương Trần Quốc Tuấn. Trong trận Bạch Đằng năm 1288, quân nhà Trần cắm cọc gỗ nhọn dưới lòng sông, nhử thuyền giặc Nguyên Mông vào lúc nước rút để thuyền mắc cọc. Theo truyền thuyết địa phương, số cọc ấy từng được cất giấu trong hang này, và Ban Quản lý vịnh Hạ Long cho rằng chữ “Đầu Gỗ” có thể là đọc chệch từ “Giấu Gỗ”. Trận Bạch Đằng là sự kiện lịch sử có thật; còn việc cọc được giấu trong hang chỉ là truyền thuyết, chưa có bằng chứng lịch sử.</p>
+<p>Những cách giải thích khác giản dị hơn. Sách <em>Dư địa chí Quảng Ninh</em> cho rằng dãy đảo trông giống đầu một cây gỗ súc; một giả thuyết khác kể ngư dân thường vào đây tránh bão, sửa thuyền và để lại những mẩu gỗ.</p>
+<h2>Bia đá vua Khải Định và những vị khách nổi tiếng</h2>
+<p>Ở cửa hang có tấm bia đá dựng từ chuyến ngự giá Bắc tuần của vua Khải Định triều Nguyễn. Bia khắc bài tựa và bài thơ ngũ ngôn nhà vua viết ca ngợi cảnh hang, đặt tên hang là “Ngũ sắc tường vân”. Theo niên đại khắc trên bia, chuyến đi diễn ra năm 1918, dù một số tài liệu ghi năm 1917 hoặc 1919. Toàn văn bia được PGS.TS Đinh Khắc Thuân, nhà nghiên cứu Hán Nôm, phục chế năm 2009.</p>
+<p>Tháng 10/1957, Chủ tịch Hồ Chí Minh đã đến thăm hang Đầu Gỗ.</p>
+<h2>Đến hang Đầu Gỗ bằng cách nào?</h2>
+<p>Chỉ có thể đi bằng tàu. Tuyến số 1 xuất phát từ cảng tàu khách quốc tế Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long, và nhiều tour trong ngày đi theo tuyến này. Tàu cập đảo Đầu Gỗ, bạn leo bậc lên cửa hang rồi đi theo lối tham quan qua ba ngăn.</p>
+<p>Không phải chuyến tham quan vịnh Hạ Long nào cũng ghé hang Đầu Gỗ. Nếu bạn nhất định muốn đến đây, hãy kiểm tra tuyến hoặc tour mình đặt có ghi rõ tên hang.</p>
+<h2>Tham quan hang Đầu Gỗ mất bao lâu?</h2>
+<p>Bạn nên dành khoảng <strong>30 – 60 phút</strong>, tính cả đoạn leo bậc, thời gian đi qua ba ngăn và quay xuống bến. Nếu chuyến đi ghé cả động Thiên Cung, hãy tính thêm thời gian cho hang thứ hai và quãng đi bộ ngắn giữa hai hang.</p>
+<h2>Đường lên hang Đầu Gỗ có khó không?</h2>
+<p>Đoạn vất vả nhất là khoảng 90 bậc đá dốc từ bến lên cửa hang; bên trong còn nhiều cầu thang và lối đi lên xuống. Lối tham quan không có đường dành cho xe lăn.</p>
+<ul>
+<li>Đi giày có đế bám tốt.</li>
+<li>Mang theo nước uống cho đoạn leo bậc, nhất là vào những tháng nóng.</li>
+<li>Đi thật cẩn thận ở bậc đá ẩm và nền không bằng phẳng.</li>
+<li>Giữ trẻ nhỏ ở gần, nhất là ở cầu thang và chỗ có lan can.</li>
+<li>Không chạm tay vào thạch nhũ hay tự ý rời khỏi lối đi quy định.</li>
+<li>Nếu trong đoàn có người khó leo cầu thang, hãy hỏi đơn vị tổ chức trước khi đặt tour.</li>
+</ul>
+<h2>Giờ mở cửa và thời điểm nên đi</h2>
+<p>Theo Ban Quản lý vịnh Hạ Long, hang Đầu Gỗ mở cửa <strong>7:30 – 17:30 từ 16/4 đến 31/10</strong> và <strong>7:30 – 17:00 từ 1/11 đến 15/4</strong>.</p>
+<p>Mùa xuân và mùa thu là lúc leo bậc dễ chịu nhất. Mùa hè, đoạn cầu thang ngoài trời nóng và oi, dù trong hang mát hơn ngoài nắng. Bến và lối lên hang thường đông khi nhiều tàu đến cùng lúc, vào cuối tuần và ngày lễ. Trời mưa, bậc đá ngoài trời dễ trơn; khi thời tiết xấu, cơ quan chức năng có thể tạm dừng tàu ra vịnh.</p>
+<p>Xem thêm thời tiết từng tháng trong bài <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">Du lịch Hạ Long mùa nào đẹp nhất?</a></p>
+<h2>Vé tham quan hang Đầu Gỗ</h2>
+<p>Hang Đầu Gỗ thuộc <strong>tuyến tham quan số 1 của vịnh Hạ Long</strong>, cùng động Thiên Cung, hòn Chó Đá, hang Ba Hang, hòn Đỉnh Hương và hòn Trống Mái. Ban Quản lý vịnh Hạ Long niêm yết phí tham quan tuyến số 1 theo ngày là <strong>250.000 đồng/người</strong>. Tiền tàu tính riêng, hoặc đã có trong giá tour.</p>
+<p>Nếu đi tour, hãy hỏi rõ phí tham quan đã gồm trong giá hay chưa. Giá vé và tuyến tham quan có thể thay đổi, nên kiểm tra lại với Ban Quản lý hoặc đơn vị tổ chức trước khi đi.</p>
+<h2>Hang Đầu Gỗ có trong hành trình của Green Ruby không?</h2>
+<p>Hang Đầu Gỗ không phải điểm dừng trong hành trình nào của Green Ruby. Du thuyền <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a> do chúng tôi vận hành đang chuẩn bị cho các chuyến ngủ đêm trên vịnh Hạ Long, với các điểm ghé dự kiến là <a href="/vi/dia-diem-tham-quan/hang-sung-sot">hang Sửng Sốt</a>, <a href="/vi/dia-diem-tham-quan/dao-ti-top">đảo Ti Tốp</a> và <a href="/vi/dia-diem-tham-quan/hang-luon">hang Luồn</a>, ở một khu vực khác của vịnh.</p>
+<p>Nếu muốn ghé thêm hang Đầu Gỗ và động Thiên Cung, bạn nên đi tuyến số 1 vào một ngày khác: hôm lên du thuyền, lịch làm thủ tục ở Tuần Châu gần như không còn chỗ cho một chuyến tham quan trước đó.</p>
+<h2>Các địa điểm gần hang Đầu Gỗ</h2>
+<h3><a href="/vi/dia-diem-tham-quan/dong-thien-cung">Động Thiên Cung</a></h3>
+<p>Cách khoảng 300 m trên cùng đảo, động Thiên Cung nổi tiếng với hệ thống thạch nhũ dày đặc, được chiếu sáng. Ghé cả hai hang trong một chuyến, bạn sẽ thấy hai kiểu hang khác hẳn nhau.</p>
+<h3>Hang Ba Hang</h3>
+<p>Cũng thuộc tuyến số 1: ba hang nhỏ nằm sát nhau, thông với hai hồ nước mặn, giữa những đảo phủ rừng quanh năm.</p>
+<h3>Hòn Trống Mái</h3>
+<p>Hai khối đá đứng đối diện nhau giữa mặt nước, được chọn làm biểu tượng của du lịch Hạ Long. Đây là điểm cuối của tuyến số 1.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Vị trí', 'value' => 'Đảo Đầu Gỗ, vịnh Hạ Long, Quảng Ninh'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Dau Go Cave, Wooden Stakes Cave'],
+                ['label' => 'Diện tích', 'value' => 'Hơn 5.000 m², gồm ba ngăn'],
+                ['label' => 'Cửa hang', 'value' => 'Rộng khoảng 17 m, cao khoảng 12 m; lên bằng khoảng 90 bậc đá dốc'],
+                ['label' => 'Cách đến', 'value' => 'Đi tàu tham quan tuyến số 1, hoặc tour có tuyến này'],
+                ['label' => 'Thời gian tham quan', 'value' => 'Khoảng 30 – 60 phút'],
+                ['label' => 'Mức độ đi lại', 'value' => 'Trung bình: bậc đá dốc, bên trong nhiều cầu thang và nền không bằng phẳng'],
+                ['label' => 'Giờ mở cửa', 'value' => '7:30 – 17:30 (16/4 – 31/10); 7:30 – 17:00 (1/11 – 15/4). Có thể thay đổi, nên kiểm tra trước khi đi.'],
+                ['label' => 'Phí tham quan', 'value' => 'Tuyến số 1: 250.000 đồng/người theo niêm yết của Ban Quản lý (chưa gồm tiền tàu)'],
+                ['label' => 'Green Ruby', 'value' => 'Không phải điểm dừng của Green Ruby'],
+            ],
+            'faq' => [
+                ['q' => 'Hang Đầu Gỗ nằm ở đâu?', 'a' => 'Trên đảo Đầu Gỗ, phía tây vịnh Hạ Long, tỉnh Quảng Ninh, cách Tuần Châu khoảng 3 km và cách động Thiên Cung khoảng 300 m. Muốn đến hang, bạn đi tàu tham quan tuyến số 1.'],
+                ['q' => 'Tham quan hang Đầu Gỗ mất bao lâu?', 'a' => 'Khoảng 30 – 60 phút, tính cả đoạn leo bậc lên cửa hang và thời gian đi qua ba ngăn.'],
+                ['q' => 'Hang Đầu Gỗ có bao nhiêu bậc thang?', 'a' => 'Từ bến thuyền lên cửa hang có khoảng 90 bậc đá dốc; bên trong hang còn thêm những đoạn cầu thang và lối đi lên xuống.'],
+                ['q' => 'Vé tham quan hang Đầu Gỗ bao nhiêu tiền?', 'a' => 'Hang thuộc tuyến tham quan số 1, có phí theo ngày là 250.000 đồng/người theo niêm yết của Ban Quản lý vịnh Hạ Long; cùng tuyến có động Thiên Cung. Tiền tàu tính riêng, trừ khi đã có trong giá tour.'],
+                ['q' => 'Người lớn tuổi và trẻ nhỏ có tham quan hang Đầu Gỗ được không?', 'a' => 'Được, nếu sức khỏe và khả năng đi lại cho phép. Đoạn 90 bậc đá dốc có thể khó với người đi lại khó khăn; trẻ nhỏ cần người lớn đi kèm.'],
+                ['q' => 'Hang Đầu Gỗ và động Thiên Cung có phải là một không?', 'a' => 'Không. Đây là hai hang khác nhau trên cùng đảo Đầu Gỗ, cách nhau khoảng 300 m, đều thuộc tuyến số 1. Hang Đầu Gỗ nổi bật vì rộng và có ánh sáng tự nhiên ở ngăn đầu; động Thiên Cung nổi bật với thạch nhũ dày đặc, được chiếu sáng.'],
+                ['q' => 'Hang Đầu Gỗ và hang Sửng Sốt khác nhau thế nào?', 'a' => 'Hang Đầu Gỗ nằm trên đảo Đầu Gỗ, thuộc tuyến tham quan số 1; hang Sửng Sốt nằm trên đảo Bồ Hòn, thuộc tuyến số 2.'],
+                ['q' => 'Có thể tham quan hang Đầu Gỗ trong ngày không?', 'a' => 'Có. Tuyến số 1 chạy trong ngày, xuất phát từ cảng Tuần Châu hoặc cảng tàu khách quốc tế Hạ Long, nên không cần đi du thuyền ngủ đêm.'],
+                ['q' => 'Hang Đầu Gỗ có nằm trong lịch trình Green Ruby không?', 'a' => 'Không. Các hành trình dự kiến của Green Ruby 1 trên vịnh Hạ Long ghé hang Sửng Sốt, đảo Ti Tốp và hang Luồn. Nếu muốn đến hang Đầu Gỗ, bạn nên đặt chuyến tham quan tuyến số 1 vào một ngày khác.'],
             ],
         ],
     ],
