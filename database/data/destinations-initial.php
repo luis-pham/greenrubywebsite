@@ -2361,4 +2361,253 @@ HTML,
             ],
         ],
     ],
+    [
+        'bay' => 'ha-long',
+        'category' => 'other',
+        'ord' => 11,
+        'fact_checked_at' => '2026-10-27',
+        'latitude' => null,
+        'longitude' => null,
+        'coords_verified' => false,
+        'coords_source' => null,
+        'image' => ['file' => 'halong-bay-pearl-farm.jpg', 'link' => '/2026/10/27/halong-bay-pearl-farm.jpg'],
+        'image_credit' => 'Photo: Ji-Elle, CC BY-SA 4.0, via Wikimedia Commons',
+        'itineraries' => ['en' => [3], 'vi' => [8]],
+        'sources' => [
+            ['title' => 'GIA Gems & Gemology (Fall 2020): Vietnam – Shell Nuclei, Pearl Hatcheries, and Pearl Farming', 'url' => 'https://www.gia.edu/gems-gemology/fall-2020-vietnam-shell-nuclei-pearl-hatcheries'],
+            ['title' => 'GIA: Pearl description', 'url' => 'https://www.gia.edu/pearl-description'],
+            ['title' => 'Industry and Trade Magazine (8 Nov 2023): Ha Long Pearl’s pearl farms at Tung Sau and Vong Vieng (Vietnamese)', 'url' => 'https://tapchicongthuong.vn/magazine/hanh-trinh-toa-sang-cua-ngoc-trai-ha-long-113435.htm'],
+            $unesco,
+            ['title' => 'Photo: Pearl production in Halong Bay (29), Ji-Elle (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Pearl_production_in_Halong_Bay_(29).jpg'],
+        ],
+        'editor_notes' => "Added 2026-10-27 from the owner's EN/VI briefs. Green Ruby stop: The Halong Immersion 3D2N (EN 3 / VI 8), Day 2 at 14:00 per the live itinerary; the farm itself is NOT named in the itinerary, so the page says it will be confirmed. Checked: Ha Long Bay is where most of Vietnam's pearl farms are, production mostly akoya (Pinctada fucata martensii), ~8-month formation period reported at a Vietnamese farm, pearl sac forms in 5-7 days (GIA G&G Fall 2020); bead + mantle tissue implant, nacre secreted onto the bead (GIA pearl description). Tung Sau: Ha Long Pearl JSC farms >50 ha at Tung Sau cove and Vong Vieng, with visitor tours and a showroom (Tạp chí Công Thương, 08/11/2023). Changed from the brief: GIA is no longer quoted for 'same biological process' (the GIA page does not say that); cultivation time given with the GIA figure instead of 'months to years'; VI best-time link made relative; '<Link>' artefact removed; 'Planned Green Ruby stop' label dropped (the page template shows it). Not published: the farm's 2013/2020 regulatory history (project in the heritage core zone, no expansion: Thời báo Tài chính 2013, VTC News 2020). Hero: CC BY-SA 4.0 photo from the 'Pearl production in Halong Bay' series (2017); black-pearl shots from the same series not used (Ha Long mainly produces akoya). No coordinates: the facility is not confirmed.",
+        'en' => [
+            'slug' => 'halong-bay-pearl-farm',
+            'name' => 'Halong Bay Pearl Farm',
+            'heading' => 'Halong Bay Pearl Farm: A Guide to Pearl Cultivation and Visiting',
+            'image_alt' => 'Cultured pearls laid in an open pearl oyster shell at a pearl farm in Ha Long Bay',
+            'seo_title' => 'Halong Bay Pearl Farm: Pearl Cultivation & Visitor Guide',
+            'seo_description' => 'Discover pearl farming in Halong Bay. Learn how cultured pearls are made, what to expect at a pearl farm and which Green Ruby cruise includes a visit.',
+            'summary' => 'Pearl farms are one of the lesser-known stops in Ha Long Bay. At a farm you learn how pearl oysters are raised in seawater, how a cultured pearl forms inside them and how finished pearls are sorted for jewellery. Most of Vietnam’s pearl farms are in Ha Long Bay, and a pearl farm visit is a planned stop on Green Ruby 1’s 3-day itinerary.',
+            'content' => <<<'HTML'
+<h2>Where are the pearl farms in Ha Long Bay?</h2>
+<p>Pearl oysters are raised at marine farming sites in sheltered parts of Ha Long Bay. According to the Gemological Institute of America (GIA), Ha Long Bay is where most of Vietnam’s pearl farms are located, and most of their output is akoya pearls.</p>
+<p>One well-known pearl-farming area is Tung Sau, a cove sheltered among limestone islands. Other farms operate elsewhere in the bay.</p>
+<p>There is no single attraction called “Halong Bay Pearl Farm”. The farm you visit depends on the cruise or sightseeing programme. For Green Ruby guests, the pearl farm is a planned stop on the second day of the 3-day Ha Long Bay itinerary; the specific facility will be confirmed in the final itinerary.</p>
+<h2>Why visit a pearl farm?</h2>
+<p>Most visitors come to Ha Long Bay for its scenery. A pearl farm adds a look at work that takes place on the water.</p>
+<p>Instead of exploring a cave or climbing to a viewpoint, you see how pearl oysters are cared for and why a cultured pearl takes time, skill and the right marine conditions. It also explains the difference between natural, cultured and imitation pearls, which is useful even if you have no plans to buy jewellery.</p>
+<p>For travellers interested in local industries and life around the bay, it is a change of pace from sightseeing.</p>
+<h2>How are cultured pearls produced?</h2>
+<p>Cultured pearls are real pearls formed inside living molluscs, with human help to start the process.</p>
+<h3>1. Raising the oysters</h3>
+<p>Farms raise pearl oysters in seawater, where water quality, temperature and the health of the oysters all affect the result. Workers check and clean the oysters regularly.</p>
+<h3>2. Starting a pearl</h3>
+<p>For bead-nucleated pearls, a trained technician inserts a small shell bead together with a piece of mantle tissue from a donor oyster of the same species into a host oyster. The tissue forms a pearl sac around the bead, and the oyster secretes nacre (mother-of-pearl) onto it.</p>
+<p>The exact technique depends on the oyster species and the type of pearl being grown.</p>
+<h3>3. Growing the pearls</h3>
+<p>Pearls do not form overnight. After the operation, the oysters are kept under observation before going back to the farm lines, where they lay down layer after layer of nacre. GIA researchers reported a formation period of about eight months for akoya pearls at one Vietnamese farm; other types of pearl need longer.</p>
+<h3>4. Harvesting and sorting</h3>
+<p>At harvest, pearls are graded by size, shape, colour, surface quality and lustre. Some are set individually; others are matched for earrings, bracelets or necklaces.</p>
+<p><em>These steps describe pearl cultivation in general. What you see on a visit depends on the facility.</em></p>
+<h2>What to expect during a visit</h2>
+<p>A pearl farm visit is mainly an educational stop, and the programme varies. Depending on the facility, you may learn about:</p>
+<ul>
+<li>the oysters used for pearl cultivation;</li>
+<li>how they are cared for in the sea;</li>
+<li>how a cultured pearl is started and grown;</li>
+<li>how harvested pearls are assessed;</li>
+<li>finished pearl jewellery, where there is a showroom.</li>
+</ul>
+<p>Some farms show the steps with demonstrations or displays; others give a guided introduction and a chance to see finished products. Do not assume you will see a live implantation or harvest unless the operator confirms it.</p>
+<h2>Natural, cultured and imitation pearls</h2>
+<p><strong>Natural pearls</strong> form in molluscs without human intervention and are relatively rare.</p>
+<p><strong>Cultured pearls</strong> are also real pearls produced by a mollusc, but their formation is started by people, who then look after the molluscs while the pearls grow.</p>
+<p><strong>Imitation pearls</strong> are not pearls at all: they are made from other materials to look like pearls.</p>
+<h2>Can you buy pearls at the farm?</h2>
+<p>Some farms have a showroom with loose pearls and jewellery. Buying is your choice, not the purpose of the visit. If you are considering a purchase, ask:</p>
+<ul>
+<li>Are the pearls saltwater or freshwater?</li>
+<li>Where were they cultivated, and by which species of mollusc?</li>
+<li>Have the colour or surface been treated?</li>
+<li>Is there a receipt with clear product information?</li>
+<li>For higher-value pieces, is there an independent gemmological report?</li>
+</ul>
+<p>Visiting a farm does not mean that every pearl on sale was grown there. For an expensive purchase, ask for documentation rather than relying on verbal assurances.</p>
+<h2>How do you get there and how long does it take?</h2>
+<p>Pearl farms in Ha Long Bay are reached by boat as part of a day tour or overnight cruise, not independently by road. Not every Ha Long Bay cruise calls at a pearl farm, so check that the visit is listed in your itinerary.</p>
+<p>The length of the visit depends on the facility. On Green Ruby’s planned itinerary the visit starts at about 14:00 on Day 2; no separate duration is published. Most cruises start from Tuan Chau: see <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a>.</p>
+<h2>Practical tips</h2>
+<ul>
+<li><strong>Wear shoes with grip:</strong> landing areas and walkways near the water may be wet.</li>
+<li><strong>Bring sun protection:</strong> parts of the visit may be outdoors.</li>
+<li><strong>Ask before taking photos</strong> in working areas.</li>
+<li><strong>Follow the guide:</strong> cultivation areas and equipment may be off limits.</li>
+<li><strong>Check accessibility:</strong> boarding and floating platforms can be difficult for travellers with limited mobility.</li>
+</ul>
+<h2>Weather and visiting conditions</h2>
+<p>Pearl farm visits depend on the cruise programme and the weather. Rain or strong wind makes outdoor areas less comfortable, and during tropical storms the authorities may suspend boat movements in Ha Long Bay, so visits can be changed or cancelled. See <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a> for month-by-month conditions.</p>
+<h2>Visiting a pearl farm with Green Ruby Cruises</h2>
+<p>A pearl farm visit is part of the planned Day 2 programme of <strong><a href="/itinerary/the-halong-immersion-3-days-2-nights-3-3.html">The Halong Immersion – 3 Days 2 Nights</a></strong> aboard <a href="/cruise/green-ruby-1-3.html">Green Ruby 1</a>.</p>
+<table>
+<thead><tr><th>Time</th><th>Planned activity</th></tr></thead>
+<tbody>
+<tr><td>07:00</td><td>Breakfast on board</td></tr>
+<tr><td>08:30</td><td>Transfer to a dedicated day boat</td></tr>
+<tr><td>10:00</td><td><a href="/destinations/cua-van-floating-village">Cua Van Fishing Village</a></td></tr>
+<tr><td>11:30</td><td><a href="/destinations/tien-ong-cave">Tien Ong Cave</a></td></tr>
+<tr><td>12:30</td><td>Lunch on the day boat</td></tr>
+<tr><td>14:00</td><td>Pearl farm visit</td></tr>
+<tr><td>15:30</td><td>Return to the main ship and relax</td></tr>
+<tr><td>19:00</td><td>Dinner and a second night on the bay</td></tr>
+</tbody>
+</table>
+<p>The specific farm, demonstrations and visitor facilities will be confirmed as the itinerary is finalised.</p>
+<p><em>Green Ruby 1 is expected to enter service in February 2027. All stops and times remain subject to the confirmed itinerary, weather and local regulations.</em></p>
+<h2>Nearby places and related experiences</h2>
+<h3><a href="/destinations/cua-van-floating-village">Cua Van Floating Village</a></h3>
+<p>One of Ha Long Bay’s best-known former floating fishing villages. Its families moved ashore in 2014; a visit introduces the bay’s fishing heritage.</p>
+<h3><a href="/destinations/tien-ong-cave">Tien Ong Cave</a></h3>
+<p>A limestone cave with evidence of prehistoric habitation and an archaeological display, visited on the same day.</p>
+<h3><a href="/destinations/sung-sot-cave">Sung Sot Cave</a></h3>
+<p>One of Ha Long Bay’s most visited caves, on Bo Hon Island, with large chambers. On the same itinerary, on Day 3.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Location', 'value' => 'Ha Long Bay, Quang Ninh; the exact farm depends on the programme'],
+                ['label' => 'Experience', 'value' => 'Learning how marine cultured pearls are grown'],
+                ['label' => 'Main pearl type', 'value' => 'Akoya (most of Vietnam’s production, per GIA)'],
+                ['label' => 'Getting there', 'value' => 'By sightseeing boat or a cruise that includes a pearl farm'],
+                ['label' => 'Shopping', 'value' => 'Some farms have a showroom; buying is optional'],
+                ['label' => 'Green Ruby itinerary', 'value' => 'The Halong Immersion – 3 Days 2 Nights, Day 2, about 14:00'],
+            ],
+            'faq' => [
+                ['q' => 'Where is the pearl farm in Ha Long Bay?', 'a' => 'Pearl farms operate in several sheltered parts of Ha Long Bay; Tung Sau is one known pearl-farming area. The exact farm depends on the operator and the itinerary.'],
+                ['q' => 'How are pearls made at a pearl farm?', 'a' => 'A technician implants a small shell bead and a piece of mantle tissue into a pearl oyster. Over the following months the oyster coats the bead with layers of nacre, which becomes the pearl.'],
+                ['q' => 'Are cultured pearls real pearls?', 'a' => 'Yes. Cultured pearls are produced by living molluscs. They differ from natural pearls only in that people start the process; imitation pearls, by contrast, are made from other materials.'],
+                ['q' => 'Can visitors watch pearls being harvested?', 'a' => 'Some farms have demonstrations or displays, but a live harvest is not guaranteed. Check what your programme includes.'],
+                ['q' => 'Do you have to buy pearls during the visit?', 'a' => 'No. The visit is an introduction to pearl farming; if there is a showroom, buying is up to you.'],
+                ['q' => 'How long does a pearl farm visit take?', 'a' => 'It depends on the facility. On Green Ruby’s planned itinerary the visit starts at about 14:00 on Day 2, and the day boat is back at the main ship around 15:30.'],
+                ['q' => 'Do all Green Ruby cruises visit a pearl farm?', 'a' => 'No. A pearl farm is currently listed only on The Halong Immersion – 3 Days 2 Nights aboard Green Ruby 1.'],
+                ['q' => 'Which pearl farm will Green Ruby visit?', 'a' => 'The specific farm is not named in the published itinerary. Its name and location will be confirmed before the programme starts.'],
+            ],
+        ],
+        'vi' => [
+            'slug' => 'trai-ngoc-trai-ha-long',
+            'name' => 'Trại ngọc trai Hạ Long',
+            'heading' => 'Trại nuôi cấy ngọc trai Hạ Long: Quy trình và kinh nghiệm tham quan',
+            'image_alt' => 'Những viên ngọc trai nuôi cấy đặt trong vỏ trai ngọc mở tại một cơ sở nuôi cấy ngọc trai trên vịnh Hạ Long',
+            'image_credit' => 'Ảnh: Ji-Elle, CC BY-SA 4.0, qua Wikimedia Commons',
+            'seo_title' => 'Trại Ngọc Trai Hạ Long: Quy Trình Nuôi Cấy & Tham Quan',
+            'seo_description' => 'Tìm hiểu trại ngọc trai Hạ Long, quy trình nuôi cấy, trải nghiệm tham quan, cách mua ngọc trai và hành trình Green Ruby 1 có ghé điểm đến này.',
+            'summary' => 'Bên cạnh hang động và đảo đá vôi, vịnh Hạ Long còn có các cơ sở nuôi cấy ngọc trai trên biển. Đến đây, du khách tìm hiểu cách nuôi trai lấy ngọc, quá trình một viên ngọc hình thành và cách phân loại ngọc làm trang sức. Phần lớn trại ngọc trai của Việt Nam nằm ở vịnh Hạ Long, và đây là điểm dừng dự kiến trong hành trình 3 ngày 2 đêm của Green Ruby 1.',
+            'sources' => [
+                ['title' => 'Tạp chí Công Thương (08/11/2023): Hành trình tỏa sáng của Ngọc trai Hạ Long', 'url' => 'https://tapchicongthuong.vn/magazine/hanh-trinh-toa-sang-cua-ngoc-trai-ha-long-113435.htm'],
+                ['title' => 'Viện Đá quý Hoa Kỳ (GIA), Gems & Gemology (thu 2020): Ngành nuôi cấy ngọc trai tại Việt Nam', 'url' => 'https://www.gia.edu/gems-gemology/fall-2020-vietnam-shell-nuclei-pearl-hatcheries'],
+                ['title' => 'Viện Đá quý Hoa Kỳ (GIA): Thông tin về ngọc trai', 'url' => 'https://www.gia.edu/pearl-description'],
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Ảnh: Pearl production in Halong Bay (29), Ji-Elle (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Pearl_production_in_Halong_Bay_(29).jpg'],
+            ],
+            'content' => <<<'HTML'
+<h2>Trại nuôi cấy ngọc trai Hạ Long nằm ở đâu?</h2>
+<p>Trên vịnh Hạ Long có các khu nuôi cấy ngọc trai, nơi người làm nghề chăm sóc trai ngọc trong môi trường nước biển. Theo Viện Đá quý Hoa Kỳ (GIA), phần lớn trại ngọc trai của Việt Nam nằm ở vịnh Hạ Long, chủ yếu nuôi ngọc akoya.</p>
+<p>Một trong những khu nuôi được biết đến là vụng Tùng Sâu, nằm giữa các đảo đá vôi của vịnh. Công ty CP Ngọc trai Hạ Long có hai khu nuôi rộng hơn 50 ha tại vụng Tùng Sâu và khu vực Vông Viêng, kèm khu trưng bày và chương trình cho khách tham quan.</p>
+<p>Vì vậy, tên gọi “trại ngọc trai Hạ Long” không chỉ một địa điểm duy nhất. Tùy chương trình tham quan, du khách có thể được đưa đến những cơ sở khác nhau. Theo lịch trình dự kiến, du thuyền Green Ruby 1 có điểm dừng tham quan cơ sở nuôi cấy ngọc trai trong ngày thứ hai của hành trình 3 ngày 2 đêm; tên và vị trí cơ sở sẽ được xác nhận trong chương trình chính thức.</p>
+<h2>Vì sao nên tham quan trại nuôi cấy ngọc trai?</h2>
+<p>Nhiều du khách đến Hạ Long để ngắm cảnh, tham quan hang động hoặc chèo thuyền giữa các đảo đá. Trại ngọc trai mang đến một trải nghiệm khác: tìm hiểu công việc của những người làm nghề trên biển.</p>
+<p>Thay vì chỉ thấy viên ngọc thành phẩm trong cửa hàng, bạn biết ngọc trai được tạo ra thế nào, vì sao nuôi cấy cần nhiều thời gian và những yếu tố ảnh hưởng đến chất lượng ngọc. Ngay cả khi không định mua trang sức, du khách vẫn có thêm hiểu biết về một ngành kinh tế biển của Hạ Long, bên cạnh nghề đánh bắt hải sản và du lịch.</p>
+<h2>Ngọc trai được nuôi cấy như thế nào?</h2>
+<p>Ngọc trai nuôi cấy là ngọc thật, hình thành trong cơ thể trai ngọc, với sự can thiệp của con người để khởi đầu quá trình tạo ngọc.</p>
+<h3>Nuôi và chăm sóc trai ngọc</h3>
+<p>Trai được nuôi trong nước biển, nơi chất lượng nước, nhiệt độ và sức khỏe của trai ảnh hưởng trực tiếp đến kết quả. Người nuôi thường xuyên kiểm tra và vệ sinh trai.</p>
+<h3>Cấy nhân tạo ngọc</h3>
+<p>Với ngọc có nhân, kỹ thuật viên đưa một viên nhân nhỏ làm từ vỏ nhuyễn thể cùng một mẩu mô áo lấy từ con trai cùng loài vào cơ thể trai nhận. Mô áo tạo thành túi ngọc bao quanh nhân, và trai tiết ra các lớp xà cừ phủ lên nhân.</p>
+<p>Kỹ thuật cụ thể khác nhau tùy loài trai và loại ngọc.</p>
+<h3>Chờ ngọc trai hình thành</h3>
+<p>Ngọc trai không hình thành sau vài ngày hay vài tuần. Sau khi cấy, trai được theo dõi một thời gian rồi mới đưa trở lại giàn nuôi để tiếp tục tiết từng lớp xà cừ. Nghiên cứu của GIA tại một trại ở Việt Nam ghi nhận thời gian tạo ngọc akoya khoảng tám tháng; các loại ngọc khác cần lâu hơn.</p>
+<h3>Thu hoạch và phân loại</h3>
+<p>Khi thu hoạch, ngọc được phân loại theo kích thước, hình dáng, màu sắc, độ bóng và chất lượng bề mặt, rồi dùng làm nhẫn, mặt dây chuyền, hoa tai, vòng tay hoặc chuỗi ngọc.</p>
+<p><em>Đây là quy trình nuôi cấy ngọc trai nói chung. Những công đoạn du khách được xem trực tiếp phụ thuộc vào từng cơ sở.</em></p>
+<h2>Đến trại ngọc trai được trải nghiệm những gì?</h2>
+<p>Chuyến tham quan chủ yếu giới thiệu nghề nuôi cấy và các sản phẩm từ ngọc trai. Tùy cơ sở, du khách có thể tìm hiểu:</p>
+<ul>
+<li>những loại trai dùng để nuôi cấy ngọc;</li>
+<li>cách nuôi và chăm sóc trai trên biển;</li>
+<li>cách cấy nhân và quá trình hình thành ngọc;</li>
+<li>cách phân loại ngọc sau thu hoạch;</li>
+<li>trang sức ngọc trai, nếu cơ sở có khu trưng bày.</li>
+</ul>
+<p>Không phải cơ sở nào cũng có trình diễn cấy ngọc hay thu hoạch ngọc trực tiếp. Hãy kiểm tra hoạt động cụ thể trong lịch trình trước khi đặt tour.</p>
+<h2>Ngọc trai tự nhiên, ngọc trai nuôi cấy và ngọc giả</h2>
+<p><strong>Ngọc trai tự nhiên</strong> hình thành mà không có sự can thiệp của con người, khá hiếm.</p>
+<p><strong>Ngọc trai nuôi cấy</strong> cũng là ngọc thật do trai tạo ra, nhưng quá trình tạo ngọc được con người khởi đầu và chăm sóc cho đến khi thu hoạch.</p>
+<p><strong>Ngọc giả</strong> không phải ngọc trai: đó là sản phẩm làm từ vật liệu khác để mô phỏng hình dáng và độ bóng của ngọc thật.</p>
+<h2>Có thể mua ngọc trai tại trại không?</h2>
+<p>Một số cơ sở có khu giới thiệu và bán ngọc rời, trang sức thành phẩm. Mua hay không là quyết định của bạn, không phải mục đích của chuyến tham quan. Nếu định mua, nên hỏi rõ:</p>
+<ul>
+<li>Ngọc trai nước mặn hay nước ngọt?</li>
+<li>Ngọc được nuôi ở đâu, từ loài trai nào?</li>
+<li>Sản phẩm có xử lý màu hoặc xử lý bề mặt không?</li>
+<li>Giá tính theo viên hay theo sản phẩm hoàn chỉnh, có hóa đơn và thông tin nguồn gốc không?</li>
+<li>Với sản phẩm giá trị cao, có báo cáo giám định độc lập không?</li>
+</ul>
+<p>Tham quan một trại nuôi cấy không có nghĩa mọi sản phẩm bán tại đó đều do chính cơ sở ấy sản xuất. Với trang sức giá trị lớn, nên kiểm tra giấy tờ trước khi mua.</p>
+<h2>Đến trại ngọc trai bằng cách nào, mất bao lâu?</h2>
+<p>Các trại ngọc trai trên vịnh được tiếp cận bằng tàu, trong chương trình tham quan trong ngày hoặc du thuyền nghỉ đêm. Không phải hành trình vịnh Hạ Long nào cũng ghé trại ngọc trai, nên hãy chọn tour ghi rõ hoạt động này.</p>
+<p>Thời gian tham quan tùy cơ sở. Trong lịch trình dự kiến của Green Ruby 1, hoạt động bắt đầu khoảng 14:00 ngày thứ hai; thời lượng riêng chưa được công bố. Phần lớn du thuyền xuất phát từ Tuần Châu: xem <a href="/vi/cam-nang/ha-noi-di-ha-long">cách đi từ Hà Nội đến Hạ Long</a>.</p>
+<h2>Những lưu ý khi tham quan</h2>
+<ul>
+<li><strong>Mang giày dép bám tốt:</strong> cầu tàu và lối đi gần mặt nước có thể ẩm, trơn.</li>
+<li><strong>Chuẩn bị chống nắng:</strong> một phần hoạt động diễn ra ngoài trời.</li>
+<li><strong>Hỏi trước khi chụp ảnh</strong> ở khu vực sản xuất.</li>
+<li><strong>Tuân thủ hướng dẫn:</strong> không tự ý vào khu nuôi cấy hoặc chạm vào thiết bị.</li>
+<li><strong>Lưu ý khả năng di chuyển:</strong> cầu tàu, xuồng trung chuyển hoặc sàn nổi có thể không phù hợp với mọi du khách.</li>
+</ul>
+<h2>Thời tiết có ảnh hưởng đến việc tham quan không?</h2>
+<p>Hoạt động tham quan phụ thuộc vào thời tiết và chương trình vận hành tàu. Mưa, gió mạnh làm các hoạt động ngoài trời kém thoải mái; khi có bão, cơ quan chức năng có thể tạm dừng tàu du lịch trên vịnh và điểm tham quan có thể bị thay đổi hoặc hủy. Xem thêm <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">đi Hạ Long mùa nào đẹp</a>.</p>
+<h2>Tham quan trại ngọc trai cùng Green Ruby Cruises</h2>
+<p>Theo lịch trình dự kiến, hoạt động tham quan trại ngọc trai nằm trong ngày thứ hai của hành trình <strong><a href="/vi/hanh-trinh/3-ngay-2-dem-dau-an-ha-long-1-8.html">Dấu Ấn Hạ Long – 3 ngày 2 đêm</a></strong> trên du thuyền <a href="/vi/du-thuyen/green-ruby-1-1.html">Green Ruby 1</a>.</p>
+<table>
+<thead><tr><th>Thời gian</th><th>Hoạt động dự kiến</th></tr></thead>
+<tbody>
+<tr><td>07:00</td><td>Ăn sáng trên du thuyền</td></tr>
+<tr><td>08:30</td><td>Chuyển sang tàu tham quan trong ngày</td></tr>
+<tr><td>10:00</td><td><a href="/vi/dia-diem-tham-quan/lang-chai-cua-van">Làng chài Cửa Vạn</a></td></tr>
+<tr><td>11:30</td><td><a href="/vi/dia-diem-tham-quan/hang-tien-ong">Hang Tiên Ông</a></td></tr>
+<tr><td>12:30</td><td>Ăn trưa trên tàu tham quan</td></tr>
+<tr><td>14:00</td><td>Tham quan cơ sở nuôi cấy ngọc trai</td></tr>
+<tr><td>15:30</td><td>Trở về du thuyền chính, nghỉ ngơi</td></tr>
+<tr><td>19:00</td><td>Ăn tối và nghỉ đêm thứ hai trên vịnh</td></tr>
+</tbody>
+</table>
+<p>Tên cơ sở, nội dung hướng dẫn và hoạt động cụ thể sẽ được xác nhận trong lịch trình chính thức.</p>
+<p><em>Green Ruby 1 dự kiến bắt đầu khai thác từ tháng 2/2027. Điểm dừng và thời gian tham quan có thể điều chỉnh theo lịch trình chính thức, thời tiết và quy định địa phương.</em></p>
+<h2>Những địa điểm liên quan</h2>
+<h3><a href="/vi/dia-diem-tham-quan/lang-chai-cua-van">Làng chài Cửa Vạn</a></h3>
+<p>Một trong những làng chài nổi tiếng của vịnh Hạ Long. Các hộ dân đã lên bờ định cư từ năm 2014; chuyến thăm giúp hiểu thêm về đời sống ngư dân vùng vịnh.</p>
+<h3><a href="/vi/dia-diem-tham-quan/hang-tien-ong">Hang Tiên Ông</a></h3>
+<p>Hang đá vôi có dấu tích cư trú của người tiền sử và khu trưng bày khảo cổ, ghé cùng ngày.</p>
+<h3><a href="/vi/dia-diem-tham-quan/hang-sung-sot">Hang Sửng Sốt</a></h3>
+<p>Một trong những hang được tham quan nhiều nhất vịnh Hạ Long, trên đảo Bồ Hòn, với các khoang hang rộng. Có trong cùng hành trình, vào ngày thứ ba.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Vị trí', 'value' => 'Vịnh Hạ Long, Quảng Ninh; cơ sở cụ thể tùy chương trình'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Halong Bay Pearl Farm'],
+                ['label' => 'Trải nghiệm chính', 'value' => 'Tìm hiểu nghề nuôi cấy ngọc trai trên biển'],
+                ['label' => 'Loại ngọc chủ yếu', 'value' => 'Ngọc akoya (phần lớn sản lượng của Việt Nam, theo GIA)'],
+                ['label' => 'Cách di chuyển', 'value' => 'Tàu tham quan hoặc du thuyền có lịch trình ghé trại ngọc trai'],
+                ['label' => 'Mua sắm', 'value' => 'Một số cơ sở có khu trưng bày; không bắt buộc mua'],
+                ['label' => 'Hành trình Green Ruby', 'value' => 'Dấu Ấn Hạ Long – 3 ngày 2 đêm, ngày thứ hai, khoảng 14:00'],
+            ],
+            'faq' => [
+                ['q' => 'Trại nuôi cấy ngọc trai Hạ Long nằm ở đâu?', 'a' => 'Trên vịnh Hạ Long có nhiều khu nuôi cấy ngọc trai, trong đó vụng Tùng Sâu là một địa điểm được biết đến. Vị trí tham quan cụ thể phụ thuộc vào chương trình và cơ sở được chọn.'],
+                ['q' => 'Ngọc trai được tạo ra như thế nào?', 'a' => 'Kỹ thuật viên cấy một viên nhân nhỏ và mẩu mô áo vào con trai. Trong những tháng tiếp theo, trai tiết các lớp xà cừ phủ lên nhân và dần tạo thành viên ngọc.'],
+                ['q' => 'Ngọc trai nuôi cấy có phải ngọc thật không?', 'a' => 'Có. Ngọc trai nuôi cấy do trai tạo ra; điểm khác với ngọc tự nhiên là con người khởi đầu quá trình tạo ngọc. Ngọc giả thì được làm từ vật liệu khác.'],
+                ['q' => 'Đến trại ngọc trai có được xem cấy ngọc trực tiếp không?', 'a' => 'Tùy cơ sở. Một số nơi có trình diễn hoặc trưng bày quy trình, nhưng không phải chương trình nào cũng có cấy ngọc hay thu hoạch trực tiếp.'],
+                ['q' => 'Có bắt buộc mua ngọc trai khi tham quan không?', 'a' => 'Không. Chuyến tham quan nhằm giới thiệu nghề nuôi cấy ngọc trai; nếu có khu trưng bày, mua hay không là tùy bạn.'],
+                ['q' => 'Tham quan trại nuôi cấy ngọc trai mất bao lâu?', 'a' => 'Tùy chương trình từng cơ sở. Với Green Ruby, hoạt động dự kiến bắt đầu khoảng 14:00 ngày thứ hai, và tàu tham quan về lại du thuyền chính khoảng 15:30.'],
+                ['q' => 'Du thuyền Green Ruby nào dự kiến ghé trại ngọc trai?', 'a' => 'Hiện chỉ hành trình Dấu Ấn Hạ Long – 3 ngày 2 đêm trên Green Ruby 1 có điểm dừng này.'],
+                ['q' => 'Green Ruby sẽ ghé trại ngọc trai nào?', 'a' => 'Lịch trình hiện tại chưa ghi tên cơ sở. Green Ruby sẽ xác nhận tên và vị trí trước khi chương trình chính thức hoạt động.'],
+            ],
+        ],
+    ],
 ];

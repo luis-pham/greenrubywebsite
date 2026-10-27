@@ -105,7 +105,7 @@ class DestinationsImportCommand extends Command
             'image_credit' => $local['image_credit'] ?? $shared['image_credit'] ?? null,
             'status' => $status,
             'editor_notes' => $shared['editor_notes'] ?? null,
-            'fact_checked_at' => '2026-10-24',
+            'fact_checked_at' => $shared['fact_checked_at'] ?? '2026-10-24', // per entry; older entries were checked on 2026-10-24
             'seo_title' => $local['seo_title'] ?? null,
             'seo_description' => $local['seo_description'] ?? null,
             'ord' => $shared['ord'] ?? 0,
