@@ -1332,7 +1332,7 @@ HTML,
 <p>A sheltered area of Lan Ha Bay known for its limestone scenery and water-based activities, subject to local regulations.</p>
 <h3><a href="/destinations/viet-hai-village">Viet Hai Village</a></h3>
 <p>A small village on Cat Ba Island, surrounded by forested hills and reached on tours that combine boat travel with a walk, bicycle ride or electric buggy.</p>
-<h3>Ba Trai Dao Beach</h3>
+<h3><a href="/destinations/ba-trai-dao-beach">Ba Trai Dao Beach</a></h3>
 <p>A scenic area of Lan Ha Bay known for its group of limestone islets and sandy beaches. Swimming and access depend on local conditions and authorised routes.</p>
 HTML,
             'facts' => [
@@ -1473,7 +1473,7 @@ HTML,
 <p>Khu vực mặt nước được bao quanh bởi những dãy núi đá vôi trên vịnh Lan Hạ, từng được biết đến với các hoạt động chèo kayak. Việc tổ chức hoạt động trên mặt nước phụ thuộc vào quy định hiện hành.</p>
 <h3><a href="/vi/dia-diem-tham-quan/lang-viet-hai">Làng Việt Hải</a></h3>
 <p>Ngôi làng nằm trên đảo Cát Bà, được bao quanh bởi rừng và núi đá. Du khách có thể khám phá làng bằng xe đạp, xe điện hoặc đi bộ tùy chương trình tham quan.</p>
-<h3>Bãi Ba Trái Đào</h3>
+<h3><a href="/vi/dia-diem-tham-quan/bai-ba-trai-dao">Bãi Ba Trái Đào</a></h3>
 <p>Khu vực nổi tiếng với những đảo đá vôi có hình dáng đặc biệt và các bãi cát nhỏ. Khả năng tiếp cận bãi biển phụ thuộc vào thời tiết, thủy triều và tuyến tham quan được phép.</p>
 HTML,
             'facts' => [
@@ -2607,6 +2607,259 @@ HTML,
                 ['q' => 'Tham quan trại nuôi cấy ngọc trai mất bao lâu?', 'a' => 'Tùy chương trình từng cơ sở. Với Green Ruby, hoạt động dự kiến bắt đầu khoảng 14:00 ngày thứ hai, và tàu tham quan về lại du thuyền chính khoảng 15:30.'],
                 ['q' => 'Du thuyền Green Ruby nào dự kiến ghé trại ngọc trai?', 'a' => 'Hiện chỉ hành trình Dấu Ấn Hạ Long – 3 ngày 2 đêm trên Green Ruby 1 có điểm dừng này.'],
                 ['q' => 'Green Ruby sẽ ghé trại ngọc trai nào?', 'a' => 'Lịch trình hiện tại chưa ghi tên cơ sở. Green Ruby sẽ xác nhận tên và vị trí trước khi chương trình chính thức hoạt động.'],
+            ],
+        ],
+    ],
+    [
+        'bay' => 'lan-ha',
+        'category' => 'island',
+        'ord' => 12,
+        'fact_checked_at' => '2026-10-28',
+        'latitude' => null,
+        'longitude' => null,
+        'coords_verified' => false,
+        'coords_source' => null,
+        'image' => ['file' => 'lan-ha-bay-sandy-cove-limestone.jpg', 'link' => '/2026/10/28/lan-ha-bay-sandy-cove-limestone.jpg'],
+        'image_credit' => 'Photo: Christophe95, CC BY-SA 4.0, via Wikimedia Commons',
+        'itineraries' => ['en' => [], 'vi' => []],
+        'sources' => [
+            ['title' => 'Hai Phong Newspaper (13 Sep 2025): Pristine charm of Ba Trai Dao islet', 'url' => 'https://news.baohaiphong.vn/print/520726.html'],
+            ['title' => 'Vietnam Airlines: Ba Trai Dao Beach travel guide', 'url' => 'https://www.vietnamairlines.com/sa/en/plan-book/travel/travel-guide/ba-trai-dao-beach'],
+            ['title' => 'Người Quan Sát (21 Nov 2024): Why Cat Ba suspended kayaking in its bays (Vietnamese)', 'url' => 'https://nguoiquansat.vn/vi-sao-cat-ba-tam-dung-hoat-dong-cheo-thuyen-kayak-tren-vinh-178841.html'],
+            $unesco,
+            ['title' => 'Photo: Lan Ha Bay 25, Christophe95 (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Lan_Ha_Bay_25.jpg'],
+        ],
+        'editor_notes' => "Added 2026-10-28 from the owner's EN/VI briefs. NOT on any Green Ruby itinerary (itineraries empty; the page says so). Checked: ~22 km southeast of Cat Ba town, boat only, ~1.5 h from Cat Ba, boats from Beo wharf or Lan Ha Bay tours, three limestone peaks ~20-30 m, name from their shape, fairy/fisherman/three peaches legend (Báo Hải Phòng EN, 13/09/2025; it does not mention tides); beach accessible only a few hours a day because of the tide, no daily public boat (Vietnam Airlines guide). Kayak: Cát Hải district suspended kayak services in the Cat Ba bays from 15/11/2024 until legal conditions are met (Người Quan Sát, 21/11/2024); the Dark & Bright note cites a later suspension from 1 Feb 2026, so the copy only says 'subject to local restrictions'. Changed from the brief: 'Cat Ba Tourism Information' source dropped (no such page found); the 'At a glance' table moved into facts; nearby places linked. Not published: the '2-3 hours a day' swim window (Vietnam Airlines regional copies disagree), 'Quang Ninh Province' (Vietnam Airlines; Ba Trai Dao is in Hai Phong), snorkelling over coral (Báo Hải Phòng, unconfirmed). Hero: Commons 'Lan Ha Bay 25' by Christophe95 (CC BY-SA 4.0, 2018-08-06, GPS 20.7764, 107.1005, north-east of Cat Ba town), resized to 1920 px. It shows a sandy cove in Lan Ha Bay, NOT Ba Trai Dao (no free photo of Ba Trai Dao found on Commons or Openverse), so alt text and captions must not call it Ba Trai Dao; replace with an own photo when available. No coordinates: no verified pin.",
+        'en' => [
+            'slug' => 'ba-trai-dao-beach',
+            'name' => 'Ba Trai Dao Beach',
+            'heading' => 'Ba Trai Dao Beach (Three Peaches): A Visitor’s Guide',
+            'image_alt' => 'A small sandy cove between limestone cliffs in Lan Ha Bay',
+            'seo_title' => 'Ba Trai Dao Beach, Lan Ha Bay: Tides, Access & Visitor Guide',
+            'seo_description' => 'Discover Ba Trai Dao Beach in Lan Ha Bay. Learn how tides affect beach access, how to get there from Cat Ba, what to expect and swimming rules.',
+            'summary' => 'Ba Trai Dao is a group of limestone islets and small sandy beaches in Lan Ha Bay, south-east of Cat Ba town in northern Vietnam. Its name means “Three Peaches”, after three rounded limestone peaks standing close together in the water. What makes it unusual is the tide: some of its beaches only appear as the water falls, so whether you can step onto the sand depends on when you arrive.',
+            'content' => <<<'HTML'
+<p><em>There is no guaranteed daily beach-access window at Ba Trai Dao. Check the tide, your boat’s route and the current local rules before you travel.</em></p>
+<h2>Where is Ba Trai Dao Beach?</h2>
+<p>Ba Trai Dao lies among the limestone islands of Lan Ha Bay, in the Cat Ba Archipelago, Hai Phong. According to Hai Phong Newspaper, it is about 22 km south-east of Cat Ba town, and the boat trip from Cat Ba takes about an hour and a half.</p>
+<p>There is no road. Visitors arrive on a sightseeing boat from the Cat Ba area or on a cruise that includes this part of Lan Ha Bay.</p>
+<p>Ba Trai Dao is often described as one island or one beach, but the name also covers a wider area of limestone islets and small natural beaches. That matters when you plan a visit: a boat may pass through the area without stopping at a particular stretch of sand.</p>
+<p>The Cat Ba Archipelago is part of the Ha Long Bay – Cat Ba Archipelago World Heritage property, which UNESCO extended in 2023.</p>
+<h2>Why is it called Three Peaches?</h2>
+<p>The name comes from three limestone peaks that stand close together and, seen from the water, look like peaches. Each rises roughly 20–30 metres above the sea, though their shape changes with the angle you see them from.</p>
+<h3>The legend of the three peaches</h3>
+<p>Local folklore tells of a fairy who came down from heaven and fell in love with a fisherman. Hoping they could stay together, she brought him three magical peaches. In one telling, her father discovered the romance and the couple were parted; the three peaches fell into the sea and became the islets you see today.</p>
+<p>The versions differ, but they share three peaches, a forbidden love and the unusual rocks that gave the place its name. It is a traditional tale, not a historical account.</p>
+<h2>What makes Ba Trai Dao special?</h2>
+<p>The three rounded peaks make an easily recognised landmark. Around them are small sandy areas, rock faces and stretches of sheltered water.</p>
+<p>Unlike the beaches near Cat Ba town, these shores cannot be reached by road, and there are no shops, changing rooms or beach services. Access depends on boats, the tide and the rules for visitor activities.</p>
+<p>The beaches can change a lot in a few hours. At lower tide more sand shows; as the water rises, the beach shrinks or disappears under the surface. Even when landing is not possible, the islets are worth seeing from the water.</p>
+<h2>How does the tide affect a visit?</h2>
+<p>The tide is the most important thing to check. Some of the beaches here are tidal: they are exposed when the sea level falls and covered again as it rises. A photo of a broad sandy beach does not mean the same beach will be there when you arrive.</p>
+<ul>
+<li>The amount of exposed sand changes with the tide.</li>
+<li>Tide times vary from day to day.</li>
+<li>Beach access may be limited even in clear weather.</li>
+<li>A boat may still pass the islets when landing is not possible.</li>
+<li>Landing and swimming also depend on local rules and the crew’s assessment of conditions.</li>
+</ul>
+<p>Do not rely on claims that the beach is open for a fixed number of hours a day. Ask your boat operator whether the planned visit matches a suitable tide and whether landing is currently allowed.</p>
+<h2>Things to do at Ba Trai Dao</h2>
+<h3>Enjoy the view from the boat</h3>
+<p>You do not need to go ashore to appreciate Ba Trai Dao. From the water you see the three peaks rise above the surrounding islands, and as the boat moves they seem to change shape and overlap. A slow passage near the islets, where permitted, also shows the smaller beaches and inlets. Morning and late-afternoon light suit photography.</p>
+<h3>Visit the beach when permitted</h3>
+<p>At a suitable tide, parts of the shore may be reachable by boat, depending on the day’s rules, sea conditions and the operator’s permitted route. If a landing is included, follow the guide’s instructions and be ready to leave when asked: the tide does not wait.</p>
+<h3>Swimming</h3>
+<p>Ba Trai Dao is often listed as a swimming spot, but swimming is not always available. It depends on local permissions, the tide, currents, the weather and the operator’s safety arrangements. Depths and currents around limestone islands change, so do not go in just because the sea looks calm. If swimming is confirmed, stay in the marked area, wear a life jacket when required and follow the crew.</p>
+<h3>Kayaking</h3>
+<p>Older Lan Ha Bay itineraries often included kayaking around Ba Trai Dao. Kayak services in the Cat Ba bays have since been suspended under local rules, so do not assume they are available. Book kayaking only if your operator confirms it is currently authorised at that location. Older articles and photos may not reflect the current rules.</p>
+<h2>How do you get to Ba Trai Dao?</h2>
+<p>Only by boat. There is no daily public boat straight to the beach.</p>
+<h3>From Cat Ba Island</h3>
+<p>Most visitors join a Lan Ha Bay boat tour from the Cat Ba area, including boats from Beo wharf and other authorised piers. The trip takes around 1.5 hours, depending on the boat, the route, the weather and other stops. Not every Lan Ha Bay day tour goes there, so check the published route before booking.</p>
+<h3>From Ha Long or Tuan Chau</h3>
+<p>Some cruises from the Ha Long side explore Lan Ha Bay, but a cruise that visits Lan Ha Bay does not automatically include Ba Trai Dao. If this place matters to you, ask whether the boat will pass the islets, stop nearby or offer an authorised beach visit. For the road trip to the pier, see <a href="/guides/hanoi-to-halong-bay">how to get from Hanoi to Halong Bay</a>.</p>
+<h2>How long should you allow?</h2>
+<p>There is no standard visit length. A sightseeing programme may pass through fairly quickly, while an itinerary with an authorised beach stop allows more time. Rather than rely on an advertised duration, ask what kind of visit is included:</p>
+<ul>
+<li>a scenic passage past the Three Peaches islets;</li>
+<li>a stop nearby for photos;</li>
+<li>landing on a beach, if permitted;</li>
+<li>swimming or other activities, if authorised.</li>
+</ul>
+<p>These are different experiences and should not be treated as interchangeable.</p>
+<h2>When is the best time to visit?</h2>
+<p>Two things count: the season, and the tide on the day.</p>
+<p>From about May to September the weather is usually warm and the sea calmer, which suits beach visits and swimming when they are allowed. Summer also brings heavy rain and tropical storms, and the authorities can suspend sailings when severe weather is forecast. In the cooler months the scenery is still enjoyable, but the water is less inviting.</p>
+<p>For beach access, the right time depends on the tide, not simply on morning or afternoon. A suitable tide can fall at different times on different days, so ask your operator to check it before confirming the visit. For month-by-month conditions, see <a href="/blog/travel-tips/best-time-to-visit-halong-bay.html">the best time to visit Halong Bay</a>.</p>
+<h2>Practical tips</h2>
+<ul>
+<li><strong>Check the tide:</strong> a planned visit does not guarantee that the beach will be exposed.</li>
+<li><strong>Confirm access:</strong> ask whether landing and swimming are currently permitted.</li>
+<li><strong>Bring sun protection:</strong> there may be little shade on the sand.</li>
+<li><strong>Wear suitable footwear:</strong> sand, shells and wet rocks can be slippery or sharp.</li>
+<li><strong>Carry drinking water:</strong> there are no shops or restaurants on the islets.</li>
+<li><strong>Protect your belongings</strong> with a waterproof pouch on small boats.</li>
+<li><strong>Follow the crew:</strong> currents, boat movements and the rising tide can create hazards.</li>
+<li><strong>Check accessibility:</strong> getting onto a beach from a small boat can be difficult for guests with limited mobility. Travellers with young children should ask about the stop before booking.</li>
+</ul>
+<h2>Ba Trai Dao and Green Ruby Cruises</h2>
+<p>Ba Trai Dao is not a planned stop on <a href="/cruise/green-ruby-2-4.html">Green Ruby 2</a>’s published itineraries.</p>
+<p>Green Ruby 2 is being prepared for overnight cruises in Lan Ha Bay, with planned visits to places such as the <a href="/destinations/dark-bright-cave">Dark &amp; Bright Cave</a> area, <a href="/destinations/ao-ech-lagoon">Ao Ech</a> and <a href="/destinations/viet-hai-village">Viet Hai Village</a>, depending on the programme. If Ba Trai Dao is a priority, consider a separate authorised sightseeing tour from Cat Ba and confirm beach access with that operator.</p>
+<h2>Nearby places</h2>
+<h3><a href="/destinations/ao-ech-lagoon">Ao Ech Lagoon (Frog Pond)</a></h3>
+<p>Sheltered water among limestone islands in Lan Ha Bay, known for its setting and views from the deck rather than for beaches.</p>
+<h3><a href="/destinations/dark-bright-cave">Dark &amp; Bright Cave</a></h3>
+<p>A water-level passage through the limestone into an enclosed lagoon. How you go through depends on the arrangements permitted on the day.</p>
+<h3><a href="/destinations/viet-hai-village">Viet Hai Village</a></h3>
+<p>A village in a valley on Cat Ba Island, visited on foot, by bicycle or by electric buggy, for a look at the island’s rural life.</p>
+<p>These places offer different experiences and are not necessarily on the same route as Ba Trai Dao.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Location', 'value' => 'Lan Ha Bay, Cat Ba Archipelago, Hai Phong, Vietnam'],
+                ['label' => 'Vietnamese name', 'value' => 'Ba Trái Đào'],
+                ['label' => 'Also known as', 'value' => 'Three Peaches Beach, Three Peaches Islets'],
+                ['label' => 'Landscape', 'value' => 'Three limestone islets, sheltered water and tidal beaches'],
+                ['label' => 'Getting there', 'value' => 'By boat only: a sightseeing boat or cruise that includes the area'],
+                ['label' => 'Distance', 'value' => 'About 22 km south-east of Cat Ba town, around 1.5 hours by boat'],
+                ['label' => 'Swimming', 'value' => 'Depends on the tide, local rules and the crew’s safety check'],
+                ['label' => 'Kayaking', 'value' => 'Subject to local restrictions; confirm with an authorised operator'],
+                ['label' => 'Best time', 'value' => 'When the tide exposes the beach and the weather allows a visit'],
+                ['label' => 'Green Ruby itinerary', 'value' => 'Not a planned stop'],
+            ],
+            'faq' => [
+                ['q' => 'Where is Ba Trai Dao Beach?', 'a' => 'In Lan Ha Bay, in the Cat Ba Archipelago, Hai Phong, about 22 km south-east of Cat Ba town. It is reached by boat and known for three limestone islets and nearby sandy beaches.'],
+                ['q' => 'Why is it called Three Peaches Beach?', 'a' => 'After three limestone peaks that look like peaches. A local legend also tells of a fairy who brought three magical peaches to the fisherman she loved.'],
+                ['q' => 'Is Ba Trai Dao Beach accessible at high tide?', 'a' => 'Not always. Some of the sandy areas are partly or completely covered as the tide rises, so beach access varies and should be confirmed before you go.'],
+                ['q' => 'Can you swim at Ba Trai Dao?', 'a' => 'Only when local rules allow it and the operator confirms that conditions are safe. Do not assume swimming is included in every tour.'],
+                ['q' => 'Can you kayak at Ba Trai Dao?', 'a' => 'Kayaking in the Cat Ba bays is subject to local restrictions. Check with an authorised operator rather than relying on older travel articles.'],
+                ['q' => 'How do you get to Ba Trai Dao from Cat Ba?', 'a' => 'Join a boat tour that specifically lists Ba Trai Dao. Boats leave from authorised piers such as Beo wharf; the trip takes about 1.5 hours, depending on the boat and route.'],
+                ['q' => 'Is Ba Trai Dao suitable for families with children?', 'a' => 'Families can enjoy the views from the boat. Beach landings and swimming need more thought because of tides, currents and getting on and off the boat; ask the operator about age limits and safety rules.'],
+                ['q' => 'Is Ba Trai Dao included in Green Ruby cruises?', 'a' => 'No. Ba Trai Dao is not a planned Green Ruby stop. See the Green Ruby 2 itineraries for the confirmed Lan Ha Bay stops.'],
+            ],
+        ],
+        'vi' => [
+            'slug' => 'bai-ba-trai-dao',
+            'name' => 'Bãi Ba Trái Đào',
+            'heading' => 'Bãi Ba Trái Đào (Cát Bà): Vị trí, đường đi và kinh nghiệm tham quan',
+            'image_alt' => 'Bãi cát nhỏ nằm giữa các vách đá vôi trên vịnh Lan Hạ',
+            'image_credit' => 'Ảnh: Christophe95, CC BY-SA 4.0, qua Wikimedia Commons',
+            'seo_title' => 'Bãi Ba Trái Đào Cát Bà: Đường Đi, Thủy Triều & Kinh Nghiệm',
+            'seo_description' => 'Khám phá bãi Ba Trái Đào trên vịnh Lan Hạ: vị trí, cách đi từ Cát Bà, thủy triều, điều kiện tắm biển và những lưu ý khi tham quan.',
+            'summary' => 'Bãi Ba Trái Đào nằm giữa những đảo đá vôi của vịnh Lan Hạ, thuộc quần đảo Cát Bà, Hải Phòng, nổi bật với ba ngọn núi đá có dáng như ba trái đào và các bãi cát nhỏ sát mép nước. Cảnh quan ở đây thay đổi theo thủy triều: nước xuống, bãi cát lộ ra; nước lên, có chỗ ngập hoàn toàn. Vì vậy không phải chuyến nào cũng lên được bãi, kể cả khi trời đẹp.',
+            'sources' => [
+                ['title' => 'Báo Hải Phòng (13/09/2025): Pristine charm of Ba Trai Dao islet (tiếng Anh)', 'url' => 'https://news.baohaiphong.vn/print/520726.html'],
+                ['title' => 'Vietnam Airlines: Ba Trai Dao Beach (tiếng Anh)', 'url' => 'https://www.vietnamairlines.com/sa/en/plan-book/travel/travel-guide/ba-trai-dao-beach'],
+                ['title' => 'Người Quan Sát (21/11/2024): Vì sao Cát Bà tạm dừng hoạt động chèo thuyền kayak trên vịnh?', 'url' => 'https://nguoiquansat.vn/vi-sao-cat-ba-tam-dung-hoat-dong-cheo-thuyen-kayak-tren-vinh-178841.html'],
+                ['title' => 'UNESCO – Vịnh Hạ Long và Quần đảo Cát Bà', 'url' => 'https://whc.unesco.org/en/list/672'],
+                ['title' => 'Ảnh: Lan Ha Bay 25, Christophe95 (Wikimedia Commons)', 'url' => 'https://commons.wikimedia.org/wiki/File:Lan_Ha_Bay_25.jpg'],
+            ],
+            'content' => <<<'HTML'
+<p><em>Thời gian di chuyển và khả năng lên bãi chỉ mang tính tham khảo. Hoạt động thực tế phụ thuộc vào quy định quản lý, thời tiết, thủy triều và lịch trình tàu.</em></p>
+<h2>Bãi Ba Trái Đào nằm ở đâu?</h2>
+<p>Ba Trái Đào thuộc vịnh Lan Hạ, trong vùng biển quần đảo Cát Bà, thành phố Hải Phòng. Theo Báo Hải Phòng, khu vực này cách trung tâm Cát Bà khoảng 22 km về phía đông nam, đi thuyền khoảng 1 giờ 30 phút.</p>
+<p>Địa danh thường được gọi là đảo Ba Trái Đào hoặc bãi Ba Trái Đào. Tuy nhiên, đây không chỉ là một hòn đảo hay một bãi tắm riêng lẻ mà là tên của cả khu vực có nhiều đảo đá vôi và những bãi cát tự nhiên xen giữa. Vì vậy, tàu có thể đi qua khu vực mà không dừng ở một bãi cát cụ thể.</p>
+<p>Ba Trái Đào nằm giữa vịnh, không có đường bộ; du khách phải đi bằng phương tiện đường thủy. Khu vực này thuộc quần đảo Cát Bà, được UNESCO ghi danh cùng vịnh Hạ Long thành Di sản Thiên nhiên Thế giới Vịnh Hạ Long – Quần đảo Cát Bà năm 2023.</p>
+<h2>Vì sao có tên Ba Trái Đào?</h2>
+<p>Tên gọi bắt nguồn từ ba ngọn núi đá vôi nằm gần nhau giữa biển. Nhìn từ một số hướng, ba khối núi tròn nhô lên khỏi mặt nước như ba trái đào lớn. Mỗi ngọn cao khoảng 20–30 m, tạo nên cảnh quan đặc trưng của khu vực.</p>
+<h3>Truyền thuyết về ba trái đào tiên</h3>
+<p>Tương truyền, có một nàng tiên xuống hạ giới ngắm cảnh và đem lòng yêu một chàng ngư dân. Mong được ở bên người mình yêu mãi mãi, nàng mang xuống ba trái đào tiên. Theo một dị bản, khi vua cha biết chuyện và không chấp thuận, nàng phải trở về trời; ba trái đào rơi xuống biển, hóa thành ba ngọn núi đá nằm cạnh nhau.</p>
+<p>Câu chuyện có nhiều dị bản, nhưng đều gắn hình dáng ba ngọn núi với mối tình giữa nàng tiên và chàng ngư dân. Đây là truyện dân gian, không phải sự kiện lịch sử, nhưng góp thêm một nét văn hóa cho địa danh.</p>
+<h2>Bãi Ba Trái Đào có gì đặc biệt?</h2>
+<p>Ba ngọn núi nằm sát nhau dễ nhận ra từ xa. Khi tàu vào gần, du khách thấy rõ vách đá, cây xanh trên sườn núi và những khoảng nước nằm giữa các đảo.</p>
+<p>Khác với các bãi tắm ở trung tâm Cát Bà, ở đây không có đường đi bộ, nhà hàng hay khu dịch vụ trên bờ. Ba Trái Đào chủ yếu được ngắm từ tàu, còn các bãi cát phụ thuộc vào thủy triều.</p>
+<p>Khi nước rút, những khoảng cát xuất hiện dưới chân núi, tạo thành các bãi nhỏ giữa mặt nước và vách đá. Khi nước dâng, bãi thu hẹp dần, có chỗ ngập hoàn toàn. Chính sự thay đổi này khiến Ba Trái Đào khác với những bãi tắm quen thuộc của Cát Bà.</p>
+<h2>Thủy triều ảnh hưởng đến bãi Ba Trái Đào như thế nào?</h2>
+<p>Thủy triều là yếu tố quan trọng nhất cần kiểm tra nếu bạn muốn lên bãi. Một số bãi cát chỉ lộ rõ khi mực nước xuống thấp; khi triều lên, nước có thể phủ kín phần lớn bãi. Vì thế, ảnh bãi biển rộng trong các bài giới thiệu không có nghĩa là bạn sẽ thấy cảnh tương tự vào bất cứ lúc nào.</p>
+<ul>
+<li>Mực nước thay đổi theo từng ngày.</li>
+<li>Diện tích bãi cát lộ ra không cố định.</li>
+<li>Thời tiết đẹp không đồng nghĩa với việc lên được bãi.</li>
+<li>Tàu có thể đi qua ngắm cảnh nhưng không cho khách xuống bãi.</li>
+<li>Việc lên bãi và tắm biển còn tùy quy định quản lý và điều kiện an toàn.</li>
+</ul>
+<p>Đừng mặc định Ba Trái Đào có khung giờ tắm biển cố định mỗi ngày. Nếu muốn lên bãi, hãy hỏi đơn vị tổ chức xem lịch trình có trùng lúc nước xuống không và hoạt động đó có đang được phép không.</p>
+<h2>Những trải nghiệm tại Ba Trái Đào</h2>
+<h3>Ngắm ba đảo đá từ tàu</h3>
+<p>Kể cả khi không lên bãi, Ba Trái Đào vẫn đáng ghé qua để ngắm cảnh. Khi tàu di chuyển, góc nhìn đổi khiến ba ngọn núi lúc đứng tách biệt, lúc như sát vào nhau. Nếu thích chụp ảnh, hãy quan sát từ nhiều góc thay vì chỉ chụp một tấm lúc tàu vừa đến; buổi sáng và cuối chiều thường có ánh sáng đẹp.</p>
+<h3>Tham quan bãi cát khi thủy triều phù hợp</h3>
+<p>Khi nước xuống và điều kiện cho phép, một số bãi có thể tiếp cận bằng phương tiện đường thủy. Đây không phải bãi biển có dịch vụ: đừng trông chờ hàng quán, phòng thay đồ hay chỗ thuê đồ trên bãi. Nếu chương trình có lên bờ, hãy tuân thủ thời gian và khu vực do hướng dẫn viên thông báo.</p>
+<h3>Tắm biển</h3>
+<p>Ba Trái Đào thường được giới thiệu là điểm tắm biển, nhưng có tắm được hay không còn tùy quy định hiện hành, thủy triều, dòng chảy và thời tiết. Đừng tự ý xuống nước chỉ vì mặt biển trông êm. Nếu đơn vị tổ chức xác nhận được phép tắm biển, hãy:</p>
+<ul>
+<li>chỉ bơi trong phạm vi được hướng dẫn;</li>
+<li>mặc áo phao theo quy định;</li>
+<li>không bơi ra xa tàu hoặc sát chân núi đá;</li>
+<li>chú ý dòng nước và lúc thủy triều đổi;</li>
+<li>luôn trông trẻ nhỏ.</li>
+</ul>
+<p>Khi không đủ điều kiện an toàn, lịch trình có thể chỉ gồm ngắm cảnh từ tàu.</p>
+<h3>Có được chèo kayak ở Ba Trái Đào không?</h3>
+<p>Ba Trái Đào từng có mặt trong nhiều chương trình chèo kayak trên vịnh Lan Hạ. Tuy nhiên, dịch vụ kayak trên các vịnh thuộc quần đảo Cát Bà đã bị tạm dừng theo quy định địa phương, nên không thể dựa vào bài viết hay ảnh cũ để khẳng định kayak vẫn được phép ở đây. Nếu muốn chèo, hãy xác nhận với đơn vị tổ chức về khu vực được phép, quy định hiện hành và yêu cầu an toàn.</p>
+<h2>Đến Ba Trái Đào bằng cách nào?</h2>
+<p>Chỉ bằng đường thủy. Không có tàu công cộng chạy thẳng đến bãi hằng ngày.</p>
+<h3>Đi từ Cát Bà</h3>
+<p>Du khách có thể chọn các chương trình tham quan vịnh Lan Hạ khởi hành từ Cát Bà, trong đó có các tuyến xuất phát từ bến Bèo hoặc những điểm đón được cấp phép. Thời gian đi khoảng 1 giờ 30 phút, tùy loại tàu, tuyến và số điểm dừng. Không phải tour trong ngày nào từ Cát Bà cũng ghé Ba Trái Đào, nên hãy kiểm tra tên địa danh trong lịch trình trước khi đặt.</p>
+<h3>Đi từ Hạ Long hoặc Tuần Châu</h3>
+<p>Một số du thuyền xuất phát từ Hạ Long, Tuần Châu có chương trình vịnh Lan Hạ, nhưng đi vịnh Lan Hạ không đồng nghĩa với ghé Ba Trái Đào. Nếu muốn đến đây, hãy hỏi rõ tàu chỉ đi qua, dừng ngắm cảnh hay cho khách lên bãi khi được phép. Về đường bộ ra bến, xem <a href="/vi/cam-nang/ha-noi-di-ha-long">cách đi từ Hà Nội đến Hạ Long</a>.</p>
+<h2>Tham quan Ba Trái Đào mất bao lâu?</h2>
+<p>Không có thời lượng cố định. Một số tàu chỉ đi qua để ngắm cảnh, chương trình khác có thể dừng lại hoặc tổ chức hoạt động tùy điều kiện thực tế. Thời gian phụ thuộc vào:</p>
+<ul>
+<li>tuyến tham quan của tàu;</li>
+<li>thời điểm thủy triều;</li>
+<li>gió, sóng và dòng chảy;</li>
+<li>các hoạt động được phép tổ chức;</li>
+<li>thời gian dành cho các điểm khác trong cùng hành trình.</li>
+</ul>
+<p>Khi đặt tour, hãy hỏi rõ: đi qua Ba Trái Đào, dừng chụp ảnh hay đưa khách lên bãi là những hình thức tham quan khác nhau.</p>
+<h2>Nên đi Ba Trái Đào vào mùa nào?</h2>
+<p>Có hai yếu tố: thời tiết trong năm và thủy triều ngày đi.</p>
+<p>Khoảng tháng 5 đến tháng 9, trời thường nắng ấm, biển êm hơn, thuận cho lên bãi và tắm biển khi được phép. Nhưng mùa hè cũng có mưa lớn và bão; khi có cảnh báo thời tiết xấu, cơ quan chức năng có thể tạm dừng tàu ra vịnh. Mùa đông vẫn ngắm cảnh được, nhưng nước lạnh nên ít hợp để tắm.</p>
+<p>Nếu mục đích chính là lên bãi, thời điểm phù hợp phải dựa vào thủy triều chứ không chỉ buổi sáng hay buổi chiều. Giờ nước xuống khác nhau theo từng ngày, nên hãy hỏi đơn vị vận hành trước khi chốt lịch. Xem thêm thời tiết từng tháng trong bài <a href="/vi/blog/hanh-trinh/di-ha-long-mua-nao-dep.html">Du lịch Hạ Long mùa nào đẹp nhất?</a></p>
+<h2>Những lưu ý khi tham quan Ba Trái Đào</h2>
+<ul>
+<li><strong>Kiểm tra thủy triều:</strong> đây là yếu tố quyết định bãi cát có lộ ra và tiếp cận được hay không.</li>
+<li><strong>Xác nhận hoạt động được phép:</strong> đừng mặc định chương trình nào cũng có tắm biển hoặc chèo kayak.</li>
+<li><strong>Chống nắng:</strong> mang mũ, kính râm và kem chống nắng, vì trên bãi gần như không có bóng râm.</li>
+<li><strong>Chọn giày dép phù hợp:</strong> cát ướt, vỏ sò và đá trơn có thể gây trượt hoặc đau chân.</li>
+<li><strong>Mang đủ nước uống:</strong> trên đảo không có cửa hàng hay dịch vụ.</li>
+<li><strong>Bảo vệ đồ dùng:</strong> túi chống nước hữu ích khi đi xuồng nhỏ.</li>
+<li><strong>Đi cùng trẻ em và người lớn tuổi:</strong> kiểm tra cách lên xuống tàu và điều kiện bãi trước khi đăng ký.</li>
+<li><strong>Tuân thủ hướng dẫn của thủy thủ đoàn:</strong> dòng chảy và mực nước có thể thay đổi ngay trong lúc tham quan.</li>
+</ul>
+<h2>Ba Trái Đào có trong hành trình Green Ruby Cruises không?</h2>
+<p>Hiện chưa. Ba Trái Đào không nằm trong các lịch trình đã công bố của du thuyền <a href="/vi/du-thuyen/green-ruby-2-2.html">Green Ruby 2</a>.</p>
+<p>Green Ruby 2 đang được chuẩn bị cho các chuyến nghỉ đêm trên vịnh Lan Hạ, với các điểm tham quan dự kiến như khu vực <a href="/vi/dia-diem-tham-quan/hang-sang-toi">hang Sáng Tối</a>, <a href="/vi/dia-diem-tham-quan/ao-ech">Ao Ếch</a> và <a href="/vi/dia-diem-tham-quan/lang-viet-hai">làng Việt Hải</a>, tùy hành trình. Nếu muốn đến Ba Trái Đào, bạn có thể tìm chương trình tham quan riêng từ Cát Bà và xác nhận khả năng lên bãi với đơn vị tổ chức khi đặt.</p>
+<h2>Những địa điểm liên quan trên vịnh Lan Hạ</h2>
+<h3><a href="/vi/dia-diem-tham-quan/ao-ech">Ao Ếch</a></h3>
+<p>Vùng nước kín gió được các đảo đá vôi bao quanh, hợp để ngắm cảnh từ du thuyền. Khác với Ba Trái Đào, nơi đây nổi bật bởi mặt nước giữa các đảo hơn là bãi cát.</p>
+<h3><a href="/vi/dia-diem-tham-quan/hang-sang-toi">Hang Sáng Tối</a></h3>
+<p>Lối hang xuyên núi đá vôi sát mặt nước, dẫn vào một áng nước có vách đá bao quanh. Hình thức đi qua hang tùy lịch trình và quy định tại thời điểm đến.</p>
+<h3><a href="/vi/dia-diem-tham-quan/lang-viet-hai">Làng Việt Hải</a></h3>
+<p>Ngôi làng trong thung lũng trên đảo Cát Bà, có đồng ruộng, núi đá vôi và nhịp sống nông thôn; du khách tham quan bằng cách đi bộ, đạp xe hoặc xe điện.</p>
+<p>Ba điểm này mang lại những trải nghiệm khác nhau và không nhất thiết nằm trên cùng tuyến với Ba Trái Đào.</p>
+HTML,
+            'facts' => [
+                ['label' => 'Vị trí', 'value' => 'Vịnh Lan Hạ, quần đảo Cát Bà, Hải Phòng'],
+                ['label' => 'Tên tiếng Anh', 'value' => 'Ba Trai Dao Beach, Three Peaches Beach'],
+                ['label' => 'Đặc điểm', 'value' => 'Cụm ba đảo đá vôi, bãi cát tự nhiên và vùng nước ven đảo'],
+                ['label' => 'Cách di chuyển', 'value' => 'Chỉ bằng đường thủy: tàu tham quan hoặc du thuyền có ghé khu vực'],
+                ['label' => 'Khoảng cách', 'value' => 'Khoảng 22 km về phía đông nam trung tâm Cát Bà, đi tàu khoảng 1 giờ 30 phút'],
+                ['label' => 'Tắm biển', 'value' => 'Tùy thủy triều, quy định và đánh giá an toàn của đội tàu'],
+                ['label' => 'Chèo kayak', 'value' => 'Theo quy định địa phương; cần xác nhận với đơn vị được cấp phép'],
+                ['label' => 'Lưu ý', 'value' => 'Bãi cát có thể bị ngập khi thủy triều lên'],
+                ['label' => 'Hành trình Green Ruby', 'value' => 'Không phải điểm dừng dự kiến'],
+            ],
+            'faq' => [
+                ['q' => 'Bãi Ba Trái Đào nằm ở đâu?', 'a' => 'Trên vịnh Lan Hạ, thuộc quần đảo Cát Bà, thành phố Hải Phòng, cách trung tâm Cát Bà khoảng 22 km về phía đông nam. Du khách phải đi tàu để đến đây.'],
+                ['q' => 'Vì sao gọi là Ba Trái Đào?', 'a' => 'Vì ba ngọn núi đá vôi nằm gần nhau trông như ba trái đào. Địa danh còn gắn với truyền thuyết về nàng tiên mang ba trái đào tiên xuống cho chàng ngư dân mình yêu.'],
+                ['q' => 'Bãi Ba Trái Đào có bị ngập khi thủy triều lên không?', 'a' => 'Có. Một số bãi cát có thể ngập một phần hoặc hoàn toàn khi nước dâng, nên không phải lúc nào cũng lên được bãi.'],
+                ['q' => 'Ba Trái Đào có tắm biển được không?', 'a' => 'Tùy quy định quản lý, thủy triều, dòng chảy và đánh giá an toàn của đơn vị tổ chức. Hãy xác nhận trước khi đặt tour.'],
+                ['q' => 'Ba Trái Đào có được chèo kayak không?', 'a' => 'Dịch vụ kayak trên các vịnh quần đảo Cát Bà chịu sự quản lý và có thể bị tạm dừng theo quy định địa phương. Hãy kiểm tra với đơn vị được cấp phép, đừng dựa vào lịch trình cũ.'],
+                ['q' => 'Từ Cát Bà đến Ba Trái Đào mất bao lâu?', 'a' => 'Khoảng 1 giờ 30 phút đi tàu, tùy điểm xuất phát, loại tàu và tuyến tham quan. Đây không phải thời gian cố định cho mọi chuyến.'],
+                ['q' => 'Có thể đến Ba Trái Đào bằng đường bộ không?', 'a' => 'Không. Ba Trái Đào nằm giữa vịnh Lan Hạ và chỉ đến được bằng đường thủy.'],
+                ['q' => 'Ba Trái Đào có phù hợp với gia đình có trẻ nhỏ không?', 'a' => 'Cả nhà có thể ngắm cảnh từ trên tàu. Nếu muốn lên bãi hoặc tắm biển, cần cân nhắc cách lên xuống tàu, thủy triều, dòng chảy và quy định an toàn với trẻ em.'],
+                ['q' => 'Du thuyền Green Ruby có ghé Ba Trái Đào không?', 'a' => 'Không. Ba Trái Đào không nằm trong các lịch trình Green Ruby đã công bố. Xem lịch trình Green Ruby 2 để biết các điểm dừng trên vịnh Lan Hạ.'],
             ],
         ],
     ],
