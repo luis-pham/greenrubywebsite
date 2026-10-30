@@ -1,0 +1,55 @@
+{
+ "name": "2026-10-30 article #235 photos",
+ "reviewed": "2026-10-30; Wikimedia Commons licences checked; Lan Ha photo already on prod (/2026/10/28); needs migration 2026_10_30_000001",
+ "revalidate": [
+  "articles",
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_article",
+   "id": 235,
+   "column": "content",
+   "type": "replace",
+   "old": "quieter anchorages, beaches and villages to visit.</p>",
+   "new": "quieter anchorages, beaches and villages to visit.</p><figure><img src=\"/upload/2026/10/28/lan-ha-bay-sandy-cove-limestone.jpg\" alt=\"A small sandy cove below forested limestone cliffs in Lan Ha Bay\" width=\"1920\" height=\"1440\" /><figcaption>Lan Ha Bay: the same limestone as Ha Long, with fewer boats and more small beaches. Photo: <a href=\"https://commons.wikimedia.org/w/index.php?curid=88634238\" target=\"_blank\" rel=\"noreferrer noopener\">Christophe95</a>, <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noreferrer noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons.</figcaption></figure>",
+   "note": "inline photo with alt and credit"
+  },
+  {
+   "table": "app_article",
+   "id": 235,
+   "column": "content",
+   "type": "replace",
+   "old": "The same applies to any cave on your list.</p>",
+   "new": "The same applies to any cave on your list.</p><figure><img src=\"/upload/2026/10/30/sung-sot-cave-chamber-walkway-ha-long-bay.jpg\" alt=\"Visitors on the lit walkway inside the main chamber of Sung Sot Cave, Ha Long Bay\" width=\"1600\" height=\"1068\" /><figcaption>Sung Sot Cave draws day boats as well as overnight cruises, so the time of your visit matters. Photo: <a href=\"https://commons.wikimedia.org/w/index.php?curid=145415733\" target=\"_blank\" rel=\"noreferrer noopener\">Jakub Hałun</a>, <a href=\"https://creativecommons.org/licenses/by/4.0/\" target=\"_blank\" rel=\"noreferrer noopener\">CC BY 4.0</a>, via Wikimedia Commons.</figcaption></figure>",
+   "note": "inline photo with alt and credit"
+  },
+  {
+   "table": "app_article",
+   "id": 235,
+   "column": "image_link",
+   "type": "set",
+   "old": "",
+   "new": "/2026/10/30/ha-long-bay-sunrise-limestone-silhouettes.jpg",
+   "note": "cover photo"
+  },
+  {
+   "table": "app_article",
+   "id": 235,
+   "column": "image_alt",
+   "type": "set",
+   "old": null,
+   "new": "Limestone islands silhouetted in morning mist and reflected in calm water on Ha Long Bay",
+   "note": "cover alt"
+  },
+  {
+   "table": "app_article",
+   "id": 235,
+   "column": "image_credit",
+   "type": "set",
+   "old": null,
+   "new": "Photo: Andrea Schaffer, CC BY 2.0, via Wikimedia Commons",
+   "note": "cover credit"
+  }
+ ]
+}
