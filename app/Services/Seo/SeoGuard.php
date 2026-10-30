@@ -58,6 +58,11 @@ class SeoGuard
         if (!$userId) {
             return false;
         }
+        // The built-in administrator account has no rows in ad_user_role: the admin panel lets it through
+        // every check (AdUser::hasAccess), so it may override here too.
+        if ($userId == config('backend.adUserAdmin')) {
+            return true;
+        }
 
         return DB::table('ad_user_role')->where('user_id', $userId)->whereIn('role_id', config('seo.override_roles', [1]))->exists();
     }
