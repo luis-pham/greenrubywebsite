@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Editor;
 
+use App\Support\NewsCategory;
 use App\Services\Content\ContentTranslations;
 use App\Services\Seo\SeoGuard;
 use App\Support\FrontendRevalidator;
@@ -297,7 +298,7 @@ class ArticleController extends Controller
             return null;
         }
 
-        return ((int) $a->language_id === 1 ? '/vi' : '') . '/blog/' . $a->category_slug . '/' . $a->slug . '.html';
+        return NewsCategory::publicUrl(((int) $a->language_id === 1 ? '/vi' : '') . '/blog/' . $a->category_slug . '/' . $a->slug . '.html');
     }
 
     public static function date($value): ?string

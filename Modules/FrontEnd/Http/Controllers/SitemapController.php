@@ -2,6 +2,7 @@
 namespace Modules\FrontEnd\Http\Controllers;
 
 use App\Services\Content\PageConfigContentService;
+use App\Support\NewsCategory;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -171,13 +172,13 @@ class SitemapController extends Controller
                     'articleSlug' => FeArticleUtils::getArticleSlug($list[$i]),
                 ], $list[$i]->language_id);
 
-                $entries[] = $this->makeUrlEntry(
+                $entries[] = $this->newsUrls($this->makeUrlEntry(
                     $url,
                     Carbon::parse($list[$i]->updated_at ?: $list[$i]->created_at)->format('Y-m-d\TH:i:sP'),
                     'monthly',
                     '0.5',
                     $alternates
-                );
+                ));
             } catch (\Throwable) {
                 continue;
             }
@@ -219,13 +220,13 @@ class SitemapController extends Controller
                     'slug' => $slug,
                 ], $languageId);
 
-                $entries[] = $this->makeUrlEntry(
+                $entries[] = $this->newsUrls($this->makeUrlEntry(
                     $url,
                     Carbon::parse($article->updated_at ?: $article->created_at)->format('Y-m-d\TH:i:sP'),
                     'monthly',
                     '0.6',
                     $alternates
-                );
+                ));
             }
         }
 
@@ -607,6 +608,17 @@ class SitemapController extends Controller
             'priority' => $priority,
             'alternates' => $alternates,
         ];
+    }
+
+    /** News articles and the news category live at /news (vi /vi/tin-tuc), not under /blog. */
+    private function newsUrls(array $entry): array
+    {
+        $entry['loc'] = NewsCategory::publicUrl($entry['loc']);
+        foreach ($entry['alternates'] as $i => $alternate) {
+            $entry['alternates'][$i]['url'] = NewsCategory::publicUrl($alternate['url']);
+        }
+
+        return $entry;
     }
 
     private function buildHubEntries(

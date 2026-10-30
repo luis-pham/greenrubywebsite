@@ -2,6 +2,7 @@
 
 namespace App\Services\Seo;
 
+use App\Support\NewsCategory;
 use App\Services\Content\CabinContentService;
 use Illuminate\Support\Facades\DB;
 
@@ -134,7 +135,7 @@ class SeoInventory
     /** Public URL of an article (same shape as ArticleController::url). */
     public static function articleUrl(int $languageId, ?string $categorySlug, ?string $slug): ?string
     {
-        return $categorySlug && $slug ? ($languageId === 1 ? '/vi' : '') . '/blog/' . $categorySlug . '/' . $slug . '.html' : null;
+        return $categorySlug && $slug ? NewsCategory::publicUrl(($languageId === 1 ? '/vi' : '') . '/blog/' . $categorySlug . '/' . $slug . '.html') : null;
     }
 
     /** JSON array, or a "a; b, c" string, as a clean list. */

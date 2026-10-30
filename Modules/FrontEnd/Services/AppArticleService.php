@@ -70,6 +70,9 @@ class AppArticleService
                 $query = $query->where('app_article.id', '!=', $param['exclude_id']);
             }
         }
+        if (!empty($param['exclude_category_id'])) {
+            $query = $query->where(fn ($q) => $q->whereNull('app_article.category_id')->orWhereNotIn('app_article.category_id', $param['exclude_category_id']));
+        }
         $query = $query->where('is_published', true)->where(fn ($q) => self::isLive($q));
         if ($languageId) {
             $query = $query->where('app_article.language_id', $languageId);
@@ -174,6 +177,9 @@ class AppArticleService
             } else {
                 $query = $query->where('app_article.id', '!=', $param['exclude_id']);
             }
+        }
+        if (!empty($param['exclude_category_id'])) {
+            $query = $query->where(fn ($q) => $q->whereNull('app_article.category_id')->orWhereNotIn('app_article.category_id', $param['exclude_category_id']));
         }
         $query = $query->where('is_published', true)->where(fn ($q) => self::isLive($q));
         if ($languageId) {

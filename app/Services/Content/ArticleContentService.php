@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Support\NewsCategory;
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Entities\AppCategory;
 use Modules\BackEnd\Services\AppCategoryService;
@@ -17,6 +18,7 @@ use Modules\FrontEnd\Services\AppCategoryService as FeAppCategoryService;
 /**
  * Blog payloads for the Content API. Mirrors ArticleController (index / category / show / legacy redirect):
  * only published articles, newest publish_date first, category listings include sub-categories.
+ * News (NewsCategory) is only listed by its own category: the blog index, search and tree leave it out.
  */
 class ArticleContentService
 {
@@ -50,6 +52,8 @@ class ArticleContentService
         if ($category) {
             $param['category_id'] = $category->id;
             $param['include_child'] = true;
+        } else {
+            $param['exclude_category_id'] = NewsCategory::ids($languageId);
         }
 
         $total = AppArticleService::getPagingCount($param, $languageId);
@@ -62,6 +66,8 @@ class ArticleContentService
         $featuredParam = ['is_featured' => true, 'is_disabled_paginate' => true];
         if ($category) {
             $featuredParam += ['category_id' => $category->id, 'include_child' => true];
+        } else {
+            $featuredParam['exclude_category_id'] = $param['exclude_category_id'];
         }
 
         return [
@@ -167,12 +173,12 @@ class ArticleContentService
         return self::summaries($config[PageConfigKeyConsts::ARTICLE_POPULAR] ?? []);
     }
 
-    /** Non-root article categories as a tree (nested-set order), with published-article counts incl. children. */
+    /** Non-root, non-news article categories as a tree (nested-set order), with published-article counts incl. children. */
     public static function categoryTree(AdLanguage $language): array
     {
         $languageId = (int) $language->id;
         $type = config('backend.categoryType.article');
-        $all = FeAppCategoryService::getAll($type, $languageId);
+        $all = FeAppCategoryService::getAll($type, $languageId)->reject(fn ($c) => NewsCategory::isNews($c->slug));
         $rootIds = AppCategory::where('type', $type)->where('language_id', $languageId)->where('slug', 'root')->pluck('id')->all();
 
         $build = function ($parentIds) use (&$build, $all, $languageId) {
