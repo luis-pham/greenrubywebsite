@@ -89,6 +89,14 @@
                     </div>
                     <div class="card-body">
                         {{ Form::hidden('image_link', old('image_link', $obj->image_link), ['class' => 'image-select', 'data-link-full' => Utilities::getFileLink($obj->image_link), 'data-file-manager-url' => route('backend.file.index', ['layout' => 'popup', 'type' => config('backend.fileType.image')])]) }}
+                        <div class="form-group mt-3">
+                            <label class="form-label">Mô tả ảnh (alt)</label>
+                            {{ Form::text('image_alt', old('image_alt', $obj->image_alt), ['class' => 'form-control', 'maxlength' => 255, 'placeholder' => 'Ảnh chụp gì, ở đâu (cho người khiếm thị và Google)']) }}
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nguồn ảnh (credit)</label>
+                            {{ Form::text('image_credit', old('image_credit', $obj->image_credit), ['class' => 'form-control', 'maxlength' => 255, 'placeholder' => 'VD: Ảnh: Tên tác giả, CC BY 4.0, qua Wikimedia Commons']) }}
+                        </div>
                     </div>
                 </div>
                 <div class="card">

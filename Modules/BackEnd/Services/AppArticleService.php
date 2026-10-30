@@ -60,6 +60,8 @@ class AppArticleService
         $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : null;
         $obj->publish_date = array_key_exists('publish_date', $data) ? $data['publish_date'] : null;
         $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : null;
+        $obj->image_alt = array_key_exists('image_alt', $data) ? $data['image_alt'] : null;
+        $obj->image_credit = array_key_exists('image_credit', $data) ? $data['image_credit'] : null;
         $obj->is_featured = array_key_exists('is_featured', $data) ? $data['is_featured'] : null;
         $obj->seo_title = array_key_exists('seo_title', $data) ? $data['seo_title'] : null;
         $obj->seo_description = array_key_exists('seo_description', $data) ? $data['seo_description'] : null;
@@ -85,6 +87,8 @@ class AppArticleService
             $obj->content = array_key_exists('content', $data) ? \App\Support\HtmlSanitizer::clean($data['content']) : $obj->content;
             $obj->publish_date = array_key_exists('publish_date', $data) ? $data['publish_date'] : $obj->publish_date;
             $obj->image_link = array_key_exists('image_link', $data) ? $data['image_link'] : $obj->image_link;
+            $obj->image_alt = array_key_exists('image_alt', $data) ? $data['image_alt'] : $obj->image_alt;
+            $obj->image_credit = array_key_exists('image_credit', $data) ? $data['image_credit'] : $obj->image_credit;
             $obj->is_featured = array_key_exists('is_featured', $data) ? $data['is_featured'] : $obj->is_featured;
             $obj->seo_title = array_key_exists('seo_title', $data) ? $data['seo_title'] : $obj->seo_title;
             $obj->seo_description = array_key_exists('seo_description', $data) ? $data['seo_description'] : $obj->seo_description;

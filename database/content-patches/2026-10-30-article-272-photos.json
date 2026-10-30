@@ -1,0 +1,64 @@
+{
+ "name": "2026-10-30 article #272 photos",
+ "reviewed": "2026-10-30; Wikimedia Commons files checked for licence and geotag (Ha Long Bay / Trang An); needs migration 2026_10_30_000001",
+ "revalidate": [
+  "articles",
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_article",
+   "id": 272,
+   "column": "content",
+   "type": "replace",
+   "old": "the Tam Coc and Bich Dong area.</p>",
+   "new": "the Tam Coc and Bich Dong area.</p><figure><img src=\"/upload/2026/10/30/trang-an-rowing-boat-karst-peaks-ninh-binh.jpg\" alt=\"A boatwoman rowing a small boat on the water below forested limestone peaks at Trang An, Ninh Binh\" width=\"1600\" height=\"1068\" /><figcaption>Trang An, Ninh Binh: the same limestone, rising from water and fields instead of the sea. Photo: <a href=\"https://commons.wikimedia.org/w/index.php?curid=147140660\" target=\"_blank\" rel=\"noreferrer noopener\">Jakub Hałun</a>, <a href=\"https://creativecommons.org/licenses/by/4.0/\" target=\"_blank\" rel=\"noreferrer noopener\">CC BY 4.0</a>, via Wikimedia Commons.</figcaption></figure>",
+   "note": "inline photo with alt and credit"
+  },
+  {
+   "table": "app_article",
+   "id": 272,
+   "column": "content",
+   "type": "replace",
+   "old": "If a day is all you have, Ninh Binh gives you more for it.</p>",
+   "new": "If a day is all you have, Ninh Binh gives you more for it.</p><figure><img src=\"/upload/2026/10/30/trang-an-rowing-boat-cave-ninh-binh.jpg\" alt=\"Visitors in life jackets in a rowing boat coming out of a low limestone cave at Trang An, Ninh Binh\" width=\"1600\" height=\"1068\" /><figcaption>Rowing boats pass through low caves on the Trang An river route. Photo: <a href=\"https://commons.wikimedia.org/w/index.php?curid=147140074\" target=\"_blank\" rel=\"noreferrer noopener\">Jakub Hałun</a>, <a href=\"https://creativecommons.org/licenses/by/4.0/\" target=\"_blank\" rel=\"noreferrer noopener\">CC BY 4.0</a>, via Wikimedia Commons.</figcaption></figure>",
+   "note": "inline photo with alt and credit"
+  },
+  {
+   "table": "app_article",
+   "id": 272,
+   "column": "content",
+   "type": "replace",
+   "old": "That is the part of Ha Long that day visitors miss.</p>",
+   "new": "That is the part of Ha Long that day visitors miss.</p><figure><img src=\"/upload/2026/10/30/ha-long-bay-early-morning-mist.jpg\" alt=\"Limestone islands and a wooden boat reflected in still water in the early morning on Ha Long Bay\" width=\"1600\" height=\"1067\" /><figcaption>Early morning on Ha Long Bay, the hours a day trip never reaches. Photo: <a href=\"https://commons.wikimedia.org/w/index.php?curid=75234238\" target=\"_blank\" rel=\"noreferrer noopener\">Andrea Schaffer</a>, <a href=\"https://creativecommons.org/licenses/by/2.0/\" target=\"_blank\" rel=\"noreferrer noopener\">CC BY 2.0</a>, via Wikimedia Commons.</figcaption></figure>",
+   "note": "inline photo with alt and credit"
+  },
+  {
+   "table": "app_article",
+   "id": 272,
+   "column": "image_link",
+   "type": "set",
+   "old": "",
+   "new": "/2026/10/30/ha-long-bay-limestone-islands-sea.jpg",
+   "note": "cover photo (CC0)"
+  },
+  {
+   "table": "app_article",
+   "id": 272,
+   "column": "image_alt",
+   "type": "set",
+   "old": null,
+   "new": "Forested limestone islands rising from the sea in Ha Long Bay, with a fishing boat passing",
+   "note": "cover alt"
+  },
+  {
+   "table": "app_article",
+   "id": 272,
+   "column": "image_credit",
+   "type": "set",
+   "old": null,
+   "new": "Photo: Mustang Joe, CC0, via Wikimedia Commons",
+   "note": "cover credit"
+  }
+ ]
+}

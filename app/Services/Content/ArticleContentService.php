@@ -157,6 +157,8 @@ class ArticleContentService
             'subTitle' => ItineraryContentService::clean($a->sub_title),
             'lead' => ItineraryContentService::plain($a->lead),
             'image' => CabinContentService::fileLink($a->image_link),
+            'imageAlt' => ItineraryContentService::clean($a->image_alt ?? null),
+            'imageCredit' => ItineraryContentService::clean($a->image_credit ?? null),
             'publishDate' => CabinContentService::isoDate($a->getRawOriginal('publish_date')),
             'isFeatured' => (bool) $a->is_featured,
             'category' => !empty($a->category_slug)

@@ -17,6 +17,8 @@ class AppArticle extends BaseModel
         'author',
         'publish_date',
         'image_link',
+        'image_alt',
+        'image_credit',
         'point',
         'is_featured',
         'seo_title',
