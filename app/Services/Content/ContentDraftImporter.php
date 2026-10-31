@@ -6,7 +6,9 @@ use App\Services\Locale\LocaleRegistry;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Modules\BackEnd\Entities\AdLanguage;
+use Modules\BackEnd\Entities\AppArticle;
 use Modules\BackEnd\Entities\AppCabin;
+use Modules\BackEnd\Entities\AppCategory;
 use Modules\BackEnd\Entities\AppCruise;
 use Modules\BackEnd\Entities\AppDestination;
 use Modules\BackEnd\Entities\AppExpActivity;
@@ -17,7 +19,8 @@ use Modules\BackEnd\Entities\AppItinerary;
 /**
  * Imports translation drafts of ENTITY content (phase 2C; `php artisan i18n:import-content`) into a new language's
  * translations: cruises, cabins (+ room text), itineraries (+ programme lines: app_itinerary_day_detail, as copied by
- * TranslationFactory::copyItinerary), destinations, experiences, FAQ groups and FAQ items. Draft file (schema 1):
+ * TranslationFactory::copyItinerary), destinations, experiences, FAQ groups and FAQ items, blog categories and articles.
+ * Draft file (schema 1):
  *
  *   {"schema":1,"language":"ja","items":[{"type":"cabin","en_id":24,"slug":"imperial-suite","fields":{"name":"…"},
  *     "source_hash":{"name":"<sha1 of the English value>"},"children":[{"table":"app_cabin_room","en_id":12,
@@ -45,6 +48,7 @@ final class ContentDraftImporter
     public const MODELS = [
         'cruise' => AppCruise::class, 'cabin' => AppCabin::class, 'itinerary' => AppItinerary::class, 'destination' => AppDestination::class,
         'experience' => AppExpActivity::class, 'faq_group' => AppGroup::class, 'faq' => AppFaq::class,
+        'article_category' => AppCategory::class, 'article' => AppArticle::class,
     ];
 
     /** type => the child table whose text travels with it (TranslatableFields children / ITINERARY_DAY_TEXT). */

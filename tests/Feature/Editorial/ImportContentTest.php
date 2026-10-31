@@ -36,7 +36,7 @@ class ImportContentTest extends EditorialTestCase
     private function item(string $type, int $enId, array $fields, array $children = [], string $status = 'PENDING_REVIEW', ?string $slug = null, array $extra = []): void
     {
         $table = ['cruise' => 'app_cruise', 'cabin' => 'app_cabin', 'itinerary' => 'app_itinerary', 'destination' => 'app_destination',
-            'experience' => 'app_exp_activity', 'faq_group' => 'app_group', 'faq' => 'app_faq'][$type];
+            'experience' => 'app_exp_activity', 'faq_group' => 'app_group', 'faq' => 'app_faq', 'article_category' => 'app_category', 'article' => 'app_article'][$type];
         $en = DB::table($table)->find($enId);
         $hashes = [];
         foreach ($fields as $column => $value) {
@@ -159,6 +159,27 @@ class ImportContentTest extends EditorialTestCase
 
         [, , $counts] = $this->import(['--create-missing' => true, '--apply' => true, '--actor' => 2]);
         $this->assertSame(['skipped' => 3], $counts);
+    }
+
+    public function test_a_blog_category_and_article_are_imported_as_unpublished_drafts(): void
+    {
+        $this->item('article_category', 10, ['name' => '旅のヒント'], [], 'PENDING_REVIEW', 'travel-tips');
+        $this->item('article', 100, ['title' => 'ハロン湾のベストシーズン', 'lead' => 'リード', 'content' => '<p>本文</p>'], [], 'PENDING_REVIEW', 'best-time');
+
+        [, $rows, $counts] = $this->import(['--create-missing' => true, '--actor' => 2]);
+        $this->assertSame(['created' => 2], $counts, json_encode($rows, JSON_UNESCAPED_UNICODE));
+
+        [, $rows, $counts] = $this->import(['--create-missing' => true, '--apply' => true, '--actor' => 2]);
+        $this->assertSame(['created' => 2], $counts, json_encode($rows, JSON_UNESCAPED_UNICODE));
+        $category = DB::table('app_category')->find($rows['article_category:10']['target']['id']);
+        $this->assertSame(['旅のヒント', 'travel-tips', 3], [$category->name, $category->slug, (int) $category->language_id]);
+        $article = DB::table('app_article')->find($rows['article:100']['target']['id']);
+        $this->assertSame(['ハロン湾のベストシーズン', '<p>本文</p>', 0, (int) $category->id, 'best-time'],
+            [$article->title, $article->content, (int) $article->is_published, (int) $article->category_id, $article->slug]);
+        $this->assertSame('Best time to visit', DB::table('app_article')->find(100)->title, 'English untouched');
+
+        [, , $counts] = $this->import(['--create-missing' => true, '--apply' => true, '--actor' => 2]);
+        $this->assertSame(['skipped' => 2], $counts);
     }
 
     public function test_conflict_when_the_english_source_changed_nothing_of_the_item_is_written(): void

@@ -92,7 +92,7 @@ trait ResolvesContentLanguage
             $name === 'api.content.pages.show' => match ((string) $request->route('code')) {
                 'homepage' => 'home', 'about-us' => 'aboutUs', 'contact' => 'contact', 'faq' => 'faq', 'gallery' => 'gallery',
                 'service' => 'services', 'itinerary' => 'itinerary', 'exp-activity' => 'experiences', 'article' => 'blog',
-                'destinations' => 'destinations', 'guide-first-time' => 'guideFirstTime', 'guide-transfer' => 'guideTransfer',
+                'destinations' => 'destinations', 'guide-first-time' => 'guides', 'guide-transfer' => 'guides',
                 'eco-dashboard' => 'ecoDashboard', 'booking' => 'booking',
                 default => 'legal',
             },

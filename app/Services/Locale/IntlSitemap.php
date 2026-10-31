@@ -68,7 +68,7 @@ final class IntlSitemap
             'category' => self::categories($language),
             'faq' => self::faq($language),
             // Static pages sit in the sitemap of their EN/VI twins (the hub group is built per sitemap file).
-            'page' => array_merge(self::hubs($language, ['home', 'experiences', 'itinerary', 'blog', 'news']), self::staticPages($language, ['aboutUs', 'contact'])),
+            'page' => array_merge(self::hubs($language, ['home', 'experiences', 'itinerary', 'blog', 'news']), self::staticPages($language, ['aboutUs', 'contact']), self::guides($language)),
             'service' => self::staticPages($language, ['services']),
             'gallery' => self::staticPages($language, ['gallery']),
             default => [],
@@ -155,6 +155,33 @@ final class IntlSitemap
         return $entries;
     }
 
+    /**
+     * Travel guide pages (Next.js only; their copy lives in the website code, the app_page row is their publication):
+     * each guide while its page row is published for the language, and the guide hub while at least one guide is.
+     * Grouped with the EN/VI twins of SitemapController::GUIDE_PATHS.
+     */
+    private static function guides(AdLanguage $language): array
+    {
+        if (!LocaleRegistry::sectionReady($language, 'guides')) {
+            return [];
+        }
+        $entries = [];
+        foreach (self::GUIDE_PAGES as $section => $code) {
+            if (\App\Services\Publication\PagePublication::visible($code, $language)) {
+                $row = DB::table('app_page')->where('code', $code)->where('language_id', $language->id)->first();
+                $entries[] = self::entry(PathBuilder::section($language, $section), $row, 'monthly', '0.8', [], "hub:$section");
+            }
+        }
+        if ($entries !== []) {
+            array_unshift($entries, self::entry(PathBuilder::section($language, 'guides'), $row, 'monthly', '0.8', [], 'hub:guides'));
+        }
+
+        return $entries;
+    }
+
+    /** Guide sections => their app_page code (the hub 'guides' is public while one of them is). */
+    private const GUIDE_PAGES = ['guideFirstTime' => 'guide-first-time', 'guideTransfer' => 'guide-transfer'];
+
     /** Home and section hubs (of $sections), each only when served and not empty for this language. */
     private static function hubs(AdLanguage $language, array $sections): array
     {
@@ -193,7 +220,8 @@ final class IntlSitemap
     }
 
     /** Section pages a new language can link to (hubOpen), for the website's own links (Content API /site). */
-    public const LINKABLE = ['home', 'itinerary', 'experiences', 'destinations', 'blog', 'news', 'faq', 'services', 'gallery', 'aboutUs', 'contact', 'booking'];
+    public const LINKABLE = ['home', 'itinerary', 'experiences', 'destinations', 'blog', 'news', 'faq', 'services', 'gallery', 'aboutUs', 'contact', 'booking',
+        'guides', 'guideFirstTime', 'guideTransfer'];
 
     /** @return string[] the LINKABLE sections that are public for $language */
     public static function publicSections(AdLanguage $language): array
@@ -203,13 +231,19 @@ final class IntlSitemap
 
     /**
      * Whether a section page of a new language is public, by the same rules as its sitemap entry: hubs list
-     * something; the FAQ has a group with a question; static pages are published for the language. Used to link only
+     * something; the FAQ has a group with a question; static pages and travel guides are published for the language. Used to link only
      * to pages that exist (phase 2B: Japanese menus).
      */
     public static function hubOpen(AdLanguage $language, string $section): bool
     {
-        if (!LocaleRegistry::sectionReady($language, $section)) {
+        $guide = $section === 'guides' || isset(self::GUIDE_PAGES[$section]);
+        if (!LocaleRegistry::sectionReady($language, $guide ? 'guides' : $section)) {
             return false;
+        }
+        if ($guide) {
+            $codes = $section === 'guides' ? array_values(self::GUIDE_PAGES) : [self::GUIDE_PAGES[$section]];
+
+            return collect($codes)->contains(fn ($code) => \App\Services\Publication\PagePublication::visible($code, $language));
         }
 
         if ($section === 'booking') {

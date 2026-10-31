@@ -5,6 +5,7 @@ namespace Tests\Feature\Editorial;
 use App\Services\Content\IntlMenuUrls;
 use App\Services\Content\TranslationFactory;
 use App\Services\Locale\FrontendManifest;
+use App\Services\Locale\IntlSitemap;
 use App\Services\Locale\LocaleRegistry;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Http;
  */
 class IntlMenuUrlsTest extends EditorialTestCase
 {
-    private function makeJaPublic(): void
+    private function makeJaPublic(array $extraSections = []): void
     {
         DB::table('ad_language')->where('code', 'ja')->update(['site_status' => 'public']);
         config([
@@ -23,7 +24,7 @@ class IntlMenuUrlsTest extends EditorialTestCase
             'i18n.frontend_manifest.urls' => ['http://web.test/api/i18n/manifest'],
             'i18n.frontend_manifest.secret' => 's',
         ]);
-        $sections = ['home', 'cruise', 'cabin', 'itinerary', 'experiences', 'destinations', 'blog', 'news', 'faq', 'services', 'gallery', 'aboutUs', 'contact'];
+        $sections = array_merge(['home', 'cruise', 'cabin', 'itinerary', 'experiences', 'destinations', 'blog', 'news', 'faq', 'services', 'gallery', 'aboutUs', 'contact'], $extraSections);
         Http::fake(['*' => Http::response(['schema' => 1, 'buildId' => 'b', 'locales' => array_map(fn ($c) => ['code' => $c, 'routes' => true, 'dictionary' => true, 'sections' => $sections], ['en', 'vi', 'ja'])])]);
         LocaleRegistry::flush();
         FrontendManifest::flush();
@@ -73,5 +74,25 @@ class IntlMenuUrlsTest extends EditorialTestCase
 
         $this->assertSame('/ja/services#event', IntlMenuUrls::resolve('/services#event', $this->ja()));
         $this->assertSame('/contact', IntlMenuUrls::resolve('/contact', $this->ja()), 'contact page still hidden');
+    }
+
+    public function test_travel_guides_link_to_japanese_only_when_built_and_published(): void
+    {
+        foreach (['guide-first-time', 'guide-transfer'] as $code) {
+            DB::table('app_page')->insert(['language_id' => 2, 'code' => $code, 'title' => $code, 'is_visible' => 1, 'created_at' => now(), 'created_by' => 1]);
+        }
+        $this->artisan('i18n:seed-locale', ['code' => 'ja'])->assertSuccessful();
+        DB::table('app_page')->where('language_id', 3)->where('code', 'guide-first-time')->update(['is_visible' => 1]);
+
+        $this->makeJaPublic(['guides']);
+        $ja = $this->ja();
+        $this->assertSame('/ja/guides', IntlMenuUrls::resolve('/guides', $ja));
+        $this->assertSame('/ja/guides/first-time-halong-bay-cruise', IntlMenuUrls::resolve('/guides/first-time-halong-bay-cruise', $ja));
+        $this->assertSame('/guides/hanoi-to-halong-bay', IntlMenuUrls::resolve('/guides/hanoi-to-halong-bay', $ja), 'transfer guide not published for ja');
+        $this->assertSame(['guides', 'guideFirstTime'], array_values(array_intersect(['guides', 'guideFirstTime', 'guideTransfer'], IntlSitemap::publicSections($ja))));
+        $locs = array_column(IntlSitemap::entries('page'), 'loc');
+        $this->assertContains(url('/ja/guides'), $locs);
+        $this->assertContains(url('/ja/guides/first-time-halong-bay-cruise'), $locs);
+        $this->assertNotContains(url('/ja/guides/hanoi-to-halong-bay'), $locs);
     }
 }

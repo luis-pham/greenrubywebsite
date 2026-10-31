@@ -24,7 +24,11 @@ final class IntlMenuUrls
     private const SECTIONS = [
         'itinerary' => 'itinerary', 'experiences' => 'experiences', 'destinations' => 'destinations', 'blog' => 'blog',
         'news' => 'news', 'faq' => 'faq', 'services' => 'services', 'gallery' => 'gallery', 'about-us' => 'aboutUs', 'contact' => 'contact',
+        'guides' => 'guides',
     ];
+
+    /** Travel guide pages (English path below /guides → section, PathBuilder::SEGMENTS). */
+    private const GUIDES = ['guides/first-time-halong-bay-cruise' => 'guideFirstTime', 'guides/hanoi-to-halong-bay' => 'guideTransfer'];
 
     /** Detail URL patterns of the English site: type, regex, group holding the row id. */
     private const DETAILS = [
@@ -72,13 +76,18 @@ final class IntlMenuUrls
 
             return $id ? self::detail('article', (int) $id, $language) : null;
         }
+        if (isset(self::GUIDES[trim($path, '/')])) {
+            $section = self::GUIDES[trim($path, '/')];
+
+            return IntlSitemap::hubOpen($language, $section) ? PathBuilder::section($language, $section) : null;
+        }
         if (count($segments) === 1 && isset(self::SECTIONS[$segments[0]])) {
             $section = self::SECTIONS[$segments[0]];
 
             return IntlSitemap::hubOpen($language, $section) ? PathBuilder::section($language, $section) : null;
         }
 
-        return null; // category/group pages, guides, legal, booking…: the English page
+        return null; // category/group pages, legal, booking…: the English page
     }
 
     private static function detail(string $type, int $englishId, AdLanguage $language): ?string
