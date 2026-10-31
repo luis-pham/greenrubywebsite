@@ -42,8 +42,13 @@ class AppArticleService
             ->where('app_category.type', config('backend.categoryType.article'))
             ->where('app_category.language_id', $languageId)
             ->where('app_article.slug', $articleSlug)
-            ->where('app_article.is_published', true)
-            ->where(fn ($q) => self::isLive($q))
+            ->where(function ($q) {
+                $q->where(fn ($live) => $live->where('app_article.is_published', true)->where(fn ($l) => self::isLive($l)));
+                // Phase 1E-d: an authenticated preview also sees its one article.
+                if (($preview = \App\Services\Preview\Preview::active()) && $preview->table === 'app_article') {
+                    $q->orWhere('app_article.id', (int) $preview->entity_id);
+                }
+            })
             ->where('app_article.language_id', $languageId)
             ->first();
     }

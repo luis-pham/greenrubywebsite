@@ -2,6 +2,12 @@
 
 namespace Modules\FrontEnd\Services;
 
+use App\Services\Content\Slugs;
+
+use App\Services\Publication\PublicationContext;
+use App\Services\Publication\PublicationPolicy;
+use App\Services\Publication\PublishedScope;
+
 use DB;
 use Modules\BackEnd\Entities\AppCabin;
 use Modules\BackEnd\Entities\AppCruise;
@@ -154,7 +160,27 @@ class AppCruiseItineraryService
             }
         });
 
-        return $listItinerary;
+        // Phase 1C-2: an itinerary whose own-bay ship is unpublished is hidden, never moved to another ship.
+        $listItinerary = PublicationPolicy::withoutUnpublished(PublicationPolicy::withoutUnpublished($listItinerary, 'app_itinerary'), 'app_cruise', 'cruise_id');
+
+        return collect($listItinerary)->reject(fn ($item) => self::bayCruiseUnpublished((int) $item->bay, (int) $languageId))->values();
+    }
+
+    /**
+     * During a public read: true when the language's ship for this bay exists but is unpublished (PublishedScope
+     * hides it, and the fallbacks below would otherwise pair its itineraries with a ship of the other bay).
+     */
+    private static function bayCruiseUnpublished(int $bay, int $languageId): bool
+    {
+        if (!PublicationContext::isPublic() || !PublicationPolicy::hasColumn('app_cruise')) {
+            return false;
+        }
+        $ship = AppCruise::withoutGlobalScope(PublishedScope::class)
+            ->where('language_id', $languageId)
+            ->get(['id', 'name', 'publish_state'])
+            ->first(fn ($cruise) => FeCruiseUtils::getBayForCruise($cruise->name) === $bay);
+
+        return $ship !== null && $ship->publish_state !== 'published';
     }
 
     /**
@@ -167,7 +193,7 @@ class AppCruiseItineraryService
             ->where('language_id', $languageId)
             ->first();
 
-        if (!$itinerary) {
+        if (!$itinerary || self::bayCruiseUnpublished((int) $itinerary->bay, $languageId)) {
             return null;
         }
 
@@ -192,7 +218,7 @@ class AppCruiseItineraryService
         }
 
         return [
-            'slug' => Utilities::convertToAlias($itinerary->name),
+            'slug' => Slugs::of($itinerary),
             'cruise_id' => $cruise->id,
             'itinerary_id' => $itinerary->id,
         ];

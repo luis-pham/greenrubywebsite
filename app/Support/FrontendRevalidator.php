@@ -17,7 +17,8 @@ class FrontendRevalidator
         app()->terminating(fn () => self::send($tags));
     }
 
-    public static function send(array $tags): bool
+    /** $expire: expire the tags at once instead of stale-while-revalidate (a language's site status change). */
+    public static function send(array $tags, bool $expire = false): bool
     {
         $url = config('services.frontend_revalidate.url');
         $secret = config('services.frontend_revalidate.secret');
@@ -27,7 +28,7 @@ class FrontendRevalidator
         }
 
         try {
-            $result = Http::timeout(3)->acceptJson()->post($url, ['secret' => $secret, 'tags' => $tags]);
+            $result = Http::timeout(3)->acceptJson()->post($url, ['secret' => $secret, 'tags' => $tags] + ($expire ? ['expire' => true] : []));
             if (!$result->successful()) {
                 Log::warning('Frontend revalidate failed', ['status' => $result->status(), 'tags' => $tags]);
             }

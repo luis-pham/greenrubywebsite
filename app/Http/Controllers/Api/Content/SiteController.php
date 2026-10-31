@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api\Content;
 use App\Http\Controllers\Controller;
 use App\Services\Content\ContentMenuBuilder;
 use App\Services\Content\PageConfigContentService;
+use App\Services\Locale\LocaleRegistry;
 use Illuminate\Http\Request;
 use Modules\BackEnd\Helpers\Utilities;
-use Modules\BackEnd\Services\AdLanguageService;
 
 class SiteController extends Controller
 {
@@ -17,7 +17,8 @@ class SiteController extends Controller
     {
         $language = $this->resolveLanguage($request);
 
-        $languages = AdLanguageService::getAll()->map(fn ($l) => [
+        // Only languages the public site serves (LocaleRegistry): an 'editing' language is never listed.
+        $languages = LocaleRegistry::effectivePublic()->map(fn ($l) => [
             'code' => $l->code,
             'name' => $l->name,
             'isDefault' => (bool) $l->is_default,

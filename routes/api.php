@@ -9,13 +9,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/booking/itineraries', [\App\Http\Controllers\Api\BookingApiController::class, 'itineraries']);
-Route::get('/booking/cabins', [\App\Http\Controllers\Api\BookingApiController::class, 'cabins']);
-Route::get('/booking/amenities', [\App\Http\Controllers\Api\BookingApiController::class, 'amenities']);
-Route::get('/booking/suggest-by-cabin', [\App\Http\Controllers\Api\BookingApiController::class, 'suggestByCabin']);
-Route::get('/booking/suggest-by-cruise', [\App\Http\Controllers\Api\BookingApiController::class, 'suggestByCruise']);
-Route::get('/booking/itinerary/{id}', [\App\Http\Controllers\Api\BookingApiController::class, 'itineraryDetail']);
-Route::get('/booking/departure-dates', [\App\Http\Controllers\Api\BookingApiController::class, 'departureDates']);
+// Public reads of bookable inventory: unpublished cruises, cabins and itineraries are hidden (phase 1C-2).
+Route::middleware('public.content')->group(function () {
+    Route::get('/booking/itineraries', [\App\Http\Controllers\Api\BookingApiController::class, 'itineraries']);
+    Route::get('/booking/cabins', [\App\Http\Controllers\Api\BookingApiController::class, 'cabins']);
+    Route::get('/booking/amenities', [\App\Http\Controllers\Api\BookingApiController::class, 'amenities']);
+    Route::get('/booking/suggest-by-cabin', [\App\Http\Controllers\Api\BookingApiController::class, 'suggestByCabin']);
+    Route::get('/booking/suggest-by-cruise', [\App\Http\Controllers\Api\BookingApiController::class, 'suggestByCruise']);
+    Route::get('/booking/itinerary/{id}', [\App\Http\Controllers\Api\BookingApiController::class, 'itineraryDetail']);
+    Route::get('/booking/departure-dates', [\App\Http\Controllers\Api\BookingApiController::class, 'departureDates']);
+});
 Route::get('/booking/policy', [PaymentController::class, 'policy']);
 Route::get('/booking/payment-link', [PaymentController::class, 'paymentLink']);
 

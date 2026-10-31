@@ -47,7 +47,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web.frontend')
+        // Laravel-rendered public pages and sitemaps are public reads (phase 1C-2).
+        Route::middleware(['web.frontend', 'public.content'])
             ->namespace($this->moduleNamespace)
             ->group(module_path('FrontEnd', '/Routes/web.php'));
     }
@@ -62,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-            ->middleware('api')
+            ->middleware(['api', 'public.content'])
             ->namespace($this->moduleNamespace)
             ->group(module_path('FrontEnd', '/Routes/api.php'));
     }

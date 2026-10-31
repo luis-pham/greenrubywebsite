@@ -29,6 +29,12 @@ class Kernel extends ConsoleKernel
             ->dailyAt('09:00')
             ->timezone('Asia/Ho_Chi_Minh')
             ->withoutOverlapping();
+
+        // Phase 1D-b: expire the website's caches when intl readiness changes (deploy, rollback, instance down).
+        // A no-op while no intl language is public; it must run before one is released.
+        $schedule->command('i18n:locale manifest --notify')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     /**

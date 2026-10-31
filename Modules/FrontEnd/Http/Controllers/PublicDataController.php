@@ -3,6 +3,7 @@ namespace Modules\FrontEnd\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\App;
+use App\Services\Locale\PublicLocaleGate;
 use Modules\BackEnd\Services\AdLanguageService;
 use Modules\BackEnd\Services\AppCruiseService;
 use Modules\BackEnd\Services\AppCabinService;
@@ -20,6 +21,11 @@ class PublicDataController extends Controller
         $languageCode = $request->route('languageCode');
         $type = $request->route('type');
 
+        // A language the public site does not serve (disabled, editing, or not supported by the deployed website)
+        // is a 404 here too: this legacy API is publicly reachable under /api (phase 1C).
+        if ($languageCode !== null && !PublicLocaleGate::isPublicCode((string) $languageCode)) {
+            abort(404);
+        }
         $language = AdLanguageService::findByCode($languageCode);
         if (!$language) {
             $language = AdLanguageService::getDefaultLanguage();

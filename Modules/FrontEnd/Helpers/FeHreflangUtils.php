@@ -2,7 +2,10 @@
 
 namespace Modules\FrontEnd\Helpers;
 
+use App\Services\Content\Slugs;
+
 use App\Services\Content\ContentTranslations;
+use App\Services\Locale\LocaleRegistry;
 use Illuminate\Support\Facades\Route;
 use Modules\BackEnd\Entities\AppCategory;
 use Modules\BackEnd\Entities\AppCruise;
@@ -62,7 +65,9 @@ class FeHreflangUtils
         }
 
         $defaultLanguage = AdLanguageService::getDefaultLanguage();
-        $languages = AdLanguageService::getAll();
+        // Only languages the public site serves (phase 1C): a disabled/editing language, or one the deployed
+        // website does not support yet, is never an alternate.
+        $languages = LocaleRegistry::effectivePublic();
         $links = [];
 
         foreach ($languages as $language) {
@@ -134,7 +139,7 @@ class FeHreflangUtils
         }
 
         $params['id'] = $cruise->id;
-        $params['slug'] = Utilities::convertToAlias($cruise->name);
+        $params['slug'] = Slugs::of($cruise);
 
         return $params;
     }
@@ -216,7 +221,7 @@ class FeHreflangUtils
         }
 
         $params['id'] = $experience->id;
-        $params['slug'] = Utilities::convertToAlias($experience->name);
+        $params['slug'] = Slugs::of($experience);
 
         return $params;
     }

@@ -1,7 +1,10 @@
 <?php
 namespace Modules\FrontEnd\Http\Controllers;
 
+use App\Services\Content\Slugs;
+
 use App\Services\Content\PageConfigContentService;
+use App\Services\Locale\PublicLocaleGate;
 use App\Support\NewsCategory;
 
 use Carbon\Carbon;
@@ -150,7 +153,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
     
@@ -185,7 +188,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -231,7 +234,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -241,7 +244,7 @@ class SitemapController extends Controller
 
         foreach (AdLanguageService::getAll() as $language) {
             foreach (AppExpActivity::where('language_id', $language->id)->orderBy('id')->get() as $item) {
-                $params = ['slug' => Utilities::convertToAlias($item->name), 'id' => $item->id];
+                $params = ['slug' => Slugs::of($item), 'id' => $item->id];
                 try {
                     $url = FeUtils::frontendRoute('frontend.experience.show', $params, $language->code);
                 } catch (\Throwable) {
@@ -259,7 +262,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -271,7 +274,7 @@ class SitemapController extends Controller
         $entries = $this->buildHubEntries('frontend.service.index', $lastmod);
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -287,7 +290,7 @@ class SitemapController extends Controller
                     continue;
                 }
 
-                $slug = Utilities::convertToAlias($item->name);
+                $slug = Slugs::forId('app_itinerary', $item->id, (string) $item->name);
                 $params = [
                     'slug' => $slug,
                     'cruise_id' => $item->cruise_id,
@@ -317,7 +320,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -331,7 +334,7 @@ class SitemapController extends Controller
         $list = AppCruise::orderBy('id', 'asc')->get();
         for ($i = 0; $i < count($list); $i++) {
             $languageId = $list[$i]->language_id ?? $defaultLanguage->id;
-            $slug = Utilities::convertToAlias($list[$i]->name);
+            $slug = Slugs::of($list[$i]);
             try {
                 $url = $defaultLanguage->id == $languageId
                     ? route('frontend.cruise.show', ['slug' => $slug, 'id' => $list[$i]->id])
@@ -355,7 +358,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -391,7 +394,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -401,7 +404,7 @@ class SitemapController extends Controller
         // FAQ rows are rarely edited in place (updated_at is often NULL), so fall back to created_at.
         $latest = AppFaq::query()->max(\DB::raw('COALESCE(updated_at, created_at)'));
         if (!$latest) {
-            return response()->view($this->baseView . __FUNCTION__, ['entries' => $entries])->header('Content-Type', 'text/xml');
+            return response()->view($this->baseView . __FUNCTION__, ['entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__)])->header('Content-Type', 'text/xml');
         }
         $lastmod = Carbon::parse($latest)->format('Y-m-d\TH:i:sP');
 
@@ -427,7 +430,7 @@ class SitemapController extends Controller
         }
 
         return response()->view($this->baseView . __FUNCTION__, [
-            'entries' => $entries,
+            'entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__),
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -445,7 +448,7 @@ class SitemapController extends Controller
                 ? '/cabin/'
                 : '/' . $languageCode . '/' . (self::CABIN_SEGMENT[$languageCode] ?? 'cabin') . '/';
 
-            return url($path . CabinContentService::slug($cabin->name) . '-' . $cabin->id . '.html');
+            return url($path . Slugs::of($cabin) . '-' . $cabin->id . '.html');
         };
 
         $entries = [];
@@ -475,7 +478,7 @@ class SitemapController extends Controller
             }
         }
 
-        return response()->view($this->baseView . 'entries', ['entries' => $entries])->header('Content-Type', 'text/xml');
+        return response()->view($this->baseView . 'entries', ['entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__)])->header('Content-Type', 'text/xml');
     }
 
     /**
@@ -529,7 +532,7 @@ class SitemapController extends Controller
             );
         }
 
-        return response()->view($this->baseView . 'entries', ['entries' => $entries])->header('Content-Type', 'text/xml');
+        return response()->view($this->baseView . 'entries', ['entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__)])->header('Content-Type', 'text/xml');
     }
 
     /** Must match `segments.destinations` in greenruby-web/src/lib/i18n.ts. */

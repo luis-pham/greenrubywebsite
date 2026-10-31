@@ -22,7 +22,8 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        $language = $this->resolveLanguage($request, (string) ($request->input('lang') ?? $request->query('lang', 'en')));
+        // Lenient: an unexpected language must never lose the guest's message (answered in English, logged).
+        $language = $this->resolveLanguage($request, (string) ($request->input('lang') ?? $request->query('lang', 'en')), lenient: true);
         App::setLocale($language->code);
 
         $data = [

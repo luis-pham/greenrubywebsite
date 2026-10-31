@@ -103,6 +103,8 @@ class Kernel extends HttpKernel
         'api.noindex' => \App\Http\Middleware\ApiNoIndexRobots::class,
         'html.cache' => \App\Http\Middleware\SetHtmlCacheHeaders::class,
         'content.key' => \App\Http\Middleware\ContentApiKey::class,
+        'content.preview' => \App\Http\Middleware\ContentPreview::class,
+        'public.content' => \App\Http\Middleware\PublicContent::class,
         'editor.auth' => \App\Http\Middleware\EditorAuth::class,
     ];
 }

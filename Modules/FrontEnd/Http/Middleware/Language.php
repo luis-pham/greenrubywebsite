@@ -2,6 +2,8 @@
 
 namespace Modules\FrontEnd\Http\Middleware;
 
+use App\Services\Locale\LocaleRegistry;
+use App\Services\Locale\PublicLocaleGate;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Modules\BackEnd\Services\AdLanguageService;
@@ -45,6 +47,10 @@ class Language
         if (!$languageCode) {
             $languageCode = $defaultLanguage ? $defaultLanguage->code : config('app.locale');
         }
+        // Phase 1C: a Laravel-rendered public page never exists in a language the site does not serve.
+        if (!PublicLocaleGate::isPublicCode((string) $languageCode)) {
+            abort(404);
+        }
 
         if (!$currentLanguage || $currentLanguage->code != $languageCode) {
             $language = AdLanguageService::findByCode($languageCode);
@@ -66,7 +72,7 @@ class Language
         $preferred = request()->getPreferredLanguage() ?? config('app.locale');
         $preferred = strtolower((string) $preferred);
 
-        $availableCodes = AdLanguageService::getAll()->pluck('code')->filter()->values()->all();
+        $availableCodes = LocaleRegistry::effectivePublic()->pluck('code')->filter()->values()->all();
         foreach ($availableCodes as $code) {
             $code = strtolower((string) $code);
             if ($preferred === $code || Str::startsWith($preferred, $code . '-') || Str::startsWith($preferred, $code . '_')) {

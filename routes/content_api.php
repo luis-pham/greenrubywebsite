@@ -10,7 +10,9 @@ use App\Http\Controllers\Api\Content\FaqController;
 use App\Http\Controllers\Api\Content\GalleryController;
 use App\Http\Controllers\Api\Content\ItineraryController;
 use App\Http\Controllers\Api\Content\LegalController;
+use App\Http\Controllers\Api\Content\LocaleController;
 use App\Http\Controllers\Api\Content\PageController;
+use App\Http\Controllers\Api\Content\PreviewController;
 use App\Http\Controllers\Api\Content\ServiceController;
 use App\Http\Controllers\Api\Content\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/site', [SiteController::class, 'show'])->name('api.content.site');
+Route::get('/locales', [LocaleController::class, 'index'])->name('api.content.locales');
 Route::get('/cabins', [CabinController::class, 'index'])->name('api.content.cabins.index');
 Route::get('/cabins/{id}', [CabinController::class, 'show'])
     ->name('api.content.cabins.show');
@@ -66,6 +69,9 @@ Route::get('/pages/{code}', [PageController::class, 'show'])
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:sensitive-api')
     ->name('api.content.contact');
+
+// Phase 1E-d: preview token verification (server-to-server from the website's /_draft/enter; X-Preview-Key).
+Route::post('/preview/verify', [PreviewController::class, 'verify'])->name('api.content.preview.verify');
 
 // JSON 404 for anything else under the prefix (instead of the Blade 404 page).
 Route::any('/{any}', fn () => response()->json(['error' => 'not_found'], 404))

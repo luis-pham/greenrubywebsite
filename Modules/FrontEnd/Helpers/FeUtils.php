@@ -219,6 +219,22 @@ class FeUtils
         return $aliases[$path] ?? $path;
     }
 
+    /**
+     * A URL's first segment is a language prefix when it is a registered language code or URL prefix (BCP 47,
+     * e.g. 'zh-tw'), not merely any two letters (phase 1C-3, 12 §10).
+     */
+    public static function isLanguagePrefix(string $segment): bool
+    {
+        $segment = strtolower($segment);
+        foreach (\App\Services\Locale\LocaleRegistry::all() as $language) {
+            if ($segment === strtolower((string) $language->code) || ($language->getAttribute('url_prefix') && $segment === strtolower((string) $language->getAttribute('url_prefix')))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static function getLocalizedFrontendPathSegmentMap(): array
     {
         return [
@@ -282,18 +298,19 @@ class FeUtils
         $path = self::normalizeMenuPath($path);
         $segments = array_values(array_filter(explode('/', trim($path, '/'))));
 
-        if (!empty($segments) && preg_match('/^[a-z]{2}$/', $segments[0])) {
+        if (!empty($segments) && self::isLanguagePrefix($segments[0])) {
             array_shift($segments);
         }
 
         if (!$isDefault && $language && !empty($language->code)) {
-            $map = self::getLocalizedFrontendPathSegmentMap();
+            // Vietnamese segments only for vi; other languages keep the English ones (phase 1C-3, 12 §7).
+            $map = \App\Services\Locale\LocaleRegistry::isLegacy($language) ? self::getLocalizedFrontendPathSegmentMap() : [];
 
             if (!empty($segments) && isset($map[$segments[0]])) {
                 $segments[0] = $map[$segments[0]];
             }
 
-            if (($segments[0] ?? '') === 'gallery' && isset($segments[1]) && str_starts_with($segments[1], 'page-')) {
+            if ($map !== [] && ($segments[0] ?? '') === 'gallery' && isset($segments[1]) && str_starts_with($segments[1], 'page-')) {
                 $segments[0] = 'thu-vien';
                 $segments[1] = 'trang-' . substr($segments[1], 5);
             }
@@ -324,7 +341,7 @@ class FeUtils
         }
 
         $segments = array_values(array_filter(explode('/', trim(self::normalizeMenuPath($path), '/'))));
-        if (!empty($segments[0]) && preg_match('/^[a-z]{2}$/', $segments[0])) {
+        if (!empty($segments[0]) && self::isLanguagePrefix($segments[0])) {
             array_shift($segments);
         }
 
@@ -353,7 +370,7 @@ class FeUtils
             : 'frontend.cruise.show';
 
         $params = [
-            'slug' => Utilities::convertToAlias($cruise->name),
+            'slug' => \App\Services\Content\Slugs::of($cruise),
             'id' => $cruise->id,
         ];
 
@@ -388,8 +405,8 @@ class FeUtils
     {
         $path = self::normalizeMenuPath(self::getAbsoluteUrl($url) ?? '');
 
-        if (preg_match('#^/[a-z]{2}(/.*)?$#', $path, $matches)) {
-            $path = isset($matches[1]) && $matches[1] !== '' ? $matches[1] : '/';
+        if (preg_match('#^/([^/]+)(/.*)?$#', $path, $matches) && self::isLanguagePrefix($matches[1])) {
+            $path = isset($matches[2]) && $matches[2] !== '' ? $matches[2] : '/';
         }
 
         if ($path === '/' || $path === '') {
