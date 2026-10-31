@@ -544,6 +544,7 @@ class FeUtils
     {
         $list = [];
         $data = null;
+        $id = self::intlSourceDataIds($id, $sourceDataType, (int) $languageId);
         switch ($sourceDataType) {
             case PageConfigConsts::SOURCE_DATA_TYPE_ARTICLE:
                 $data = SourceDataService::getArticleById($id, $languageId);
@@ -588,6 +589,48 @@ class FeUtils
         }
 
         return $list;
+    }
+
+    /**
+     * Items picked in a page configuration of a new language (phase 2C). `i18n:seed-locale` copies the English page
+     * configuration, so its pickers hold English row ids; each one is mapped to its translation in the language
+     * (TranslationFactory::existingTranslation), an id that is already the language's own is kept, and one without a
+     * translation is left as is (the lookup by language drops it). en/vi (legacy) ids are returned unchanged.
+     */
+    private static function intlSourceDataIds($ids, $sourceDataType, int $languageId)
+    {
+        $language = \App\Services\Locale\LocaleRegistry::byId($languageId);
+        if (!is_array($ids) || !$language || \App\Services\Locale\LocaleRegistry::isLegacy($language)) {
+            return $ids;
+        }
+        $types = [
+            PageConfigConsts::SOURCE_DATA_TYPE_ARTICLE => 'article',
+            PageConfigConsts::SOURCE_DATA_TYPE_FAQ => 'faq',
+            PageConfigConsts::SOURCE_DATA_TYPE_CRUISE => 'cruise',
+            PageConfigConsts::SOURCE_DATA_TYPE_CABIN => 'cabin',
+            PageConfigConsts::SOURCE_DATA_TYPE_SERVICE => 'service',
+            PageConfigConsts::SOURCE_DATA_TYPE_AMENITY => 'amenity',
+            PageConfigConsts::SOURCE_DATA_TYPE_EXP_ACTIVITY => 'experience',
+        ];
+        $map = function (string $type, $id) use ($languageId) {
+            $table = \App\Services\Content\TranslatableFields::of($type)['table'];
+            if (!is_numeric($id) || \Illuminate\Support\Facades\DB::table($table)->where('id', $id)->where('language_id', $languageId)->exists()) {
+                return $id;
+            }
+
+            return \App\Services\Content\TranslationFactory::existingTranslation($type, (int) $id, $languageId) ?? $id;
+        };
+
+        return array_map(function ($id) use ($sourceDataType, $types, $map) {
+            if ($sourceDataType === PageConfigConsts::SOURCE_DATA_TYPE_CRUISE_ITINERARY) {
+                // "{itinerary id}-{cruise id}"
+                $parts = explode('-', (string) $id);
+
+                return count($parts) === 2 ? $map('itinerary', $parts[0]) . '-' . $map('cruise', $parts[1]) : $id;
+            }
+
+            return isset($types[$sourceDataType]) ? $map($types[$sourceDataType], $id) : $id;
+        }, $ids);
     }
 
     public static function getErrorMessageByStatusCode($statusCode)
