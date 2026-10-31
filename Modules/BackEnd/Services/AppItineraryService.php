@@ -177,7 +177,8 @@ class AppItineraryService
 
             self::syncFaqs($itinerary, $data['listFaqId'] ?? []);
 
-            if(!empty($listItineraryDay)){
+            // A published translation's programme text goes into its pending revision instead (1E hardening).
+            if(!empty($listItineraryDay) && !\App\Services\Content\ChildRevisions::itineraryDays((int) $itinerary->id, $listItineraryDay)){
                 $existingDayIds = [];
 
                 collect($listItineraryDay)->each(function($day, $idx) use($itinerary, &$existingDayIds){

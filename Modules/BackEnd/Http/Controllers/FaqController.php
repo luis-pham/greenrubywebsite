@@ -142,7 +142,7 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             Logging::LogError('Sửa câu hỏi thường gặp lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa câu hỏi thường gặp lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa câu hỏi thường gặp lỗi!'));
         }
     }
 

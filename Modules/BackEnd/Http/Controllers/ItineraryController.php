@@ -161,7 +161,7 @@ class ItineraryController extends Controller
         }
         catch(\Exception $ex){
             Logging::logError("Cập nhật hành trình lỗi. ", "Exception = " . $ex->getMessage());
-            return redirect()->back()->withInput()->withErrors("Cập nhật hành trình lỗi!");
+            return redirect()->back()->withInput()->withErrors(\App\Services\Content\EditorialRefusal::message($ex, "Cập nhật hành trình lỗi!"));
         }
     }
 

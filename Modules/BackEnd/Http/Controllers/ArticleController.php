@@ -164,7 +164,7 @@ class ArticleController extends Controller
         } catch (\Exception $e) {
             Logging::logError('Sửa tin tức lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa tin tức lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa tin tức lỗi!'));
         }
     }
 

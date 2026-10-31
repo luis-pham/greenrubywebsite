@@ -179,7 +179,7 @@ class ServiceController extends Controller
         } catch (\Exception $e) {
             Logging::logError('Sửa hoạt động trải nghiệm lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa dịch vụ lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa dịch vụ lỗi!'));
         }
     }
 

@@ -23,6 +23,9 @@ class CruiseCreateUpdateRequest extends FormRequest
         return [
             'name'               => ['required', 'string', 'max:100', 'min:3',$uniqueRule],
             'summary'            => ['required', 'string', 'max:300', 'min:3'],
+            // Phase 1E-c: SEO fields were in the table but not in the form.
+            'seo_title'       => ['nullable', 'string', 'max:65'],
+            'seo_description' => ['nullable', 'string', 'max:255'],
             'content'            => ['nullable', 'string'], // longtext → không giới hạn max
             'image_link'         => ['required', 'string', 'max:255'], // hoặc 'image' nếu upload file
             'cover_link'         => ['nullable', 'string', 'max:255'],

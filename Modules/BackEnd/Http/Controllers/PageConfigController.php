@@ -92,7 +92,7 @@ class PageConfigController extends Controller
         } catch (\Exception $e) {
             Logging::LogError('Sửa cấu hình ' . $pageName . ' lỗi.', 'Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa cấu hình ' . $pageName . ' lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa cấu hình ' . $pageName . ' lỗi!'));
         }
     }
 

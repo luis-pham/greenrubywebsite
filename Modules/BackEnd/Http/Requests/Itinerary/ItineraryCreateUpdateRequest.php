@@ -25,6 +25,9 @@ class ItineraryCreateUpdateRequest extends FormRequest
         return [
             'name'            => ['required', 'string', 'max:99', 'min:3',$uniqueRule],
             'description'     => ['required', 'string', 'max:300', 'min:3'],
+            // Phase 1E-c: SEO fields were in the table but not in the form.
+            'seo_title'       => ['nullable', 'string', 'max:65'],
+            'seo_description' => ['nullable', 'string', 'max:255'],
             'duration'        => ['required', 'integer', 'min:1', 'max:'.array_key_last(CruiseUtils::getListDuration())],
             'image_link'      => ['nullable', 'string', 'max:255'],
             'cover_link'      => ['nullable', 'string', 'max:255'],

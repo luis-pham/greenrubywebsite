@@ -101,6 +101,7 @@ class AppCabinService
             }
 
             if (array_key_exists('price', $data) && is_array($data['price'])) {
+                \App\Services\Content\BusinessFields::assertInventoryWritable((int) $languageId, 'bảng giá cabin');
                 AppCabinPrice::where('cabin_id', $obj->id)->delete();
                 foreach ($data['price'] as $duration => $guests) {
                     if (is_array($guests)) {
@@ -172,7 +173,8 @@ class AppCabinService
                 $obj->ord = array_key_exists('ord', $data) ? $data['ord'] : $obj->ord;
                 $obj->save();
 
-                if (array_key_exists('room_title', $data)) {
+                // A published translation's room text goes into its pending revision instead (1E hardening).
+                if (array_key_exists('room_title', $data) && !\App\Services\Content\ChildRevisions::cabinRooms((int) $obj->id, (array) $data['room_title'], (array) ($data['room_description'] ?? []))) {
                     AppCabinRoom::where('cabin_id', $obj->id)->delete();
                     for ($i = 0; $i < count($data['room_title']); $i++) {
                         if (!trim($data['room_title'][$i])) {
@@ -226,6 +228,7 @@ class AppCabinService
                 }
 
                 if (array_key_exists('price', $data) && is_array($data['price'])) {
+                    \App\Services\Content\BusinessFields::assertInventoryWritable((int) $languageId, 'bảng giá cabin');
                     AppCabinPrice::where('cabin_id', $obj->id)->delete();
                     foreach ($data['price'] as $duration => $guests) {
                         if (is_array($guests)) {

@@ -3,8 +3,10 @@ namespace Modules\BackEnd\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use App\Services\Content\BusinessFields;
 use Modules\BackEnd\Helpers\CruiseUtils;
 use Modules\BackEnd\Helpers\FacilityProfileUtils;
+use Modules\BackEnd\Helpers\LanguageUtils;
 
 class CabinRequest extends FormRequest
 {
@@ -88,6 +90,17 @@ class CabinRequest extends FormRequest
         return $result;
     }
 
+    /**
+     * A text-only language (ja → en, phase 1E) has no price list of its own: the form shows the EN prices read-only and
+     * does not submit them (BusinessFields refuses price writes there), so they are not required. en/vi: unchanged.
+     */
+    private function ownsPrices(): bool
+    {
+        $language = LanguageUtils::getCurrentLanguage();
+
+        return !$language || BusinessFields::ownsBusinessData((int) $language->id);
+    }
+
     public function rules(Request $request)
     {
         $profile = $this->getFacilityProfile() ?: FacilityProfileUtils::PROFILE_CABIN;
@@ -138,7 +151,7 @@ class CabinRequest extends FormRequest
             $rules['over_capacity_infant'] = 'nullable|integer|min:0|max:50';
         }
 
-        if (FacilityProfileUtils::requiresPrice($profile)) {
+        if (FacilityProfileUtils::requiresPrice($profile) && $this->ownsPrices()) {
             $capacity = (int) $this->input('capacity', 0);
             if ($capacity > 0) {
                 foreach (array_keys(CruiseUtils::getListDuration()) as $duration) {

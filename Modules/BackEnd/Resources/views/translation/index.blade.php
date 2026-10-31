@@ -3,8 +3,9 @@
 @section('content')
     @include('backend::shared.message')
     <div class="card">
-        <div class="card-header">
-            <h1 class="h4 m-0">{{ $title }}</h1>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h1 class="h4 m-0">{{ $title }}: ghép EN/VI</h1>
+            <a href="{{ route('backend.translation.index', ['type' => $type]) }}" class="btn btn-sm btn-outline-primary">Ma trận bản dịch (mọi ngôn ngữ)</a>
         </div>
         <div class="card-body">
             <p class="text-muted">
@@ -16,7 +17,7 @@
             <ul class="nav nav-tabs mb-3">
                 @foreach ($types as $key => $label)
                     <li class="nav-item">
-                        <a class="nav-link{{ $key === $type ? ' active' : '' }}" href="{{ route('backend.translation.index', ['type' => $key]) }}">{{ $label }}</a>
+                        <a class="nav-link{{ $key === $type ? ' active' : '' }}" href="{{ route('backend.translation.index', ['type' => $key, 'view' => 'pairs']) }}">{{ $label }}</a>
                     </li>
                 @endforeach
             </ul>

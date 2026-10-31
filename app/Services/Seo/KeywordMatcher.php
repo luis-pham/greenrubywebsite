@@ -25,9 +25,32 @@ class KeywordMatcher
         'co', 'khong', 'nen', 'hay', 'nhat', 'can', 'biet', 'di',
     ];
 
+    /** Kana or kanji: compared by the Japanese path (phase 1E-e), never folded to ASCII (which would erase it). */
+    public static function isCjk(?string $text): bool
+    {
+        return (bool) preg_match('/[\p{Han}\p{Hiragana}\p{Katakana}]/u', (string) $text);
+    }
+
+    /**
+     * Japanese text: NFKC (full-width Latin and digits, half-width kana unified), hiragana folded to katakana
+     * (グリーン = ぐりーん), punctuation removed, Latin lower-cased; characters are kept, never ASCII-folded.
+     */
+    private static function normalizeCjk(string $text): string
+    {
+        $t = class_exists(\Normalizer::class) ? (\Normalizer::normalize($text, \Normalizer::FORM_KC) ?: $text) : $text;
+        $t = mb_strtolower($t, 'UTF-8');
+        $t = mb_convert_kana($t, 'C', 'UTF-8'); // hiragana → katakana
+        $t = preg_replace('/[^\p{L}\p{N}ー]+/u', ' ', $t);
+
+        return trim(preg_replace('/\s+/u', ' ', $t));
+    }
+
     /** Lower-case ASCII with Vietnamese folded, "&" and punctuation removed, common spellings unified. */
     public static function normalize(?string $text): string
     {
+        if (self::isCjk($text)) {
+            return self::normalizeCjk((string) $text);
+        }
         $t = Str::lower(Str::ascii((string) $text));
         $t = str_replace(['&', '/', '-', '_'], ' ', $t);
         $t = preg_replace('/[^a-z0-9 ]+/', ' ', $t);
@@ -63,6 +86,22 @@ class KeywordMatcher
     /** @return string[] distinct meaningful tokens */
     public static function tokens(?string $text): array
     {
+        if (self::isCjk($text)) {
+            // No spaces between Japanese words: character bigrams of each run (Latin words stay whole).
+            $out = [];
+            foreach (explode(' ', self::normalize($text)) as $run) {
+                $chars = mb_str_split($run, 1, 'UTF-8');
+                if (count($chars) < 2 || !self::isCjk($run)) {
+                    $out[] = $run;
+                    continue;
+                }
+                for ($i = 0; $i < count($chars) - 1; $i++) {
+                    $out[] = $chars[$i] . $chars[$i + 1];
+                }
+            }
+
+            return array_values(array_unique(array_filter($out, fn ($w) => $w !== '')));
+        }
         $words = array_filter(explode(' ', self::normalize($text)), fn ($w) => $w !== '' && !in_array($w, self::STOP, true));
 
         return array_values(array_unique($words));

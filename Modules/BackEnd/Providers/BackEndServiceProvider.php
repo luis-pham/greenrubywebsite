@@ -43,8 +43,11 @@ class BackEndServiceProvider extends ServiceProvider
         }
 
         View::composer('backend::layouts.master', function ($view) {
+            // Content-language selector: editable languages only (phase 1E-a); the menu below keeps the full list.
+            $view->with('editableLanguages', \Modules\BackEnd\Helpers\ContentLanguages::editable());
             $listLanguage = AdLanguageService::getAll();
-            $currentLanguage = LanguageUtils::getCurrentLanguage();
+            // Pages outside the language-aware routes (translation, languages) may run before a language was chosen.
+            $currentLanguage = LanguageUtils::getCurrentLanguage() ?? $listLanguage->firstWhere('is_default', true);
             $view->with('listLanguage', $listLanguage);
             $view->with('currentLanguage', $currentLanguage);
 
@@ -58,6 +61,20 @@ class BackEndServiceProvider extends ServiceProvider
             }
             $view->with('menu', $menu);
         });
+
+        // Phase 1E-c: the translation panel above every content edit form (one partial, no per-language forms).
+        foreach (\Modules\BackEnd\Helpers\TranslationPanel::VIEWS as $editView => [$panelType, $panelVar]) {
+            View::composer($editView, function ($view) use ($panelType, $panelVar) {
+                $row = $view->getData()[$panelVar] ?? null;
+                if (is_object($row) && !empty($row->id)) {
+                    try {
+                        $view->getFactory()->share('translationPanel', \Modules\BackEnd\Helpers\TranslationPanel::for($panelType, $row));
+                    } catch (\Throwable $e) {
+                        report($e); // never block the editor on the panel
+                    }
+                }
+            });
+        }
 
         View::composer(['backend::layouts.master', 'backend::layouts.popup'], function ($view) {
             $config = [];

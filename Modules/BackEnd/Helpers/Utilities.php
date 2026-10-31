@@ -542,8 +542,9 @@ class Utilities
         switch ($type) {
             case config('backend.groupType.expActivity'):
                 return [
-                    config('backend.groupTabType.expActivity.onboard_activities') => Lang::get('backend::group.onboard_activities', [], $languageCode),
-                    config('backend.groupTabType.expActivity.outdoor_activities') => Lang::get('backend::group.outdoor_activities', [], $languageCode),
+                    // en/vi content keeps its own labels; other content languages use the admin UI language (1E-a).
+                    config('backend.groupTabType.expActivity.onboard_activities') => Lang::get('backend::group.onboard_activities', [], ContentLanguages::labelLocale($languageCode)),
+                    config('backend.groupTabType.expActivity.outdoor_activities') => Lang::get('backend::group.outdoor_activities', [], ContentLanguages::labelLocale($languageCode)),
                 ];
             default:
                 return [];

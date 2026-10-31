@@ -109,7 +109,7 @@
             } catch (\Exception $e) {
                 Logging::logError('Sửa điểm đến lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-                return redirect()->back()->withInput()->withErrors('Sửa điểm đến lỗi!');
+                return redirect()->back()->withInput()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa điểm đến lỗi!'));
             }
         }
 

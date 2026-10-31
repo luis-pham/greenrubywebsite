@@ -97,7 +97,7 @@ class SeoInventory
                 'language_id' => (int) $c->language_id,
                 'keywords' => [$c->name],
                 'intent' => 'C',
-                'url' => ($vi ? '/vi/phong-nghi/' : '/cabin/') . CabinContentService::slug($c->name) . '-' . $c->id . '.html',
+                'url' => ($vi ? '/vi/phong-nghi/' : '/cabin/') . \App\Services\Content\Slugs::of($c) . '-' . $c->id . '.html',
                 'status' => 'live',
                 'label' => $c->name,
                 'entity' => true,

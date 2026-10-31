@@ -33,6 +33,9 @@
             <main class="c-main">
                 <div class="container-fluid">
                     <div class="fade-in">
+                        @isset($translationPanel)
+                            @include('backend::partials.translation-panel', ['panel' => $translationPanel])
+                        @endisset
                         @yield('content')
                     </div>
                 </div>

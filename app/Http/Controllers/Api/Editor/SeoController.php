@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Editor;
 
+use App\Services\Editor\EditorLanguages;
 use App\Services\Seo\KeywordMatcher;
 use App\Services\Seo\SeoGuard;
 use App\Services\Seo\SeoInventory;
@@ -22,14 +23,13 @@ use Modules\BackEnd\Entities\AppArticle;
  */
 class SeoController extends Controller
 {
-    private const LANGS = ['vi' => 1, 'en' => 2];
 
     public function check(Request $request)
     {
         $in = $request->validate([
             'articleId' => 'nullable|integer',
             'planId' => 'nullable|integer',
-            'lang' => 'nullable|in:vi,en',
+            'lang' => ['nullable', Rule::in(array_keys(EditorLanguages::ids()))],
             'keyword' => 'nullable|string|max:255',
             'intent' => 'nullable|in:I,C,T,N',
             'title' => 'nullable|string|max:255',
@@ -48,7 +48,7 @@ class SeoController extends Controller
             if (empty($in['keyword']) || empty($in['lang'])) {
                 throw ValidationException::withMessages(['keyword' => 'Cần từ khóa và ngôn ngữ.']);
             }
-            $candidate = ['language_id' => self::LANGS[$in['lang']], 'keyword' => $in['keyword'], 'secondary' => [],
+            $candidate = ['language_id' => EditorLanguages::require($in['lang']), 'keyword' => $in['keyword'], 'secondary' => [],
                 'intent' => $in['intent'] ?? null, 'title' => $in['title'] ?? '', 'content' => '', 'self' => []];
         }
 
@@ -57,8 +57,8 @@ class SeoController extends Controller
 
     public function owners(Request $request)
     {
-        $lang = $request->input('lang', 'en');
-        $rows = DB::table('app_seo_owner')->where('language_id', self::LANGS[$lang] ?? 2)->orderBy('cluster')->orderBy('keyword')->get();
+        // Phase 1E-e: an unknown language is a 422, never English.
+        $rows = DB::table('app_seo_owner')->where('language_id', EditorLanguages::require((string) $request->input('lang', 'en')))->orderBy('cluster')->orderBy('keyword')->get();
 
         return response()->json(['items' => $rows->map(fn ($o) => self::owner($o))->values()]);
     }
@@ -120,7 +120,7 @@ class SeoController extends Controller
     private function validateOwner(Request $request, ?int $id = null): array
     {
         $in = $request->validate([
-            'lang' => 'required|in:vi,en',
+            'lang' => ['required', Rule::in(array_keys(EditorLanguages::ids()))],
             'keyword' => 'required|string|max:191',
             'intent' => 'nullable|in:I,C,T,N',
             'ownerUrl' => ['nullable', 'string', 'max:255', 'regex:#^/#'],
@@ -133,7 +133,7 @@ class SeoController extends Controller
             'status' => ['required', Rule::in(['active', 'gap', 'retired'])],
             'note' => 'nullable|string|max:4000',
         ]);
-        $languageId = self::LANGS[$in['lang']];
+        $languageId = EditorLanguages::require($in['lang']);
         $key = KeywordMatcher::normalize($in['keyword']);
         $duplicate = DB::table('app_seo_owner')->where('language_id', $languageId)->where('keyword_key', $key)
             ->where('intent', $in['intent'] ?? null)->when($id, fn ($q) => $q->where('id', '!=', $id))->first();
@@ -163,7 +163,7 @@ class SeoController extends Controller
     public static function owner(object $o): array
     {
         return [
-            'id' => (int) $o->id, 'lang' => (int) $o->language_id === 1 ? 'vi' : 'en', 'keyword' => $o->keyword, 'intent' => $o->intent,
+            'id' => (int) $o->id, 'lang' => EditorLanguages::codeOf((int) $o->language_id), 'keyword' => $o->keyword, 'intent' => $o->intent,
             'ownerUrl' => $o->owner_url, 'ownerType' => $o->owner_type, 'pageRole' => $o->page_role, 'cluster' => $o->cluster,
             'pillar' => $o->pillar, 'supportingKeywords' => SeoInventory::list($o->supporting_keywords), 'status' => $o->status, 'note' => $o->note,
         ];

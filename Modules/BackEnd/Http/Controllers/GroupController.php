@@ -175,7 +175,7 @@ class GroupController extends Controller
         } catch (\Exception $e) {
             Logging::logError('Sửa ' . $groupName . ' lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa ' . $groupName . ' lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa ' . $groupName . ' lỗi!'));
         }
     }
 

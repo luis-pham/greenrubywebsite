@@ -10,24 +10,37 @@
                 <use xlink:href="/assets/backend/themes/coreui/vendors/@@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
         </button>
+        {{-- Content language (phase 1E-a): editable languages only, native names, status badge; keeps the current section. --}}
+        @php $listLanguage = $editableLanguages ?? $listLanguage; @endphp
         @if (count($listLanguage) > 0)
             <ul class="c-header-nav">
                 @if (count($listLanguage) > 1)
                     <li class="c-header-nav-item dropdown">
                         <a href="#" class="c-header-nav-link px-0 py-3 px-sm-2" id="btn-change-language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ asset($currentLanguage->image_link) }}" alt="{{ $currentLanguage->code }}" class="img-fluid" />
-                            <span class="ml-2">{{ mb_strlen($currentLanguage->name) < 12 ? $currentLanguage->name : mb_substr($currentLanguage->name, 0, 12) . '...' }}</span> <span class="ml-2"><i class="fas fa-caret-down"></i></span>
+                            @php $currentName = $currentLanguage->native_name ?? $currentLanguage->name; @endphp
+                            <span class="ml-2" title="Ngôn ngữ nội dung">{{ mb_strlen($currentName) < 12 ? $currentName : mb_substr($currentName, 0, 12) . '...' }}</span>
+                            @if (($currentLanguage->site_status ?? 'public') === 'editing')
+                                <span class="badge badge-warning ml-1">Đang biên tập</span>
+                            @endif
+                            <span class="ml-2"><i class="fas fa-caret-down"></i></span>
                         </a>
                         <div class="dropdown-menu py-0" aria-labelledby="btn-change-language">
                             @for ($i = 0; $i < count($listLanguage); $i++)
                                 @php
                                     if ($listLanguage[$i]->id != $currentLanguage->id) {
-                                        $url = route('backend.changeLanguage', ['languageId' => $listLanguage[$i]->id]);
+                                        $url = route('backend.changeLanguage', ['languageId' => $listLanguage[$i]->id, 'return' => '/' . request()->path()]);
                                     } else {
                                         $url = 'javascript:;';
                                     }
+                                    $itemStatus = \App\Services\Locale\LocaleRegistry::status($listLanguage[$i]);
                                 @endphp
-                                <a href="{{ $url }}" class="dropdown-item px-3 py-2">{{ $listLanguage[$i]->name }}</a>
+                                <a href="{{ $url }}" class="dropdown-item px-3 py-2" lang="{{ $listLanguage[$i]->code }}">
+                                    {{ $listLanguage[$i]->native_name ?? $listLanguage[$i]->name }}
+                                    @if ($itemStatus !== 'public')
+                                        <span class="ml-2">@include('backend::partials.locale-status-badge', ['status' => $itemStatus])</span>
+                                    @endif
+                                </a>
                             @endfor
                         </div>
                     </li>
@@ -35,7 +48,7 @@
                     <li class="c-header-nav-item">
                         <a href="javascript:;" class="c-header-nav-link px-0 py-3 px-sm-2">
                             <img src="{{ asset($currentLanguage->image_link) }}" alt="{{ $currentLanguage->code }}" class="img-fluid" />
-                            {{ mb_strlen($currentLanguage->name) < 12 ? $currentLanguage->name : mb_substr($currentLanguage->name, 0, 12) . '...' }}</span>
+                            {{ mb_strlen($currentLanguage->native_name ?? $currentLanguage->name) < 12 ? ($currentLanguage->native_name ?? $currentLanguage->name) : mb_substr($currentLanguage->native_name ?? $currentLanguage->name, 0, 12) . '...' }}</span>
                         </a>
                     </li>
                 @endif

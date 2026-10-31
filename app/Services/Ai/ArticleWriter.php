@@ -2,6 +2,7 @@
 
 namespace App\Services\Ai;
 
+use App\Services\Editor\EditorLanguages;
 use Anthropic\Beta\Messages\BetaRawContentBlockDeltaEvent;
 use Anthropic\Beta\Messages\BetaRawMessageDeltaEvent;
 use Anthropic\Beta\Messages\BetaRawMessageStartEvent;
@@ -59,11 +60,35 @@ class ArticleWriter
         $this->policy = new LinkPolicy();
     }
 
+    /**
+     * The plan's language for an AI draft (phase 1E-e): an editable language with a style guide. Anything else is
+     * refused before any model call, never written in English instead.
+     */
+    public static function draftingLanguage(string $code): string
+    {
+        $lang = strtolower(trim($code)) ?: 'en';
+        if (EditorLanguages::idOf($lang) === null) {
+            throw new RuntimeException("'{$lang}' is not an editable language: no AI draft.");
+        }
+        if (EditorLanguages::styleGuide($lang) === null) {
+            throw new RuntimeException("AI drafting is not available for '{$lang}' yet: add resources/ai/style-guide-{$lang}.md (voice, terminology, official names) first. Nothing was written.");
+        }
+
+        return $lang;
+    }
+
+    private function languageName(string $code): string
+    {
+        $language = \App\Services\Locale\LocaleRegistry::byCode($code);
+
+        return (string) ($language?->getAttribute('english_name') ?: $language?->name ?: $code);
+    }
+
     /** @return int the article id (new, or $existingId when rewriting an existing article in place) */
     public function draft(object $plan, ?int $existingId = null): int
     {
         $this->usage = array_map(fn () => 0, $this->usage);
-        $lang = $plan->lang === 'vi' ? 'vi' : 'en';
+        $lang = self::draftingLanguage((string) $plan->lang);
         $brief = $this->brief($plan);
         $links = $this->linkList($lang);
 
@@ -114,6 +139,13 @@ class ArticleWriter
             . $this->productFacts() . "\n</product_data>";
 
         $blocks = [['type' => 'text', 'text' => $text, 'cacheControl' => ['type' => 'ephemeral', 'ttl' => '1h']]];
+        if (!in_array($lang, ['en', 'vi'], true)) {
+            // Phase 1E-e: another language only with its own style guide (draftingLanguage() refuses otherwise).
+            $name = $this->languageName($lang);
+            $blocks[] = ['type' => 'text', 'cacheControl' => ['type' => 'ephemeral', 'ttl' => '1h'], 'text' =>
+                "The article is written in {$name}. The {$name} style guide below overrides the English style guide for voice, wording, SEO and formatting; the English style guide still governs facts, links, placeholders and HTML.\n\n"
+                . "<{$lang}_style_guide>\n" . file_get_contents(EditorLanguages::styleGuide($lang)) . "\n</{$lang}_style_guide>"];
+        }
         if ($lang === 'vi') {
             // Second cached block for Vietnamese work: the shared prefix above stays cached for both languages.
             $blocks[] = ['type' => 'text', 'cacheControl' => ['type' => 'ephemeral', 'ttl' => '1h'], 'text' =>
@@ -154,14 +186,15 @@ class ArticleWriter
             foreach ($locs[1] as $loc) {
                 $path = rtrim(parse_url(trim($loc), PHP_URL_PATH) ?: '/', '/') ?: '/';
                 $isVi = $path === '/vi' || str_starts_with($path, '/vi/');
-                if (($lang === 'vi') === $isVi) {
+                $isOther = $lang !== 'en' && $lang !== 'vi' && ($path === "/{$lang}" || str_starts_with($path, "/{$lang}/"));
+                if ($isOther || (in_array($lang, ['en', 'vi'], true) && ($lang === 'vi') === $isVi)) {
                     $paths[$path] = $this->titleFromPath($path);
                 }
             }
         }
         $articles = AppArticle::leftJoin('app_category', 'app_category.id', '=', 'app_article.category_id')
             ->where('app_article.is_published', 1)->where('app_article.publish_date', '<=', now())
-            ->where('app_article.language_id', ArticleController::LANGS[$lang])
+            ->where('app_article.language_id', EditorLanguages::require($lang))
             ->get(['app_article.title', 'app_article.slug', 'app_article.language_id', 'app_category.slug as category_slug']);
         foreach ($articles as $a) {
             if ($url = ArticleController::url($a)) {
@@ -225,7 +258,11 @@ class ArticleWriter
 
         return implode("\n", array_filter([
             "Plan item: {$plan->code} ({$plan->kind}) in pillar \"{$plan->pillar_name}\"",
-            'Language: ' . ($plan->lang === 'vi' ? 'Vietnamese (write the whole article in Vietnamese)' : 'English'),
+            'Language: ' . match (strtolower((string) $plan->lang)) {
+                'vi' => 'Vietnamese (write the whole article in Vietnamese)',
+                'en', '' => 'English',
+                default => $this->languageName((string) $plan->lang) . ' (write the whole article in ' . $this->languageName((string) $plan->lang) . ')',
+            },
             "Working title: {$plan->title}",
             "Primary keyword: {$plan->primary_kw}",
             "Secondary keywords: {$plan->secondary_kw}",
@@ -501,7 +538,7 @@ class ArticleWriter
 
     private function save(object $plan, string $lang, array $d, string $html, ?int $existingId, array $meta): int
     {
-        $langId = ArticleController::LANGS[$lang];
+        $langId = EditorLanguages::require($lang);
         $categoryId = $plan->category_slug
             ? DB::table('app_category')->where('type', config('backend.categoryType.article'))->where('language_id', $langId)->where('slug', $plan->category_slug)->value('id')
             : null;

@@ -189,7 +189,7 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             Logging::logError('Sửa chuyên mục ' . $categoryName . ' lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa chuyên mục ' . $categoryName . ' lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa chuyên mục ' . $categoryName . ' lỗi!'));
         }
     }
 

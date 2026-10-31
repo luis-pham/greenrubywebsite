@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Editor;
 
+use App\Services\Editor\EditorLanguages;
 use App\Services\Seo\SeoGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -38,6 +39,18 @@ class PlanController extends Controller
             'items.*.title' => 'required|string|max:255',
         ]);
         $items = $request->input('items');
+        // Phase 1E-e: an item's language must be an editable one; an unknown language is refused, never turned into en.
+        $editable = array_keys(EditorLanguages::ids());
+        $invalid = [];
+        foreach ($items as $n => $i) {
+            $code = strtolower(trim((string) ($i['lang'] ?? ''))) ?: 'en'; // missing = en (the default), as before
+            if (!in_array($code, $editable, true)) {
+                $invalid[] = ($i['code'] ?? '#' . ($n + 1)) . ': ' . ($i['lang'] ?? '');
+            }
+        }
+        if ($invalid !== []) {
+            throw ValidationException::withMessages(['items' => 'Ngôn ngữ không hợp lệ (' . implode(', ', $invalid) . '). Chọn một trong: ' . implode(', ', $editable) . '.']);
+        }
 
         $created = 0;
         $updated = 0;
@@ -47,7 +60,7 @@ class PlanController extends Controller
                     'pillar' => $i['pillar'],
                     'pillar_name' => $i['pillarName'] ?? null,
                     'kind' => ($i['kind'] ?? 'cluster') === 'pillar' ? 'pillar' : 'cluster',
-                    'lang' => ($i['lang'] ?? 'en') === 'vi' ? 'vi' : 'en',
+                    'lang' => strtolower(trim((string) ($i['lang'] ?? ''))) ?: 'en',
                     'category_slug' => $i['categorySlug'] ?? null,
                     'title' => $i['title'],
                     'primary_kw' => $i['primaryKw'] ?? null,
@@ -190,7 +203,7 @@ class PlanController extends Controller
             return response()->json(['message' => 'Từ khóa của mục này đã có URL sở hữu.', 'seo' => $gate['report'], 'canOverride' => $gate['canOverride']], 409);
         }
 
-        $lang = ArticleController::LANGS[$plan->lang] ?? 2;
+        $lang = EditorLanguages::require($plan->lang);
         $categoryId = $plan->category_slug
             ? DB::table('app_category')->where('type', config('backend.categoryType.article'))
                 ->where('language_id', $lang)->where('slug', $plan->category_slug)->value('id')

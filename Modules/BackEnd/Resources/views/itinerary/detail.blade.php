@@ -74,6 +74,7 @@
                                         )
                                     }}
                                 </div>
+                                @include('backend::partials.seo-fields', ['row' => $itinerary ?? null])
                                 <div class="form-group col-12 col-lg-6">
                                     <label class="col-form-label">Thời lượng</label>
                                     {{

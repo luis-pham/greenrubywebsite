@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Api\Editor;
 
+use App\Services\Locale\LocaleRegistry;
+use App\Services\Content\PathBuilder;
+use App\Services\Content\TranslationFactory;
+use App\Services\Editor\EditorLanguages;
 use App\Support\NewsCategory;
 use App\Services\Content\ContentTranslations;
 use App\Services\Seo\SeoGuard;
@@ -24,6 +28,7 @@ use Modules\BackEnd\Services\AppArticleService;
  */
 class ArticleController extends Controller
 {
+    /** @deprecated phase 1E-e: languages come from the registry (EditorLanguages); kept for en/vi callers. */
     public const LANGS = ['vi' => 1, 'en' => 2];
     /** verified | ops (needs operations confirmation) | design (design estimate) | na (not available yet). */
     public const EVIDENCE = ['verified', 'ops', 'design', 'na'];
@@ -39,8 +44,9 @@ class ArticleController extends Controller
                 DB::raw('(app_article.ai_meta IS NOT NULL) as ai_draft'),
                 'app_category.name as category_name', 'app_category.slug as category_slug', 'app_article_plan.code as plan_code');
 
-        if ($lang = self::LANGS[$request->query('lang')] ?? null) {
-            $q->where('app_article.language_id', $lang);
+        if ($request->filled('lang')) {
+            // Phase 1E-e: any editable language; an unknown one is a 422, never "all languages".
+            $q->where('app_article.language_id', EditorLanguages::require((string) $request->query('lang')));
         }
         if ($request->query('ai')) {
             $q->whereNotNull('app_article.ai_meta');
@@ -80,10 +86,8 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $lang = self::LANGS[$request->input('lang')] ?? null;
-        if (!$lang) {
-            throw ValidationException::withMessages(['lang' => 'Chọn ngôn ngữ (vi hoặc en).']);
-        }
+        $lang = EditorLanguages::require(is_string($request->input('lang')) ? $request->input('lang') : null);
+        self::guardTranslation($lang, 'edit');
 
         $a = new AppArticle();
         $a->language_id = $lang;
@@ -105,6 +109,10 @@ class ArticleController extends Controller
     {
         $a = self::findOrFail($id);
         $wasLive = self::status($a) !== 'draft';
+        self::guardTranslation((int) $a->language_id, 'edit');
+        if ($request->has('isPublished') && $request->boolean('isPublished') !== ((int) $a->is_published === 1)) {
+            self::guardTranslation((int) $a->language_id, 'publish');
+        }
         $this->fill($a, $request);
         // Publishing guard (docs/seo-audit/14, G3): going live with a keyword another URL owns needs an
         // override with a reason by an allowed role; the decision is logged either way.
@@ -128,6 +136,7 @@ class ArticleController extends Controller
     {
         $a = self::findOrFail($id);
         $wasLive = self::status($a) !== 'draft';
+        self::guardTranslation((int) $a->language_id, $wasLive ? 'publish' : 'edit');
         DB::transaction(function () use ($a) {
             DB::table('content_translations')->where('entity_type', 'article')->where('entity_id', $a->id)->delete();
             DB::table('app_article_plan')->where('article_id', $a->id)->update(['article_id' => null, 'updated_at' => now()]);
@@ -141,10 +150,37 @@ class ArticleController extends Controller
         return response()->json(['ok' => true]);
     }
 
-    /** Creates (or returns) the draft in the other language, linked as its translation. */
-    public function translate(int $id)
+    /**
+     * Creates (or returns) a translation draft. en↔vi without `target`: the other language, as before. Any other
+     * target language (phase 1E-e): TranslationFactory (unpublished text draft in the source's translation group,
+     * category mapped, workflow draft); an AI draft is a separate, explicit step and never publishes.
+     */
+    public function translate(Request $request, int $id)
     {
         $a = self::findOrFail($id);
+        $sourceLanguage = LocaleRegistry::byId((int) $a->language_id);
+        $target = $request->input('target');
+        if ($target !== null || !$sourceLanguage || !LocaleRegistry::isLegacy($sourceLanguage)) {
+            $targetId = EditorLanguages::require(is_string($target) ? $target : null, 'target');
+            $targetLanguage = LocaleRegistry::byId($targetId);
+            if (!LocaleRegistry::isLegacy($targetLanguage)) {
+                self::guardTranslation($targetId, 'edit');
+                if ($existing = TranslationFactory::existingTranslation('article', (int) $a->id, $targetId)) {
+                    return response()->json(['article' => self::detail(self::findOrFail($existing))]);
+                }
+                try {
+                    $created = TranslationFactory::create('article', (int) $a->id, $targetLanguage, auth()->id());
+                } catch (\RuntimeException $e) {
+                    throw ValidationException::withMessages(['target' => $e->getMessage()]);
+                }
+                Logging::logInfo('Editor: tạo bản dịch nháp.', 'id = ' . $a->id . ' -> ' . $created['id'] . ' (' . $targetLanguage->code . ')');
+
+                return response()->json(['article' => self::detail(self::findOrFail($created['id']))], 201);
+            }
+            if ((int) $targetId === (int) $a->language_id) {
+                throw ValidationException::withMessages(['target' => 'Bản dịch phải khác ngôn ngữ.']);
+            }
+        }
         $otherLang = (int) $a->language_id === 1 ? 2 : 1;
         if ($existing = ContentTranslations::linkedId('article', $a->id, $otherLang)) {
             return response()->json(['article' => self::detail(self::findOrFail($existing))]);
@@ -174,6 +210,7 @@ class ArticleController extends Controller
     public function link(Request $request, int $id)
     {
         $a = self::findOrFail($id);
+        self::guardTranslation((int) $a->language_id, 'edit');
         $other = $request->input('otherId');
         if ($other) {
             $b = self::findOrFail((int) $other);
@@ -194,9 +231,14 @@ class ArticleController extends Controller
         $rows = DB::table('app_category')->where('type', config('backend.categoryType.article'))
             ->where('slug', '!=', 'root')->orderBy('language_id')->orderBy('lft')
             ->get(['id', 'language_id', 'name', 'slug', 'lvl']);
-        $out = ['vi' => [], 'en' => []];
+        // Keyed by every editable language (vi, en as before; ja… once editable).
+        $out = array_fill_keys(array_keys(EditorLanguages::ids()), []);
         foreach ($rows as $r) {
-            $out[array_search((int) $r->language_id, self::LANGS, true) ?: 'vi'][] = [
+            $code = EditorLanguages::codeOf((int) $r->language_id);
+            if ($code === null || !array_key_exists($code, $out)) {
+                continue;
+            }
+            $out[$code][] = [
                 'id' => (int) $r->id, 'name' => $r->name, 'slug' => $r->slug, 'level' => (int) $r->lvl,
             ];
         }
@@ -282,6 +324,22 @@ class ArticleController extends Controller
         return $a;
     }
 
+    /**
+     * Workflow-controlled languages (1E hardening) need the admin's translation privileges here too: writing needs
+     * translation-edit, changing publication needs translation-publish. en/vi articles are not checked (unchanged).
+     */
+    private static function guardTranslation(int $languageId, string $privilege): void
+    {
+        $language = LocaleRegistry::byId($languageId);
+        if (!$language || LocaleRegistry::isLegacy($language)) {
+            return;
+        }
+        $user = Auth::guard('admin')->user();
+        if (!$user || !$user->hasAccess('translation', $privilege)) {
+            abort(response()->json(['message' => "Bạn chưa có quyền translation-{$privilege} cho bản {$language->code}."], 403));
+        }
+    }
+
     public static function status($a): string
     {
         if ((int) $a->is_published !== 1) {
@@ -298,6 +356,11 @@ class ArticleController extends Controller
             return null;
         }
 
+        $language = LocaleRegistry::byId((int) $a->language_id);
+        if ($language && !LocaleRegistry::isLegacy($language)) {
+            return rtrim((string) config('app.url'), '/') . PathBuilder::article($language, (string) $a->category_slug, (string) $a->slug);
+        }
+
         return NewsCategory::publicUrl(((int) $a->language_id === 1 ? '/vi' : '') . '/blog/' . $a->category_slug . '/' . $a->slug . '.html');
     }
 
@@ -308,8 +371,14 @@ class ArticleController extends Controller
 
     private static function summary($a): array
     {
-        $lang = array_search((int) $a->language_id, self::LANGS, true);
-        [$linked, $translationId] = ContentTranslations::lookup('article', (int) $a->id, $lang === 'vi' ? 2 : 1);
+        $lang = EditorLanguages::codeOf((int) $a->language_id);
+        if ($lang === 'vi' || $lang === 'en') {
+            [$linked, $translationId] = ContentTranslations::lookup('article', (int) $a->id, $lang === 'vi' ? 2 : 1);
+        } else {
+            // A new language's "translation" is the source it was translated from (phase 1E-e).
+            $translationId = DB::table('translation_meta')->where('entity_type', 'article')->where('entity_id', $a->id)->value('source_entity_id');
+            [$linked, $translationId] = [$translationId !== null, $translationId === null ? null : (int) $translationId];
+        }
 
         return [
             'id' => (int) $a->id,
@@ -338,7 +407,7 @@ class ArticleController extends Controller
         $plan = DB::table('app_article_plan')->where('article_id', $a->id)->first();
         $translation = null;
         if ($out['translationId'] && ($t = self::findOrFail($out['translationId']))) {
-            $translation = ['id' => (int) $t->id, 'lang' => array_search((int) $t->language_id, self::LANGS, true),
+            $translation = ['id' => (int) $t->id, 'lang' => EditorLanguages::codeOf((int) $t->language_id),
                 'title' => $t->title, 'status' => self::status($t), 'url' => self::url($t)];
         }
 
@@ -352,7 +421,38 @@ class ArticleController extends Controller
             'translation' => $translation,
             'aiMeta' => $a->ai_meta ? json_decode($a->ai_meta, true) : null,
             'plan' => $plan ? PlanController::item($plan) : null,
+        ] + self::editorial($a);
+    }
+
+    /**
+     * Phase 1E-e (additive): workflow, freshness, the source text to translate against, and a pending revision of a
+     * published translation. null for en/vi rows (no workflow), so their payload is unchanged apart from the keys.
+     */
+    private static function editorial(AppArticle $a): array
+    {
+        $tm = DB::table('translation_meta')->where('entity_type', 'article')->where('entity_id', $a->id)->first();
+        if (!$tm) {
+            return ['workflow' => null, 'freshness' => null, 'source' => null, 'pendingRevision' => null];
+        }
+        $src = $tm->source_entity_id ? DB::table('app_article')->where('id', $tm->source_entity_id)->first() : null;
+        $revision = \App\Services\Content\Workflow::pendingRevision('article', (int) $a->id);
+
+        return [
+            'workflow' => $tm->workflow,
+            'freshness' => \App\Services\Content\Freshness::status('article', (int) $a->id),
+            'source' => $src ? [
+                'id' => (int) $src->id, 'lang' => EditorLanguages::codeOf((int) $src->language_id), 'title' => $src->title,
+                'subTitle' => $src->sub_title, 'lead' => $src->lead, 'content' => $src->content ?? '',
+                'seoTitle' => $src->seo_title, 'seoDescription' => $src->seo_description, 'focusKeyword' => $src->focus_keyword,
+            ] : null,
+            'pendingRevision' => $revision ? ['id' => (int) $revision->id, 'workflow' => $revision->workflow, 'fields' => json_decode($revision->fields, true)] : null,
         ];
+    }
+
+    /** GET /api/v1/editor/locales: the editable languages, their status, AI drafting support and SEO limits. */
+    public function locales()
+    {
+        return response()->json(['locales' => EditorLanguages::describe()]);
     }
 
     /**

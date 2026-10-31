@@ -50,13 +50,33 @@ Route::prefix('admincp')->middleware('auth:admin')->group(function () {
     Route::get('/logging', 'LoggingController@index')->name('backend.logging.index')->middleware('can:logging-read');
     Route::get('/logging/show/{id}', 'LoggingController@show')->name('backend.logging.show')->middleware('can:logging-read');
 
-    Route::get('/translation', 'TranslationController@index')->name('backend.translation.index')->middleware('can:config-update');
+    // Phase 1E-a: locale registry (status changes are POST-only with a typed confirmation and a reason).
+    Route::get('/language', 'LanguageController@index')->name('backend.language.index')->middleware('can:locale-update');
+    Route::post('/language/{id}/display', 'LanguageController@updateDisplay')->where('id', '[0-9]+')->name('backend.language.updateDisplay')->middleware('can:locale-update');
+    Route::post('/language/{id}/status', 'LanguageController@updateStatus')->where('id', '[0-9]+')->name('backend.language.updateStatus')->middleware('can:locale-update');
+
+    // Matrix: translation-edit; the legacy EN/VI pairing view (?view=pairs) and its POST keep config-update (controller).
+    Route::get('/translation', 'TranslationController@index')->name('backend.translation.index');
     Route::post('/translation', 'TranslationController@update')->name('backend.translation.update')->middleware('can:config-update');
+    // Phase 1E-d: editorial workflow (review steps, publish/unpublish, revisions) and authenticated preview.
+    // Each workflow action checks its own privilege (Workflow::refusal): translation-edit/approve/seo-approve/legal-approve/publish.
+    Route::post('/workflow', 'WorkflowController@transition')->name('backend.workflow.transition');
+    Route::post('/preview', 'PreviewController@start')->name('backend.preview.start')->middleware('can:translation-edit');
+    // Phase 1E-c: explicit URL change (SlugService: same validator, history and 308 redirects as content:slug).
+    Route::post('/slug', 'SlugController@change')->name('backend.slug.change')->middleware('can:slug-update');
+    // Phase 1E-b: N-language matrix actions (every link change is transactional and logged).
+    Route::post('/translation/create', 'TranslationController@create')->name('backend.translation.create')->middleware('can:translation-edit');
+    Route::post('/translation/attach', 'TranslationController@attach')->name('backend.translation.attach')->middleware('can:translation-edit');
+    Route::post('/translation/detach', 'TranslationController@detach')->name('backend.translation.detach')->middleware('can:translation-edit');
+    Route::get('/translation/history', 'TranslationController@history')->name('backend.translation.history')->middleware('can:translation-edit');
+    Route::post('/translation/undo', 'TranslationController@undo')->name('backend.translation.undo')->middleware('can:translation-edit');
+    Route::post('/translation/confirm-fresh', 'TranslationController@confirmFresh')->name('backend.translation.confirmFresh')->middleware('can:translation-edit');
 });
 
 Route::prefix('admincp')->middleware(['auth:admin', 'language.backend'])->group(function () {
-    $listLanguage = AdLanguageService::getAll();
-    $listLanguageCode = implode('|', $listLanguage->where('is_default', false)->pluck('code')->toArray());
+    // Content-language routes exist for editable languages only (phase 1E-a): a disabled language has no admin pages.
+    $listLanguage = \Modules\BackEnd\Helpers\ContentLanguages::editable();
+    $listLanguageCode = implode('|', array_map(fn ($code) => preg_quote($code, '/'), $listLanguage->where('is_default', false)->pluck('code')->toArray()));
 
     Route::get('/', 'IndexController@index')->name('backend.index');
     Route::get('/{languageCode}', 'IndexController@index')->where('languageCode', $listLanguageCode)->name(Utilities::bindRouteNameMultiLanguage('backend.index'));

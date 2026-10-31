@@ -161,7 +161,7 @@ class AmenityController extends Controller
         } catch (\Exception $e) {
             Logging::logError('Sửa tiện ích lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors('Sửa tiện ích lỗi!');
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, 'Sửa tiện ích lỗi!'));
         }
     }
 

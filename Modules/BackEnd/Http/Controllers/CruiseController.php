@@ -131,7 +131,7 @@ class CruiseController extends Controller
         }
         catch(\Exception $ex){
             Logging::logError("Cập nhật du thuyền lỗi. ", "Exception = " . $ex->getMessage());
-            return redirect()->back()->withInput()->withErrors("Cập nhật du thuyền lỗi!");
+            return redirect()->back()->withInput()->withErrors(\App\Services\Content\EditorialRefusal::message($ex, "Cập nhật du thuyền lỗi!"));
         }
     }
 

@@ -186,6 +186,7 @@ class AppCruiseService
     }
 
     public static function storeItinerary($id,$languageId,$data){
+        \App\Services\Content\BusinessFields::assertInventoryWritable((int) $languageId, 'lịch khởi hành');
         return DB::transaction(function () use ($id,$languageId,$data){
             $cruise = AppCruiseService::find($id,$languageId);
             $cruise->itineraries()->attach($data['itinerary_id'],['start_at' => $data['start_at']]);
@@ -193,6 +194,7 @@ class AppCruiseService
    }
 
    public static function updateItinerary($id,$languageId,$data){
+        \App\Services\Content\BusinessFields::assertInventoryWritable((int) $languageId, 'lịch khởi hành');
         return DB::transaction(function () use ($id,$languageId,$data){
             $cruise = AppCruiseService::find($id,$languageId);
             $cruise->itineraries()->sync($data);
@@ -200,6 +202,7 @@ class AppCruiseService
    }
 
    public static function deleteItinerary($id,$languageId,$data){
+        \App\Services\Content\BusinessFields::assertInventoryWritable((int) $languageId, 'lịch khởi hành');
         DB::transaction(function () use ($id,$languageId,$data){
             AppCruiseItinerary::query()
                 ->where('cruise_id', $id)

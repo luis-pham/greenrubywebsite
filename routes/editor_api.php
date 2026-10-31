@@ -18,6 +18,7 @@ Route::middleware('editor.auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
 
+    Route::get('/locales', [ArticleController::class, 'locales']);
     Route::get('/categories', [ArticleController::class, 'categories']);
     Route::get('/articles', [ArticleController::class, 'index']);
     Route::post('/articles', [ArticleController::class, 'store']);

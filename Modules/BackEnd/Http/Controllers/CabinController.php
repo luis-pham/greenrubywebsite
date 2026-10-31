@@ -277,7 +277,7 @@ class CabinController extends Controller
         } catch (\Exception $e) {
             Logging::logError('Sửa cabin lỗi.', 'id = ' . $id . '. Exception = ' . $e->getMessage());
 
-            return redirect()->back()->withErrors(__('backend::cabin.msg_update_error'));
+            return redirect()->back()->withErrors(\App\Services\Content\EditorialRefusal::message($e, __('backend::cabin.msg_update_error')));
         }
     }
 

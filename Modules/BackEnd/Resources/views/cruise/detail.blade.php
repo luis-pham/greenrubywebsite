@@ -76,6 +76,7 @@
                                         {{--                                        <div class="invalid-feedback">{{ $message }}</div>--}}
                                         {{--                                    @enderror--}}
                                     </div>
+                                    @include('backend::partials.seo-fields', ['row' => $cruise ?? null])
                                     <div class="form-group col-12 col-xl-4">
                                         <label class="col-form-label">Hạng (số sao)</label>
                                         {!!
