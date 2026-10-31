@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Log;
  * TranslatableFields draft through TranslationFactory (unpublished). Rows are never created otherwise: run
  * i18n:seed-locale for pages, menus, config and structural groups. Creating an article category needs --actor (an
  * existing, active admin user: AppCategoryService stamps created_by); without it those rows are missing_target.
- * Entity content drafts (cruise, cabin, itinerary, destination) are imported by i18n:import-content.
+ * Entity content drafts (cruise, cabin, itinerary, destination, experience, FAQ group, FAQ) are imported by i18n:import-content.
  *
  * Refused for en/vi and for a language not in status 'editing'. --apply is refused unless the connection is a local
  * green_ruby_i18n_* clone (or the test database); production use needs --i-know-this-is-production and a separate

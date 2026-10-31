@@ -35,7 +35,8 @@ class ImportContentTest extends EditorialTestCase
     /** Adds an item whose source hashes are taken from the current English rows. */
     private function item(string $type, int $enId, array $fields, array $children = [], string $status = 'PENDING_REVIEW', ?string $slug = null, array $extra = []): void
     {
-        $table = ['cruise' => 'app_cruise', 'cabin' => 'app_cabin', 'itinerary' => 'app_itinerary', 'destination' => 'app_destination'][$type];
+        $table = ['cruise' => 'app_cruise', 'cabin' => 'app_cabin', 'itinerary' => 'app_itinerary', 'destination' => 'app_destination',
+            'experience' => 'app_exp_activity', 'faq_group' => 'app_group', 'faq' => 'app_faq'][$type];
         $en = DB::table($table)->find($enId);
         $hashes = [];
         foreach ($fields as $column => $value) {
@@ -127,6 +128,37 @@ class ImportContentTest extends EditorialTestCase
         [, , $counts] = $this->import(['--create-missing' => true, '--apply' => true, '--actor' => 2]);
         $this->assertSame(['skipped' => 4], $counts);
         $this->assertEquals($after, $this->snapshot(), 'idempotent: nothing written the second time');
+    }
+
+    public function test_experiences_faq_groups_and_faq_items_are_imported_as_unpublished_drafts(): void
+    {
+        DB::table('app_exp_activity')->insert(['id' => 8, 'language_id' => 2, 'cruise_id' => 3, 'name' => 'Kayaking', 'summary' => 'Paddle the lagoons',
+            'note' => '["Relaxing"]', 'duration' => '60', 'start_time' => '15:30', 'end_time' => '16:30', 'slug' => 'kayaking', 'publish_state' => 'published',
+            'created_at' => now(), 'created_by' => 1]);
+        DB::table('app_exp_activity')->insert(['id' => 9, 'language_id' => 1, 'cruise_id' => 1, 'name' => 'Chèo kayak', 'summary' => 'Chèo thuyền',
+            'note' => '["Thư giãn"]', 'duration' => '60', 'start_time' => '15:30', 'end_time' => '16:30', 'slug' => 'cheo-kayak', 'publish_state' => 'published',
+            'created_at' => now(), 'created_by' => 1]);
+        \App\Services\Content\ContentTranslations::link('experience', [8, 9]);
+        $this->item('experience', 8, ['name' => 'カヤック', 'summary' => 'ラグーンを漕ぐ', 'note' => '["リラックス"]'], [], 'PENDING_REVIEW', 'kayaking');
+        $this->item('faq_group', 57, ['name' => 'ご予約'], [], 'PENDING_REVIEW', 'bookings');
+        $this->item('faq', 1, ['question' => 'キャンセルできますか？', 'answer' => 'はい']);
+
+        [, $rows, $counts] = $this->import(['--create-missing' => true]);
+        $this->assertSame(['created' => 3], $counts, json_encode($rows, JSON_UNESCAPED_UNICODE));
+
+        [, $rows, $counts] = $this->import(['--create-missing' => true, '--apply' => true, '--actor' => 2]);
+        $this->assertSame(['created' => 3], $counts, json_encode($rows, JSON_UNESCAPED_UNICODE));
+        $exp = DB::table('app_exp_activity')->find($rows['experience:8']['target']['id']);
+        $this->assertSame(['カヤック', 'ラグーンを漕ぐ', '["リラックス"]', 'unpublished', 'kayaking', '15:30'],
+            [$exp->name, $exp->summary, $exp->note, $exp->publish_state, $exp->slug, substr((string) $exp->start_time, 0, 5)]);
+        $group = DB::table('app_group')->find($rows['faq_group:57']['target']['id']);
+        $this->assertSame(['ご予約', 'unpublished', 'bookings', 1], [$group->name, $group->publish_state, $group->slug, (int) $group->type]);
+        $faq = DB::table('app_faq')->find($rows['faq:1']['target']['id']);
+        $this->assertSame(['キャンセルできますか？', 'はい', 'unpublished', (int) $group->id], [$faq->question, $faq->answer, $faq->publish_state, (int) $faq->group_id]);
+        $this->assertSame('Kayaking', DB::table('app_exp_activity')->find(8)->name, 'English untouched');
+
+        [, , $counts] = $this->import(['--create-missing' => true, '--apply' => true, '--actor' => 2]);
+        $this->assertSame(['skipped' => 3], $counts);
     }
 
     public function test_conflict_when_the_english_source_changed_nothing_of_the_item_is_written(): void
