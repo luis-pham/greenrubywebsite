@@ -76,6 +76,9 @@ final class IntlMenuUrls
 
             return $id ? self::detail('article', (int) $id, $language) : null;
         }
+        if ($segments[0] === 'faq' && count($segments) === 2) {
+            return self::faqGroup($segments[1], $language);
+        }
         if (isset(self::GUIDES[trim($path, '/')])) {
             $section = self::GUIDES[trim($path, '/')];
 
@@ -88,6 +91,21 @@ final class IntlMenuUrls
         }
 
         return null; // category/group pages, legal, booking…: the English page
+    }
+
+    /** An English FAQ group page → the language's group page, while it is public and lists a question. */
+    private static function faqGroup(string $englishSlug, AdLanguage $language): ?string
+    {
+        $type = config('backend.groupType.faq');
+        $id = DB::table('app_group')->where('language_id', LocaleRegistry::defaultLanguage()->id)->where('type', $type)->where('slug', $englishSlug)->value('id');
+        $linked = $id ? ContentTranslations::linkedId('faq_group', (int) $id, (int) $language->id) : null;
+        $group = $linked ? \Modules\BackEnd\Entities\AppGroup::where('id', $linked)->where('publish_state', 'published')->first() : null;
+        if (!$group || !preg_match('/^[a-z0-9]+(-[a-z0-9]+)*$/', (string) $group->slug) || !IntlSitemap::hubOpen($language, 'faq')
+            || !\Modules\BackEnd\Entities\AppFaq::where('group_id', $group->id)->exists()) {
+            return null;
+        }
+
+        return PathBuilder::faqGroup($language, $group->slug);
     }
 
     private static function detail(string $type, int $englishId, AdLanguage $language): ?string

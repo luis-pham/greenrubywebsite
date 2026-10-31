@@ -95,4 +95,33 @@ class IntlMenuUrlsTest extends EditorialTestCase
         $this->assertContains(url('/ja/guides/first-time-halong-bay-cruise'), $locs);
         $this->assertNotContains(url('/ja/guides/hanoi-to-halong-bay'), $locs);
     }
+
+    public function test_english_links_in_japanese_rich_text_go_to_the_public_japanese_pages(): void
+    {
+        $id = $this->jaCruise();
+        $this->makeJaPublic();
+        $html = '<p><a href="/cruise/green-ruby-1-3.html#cabins">ship</a> <a href="/faq">faq</a> <a href="/ja/contact">x</a>'
+            . ' <a href="https://example.com/a">e</a> <img src="/upload/a.jpg"> <a href=\'/cruise/green-ruby-1-3.html\'>q</a></p>';
+        $out = \App\Http\Middleware\IntlContentLinks::localize($html, $this->ja(), '/ja');
+        $this->assertStringContainsString("href=\"/ja/cruise/green-ruby-1-{$id}.html#cabins\"", $out);
+        $this->assertStringContainsString("href='/ja/cruise/green-ruby-1-{$id}.html'", $out);
+        $this->assertStringContainsString('href="/faq"', $out, 'no Japanese FAQ: English kept');
+        $this->assertStringContainsString('href="/ja/contact"', $out, 'already Japanese: untouched');
+        $this->assertStringContainsString('href="https://example.com/a"', $out);
+        $this->assertStringContainsString('src="/upload/a.jpg"', $out);
+    }
+
+    public function test_faq_group_links_go_to_the_japanese_group_once_it_has_questions(): void
+    {
+        $this->artisan('i18n:seed-locale', ['code' => 'ja'])->assertSuccessful();
+        $this->makeJaPublic();
+        $ja = $this->ja();
+        $this->assertSame('/faq/bookings', IntlMenuUrls::resolve('/faq/bookings', $ja), 'no Japanese group yet');
+
+        $group = TranslationFactory::create('faq_group', 57, $ja, 1)['id'];
+        DB::table('app_group')->where('id', $group)->update(['slug' => 'bookings', 'publish_state' => 'published']);
+        $faq = TranslationFactory::create('faq', 1, $ja, 1)['id'];
+        DB::table('app_faq')->where('id', $faq)->update(['publish_state' => 'published']);
+        $this->assertSame('/ja/faq/bookings', IntlMenuUrls::resolve('/faq/bookings', $ja));
+    }
 }
