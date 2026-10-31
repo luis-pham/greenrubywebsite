@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Payments\PriceList;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Modules\BackEnd\Entities\AdLanguage;
@@ -62,7 +63,7 @@ class CabinContentService
     {
         return [
             'id' => (int) $cabin->id,
-            'slug' => self::slug($cabin->name),
+            'slug' => Slugs::of($cabin),
             'name' => $cabin->name,
             'summary' => $cabin->summary,
             'image' => self::fileLink($cabin->image_link),
@@ -112,7 +113,7 @@ class CabinContentService
 
         return [
             'id' => $cabinId,
-            'slug' => self::slug($cabin->name),
+            'slug' => Slugs::of($cabin),
             'name' => $cabin->name,
             'summary' => $cabin->summary,
             'contentHtml' => safe_html($cabin->content) ?? '',
@@ -133,8 +134,10 @@ class CabinContentService
             'amenities' => $amenities,
             'suitableFor' => $suitableFor,
             'pricing' => self::pricing($cabin, $language),
+            // The row a booking from this page uses (itself for en/vi; the linked EN row for ja: PriceList).
+            'booking' => ['cabinId' => PriceList::inventoryId('cabin', (int) $cabin->id, (int) $language->id)],
             'cruise' => $cruise
-                ? ['id' => (int) $cruise->id, 'name' => $cruise->name, 'slug' => self::slug($cruise->name)]
+                ? ['id' => (int) $cruise->id, 'name' => $cruise->name, 'slug' => Slugs::of($cruise)]
                 : null,
             'otherCabins' => $otherCabins,
             // seo_title ?: "{cabin} · {ship}" (what the frontend showed before the column existed); seo_description ?: summary.
@@ -144,6 +147,8 @@ class CabinContentService
                 'description' => ItineraryContentService::clean($cabin->seo_description) ?? ItineraryContentService::clean($cabin->summary),
             ],
             'alternate' => self::alternate($cabin, $language),
+            // Every published counterpart in every effectively public language (phase 1C-4, additive).
+            'alternates' => TranslationResolver::alternates('cabin', $cabin),
             'updatedAt' => self::isoDate($cabin->getRawOriginal('updated_at') ?: $cabin->getRawOriginal('created_at')),
         ];
     }
@@ -155,13 +160,16 @@ class CabinContentService
     public static function pricing(AppCabin $cabin, AdLanguage $language): array
     {
         $showPublic = (bool) config('frontend.showPublicPrices', false);
-        $currency = strtolower((string) $language->code) === 'vi' ? 'VND' : 'USD';
+        // Currency and prices come from the price list (en USD, vi VND; ja shows the English rows), never
+        // from the display language itself.
+        $currency = PriceList::displayCurrency((string) $language->code);
+        $priceCabinId = PriceList::inventoryId('cabin', (int) $cabin->id, (int) $language->id);
 
-        if (!$showPublic) {
+        if (!$showPublic || $priceCabinId === null) {
             return ['showPublic' => false, 'currency' => $currency, 'fromPrice' => null, 'matrix' => []];
         }
 
-        $prices = AppCabinPrice::where('cabin_id', $cabin->id)
+        $prices = AppCabinPrice::where('cabin_id', $priceCabinId)
             ->orderBy('duration')
             ->orderBy('guest')
             ->get(['duration', 'guest', 'price']);

@@ -35,6 +35,10 @@ class FaqContentService
                 if ($localized && $localized->slug && $localized->slug !== 'root') {
                     return ['redirect' => ['group' => $localized->slug, 'page' => $page > 1 ? $page : null]];
                 }
+                // A renamed FAQ group: its old slug redirects to the current one (phase 1C-3, app_slug_history).
+                if ($moved = SlugHistory::movedSlug('faq_group', $languageId, $groupSlug)) {
+                    return ['redirect' => ['group' => $moved, 'page' => $page > 1 ? $page : null]];
+                }
 
                 return null;
             }
@@ -78,7 +82,7 @@ class FaqContentService
             'items' => self::presentMany($rows, $language, $groups),
             'pagination' => $pagination,
             'keyword' => $keyword !== '' ? $keyword : null,
-        ];
+        ] + ArticleContentService::listingAlternates('faq_group', $group, $page, $keyword);
     }
 
     /** @param iterable $rows app_faq rows */

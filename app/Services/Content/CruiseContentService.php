@@ -34,7 +34,7 @@ class CruiseContentService
     {
         return [
             'id' => (int) $cruise->id,
-            'slug' => CabinContentService::slug($cruise->name),
+            'slug' => Slugs::of($cruise),
             'name' => $cruise->name,
             'summary' => ItineraryContentService::plain($cruise->summary),
             'image' => CabinContentService::fileLink($cruise->image_link),
@@ -113,7 +113,7 @@ class CruiseContentService
 
         return [
             'id' => (int) $cruise->id,
-            'slug' => CabinContentService::slug($cruise->name),
+            'slug' => Slugs::of($cruise),
             'name' => $cruise->name,
             'summary' => ItineraryContentService::plain($cruise->summary),
             'contentHtml' => safe_html($cruise->content) ?? '',
@@ -147,6 +147,8 @@ class CruiseContentService
                 'description' => $seoDescription ?? ItineraryContentService::plain($cruise->lead ?? $cruise->summary),
             ],
             'alternate' => self::alternate($cruise, $language),
+            // Every published counterpart in every effectively public language (phase 1C-4, additive).
+            'alternates' => TranslationResolver::alternates('cruise', $cruise),
             'updatedAt' => CabinContentService::isoDate($cruise->getRawOriginal('updated_at') ?: $cruise->getRawOriginal('created_at')),
         ];
     }
@@ -163,7 +165,7 @@ class CruiseContentService
         if ($linked) {
             $match = $linkedId ? AppCruise::where('id', $linkedId)->first() : null;
 
-            return $match ? ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => CabinContentService::slug($match->name)] : null;
+            return $match ? ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => Slugs::of($match)] : null;
         }
 
         $bay = FeCruiseUtils::getBayForCruise($cruise->name);
@@ -186,7 +188,7 @@ class CruiseContentService
         return [
             'lang' => $target->code,
             'id' => (int) $counterpart->id,
-            'slug' => CabinContentService::slug($counterpart->name),
+            'slug' => Slugs::of($counterpart),
         ];
     }
 

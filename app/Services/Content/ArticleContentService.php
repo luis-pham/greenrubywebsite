@@ -40,6 +40,10 @@ class ArticleContentService
                 if ($localized && $localized->slug && $localized->slug !== 'root') {
                     return ['redirect' => ['category' => $localized->slug, 'page' => $page > 1 ? $page : null]];
                 }
+                // A renamed category: its old slug redirects to the current one (phase 1C-3, app_slug_history).
+                if ($moved = SlugHistory::movedSlug('article_category', $languageId, $categorySlug)) {
+                    return ['redirect' => ['category' => $moved, 'page' => $page > 1 ? $page : null]];
+                }
 
                 return null;
             }
@@ -80,7 +84,21 @@ class ArticleContentService
             'popular' => self::popular($language),
             'pagination' => $pagination,
             'keyword' => $keyword !== '' ? $keyword : null,
-        ];
+        ] + self::listingAlternates('article_category', $category, $page, $keyword);
+    }
+
+    /**
+     * New-language hreflang group of a category listing (page 1; GroupAlternates). The key is absent when there is
+     * none, so EN/VI responses are unchanged until a new language is public.
+     */
+    public static function listingAlternates(string $type, $row, int $page, ?string $keyword): array
+    {
+        if (!$row || $page !== 1 || ($keyword !== null && $keyword !== '')) {
+            return [];
+        }
+        $alternates = GroupAlternates::for($type, $row);
+
+        return $alternates === [] ? [] : ['alternates' => $alternates];
     }
 
     /** GET /articles/{categorySlug}/{slug}. Null when missing/unpublished (findByCategoryAndSlug). */
@@ -89,7 +107,15 @@ class ArticleContentService
         $languageId = (int) $language->id;
         $obj = AppArticleService::findByCategoryAndSlug($categorySlug, $slug, $languageId);
         if (!$obj) {
-            return null;
+            // A renamed category: retry under its current slug (the article slug may be current or old).
+            if ($currentCategory = SlugHistory::movedSlug('article_category', $languageId, $categorySlug)) {
+                return self::detail($language, $currentCategory, $slug);
+            }
+            // A renamed article answers with its current payload; the website redirects to its canonical URL.
+            $moved = SlugHistory::movedRow('article', $languageId, $slug);
+            $movedCategory = $moved ? AppCategory::where('id', $moved->category_id)->value('slug') : null;
+
+            return $moved && $movedCategory ? self::detail($language, $movedCategory, $moved->slug) : null;
         }
 
         $type = config('backend.categoryType.article');
@@ -122,6 +148,8 @@ class ArticleContentService
                 'slug' => FeArticleUtils::getArticleSlug($obj),
             ],
             'alternate' => self::alternate($obj, $language),
+            // Every published counterpart in every effectively public language (phase 1C-4, additive).
+            'alternates' => TranslationResolver::alternates('article', $obj),
             'updatedAt' => CabinContentService::isoDate($obj->getRawOriginal('updated_at') ?: $obj->getRawOriginal('created_at')),
         ]);
     }

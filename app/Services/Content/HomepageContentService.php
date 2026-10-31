@@ -2,6 +2,8 @@
 
 namespace App\Services\Content;
 
+use App\Services\Publication\PublicationPolicy;
+
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Helpers\Utilities;
 use Modules\FrontEnd\Helpers\FeUtils;
@@ -35,7 +37,7 @@ class HomepageContentService
             'slogan' => $text('homepage-slogan'),
             'cruises' => $list('homepage-cruise')->map(fn ($c) => [
                 'id' => (int) self::field($c, 'id'),
-                'slug' => Utilities::convertToAlias((string) self::field($c, 'name')),
+                'slug' => Slugs::forId('app_cruise', self::field($c, 'id'), (string) self::field($c, 'name')),
                 'name' => self::field($c, 'name'),
                 'summary' => self::clean(self::field($c, 'summary')),
                 'image' => CabinContentService::fileLink(self::field($c, 'image_link')),
@@ -45,11 +47,11 @@ class HomepageContentService
                 'totalCabin' => self::number(self::field($c, 'total_cabin')),
                 'length' => self::number(self::field($c, 'dimension_length')),
                 'starRating' => self::number(self::field($c, 'star_rating')),
-            ])->values(),
+            ])->pipe(fn ($items) => PublicationPolicy::withoutUnpublished($items, 'app_cruise'))->values(),
             'itineraries' => $list('homepage-cruise-itinerary')->map(fn ($i) => [
                 'itineraryId' => (int) self::field($i, 'id'),
                 'cruiseId' => (int) self::field($i, 'cruise_id'),
-                'slug' => Utilities::convertToAlias((string) self::field($i, 'name')),
+                'slug' => Slugs::forId('app_itinerary', self::field($i, 'id'), (string) self::field($i, 'name')),
                 'name' => self::field($i, 'name'),
                 'description' => self::clean(strip_tags((string) self::field($i, 'description'))),
                 'cruiseName' => self::field($i, 'cruise_name'),
@@ -57,7 +59,7 @@ class HomepageContentService
                 'bay' => self::bayCode(self::field($i, 'bay')),
                 'image' => CabinContentService::fileLink(self::field($i, 'image_link') ?: self::field($i, 'cover_link')),
                 'destinations' => array_values(array_filter((array) json_decode((string) self::field($i, 'destination'), true), 'is_string')),
-            ])->values(),
+            ])->pipe(fn ($items) => PublicationPolicy::withoutUnpublished(PublicationPolicy::withoutUnpublished($items, 'app_itinerary', 'itineraryId'), 'app_cruise', 'cruiseId'))->values(),
             'cabins' => self::cabins($list('homepage-cabin')->map(fn ($c) => (int) self::field($c, 'id'))->all(), $language),
             'services' => $list('homepage-service')->map(fn ($s) => [
                 'id' => (int) self::field($s, 'id'),
@@ -67,13 +69,13 @@ class HomepageContentService
             ])->values(),
             'experiences' => $list('homepage-exp-activity')->map(fn ($e) => [
                 'id' => (int) self::field($e, 'id'),
-                'slug' => Utilities::convertToAlias((string) self::field($e, 'name')),
+                'slug' => Slugs::forId('app_exp_activity', self::field($e, 'id'), (string) self::field($e, 'name')),
                 'name' => self::field($e, 'name'),
                 'summary' => self::clean(strip_tags((string) self::field($e, 'summary'))),
                 'image' => CabinContentService::fileLink(self::field($e, 'image_link') ?: self::field($e, 'cover_link')),
                 'group' => self::field($e, 'group_name'),
                 'duration' => self::clean(self::field($e, 'duration')),
-            ])->values(),
+            ])->pipe(fn ($items) => PublicationPolicy::withoutUnpublished($items, 'app_exp_activity'))->values(),
             'sustainability' => $list('homepage-sustainability')->map(fn ($s) => [
                 'title' => self::clean(self::field($s, 'title')),
                 'description' => self::clean(self::field($s, 'description')),

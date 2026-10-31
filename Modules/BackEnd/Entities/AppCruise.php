@@ -20,7 +20,9 @@ class AppCruise extends BaseModel
         'year_built',
         'description_design',
         'green_technology',
-        'cover_link'
+        'cover_link',
+        'seo_title',
+        'seo_description'
     ];
     protected $hidden = [];
 

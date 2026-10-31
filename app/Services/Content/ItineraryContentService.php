@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Payments\PriceList;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -100,11 +101,11 @@ class ItineraryContentService
         return [
             'itineraryId' => (int) $itinerary->id,
             'cruiseId' => $cruiseId,
-            'slug' => CabinContentService::slug($itinerary->name),
+            'slug' => Slugs::of($itinerary),
             'name' => $itinerary->name,
             'description' => self::plain($itinerary->description),
             'cruiseName' => $cruiseName,
-            'cruiseSlug' => $cruiseName !== null ? CabinContentService::slug($cruiseName) : null,
+            'cruiseSlug' => $cruiseName !== null ? Slugs::forId('app_cruise', $cruiseId, $cruiseName) : null,
             'duration' => (int) $itinerary->duration,
             'bay' => HomepageContentService::bayCode($itinerary->bay),
             'image' => CabinContentService::fileLink($itinerary->image_link ?: $itinerary->cover_link),
@@ -188,6 +189,11 @@ class ItineraryContentService
             'activities' => self::activities($itinerary->itineraryActivities),
             'gallery' => self::gallery($itinerary->galleryImages, $itinerary->name),
             'departures' => $departures,
+            // The rows a booking from this page uses (themselves for en/vi; the linked EN rows for ja: PriceList).
+            'booking' => [
+                'itineraryId' => PriceList::inventoryId('itinerary', (int) $itinerary->id, $languageId),
+                'cruiseId' => PriceList::inventoryId('cruise', $cruiseId, $languageId),
+            ],
             'cabins' => CabinContentService::listAccommodation($languageId, $cruiseId)
                 ->map(fn ($cabin) => CabinContentService::summary($cabin))
                 ->values(),
@@ -195,6 +201,8 @@ class ItineraryContentService
             // FAQs picked for this itinerary (admin itinerary form), else the itinerary page config list.
             'faqs' => self::itineraryFaqs($itinerary) ?: self::pageConfig($language, false)['faqs'],
             'alternate' => self::alternate($itinerary, $language),
+            // Every published counterpart in every effectively public language (phase 1C-4, additive).
+            'alternates' => TranslationResolver::alternates('itinerary', $itinerary),
             'updatedAt' => CabinContentService::isoDate($itinerary->getRawOriginal('updated_at') ?: $itinerary->getRawOriginal('created_at')),
         ]);
     }
@@ -303,7 +311,7 @@ class ItineraryContentService
         return [
             'id' => (int) $cruise->id,
             'name' => $cruise->name,
-            'slug' => CabinContentService::slug($cruise->name),
+            'slug' => Slugs::of($cruise),
             'image' => CabinContentService::fileLink($cruise->image_link),
             'capacity' => CabinContentService::number($cruise->capacity),
             'length' => CabinContentService::number($cruise->dimension_length),
@@ -337,7 +345,7 @@ class ItineraryContentService
     {
         return $activities->map(fn ($e) => [
             'id' => (int) $e->id,
-            'slug' => CabinContentService::slug($e->name),
+            'slug' => Slugs::of($e),
             'name' => $e->name,
             'summary' => self::plain($e->summary),
             'image' => CabinContentService::fileLink($e->image_link ?: $e->cover_link),
@@ -353,9 +361,10 @@ class ItineraryContentService
         ])->filter(fn ($g) => $g['src'] !== null)->values()->all();
     }
 
+    /** Display currency of the language's price list (en USD, vi VND, ja → en), not of the language itself. */
     public static function currency(AdLanguage $language): string
     {
-        return strtolower((string) $language->code) === 'vi' ? 'VND' : 'USD';
+        return PriceList::displayCurrency((string) $language->code);
     }
 
     public static function otherLanguage(AdLanguage $language): ?AdLanguage

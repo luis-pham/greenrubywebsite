@@ -72,6 +72,9 @@ class PageConfigContentService
         if (!self::hideable($code)) {
             return true;
         }
+        if (\App\Services\Publication\PagePublication::previewed($code, $language)) {
+            return true; // an authenticated preview of this hidden hub (1E hardening)
+        }
         $flag = DB::table('app_page')->where('code', $code)->where('language_id', $language->id)->value('is_visible');
 
         return $flag === null || (bool) $flag;

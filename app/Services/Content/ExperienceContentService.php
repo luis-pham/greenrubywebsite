@@ -76,6 +76,8 @@ class ExperienceContentService
             'related' => self::presentMany($related, $language, $groups),
             'canonicalSlug' => $summary['slug'],
             'alternate' => self::alternate($obj, $language),
+            // Every published counterpart in every effectively public language (phase 1C-4, additive).
+            'alternates' => TranslationResolver::alternates('experience', $obj),
             'updatedAt' => CabinContentService::isoDate($obj->getRawOriginal('updated_at') ?: $obj->getRawOriginal('created_at')),
         ]);
     }
@@ -97,7 +99,7 @@ class ExperienceContentService
 
         return [
             'id' => (int) $e->id,
-            'slug' => CabinContentService::slug($e->name),
+            'slug' => Slugs::of($e),
             'name' => $e->name,
             'summary' => ItineraryContentService::plain($e->summary),
             'image' => CabinContentService::fileLink($e->image_link),
@@ -109,7 +111,7 @@ class ExperienceContentService
             'isFeatured' => (bool) $e->is_featured,
             'group' => $group ? self::groupRef($group) : null,
             'cruise' => $cruise
-                ? ['id' => (int) $cruise->id, 'slug' => CabinContentService::slug($cruise->name), 'name' => $cruise->name]
+                ? ['id' => (int) $cruise->id, 'slug' => Slugs::of($cruise), 'name' => $cruise->name]
                 : null,
         ];
     }
@@ -127,7 +129,7 @@ class ExperienceContentService
             if ($linked) {
                 $match = $linkedId ? AppExpActivity::where('id', $linkedId)->first() : null;
 
-                return $match ? ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => CabinContentService::slug($match->name)] : null;
+                return $match ? ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => Slugs::of($match)] : null;
             }
         }
 
@@ -146,7 +148,7 @@ class ExperienceContentService
         }
         $match = $matches->first();
 
-        return ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => CabinContentService::slug($match->name)];
+        return ['lang' => $target->code, 'id' => (int) $match->id, 'slug' => Slugs::of($match)];
     }
 
     /** Experience groups (app_group type expActivity) keyed by id, admin order. */

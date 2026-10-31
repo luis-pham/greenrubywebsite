@@ -35,7 +35,10 @@ class DestinationContentService
     {
         $d = self::published($language)->where('slug', $slug)->first();
         if (!$d) {
-            return null;
+            // A renamed destination answers with its current payload; the website redirects to its slug.
+            $moved = SlugHistory::movedSlug('destination', (int) $language->id, $slug);
+
+            return $moved ? self::detail($moved, $language) : null;
         }
 
         $all = self::published($language)->get();
@@ -65,6 +68,8 @@ class DestinationContentService
                 'description' => ItineraryContentService::clean($d->seo_description) ?? $summary['summary'],
             ],
             'alternate' => self::alternate($d, $language),
+            // Every published counterpart in every effectively public language (phase 1C-4, additive).
+            'alternates' => TranslationResolver::alternates('destination', $d),
             'factCheckedAt' => $d->fact_checked_at ? substr((string) $d->fact_checked_at, 0, 10) : null,
             'updatedAt' => CabinContentService::isoDate($d->getRawOriginal('updated_at') ?: $d->getRawOriginal('created_at')),
         ]);
@@ -92,9 +97,20 @@ class DestinationContentService
     }
 
     /** Published destinations of the language, in admin order; none while the hub is switched off. */
+    /** Whether the destinations hub (and so every destination URL) is switched on for this language. */
+    public static function hubVisible(AdLanguage $language): bool
+    {
+        return PageConfigContentService::visible(self::PAGE_CODE, $language);
+    }
+
     public static function published(AdLanguage $language)
     {
-        $query = AppDestination::where('language_id', $language->id)->where('status', 'published')->orderBy('ord')->orderBy('id');
+        $preview = \App\Services\Preview\Preview::active();
+        $query = AppDestination::where('language_id', $language->id)
+            ->where(fn ($q) => $preview && $preview->table === 'app_destination'
+                ? $q->where('status', 'published')->orWhere('id', (int) $preview->entity_id) // 1E-d: authenticated preview
+                : $q->where('status', 'published'))
+            ->orderBy('ord')->orderBy('id');
 
         return PageConfigContentService::visible(self::PAGE_CODE, $language) ? $query : $query->whereRaw('1 = 0');
     }
@@ -155,7 +171,7 @@ class DestinationContentService
         return $links->groupBy('destination_id')->map(
             fn ($group) => $group->map(fn ($row) => $rows->get((int) $row->experience_id))->filter()->map(fn ($e) => [
                 'id' => (int) $e->id,
-                'slug' => CabinContentService::slug($e->name),
+                'slug' => Slugs::of($e),
                 'name' => $e->name,
             ])->values()->all()
         )->filter();

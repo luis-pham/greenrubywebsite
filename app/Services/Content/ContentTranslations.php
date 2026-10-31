@@ -12,6 +12,8 @@ use Modules\BackEnd\Entities\AppGroup;
 use Modules\BackEnd\Entities\AppItinerary;
 use Modules\FrontEnd\Helpers\FeHreflangUtils;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use App\Services\Locale\LocaleRegistry;
 use Illuminate\Support\Str;
 
 /**
@@ -99,8 +101,12 @@ class ContentTranslations
      * Link the given rows (one per language) as translations of each other. A single id records
      * "this row has no translation". Rows previously linked elsewhere are moved; their old partners keep
      * their (now smaller) group, i.e. they become "no translation" until linked again.
+     *
+     * Phase 1C-4 (14 §5.3): unchanged for EN/VI, but transactional with row locks, logged
+     * (content_translation_log 'regroup'), and refused when it would split off a member in a language
+     * that is not among the linked rows' languages (a third language, e.g. ja): use attach()/detach().
      */
-    public static function link(string $type, array $ids): void
+    public static function link(string $type, array $ids, ?int $actor = null, ?string $reason = null): void
     {
         $table = self::table($type);
         $ids = array_values(array_unique(array_map('intval', $ids)));
@@ -112,8 +118,20 @@ class ContentTranslations
             throw new \InvalidArgumentException("Only one $type per language can be linked together");
         }
 
-        DB::transaction(function () use ($type, $rows) {
-            DB::table('content_translations')->where('entity_type', $type)->whereIn('entity_id', $rows->pluck('id'))->delete();
+        DB::transaction(function () use ($type, $rows, $actor, $reason) {
+            $ids = $rows->pluck('id')->map(fn ($id) => (int) $id)->all();
+            $languages = $rows->pluck('language_id')->map(fn ($id) => (int) $id)->all();
+            $current = DB::table('content_translations')->where('entity_type', $type)->whereIn('entity_id', $ids)->lockForUpdate()->get();
+            $groups = $current->pluck('group_key')->unique()->values()->all();
+            if ($groups !== []) {
+                $left = DB::table('content_translations')->where('entity_type', $type)->whereIn('group_key', $groups)
+                    ->whereNotIn('entity_id', $ids)->lockForUpdate()->get();
+                $stranded = $left->first(fn ($m) => !in_array((int) $m->language_id, $languages, true));
+                if ($stranded) {
+                    throw new \RuntimeException("Refusing to regroup $type: #{$stranded->entity_id} (language {$stranded->language_id}) would be split from its group. Detach it first.");
+                }
+            }
+            DB::table('content_translations')->where('entity_type', $type)->whereIn('entity_id', $ids)->delete();
             $group = (string) Str::uuid();
             DB::table('content_translations')->insert($rows->map(fn ($row) => [
                 'entity_type' => $type,
@@ -123,6 +141,10 @@ class ContentTranslations
                 'created_at' => now(),
                 'updated_at' => now(),
             ])->all());
+            $old = $current->keyBy('entity_id');
+            foreach ($rows as $row) {
+                self::log('regroup', $type, (int) $row->id, (int) $row->language_id, $old->get($row->id)?->group_key, $group, $actor, $reason ?? 'link()');
+            }
         });
         self::flush();
     }
@@ -130,15 +152,169 @@ class ContentTranslations
     /**
      * Forget the link of $id and of the rows linked with it: they all go back to the heuristic pairing
      * (dropping only one side would leave its partner pinned to "no translation").
+     * Phase 1C-4: logged; refused for a group with a member in a third language (use detach()).
      */
-    public static function unlink(string $type, int $id): void
+    public static function unlink(string $type, int $id, ?int $actor = null, ?string $reason = null): void
+    {
+        self::table($type);
+        DB::transaction(function () use ($type, $id, $actor, $reason) {
+            $group = DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $id)->lockForUpdate()->value('group_key');
+            if (!$group) {
+                return;
+            }
+            $members = DB::table('content_translations')->where('entity_type', $type)->where('group_key', $group)->lockForUpdate()->get();
+            if ($members->contains(fn ($m) => !self::isLegacyLanguage((int) $m->language_id))) {
+                throw new \RuntimeException("Refusing to unlink the whole $type group of #$id: it has a member in a third language. Use detach().");
+            }
+            DB::table('content_translations')->where('entity_type', $type)->where('group_key', $group)->delete();
+            foreach ($members as $m) {
+                self::log('detach', $type, (int) $m->entity_id, (int) $m->language_id, $group, null, $actor, $reason ?? 'unlink()');
+            }
+        });
+        self::flush();
+    }
+
+    /**
+     * Add $newId to the group of $existingId (14 §5.1). Never deletes and never touches other members.
+     * Refuses when $existingId is not linked, $newId is already linked, or the group already has $newId's language.
+     */
+    public static function attach(string $type, int $existingId, int $newId, ?int $actor = null, ?string $reason = null): string
+    {
+        $table = self::table($type);
+        $group = DB::transaction(function () use ($type, $table, $existingId, $newId, $actor, $reason) {
+            $existing = DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $existingId)->lockForUpdate()->first();
+            if (!$existing) {
+                throw new \RuntimeException("$type #$existingId is not linked; link() it first.");
+            }
+            if (DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $newId)->lockForUpdate()->exists()) {
+                throw new \RuntimeException("$type #$newId is already in a group; detach it first.");
+            }
+            $row = self::scoped($type, DB::table($table))->where("$table.id", $newId)->first(["$table.id", "$table.language_id"]);
+            if (!$row) {
+                throw new \InvalidArgumentException("Unknown $type id $newId");
+            }
+            if (DB::table('content_translations')->where('entity_type', $type)->where('group_key', $existing->group_key)
+                ->where('language_id', $row->language_id)->exists()) {
+                throw new \RuntimeException("The group of $type #$existingId already has a row in language {$row->language_id}.");
+            }
+            DB::table('content_translations')->insert([
+                'entity_type' => $type, 'entity_id' => $newId, 'group_key' => $existing->group_key,
+                'language_id' => (int) $row->language_id, 'created_at' => now(), 'updated_at' => now(),
+            ]);
+            self::log('attach', $type, $newId, (int) $row->language_id, null, $existing->group_key, $actor, $reason);
+
+            return $existing->group_key;
+        });
+        self::flush();
+
+        return $group;
+    }
+
+    /** Remove only $id from its group (14 §5.2); the other members keep their group. */
+    public static function detach(string $type, int $id, ?int $actor = null, ?string $reason = null): void
+    {
+        self::table($type);
+        DB::transaction(function () use ($type, $id, $actor, $reason) {
+            $link = DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $id)->lockForUpdate()->first();
+            if (!$link) {
+                return;
+            }
+            DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $id)->delete();
+            self::log('detach', $type, $id, (int) $link->language_id, $link->group_key, null, $actor, $reason);
+        });
+        self::flush();
+    }
+
+    /**
+     * Undo every logged link change with id >= $sinceLogId, newest first, in one transaction (14 §5.4).
+     * Returns the number of entries undone.
+     */
+    /**
+     * Undo ONE logged link change (admin "restore", phase 1E-b), unlike restore() which undoes everything since an
+     * entry. Refused unless the row is still where that change put it (nothing changed it since) and its old group
+     * has no other row of its language now, so it can never regroup or drop anything else.
+     */
+    public static function undoEntry(int $logId, ?int $actor = null, ?string $reason = null): void
+    {
+        DB::transaction(function () use ($logId, $actor, $reason) {
+            $e = DB::table('content_translation_log')->where('id', $logId)->lockForUpdate()->first();
+            if (!$e || $e->action === 'restore') {
+                throw new \RuntimeException('Không hoàn tác được mục nhật ký này.');
+            }
+            self::table($e->entity_type);
+            $current = DB::table('content_translations')->where('entity_type', $e->entity_type)->where('entity_id', $e->entity_id)->lockForUpdate()->value('group_key');
+            if ($current !== $e->new_group_key) {
+                throw new \RuntimeException("{$e->entity_type} #{$e->entity_id} đã thay đổi sau mục nhật ký #{$logId}: không hoàn tác.");
+            }
+            if ($e->old_group_key && DB::table('content_translations')->where('entity_type', $e->entity_type)->where('group_key', $e->old_group_key)
+                ->where('language_id', $e->language_id)->where('entity_id', '<>', $e->entity_id)->exists()) {
+                throw new \RuntimeException("Nhóm cũ đã có bản cùng ngôn ngữ: không hoàn tác mục #{$logId}.");
+            }
+            DB::table('content_translations')->where('entity_type', $e->entity_type)->where('entity_id', $e->entity_id)->delete();
+            if ($e->old_group_key) {
+                DB::table('content_translations')->insert([
+                    'entity_type' => $e->entity_type, 'entity_id' => $e->entity_id, 'group_key' => $e->old_group_key,
+                    'language_id' => $e->language_id, 'created_at' => now(), 'updated_at' => now(),
+                ]);
+            }
+            self::log('restore', $e->entity_type, (int) $e->entity_id, (int) $e->language_id, $e->new_group_key, $e->old_group_key, $actor, $reason ?? "undo log #{$e->id}");
+        });
+        self::flush();
+    }
+
+    /** Link-log entries of every row that is or was in the group of $type #$id (newest first). */
+    public static function history(string $type, int $id, int $limit = 50)
     {
         self::table($type);
         $group = DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $id)->value('group_key');
-        if ($group) {
-            DB::table('content_translations')->where('entity_type', $type)->where('group_key', $group)->delete();
-        }
+        $groups = DB::table('content_translation_log')->where('entity_type', $type)->where('entity_id', $id)
+            ->get(['old_group_key', 'new_group_key'])->flatMap(fn ($r) => [$r->old_group_key, $r->new_group_key])->push($group)->filter()->unique()->values();
+
+        return DB::table('content_translation_log')->where('entity_type', $type)
+            ->where(fn ($q) => $q->where('entity_id', $id)->orWhereIn('old_group_key', $groups)->orWhereIn('new_group_key', $groups))
+            ->orderByDesc('id')->limit($limit)->get();
+    }
+
+    public static function restore(int $sinceLogId, ?int $actor = null): int
+    {
+        $count = DB::transaction(function () use ($sinceLogId, $actor) {
+            $entries = DB::table('content_translation_log')->where('id', '>=', $sinceLogId)->where('action', '<>', 'restore')
+                ->orderByDesc('id')->lockForUpdate()->get();
+            foreach ($entries as $e) {
+                DB::table('content_translations')->where('entity_type', $e->entity_type)->where('entity_id', $e->entity_id)->delete();
+                if ($e->old_group_key) {
+                    DB::table('content_translations')->insert([
+                        'entity_type' => $e->entity_type, 'entity_id' => $e->entity_id, 'group_key' => $e->old_group_key,
+                        'language_id' => $e->language_id, 'created_at' => now(), 'updated_at' => now(),
+                    ]);
+                }
+                self::log('restore', $e->entity_type, (int) $e->entity_id, (int) $e->language_id, $e->new_group_key, $e->old_group_key, $actor, "undo log #{$e->id}");
+            }
+
+            return $entries->count();
+        });
         self::flush();
+
+        return $count;
+    }
+
+    private static function log(string $action, string $type, int $id, int $languageId, ?string $old, ?string $new, ?int $actor, ?string $reason): void
+    {
+        if (!Schema::hasTable('content_translation_log')) {
+            return; // before the 1C-2 migration: behave exactly as before
+        }
+        DB::table('content_translation_log')->insert([
+            'action' => $action, 'entity_type' => $type, 'entity_id' => $id, 'language_id' => $languageId,
+            'old_group_key' => $old, 'new_group_key' => $new, 'actor' => $actor,
+            'reason' => $reason === null ? null : mb_substr($reason, 0, 255), 'created_at' => now(),
+        ]);
+    }
+
+    private static function isLegacyLanguage(int $languageId): bool
+    {
+        $language = LocaleRegistry::byId($languageId);
+
+        return $language !== null && LocaleRegistry::isLegacy($language);
     }
 
     /** Rows of $type in $languageId that can be linked (pages that exist on the site), as {id, name}. */

@@ -13,10 +13,14 @@ use Modules\BackEnd\Services\AdLanguageService;
  *   content:translations link cabin 24 38     link rows as translations of each other (one id = no translation)
  *   content:translations unlink cabin 24      back to the heuristic
  *   content:translations freeze [type]        store every heuristic pair as an explicit link (--dry-run to preview)
+ *   content:translations attach <type> <existing id> <new id> --reason=…   add a row to an existing group (phase 1C-4)
+ *   content:translations detach <type> <id> --reason=…                     remove one row from its group
+ *   content:translations restore --since=<log id>                          undo logged link changes (14 §5.4)
+ * Every change is written to content_translation_log.
  */
 class ContentTranslationsCommand extends Command
 {
-    protected $signature = 'content:translations {action : list|link|unlink|freeze} {type?} {ids?*} {--dry-run}';
+    protected $signature = 'content:translations {action : list|link|unlink|freeze|attach|detach|restore} {type?} {ids?*} {--dry-run} {--reason=} {--since=}';
 
     protected $description = 'List, link, unlink or freeze EN <-> VI translation links of content rows';
 
@@ -46,8 +50,44 @@ class ContentTranslationsCommand extends Command
 
                     return self::FAILURE;
                 }
-                $action === 'link' ? ContentTranslations::link($type, $ids) : ContentTranslations::unlink($type, $ids[0]);
+                try {
+                    $action === 'link'
+                        ? ContentTranslations::link($type, $ids, null, $this->option('reason') ?: 'cli link')
+                        : ContentTranslations::unlink($type, $ids[0], null, $this->option('reason') ?: 'cli unlink');
+                } catch (\RuntimeException $e) {
+                    $this->error($e->getMessage());
+
+                    return self::FAILURE;
+                }
                 $this->info(ucfirst($action) . "ed $type [" . implode(', ', $ids) . ']');
+
+                return self::SUCCESS;
+            case 'attach':
+            case 'detach':
+                if (!$type || count($ids) !== ($action === 'attach' ? 2 : 1) || mb_strlen(trim((string) $this->option('reason'))) < 10) {
+                    $this->error("Usage: content:translations $action <type> " . ($action === 'attach' ? '<existing id> <new id>' : '<id>') . ' --reason="at least 10 characters"');
+
+                    return self::FAILURE;
+                }
+                try {
+                    $action === 'attach'
+                        ? ContentTranslations::attach($type, $ids[0], $ids[1], null, (string) $this->option('reason'))
+                        : ContentTranslations::detach($type, $ids[0], null, (string) $this->option('reason'));
+                } catch (\RuntimeException $e) {
+                    $this->error($e->getMessage());
+
+                    return self::FAILURE;
+                }
+                $this->info(ucfirst($action) . "ed $type [" . implode(', ', $ids) . ']');
+
+                return self::SUCCESS;
+            case 'restore':
+                if (!is_numeric($this->option('since'))) {
+                    $this->error('Usage: content:translations restore --since=<content_translation_log id>');
+
+                    return self::FAILURE;
+                }
+                $this->info('Undid ' . ContentTranslations::restore((int) $this->option('since')) . ' logged change(s).');
 
                 return self::SUCCESS;
             case 'freeze':
