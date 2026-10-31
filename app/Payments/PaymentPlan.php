@@ -27,6 +27,25 @@ final class PaymentPlan
         return CarbonImmutable::now(config('booking.timezone', 'Asia/Ho_Chi_Minh'))->startOfDay();
     }
 
+    /**
+     * Policy C (i18n Phase 1A): a departure date the guest sends must be a real date and not in the past,
+     * whatever the deposit switches say. Historical departures are never bookable. Null when the date is
+     * acceptable or absent (a reservation request may come without one).
+     */
+    public static function departureDateError($departureDate): ?string
+    {
+        if ($departureDate === null || $departureDate === '') {
+            return null;
+        }
+        try {
+            $date = CarbonImmutable::parse((string) $departureDate, self::today()->getTimezone())->startOfDay();
+        } catch (\Throwable) {
+            return 'departure_date_invalid';
+        }
+
+        return $date->lessThan(self::today()) ? 'departure_date_past' : null;
+    }
+
     /** Calendar days from $today to the departure date (negative when it is in the past). */
     public static function daysBefore(string $departureDate, ?CarbonImmutable $today = null): int
     {

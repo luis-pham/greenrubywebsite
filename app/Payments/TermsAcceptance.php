@@ -31,12 +31,24 @@ final class TermsAcceptance
         if (($terms['version'] ?? null) !== $current) {
             return [null, 'terms_version_mismatch'];
         }
-        $locale = $terms['locale'] ?? null;
-
         return [[
             'terms_version' => $current,
             'terms_accepted_at' => now(),
-            'terms_locale' => in_array($locale, ['en', 'vi'], true) ? $locale : null,
+            'terms_locale' => self::locale($terms['locale'] ?? null),
         ], null];
+    }
+
+    /**
+     * The language of the terms the guest accepted: one the terms exist in, else 'en' (owner decision D: a
+     * page in another language, e.g. ja, links to the English terms). Null when no locale was sent, as before.
+     */
+    public static function locale($locale): ?string
+    {
+        if (!is_string($locale) || trim($locale) === '') {
+            return null;
+        }
+        $locale = strtolower(trim($locale));
+
+        return in_array($locale, (array) config('booking.terms_locales', ['en', 'vi']), true) ? $locale : 'en';
     }
 }

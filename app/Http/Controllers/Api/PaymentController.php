@@ -17,6 +17,7 @@ use App\Payments\BookingSchema;
 use App\Payments\PaymentLink;
 use App\Payments\PaymentManager;
 use App\Payments\PaymentPlan;
+use App\Payments\PriceList;
 use App\Payments\TermsAcceptance;
 use App\Support\SafeRedirect;
 use Modules\BackEnd\Entities\AdLanguage;
@@ -94,6 +95,9 @@ class PaymentController extends Controller
         ]);
 
         $bookingData = $data['booking'];
+        if ($dateError = PaymentPlan::departureDateError($bookingData['departure_date'] ?? null)) {
+            return $this->departureDateResponse($dateError);
+        }
         $currency = $this->resolveCurrencyFromBooking($bookingData);
         if ($currency === null) {
             $currency = $this->resolveCurrencyFromDefaultLanguage();
@@ -252,6 +256,9 @@ class PaymentController extends Controller
         try {
             $method = $data['method'];
             $bookingData = $data['booking'] ?? [];
+            if ($dateError = PaymentPlan::departureDateError($bookingData['departure_date'] ?? null)) {
+                return $this->departureDateResponse($dateError);
+            }
             // The amount is always computed from the database; client-side prices are ignored.
             $priced = $this->pricer->price($bookingData);
             if ($priced === null) {
@@ -273,11 +280,7 @@ class PaymentController extends Controller
             // Deposit or full payment (rules 1-3). Null while deposits are switched off: full payment, as before.
             $plan = $this->planFor($bookingData, (float) $priced['total'], $currency, $data['payment_plan'] ?? null);
             if (isset($plan['error'])) {
-                return response()->json([
-                    'success' => false,
-                    'code' => $plan['error'],
-                    'message' => 'Ngày khởi hành không hợp lệ cho hành trình đã chọn. Vui lòng chọn lại ngày khởi hành.',
-                ], 422);
+                return $this->departureDateResponse($plan['error']);
             }
             $amountForGateway = $plan ? $plan['due_now'] : $priced['total'];
 
@@ -904,12 +907,8 @@ class PaymentController extends Controller
         if ($languageId === null) {
             return null;
         }
-        $language = AdLanguage::find($languageId);
-        if (!$language || !$language->code) {
-            return null;
-        }
-        $code = strtolower(trim($language->code));
-        return $code === 'vi' ? 'vnd' : 'usd';
+        // The currency of the cabin's price list; null for a language without one (falls back to the default).
+        return PriceList::currencyForLanguageId((int) $languageId);
     }
 
     protected function resolveCurrencyFromDefaultLanguage(): string
@@ -918,8 +917,19 @@ class PaymentController extends Controller
         if (!$language || !$language->code) {
             return 'vnd';
         }
-        $code = strtolower(trim($language->code));
-        return $code === 'vi' ? 'vnd' : 'usd';
+
+        return PriceList::currencyFor(PriceList::inventoryLanguageCode((string) $language->code)) ?? 'usd';
+    }
+
+    protected function departureDateResponse(string $code)
+    {
+        Log::warning('Booking refused: departure date', ['code' => $code]);
+
+        return response()->json([
+            'success' => false,
+            'code' => $code,
+            'message' => 'Ngày khởi hành không hợp lệ cho hành trình đã chọn. Vui lòng chọn lại ngày khởi hành.',
+        ], 422);
     }
 
     protected function buildCallbackUrls(Request $request, string $method, string $internalTxId, ?string $returnBase, string $statusToken): array

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Payments\PriceList;
+use App\Services\Publication\PublicationPolicy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Modules\BackEnd\Entities\AdLanguage;
@@ -18,7 +20,7 @@ class BookingApiController extends Controller
     
     public function departureDates(Request $request)
     {
-        $lang = $request->get('lang', 'vi');
+        $lang = PriceList::inventoryLanguageCode((string) $request->get('lang', 'vi'));
         $languages = AdLanguage::whereIn('code', ['vi', 'en'])->get()->keyBy('code');
         $language = $languages->get($lang) ?? $languages->get('vi') ?? AdLanguage::where('is_default', true)->first();
 
@@ -30,6 +32,7 @@ class BookingApiController extends Controller
             ->select(DB::raw('DATE(start_at) as start_at'))
             ->join('app_itinerary', 'app_itinerary.id', '=', 'app_cruise_itinerary.itinerary_id')
             ->join('app_cruise', 'app_cruise.id', '=', 'app_cruise_itinerary.cruise_id')
+            ->tap(fn ($q) => PublicationPolicy::wherePublished($q, ['app_itinerary', 'app_cruise']))
             ->where('app_itinerary.language_id', $language->id)
             ->where('app_cruise.language_id', $language->id);
 
@@ -65,7 +68,7 @@ class BookingApiController extends Controller
 
     public function itineraries(Request $request)
     {
-        $lang = $request->get('lang', 'vi');
+        $lang = PriceList::inventoryLanguageCode((string) $request->get('lang', 'vi'));
         $languages = AdLanguage::whereIn('code', ['vi', 'en'])->get()->keyBy('code');
         $langVi = $languages->get('vi');
         $langEn = $languages->get('en');
@@ -112,6 +115,8 @@ class BookingApiController extends Controller
             ->groupBy('app_itinerary.id', 'app_itinerary.name', 'app_itinerary.duration', 'app_itinerary.destination', 'app_itinerary.language_id', 'app_cruise.id', 'app_cruise.name')
             ->orderBy('app_itinerary.id', 'desc')
             ->get();
+        // Unpublished itineraries or cruises are dropped after the query: the order stays the database order.
+        $list = PublicationPolicy::withoutUnpublished(PublicationPolicy::withoutUnpublished($list, 'app_itinerary', 'itinerary_id'), 'app_cruise', 'cruise_id');
 
         $list = $list->unique(function ($row) {
             return $row->itinerary_id . '-' . $row->cruise_id;
@@ -129,7 +134,7 @@ class BookingApiController extends Controller
         }
 
         $items = $list->map(function ($row) use ($idToCode) {
-            $durationLabel = $row->duration ? CruiseUtils::formatDisplayDurationName($row->duration) : '';
+            $durationLabel = self::durationLabel((int) $row->duration, $idToCode[$row->language_id] ?? 'vi');
             $destination = '';
             try {
                 $destArr = json_decode($row->destination ?? '[]', true);
@@ -163,7 +168,7 @@ class BookingApiController extends Controller
      */
     public function cabins(Request $request)
     {
-        $lang = $request->get('lang', 'vi');
+        $lang = PriceList::inventoryLanguageCode((string) $request->get('lang', 'vi'));
         $selectedDuration = (int) $request->get('duration', 0);
         $languages = AdLanguage::whereIn('code', ['vi', 'en'])->get()->keyBy('code');
         $langVi = $languages->get('vi');
@@ -244,7 +249,9 @@ class BookingApiController extends Controller
             $query->where('app_cabin.cruise_id', $request->get('cruise_id'));
         }
 
-        $cabins = $query->orderBy('app_cabin.ord', 'asc')->get();
+        // Unpublished cabins (or cabins of an unpublished cruise) are dropped after the query so the order of the
+        // remaining ones is exactly the database order as before (phase 1C-2).
+        $cabins = PublicationPolicy::withoutUnpublished($query->orderBy('app_cabin.ord', 'asc')->get(), 'app_cabin', 'id', 'cruise_id');
 
         $idToCode = [];
         foreach ($languages as $code => $l) {
@@ -333,7 +340,7 @@ class BookingApiController extends Controller
             ], 400);
         }
 
-        $lang = $request->get('lang', 'vi');
+        $lang = PriceList::inventoryLanguageCode((string) $request->get('lang', 'vi'));
         $languages = AdLanguage::whereIn('code', ['vi', 'en'])->get()->keyBy('code');
         $langVi = $languages->get('vi');
         $langEn = $languages->get('en');
@@ -349,7 +356,7 @@ class BookingApiController extends Controller
             return response()->json(['success' => false, 'message' => 'Language not found']);
         }
 
-        $cabinRow = DB::table('app_cabin')
+        $cabinRow = DB::table('app_cabin')->tap(fn ($q) => PublicationPolicy::wherePublished($q, ['app_cabin']))
             ->select(
                 'app_cabin.id',
                 'app_cabin.language_id',
@@ -382,6 +389,7 @@ class BookingApiController extends Controller
             )
             ->join('app_itinerary', 'app_itinerary.id', '=', 'app_cruise_itinerary.itinerary_id')
             ->join('app_cruise', 'app_cruise.id', '=', 'app_cruise_itinerary.cruise_id')
+            ->tap(fn ($q) => PublicationPolicy::wherePublished($q, ['app_itinerary', 'app_cruise']))
             ->where('app_cruise.id', $cabinRow->cruise_id);
 
         if (!empty($languageIds)) {
@@ -407,7 +415,7 @@ class BookingApiController extends Controller
             ], 404);
         }
 
-        $durationLabel = $row->duration ? CruiseUtils::formatDisplayDurationName($row->duration) : '';
+        $durationLabel = self::durationLabel((int) $row->duration, $languages->firstWhere('id', $row->language_id)?->code ?? $lang);
         $destination = '';
         try {
             $destArr = json_decode($row->destination ?? '[]', true);
@@ -439,7 +447,7 @@ class BookingApiController extends Controller
             ], 400);
         }
 
-        $lang = $request->get('lang', 'vi');
+        $lang = PriceList::inventoryLanguageCode((string) $request->get('lang', 'vi'));
         $languages = AdLanguage::whereIn('code', ['vi', 'en'])->get()->keyBy('code');
         $langVi = $languages->get('vi');
         $langEn = $languages->get('en');
@@ -470,6 +478,7 @@ class BookingApiController extends Controller
             )
             ->join('app_itinerary', 'app_itinerary.id', '=', 'app_cruise_itinerary.itinerary_id')
             ->join('app_cruise', 'app_cruise.id', '=', 'app_cruise_itinerary.cruise_id')
+            ->tap(fn ($q) => PublicationPolicy::wherePublished($q, ['app_itinerary', 'app_cruise']))
             ->where('app_cruise.id', $cruiseId);
 
         if (!empty($languageIds)) {
@@ -495,7 +504,7 @@ class BookingApiController extends Controller
             ], 404);
         }
 
-        $durationLabel = $row->duration ? CruiseUtils::formatDisplayDurationName($row->duration) : '';
+        $durationLabel = self::durationLabel((int) $row->duration, $languages->firstWhere('id', $row->language_id)?->code ?? $lang);
         $destination = '';
         try {
             $destArr = json_decode($row->destination ?? '[]', true);
@@ -518,7 +527,7 @@ class BookingApiController extends Controller
 
     public function amenities(Request $request)
     {
-        $lang = $request->get('lang', 'vi');
+        $lang = PriceList::inventoryLanguageCode((string) $request->get('lang', 'vi'));
         $itineraryId = $request->get('itinerary_id');
         $languages = AdLanguage::whereIn('code', ['vi', 'en'])->get()->keyBy('code');
         $langVi = $languages->get('vi');
@@ -627,5 +636,22 @@ class BookingApiController extends Controller
             'activities' => $activities->values()->all(),
             'destinations' => array_values($destinations),
         ]);
+    }
+
+    /**
+     * The itinerary length in the language of the row being booked: "2 Days / 1 Night" for English (as on
+     * the website), unchanged "2 Ngày 1 Đêm" for Vietnamese. It is stored on the booking and shown in e-mails.
+     */
+    protected static function durationLabel(int $duration, string $languageCode): string
+    {
+        if ($duration <= 0) {
+            return '';
+        }
+        if (strtolower($languageCode) === 'vi') {
+            return CruiseUtils::formatDisplayDurationName($duration);
+        }
+        $nights = $duration - 1;
+
+        return $duration . ' Day' . ($duration > 1 ? 's' : '') . ($nights > 0 ? ' / ' . $nights . ' Night' . ($nights > 1 ? 's' : '') : '');
     }
 }

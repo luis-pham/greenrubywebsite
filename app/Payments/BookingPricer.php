@@ -2,6 +2,7 @@
 
 namespace App\Payments;
 
+use App\Services\Publication\PublicationPolicy;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -30,10 +31,11 @@ class BookingPricer
     {
         $this->error = null;
 
-        $duration = $this->itineraryDuration($bookingData['itinerary_id'] ?? null);
-        if ($duration === null) {
+        $itinerary = $this->itinerary($bookingData['itinerary_id'] ?? null);
+        if ($itinerary === null) {
             return $this->fail('itinerary_unknown');
         }
+        $duration = (int) $itinerary->duration;
 
         $rows = $bookingData['cabins'] ?? [];
         if (!is_array($rows) || $rows === []) {
@@ -52,7 +54,7 @@ class BookingPricer
 
         $cabins = DB::table('app_cabin')
             ->whereIn('id', $cabinIds)
-            ->get(['id', 'language_id', 'capacity', 'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant'])
+            ->get(['id', 'language_id', 'cruise_id', 'capacity', 'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant'])
             ->keyBy('id');
         if ($cabins->count() !== count($cabinIds)) {
             return $this->fail('cabin_unknown');
@@ -61,7 +63,19 @@ class BookingPricer
             return $this->fail('cabin_language_mixed');
         }
         $languageId = (int) $cabins->first()->language_id;
-        $currency = $this->currencyForLanguage($languageId);
+        // Only rows of a price-list language are bookable (ja rows are text only: PriceList).
+        $currency = PriceList::currencyForLanguageId($languageId);
+        if ($currency === null) {
+            return $this->fail('price_list_unknown');
+        }
+        // Unpublished rows (phase 1C-2) are not bookable; existing bookings and payments never pass through here.
+        if ($this->unpublished($itinerary, $cabins)) {
+            return $this->fail('inventory_unpublished');
+        }
+        $relationError = $this->relationError($itinerary, $cabins, self::parseCruiseId($bookingData['itinerary_id'] ?? null));
+        if ($relationError !== null) {
+            return $this->fail($relationError);
+        }
 
         $priceMatrix = [];
         foreach (DB::table('app_cabin_price')->whereIn('cabin_id', $cabinIds)->where('duration', $duration)->get() as $p) {
@@ -211,22 +225,60 @@ class BookingPricer
         return null;
     }
 
-    protected function itineraryDuration($rawItineraryId): ?int
+    /** The cruise id of "{itineraryId}-{cruiseId}", or null for a plain itinerary id. */
+    public static function parseCruiseId($raw): ?int
+    {
+        if (is_string($raw) && preg_match('/^\s*\d+-(\d+)\s*$/', $raw, $m)) {
+            return (int) $m[1] ?: null;
+        }
+
+        return null;
+    }
+
+    protected function itinerary($rawItineraryId): ?object
     {
         $itineraryId = self::parseItineraryId($rawItineraryId);
         if ($itineraryId === null) {
             return null;
         }
-        $duration = DB::table('app_itinerary')->where('id', $itineraryId)->value('duration');
+        $row = DB::table('app_itinerary')->where('id', $itineraryId)->first(['id', 'language_id', 'duration']);
 
-        return $duration === null ? null : (int) $duration;
+        return $row === null || $row->duration === null ? null : $row;
     }
 
-    protected function currencyForLanguage(int $languageId): string
+    protected function unpublished(object $itinerary, $cabins): bool
     {
-        $code = strtolower((string) DB::table('ad_language')->where('id', $languageId)->value('code'));
+        $state = fn (string $table, array $ids) => PublicationPolicy::hasColumn($table)
+            && DB::table($table)->whereIn('id', $ids)->where('publish_state', '<>', 'published')->exists();
 
-        return $code === 'vi' ? 'vnd' : 'usd';
+        return $state('app_itinerary', [(int) $itinerary->id])
+            || $state('app_cabin', $cabins->keys()->map(fn ($id) => (int) $id)->all())
+            || $state('app_cruise', $cabins->pluck('cruise_id')->filter()->map(fn ($id) => (int) $id)->unique()->values()->all());
+    }
+
+    /**
+     * The cabins, the itinerary and the cruise must belong together, exactly as the booking wizard offers them
+     * (/api/booking/itineraries pairs cruises and itineraries through app_cruise_itinerary): same language,
+     * one cruise, the cruise named in "{itineraryId}-{cruiseId}" when given, and that cruise sails the itinerary.
+     */
+    protected function relationError(object $itinerary, $cabins, ?int $cruiseId): ?string
+    {
+        if ((int) $itinerary->language_id !== (int) $cabins->first()->language_id) {
+            return 'itinerary_language_mismatch';
+        }
+        $cruiseIds = $cabins->pluck('cruise_id')->map(fn ($id) => (int) $id)->unique();
+        if ($cruiseIds->count() !== 1 || $cruiseIds->first() <= 0) {
+            return 'cabin_cruise_mixed';
+        }
+        if ($cruiseId !== null && $cruiseId !== $cruiseIds->first()) {
+            return 'cabin_cruise_mismatch';
+        }
+        $sails = DB::table('app_cruise_itinerary')
+            ->where('cruise_id', $cruiseIds->first())
+            ->where('itinerary_id', (int) $itinerary->id)
+            ->exists();
+
+        return $sails ? null : 'itinerary_cruise_mismatch';
     }
 
     protected function quantity($value): ?int
