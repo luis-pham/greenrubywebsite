@@ -30,6 +30,11 @@ class ContentMenuBuilder
             $ids[(string) ($item->id ?? '')] = true;
         }
 
+        // A new language's menu (seeded copy of the English one) gets its URLs from the English URL of each item
+        // (phase 2B: IntlMenuUrls); en/vi keep the legacy localisation.
+        $intl = !\App\Services\Locale\LocaleRegistry::isLegacy($language);
+        $english = $intl ? \App\Services\Locale\LocaleRegistry::defaultLanguage() : null;
+
         $flat = [];
         foreach ($items as $item) {
             $parentId = $item->parent_id ?? null;
@@ -41,7 +46,7 @@ class ContentMenuBuilder
                 'id' => (string) ($item->id ?? ''),
                 'parentId' => ($parentId === null || $parentId === '') ? null : (string) $parentId,
                 'name' => (string) ($item->name ?? ''),
-                'url' => self::processUrl($item->url ?? '', $language),
+                'url' => $intl ? IntlMenuUrls::resolve(self::processUrl($item->url ?? '', $english), $language) : self::processUrl($item->url ?? '', $language),
                 'target' => ($item->target ?? '') ?: '_self',
             ];
         }

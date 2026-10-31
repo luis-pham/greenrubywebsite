@@ -56,4 +56,14 @@ return [
     // Languages the Booking Terms exist in. Acceptance given on a page in any other language is recorded as
     // 'en' (the terms that page links to) until that language's terms are approved.
     'terms_locales' => ['en', 'vi'],
+
+    // i18n phase 2B: page languages that may START an online payment (POST /api/payment/init and the payment-link
+    // payment). A booking page in another language (ja) offers the reservation request only, and the server refuses
+    // a payment sent from it (422 payment_locale_not_allowed). Requests without a locale (older pages) are not
+    // affected. Add a language only after its booking flow, terms and e-mails are approved:
+    // BOOKING_PAYMENT_LOCALES=en,vi,ja (+ `php artisan config:cache`). Exposed in GET /api/booking/policy.
+    'payment_locales' => array_values(array_filter(array_map(
+        fn ($code) => strtolower(trim($code)),
+        explode(',', (string) env('BOOKING_PAYMENT_LOCALES', 'en,vi'))
+    ))),
 ];

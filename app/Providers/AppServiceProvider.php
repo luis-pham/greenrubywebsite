@@ -60,6 +60,12 @@ class AppServiceProvider extends ServiceProvider
             $model::observe(\App\Observers\ContentRevisionObserver::class);
             $model::retrieved(fn ($row) => \App\Services\Preview\Preview::overlay($row)); // preview shows the pending revision
         }
+        // Phase 2C: a published page's configuration values change only through its revision; amenities and services
+        // of a workflow-controlled language start unpublished and are published only from 'approved'.
+        \Modules\BackEnd\Entities\AppPageConfig::updating(fn ($row) => \App\Observers\ContentRevisionObserver::pageConfigUpdating($row));
+        foreach (array_keys(\App\Observers\AmenityServicePublicationObserver::MODELS) as $model) {
+            $model::observe(\App\Observers\AmenityServicePublicationObserver::class);
+        }
         \Modules\BackEnd\Entities\AppCabinRoom::retrieved(fn ($row) => \App\Services\Preview\Preview::overlayChild($row));
         \Modules\BackEnd\Entities\AppItineraryDayDetail::retrieved(fn ($row) => \App\Services\Preview\Preview::overlayChild($row));
         // Phase 1E-c: a text-only language (no own price list) never writes business data.

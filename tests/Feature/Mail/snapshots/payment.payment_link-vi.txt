@@ -1,0 +1,40 @@
+Subject: Hoàn tất đặt chỗ BK2026102735B36B
+From: Green Ruby Cruises <noreply@greenruby.test>
+Reply-To: Green Ruby Cruises <noreply@greenruby.test>
+To: 
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoàn tất đặt chỗ BK2026102735B36B</title>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 640px; margin: 0 auto; padding: 20px; }
+        .facts { border-collapse: collapse; margin: 16px 0; }
+        .facts td { padding: 6px 12px 6px 0; vertical-align: top; }
+        .facts td:first-child { color: #666; }
+        .button { display: inline-block; margin: 12px 0 20px; padding: 12px 22px; background: #13392f; color: #ffffff !important; text-decoration: none; font-weight: bold; }
+        .small { color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <p>Kính gửi Quý khách Nguyễn Văn An,</p>
+    <p>Cảm ơn Quý khách đã lựa chọn Green Ruby Cruises. Đặt chỗ của Quý khách đã sẵn sàng để xác nhận.</p>
+    <p>Vui lòng mở đường dẫn bảo mật dưới đây để xem lại đặt chỗ, đồng ý với Điều khoản đặt du thuyền và thanh toán. Đường dẫn có hiệu lực đến ngày 31/12/2026.</p>
+
+    <table class="facts">
+                    <tr><td>Mã đặt chỗ</td><td><strong>BK2026102735B36B</strong></td></tr>
+                    <tr><td>Hành trình</td><td><strong>Vịnh Lan Hạ 2 ngày 1 đêm · Green Ruby 2</strong></td></tr>
+                    <tr><td>Ngày khởi hành</td><td><strong>26/12/2026</strong></td></tr>
+                    <tr><td>Tổng giá trị</td><td><strong>VND 25,000,000</strong></td></tr>
+            </table>
+
+    <p><a class="button" href="https://greenrubycruises.test/booking/pay?t=fixture">Xem và thanh toán</a></p>
+    <p class="small">https://greenrubycruises.test/booking/pay?t=fixture</p>
+
+<p style="margin-top: 20px;">Bộ phận Đặt chỗ<br>
+Green Ruby Cruises<br>
+Email: noreply@greenruby.test</p>
+</body>
+</html>

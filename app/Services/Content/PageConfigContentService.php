@@ -238,7 +238,7 @@ class PageConfigContentService
             PageConfigConsts::SOURCE_DATA_TYPE_CABIN => $rows->map(fn ($c) => CabinContentService::summary($c))->values()->all(),
             PageConfigConsts::SOURCE_DATA_TYPE_SERVICE => ServiceContentService::presentMany($rows, $language),
             PageConfigConsts::SOURCE_DATA_TYPE_EXP_ACTIVITY => ExperienceContentService::presentMany($rows, $language),
-            PageConfigConsts::SOURCE_DATA_TYPE_AMENITY => $rows->map(fn ($a) => [
+            PageConfigConsts::SOURCE_DATA_TYPE_AMENITY => \App\Services\Publication\IntlVisibility::keep('amenity', $rows)->map(fn ($a) => [
                 'id' => (int) $a->id,
                 'name' => $a->name,
                 'description' => ItineraryContentService::plain($a->description),

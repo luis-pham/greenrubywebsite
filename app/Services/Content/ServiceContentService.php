@@ -32,6 +32,7 @@ class ServiceContentService
     public static function presentMany($rows, AdLanguage $language): array
     {
         $groups = self::groups($language);
+        $rows = \App\Services\Publication\IntlVisibility::keep('service', $rows); // a new language's unpublished services
 
         return collect($rows)->map(fn ($s) => self::present($s, $groups))->values()->all();
     }

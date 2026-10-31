@@ -91,12 +91,12 @@ final class TranslationMatrix
         ];
     }
 
-    /** The row's own publication flag (services: status; amenities: always). */
+    /** The row's own publication flag (services: status; amenities: publish_state, always before 2026_11_07_000001). */
     public static function published(string $type, object $row): bool
     {
         return match ($type) {
             'service' => (int) ($row->status ?? 0) === 1,
-            'amenity' => true,
+            'amenity' => !PublicationPolicy::hasColumn('app_amenity') || ($row->publish_state ?? 'published') === 'published',
             default => PublicationPolicy::isPublishedFlag($type, $row),
         };
     }

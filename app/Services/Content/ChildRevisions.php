@@ -85,9 +85,38 @@ final class ChildRevisions
         return true;
     }
 
-    /** Writes a revision's child text into the live rows (only rows that belong to the entity, only title/description). */
+    /**
+     * A published page of a workflow-controlled language (phase 2C): a changed configuration value goes into the page's
+     * pending revision; the live value stays as approved. @return bool true when it handled the change
+     */
+    public static function pageConfig(int $pageId, int $configId, $value): bool
+    {
+        if (!DB::getSchemaBuilder()->hasTable('content_revision')) {
+            return false;
+        }
+        $page = DB::table('app_page')->where('id', $pageId)->first();
+        $language = $page ? LocaleRegistry::byId((int) $page->language_id) : null;
+        if (!$language || LocaleRegistry::isLegacy($language) || in_array($language->getAttribute('workflow_controlled'), [0, '0', false], true)
+            || (int) $page->is_visible !== 1) {
+            return false;
+        }
+        RevisionStore::merge('page', $pageId, [], ['app_page_config' => [$configId => ['value' => (string) $value]]], self::actor());
+
+        return true;
+    }
+
+    /** Writes a revision's child text into the live rows (only rows that belong to the entity, only their text columns). */
     public static function apply(string $type, int $id, array $children): void
     {
+        if ($type === 'page') {
+            foreach ((array) ($children['app_page_config'] ?? []) as $rowId => $values) {
+                if (array_key_exists('value', (array) $values) && DB::table('app_page_config')->where('id', $rowId)->where('page_id', $id)->exists()) {
+                    DB::table('app_page_config')->where('id', $rowId)->update(['value' => (string) $values['value'], 'updated_at' => now()]);
+                }
+            }
+
+            return;
+        }
         $table = self::TABLES[$type] ?? null;
         foreach (($table ? ($children[$table] ?? []) : []) as $rowId => $values) {
             $belongs = $type === 'cabin'

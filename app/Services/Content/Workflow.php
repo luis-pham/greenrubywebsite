@@ -40,6 +40,30 @@ final class Workflow
         'unpublish' => ['translation', 'publish'],
         'discard_revision' => ['translation', 'edit'],
     ];
+    /**
+     * Workflow types that are not TranslatableFields types (no translation matrix): their table, the text a pending
+     * revision may carry, and child rows whose text travels in the revision (`_children`).
+     *   page   a static page of a new language (page-level publication: is_visible); its configuration values
+     *          (app_page_config.value) are its text (phase 2C: a published page is edited through revisions)
+     *   group  a structural app_group (cabin facility type, experience tab, service group, suitable audience) seeded
+     *          unpublished by `i18n:seed-locale` (phase 2C); publish_state, no slug of its own (the English one)
+     */
+    public const OWN_TYPES = [
+        'page' => ['table' => 'app_page', 'text' => ['title', 'description', 'seo_title', 'seo_description'],
+            'children' => ['app_page_config' => ['key' => 'page_id', 'text' => ['value']]]],
+        'group' => ['table' => 'app_group', 'text' => ['name', 'description', 'seo_title', 'seo_description'], 'children' => []],
+    ];
+
+    /** Text columns a pending revision of $type may carry (TranslatableFields text + copy, or OWN_TYPES text). */
+    public static function revisionColumns(string $type): array
+    {
+        if (TranslatableFields::has($type)) {
+            return array_merge(TranslatableFields::of($type)['text'], TranslatableFields::of($type)['copy']);
+        }
+
+        return self::OWN_TYPES[$type]['text'] ?? [];
+    }
+
     private const REJECT_BY_STEP = ['translation_review' => 'approve', 'seo_review' => 'seo-approve', 'legal_review' => 'legal-approve'];
     private const APPROVALS = ['approve_translation', 'approve_seo', 'approve_legal'];
 
@@ -186,19 +210,23 @@ final class Workflow
     /** null for legacy rows; else the step (of the open revision when the row is published and has one). */
     public static function state(string $type, int $id): ?array
     {
-        if (!TranslatableFields::has($type) && $type !== 'page') {
+        if (!TranslatableFields::has($type) && !isset(self::OWN_TYPES[$type])) {
             return null;
         }
         $meta = DB::table('translation_meta')->where('entity_type', $type)->where('entity_id', $id)->first();
         if (!$meta) {
             return null;
         }
-        $table = TranslatableFields::has($type) ? TranslatableFields::of($type)['table'] : 'app_page';
+        $table = TranslatableFields::has($type) ? TranslatableFields::of($type)['table'] : self::OWN_TYPES[$type]['table'];
         $row = DB::table($table)->where('id', $id)->first();
         if (!$row) {
             return null;
         }
-        $published = $type === 'page' ? (int) $row->is_visible === 1 : TranslationMatrix::published($type, $row);
+        $published = match ($type) {
+            'page' => (int) $row->is_visible === 1,
+            'group' => ($row->publish_state ?? 'published') === 'published',
+            default => TranslationMatrix::published($type, $row),
+        };
         $revision = $published ? RevisionStore::open($type, $id) : null;
 
         return ['published' => $published, 'revision' => $revision, 'step' => $revision->workflow ?? $meta->workflow];
@@ -221,8 +249,8 @@ final class Workflow
     /** Writes the revision's fields and child text into the live rows, in the caller's transaction. */
     private static function applyRevision(string $type, int $id, object $revision, ?int $actor): void
     {
-        $table = TranslatableFields::of($type)['table'];
-        $allowed = array_merge(TranslatableFields::of($type)['text'], TranslatableFields::of($type)['copy']);
+        $table = TranslatableFields::has($type) ? TranslatableFields::of($type)['table'] : self::OWN_TYPES[$type]['table'];
+        $allowed = self::revisionColumns($type);
         $data = (array) json_decode($revision->fields, true);
         $fields = array_intersect_key($data, array_flip($allowed));
         if ($fields !== []) {
@@ -237,6 +265,16 @@ final class Workflow
     {
         if ($type === 'service') {
             DB::table('app_service')->where('id', $id)->update(['status' => $on ? 1 : 0]);
+
+            return;
+        }
+        // Amenities and structural groups (phase 2C): the flag itself; apply() has checked the approved step.
+        if ($type === 'amenity' || $type === 'group') {
+            $table = $type === 'amenity' ? 'app_amenity' : 'app_group';
+            if (!PublicationPolicy::hasColumn($table)) {
+                throw new \RuntimeException("{$type} has no publication flag: run the 2026_11_07_000001 migration first.");
+            }
+            DB::table($table)->where('id', $id)->update(['publish_state' => $on ? 'published' : 'unpublished']);
 
             return;
         }

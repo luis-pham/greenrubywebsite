@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use App\Models\Booking;
 use App\Payments\PaymentLink;
+use App\Services\Mail\BookingMailLocale;
 use Carbon\CarbonInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -33,6 +34,11 @@ class BookingPaymentMail extends Mailable
     public function build()
     {
         $b = $this->booking;
+        // Phase 2B: a guest whose locale has its own (enabled) copy for this type; otherwise the pre-2B e-mail.
+        $mailLocale = $this->staff ? null : BookingMailLocale::for($b);
+        if ($mailLocale !== null && isset(BookingMailLocale::copy($mailLocale)['payment'][$this->type])) {
+            return $this->buildLocalized($mailLocale);
+        }
         $locale = $this->staff ? 'vi' : PaymentLink::locale($b);
         $t = self::MESSAGES[$locale];
         $money = fn ($amount) => strtoupper((string) $b->currency) . ' ' . Utilities::formatStoredAmount((int) $amount, $b->currency, false);
@@ -77,6 +83,59 @@ class BookingPaymentMail extends Mailable
             'hotline' => $config['hotline'] ?? null,
             'supportEmail' => $supportEmail,
         ]);
+    }
+
+    /** Guest e-mail in a phase-2B locale (app/Mail/Copy/{locale}.php, resources/views/emails/{locale}/booking-payment.blade.php). */
+    private function buildLocalized(string $locale)
+    {
+        $b = $this->booking;
+        $t = BookingMailLocale::copy($locale)['payment'];
+        $copy = $t[$this->type];
+        $money = fn ($amount) => BookingMailLocale::money($amount, $b->currency);
+        $vars = [
+            ':code' => $b->code,
+            ':name' => $b->full_name,
+            ':voyage' => trim(implode(' · ', array_filter([$b->itinerary_name, $b->cruise_name]))),
+            ':departure' => BookingMailLocale::date($b->departure_date),
+            ':total' => $money($b->total_amount),
+            ':paid' => $money($b->amount_paid),
+            ':balance' => $money($b->balanceAmount()),
+            ':due' => BookingMailLocale::date($b->balance_due_date),
+            ':deadline' => BookingMailLocale::dateTime($b->cure_deadline_at),
+            ':amount' => $money($this->extra['amount'] ?? 0),
+            ':expires' => BookingMailLocale::date(isset($this->extra['expires']) ? \Carbon\Carbon::createFromTimestamp($this->extra['expires']) : null, true),
+            ':days' => (string) (int) config('booking.balance_days_before', 30),
+        ];
+        $fill = fn (string $text) => strtr($text, $vars);
+
+        $config = Utilities::getAllConfig(\Modules\BackEnd\Services\AdLanguageService::getDefaultLanguage());
+        $companyName = $config['website-name'] ?? 'Green Ruby Cruises';
+        $supportEmail = $config['email'] ?? config('mail.from.address');
+        $fromAddress = config('mail.from.address');
+
+        return $this->from($fromAddress, $companyName)
+            ->replyTo($supportEmail ?: $fromAddress, $companyName)
+            ->subject($fill($copy['subject']))
+            ->view('emails.' . $locale . '.booking-payment')
+            ->with([
+                'locale' => $locale,
+                'heading' => $fill($copy['subject']),
+                'greeting' => $fill($t['greeting']),
+                // ['text' => …, 'review' => 'LEGAL_REVIEW_REQUIRED'|null, 'id' => …]
+                'paragraphs' => array_map(fn ($p) => is_array($p)
+                    ? ['text' => $fill($p['text']), 'review' => $p['review'] ?? null, 'id' => $p['id'] ?? null]
+                    : ['text' => $fill($p), 'review' => null, 'id' => null], $copy['body']),
+                'facts' => array_map(fn ($row) => [$row[0], $fill($row[1])], $copy['facts'] ?? []),
+                'button' => $this->link ? $copy['button'] ?? null : null,
+                'link' => $this->link,
+                'termsUrl' => isset($copy['terms']) ? BookingMailLocale::termsUrl($copy['terms']) : null,
+                'termsLabel' => $t['terms_link'],
+                'termsNote' => $t['terms_note'],
+                'signature' => $t['signature'],
+                'companyName' => $companyName,
+                'hotline' => $config['hotline'] ?? null,
+                'supportEmail' => $supportEmail,
+            ]);
     }
 
     private const FACTS_EN = [['Booking reference', ':code'], ['Voyage', ':voyage'], ['Departure', ':departure']];

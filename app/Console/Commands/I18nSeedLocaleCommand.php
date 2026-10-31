@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\Locale\LocaleRegistry;
+use App\Services\Publication\PublicationPolicy;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -14,8 +15,11 @@ use Illuminate\Support\Facades\Log;
  *
  * Creates the per-language rows the admin and the Content API need, as untranslated, HIDDEN copies of the source
  * language, each linked to its source in translation_meta (entity types group, page, menu):
- *   - structural app_group rows (cabin facility types, experience tabs, service groups; same slug): TranslationFactory
- *     maps a cabin's or service's group through them. FAQ groups (type faq) are content: translate them in the matrix;
+ *   - structural app_group rows (cabin facility types, experience tabs, service groups, suitable audiences; same
+ *     slug): TranslationFactory maps a cabin's or service's group through them. Phase 2C: seeded UNPUBLISHED
+ *     (publish_state) with workflow 'draft'; the Content API never shows an unpublished group's text (PublishedScope,
+ *     IntlVisibility); editors review and publish each one in the translation panel of the group form (Workflow type
+ *     'group'). FAQ groups (type faq) are content: translate them in the matrix;
  *   - app_page rows with their sections and page configuration, is_visible = 0 (page-level publication);
  *   - per-language site configuration (ad_config) and front-end menus.
  * Never touches business tables (prices, departures, capacities). Idempotent: rows already seeded are skipped.
@@ -58,7 +62,9 @@ class I18nSeedLocaleCommand extends Command
                 if (!$dry) {
                     $row = (array) $group;
                     unset($row['id']);
-                    $id = DB::table('app_group')->insertGetId(['language_id' => $to, 'created_at' => $now, 'updated_at' => $now] + $row);
+                    // Phase 2C: hidden until reviewed (Workflow type 'group'): its text is never shown while unpublished.
+                    $hidden = PublicationPolicy::hasColumn('app_group') ? ['publish_state' => 'unpublished'] : [];
+                    $id = DB::table('app_group')->insertGetId($hidden + ['language_id' => $to, 'created_at' => $now, 'updated_at' => $now] + $row);
                     $this->link('group', $id, $to, (int) $group->id, $from, $now);
                 }
             }

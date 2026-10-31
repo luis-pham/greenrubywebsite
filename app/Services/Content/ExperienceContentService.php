@@ -61,7 +61,10 @@ class ExperienceContentService
             ->map(fn ($g) => ['src' => $g['src'], 'thumbnail' => $g['thumbnail'], 'alt' => $g['alt'] ?? $obj->name, 'type' => $g['type']])
             ->values();
 
-        $suitableFor = collect(AppExpActivityService::getSuitableAudiences($obj->id, $languageId))
+        $audiences = AppExpActivityService::getSuitableAudiences($obj->id, $languageId);
+        // A new language's unpublished audience groups (i18n:seed-locale) are not shown.
+        $hiddenAudiences = \App\Services\Publication\IntlVisibility::hiddenIds('group', array_keys($audiences), $languageId);
+        $suitableFor = collect($hiddenAudiences === [] ? $audiences : array_diff_key($audiences, array_flip($hiddenAudiences)))
             ->map(fn ($name, $groupId) => ['id' => (int) $groupId, 'name' => $name])
             ->values();
 

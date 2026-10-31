@@ -321,6 +321,7 @@ class ItineraryContentService
     /** app_service rows: type 1 = included, type 2 = optional (exclusive). Admin order preserved. */
     public static function services(Collection $services): array
     {
+        $services = \App\Services\Publication\IntlVisibility::keep('service', $services); // a new language's unpublished services
         $showPublic = (bool) config('frontend.showPublicPrices', false);
         $base = fn ($s) => [
             'id' => (int) $s->id,

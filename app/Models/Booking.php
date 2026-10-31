@@ -44,6 +44,8 @@ class Booking extends Model
 
     protected $fillable = [
         'payment_id',
+        // i18n phase 2B: language of the page the guest booked on (nullable column, migration 2026_11_06_000001).
+        'locale',
         'code',
         'full_name',
         'email',

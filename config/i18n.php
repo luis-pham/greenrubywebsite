@@ -52,4 +52,19 @@ return [
     'workflow' => [
         'allow_self_approval' => (bool) env('I18N_ALLOW_SELF_APPROVAL', false),
     ],
+    /*
+     * Phase 2B: guest booking e-mails in the guest's language (App\Services\Mail\BookingMailLocale).
+     * locales: languages whose own booking e-mails may be sent. A booking whose stored locale (bookings.locale)
+     * is not listed here, or has no templates, gets exactly today's e-mail (en/vi always do: their e-mails are
+     * the pre-2B ones). Keep 'ja' OUT in production until the Japanese drafts pass native + legal review.
+     * terms_path: the Booking Terms page the drafts link to for cancellation/refund rules (English terms;
+     * owner decision D: pages in other languages link to them until their own terms are approved).
+     */
+    'mail' => [
+        'locales' => array_values(array_filter(array_map(
+            fn ($code) => strtolower(trim($code)),
+            explode(',', (string) env('I18N_MAIL_LOCALES', 'en,vi'))
+        ))),
+        'terms_path' => '/booking-terms-and-conditions',
+    ],
 ];

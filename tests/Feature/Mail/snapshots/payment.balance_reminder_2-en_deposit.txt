@@ -1,0 +1,41 @@
+Subject: Second reminder: balance for booking BK20261027CBBC33 due 26 Nov 2026
+From: Green Ruby Cruises <noreply@greenruby.test>
+Reply-To: Green Ruby Cruises <noreply@greenruby.test>
+To: 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second reminder: balance for booking BK20261027CBBC33 due 26 Nov 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 640px; margin: 0 auto; padding: 20px; }
+        .facts { border-collapse: collapse; margin: 16px 0; }
+        .facts td { padding: 6px 12px 6px 0; vertical-align: top; }
+        .facts td:first-child { color: #666; }
+        .button { display: inline-block; margin: 12px 0 20px; padding: 12px 22px; background: #13392f; color: #ffffff !important; text-decoration: none; font-weight: bold; }
+        .small { color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <p>Dear Jane Doe,</p>
+    <p>We have not yet received the balance of USD 700.00 for your cruise. It is due by 26 Nov 2026.</p>
+    <p>If you have already paid, please disregard this message; bank transfers can take a little time to reach us.</p>
+
+    <table class="facts">
+                    <tr><td>Booking reference</td><td><strong>BK20261027CBBC33</strong></td></tr>
+                    <tr><td>Voyage</td><td><strong>Lan Ha Bay 2 Days 1 Night · Green Ruby 2</strong></td></tr>
+                    <tr><td>Departure</td><td><strong>26 Dec 2026</strong></td></tr>
+                    <tr><td>Balance due</td><td><strong>USD 700.00</strong></td></tr>
+                    <tr><td>Due date</td><td><strong>26 Nov 2026</strong></td></tr>
+            </table>
+
+    <p><a class="button" href="https://greenrubycruises.test/booking/pay?t=fixture">Pay the balance</a></p>
+    <p class="small">https://greenrubycruises.test/booking/pay?t=fixture</p>
+
+<p style="margin-top: 20px;">Reservations Team<br>
+Green Ruby Cruises<br>
+Email: noreply@greenruby.test</p>
+</body>
+</html>

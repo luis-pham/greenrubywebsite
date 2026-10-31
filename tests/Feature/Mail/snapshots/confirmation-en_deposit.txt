@@ -1,0 +1,106 @@
+Subject: Booking Confirmation - BK20261027CBBC33
+From: Green Ruby Cruises <noreply@greenruby.test>
+Reply-To: Green Ruby Cruises <noreply@greenruby.test>
+To: <guest-en_deposit@example.test>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.8; color: #333; margin: 20px; }
+        .section-title { font-weight: bold; margin-top: 24px; margin-bottom: 12px; font-size: 14px; }
+        .section { margin-bottom: 8px; }
+        .section p { margin: 6px 0; }
+        .section .label { font-weight: bold; }
+        hr { margin: 24px 0; border: none; border-top: 1px solid #ccc; }
+        .list-item { margin: 8px 0 8px 16px; }
+    </style>
+</head>
+<body>
+
+<p>Dear Jane Doe,</p>
+
+<p>Thank you for choosing our cruise services. We are pleased to confirm your reservation with the following details:</p>
+
+<hr>
+
+<p class="section-title">BOOKING INFORMATION</p>
+<div class="section">
+    <p>Tour: Lan Ha Bay 2 Days 1 Night</p>
+    <p>Cruise: Green Ruby 2</p>
+    <p>Departure Date: 12/26/2026</p>
+    <p>Number of Guests: 5 people</p>
+</div>
+
+<hr>
+
+<p class="section-title">CABIN INFORMATION</p>
+<div class="section">
+    <p><span class="label">Cabin Type:</span> Imperial Suite</p>
+    <p>Guests:  2 Adults, 1 Child (6-12y), 1 Infant</p>
+        <p>Cabin Price: USD 640.00</p>
+    <p style="margin-bottom: 16px;"></p>
+    <p><span class="label">Cabin Type:</span> Serenity Deluxe</p>
+    <p>Guests:  1 Adult, 1 Child (2-5y)</p>
+        <p>Cabin Price: USD 320.00</p>
+    <p style="margin-bottom: 16px;"></p>
+</div>
+
+<hr>
+
+<p class="section-title">ADDITIONAL SERVICES</p>
+<div class="section">
+    <p><span class="label">Hanoi transfer</span></p>
+        <p>Quantity: 2</p>
+        <p>Price: USD 40.00</p>
+    <p style="margin-bottom: 12px;"></p>
+</div>
+
+<hr>
+
+<p class="section-title">ESTIMATED TOTAL</p>
+<div class="section">
+        <p>Estimated Total: USD 1,000.00</p>
+</div>
+
+<hr>
+
+<p class="section-title">PAYMENT INFORMATION</p>
+<div class="section">
+        <p>Total Amount: USD 1,000.00</p>
+                                <p>Deposit Paid: USD 300.00</p>
+            <p>Balance Due: USD 700.00 by 26/11/2026</p>
+            <p>We will email you a secure link to pay the balance about 45 days before departure.</p>
+                <p>Payment Methods:</p>
+    <p class="list-item">• PayPal</p>
+</div>
+
+<hr>
+
+
+<p class="section-title">CANCELLATION POLICY</p>
+<div class="section">
+    <p class="list-item">• 30 days or more before departure: no charge, 100% refund of the cruise amount paid</p>
+    <p class="list-item">• 15–29 days before departure: 50% of the total booking value</p>
+    <p class="list-item">• 7–14 days before departure: 75% of the total booking value</p>
+    <p class="list-item">• 0–6 days before departure or no-show: 100% of the total booking value</p>
+</div>
+
+<p style="margin-top: 20px;">If you have any special requests or require further assistance, please do not hesitate to contact us.</p>
+
+<p>We look forward to welcoming you on board and providing you with an unforgettable journey.</p>
+
+<hr>
+
+<p>Best regards,</p>
+<p style="margin-top: 12px;">Customer Service Team<br>
+Green Ruby Cruises<br>
+Hotline: 1900 8888<br>
+Email: noreply@greenruby.test<br>
+Website: https://greenrubycruises.test</p>
+
+</body>
+</html>

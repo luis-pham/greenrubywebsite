@@ -174,6 +174,14 @@ final class TranslationFactory
         if ($root && $root->slug !== 'root') {
             $parentId = self::parentIn(['type' => 'article_category', 'required' => true], (int) $root->id, $target, 'chuyên mục con');
         }
+        // AppCategoryService stamps created_by from the signed-in user (BaseModel): the CLI must name one (--actor).
+        if (!\Auth::user()) {
+            $actor = (int) ($values['created_by'] ?? 0);
+            if (!$actor) {
+                throw new \RuntimeException('Tạo chuyên mục cần một người dùng quản trị: chạy lệnh với --actor=<ad_user id> (creating an article category needs --actor).');
+            }
+            EditorialActor::signIn($actor);
+        }
         $id = (int) AppCategoryService::create(['parent_id' => $parentId] + array_intersect_key($values, array_flip(['name', 'slug', 'icon', 'description', 'seo_title', 'seo_description'])), $source->type, (int) $target->id);
         DB::table('app_category')->where('id', $id)->update(['publish_state' => 'unpublished']);
 
@@ -206,12 +214,12 @@ final class TranslationFactory
 
     public const RELATION_MARKER = '1970-01-01';
 
-    /** The unpublished flag per type (PublicationPolicy; services: status 0; amenities have none). */
+    /** The unpublished flag per type (PublicationPolicy; services: status 0; amenities: publish_state once migrated). */
     private static function unpublished(string $type): array
     {
         return match ($type) {
             'service' => ['status' => 0],
-            'amenity' => [],
+            'amenity' => \App\Services\Publication\PublicationPolicy::hasColumn('app_amenity') ? ['publish_state' => 'unpublished'] : [],
             default => \App\Services\Publication\PublicationPolicy::unpublishedAttributes($type),
         };
     }

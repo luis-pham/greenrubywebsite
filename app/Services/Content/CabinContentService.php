@@ -3,6 +3,8 @@
 namespace App\Services\Content;
 
 use App\Payments\PriceList;
+use App\Services\Publication\IntlVisibility;
+use App\Services\Publication\PublicationPolicy;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Modules\BackEnd\Entities\AdLanguage;
@@ -27,7 +29,7 @@ class CabinContentService
             ->join('app_group', 'app_group.id', '=', 'app_cabin.group_id')
             ->whereIn('app_group.slug', config('backend.listAccommodationSlug'))
             ->where('app_cabin.language_id', $languageId)
-            ->with('cruise:id,name,language_id')
+            ->with('cruise:id,name,language_id,slug')
             ->orderBy('app_cabin.ord')
             ->orderBy('app_cabin.id');
     }
@@ -91,7 +93,7 @@ class CabinContentService
             'description' => $room->description,
         ])->values();
 
-        $amenities = FeAppCabinService::getAmenityById($cabinId)->map(fn ($a) => [
+        $amenities = IntlVisibility::keepIds('amenity', FeAppCabinService::getAmenityById($cabinId), 'amenity_id', $cabin->language_id)->map(fn ($a) => [
             'name' => $a->amenity_name,
             'icon' => self::fileLink($a->amenity_icon),
         ])->values();
@@ -99,6 +101,8 @@ class CabinContentService
         $suitableFor = $cabin->cabinSuitableAudiences()
             ->join('app_group', 'app_group.id', '=', 'app_cabin_suitable_audience.group_id')
             ->orderBy('app_cabin_suitable_audience.ord')
+            ->when(IntlVisibility::applies($cabin->language_id) && PublicationPolicy::hasColumn('app_group'),
+                fn ($q) => $q->where('app_group.publish_state', 'published')) // a new language's unpublished groups
             ->get(['app_group.name'])
             ->map(fn ($g) => ['name' => $g->name])
             ->values();

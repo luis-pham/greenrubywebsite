@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Content;
 use App\Http\Controllers\Controller;
 use App\Services\Content\ContentMenuBuilder;
 use App\Services\Content\PageConfigContentService;
+use App\Services\Locale\IntlSitemap;
 use App\Services\Locale\LocaleRegistry;
 use Illuminate\Http\Request;
 use Modules\BackEnd\Helpers\Utilities;
@@ -26,7 +27,7 @@ class SiteController extends Controller
 
         $config = Utilities::getAllConfig($language);
 
-        return response()->json([
+        $payload = [
             'language' => ['code' => $language->code],
             'languages' => $languages,
             // Keys are the raw ad_config keys (with the "-{lang}" suffix stripped); object even when empty.
@@ -37,6 +38,13 @@ class SiteController extends Controller
             ],
             // app_page codes switched off in the admin (destinations, travel guides): not linked anywhere.
             'hiddenPages' => PageConfigContentService::hiddenCodes($language),
-        ]);
+        ];
+        if (!LocaleRegistry::isLegacy($language)) {
+            // Phase 2B: the section pages this language has (IntlSitemap::hubOpen), so the website links only to
+            // pages that exist and sends the rest to English. Not sent for en/vi (their payload is unchanged).
+            $payload['publicSections'] = IntlSitemap::publicSections($language);
+        }
+
+        return response()->json($payload);
     }
 }

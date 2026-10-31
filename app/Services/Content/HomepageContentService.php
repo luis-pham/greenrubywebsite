@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Services\Publication\IntlVisibility;
 use App\Services\Publication\PublicationPolicy;
 
 use Modules\BackEnd\Entities\AdLanguage;
@@ -23,6 +24,8 @@ class HomepageContentService
         $list = fn (string $key) => collect(is_iterable($get($key)) ? $get($key) : []);
         $text = fn (string $key) => ($v = trim((string) $get($key))) !== '' ? $v : null;
         $page = AppPageService::getByCode('homepage', $language->id);
+        // A new language's unpublished experience groups (i18n:seed-locale): their names are not shown.
+        $hiddenGroups = IntlVisibility::hiddenIds('group', $list('homepage-exp-activity')->map(fn ($e) => self::field($e, 'group_id')), $language->id);
 
         return [
             'seo' => [
@@ -61,7 +64,7 @@ class HomepageContentService
                 'destinations' => array_values(array_filter((array) json_decode((string) self::field($i, 'destination'), true), 'is_string')),
             ])->pipe(fn ($items) => PublicationPolicy::withoutUnpublished(PublicationPolicy::withoutUnpublished($items, 'app_itinerary', 'itineraryId'), 'app_cruise', 'cruiseId'))->values(),
             'cabins' => self::cabins($list('homepage-cabin')->map(fn ($c) => (int) self::field($c, 'id'))->all(), $language),
-            'services' => $list('homepage-service')->map(fn ($s) => [
+            'services' => IntlVisibility::keep('service', $list('homepage-service'))->map(fn ($s) => [
                 'id' => (int) self::field($s, 'id'),
                 'name' => self::field($s, 'name'),
                 'description' => self::clean(strip_tags((string) self::field($s, 'description'))),
@@ -73,7 +76,7 @@ class HomepageContentService
                 'name' => self::field($e, 'name'),
                 'summary' => self::clean(strip_tags((string) self::field($e, 'summary'))),
                 'image' => CabinContentService::fileLink(self::field($e, 'image_link') ?: self::field($e, 'cover_link')),
-                'group' => self::field($e, 'group_name'),
+                'group' => in_array((int) self::field($e, 'group_id'), $hiddenGroups, true) ? null : self::field($e, 'group_name'),
                 'duration' => self::clean(self::field($e, 'duration')),
             ])->pipe(fn ($items) => PublicationPolicy::withoutUnpublished($items, 'app_exp_activity'))->values(),
             'sustainability' => $list('homepage-sustainability')->map(fn ($s) => [

@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Services\Publication\IntlVisibility;
 use Illuminate\Support\Facades\DB;
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Entities\AppCabin;
@@ -68,13 +69,16 @@ class CruiseContentService
             ->where('app_cabin.cruise_id', $cruise->id)
             ->orderBy('app_cabin.ord')
             ->orderBy('app_cabin.id')
-            ->get()
+            ->get();
+        // A new language's facility type seeded but not yet published (i18n:seed-locale): its name is not shown.
+        $hiddenGroups = IntlVisibility::hiddenIds('group', $facilities->pluck('group_id'), $languageId);
+        $facilities = $facilities
             ->map(fn ($c) => [
                 'id' => (int) $c->id,
                 'name' => $c->name,
                 'summary' => ItineraryContentService::plain($c->summary),
                 'image' => CabinContentService::fileLink($c->image_link),
-                'group' => $c->group_name,
+                'group' => in_array((int) $c->group_id, $hiddenGroups, true) ? null : $c->group_name,
             ])->values();
 
         // Same source as the Blade "itineraries" block: one itinerary per duration on this ship's bay.
@@ -128,7 +132,7 @@ class CruiseContentService
             'yearBuilt' => CabinContentService::number($cruise->year_built),
             'descriptionDesignHtml' => safe_html($cruise->description_design) ?? '',
             'greenTechnology' => self::greenTechnology($cruise->green_technology),
-            'amenities' => $cruise->cruiseAmenities->map(fn ($a) => [
+            'amenities' => IntlVisibility::keep('amenity', $cruise->cruiseAmenities)->map(fn ($a) => [
                 'name' => $a->name,
                 'icon' => CabinContentService::fileLink($a->icon),
             ])->values(),

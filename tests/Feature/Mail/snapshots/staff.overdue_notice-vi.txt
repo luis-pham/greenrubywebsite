@@ -1,0 +1,40 @@
+Subject: [Reservations] Thông báo quá hạn thanh toán: đặt chỗ BK2026102735B36B
+From: Green Ruby Cruises <noreply@greenruby.test>
+Reply-To: Green Ruby Cruises <noreply@greenruby.test>
+To: 
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông báo quá hạn thanh toán: đặt chỗ BK2026102735B36B</title>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 640px; margin: 0 auto; padding: 20px; }
+        .facts { border-collapse: collapse; margin: 16px 0; }
+        .facts td { padding: 6px 12px 6px 0; vertical-align: top; }
+        .facts td:first-child { color: #666; }
+        .button { display: inline-block; margin: 12px 0 20px; padding: 12px 22px; background: #13392f; color: #ffffff !important; text-decoration: none; font-weight: bold; }
+        .small { color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <p>Green Ruby Cruises trân trọng thông báo: phần còn lại VND 0 của đặt chỗ đã đến hạn ngày  nhưng chúng tôi chưa nhận được.</p>
+    <p>Quý khách vui lòng hoàn tất thanh toán trước 03:00 28/11/2026 (GMT+7) qua đường dẫn dưới đây.</p>
+    <p>Nếu đến thời điểm đó chưa nhận được thanh toán, chúng tôi có thể hủy đặt chỗ theo mục 4.4 của Điều khoản đặt du thuyền. Khi đó chúng tôi có thể giữ lại tối đa khoản đặt cọc đã nhận và không thu thêm phí hủy nào khác.</p>
+    <p>Nếu Quý khách đã thanh toán hoặc cần hỗ trợ, vui lòng liên hệ chúng tôi trước thời điểm trên.</p>
+
+    <table class="facts">
+                    <tr><td>Mã đặt chỗ</td><td><strong>BK2026102735B36B</strong></td></tr>
+                    <tr><td>Hành trình</td><td><strong>Vịnh Lan Hạ 2 ngày 1 đêm · Green Ruby 2</strong></td></tr>
+                    <tr><td>Ngày khởi hành</td><td><strong>26/12/2026</strong></td></tr>
+                    <tr><td>Còn lại</td><td><strong>VND 0</strong></td></tr>
+                    <tr><td>Thanh toán trước</td><td><strong>03:00 28/11/2026 (GMT+7)</strong></td></tr>
+            </table>
+
+
+<p style="margin-top: 20px;">Bộ phận Đặt chỗ<br>
+Green Ruby Cruises<br>
+Email: noreply@greenruby.test</p>
+</body>
+</html>

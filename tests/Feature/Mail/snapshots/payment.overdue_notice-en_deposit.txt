@@ -1,0 +1,43 @@
+Subject: Payment overdue: booking BK20261027CBBC33
+From: Green Ruby Cruises <noreply@greenruby.test>
+Reply-To: Green Ruby Cruises <noreply@greenruby.test>
+To: 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment overdue: booking BK20261027CBBC33</title>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 640px; margin: 0 auto; padding: 20px; }
+        .facts { border-collapse: collapse; margin: 16px 0; }
+        .facts td { padding: 6px 12px 6px 0; vertical-align: top; }
+        .facts td:first-child { color: #666; }
+        .button { display: inline-block; margin: 12px 0 20px; padding: 12px 22px; background: #13392f; color: #ffffff !important; text-decoration: none; font-weight: bold; }
+        .small { color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <p>Dear Jane Doe,</p>
+    <p>This is formal notice that the balance of USD 700.00 for your booking was due by 26 Nov 2026 and has not been received.</p>
+    <p>Please complete the payment by 28 Nov 2026, 03:00 (GMT+7) using the link below.</p>
+    <p>If the balance is not received by then, we may cancel the booking as set out in section 4.4 of our Booking Terms &amp; Conditions. In that case we may retain up to the deposit already received, and no further cancellation charge will be claimed.</p>
+    <p>If you have already paid, or need help with the payment, please contact us before that time.</p>
+
+    <table class="facts">
+                    <tr><td>Booking reference</td><td><strong>BK20261027CBBC33</strong></td></tr>
+                    <tr><td>Voyage</td><td><strong>Lan Ha Bay 2 Days 1 Night · Green Ruby 2</strong></td></tr>
+                    <tr><td>Departure</td><td><strong>26 Dec 2026</strong></td></tr>
+                    <tr><td>Balance due</td><td><strong>USD 700.00</strong></td></tr>
+                    <tr><td>Pay by</td><td><strong>28 Nov 2026, 03:00 (GMT+7)</strong></td></tr>
+            </table>
+
+    <p><a class="button" href="https://greenrubycruises.test/booking/pay?t=fixture">Pay the balance</a></p>
+    <p class="small">https://greenrubycruises.test/booking/pay?t=fixture</p>
+
+<p style="margin-top: 20px;">Reservations Team<br>
+Green Ruby Cruises<br>
+Email: noreply@greenruby.test</p>
+</body>
+</html>

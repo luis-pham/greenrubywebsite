@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Booking;
+use App\Services\Mail\BookingMailLocale;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -34,6 +35,11 @@ class BookingConfirmationMail extends Mailable
         $fromAddress = config('mail.from.address');
         $replyToAddress = $email && $email !== $fromAddress ? $email : $fromAddress;
         $customerEmail = $this->booking->email ? trim((string) $this->booking->email) : '';
+        // Phase 2B: null (en, vi, no locale, or a locale not enabled for mail) = the pre-2B e-mail, unchanged.
+        $locale = BookingMailLocale::for($this->booking);
+        if ($locale !== null) {
+            return $this->buildLocalized($locale, $companyName, $hotline, $email, $website, $fromAddress, $replyToAddress, $customerEmail);
+        }
         $mailable = $this->from($fromAddress, $companyName)
             ->replyTo($replyToAddress, $companyName)
             ->subject('Booking Confirmation - ' . $this->booking->code);
@@ -49,6 +55,33 @@ class BookingConfirmationMail extends Mailable
                 'supportEmail' => $email,
                 'website' => $website,
                 'paymentMethodLabel' => $this->getPaymentMethodLabel($this->booking->payment->gateway ?? null),
+            ]);
+    }
+
+    /** Guest e-mail in a phase-2B locale (resources/views/emails/{locale}/booking-confirmation.blade.php). */
+    protected function buildLocalized(string $locale, $companyName, $hotline, $email, $website, $fromAddress, $replyToAddress, string $customerEmail)
+    {
+        $copy = BookingMailLocale::copy($locale);
+        $mailable = $this->from($fromAddress, $companyName)
+            ->replyTo($replyToAddress, $companyName)
+            ->subject(strtr($copy['subjects']['confirmation'], [':code' => $this->booking->code]));
+        if ($customerEmail !== '') {
+            $mailable->to($customerEmail);
+        }
+        $gateway = $this->booking->payment->gateway ?? null;
+
+        return $mailable
+            ->view('emails.' . $locale . '.booking-confirmation')
+            ->with([
+                'booking' => $this->booking,
+                'companyName' => $companyName,
+                'hotline' => $hotline,
+                'supportEmail' => $email,
+                'website' => $website,
+                'paymentMethodLabel' => $copy['payment_methods'][$gateway] ?? $this->getPaymentMethodLabel($gateway),
+                'balanceRequestDays' => (int) config('booking.balance_request_days', 45),
+                'termsUrl' => BookingMailLocale::termsUrl('cancellation'),
+                'refundTermsUrl' => BookingMailLocale::termsUrl('refunds'),
             ]);
     }
 

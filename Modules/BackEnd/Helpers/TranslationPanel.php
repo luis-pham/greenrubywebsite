@@ -39,7 +39,32 @@ final class TranslationPanel
             'published' => (int) $fresh->is_visible === 1, 'workflow' => $tm->workflow ?? null, 'freshness' => 'legacy',
             'source' => null, 'sourceLanguage' => null, 'sourceText' => [], 'business' => [], 'businessFields' => [],
             'slug' => null, 'slugHistory' => collect(), 'versions' => [],
-            'actions' => $tm ? Workflow::actionsFor('page', (int) $fresh->id, self::actor(), true) : [], 'pending' => null,
+            'actions' => $tm ? Workflow::actionsFor('page', (int) $fresh->id, self::actor(), true) : [],
+            'pending' => \App\Services\Content\RevisionStore::open('page', (int) $fresh->id),
+        ];
+    }
+
+    /**
+     * A structural group of a new language (cabin facility type, experience tab, service group, suitable audience;
+     * phase 2C): seeded unpublished by i18n:seed-locale, reviewed and published here (Workflow type 'group').
+     */
+    private static function group(object $fresh): ?array
+    {
+        $language = LocaleRegistry::byId((int) $fresh->language_id);
+        $tm = DB::table('translation_meta')->where('entity_type', 'group')->where('entity_id', $fresh->id)->first();
+        if (!$language || LocaleRegistry::isLegacy($language) || !$tm) {
+            return null;
+        }
+        $source = $tm->source_entity_id ? DB::table('app_group')->where('id', $tm->source_entity_id)->first() : null;
+
+        return [
+            'type' => 'group', 'label' => 'Nhóm', 'row' => $fresh, 'language' => $language, 'controlled' => true,
+            'published' => ($fresh->publish_state ?? 'published') === 'published', 'workflow' => $tm->workflow, 'freshness' => 'legacy',
+            'source' => $source, 'sourceLanguage' => $source ? LocaleRegistry::byId((int) $source->language_id) : null,
+            'sourceText' => $source ? array_map(fn ($c) => ['field' => $c, 'value' => $source->{$c} ?? null], Workflow::OWN_TYPES['group']['text']) : [],
+            'business' => [], 'businessFields' => [], 'slug' => null, 'slugHistory' => collect(), 'versions' => [],
+            'actions' => Workflow::actionsFor('group', (int) $fresh->id, self::actor(), true),
+            'pending' => \App\Services\Content\RevisionStore::open('group', (int) $fresh->id),
         ];
     }
 
@@ -70,7 +95,10 @@ final class TranslationPanel
         }
         $meta = TranslatableFields::of($type);
         $fresh = DB::table($meta['table'])->where('id', $row->id)->first();
-        if (!$fresh || ($type === 'faq_group' && (int) $fresh->type !== (int) config('backend.groupType.faq'))) {
+        if ($fresh && $type === 'faq_group' && (int) $fresh->type !== (int) config('backend.groupType.faq')) {
+            return self::group($fresh);
+        }
+        if (!$fresh) {
             return null;
         }
         if ($type === 'article_category' && (int) $fresh->type !== (int) config('backend.categoryType.article')) {

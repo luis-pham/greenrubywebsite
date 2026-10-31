@@ -19,6 +19,7 @@ use App\Payments\PaymentManager;
 use App\Payments\PaymentPlan;
 use App\Payments\PriceList;
 use App\Payments\TermsAcceptance;
+use App\Services\Mail\BookingMailLocale;
 use App\Support\SafeRedirect;
 use Modules\BackEnd\Entities\AdLanguage;
 
@@ -51,7 +52,41 @@ class PaymentController extends Controller
             'terms_required' => $termsRequired,
             'terms_version' => $termsRequired ? (string) config('booking.terms_version') : null,
             'today' => PaymentPlan::today()->toDateString(),
+            // i18n phase 2B: page languages that may start an online payment (config booking.payment_locales).
+            'payment_locales' => self::paymentLocales(),
         ]);
+    }
+
+    /** @return string[] config booking.payment_locales, normalised (default en, vi). */
+    public static function paymentLocales(): array
+    {
+        $value = config('booking.payment_locales', ['en', 'vi']);
+        $list = is_array($value) ? $value : explode(',', (string) $value);
+
+        return array_values(array_unique(array_filter(array_map(fn ($code) => strtolower(trim((string) $code)), $list))));
+    }
+
+    /**
+     * Phase 2B payment guard: a 422 when the page language (or the language the booking was made in) may not start
+     * an online payment; null otherwise. No locale at all (pages before 2B) is not refused, so EN/VI are unchanged.
+     */
+    protected function paymentLocaleRefusal(?string ...$locales)
+    {
+        foreach ($locales as $raw) {
+            $locale = BookingMailLocale::normalize($raw);
+            if ($locale !== null && !in_array($locale, self::paymentLocales(), true)) {
+                Log::warning('Payment refused: locale not allowed', ['locale' => $locale]);
+
+                return response()->json([
+                    'success' => false,
+                    'code' => 'payment_locale_not_allowed',
+                    'locale' => $locale,
+                    'message' => 'Online payment is not available for this language yet. Please send a reservation request.',
+                ], 422);
+            }
+        }
+
+        return null;
     }
 
     public function storeInquiry(Request $request)
@@ -61,6 +96,7 @@ class PaymentController extends Controller
             'terms.accepted' => 'sometimes|boolean',
             'terms.version' => 'sometimes|nullable|string|max:32',
             'terms.locale' => 'sometimes|nullable|string|max:8',
+            'locale' => 'sometimes|nullable|string|max:16',
             'booking' => 'required|array',
             'booking.full_name' => 'required|string|max:255',
             'booking.email' => 'sometimes|nullable|email',
@@ -157,7 +193,8 @@ class PaymentController extends Controller
                 'tax_amount' => 0,
                 'total_amount' => $totalAmount,
                 'status' => config('statuses.booking.pending', 'pending'),
-            ] + (BookingSchema::ready() ? ['payment_status' => Booking::PAYMENT_UNPAID] + ($terms ?? []) : []));
+            ] + (BookingSchema::ready() ? ['payment_status' => Booking::PAYMENT_UNPAID] + ($terms ?? []) : [])
+              + BookingMailLocale::attributes($request->input('locale')));
             if (BookingSchema::ready()) {
                 $payment->update(['booking_id' => $booking->id]);
             }
@@ -220,6 +257,7 @@ class PaymentController extends Controller
             'terms.accepted' => 'sometimes|boolean',
             'terms.version' => 'sometimes|nullable|string|max:32',
             'terms.locale' => 'sometimes|nullable|string|max:8',
+            'locale' => 'sometimes|nullable|string|max:16',
             'booking' => 'sometimes|array',
             'booking.departure_date' => 'sometimes|nullable|date',
             'booking.itinerary_id' => 'sometimes|nullable',
@@ -252,6 +290,10 @@ class PaymentController extends Controller
             'booking.amenities.*.quantity' => 'sometimes|integer|min:0',
             'booking.amenities.*.total_price' => 'sometimes|numeric|min:0',
         ]);
+
+        if ($refused = $this->paymentLocaleRefusal($data['locale'] ?? null)) {
+            return $refused;
+        }
 
         try {
             $method = $data['method'];
@@ -358,7 +400,8 @@ class PaymentController extends Controller
                         'payment_plan' => $plan['plan'] ?? PaymentPlan::FULL,
                         'payment_status' => Booking::PAYMENT_UNPAID,
                         'balance_due_date' => $plan['balance_due_date'] ?? null,
-                    ] + ($terms ?? []) : []));
+                    ] + ($terms ?? []) : [])
+                      + BookingMailLocale::attributes($request->input('locale')));
                     if (BookingSchema::ready()) {
                         $payment->update(['booking_id' => $booking->id]);
                     }
@@ -492,10 +535,15 @@ class PaymentController extends Controller
             'terms.accepted' => 'sometimes|boolean',
             'terms.version' => 'sometimes|nullable|string|max:32',
             'terms.locale' => 'sometimes|nullable|string|max:8',
+            'locale' => 'sometimes|nullable|string|max:16',
         ]);
         [$booking, $purpose, $error] = $this->resolvePaymentLink($data['t']);
         if ($error) {
             return $error;
+        }
+        // The page's language and the language the booking was made in (bookings.locale, when stored).
+        if ($refused = $this->paymentLocaleRefusal($data['locale'] ?? null, BookingMailLocale::stored($booking))) {
+            return $refused;
         }
         $currency = strtolower((string) $booking->currency);
         $method = $data['method'];

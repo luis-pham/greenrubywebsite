@@ -158,22 +158,9 @@ final class IntlSitemap
     /** Home and section hubs (of $sections), each only when served and not empty for this language. */
     private static function hubs(AdLanguage $language, array $sections): array
     {
-        $id = (int) $language->id;
-        $listed = fn (string $type, $rows) => collect($rows)->first(fn ($row) => TranslationResolver::selfPath($type, $row) !== null);
-        $candidates = [
-            'home' => fn () => $listed('cruise', AppCruise::where('language_id', $id)->get()),
-            'experiences' => fn () => $listed('experience', AppExpActivity::where('language_id', $id)->get()),
-            'itinerary' => fn () => $listed('itinerary', AppItinerary::where('language_id', $id)->get()),
-            'blog' => fn () => $listed('article', AppArticle::where('language_id', $id)->where('is_published', 1)->get()
-                ->filter(fn ($a) => TranslationResolver::section('article', DB::table('app_category')->where('id', $a->category_id)->value('slug')) === 'blog')),
-            'news' => fn () => $listed('article', AppArticle::where('language_id', $id)->where('is_published', 1)->get()
-                ->filter(fn ($a) => TranslationResolver::section('article', DB::table('app_category')->where('id', $a->category_id)->value('slug')) === 'news')),
-            'destinations' => fn () => DestinationContentService::hubVisible($language)
-                ? $listed('destination', AppDestination::where('language_id', $id)->where('status', 'published')->get()) : null,
-        ];
         $entries = [];
-        foreach (array_intersect_key($candidates, array_flip($sections)) as $section => $evidence) {
-            if (!LocaleRegistry::sectionReady($language, $section) || !($row = $evidence())) {
+        foreach (array_intersect(self::HUBS, $sections) as $section) {
+            if (!LocaleRegistry::sectionReady($language, $section) || !($row = self::hubEvidence($language, $section))) {
                 continue;
             }
             $path = $section === 'home' ? PathBuilder::home($language) : PathBuilder::section($language, $section);
@@ -181,6 +168,67 @@ final class IntlSitemap
         }
 
         return $entries;
+    }
+
+    /** Hubs that are public only while they list at least one public item of the language. */
+    private const HUBS = ['home', 'experiences', 'itinerary', 'blog', 'news', 'destinations'];
+
+    /** The first public item a hub of $language would list (its evidence of content), or null. */
+    private static function hubEvidence(AdLanguage $language, string $section)
+    {
+        $id = (int) $language->id;
+        $listed = fn (string $type, $rows) => collect($rows)->first(fn ($row) => TranslationResolver::selfPath($type, $row) !== null);
+        $articles = fn (string $hub) => $listed('article', AppArticle::where('language_id', $id)->where('is_published', 1)->get()
+            ->filter(fn ($a) => TranslationResolver::section('article', DB::table('app_category')->where('id', $a->category_id)->value('slug')) === $hub));
+
+        return match ($section) {
+            'home' => $listed('cruise', AppCruise::where('language_id', $id)->get()),
+            'experiences' => $listed('experience', AppExpActivity::where('language_id', $id)->get()),
+            'itinerary' => $listed('itinerary', AppItinerary::where('language_id', $id)->get()),
+            'blog', 'news' => $articles($section),
+            'destinations' => DestinationContentService::hubVisible($language)
+                ? $listed('destination', AppDestination::where('language_id', $id)->where('status', 'published')->get()) : null,
+            default => null,
+        };
+    }
+
+    /** Section pages a new language can link to (hubOpen), for the website's own links (Content API /site). */
+    public const LINKABLE = ['home', 'itinerary', 'experiences', 'destinations', 'blog', 'news', 'faq', 'services', 'gallery', 'aboutUs', 'contact', 'booking'];
+
+    /** @return string[] the LINKABLE sections that are public for $language */
+    public static function publicSections(AdLanguage $language): array
+    {
+        return array_values(array_filter(self::LINKABLE, fn (string $section) => self::hubOpen($language, $section)));
+    }
+
+    /**
+     * Whether a section page of a new language is public, by the same rules as its sitemap entry: hubs list
+     * something; the FAQ has a group with a question; static pages are published for the language. Used to link only
+     * to pages that exist (phase 2B: Japanese menus).
+     */
+    public static function hubOpen(AdLanguage $language, string $section): bool
+    {
+        if (!LocaleRegistry::sectionReady($language, $section)) {
+            return false;
+        }
+
+        if ($section === 'booking') {
+            return true; // the reservation form has no content of its own: served = public
+        }
+
+        return PublicationContext::asPublic(function () use ($language, $section) {
+            if (in_array($section, self::HUBS, true)) {
+                return self::hubEvidence($language, $section) !== null;
+            }
+            if ($section === 'faq') {
+                $groups = \Modules\BackEnd\Entities\AppGroup::where('language_id', $language->id)->where('type', config('backend.groupType.faq'))->where('slug', '!=', 'root')->pluck('id');
+
+                return \Modules\BackEnd\Entities\AppFaq::whereIn('group_id', $groups)->exists();
+            }
+            $code = \App\Services\Publication\PagePublication::SECTION_PAGES[$section] ?? null;
+
+            return $code !== null && \App\Services\Publication\PagePublication::visible($code, $language);
+        });
     }
 
     private static function entry(string $path, $row, string $changefreq, string $priority, array $alternates, string $group): array

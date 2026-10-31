@@ -1,0 +1,143 @@
+Subject: [New Booking] BK20261027CBBC33 - Jane Doe
+From: Booking System <noreply@greenruby.test>
+Reply-To: 
+To: 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Booking Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.8; color: #333; margin: 20px; }
+        .section-title { font-weight: bold; margin-top: 24px; margin-bottom: 12px; font-size: 14px; }
+        .section { margin-bottom: 8px; }
+        .section p { margin: 6px 0; }
+        .section .label { font-weight: bold; }
+        hr { margin: 24px 0; border: none; border-top: 1px solid #ccc; }
+        .list-item { margin: 8px 0 8px 0; display: flex; align-items: flex-start; }
+        .checkbox-box {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #333;
+            display: inline-block;
+            margin-right: 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+        .list-item-text { flex: 1; }
+    </style>
+</head>
+<body>
+
+<p>Dear System Administrator,</p>
+
+<p>A new cruise reservation has been successfully created in the system.<br>
+Please review the details below for verification and further processing.</p>
+
+<hr>
+
+<p class="section-title">BOOKING SUMMARY</p>
+<div class="section">
+    <p>Booking ID: BK20261027CBBC33</p>
+    <p>Booking Date: 10/27/2026 10:00:00</p>
+    <p>Status: Confirmed</p>
+</div>
+
+<hr>
+
+<p class="section-title">CUSTOMER INFORMATION</p>
+<div class="section">
+    <p>Customer Name: Jane Doe</p>
+    <p>Email: guest-en_deposit@example.test</p>
+    <p>Phone Number: +84 900 000 000</p>
+</div>
+
+<hr>
+
+<p class="section-title">CRUISE INFORMATION</p>
+<div class="section">
+    <p>Tour: Lan Ha Bay 2 Days 1 Night</p>
+    <p>Cruise: Green Ruby 2</p>
+    <p>Departure Date: 12/26/2026</p>
+    <p>Number of Guests: 5 people</p>
+</div>
+
+<hr>
+
+<p class="section-title">CABIN DETAILS</p>
+<div class="section">
+    <p><span class="label">Cabin Type:</span> Imperial Suite</p>
+    <p>Guests:  2 Adults, 1 Child (6-12y), 1 Infant</p>
+        <p>Cabin Price: USD 640.00</p>
+    <p style="margin-bottom: 16px;"></p>
+    <p><span class="label">Cabin Type:</span> Serenity Deluxe</p>
+    <p>Guests:  1 Adult, 1 Child (2-5y)</p>
+        <p>Cabin Price: USD 320.00</p>
+    <p style="margin-bottom: 16px;"></p>
+</div>
+
+<hr>
+
+<p class="section-title">ADDITIONAL SERVICES</p>
+<div class="section">
+    <p><span class="label">Hanoi transfer</span></p>
+        <p>Quantity: 2</p>
+        <p>Price: USD 40.00</p>
+    <p style="margin-bottom: 12px;"></p>
+</div>
+
+<hr>
+
+    <p class="section-title">PAYMENT INFORMATION</p>
+<div class="section">
+        <p>Total Amount: USD 1,000.00</p>
+    <p>Payment Method: PayPal</p>
+    <p>Payment Status: Succeeded</p>
+    <p>Payment Deadline: N/A</p>
+    <p>Transaction ID: N/A</p>
+</div>
+
+<hr>
+
+<p class="section-title">ADMIN ACTION REQUIRED</p>
+<div class="section">
+    <p class="list-item">
+        <span class="checkbox-box"></span>
+        <span class="list-item-text">Verify customer information</span>
+    </p>
+    <p class="list-item">
+        <span class="checkbox-box"></span>
+        <span class="list-item-text">Confirm cabin availability</span>
+    </p>
+    <p class="list-item">
+        <span class="checkbox-box"></span>
+        <span class="list-item-text">Validate payment status</span>
+    </p>
+    <p class="list-item">
+        <span class="checkbox-box"></span>
+        <span class="list-item-text">Update booking status</span>
+    </p>
+    <p class="list-item">
+        <span class="checkbox-box"></span>
+        <span class="list-item-text">Send confirmation email to customer</span>
+    </p>
+</div>
+
+<p style="margin-top: 20px;">Please log in to the management system to process this booking accordingly.</p>
+
+<p><span class="label">Admin Portal:</span> https://greenrubycruises.com/admincp/booking-manager</p>
+
+<p style="margin-top: 16px;">For internal support, please contact the technical team.</p>
+
+<hr>
+
+<p>Best regards,</p>
+<p style="margin-top: 12px;">Booking System Notification<br>
+Green Ruby Cruises<br>
+System Auto-Mailer<br>
+This is an automated message. Please do not reply.</p>
+
+</body>
+</html>
