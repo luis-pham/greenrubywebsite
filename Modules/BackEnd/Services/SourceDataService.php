@@ -286,9 +286,14 @@ class SourceDataService
     public static function getServiceById($id, $languageId)
     {
         if (is_array($id)) {
+            // In the order picked in the page config (the services page and homepage show them in that order).
+            $order = array_flip(array_map('intval', array_values($id)));
+
             return AppService::whereIn('id', $id)
                 ->where('language_id', $languageId)
-                ->get();
+                ->get()
+                ->sortBy(fn ($s) => $order[(int) $s->id] ?? PHP_INT_MAX)
+                ->values();
         } else {
             return AppServiceService::find($id, $languageId);
         }
