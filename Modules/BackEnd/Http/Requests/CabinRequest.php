@@ -151,6 +151,8 @@ class CabinRequest extends FormRequest
             $rules['over_capacity_infant'] = 'nullable|integer|min:0|max:50';
         }
 
+        $rules['occupancy_limits'] = ['nullable', 'string', 'max:100', 'regex:' . \App\Support\Occupancy::PATTERN];
+
         if (FacilityProfileUtils::requiresPrice($profile) && $this->ownsPrices()) {
             $capacity = (int) $this->input('capacity', 0);
             if ($capacity > 0) {
@@ -195,6 +197,7 @@ class CabinRequest extends FormRequest
             'over_capacity_infant.integer' => __('backend::cabin.validation_over_capacity_integer'),
             'over_capacity_infant.min' => __('backend::cabin.validation_over_capacity_min'),
             'over_capacity_infant.max' => __('backend::cabin.validation_over_capacity_max'),
+            'occupancy_limits.regex' => __('backend::cabin.validation_occupancy_limits'),
             'area.required' => __('backend::cabin.validation_area_required'),
             'area.numeric' => __('backend::cabin.validation_area_numeric'),
             'area.min' => __('backend::cabin.validation_area_min'),

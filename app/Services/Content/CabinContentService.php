@@ -133,6 +133,8 @@ class CabinContentService
                 'child2to5' => (int) $cabin->over_capacity_child_2_5,
                 'infant' => (int) $cabin->over_capacity_infant,
             ],
+            // Maximum guest combinations ("2+2, 3+0"); [] when the cabin still uses the per-type limits.
+            'occupancyLimits' => \App\Support\Occupancy::parse($cabin->occupancy_limits ?? null),
             'discountPercent' => self::number($cabin->discount_percent),
             'rooms' => $rooms,
             'amenities' => $amenities,

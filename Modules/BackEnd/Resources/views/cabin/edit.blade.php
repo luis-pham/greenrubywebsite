@@ -297,6 +297,12 @@
                             </div>
                         </div>
 
+                        <div class="form-group facility-profile-section" id="facility-section-occupancy" data-section="over_capacity">
+                            <label>{{ __('backend::cabin.label_occupancy_limits') }}</label>
+                            {{ Form::text('occupancy_limits', old('occupancy_limits', $obj->occupancy_limits ?? null), ['class' => 'form-control', 'placeholder' => '2+2, 3+0', 'maxlength' => 100, 'autocomplete' => 'off']) }}
+                            <small class="form-text text-muted">{{ __('backend::cabin.help_occupancy_limits') }}</small>
+                        </div>
+
                         <div class="form-group mb-0 facility-profile-section" id="facility-section-discount" data-section="discount">
                             <label>{{ __('backend::cabin.label_discount') }}</label>
                             {{ Form::number('discount_percent', old('discount_percent', $obj->discount_percent ?? null), ['class' => 'form-control', 'placeholder' => '0', 'min' => 0, 'max' => 100, 'autocomplete' => 'off']) }}

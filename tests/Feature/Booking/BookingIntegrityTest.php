@@ -35,6 +35,7 @@ class BookingIntegrityTest extends BookingTestCase
             foreach (['over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant'] as $c) {
                 $t->unsignedInteger($c)->default(0);
             }
+            $t->string('occupancy_limits', 100)->nullable();
         });
         Schema::create('app_cabin_price', function (Blueprint $t) {
             $t->increments('id');
@@ -104,6 +105,45 @@ class BookingIntegrityTest extends BookingTestCase
     private function cabin(int $id, int $adults = 2): array
     {
         return [['cabin_id' => $id, 'quantity' => 1, 'adults' => $adults]];
+    }
+
+    // --- Occupancy (agent contract III.2, owner 2026-11-02) ------------------------------------
+
+    private function guests(int $id, int $adults, int $c612 = 0, int $c25 = 0, int $infants = 0): array
+    {
+        return ['itinerary_id' => '3-3', 'cabins' => [['cabin_id' => $id, 'quantity' => 1, 'adults' => $adults,
+            'children_6_12' => $c612, 'children_2_5' => $c25, 'infants' => $infants]]];
+    }
+
+    public function test_occupancy_limits_allow_two_adults_with_two_children_or_three_adults_alone(): void
+    {
+        DB::table('app_cabin')->where('id', 24)->update(['occupancy_limits' => '2+2, 3+0', 'over_capacity_adult' => 3]);
+        DB::table('app_cabin_price')->insert(['cabin_id' => 24, 'duration' => 3, 'guest' => 1, 'price' => 500]);
+        $fits = fn (array $b) => $this->price($b)[0] !== null;
+
+        $this->assertTrue($fits($this->guests(24, 2, 1, 0, 1)), 'two adults, a child and an infant');
+        $this->assertTrue($fits($this->guests(24, 3)), 'three adults');
+        $this->assertTrue($fits($this->guests(24, 1, 2)), 'one adult and two children');
+        $this->assertFalse($fits($this->guests(24, 3, 0, 0, 1)), 'a third adult takes the children\'s place, infants included');
+        $this->assertFalse($fits($this->guests(24, 2, 1, 1, 1)), 'three children, counting the infant');
+        $this->assertFalse($fits($this->guests(24, 4)), 'four adults');
+    }
+
+    public function test_occupancy_limits_replace_the_per_type_limits(): void
+    {
+        // Imperial: 4 adults + 4 children although capacity is 3 and over_capacity_adult says 3.
+        DB::table('app_cabin')->where('id', 24)->update(['capacity' => 3, 'over_capacity_adult' => 3, 'occupancy_limits' => '4+4']);
+        DB::table('app_cabin_price')->insert(['cabin_id' => 24, 'duration' => 3, 'guest' => 3, 'price' => 900]);
+
+        $this->assertNotNull($this->price($this->guests(24, 4, 2, 1, 1))[0]);
+        $this->assertNull($this->price($this->guests(24, 5))[0]);
+        $this->assertNull($this->price($this->guests(24, 4, 3, 1, 1))[0]);
+    }
+
+    public function test_cabins_without_occupancy_limits_keep_the_per_type_rule(): void
+    {
+        $this->assertNotNull($this->price($this->guests(24, 3, 2))[0], 'capacity 2: up to 3 adults and 2 children of each age');
+        $this->assertNull($this->price($this->guests(24, 4))[0]);
     }
 
     // --- Price lists ---------------------------------------------------------------------------

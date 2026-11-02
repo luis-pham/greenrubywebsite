@@ -86,7 +86,7 @@ class CabinController extends Controller
             $data = $request->only([
                 'group_id', 'cruise_id', 'name', 'summary', 'seo_title', 'seo_description', 'content', 'image_link', 'image_gallery', 'view', 'cabin_class',
                 'capacity',
-                'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant',
+                'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant', 'occupancy_limits',
                 'area', 'discount_percent', 'ord',
                 'room_title', 'room_description',
                 'amenity_ids', 'amenity_name', 'amenity_description', 'amenity_icon',
@@ -252,7 +252,7 @@ class CabinController extends Controller
             $data = $request->only([
                 'group_id', 'cruise_id', 'name', 'summary', 'seo_title', 'seo_description', 'content', 'image_link', 'image_gallery', 'view', 'cabin_class',
                 'capacity',
-                'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant',
+                'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant', 'occupancy_limits',
                 'area', 'discount_percent', 'ord',
                 'room_title', 'room_description',
                 'amenity_ids', 'amenity_name', 'amenity_description', 'amenity_icon',

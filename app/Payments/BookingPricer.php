@@ -54,7 +54,7 @@ class BookingPricer
 
         $cabins = DB::table('app_cabin')
             ->whereIn('id', $cabinIds)
-            ->get(['id', 'language_id', 'cruise_id', 'capacity', 'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant'])
+            ->get(array_merge(['id', 'language_id', 'cruise_id', 'capacity', 'over_capacity_adult', 'over_capacity_child_6_12', 'over_capacity_child_2_5', 'over_capacity_infant'], \App\Support\Occupancy::available() ? ['occupancy_limits'] : []))
             ->keyBy('id');
         if ($cabins->count() !== count($cabinIds)) {
             return $this->fail('cabin_unknown');
@@ -158,12 +158,19 @@ class BookingPricer
         ];
     }
 
-    /** Same limits as public/assets/frontend/js/modules/booking/cabin-price-calculator.js. */
+    /**
+     * Same limits as greenruby-web src/views/booking/pricing.ts. A cabin with occupancy_limits is checked against those
+     * combinations only (children = every age, infants included); otherwise the legacy per-type limits apply.
+     */
     protected function guestsAllowed(object $cabin, array $g): bool
     {
         $capacity = (int) $cabin->capacity;
         if ($capacity <= 0 || $g['adults'] + $g['children_6_12'] + $g['children_2_5'] <= 0) {
             return false;
+        }
+        $limits = \App\Support\Occupancy::parse($cabin->occupancy_limits ?? null);
+        if ($limits !== []) {
+            return \App\Support\Occupancy::fits($limits, $g['adults'], $g['children_6_12'] + $g['children_2_5'] + $g['infants']);
         }
         $limit = fn ($value, $default) => (int) $value > 0 ? (int) $value : $default;
 

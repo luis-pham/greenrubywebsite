@@ -119,5 +119,8 @@ return [
     'validation_price_numeric' => 'Please enter price for :duration - :guest!',
     'validation_price_min' => 'Price for :duration - :guest must be greater than 0!',
     'validation_price_max' => 'Price for :duration - :guest must not exceed 10,000,000,000!',
+    'label_occupancy_limits' => 'Maximum guests (adults + children)',
+    'help_occupancy_limits' => 'Maximum combinations, comma-separated. "2+2, 3+0": at most 2 adults with 2 children, or 3 adults with no child. Children include every age, infants too. Empty: the per-type limits above apply.',
+    'validation_occupancy_limits' => 'Maximum guests must look like "2+2, 3+0" (adults + children).',
 ];
 */

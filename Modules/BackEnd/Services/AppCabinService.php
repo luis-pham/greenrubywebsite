@@ -47,6 +47,9 @@ class AppCabinService
             $obj->over_capacity_child_6_12 = array_key_exists('over_capacity_child_6_12', $data) ? $data['over_capacity_child_6_12'] : 0;
             $obj->over_capacity_child_2_5 = array_key_exists('over_capacity_child_2_5', $data) ? $data['over_capacity_child_2_5'] : 0;
             $obj->over_capacity_infant = array_key_exists('over_capacity_infant', $data) ? $data['over_capacity_infant'] : 0;
+            if (array_key_exists('occupancy_limits', $data) && \App\Support\Occupancy::available()) {
+                $obj->occupancy_limits = \App\Support\Occupancy::normalize($data['occupancy_limits']);
+            }
             $obj->area = array_key_exists('area', $data) ? $data['area'] : null;
             $obj->discount_percent = array_key_exists('discount_percent', $data) ? $data['discount_percent'] : null;
             $obj->ord = array_key_exists('ord', $data) ? $data['ord'] : 0;
@@ -168,6 +171,9 @@ class AppCabinService
                 $obj->over_capacity_child_6_12 = array_key_exists('over_capacity_child_6_12', $data) ? $data['over_capacity_child_6_12'] : $obj->over_capacity_child_6_12;
                 $obj->over_capacity_child_2_5 = array_key_exists('over_capacity_child_2_5', $data) ? $data['over_capacity_child_2_5'] : $obj->over_capacity_child_2_5;
                 $obj->over_capacity_infant = array_key_exists('over_capacity_infant', $data) ? $data['over_capacity_infant'] : $obj->over_capacity_infant;
+                if (array_key_exists('occupancy_limits', $data) && \App\Support\Occupancy::available()) {
+                    $obj->occupancy_limits = \App\Support\Occupancy::normalize($data['occupancy_limits']);
+                }
                 $obj->area = array_key_exists('area', $data) ? $data['area'] : $obj->area;
                 $obj->discount_percent = array_key_exists('discount_percent', $data) ? $data['discount_percent'] : $obj->discount_percent;
                 $obj->ord = array_key_exists('ord', $data) ? $data['ord'] : $obj->ord;

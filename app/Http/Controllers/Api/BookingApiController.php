@@ -210,6 +210,9 @@ class BookingApiController extends Controller
                 DB::raw($minPriceExpression)
             )
             ->leftJoin('app_cruise', 'app_cruise.id', '=', 'app_cabin.cruise_id');
+        if (\App\Support\Occupancy::available()) {
+            $query->addSelect('app_cabin.occupancy_limits');
+        }
 
         $slugFilter = null;
         if ($lang === 'en') {
@@ -313,6 +316,7 @@ class BookingApiController extends Controller
                 'over_capacity_child_6_12' => $row->over_capacity_child_6_12 !== null ? (int) $row->over_capacity_child_6_12 : null,
                 'over_capacity_child_2_5' => $row->over_capacity_child_2_5 !== null ? (int) $row->over_capacity_child_2_5 : null,
                 'over_capacity_infant' => $row->over_capacity_infant !== null ? (int) $row->over_capacity_infant : null,
+                'occupancy_limits' => \App\Support\Occupancy::parse($row->occupancy_limits ?? null),
                 'area' => $row->area !== null ? (float) $row->area : null,
                 'cruise_id' => $row->cruise_id !== null ? (int) $row->cruise_id : null,
                 'cruise_name' => $row->cruise_name,

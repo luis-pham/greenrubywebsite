@@ -170,4 +170,7 @@ return [
     'profile_event_label_area_m2' => 'Diện tích phòng (m²)',
     'profile_event_section_gallery' => 'DANH SÁCH ẢNH PHÒNG SỰ KIỆN',
     'profile_event_section_operations' => 'QUY MÔ PHÒNG',
+    'label_occupancy_limits' => 'Số khách tối đa (người lớn + trẻ em)',
+    'help_occupancy_limits' => 'Các tổ hợp tối đa, cách nhau bằng dấu phẩy. Ví dụ "2+2, 3+0": tối đa 2 người lớn + 2 trẻ, hoặc 3 người lớn không kèm trẻ. Trẻ em tính mọi độ tuổi, gồm cả em bé. Để trống: dùng giới hạn theo từng loại khách ở trên.',
+    'validation_occupancy_limits' => 'Số khách tối đa phải có dạng "2+2, 3+0" (người lớn + trẻ em).',
 ];

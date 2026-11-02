@@ -23,6 +23,7 @@ class AppCabin extends BaseModel
         'over_capacity_child_6_12',
         'over_capacity_child_2_5',
         'over_capacity_infant',
+        'occupancy_limits',
         'area',
         'discount_percent',
         'ord'

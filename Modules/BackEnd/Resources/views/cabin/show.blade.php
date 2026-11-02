@@ -214,6 +214,11 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label>{{ __('backend::cabin.label_occupancy_limits') }}</label>
+                        <div class="form-control-plaintext">{{ $obj->occupancy_limits ?: '—' }}</div>
+                    </div>
+
                     <div class="form-group mb-0">
                         <label>{{ __('backend::cabin.label_discount') }}</label>
                         <div class="form-control-plaintext">{{ $obj->discount_percent ? $obj->discount_percent . '%' : '0%' }}</div>
