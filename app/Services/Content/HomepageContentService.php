@@ -4,6 +4,7 @@ namespace App\Services\Content;
 
 use App\Services\Publication\IntlVisibility;
 use App\Services\Publication\PublicationPolicy;
+use Illuminate\Support\Facades\DB;
 
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Helpers\Utilities;
@@ -26,6 +27,10 @@ class HomepageContentService
         $page = AppPageService::getByCode('homepage', $language->id);
         // A new language's unpublished experience groups (i18n:seed-locale): their names are not shown.
         $hiddenGroups = IntlVisibility::hiddenIds('group', $list('homepage-exp-activity')->map(fn ($e) => self::field($e, 'group_id')), $language->id);
+        // "Life on board" shows the ship's spaces: the first published homepage ship's facilities (the sister ships share
+        // the layout).
+        $ship = PublicationPolicy::withoutUnpublished($list('homepage-cruise')->map(fn ($c) => ['id' => (int) self::field($c, 'id')]), 'app_cruise')
+            ->pluck('id')->first();
 
         return [
             'seo' => [
@@ -64,6 +69,8 @@ class HomepageContentService
                 'destinations' => array_values(array_filter((array) json_decode((string) self::field($i, 'destination'), true), 'is_string')),
             ])->pipe(fn ($items) => PublicationPolicy::withoutUnpublished(PublicationPolicy::withoutUnpublished($items, 'app_itinerary', 'itineraryId'), 'app_cruise', 'cruiseId'))->values(),
             'cabins' => self::cabins($list('homepage-cabin')->map(fn ($c) => (int) self::field($c, 'id'))->all(), $language),
+            'facilities' => $ship ? CruiseContentService::facilities($ship, (int) $language->id)->take(4)->values() : [],
+            'facilitiesCruise' => $ship ? ['id' => $ship, 'slug' => Slugs::forId('app_cruise', $ship, (string) DB::table('app_cruise')->where('id', $ship)->value('name'))] : null,
             'services' => IntlVisibility::keep('service', $list('homepage-service'))->map(fn ($s) => [
                 'id' => (int) self::field($s, 'id'),
                 'name' => self::field($s, 'name'),

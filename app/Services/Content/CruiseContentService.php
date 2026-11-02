@@ -21,6 +21,31 @@ use Modules\FrontEnd\Services\AppItineraryService;
  */
 class CruiseContentService
 {
+    /** Onboard facilities of a ship (cabin rows outside the accommodation groups), in the admin's order. */
+    public static function facilities(int $cruiseId, int $languageId): \Illuminate\Support\Collection
+    {
+        $facilities = AppCabin::query()
+            ->select('app_cabin.*', 'app_group.name as group_name')
+            ->join('app_group', 'app_group.id', '=', 'app_cabin.group_id')
+            ->whereNotIn('app_group.slug', config('backend.listAccommodationSlug'))
+            ->where('app_cabin.language_id', $languageId)
+            ->where('app_cabin.cruise_id', $cruiseId)
+            ->orderBy('app_cabin.ord')
+            ->orderBy('app_cabin.id')
+            ->get();
+        // A new language's facility type seeded but not yet published (i18n:seed-locale): its name is not shown.
+        $hiddenGroups = IntlVisibility::hiddenIds('group', $facilities->pluck('group_id'), $languageId);
+
+        return $facilities
+            ->map(fn ($c) => [
+                'id' => (int) $c->id,
+                'name' => $c->name,
+                'summary' => ItineraryContentService::plain($c->summary),
+                'image' => CabinContentService::fileLink($c->image_link),
+                'group' => in_array((int) $c->group_id, $hiddenGroups, true) ? null : $c->group_name,
+            ])->values();
+    }
+
     public static function index(AdLanguage $language): array
     {
         return [
@@ -61,25 +86,7 @@ class CruiseContentService
             ->orderBy('id', 'asc')
             ->get();
 
-        $facilities = AppCabin::query()
-            ->select('app_cabin.*', 'app_group.name as group_name')
-            ->join('app_group', 'app_group.id', '=', 'app_cabin.group_id')
-            ->whereNotIn('app_group.slug', config('backend.listAccommodationSlug'))
-            ->where('app_cabin.language_id', $languageId)
-            ->where('app_cabin.cruise_id', $cruise->id)
-            ->orderBy('app_cabin.ord')
-            ->orderBy('app_cabin.id')
-            ->get();
-        // A new language's facility type seeded but not yet published (i18n:seed-locale): its name is not shown.
-        $hiddenGroups = IntlVisibility::hiddenIds('group', $facilities->pluck('group_id'), $languageId);
-        $facilities = $facilities
-            ->map(fn ($c) => [
-                'id' => (int) $c->id,
-                'name' => $c->name,
-                'summary' => ItineraryContentService::plain($c->summary),
-                'image' => CabinContentService::fileLink($c->image_link),
-                'group' => in_array((int) $c->group_id, $hiddenGroups, true) ? null : $c->group_name,
-            ])->values();
+        $facilities = self::facilities((int) $cruise->id, $languageId);
 
         // Same source as the Blade "itineraries" block: one itinerary per duration on this ship's bay.
         $minPrices = FeAppCabinService::getMinPriceByCruiseId((int) $cruise->id);
