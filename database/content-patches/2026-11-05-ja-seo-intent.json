@@ -1,0 +1,530 @@
+{
+  "name": "2026-11-05 Japanese SEO by search intent (P0/P1/P2, JA rows only)",
+  "reviewed": "2026-11-05; audit seo-ja-intent-audit; every op targets a language_id=3 row; old values read from local green_ruby (= prod copy). Draft #280 stays unpublished. Ids differ between databases: run resolve-ja-ids.php first, which sets each op id from its match (exactly one language_id=3 row).",
+  "revalidate": [
+    "content",
+    "articles"
+  ],
+  "ops": [
+    {
+      "table": "app_page",
+      "id": "50",
+      "column": "seo_title",
+      "type": "set",
+      "old": "ハロン湾・ランハ湾のクルーズ行程：1泊2日・2泊3日｜Green Ruby",
+      "new": "ハロン湾クルーズツアー｜1泊2日・2泊3日の行程一覧",
+      "note": "P0 /ja/itinerary: ハロン湾 ツアー",
+      "match": {
+        "code": "itinerary",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_page",
+      "id": "50",
+      "column": "seo_description",
+      "type": "set",
+      "old": "ハロン湾・ランハ湾をめぐる、環境に配慮した1泊2日・2泊3日のクルーズ行程を比較。航路、客室、船上での体験をご覧いただけます。Green Rubyで事前予約を受け付けています。",
+      "new": "ハロン湾・ランハ湾を船で巡る、1泊2日・2泊3日の宿泊クルーズツアー全4コース。訪問地、日程、客室を比較できます。2027年2月就航予定、ご希望日のお問い合わせ受付中。",
+      "note": "P0 /ja/itinerary: overnight tours, booking state",
+      "match": {
+        "code": "itinerary",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "275",
+      "column": "seo_title",
+      "type": "set",
+      "old": "ハロン湾のベストシーズン｜月別の天気ガイド | Green Ruby",
+      "new": "ハロン湾の天気とベストシーズン｜月別の気温・雨・台風",
+      "note": "P0 #275: ハロン湾 天気 first",
+      "match": {
+        "slug": "best-time-to-visit-halong-bay",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "275",
+      "column": "seo_description",
+      "type": "set",
+      "old": "ハロン湾を訪れるベストシーズンを月別に解説。雨、日照、霧、冬の寒さ、台風シーズンに加え、季節ごとの持ち物や過ごし方もご紹介します。",
+      "new": "ハロン湾の月別の天気（気温・雨量・霧・台風）とベストシーズンを解説。海水浴やクルーズに向く時期、季節ごとの持ち物もご紹介します。",
+      "note": "P0 #275",
+      "match": {
+        "slug": "best-time-to-visit-halong-bay",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_page",
+      "id": "39",
+      "column": "seo_description",
+      "type": "set",
+      "old": "ハロン湾と、より静かなランハ湾をめぐる、環境に配慮したラグジュアリークルーズ。太陽光発電による電力の補助、海水冷却式の空調、全46室の客室。Green Rubyで事前予約を受け付けています。",
+      "new": "ハロン湾と静かなランハ湾をめぐる、1泊2日・2泊3日のラグジュアリー宿泊クルーズ。全46室の新造船2隻が2027年2月に就航予定。ご希望日のお問い合わせを受け付けています。",
+      "note": "P1 /ja home: booking state, launch",
+      "match": {
+        "code": "homepage",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_itinerary",
+      "id": "16",
+      "column": "seo_description",
+      "type": "set",
+      "old": "Green Ruby 1で巡るハロン湾1泊2日。カヤックでルオン洞窟へ、ティートップ島に登り、デッキで夕日を眺め、翌朝はスンソット洞窟へ。事前予約を受付中です。",
+      "new": "Green Ruby 1で巡るハロン湾1泊2日クルーズ。カヤックかバンブーボートでルオン洞窟へ、ティートップ島の展望台、翌朝はスンソット洞窟。2027年2月就航予定、ご希望日を受付中です。",
+      "note": "P1 Halong Escape: booking state",
+      "match": {
+        "slug": "the-halong-escape-2-days-1-night",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_itinerary",
+      "id": "14",
+      "column": "seo_description",
+      "type": "set",
+      "old": "Green Ruby 2で巡るランハ湾1泊2日。ダーク＆ブライト洞窟をバンブーボートで訪れ、日の出の太極拳とアオエック・ラグーンへ。食事はすべて料金に含まれます。事前予約を受付中です。",
+      "new": "Green Ruby 2で巡るランハ湾1泊2日。ダーク＆ブライト洞窟をバンブーボートで訪れ、日の出の太極拳とアオエック・ラグーンへ。食事は料金に含まれます。2027年2月就航予定、ご希望日を受付中。",
+      "note": "P1 Lan Ha Escape: booking state",
+      "match": {
+        "slug": "the-lan-ha-escape-2-days-1-night",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "276",
+      "column": "seo_title",
+      "type": "set",
+      "old": "ランハ湾とハロン湾を比較｜ご自身に合うクルーズはどちら？",
+      "new": "ハロン湾とランハ湾の違い｜クルーズで行くならどっち？",
+      "note": "P1 #276: 違い, natural JP",
+      "match": {
+        "slug": "ha-long-bay-vs-lan-ha-bay-which-cruise",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "276",
+      "column": "seo_description",
+      "type": "set",
+      "old": "ランハ湾とハロン湾を、景観、混雑、ビーチ、洞窟、アクセスの面で比較。ハノイから出発する1泊または2泊のクルーズに、どちらの湾が合うかをご紹介します。",
+      "new": "ハロン湾とランハ湾の違いを、景観・混雑・ビーチ・洞窟・アクセスで比較。ハノイ発の1泊2日・2泊3日クルーズに、どちらの湾が合うかをご紹介します。",
+      "note": "P1 #276",
+      "match": {
+        "slug": "ha-long-bay-vs-lan-ha-bay-which-cruise",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "280",
+      "column": "seo_title",
+      "type": "set",
+      "old": "ハロン湾の日帰りと宿泊クルーズ比較｜Green Ruby",
+      "new": "ハロン湾ツアーは日帰りと1泊どっち？宿泊クルーズと比較",
+      "note": "P1 draft #280 (not published)",
+      "match": {
+        "slug": "halong-bay-day-cruise-vs-overnight",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "280",
+      "column": "seo_description",
+      "type": "set",
+      "old": "ハロン湾クルーズは日帰りと1泊どちらがいい？料金、移動時間、見どころ、夕日や早朝の体験を比べ、それぞれに向いている方をご紹介します。",
+      "new": "ハロン湾ツアーは日帰りと1泊クルーズのどちらがいい？ハノイからの移動時間、訪れる場所、夕日や早朝の体験、費用の考え方を比べ、それぞれに向いている方をご紹介します。",
+      "note": "P1 draft #280",
+      "match": {
+        "slug": "halong-bay-day-cruise-vs-overnight",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_page",
+      "id": "52",
+      "column": "seo_description",
+      "type": "set",
+      "old": "Reserve your cabin aboard Green Ruby. Early-booking offer on eco-luxury cruises on Ha Long & Lan Ha Bay. Limited cabins.",
+      "new": "Green Rubyのハロン湾・ランハ湾クルーズのご予約。ご希望の行程、日程、客室をお送りください。予約担当チームが空室状況と料金をご案内します。",
+      "note": "P1 /ja/booking: English text + withdrawn early-booking offer",
+      "match": {
+        "code": "booking",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_page",
+      "id": "42",
+      "column": "seo_description",
+      "type": "set",
+      "old": "カヤック、湾に昇る朝日、Green Rubyならではの船上アクティビティ。ハロン湾の静かな一面をご体験ください。",
+      "new": "バンブーボートでの洞窟めぐり、朝の太極拳、船上の料理教室、夕日のデッキ。ハロン湾・ランハ湾のGreen Rubyクルーズで楽しめる15の体験をご紹介します。",
+      "note": "P2 /ja/experiences",
+      "match": {
+        "code": "exp-activity",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_category",
+      "id": "581",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "ハロン湾・ランハ湾の目的地と行程コラム",
+      "note": "P2 blog category",
+      "match": {
+        "slug": "destinations-itineraries",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_category",
+      "id": "583",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "ハロン湾クルーズの準備とヒント",
+      "note": "P2 blog category",
+      "match": {
+        "slug": "travel-tips",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_group",
+      "id": "92",
+      "column": "seo_title",
+      "type": "set",
+      "old": "行程・送迎のよくあるご質問 · ハロン湾｜Green Ruby Cruises",
+      "new": "ハロン湾クルーズの行程・送迎に関するよくあるご質問",
+      "note": "P2 FAQ title",
+      "match": {
+        "slug": "itineraries-and-destinations",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_group",
+      "id": "95",
+      "column": "seo_title",
+      "type": "set",
+      "old": "船上での過ごし方のよくあるご質問 · ハロン湾｜Green Ruby Cruises",
+      "new": "ハロン湾クルーズの船内の過ごし方：よくあるご質問",
+      "note": "P2 FAQ title",
+      "match": {
+        "slug": "onboard-experience",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_destination",
+      "id": "33",
+      "column": "seo_title",
+      "type": "set",
+      "old": "ティエンクン洞窟（天宮洞窟）観光ガイド｜開場時間・行き方",
+      "new": "ティエンクン洞窟（ハロン湾）｜天宮洞窟の見どころ・行き方",
+      "note": "P2 Thien Cung",
+      "match": {
+        "slug": "thien-cung-cave",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_destination",
+      "id": "36",
+      "column": "seo_title",
+      "type": "set",
+      "old": "バーチャイダオ・ビーチ（ランハ湾）｜潮とアクセスの観光ガイド",
+      "new": "バーチャイダオ・ビーチ（ランハ湾）｜行き方・潮の満ち引き・遊泳",
+      "note": "P2 Ba Trai Dao",
+      "match": {
+        "slug": "ba-trai-dao-beach",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_destination",
+      "id": "30",
+      "column": "seo_title",
+      "type": "set",
+      "old": "クアヴァン漁村（ハロン湾）観光ガイド｜歴史・見学のポイント",
+      "new": "クアヴァン漁村（旧水上村）｜ハロン湾の歴史と見学ガイド",
+      "note": "P2 Cua Van: match 水上村 used on itineraries",
+      "match": {
+        "slug": "cua-van-floating-village",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "51",
+      "column": "seo_title",
+      "type": "set",
+      "old": "バンブーボートで水上村へ | Green Ruby Cruises",
+      "new": "バンブーボートで洞窟とラグーンへ | Green Ruby Cruises",
+      "note": "P2 experience title",
+      "match": {
+        "slug": "bamboo-boat-excursion",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "51",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "地元の船頭が漕ぐバンブーボートで、ハロン湾・ランハ湾の洞窟やラグーンへ。水面すれすれの目線で、石灰岩の通路や静かな入り江を気軽に楽しめます。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "bamboo-boat-excursion",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "72",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "ハロン湾・ランハ湾の洞窟めぐり | Green Ruby Cruises",
+      "note": "P2 experience title",
+      "match": {
+        "slug": "cave-visits",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "72",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "スンソット洞窟やダーク＆ブライト洞窟など、クルーズの行程に含まれる湾の洞窟を訪ねます。鍾乳石の広間や水上の通路など、洞窟ごとに違う景観をガイドがご案内します。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "cave-visits",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "45",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "船上のシェフに教わりながら、定番のベトナム料理を手作り。ハロン湾の景色を眺めつつ、ベトナムの食文化に触れる人気のひとときです。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "cooking-class",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "69",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "デイボートで湾の奥へ｜2泊3日限定 | Green Ruby Cruises",
+      "note": "P2 experience title",
+      "match": {
+        "slug": "day-boat-excursion",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "69",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "2泊3日の行程では、本船を離れてデイボートで一日遊覧。大型船では入れない湾の奥や村を、小型のボートでゆっくり訪ねます。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "day-boat-excursion",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "44",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "ハロン湾のルオン洞窟周辺など、許可されたエリアで楽しむ約60分のカヤック。ランハ湾のカヤックは現在、地元の規制により一時停止されています（2026年10月時点）。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "kayaking",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "47",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "日の出に合わせてサンデッキで行う朝の太極拳。インストラクターの案内でゆったり体を動かし、静かな湾で一日を始めましょう。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "morning-tai-chi",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "81",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "クルーズで訪ねる真珠養殖場（ハロン湾） | Green Ruby Cruises",
+      "note": "P2 experience title",
+      "match": {
+        "slug": "pearl-farm-visit",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "81",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "Green Ruby 1の2泊3日で立ち寄る、ハロン湾の真珠養殖場。真珠ができるまでの工程を見学します。詳しい見どころは真珠養殖場ガイドでご紹介しています。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "pearl-farm-visit",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "46",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "夜の湾で、船の上からイカ釣りに挑戦。静かな海と船の明かりの下で過ごす、宿泊クルーズならではの夜のアクティビティです。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "squid-fishing",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "42",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "石灰岩の島々の向こうに沈む夕日を船上から。カクテルを片手に、湾が金色に染まる時間をゆっくりお楽しみください。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "sunset-on-the-bay",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "50",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "天候と現地の規則が許せば、穏やかな入り江やビーチで海水浴を。ティートップ島など、行程に含まれるビーチでのんびり過ごせます。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "swimming-beach-visits",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "75",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "ヴィエットハイ村をサイクリング | Green Ruby Cruises",
+      "note": "P2 experience title",
+      "match": {
+        "slug": "viet-hai-village-visit",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "75",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "ランハ湾2泊3日の行程で訪ねるヴィエットハイ村。徒歩・自転車・電動カートで田園をめぐり、村でランチを楽しみます。村の詳しいガイドもご覧ください。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "viet-hai-village-visit",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "78",
+      "column": "seo_title",
+      "type": "set",
+      "old": null,
+      "new": "ハロン湾・ランハ湾の村を訪ねる | Green Ruby Cruises",
+      "note": "P2 experience title",
+      "match": {
+        "slug": "village-visits",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "78",
+      "column": "seo_description",
+      "type": "set",
+      "old": null,
+      "new": "クルーズの行程の一部として、湾の周辺の村を訪問します。漁村や農村の暮らしに触れ、地元の人々の日常を間近に感じられます。",
+      "note": "P2 experience meta",
+      "match": {
+        "slug": "village-visits",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "81",
+      "column": "content",
+      "type": "set",
+      "old": "<p>真珠の養殖と加工について学びます。</p>",
+      "new": "<p>真珠の養殖と加工について学びます。</p><p>真珠ができるまでの流れ、見学の内容、購入時に気をつけたい点は、<a href=\"/ja/destinations/halong-bay-pearl-farm\">ハロン湾の真珠養殖場ガイド</a>で詳しくご紹介しています。</p>",
+      "note": "P2 internal link: experience → destination guide (cannibalization)",
+      "match": {
+        "slug": "pearl-farm-visit",
+        "language_id": 3
+      }
+    },
+    {
+      "table": "app_exp_activity",
+      "id": "75",
+      "column": "content",
+      "type": "set",
+      "old": "<p>徒歩、自転車、または電動カートでヴィエットハイ村をめぐります。</p>",
+      "new": "<p>徒歩、自転車、または電動カートでヴィエットハイ村をめぐります。</p><p>村までの道のり、サイクリングルート、ベストシーズンは、<a href=\"/ja/destinations/viet-hai-village\">ヴィエットハイ村のガイド</a>で詳しくご紹介しています。</p>",
+      "note": "P2 internal link: experience → destination guide (cannibalization)",
+      "match": {
+        "slug": "viet-hai-village-visit",
+        "language_id": 3
+      }
+    }
+  ]
+}
