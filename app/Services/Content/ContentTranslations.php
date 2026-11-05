@@ -189,7 +189,9 @@ class ContentTranslations
             if (DB::table('content_translations')->where('entity_type', $type)->where('entity_id', $newId)->lockForUpdate()->exists()) {
                 throw new \RuntimeException("$type #$newId is already in a group; detach it first.");
             }
-            $row = self::scoped($type, DB::table($table))->where("$table.id", $newId)->first(["$table.id", "$table.language_id"]);
+            // Existence only, not the listing scope: the English row is already in a group, and a cabin row outside
+            // the accommodation groups (an onboard venue shown on the ship page) joins its group like the ja rows did.
+            $row = DB::table($table)->where("$table.id", $newId)->first(["$table.id", "$table.language_id"]);
             if (!$row) {
                 throw new \InvalidArgumentException("Unknown $type id $newId");
             }

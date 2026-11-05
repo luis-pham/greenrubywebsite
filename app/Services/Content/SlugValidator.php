@@ -28,8 +28,12 @@ final class SlugValidator
     public static function reserved(): array
     {
         $words = ['api', 'admincp', 'upload', 'uploads', 'thumbnail', 'payment', 'assets', 'static', 'public', '_next',
-            'sitemap', 'robots', 'llms', 'search', 'tim-kiem', 'page', 'trang', 'root', 'index', 'en', 'vi', 'ja',
+            'sitemap', 'robots', 'llms', 'search', 'tim-kiem', 'page', 'trang', 'root', 'index', 'en', 'vi', 'ja', 'fr',
             'new', 'edit', 'preview', '_draft', 'feed', 'rss', 'amp'];
+        // Every registered language code is a URL prefix (/ja, /fr …), whatever the list above names.
+        foreach (\App\Services\Locale\LocaleRegistry::all() as $language) {
+            $words[] = strtolower((string) $language->code);
+        }
         foreach (PathBuilder::SEGMENTS as $segments) {
             foreach ($segments as $segment) {
                 $words[] = explode('/', $segment)[0];

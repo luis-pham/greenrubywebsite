@@ -101,7 +101,7 @@ final class DraftImporter
         if ($status !== self::IMPORTABLE && !$this->includeFlagged) {
             return $this->result('needs_review', "draft status {$status}: skipped (review it, or pass --include-flagged)");
         }
-        $ja = (string) ($draft['ja'] ?? '');
+        $ja = (string) ($draft[strtolower((string) $this->language->code)] ?? '');
         if (trim($ja) === '') {
             return $this->result('needs_review', 'empty draft');
         }
