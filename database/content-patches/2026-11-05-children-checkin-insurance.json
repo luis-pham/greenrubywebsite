@@ -1,0 +1,329 @@
+{
+ "name": "2026-11-05 children policy (2026 contract III.2), cabin check-in wording, basic onboard insurance included",
+ "reviewed": "2026-11-05; owner: contract III.2 child bands (0–4 free 1/cabin sharing bed, 5–10 child rate, 11+ adult); check-in = cabin 12:00 (lounge 10:45 unchanged); insurance = basic onboard travel insurance INCLUDED (contract III.3). No amounts published (agent rates are confidential).",
+ "revalidate": [
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_itinerary",
+   "id": "1",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Children policy:</strong> Under 2 free, 5-11 75% charge</p>",
+   "new": "<p><strong>Children policy:</strong> 0–4 years: free for one child per cabin sharing the parents' bed (a second child pays a supplement); 5–10 years: child rate, sharing the bed or on an extra bed; 11 years and over: adult rate.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "1",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Check-in:</strong> 12:00 PM _ <strong>Check-out</strong>: 11:00 AM</p>",
+   "new": "<p><strong>Cabin check-in:</strong> 12:00 – <strong>Check-out:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "2",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p>Children policy: Under 2 free, 5-11 75% charge</p>",
+   "new": "<p><strong>Children policy:</strong> 0–4 years: free for one child per cabin sharing the parents' bed (a second child pays a supplement); 5–10 years: child rate, sharing the bed or on an extra bed; 11 years and over: adult rate.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "2",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p>Check-in: 12:00 PM _ Check-out: 11:00 AM</p>",
+   "new": "<p><strong>Cabin check-in:</strong> 12:00 – <strong>Check-out:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "3",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Children policy</strong>: Under 2 free, 5-11 75% charge</p>",
+   "new": "<p><strong>Children policy:</strong> 0–4 years: free for one child per cabin sharing the parents' bed (a second child pays a supplement); 5–10 years: child rate, sharing the bed or on an extra bed; 11 years and over: adult rate.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "3",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Check-in:</strong> 12:00 PM _ Check-out: 11:00 AM</p>",
+   "new": "<p><strong>Cabin check-in:</strong> 12:00 – <strong>Check-out:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "4",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Children policy:</strong> Under 2 free, 5-11 75% charge</p>",
+   "new": "<p><strong>Children policy:</strong> 0–4 years: free for one child per cabin sharing the parents' bed (a second child pays a supplement); 5–10 years: child rate, sharing the bed or on an extra bed; 11 years and over: adult rate.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "4",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Check-in</strong>: 12:00 PM _ <strong>Check-out</strong>: 11:00 AM</p>",
+   "new": "<p><strong>Cabin check-in:</strong> 12:00 – <strong>Check-out:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "5",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Chính sách trẻ em:</strong> Dưới 2 tuổi miễn phí, từ 5–11 tuổi tính 75% phí</p>",
+   "new": "<p><strong>Chính sách trẻ em:</strong> Trẻ 0–4 tuổi miễn phí cho 1 trẻ/phòng khi ngủ chung giường với bố mẹ (trẻ thứ hai tính phụ thu); trẻ 5–10 tuổi tính giá trẻ em, ngủ chung giường hoặc dùng giường phụ; từ 11 tuổi tính như người lớn.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "5",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Nhận phòng:</strong> 12:00 – <strong>Trả phòng:</strong> 11:00</p>",
+   "new": "<p><strong>Nhận phòng trên tàu:</strong> 12:00 – <strong>Trả phòng:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "7",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Chính sách trẻ em:</strong> Dưới 2 tuổi miễn phí, từ 5–11 tuổi tính 75% phí</p>",
+   "new": "<p><strong>Chính sách trẻ em:</strong> Trẻ 0–4 tuổi miễn phí cho 1 trẻ/phòng khi ngủ chung giường với bố mẹ (trẻ thứ hai tính phụ thu); trẻ 5–10 tuổi tính giá trẻ em, ngủ chung giường hoặc dùng giường phụ; từ 11 tuổi tính như người lớn.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "7",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Nhận phòng:</strong> 12:00 – <strong>Trả phòng:</strong> 11:00</p>",
+   "new": "<p><strong>Nhận phòng trên tàu:</strong> 12:00 – <strong>Trả phòng:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "8",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Chính sách trẻ em: </strong>Dưới 2 tuổi miễn phí, từ 5–11 tuổi tính 75% phí</p>",
+   "new": "<p><strong>Chính sách trẻ em:</strong> Trẻ 0–4 tuổi miễn phí cho 1 trẻ/phòng khi ngủ chung giường với bố mẹ (trẻ thứ hai tính phụ thu); trẻ 5–10 tuổi tính giá trẻ em, ngủ chung giường hoặc dùng giường phụ; từ 11 tuổi tính như người lớn.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "8",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Giờ nhận phòng:</strong> 12:00 _ <strong>Giờ trả phòng: </strong>11:00</p>",
+   "new": "<p><strong>Nhận phòng trên tàu:</strong> 12:00 – <strong>Trả phòng:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "9",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Chính sách trẻ em: </strong>Dưới 2 tuổi miễn phí, từ 5–11 tuổi tính 75% phí</p>",
+   "new": "<p><strong>Chính sách trẻ em:</strong> Trẻ 0–4 tuổi miễn phí cho 1 trẻ/phòng khi ngủ chung giường với bố mẹ (trẻ thứ hai tính phụ thu); trẻ 5–10 tuổi tính giá trẻ em, ngủ chung giường hoặc dùng giường phụ; từ 11 tuổi tính như người lớn.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "9",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Giờ nhận phòng:</strong> 12:00 _ <strong>Giờ trả phòng:</strong> 11:00</p>",
+   "new": "<p><strong>Nhận phòng trên tàu:</strong> 12:00 – <strong>Trả phòng:</strong> 11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "13",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>お子様料金：</strong>2歳未満は無料、5〜11歳は料金の75%</p>",
+   "new": "<p><strong>お子様料金：</strong>0〜4歳は保護者と添い寝の場合、1室につき1名まで無料（2人目は追加料金）。5〜10歳は子ども料金（添い寝またはエキストラベッド）。11歳以上は大人料金です。</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "13",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>チェックイン：</strong>12:00 ／ <strong>チェックアウト</strong>：11:00</p>",
+   "new": "<p><strong>客室チェックイン：</strong>12:00 ／ <strong>チェックアウト：</strong>11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "14",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p>お子様料金：2歳未満は無料、5〜11歳は料金の75%</p>",
+   "new": "<p><strong>お子様料金：</strong>0〜4歳は保護者と添い寝の場合、1室につき1名まで無料（2人目は追加料金）。5〜10歳は子ども料金（添い寝またはエキストラベッド）。11歳以上は大人料金です。</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "14",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p>チェックイン：12:00 ／ チェックアウト：11:00</p>",
+   "new": "<p><strong>客室チェックイン：</strong>12:00 ／ <strong>チェックアウト：</strong>11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "15",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>お子様料金</strong>：2歳未満は無料、5〜11歳は料金の75%</p>",
+   "new": "<p><strong>お子様料金：</strong>0〜4歳は保護者と添い寝の場合、1室につき1名まで無料（2人目は追加料金）。5〜10歳は子ども料金（添い寝またはエキストラベッド）。11歳以上は大人料金です。</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "15",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>チェックイン：</strong>12:00 ／ チェックアウト：11:00</p>",
+   "new": "<p><strong>客室チェックイン：</strong>12:00 ／ <strong>チェックアウト：</strong>11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "16",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>お子様料金：</strong>2歳未満は無料、5〜11歳は料金の75%</p>",
+   "new": "<p><strong>お子様料金：</strong>0〜4歳は保護者と添い寝の場合、1室につき1名まで無料（2人目は追加料金）。5〜10歳は子ども料金（添い寝またはエキストラベッド）。11歳以上は大人料金です。</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "16",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>チェックイン</strong>：12:00 ／ <strong>チェックアウト</strong>：11:00</p>",
+   "new": "<p><strong>客室チェックイン：</strong>12:00 ／ <strong>チェックアウト：</strong>11:00</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "17",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Enfants :</strong> gratuit pour les moins de 2 ans ; 75 % du tarif de 5 à 11 ans</p>",
+   "new": "<p><strong>Enfants :</strong> de 0 à 4 ans, gratuit pour un enfant par cabine partageant le lit des parents (supplément pour un deuxième enfant) ; de 5 à 10 ans, tarif enfant, dans le lit des parents ou en lit d’appoint ; à partir de 11 ans, tarif adulte.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "17",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Enregistrement :</strong> 12 h — <strong>Libération de la cabine</strong> : 11 h</p>",
+   "new": "<p><strong>Accès à la cabine :</strong> 12 h — <strong>Libération de la cabine :</strong> 11 h</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "18",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p>Enfants : gratuit pour les moins de 2 ans ; 75 % du tarif de 5 à 11 ans</p>",
+   "new": "<p><strong>Enfants :</strong> de 0 à 4 ans, gratuit pour un enfant par cabine partageant le lit des parents (supplément pour un deuxième enfant) ; de 5 à 10 ans, tarif enfant, dans le lit des parents ou en lit d’appoint ; à partir de 11 ans, tarif adulte.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "18",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p>Enregistrement : 12 h — Libération de la cabine : 11 h</p>",
+   "new": "<p><strong>Accès à la cabine :</strong> 12 h — <strong>Libération de la cabine :</strong> 11 h</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "19",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Enfants</strong> : gratuit pour les moins de 2 ans ; 75 % du tarif de 5 à 11 ans</p>",
+   "new": "<p><strong>Enfants :</strong> de 0 à 4 ans, gratuit pour un enfant par cabine partageant le lit des parents (supplément pour un deuxième enfant) ; de 5 à 10 ans, tarif enfant, dans le lit des parents ou en lit d’appoint ; à partir de 11 ans, tarif adulte.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "19",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Enregistrement :</strong> 12 h — Libération de la cabine : 11 h</p>",
+   "new": "<p><strong>Accès à la cabine :</strong> 12 h — <strong>Libération de la cabine :</strong> 11 h</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "20",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Enfants :</strong> gratuit pour les moins de 2 ans ; 75 % du tarif de 5 à 11 ans</p>",
+   "new": "<p><strong>Enfants :</strong> de 0 à 4 ans, gratuit pour un enfant par cabine partageant le lit des parents (supplément pour un deuxième enfant) ; de 5 à 10 ans, tarif enfant, dans le lit des parents ou en lit d’appoint ; à partir de 11 ans, tarif adulte.</p>"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "20",
+   "column": "important_note",
+   "type": "json_replace",
+   "old": "<p><strong>Enregistrement</strong> : 12 h — <strong>Libération de la cabine</strong> : 11 h</p>",
+   "new": "<p><strong>Accès à la cabine :</strong> 12 h — <strong>Libération de la cabine :</strong> 11 h</p>"
+  },
+  {
+   "table": "app_faq",
+   "id": "125",
+   "column": "answer",
+   "type": "replace",
+   "old": "children under 4 stay free",
+   "new": "children aged 0–4 stay free (one child per cabin, sharing the parents' bed)"
+  },
+  {
+   "table": "app_faq",
+   "id": "115",
+   "column": "answer",
+   "type": "replace",
+   "old": "Trẻ dưới 4 tuổi miễn phí",
+   "new": "Trẻ 0–4 tuổi miễn phí (1 trẻ/phòng, ngủ chung giường với bố mẹ)"
+  },
+  {
+   "table": "app_faq",
+   "id": "199",
+   "column": "answer",
+   "type": "replace",
+   "old": "4歳未満のお子様は無料",
+   "new": "0〜4歳のお子様は無料（1室につき1名まで、保護者と添い寝の場合）"
+  },
+  {
+   "table": "app_faq",
+   "id": "264",
+   "column": "answer",
+   "type": "replace",
+   "old": "les enfants de moins de 4 ans séjournent gratuitement",
+   "new": "les enfants de 0 à 4 ans séjournent gratuitement (un par cabine, dans le lit des parents)"
+  },
+  {
+   "table": "app_faq",
+   "id": "67",
+   "column": "answer",
+   "type": "replace",
+   "old": "Any onboard cover applies only during the cruise for specified incidents - it is not personal travel insurance.",
+   "new": "Basic onboard insurance is included in every cruise. It applies only during the cruise for specified incidents and is not personal travel insurance."
+  },
+  {
+   "table": "app_faq",
+   "id": "119",
+   "column": "answer",
+   "type": "replace",
+   "old": "Bảo hiểm trên tàu chỉ áp dụng trong phạm vi hành trình.",
+   "new": "Bảo hiểm cơ bản trên tàu đã bao gồm trong giá mọi hành trình và chỉ áp dụng trong phạm vi hành trình."
+  },
+  {
+   "table": "app_faq",
+   "id": "192",
+   "column": "answer",
+   "type": "replace",
+   "old": "船内での補償は、クルーズ期間中の特定の事故にのみ適用され、個人の旅行保険ではありません。",
+   "new": "基本的な乗船中の保険はすべてのクルーズ料金に含まれています。補償はクルーズ期間中の特定の事故にのみ適用され、個人の旅行保険ではありません。"
+  },
+  {
+   "table": "app_faq",
+   "id": "257",
+   "column": "answer",
+   "type": "replace",
+   "old": "L’éventuelle couverture à bord ne s’applique que pendant la croisière et pour des incidents précis : il ne s’agit pas d’une assurance voyage personnelle.",
+   "new": "Une assurance de base à bord est incluse dans chaque croisière. Elle ne s’applique que pendant la croisière et pour des incidents précis : il ne s’agit pas d’une assurance voyage personnelle."
+  }
+ ]
+}
