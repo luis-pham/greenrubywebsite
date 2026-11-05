@@ -181,13 +181,21 @@ class ExperienceContentService
             if ($ids !== []) {
                 $tabs[] = [
                     'key' => self::TABS[(int) $tabValue] ?? (string) $langKey,
-                    'name' => __('backend::group.' . $langKey, [], $language->code),
+                    'name' => self::tabName((string) $langKey, (string) $language->code),
                     'groupIds' => $ids,
                 ];
             }
         }
 
         return $tabs;
+    }
+
+    /** A tab's public name: the language's own experience_tabs entry (ja, fr …), else the admin group label (en, vi). */
+    protected static function tabName(string $langKey, string $code): string
+    {
+        $public = 'experience_tabs.' . $langKey;
+
+        return \Illuminate\Support\Facades\Lang::hasForLocale($public, $code) ? __($public, [], $code) : __('backend::group.' . $langKey, [], $code);
     }
 
     protected static function cruises(Collection $rows): Collection
