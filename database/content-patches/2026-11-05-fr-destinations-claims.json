@@ -1,0 +1,113 @@
+{
+ "name": "2026-11-05 French: itinerary destinations in French, generic environmental claims replaced by specific features",
+ "reviewed": "2026-11-05; French rows only (language fr). EU Directive 2024/825: no generic environmental claims (éco-luxe, écoresponsable, durable) about Green Ruby itself; specific, sourced features kept (≈70 kW solar, seawater-cooled AC, 100% wastewater biologically treated, Green Globe in progress). Editorial guide articles about eco cruising in general unchanged.",
+ "revalidate": [
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_itinerary",
+   "id": "17",
+   "column": "destination",
+   "type": "set",
+   "old": "[\"Dark & Bright Cave\",\"Viet Hai Village\",\"White Sand Beach\"]",
+   "new": "[\"Grotte Sang Toi\",\"Village de Viet Hai\",\"Plage de sable blanc\"]"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "18",
+   "column": "destination",
+   "type": "set",
+   "old": "[\"Dark & Bright Cave\",\"Ao Ech Lagoon\"]",
+   "new": "[\"Grotte Sang Toi\",\"Lagon Ao Ech\"]"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "19",
+   "column": "destination",
+   "type": "set",
+   "old": "[\"Luon Cave\",\"Ti Top Island\",\"Cua Van Fishing Village\",\"Tien Ong Cave\",\"Pearl Farm\",\"Sung Sot Cave\"]",
+   "new": "[\"Grotte Luon\",\"Île Ti Top\",\"Village de pêcheurs de Cua Van\",\"Grotte Tien Ong\",\"Ferme perlière\",\"Grotte Sung Sot\"]"
+  },
+  {
+   "table": "app_itinerary",
+   "id": "20",
+   "column": "destination",
+   "type": "set",
+   "old": "[\"Ha Long Bay\",\"Luon Cave\",\"Ti Top Island\",\"Sung Sot Cave\"]",
+   "new": "[\"Baie d’Halong\",\"Grotte Luon\",\"Île Ti Top\",\"Grotte Sung Sot\"]"
+  },
+  {
+   "table": "ad_config",
+   "id": "35",
+   "column": "value",
+   "type": "replace",
+   "old": "Croisières éco-luxe en baie",
+   "new": "Croisières haut de gamme en baie"
+  },
+  {
+   "table": "ad_config",
+   "id": "37",
+   "column": "value",
+   "type": "replace",
+   "old": "Croisières éco-luxe en baie",
+   "new": "Croisières haut de gamme en baie"
+  },
+  {
+   "table": "app_cruise",
+   "id": "9",
+   "column": "summary",
+   "type": "replace",
+   "old": "un confort haut de gamme écoresponsable sur",
+   "new": "un confort haut de gamme sur"
+  },
+  {
+   "table": "app_cruise",
+   "id": "9",
+   "column": "green_technology",
+   "type": "set",
+   "old": "{\"image_link\":\"\\/2026\\/03\\/09\\/leaf.png\",\"name\":\"Technologies vertes\",\"description\":\"Green Ruby 1 a été conçu avec un système d’énergie solaire, un système avancé de traitement des eaux usées et des matériaux respectueux de l’environnement, afin de limiter au maximum son impact sur l’écosystème de la baie d’Halong.\"}",
+   "new": "{\"image_link\":\"\\/2026\\/03\\/09\\/leaf.png\",\"name\":\"Équipements environnementaux\",\"description\":\"Green Ruby 1 est équipé de panneaux solaires d’environ 70 kW et d’un système de traitement des eaux usées : 100 % des eaux usées sont traitées biologiquement avant rejet en baie d’Halong.\"}"
+  },
+  {
+   "table": "app_cruise",
+   "id": "10",
+   "column": "green_technology",
+   "type": "set",
+   "old": "{\"image_link\":\"\\/2026\\/03\\/09\\/leaf.png\",\"name\":\"Technologies vertes\",\"description\":\"Green Ruby 2 a été conçu avec un système d’énergie solaire, un système avancé de traitement des eaux usées et des matériaux respectueux de l’environnement, afin de limiter au maximum son impact sur l’écosystème de la baie de Lan Ha.\"}",
+   "new": "{\"image_link\":\"\\/2026\\/03\\/09\\/leaf.png\",\"name\":\"Équipements environnementaux\",\"description\":\"Green Ruby 2 est équipé de panneaux solaires d’environ 70 kW et d’un système de traitement des eaux usées : 100 % des eaux usées sont traitées biologiquement avant rejet en baie de Lan Ha.\"}"
+  },
+  {
+   "table": "app_faq",
+   "id": "243",
+   "column": "question",
+   "type": "replace",
+   "old": "En quoi Green Ruby est-il une croisière écoresponsable ?",
+   "new": "Quels dispositifs environnementaux trouve-t-on à bord des navires Green Ruby ?"
+  },
+  {
+   "table": "app_faq",
+   "id": "243",
+   "column": "answer",
+   "type": "replace",
+   "old": "Green Ruby mise sur une démarche durable documentée plutôt que sur des slogans :",
+   "new": "Plutôt que des slogans, voici les équipements prévus :"
+  },
+  {
+   "table": "app_faq",
+   "id": "247",
+   "column": "answer",
+   "type": "replace",
+   "old": "Green Ruby s’engage en faveur d’un tourisme durable et de la protection de l’environnement. Des actions de préservation et rencontres avec les communautés locales pourront être proposées ponctuellement dans le cadre de nos initiatives de développement durable.",
+   "new": "Des actions de préservation et des rencontres avec les communautés locales pourront être proposées ponctuellement."
+  },
+  {
+   "table": "app_page_config",
+   "id": "240",
+   "column": "value",
+   "type": "set",
+   "old": "Le confort à bord, des choix plus durables",
+   "new": "Le confort à bord, l’énergie solaire en appoint"
+  }
+ ]
+}

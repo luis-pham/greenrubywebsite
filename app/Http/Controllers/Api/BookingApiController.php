@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Payments\BookingDisplayText;
 use App\Payments\PriceList;
 use App\Services\Publication\PublicationPolicy;
 use Illuminate\Http\Request;
@@ -154,6 +155,7 @@ class BookingApiController extends Controller
                 'lang' => $langCode,
             ];
         });
+        $items = BookingDisplayText::itineraries($request->get('lang'), $items);
 
         return response()->json([
             'success' => true,
@@ -326,6 +328,7 @@ class BookingApiController extends Controller
                 'prices' => $prices,
             ];
         });
+        $items = BookingDisplayText::cabins($request->get('lang'), $items);
 
         return response()->json([
             'success' => true,
@@ -596,6 +599,7 @@ class BookingApiController extends Controller
                 'image_url' => $imageUrl,
             ];
         });
+        $items = BookingDisplayText::amenities($request->get('lang'), $items);
 
         return response()->json([
             'success' => true,
@@ -604,7 +608,7 @@ class BookingApiController extends Controller
         ]);
     }
 
-    public function itineraryDetail($id)
+    public function itineraryDetail(Request $request, $id)
     {
         $itinerary = AppItinerary::with([
             'itineraryActivities' => function ($q) {
@@ -634,10 +638,12 @@ class BookingApiController extends Controller
             $destinations = [];
         }
 
+        [$activityList, $destinations] = BookingDisplayText::detail($request->get('lang'), (int) $itinerary->id, $activities->values()->all(), array_values($destinations));
+
         return response()->json([
             'success' => true,
             'itinerary_id' => (int) $itinerary->id,
-            'activities' => $activities->values()->all(),
+            'activities' => $activityList,
             'destinations' => array_values($destinations),
         ]);
     }
