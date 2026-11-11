@@ -48,10 +48,10 @@ return [
 
     // Price lists (i18n Phase 1A, owner decisions B and D of 31/10/2026). Prices, departures and booking ids
     // are stored on the rows of these languages, each in its own currency; they are never converted or
-    // synchronised. Other display languages book through one of them (ja and fr pages → English rows, USD, EN terms)
+    // synchronised. Other display languages book through one of them (ja, fr and es pages → English rows, USD, EN terms)
     // and their own rows are text only (App\Payments\PriceList).
     'price_lists' => ['en' => 'usd', 'vi' => 'vnd'],
-    'price_list_for_locale' => ['ja' => 'en', 'fr' => 'en'],
+    'price_list_for_locale' => ['ja' => 'en', 'fr' => 'en', 'es' => 'en'],
 
     // Languages the Booking Terms exist in. Acceptance given on a page in any other language is recorded as
     // 'en' (the terms that page links to) until that language's terms are approved.
