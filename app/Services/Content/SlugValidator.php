@@ -28,7 +28,7 @@ final class SlugValidator
     public static function reserved(): array
     {
         $words = ['api', 'admincp', 'upload', 'uploads', 'thumbnail', 'payment', 'assets', 'static', 'public', '_next',
-            'sitemap', 'robots', 'llms', 'search', 'tim-kiem', 'page', 'trang', 'root', 'index', 'en', 'vi', 'ja', 'fr', 'es',
+            'sitemap', 'robots', 'llms', 'search', 'tim-kiem', 'page', 'trang', 'root', 'index', 'en', 'vi', 'ja', 'fr', 'es', 'de',
             'new', 'edit', 'preview', '_draft', 'feed', 'rss', 'amp'];
         // Every registered language code is a URL prefix (/ja, /fr …), whatever the list above names.
         foreach (\App\Services\Locale\LocaleRegistry::all() as $language) {

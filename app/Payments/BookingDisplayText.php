@@ -90,6 +90,7 @@ final class BookingDisplayText
         return match (strtolower((string) $language->code)) {
             'fr' => $duration . "\u{00a0}jour" . ($duration > 1 ? 's' : '') . ($nights > 0 ? ' / ' . $nights . "\u{00a0}nuit" . ($nights > 1 ? 's' : '') : ''),
             'es' => $duration . ' día' . ($duration > 1 ? 's' : '') . ($nights > 0 ? ' / ' . $nights . ' noche' . ($nights > 1 ? 's' : '') : ''),
+            'de' => $duration . ($duration > 1 ? ' Tage' : ' Tag') . ($nights > 0 ? ' / ' . $nights . ($nights > 1 ? ' Nächte' : ' Nacht') : ''),
             'ja' => $nights > 0 ? "{$nights}泊{$duration}日" : "{$duration}日",
             default => $duration . ' Day' . ($duration > 1 ? 's' : '') . ($nights > 0 ? ' / ' . $nights . ' Night' . ($nights > 1 ? 's' : '') : ''),
         };
