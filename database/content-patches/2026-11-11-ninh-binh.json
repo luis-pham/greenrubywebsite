@@ -1,0 +1,36 @@
+{
+  "name": "2026-11-11 ninh-binh: cost comparison section (EN #272, FR #286)",
+  "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+  "revalidate": [
+    "articles",
+    "content"
+  ],
+  "ops": [
+    {
+      "table": "app_article",
+      "id": "272",
+      "column": "content",
+      "type": "replace",
+      "old": "the reservations team handles quotes.</p><h2>When is the best time to visit each?</h2>",
+      "new": "the reservations team handles quotes.</p><h2>Is Ha Long Bay or Ninh Binh cheaper?</h2><p>On a tighter budget, Ninh Binh is usually the easier choice. A day trip there is paid for piece by piece: the train, bus or car from Hanoi, the boat ticket at Trang An or Tam Coc, entrance fees for temples and sights, and meals along the way. If you stay the night, add a hotel or homestay.</p><p>An overnight cruise on Ha Long Bay usually costs more, but the fare covers more. A cruise package typically bundles your cabin, meals on board, travel between the islands by boat and the programme of activities. What is included varies from one operator to the next: Hanoi transfers, drinks, kayaking or cave entrance fees may or may not be part of it.</p><p>So compare the total rather than the headline figure. For Ninh Binh, add up transport, boat tickets, entrance fees, meals and any night’s accommodation. For a cruise, check what the package includes and what is extra, especially Hanoi transfers, entrance fees and drinks.</p><h2>When is the best time to visit each?</h2>",
+      "note": "EN #272 add cost-comparison section (no prices) after the two-day cruise example, before best-time section (decision 11)",
+      "match": {
+        "slug": "halong-bay-vs-ninh-binh",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "286",
+      "column": "content",
+      "type": "replace",
+      "old": "l’équipe des réservations établit les devis.</p><h2>Quand partir dans l’une et l’autre ?</h2>",
+      "new": "l’équipe des réservations établit les devis.</p><h2>Baie d’Halong ou Ninh Binh : laquelle revient le moins cher ?</h2><p>Avec un budget plus serré, Ninh Binh est généralement l’option la plus accessible. Une excursion à la journée s’y paie poste par poste : le train, le bus ou la voiture depuis Hanoï, le billet de barque à Trang An ou à Tam Coc, les droits d’entrée des temples et des sites, et les repas sur place. Si vous y passez la nuit, ajoutez l’hôtel ou la maison d’hôtes.</p><p>Une croisière avec nuit à bord dans la baie d’Halong coûte en général davantage, mais le forfait couvre bien plus : la cabine, les repas à bord, les déplacements en bateau entre les îles et le programme d’activités. Son contenu varie toutefois d’une compagnie à l’autre : transferts depuis Hanoï, boissons, kayak ou droits d’entrée des grottes peuvent être inclus ou non.</p><p>Comparez donc le coût total plutôt que le prix affiché. Pour Ninh Binh, additionnez transport, billets de barque, droits d’entrée, repas et, le cas échéant, la nuit sur place. Pour une croisière, vérifiez ce que comprend le forfait et ce qui reste en supplément, notamment les transferts depuis Hanoï, les droits d’entrée et les boissons.</p><h2>Quand partir dans l’une et l’autre ?</h2>",
+      "note": "FR #286 add cost-comparison section (no prices) after the two-day cruise example, before best-time section (decision 11)",
+      "match": {
+        "slug": "baie-d-halong-ou-ninh-binh",
+        "language_id": 4
+      }
+    }
+  ]
+}

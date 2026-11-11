@@ -18,24 +18,26 @@ Use only these facts about Green Ruby. Anything about Green Ruby that is not her
 - The ships are NOT in service yet. Both are expected to enter service in February 2027; this date is provisional, not official. Never write that Green Ruby has launched, is operating, or "launched in 2026".
 - No real prices yet. Never state a price or a price range for Green Ruby. Booking requests and quotes are handled by the reservations team.
 - There are no guest reviews yet. Never invent reviews, ratings, guest quotes, awards or press mentions.
+- Butler service will be provided for the suites (pre-launch).
+- Imperial Suite: 120 m². Do not state a maximum occupancy in articles; balcony and extra-bed details are confirmed at booking.
 - Cancellation policy: full refund 30+ days before departure; 50% charge 15–29 days; 75% charge 7–14 days; no refund under 7 days or no-show.
 
 ## Sustainability (every figure is a design value until measured)
 - Rooftop solar array of about 70 kW on each ship (design specification); estimated about 60 tonnes of CO₂ avoided per year (design estimate).
 - Air conditioning is cooled with seawater. Together, solar and seawater cooling are designed to cut onboard energy use by around 40% (design estimate, solar and cooling combined, not the chiller alone).
 - 100% of wastewater is biologically treated on board before discharge. It is NOT zero-discharge.
-- A heat recovery system reuses waste heat from the engines and generators for hot water and climate control.
+- A waste heat recovery system reuses waste heat from the engines and generators for onboard thermal needs such as hot water and climate control (confirmed specification; never give efficiency or fuel-saving figures).
 - Green Ruby does NOT use hybrid propulsion.
 - Single-use plastics are being removed from guest service (in progress; do not write "plastic-free").
-- Green Globe certification is in progress; Green Ruby is NOT certified. Green Globe is GSTC-accredited (do not write "EU-recognised").
+- Green Globe certification is in progress; neither vessel is certified yet. Never describe Green Globe as GSTC-accredited, GSTC-certified or GSTC-recognised, and never write "EU-recognised".
 - Measured emissions data does not exist yet. The eco dashboard (/eco-dashboard) explains methods and status.
 
 ## Halal
-- Green Ruby is applying for Halal certification. It is NOT certified yet. Write "Halal certification in progress". Not yet confirmed (use placeholders): certifying body, scope (kitchen or whole ship), expected date, prayer room, alcohol policy, iftar/suhoor service, staff training.
+- Halal dining is planned with a dedicated Halal kitchen and a prayer room; Green Ruby is working with HALCERT toward certification. It is NOT certified yet: write "Halal certification in progress", never "Halal-certified". Not confirmed (don't promise): certification date, alcohol policy, iftar/suhoor service.
 
 ## Other services
-- An AI concierge is in development; describe it only as planned, never as working.
-- Starlink satellite internet is planned on board.
+- Green Ruby has an AI-powered concierge (confirmed feature). Don't invent its functions, languages, 24/7 availability or launch date beyond what published pages say.
+- Starlink satellite internet will be installed on both ships. Never promise speed, coverage or 24/7 connectivity.
 
 ## Banned wording (unless the fact above says otherwise)
 first, only, largest, biggest, best, leading, world-class, award-winning, certified, eco-certified, Halal certified, zero-discharge, carbon-neutral, plastic-free, hybrid, 6-star or "6 sao" as an official rating (Vietnam has no official 6-star rating), Michelin, private butler, "Vietnam's first", prices, launch dates in 2026, guest reviews.

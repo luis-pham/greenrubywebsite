@@ -1,0 +1,309 @@
+{
+  "name": "2026-11-11 cabins: Imperial Suite occupancy, balconies/extra beds neutral; eco terms (Q10) in EN/FR luxury-cruise guide",
+  "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+  "revalidate": [
+    "articles",
+    "content"
+  ],
+  "ops": [
+    {
+      "table": "app_article",
+      "id": "234",
+      "column": "content",
+      "type": "replace",
+      "old": "<p>Maximum occupancy and extra-bed arrangements.</p>",
+      "new": "<p>Occupancy, bedding and extra-bed options for your cabin.</p>",
+      "note": "EN #234 family checklist: no maximum occupancy (decisions 5-6)",
+      "match": {
+        "slug": "halong-bay-2-days-1-night-vs-3-days-2-nights",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "234",
+      "column": "content",
+      "type": "replace",
+      "old": "<p>Green Ruby will offer several cabin categories, including the <a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a>, which is designed for up to three guests. Extra-bed availability and child pricing should be confirmed for the chosen cabin and departure.</p>",
+      "new": "<p>Green Ruby will offer several cabin categories, including the 120 m² <a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a>. Occupancy, bedding and extra-bed options depend on the cabin category and the number of guests, so confirm them, together with child pricing, when you book.</p>",
+      "note": "EN #234 Imperial Suite \"up to three guests\" removed; extra beds neutral (decisions 5-6)",
+      "match": {
+        "slug": "halong-bay-2-days-1-night-vs-3-days-2-nights",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "282",
+      "column": "content",
+      "type": "replace",
+      "old": "<p>La capacité maximale des cabines et les possibilités de lit d’appoint.</p>",
+      "new": "<p>Les possibilités de couchage et de lit d’appoint pour votre cabine.</p>",
+      "note": "FR #282 family checklist: no maximum capacity (decisions 5-6)",
+      "match": {
+        "slug": "croisiere-baie-d-halong-2-jours-1-nuit-ou-3-jours-2-nuits",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "282",
+      "column": "content",
+      "type": "replace",
+      "old": "<p>Green Ruby proposera plusieurs catégories de cabines, dont l'<a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a>, dont le tarif est établi pour trois personnes et qui peut accueillir jusqu’à quatre adultes et quatre enfants. La disponibilité des lits d’appoint et les tarifs enfants sont à confirmer selon la cabine et le départ choisis.</p>",
+      "new": "<p>Green Ruby proposera plusieurs catégories de cabines, dont l'<a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a> de 120 m². Les possibilités d’occupation, de couchage et de lit d’appoint dépendent de la catégorie de cabine et du nombre de voyageurs : faites-les confirmer au moment de la réservation, avec les tarifs enfants.</p>",
+      "note": "FR #282 Imperial Suite \"tarif pour trois / jusqu’à 4 adultes et 4 enfants\" removed; extra beds neutral (decisions 5-6)",
+      "match": {
+        "slug": "croisiere-baie-d-halong-2-jours-1-nuit-ou-3-jours-2-nuits",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "235",
+      "column": "content",
+      "type": "replace",
+      "old": "are 38 m² for up to two guests, each with a bathtub and separate shower. The <a href=\"/cabin/royal-romance-suite-9.html\">Royal Romance Suite</a> is 80 m² for two, with a Jacuzzi bathtub and a private terrace. The <a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a> is 120 m² for up to three guests, with a balcony Jacuzzi and a terrace. Butler service is planned for both suites. The cabin descriptions list a private terrace or balcony only for the two suites, so if a balcony matters to you, confirm it for the category you are considering.",
+      "new": "are 38 m² cabins for two, each with a bathtub and separate shower. The <a href=\"/cabin/royal-romance-suite-9.html\">Royal Romance Suite</a> is 80 m² for two, with a Jacuzzi bathtub and a private terrace. The <a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a> is 120 m², with a balcony Jacuzzi and a terrace; occupancy and bedding options for the Imperial Suite are confirmed at booking. Butler service is planned for both suites. If a private balcony or terrace matters to you, confirm what the cabin you are considering offers when you book.",
+      "note": "EN #235 Q5: Imperial \"up to three guests\" removed; \"balcony only for the two suites\" removed (decisions 5-6)",
+      "match": {
+        "slug": "how-to-choose-luxury-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "235",
+      "column": "content",
+      "type": "replace",
+      "old": "Families should ask about a third guest early: Green Ruby says an extra bed can be added to selected cabins for a surcharge, but which cabins has not yet been published.</p>",
+      "new": "Families should raise a third guest early: extra-bed options and arrangements for children depend on the cabin category and the number of guests, so confirm them when you book.</p>",
+      "note": "EN #235 Q5: extra-bed claim made neutral (decision 6)",
+      "match": {
+        "slug": "how-to-choose-luxury-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "235",
+      "column": "content",
+      "type": "replace",
+      "old": "<strong>Design specification:</strong> air conditioning cooled with seawater, and a heat recovery system that reuses waste heat from the engines and generators for hot water and climate control.",
+      "new": "<strong>Design specification:</strong> air conditioning cooled with seawater, and a waste heat recovery system that reuses heat from the engines and generators for hot water and climate control.",
+      "note": "EN #235 Q10: confirmed term \"waste heat recovery system\" (decision 2)",
+      "match": {
+        "slug": "how-to-choose-luxury-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "235",
+      "column": "content",
+      "type": "replace",
+      "old": "<strong>Design specification:</strong> 100% of wastewater biologically treated on board before discharge. That is treatment, not zero discharge.",
+      "new": "<strong>Design specification:</strong> 100% of wastewater biologically treated on board before discharge, not yet verified in operation. That is treatment, not zero discharge.",
+      "note": "EN #235 Q10: wastewater = design spec, not yet verified in operation (decision 4)",
+      "match": {
+        "slug": "how-to-choose-luxury-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "235",
+      "column": "content",
+      "type": "replace",
+      "old": "<strong>Certification:</strong> Green Ruby has begun the Green Globe certification process. It is not certified; the on-site audit can only take place once a ship is operating.",
+      "new": "<strong>Certification:</strong> Green Ruby Cruises is working towards Green Globe certification. The process is underway, but neither vessel has been certified yet; the on-site audit can only take place once a ship is operating.",
+      "note": "EN #235 Q10: owner wording for Green Globe status (decision 1)",
+      "match": {
+        "slug": "how-to-choose-luxury-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "287",
+      "column": "content",
+      "type": "replace",
+      "old": "mesurent 38 m² et accueillent jusqu’à deux personnes, avec baignoire et douche séparée. La <a href=\"/cabin/royal-romance-suite-9.html\">Royal Romance Suite</a> offre 80 m² pour deux, avec baignoire Jacuzzi et terrasse privée. L'<a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a> mesure 120 m² ; son tarif est établi pour trois personnes, elle peut accueillir jusqu’à 4 adultes et 4 enfants, et dispose d’un Jacuzzi sur le balcon et d’une terrasse. Un service de majordome est prévu pour les deux suites. Les descriptifs ne mentionnent une terrasse ou un balcon privé que pour ces deux suites : si un balcon compte pour vous, faites-le confirmer pour la catégorie envisagée.",
+      "new": "sont des cabines de 38 m² pour deux, avec baignoire et douche séparée. La <a href=\"/cabin/royal-romance-suite-9.html\">Royal Romance Suite</a> offre 80 m² pour deux, avec baignoire Jacuzzi et terrasse privée. L'<a href=\"/cabin/imperial-suite-24.html\">Imperial Suite</a> mesure 120 m² et dispose d’un Jacuzzi sur le balcon et d’une terrasse ; ses possibilités d’occupation et de couchage sont confirmées au moment de la réservation. Un service de majordome est prévu pour les deux suites. Si un balcon ou une terrasse privés comptent pour vous, faites confirmer ce qu’offre la cabine envisagée au moment de réserver.",
+      "note": "FR #287 Q5: Imperial \"tarif pour trois / 4 adultes et 4 enfants\" removed; \"balcon seulement pour les suites\" removed (decisions 5-6)",
+      "match": {
+        "slug": "choisir-sa-croisiere-de-luxe-baie-d-halong",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "287",
+      "column": "content",
+      "type": "replace",
+      "old": "Les familles ont intérêt à poser tôt la question d’une troisième personne : Green Ruby indique qu’un lit d’appoint peut être ajouté dans certaines cabines moyennant supplément, mais la liste de ces cabines n’est pas encore publiée.</p>",
+      "new": "Les familles ont intérêt à poser tôt la question d’une troisième personne : les possibilités de lit d’appoint et l’accueil des enfants dépendent de la catégorie de cabine et du nombre de voyageurs, à faire confirmer au moment de la réservation.</p>",
+      "note": "FR #287 Q5: extra-bed claim made neutral (decision 6)",
+      "match": {
+        "slug": "choisir-sa-croisiere-de-luxe-baie-d-halong",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "287",
+      "column": "content",
+      "type": "replace",
+      "old": "<strong>Spécification de conception :</strong> une climatisation à eau de mer et un système de récupération de chaleur qui réutilise la chaleur perdue des moteurs et des générateurs pour l’eau chaude et la régulation thermique.",
+      "new": "<strong>Spécification de conception :</strong> une climatisation à eau de mer et un système de récupération de chaleur fatale qui réutilise la chaleur des moteurs et des générateurs pour l’eau chaude et la régulation thermique.",
+      "note": "FR #287 Q10: confirmed term « système de récupération de chaleur fatale » (decision 2)",
+      "match": {
+        "slug": "choisir-sa-croisiere-de-luxe-baie-d-halong",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "287",
+      "column": "content",
+      "type": "replace",
+      "old": "<strong>Spécification de conception :</strong> 100 % des eaux usées traitées biologiquement à bord avant rejet. Il s’agit bien d’un traitement, pas d’un rejet zéro.",
+      "new": "<strong>Spécification de conception :</strong> 100 % des eaux usées traitées biologiquement à bord avant rejet, ce qui n’a pas encore été vérifié en exploitation. Il s’agit bien d’un traitement, pas d’un rejet zéro.",
+      "note": "FR #287 Q10: wastewater = design spec, not yet verified in operation (decision 4)",
+      "match": {
+        "slug": "choisir-sa-croisiere-de-luxe-baie-d-halong",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "287",
+      "column": "content",
+      "type": "replace",
+      "old": "<strong>Certification :</strong> Green Ruby a engagé la démarche de certification Green Globe. La compagnie n’est pas certifiée ; l’audit sur site ne pourra avoir lieu qu’une fois un navire en exploitation.",
+      "new": "<strong>Certification :</strong> Green Ruby Cruises travaille à l’obtention de la certification Green Globe. La procédure est en cours, mais aucun des deux navires n’est encore certifié ; l’audit sur site ne pourra avoir lieu qu’une fois un navire en exploitation.",
+      "note": "FR #287 Q10: owner wording for Green Globe status (decision 1)",
+      "match": {
+        "slug": "choisir-sa-croisiere-de-luxe-baie-d-halong",
+        "language_id": 4
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "233",
+      "column": "content",
+      "type": "replace",
+      "old": "is 120 m² for up to three guests, with a balcony Jacuzzi, a large terrace and in-suite dining.</p>",
+      "new": "is 120 m², with a balcony Jacuzzi, a large terrace and in-suite dining; its occupancy and bedding options are confirmed at booking.</p>",
+      "note": "EN draft #233 (unpublished): Imperial \"up to three guests\" removed (decision 5)",
+      "match": {
+        "slug": "halong-bay-overnight-cruise-what-to-expect",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "259",
+      "column": "content",
+      "type": "replace",
+      "old": "<td>Imperial Suite</td><td>120 m²</td><td>Up to 3</td>",
+      "new": "<td>Imperial Suite</td><td>120 m²</td><td>Confirmed at booking</td>",
+      "note": "EN draft #259 table: Imperial capacity removed (decision 5)",
+      "match": {
+        "slug": "ha-long-bay-cruise-balcony-cabins",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "259",
+      "column": "content",
+      "type": "replace",
+      "old": "<td>Private balcony [CẦN XÁC NHẬN: balcony size and furniture]</td><td>Bathtub and separate shower</td></tr><tr><td>Serenity Deluxe</td><td>38 m²</td><td>Up to 2</td><td>Private balcony [CẦN XÁC NHẬN: balcony size and furniture]</td>",
+      "new": "<td>Confirm at booking [CẦN XÁC NHẬN: balcony or terrace, size and furniture]</td><td>Bathtub and separate shower</td></tr><tr><td>Serenity Deluxe</td><td>38 m²</td><td>Up to 2</td><td>Confirm at booking [CẦN XÁC NHẬN: balcony or terrace, size and furniture]</td>",
+      "note": "EN draft #259 table: 38 m² cabins balcony made neutral (decision 6)",
+      "match": {
+        "slug": "ha-long-bay-cruise-balcony-cabins",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "259",
+      "column": "content",
+      "type": "replace",
+      "old": " It is the one category sold for up to three guests.</p>",
+      "new": " Occupancy and bedding options for the Imperial Suite are confirmed at booking.</p>",
+      "note": "EN draft #259: \"one category sold for up to three guests\" removed (decision 5)",
+      "match": {
+        "slug": "ha-long-bay-cruise-balcony-cabins",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "259",
+      "column": "content",
+      "type": "replace",
+      "old": "<p>On a one-night cruise, a 38 m² cabin with its own balcony covers what most couples need.",
+      "new": "<p>On a one-night cruise, a 38 m² cabin covers what most couples need; if a private balcony matters to you, confirm it for the category when you book.",
+      "note": "EN draft #259: 38 m² cabin balcony claim made neutral (decision 6)",
+      "match": {
+        "slug": "ha-long-bay-cruise-balcony-cabins",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "259",
+      "column": "content",
+      "type": "replace",
+      "old": "<p>The Imperial Suite takes up to three guests. Extra beds can be added to selected cabins for a third guest at a surcharge. [CẦN XÁC NHẬN: which cabin categories take an extra bed, and the confirmed child policy]</p>",
+      "new": "<p>Occupancy and bedding options for the Imperial Suite are confirmed at booking. Extra-bed options and arrangements for children depend on the cabin category and the number of guests, so confirm them when you book. [CẦN XÁC NHẬN: which cabin categories take an extra bed, and the confirmed child policy]</p>",
+      "note": "EN draft #259: Imperial capacity + extra-bed claim made neutral (decisions 5-6)",
+      "match": {
+        "slug": "ha-long-bay-cruise-balcony-cabins",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "260",
+      "column": "content",
+      "type": "replace",
+      "old": "120 m² for up to three guests, with an expansive terrace,",
+      "new": "120 m², with an expansive terrace,",
+      "note": "EN draft #260 intro: \"up to three guests\" removed (decision 5)",
+      "match": {
+        "slug": "imperial-suite-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "260",
+      "column": "content",
+      "type": "replace",
+      "old": "<td>Imperial Suite</td><td>120 m²</td><td>Up to 3</td>",
+      "new": "<td>Imperial Suite</td><td>120 m²</td><td>Confirmed at booking</td>",
+      "note": "EN draft #260 table: Imperial capacity removed (decision 5)",
+      "match": {
+        "slug": "imperial-suite-halong-bay-cruise",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "260",
+      "column": "content",
+      "type": "replace",
+      "old": "<h3>Three guests in one suite</h3><p>The Imperial Suite takes up to three guests; the other three categories are listed for two. That makes it the natural choice for a couple travelling with an older child or a friend. How the third guest sleeps is still open: [CẦN XÁC NHẬN: sofa bed or extra bed for the third guest, and any surcharge].",
+      "new": "<h3>Travelling with a child or a friend</h3><p>Occupancy and bedding options for the Imperial Suite are confirmed at booking. If you are a couple travelling with an older child or a friend, tell the reservations team who is coming and ask how the suite would be set up for you. [CẦN XÁC NHẬN: bedding for a third guest (sofa bed or extra bed) and any surcharge].",
+      "note": "EN draft #260: \"Three guests in one suite\" section made neutral (decisions 5-6)",
+      "match": {
+        "slug": "imperial-suite-halong-bay-cruise",
+        "language_id": 2
+      }
+    }
+  ]
+}

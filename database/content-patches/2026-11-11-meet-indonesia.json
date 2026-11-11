@@ -1,0 +1,49 @@
+{
+ "name": "2026-11-11 meet-indonesia: Meet Indonesia 2026 dates (EN #273, FR draft #284)",
+ "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+ "revalidate": [
+  "articles",
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_article",
+   "id": "273",
+   "column": "content",
+   "type": "replace",
+   "old": "Meet Indonesia 2026, held in Quang Ninh from October 28 to 31, brought together government representatives, businesses and organizations from Vietnam and Indonesia to explore opportunities in trade, investment, sustainable development and tourism.</p><p>The conference also highlighted",
+   "new": "Meet Indonesia 2026 took place in Quang Ninh from October 28 to 30, bringing together government representatives, businesses and organizations from Vietnam and Indonesia to explore opportunities in trade, investment, sustainable development and tourism. A conference on investment, trade and tourism between Quang Ninh and Indonesia was held on October 29, followed by the main Meet Indonesia conference on the morning of October 30.</p><p>The October 30 conference also highlighted",
+   "note": "EN #273 Meet Indonesia dates 28–31 → 28–30 Oct; 29 Oct Quang Ninh–Indonesia conference + 30 Oct main conference (decision 9)",
+   "match": {
+    "slug": "green-ruby-cruises-meet-indonesia-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "273",
+   "column": "content",
+   "type": "replace",
+   "old": "Green Ruby 1 and Green Ruby 2 in Feb 2027,",
+   "new": "Green Ruby 1 and Green Ruby 2 in February 2027,",
+   "note": "EN #273 'Feb 2027' spelled out (decision 12, editorial)",
+   "match": {
+    "slug": "green-ruby-cruises-meet-indonesia-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "284",
+   "column": "content",
+   "type": "replace",
+   "old": "Organisé à Quang Ninh du 28 au 31 octobre, Meet Indonesia 2026 a réuni des représentants des pouvoirs publics, des entreprises et des organisations du Vietnam et d’Indonésie autour des opportunités dans le commerce, l’investissement, le développement durable et le tourisme.</p><p>La conférence a également mis en avant",
+   "new": "Organisé à Quang Ninh du 28 au 30 octobre, Meet Indonesia 2026 a réuni des représentants des pouvoirs publics, des entreprises et des organisations du Vietnam et d’Indonésie autour des opportunités dans le commerce, l’investissement, le développement durable et le tourisme. Une conférence consacrée à l’investissement, au commerce et au tourisme entre Quang Ninh et l’Indonésie s’est tenue le 29 octobre, avant la conférence principale de Meet Indonesia, le 30 octobre au matin.</p><p>La conférence du 30 octobre a également mis en avant",
+   "note": "FR #284 (draft) Meet Indonesia dates 28–31 → 28–30 oct.; 29 oct. conference + 30 oct. main conference (decision 9)",
+   "match": {
+    "slug": "green-ruby-cruises-meet-indonesia-2026",
+    "language_id": 4
+   }
+  }
+ ]
+}

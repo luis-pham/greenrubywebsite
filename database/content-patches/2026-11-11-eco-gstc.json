@@ -1,0 +1,609 @@
+{
+ "name": "2026-11-11 eco-gstc: Green Globe not GSTC-accredited, eco figure labels, heat recovery / AI concierge terms, fewer boats != lower impact, Lan Ha kayak suspended, EU 2024/825 as reference (EN/FR/JA)",
+ "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+ "revalidate": [
+  "articles",
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "and how Ha Long Bay and the quieter Lan Ha Bay compare for a lower-impact voyage.</p>",
+   "new": "and how Ha Long Bay and the quieter Lan Ha Bay compare.</p>",
+   "note": "EN #221 intro: no link between the quieter bay and lower impact (fewer boats != lower impact, decision 4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "for example Green Globe (GSTC-accredited), EarthCheck or Travelife",
+   "new": "for example Green Globe, EarthCheck or Travelife",
+   "note": "EN #221 GSTC-accredited label removed (decision 1)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Ha Long Bay vs. Lan Ha Bay: Where Lower-Impact Cruising Happens</h2>",
+   "new": "<h2>Ha Long Bay vs. Lan Ha Bay: How the Two Bays Compare</h2>",
+   "note": "EN #221 H2 no longer equates Lan Ha with lower-impact cruising (decision 4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "calmer anchorages, kayaking areas such as the Dark &amp; Bright Cave area and Ao Ech Lagoon, and village visits around Cat Ba.</p>",
+   "new": "calmer anchorages, the Dark &amp; Bright Cave area (visited by bamboo boat) and Ao Ech Lagoon, and village visits around Cat Ba. Kayaking in these areas is temporarily suspended under local regulations as of October 2026.</p>",
+   "note": "EN #221 Lan Ha kayaking no longer presented as available (suspended as of Oct 2026)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>For a lower-impact cruise, fewer vessels in the same area means less collective pressure on the bay and a calmer experience for each guest. Green Ruby sails both bays with two identical ships: Green Ruby 1 on Ha Long Bay and Green Ruby 2 on Lan Ha Bay.</p>",
+   "new": "<p>Fewer boats make for a calmer experience, but a quieter bay is not in itself proof of a lower environmental impact: what each ship has on board, how it treats its wastewater and how it is operated matter more. Green Ruby will sail both bays with two identical ships, with first departures planned for February 2027: Green Ruby 1 on Ha Long Bay and Green Ruby 2 on Lan Ha Bay.</p>",
+   "note": "EN #221 fewer boats != lower impact (decision 4); present tense \"sails\" -> will sail, Feb 2027 (not yet in service)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>From 27 September 2026, EU rules (the Empowering Consumers for the Green Transition Directive) ban generic environmental claims and sustainability labels that are not backed by evidence or certification when marketing to European consumers. For operators selling to European travellers, substantiated claims are a legal requirement, not only a brand choice.</p>",
+   "new": "<p>EU consumer law offers a useful reference here. Since 27 September 2026, rules introduced by Directive (EU) 2024/825, the Empowering Consumers for the Green Transition Directive, set out how environmental claims made to European consumers are judged: generic claims such as \"eco-friendly\" or \"green\" that are not backed by recognised evidence, and sustainability labels that are not based on a certification scheme or set up by public authorities, are no longer allowed. Whatever rules apply to a given operator, the same test works for any traveller: is the claim specific, and can it be checked?</p>",
+   "note": "EN #221 EU Directive 2024/825 presented only as a reference for how claims are judged for EU consumers, not as an obligation on operators/Green Ruby",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "Green Ruby Cruises is working towards Green Globe certification, the GSTC-accredited standard recognised across the luxury travel trade. Until the audit is complete,",
+   "new": "Green Ruby Cruises is working towards Green Globe certification. The certification process is underway, but neither vessel has been certified yet. Until the audit is complete,",
+   "note": "EN #221 GSTC claim removed; owner wording (decision 1)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Rooftop solar array, around 70 kW</p>",
+   "new": "<p>Rooftop solar array, around 70 kW per ship (design specification)</p>",
+   "note": "EN #221 table: 70 kW labelled per ship, design spec (decision 4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Waste heat from engines and generators reused for hot water and climate control</p>",
+   "new": "<p>Waste heat recovery system: heat from the engines and generators reused on board for hot water and climate control</p>",
+   "note": "EN #221 table: confirmed waste heat recovery system term (decision 2), no figures",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Design estimate: around 40% less onboard energy from solar and seawater cooling combined</p>",
+   "new": "<p>Design estimate: around 40% less onboard energy from solar and seawater cooling combined (not yet measured)</p>",
+   "note": "EN #221 table: 40% = design estimate, not measured (decision 4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>100% of grey and black water treated on board before discharge</p>",
+   "new": "<p>Design specification: 100% of grey and black water biologically treated on board before discharge (not zero-discharge; to be verified in operation)</p>",
+   "note": "EN #221 table: wastewater = design spec, not verified, not zero discharge (decision 4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Green Globe certification in progress</p>",
+   "new": "<p>Green Globe certification in progress; neither vessel certified yet</p>",
+   "note": "EN #221 table: certification status (decision 1/4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Multilingual AI concierge alongside the on-board team</p>",
+   "new": "<p>Multilingual AI-powered concierge alongside the on-board team</p>",
+   "note": "EN #221 table: confirmed AI-powered concierge term (decision 3); no new functions",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p><strong>Is Green Globe certification recognised internationally?</strong> Yes. Green Globe is accredited by the Global Sustainable Tourism Council (GSTC), which sets international criteria for credible tourism certification, and it is widely recognised in the luxury travel trade.</p>",
+   "new": "<p><strong>What is Green Globe certification?</strong> Green Globe is a certification programme for travel and tourism businesses. Its standard sets 44 core criteria across sustainable management, social and economic impact, cultural heritage and the environment, and members are assessed through independent audits, including on-site audits. Green Ruby Cruises is working towards Green Globe certification: the process is underway, but neither vessel has been certified yet.</p>",
+   "note": "EN #221 FAQ: GSTC accreditation claim removed, question reworded (decision 1)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "calmer anchorages and more time on the water for kayaking and swimming.</p>",
+   "new": "calmer anchorages and more time on the water, for example for swimming (kayaking in Lan Ha Bay is temporarily suspended under local regulations as of October 2026). A quieter bay is not on its own a measure of lower environmental impact, so compare the ships and how they are operated too.</p>",
+   "note": "EN #221 FAQ: kayaking suspended; fewer boats != lower impact",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "whether their system is zero-discharge or treats and then discharges water.</p>",
+   "new": "whether their system is zero-discharge or treats and then discharges water. Green Ruby’s ships are designed to treat all wastewater biologically on board before discharge, so they are not zero-discharge.</p>",
+   "note": "EN #221 FAQ: Green Ruby is not zero discharge (decision 4)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Green Ruby sails two sister ships with the same cabins: ",
+   "new": "<p>Green Ruby will sail two sister ships with the same cabins, with first departures planned for February 2027: ",
+   "note": "EN #221 CTA: not yet sailing (Feb 2027)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "221",
+   "column": "content",
+   "type": "replace",
+   "old": "Green Globe certification is in progress.</p><ul>",
+   "new": "Green Globe certification is in progress; neither vessel has been certified yet.</p><ul>",
+   "note": "EN #221 CTA: certification status (decision 1)",
+   "match": {
+    "slug": "the-complete-guide-to-eco-friendly-luxury-cruises-in-ha-long-bay-2026",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "et ce qui distingue la baie d’Halong de la baie de Lan Ha, plus calme, pour préparer une croisière à moindre impact.</p>",
+   "new": "et ce qui distingue la baie d’Halong de la baie de Lan Ha, plus calme.</p>",
+   "note": "FR #289 intro: no link quieter bay = lower impact (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<h2>Baie d’Halong ou baie de Lan Ha : où naviguer avec moins d’impact ?</h2>",
+   "new": "<h2>Baie d’Halong ou baie de Lan Ha : ce qui les distingue</h2>",
+   "note": "FR #289 H2 no longer equates Lan Ha with lower impact (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "des mouillages plus calmes, des sites de kayak comme le secteur de la grotte Sang Toi (Dark &amp; Bright Cave) et le lagon Ao Ech (le kayak y est temporairement suspendu par la réglementation locale, en octobre 2026), et des visites de villages autour de Cat Ba.</p>",
+   "new": "des mouillages plus calmes, le secteur de la grotte Sang Toi (Dark &amp; Bright Cave), que l’on découvre en barque en bambou, le lagon Ao Ech, ainsi que des visites de villages autour de Cat Ba. Le kayak y est temporairement suspendu par la réglementation locale (situation en octobre 2026).</p>",
+   "note": "FR #289 Lan Ha: kayak sites no longer presented as available",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Pour une croisière à moindre impact, moins de navires dans un même secteur signifie moins de pression collective sur la baie et une expérience plus sereine pour chaque passager. Green Ruby naviguera",
+   "new": "<p>Moins de navires, c’est une expérience plus sereine pour chaque passager ; mais une baie plus calme ne garantit pas à elle seule un moindre impact environnemental : les équipements du navire, le traitement de ses eaux usées et sa façon de naviguer comptent davantage. Green Ruby naviguera",
+   "note": "FR #289 fewer boats != lower impact (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Depuis le 27 septembre 2026, la réglementation européenne (la directive sur la responsabilisation des consommateurs pour la transition verte) interdit, dans la communication destinée aux consommateurs européens, les allégations environnementales génériques et les labels de durabilité qui ne reposent ni sur des preuves ni sur une certification. Pour les opérateurs qui s’adressent aux voyageurs européens, étayer ses affirmations est donc une obligation légale, et plus seulement un choix d’image.</p>",
+   "new": "<p>Le droit européen de la consommation offre ici un repère utile. Depuis le 27 septembre 2026, les règles issues de la directive (UE) 2024/825, dite directive sur la responsabilisation des consommateurs pour la transition verte, précisent comment sont appréciées les allégations environnementales adressées aux consommateurs européens : les allégations génériques comme « écologique » ou « vert » qui ne s’appuient pas sur des preuves reconnues, et les labels de durabilité qui ne reposent ni sur un système de certification ni sur une initiative des pouvoirs publics, n’y sont plus admis. Quelles que soient les règles applicables à tel ou tel opérateur, le critère vaut pour tout voyageur : l’affirmation est-elle précise, et peut-on la vérifier ?</p>",
+   "note": "FR #289 EU Directive 2024/825 as a reference only, not an obligation on operators/Green Ruby",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Green Ruby Cruises a engagé la démarche de certification Green Globe, un référentiel reconnu dans le secteur du voyage haut de gamme. Tant que",
+   "new": "<p>Green Ruby Cruises travaille à l’obtention de la certification Green Globe. La démarche est en cours, mais aucun des deux navires n’est encore certifié. Tant que",
+   "note": "FR #289 Green Globe status, owner wording (decision 1)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Panneaux solaires en toiture, environ 70 kW</p>",
+   "new": "<p>Panneaux solaires en toiture, environ 70 kW par navire (spécification de conception)</p>",
+   "note": "FR #289 table: 70 kW per ship, design spec (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Chaleur perdue des moteurs et des générateurs réutilisée pour l’eau chaude et la régulation thermique</p>",
+   "new": "<p>Système de récupération de chaleur fatale : la chaleur des moteurs et des générateurs est réutilisée à bord pour l’eau chaude et la régulation thermique</p>",
+   "note": "FR #289 table: confirmed heat recovery term (decision 2)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "grâce au solaire et au refroidissement à l’eau de mer combinés</p>",
+   "new": "grâce au solaire et au refroidissement à l’eau de mer combinés (valeur non encore mesurée)</p>",
+   "note": "FR #289 table: 40% not measured (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>100 % des eaux grises et noires traitées à bord avant rejet</p>",
+   "new": "<p>Spécification de conception : 100 % des eaux grises et noires traitées biologiquement à bord avant rejet (pas de rejet zéro ; à vérifier en exploitation)</p>",
+   "note": "FR #289 table: wastewater design spec, not verified, not zero discharge (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Certification Green Globe en cours</p>",
+   "new": "<p>Certification Green Globe en cours ; aucun des deux navires n’est encore certifié</p>",
+   "note": "FR #289 table: certification status",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Concierge IA multilingue en complément de l’équipe à bord</p>",
+   "new": "<p>Concierge virtuel multilingue basé sur l’IA, en complément de l’équipe à bord</p>",
+   "note": "FR #289 table: confirmed AI concierge term (decision 3)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "Vérifiez le certificat, son périmètre et sa durée de validité. La certification d’une entreprise, l’accréditation d’un organisme certificateur et la reconnaissance d’un référentiel sont des démarches différentes : une certification Green Globe ne doit pas être présentée comme une accréditation du GSTC.</p>",
+   "new": "Vérifiez le certificat, son périmètre et sa durée de validité, ainsi que le nom de l’organisme qui a réalisé l’audit et sa date. Green Ruby Cruises travaille à l’obtention de cette certification : la démarche est en cours, mais aucun des deux navires n’est encore certifié.</p>",
+   "note": "FR #289 FAQ: GSTC wording removed, Green Ruby status added (decision 1)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "et davantage de temps sur l’eau pour la baignade et le kayak (ce dernier étant temporairement suspendu par la réglementation locale, en octobre 2026).</p>",
+   "new": "et davantage de temps sur l’eau, notamment pour la baignade (le kayak y est temporairement suspendu par la réglementation locale, situation en octobre 2026). Une baie plus calme n’est pas à elle seule la mesure d’un moindre impact environnemental : comparez aussi les navires et leur exploitation.</p>",
+   "note": "FR #289 FAQ: kayak not offered; fewer boats != lower impact",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "289",
+   "column": "content",
+   "type": "replace",
+   "old": "s’il traite l’eau avant de la rejeter.</p>",
+   "new": "s’il traite l’eau avant de la rejeter. Les navires Green Ruby sont conçus pour traiter biologiquement toutes leurs eaux usées à bord avant rejet : ce ne sont donc pas des navires à rejet zéro.</p>",
+   "note": "FR #289 FAQ: Green Ruby not zero discharge (decision 4)",
+   "match": {
+    "slug": "croisiere-ecoresponsable-baie-d-halong",
+    "language_id": 4
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "225",
+   "column": "content",
+   "type": "replace",
+   "old": "<td>An independent, GSTC-accredited standard and an audit date</td>",
+   "new": "<td>An independent standard, a named auditor and an audit date</td>",
+   "note": "EN draft #225 table: GSTC accreditation reference removed (decision 1)",
+   "match": {
+    "slug": "sustainable-vs-traditional-cruise-vietnam",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "225",
+   "column": "content",
+   "type": "replace",
+   "old": "and is the standard accredited by the Global Sustainable Tourism Council (GSTC)? \"Working towards\" a certificate is not holding one.",
+   "new": "and did the audit include an on-site visit? \"Working towards\" a certificate is not holding one.",
+   "note": "EN draft #225 question list: GSTC removed (decision 1)",
+   "match": {
+    "slug": "sustainable-vs-traditional-cruise-vietnam",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "225",
+   "column": "content",
+   "type": "replace",
+   "old": "Green Globe certification, a GSTC-accredited standard, is also in progress; the on-site audit happens once a vessel is operational, so Green Ruby is not certified.",
+   "new": "Green Ruby Cruises is also working towards Green Globe certification. The certification process is underway, but neither vessel has been certified yet; the on-site audit happens once a vessel is operational.",
+   "note": "EN draft #225 GSTC claim removed, owner wording (decision 1)",
+   "match": {
+    "slug": "sustainable-vs-traditional-cruise-vietnam",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "225",
+   "column": "content",
+   "type": "replace",
+   "old": "Ask which standard, whether it is GSTC-accredited and when the audit is due.",
+   "new": "Ask which standard, who carries out the audit and when it is due.",
+   "note": "EN draft #225 FAQ: GSTC removed (decision 1)",
+   "match": {
+    "slug": "sustainable-vs-traditional-cruise-vietnam",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "226",
+   "column": "content",
+   "type": "replace",
+   "old": "<strong>Certification:</strong> Green Globe certification, a GSTC-accredited standard, is in progress. Green Ruby is not certified.",
+   "new": "<strong>Certification:</strong> Green Ruby Cruises is working towards Green Globe certification. The certification process is underway, but neither vessel has been certified yet.",
+   "note": "EN draft #226 GSTC claim removed, owner wording (decision 1)",
+   "match": {
+    "slug": "responsible-travel-ha-long-bay",
+    "language_id": 2
+   }
+  },
+  {
+   "table": "app_faq",
+   "id": "54",
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>We have begun the path toward Green Globe certification, the independently audited, GSTC-accredited standard. The on-site audit",
+   "new": "<p>Not yet. Green Ruby Cruises is working towards Green Globe certification, an independently audited standard. The certification process is underway, but neither vessel has been certified yet. The on-site audit",
+   "note": "EN FAQ #54: GSTC claim removed, owner wording (decision 1)",
+   "match": {
+    "language_id": 2,
+    "question": "<p>Is Green Ruby Green Globe certified?</p>"
+   }
+  },
+  {
+   "table": "app_faq",
+   "id": "179",
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>当社は、独立した監査を受けるGSTC認定の基準であるGreen Globe認証の取得に向けた取り組みを始めています。",
+   "new": "<p>いいえ、まだ取得していません。Green Ruby Cruisesは現在、独立した監査にもとづく認証制度であるGreen Globe認証の取得に向けて取り組んでいます。認証手続きは進行中ですが、2隻ともまだ認証を取得していません。",
+   "note": "JA FAQ #179 (live): 「GSTC認定」 removed, owner wording (decision 1)",
+   "match": {
+    "language_id": 3,
+    "question": "<p>Green RubyはGreen Globe認証を取得していますか？</p>"
+   }
+  },
+  {
+   "table": "app_faq",
+   "id": "243",
+   "column": "answer",
+   "type": "replace",
+   "old": "des panneaux solaires d'environ 70 kW en toiture et une climatisation refroidie à l'eau de mer (conçus pour réduire d'environ 40 % la consommation d'énergie à bord), la récupération de chaleur sur les moteurs et les générateurs, le traitement de 100 % des eaux usées avant rejet",
+   "new": "des panneaux solaires en toiture d'environ 70 kW par navire (spécification de conception) et une climatisation refroidie à l'eau de mer (ensemble, une réduction d'environ 40 % de la consommation d'énergie à bord, selon une estimation de conception et non une mesure), un système de récupération de chaleur fatale sur les moteurs et les générateurs, le traitement biologique de 100 % des eaux usées avant rejet (spécification de conception, pas encore vérifiée en exploitation ; il ne s'agit pas de rejet zéro)",
+   "note": "FR FAQ #243: figure labels (decision 4) + heat recovery term (decision 2)",
+   "match": {
+    "language_id": 4,
+    "question": "<p>Quels dispositifs environnementaux trouve-t-on à bord des navires Green Ruby ?</p>"
+   }
+  },
+  {
+   "table": "app_faq",
+   "id": "244",
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>Nous avons engagé la démarche de certification Green Globe, un référentiel audité de manière indépendante.",
+   "new": "<p>Pas encore. Green Ruby Cruises travaille à l'obtention de la certification Green Globe, un référentiel audité de manière indépendante. La démarche est en cours, mais aucun des deux navires n'est encore certifié.",
+   "note": "FR FAQ #244: certification status, owner wording (decision 1)",
+   "match": {
+    "language_id": 4,
+    "question": "<p>Green Ruby est-il certifié Green Globe ?</p>"
+   }
+  },
+  {
+   "table": "app_faq",
+   "id": "245",
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>Des panneaux solaires d'environ 70 kW installés en toiture fournissent une partie de l'électricité à bord pendant la journée, ce qui soulage les générateurs, et la climatisation est refroidie à l'eau de mer. Ensemble, ces dispositifs sont conçus pour réduire d'environ 40 % la consommation d'énergie à bord. Un système de récupération de chaleur réutilise en outre la chaleur perdue des moteurs et des générateurs pour l'eau chaude et la climatisation. Il s'agit d'estimations de conception ; nous publierons les valeurs mesurées une fois les navires en service.</p>",
+   "new": "<p>Des panneaux solaires d'environ 70 kW par navire (spécification de conception), installés en toiture, fournissent une partie de l'électricité à bord pendant la journée, ce qui soulage les générateurs, et la climatisation est refroidie à l'eau de mer. Ensemble, ces dispositifs sont conçus pour réduire d'environ 40 % la consommation d'énergie à bord : il s'agit d'une estimation de conception, et nous publierons les valeurs mesurées une fois les navires en service. Un système de récupération de chaleur fatale réutilise en outre la chaleur des moteurs et des générateurs pour l'eau chaude et la climatisation.</p>",
+   "note": "FR FAQ #245: 70 kW per ship design spec, 40% estimate; heat recovery stated as confirmed (decisions 2, 4)",
+   "match": {
+    "language_id": 4,
+    "question": "<p>Comment le navire réduit-il sa consommation d'énergie et ses émissions ?</p>"
+   }
+  },
+  {
+   "table": "app_faq",
+   "id": "246",
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>Toutes les eaux usées du bord passent par un traitement biologique avancé avant leur rejet.",
+   "new": "<p>Nos navires sont conçus pour traiter biologiquement 100 % des eaux usées du bord avant leur rejet. Il s'agit d'une spécification de conception, pas encore vérifiée en exploitation, et non d'un système à rejet zéro.",
+   "note": "FR FAQ #246: wastewater = design spec, not verified, not zero discharge (decision 4)",
+   "match": {
+    "language_id": 4,
+    "question": "<p>Comment gérez-vous les eaux usées, les déchets et les plastiques à usage unique ?</p>"
+   }
+  },
+  {
+   "table": "app_page_config",
+   "id": "97",
+   "column": "value",
+   "type": "replace",
+   "old": "We've begun the path toward Green Globe certification, the independently audited, GSTC-accredited standard, because we'd rather earn a credential than print one.",
+   "new": "We're working towards Green Globe certification, an independently audited standard, because we'd rather earn a credential than print one. The certification process is underway, but neither ship has been certified yet.",
+   "note": "app_page_config #97 about-us-eco-content, EN about-us (page 12): GSTC claim removed (decision 1)"
+  },
+  {
+   "table": "app_page_config",
+   "id": "215",
+   "column": "value",
+   "type": "replace",
+   "old": "We've begun the path toward Green Globe certification, the independently audited, GSTC-accredited standard, because we'd rather earn a credential than print one.",
+   "new": "We're working towards Green Globe certification, an independently audited standard, because we'd rather earn a credential than print one. The certification process is underway, but neither ship has been certified yet.",
+   "note": "app_page_config #215 about-us-eco-content, JA about-us (page 44, English text): GSTC claim removed (decision 1)"
+  },
+  {
+   "table": "app_page_config",
+   "id": "293",
+   "column": "value",
+   "type": "replace",
+   "old": "We've begun the path toward Green Globe certification, the independently audited, GSTC-accredited standard, because we'd rather earn a credential than print one.",
+   "new": "We're working towards Green Globe certification, an independently audited standard, because we'd rather earn a credential than print one. The certification process is underway, but neither ship has been certified yet.",
+   "note": "app_page_config #293 about-us-eco-content, FR about-us (page 63, English text): GSTC claim removed (decision 1)"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "name": "2026-11-11 meet-indonesia (VI, for approval): Meet Indonesia 2026 dates (VI #274)",
+ "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+ "revalidate": [
+  "articles",
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_article",
+   "id": "274",
+   "column": "content",
+   "type": "replace",
+   "old": "Hội nghị Meet Indonesia 2026 được tổ chức tại Quảng Ninh từ ngày 28 đến 31/10/2026, với sự phối hợp của Bộ Ngoại giao Việt Nam, Đại sứ quán Indonesia tại Việt Nam và chính quyền địa phương.</p>",
+   "new": "Chuỗi hoạt động Meet Indonesia 2026 diễn ra tại Quảng Ninh từ ngày 28 đến 30/10/2026, với sự phối hợp của Bộ Ngoại giao Việt Nam, Đại sứ quán Indonesia tại Việt Nam và chính quyền địa phương. Trong đó, hội nghị xúc tiến đầu tư, thương mại và du lịch giữa Quảng Ninh và Indonesia diễn ra ngày 29/10, còn hội nghị chính Meet Indonesia được tổ chức vào sáng 30/10.</p>",
+   "note": "VI #274 Meet Indonesia dates 28–31 → 28–30/10; 29/10 conference + sáng 30/10 main conference (decision 9)",
+   "match": {
+    "slug": "green-ruby-cruises-tham-du-meet-indonesia-2026-don-doan-dai-su-quan-indonesia-tham-du-thuyen-tai-nha-may-dong-tau-nam-trieu",
+    "language_id": 1
+   }
+  }
+ ]
+}

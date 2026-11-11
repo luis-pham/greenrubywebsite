@@ -1,0 +1,75 @@
+{
+  "name": "2026-11-11 lan-ha: EN #227 Lan Ha cruise guide (check-in/transfers, Dark & Bright size, Imperial Suite capacity, wastewater)",
+  "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+  "revalidate": [
+    "articles",
+    "content"
+  ],
+  "ops": [
+    {
+      "table": "app_article",
+      "id": "227",
+      "column": "content",
+      "type": "replace",
+      "old": "<td>Hanoi pick-up, about 2.5 hours by road, then boat (Green Ruby route)</td>",
+      "new": "<td>About 2.5 hours by road from Hanoi to Tuan Chau, then a tender to Gia Luan pier on Cat Ba (Green Ruby route; Hanoi transfers optional, at extra cost)</td>",
+      "note": "EN #227 at-a-glance table: Hanoi pick-up no longer implied as included; Tuan Chau check-in + tender to Gia Luan (decision 7)",
+      "match": {
+        "slug": "lan-ha-bay-cruise-guide",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "227",
+      "column": "content",
+      "type": "replace",
+      "old": "is a pair of water-level caves about 70 m long and 4 m wide. You go through by small rowing boat",
+      "new": "is a pair of low, water-level limestone passages that lead beneath a rock arch into a sheltered lagoon ringed by forested cliffs. You go through by small rowing boat",
+      "note": "EN #227 Dark & Bright Cave: 70 x 4 m dimensions removed, qualitative description as on /destinations/dark-bright-cave (decision 8)",
+      "match": {
+        "slug": "lan-ha-bay-cruise-guide",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "227",
+      "column": "content",
+      "type": "replace",
+      "old": "Hotel pick-up in Hanoi is around 07:30 to 08:00 and the drive takes about 2.5 hours. You check in at the Green Ruby lounge at Tuan Chau, Ha Long, around 10:45. A tender then takes you to Gia Luan Pier in Hai Phong, and you board Green Ruby 2 on Lan Ha Bay at 11:45. On the two-day trip you transfer back to Tuan Chau at the end and disembark around 11:00 for the drive back to Hanoi.",
+      "new": "You check in at the Green Ruby VIP lounge at Tuan Chau, Ha Long, around 10:45. A tender then takes you to Gia Luan pier on Cat Ba Island, where you board Green Ruby 2 at 11:45. If you book a Hanoi transfer, hotel pick-up is around 07:30 to 08:00 and the drive takes about 2.5 hours. On both the two-day and the three-day trip you transfer back to Tuan Chau at the end and disembark around 11:00.",
+      "note": "EN #227 getting there: VIP lounge Tuan Chau ~10:45, tender to Gia Luan (Cat Ba), Hanoi pick-up only if a transfer is booked; both itineraries end at Tuan Chau ~11:00 as on the itinerary pages (decision 7)",
+      "match": {
+        "slug": "lan-ha-bay-cruise-guide",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "227",
+      "column": "content",
+      "type": "replace",
+      "old": "is priced for three guests and takes up to four adults and four children, with a balcony Jacuzzi and a large terrace.",
+      "new": "has a balcony Jacuzzi and a large terrace. Occupancy and bedding options for the Imperial Suite are confirmed at booking.",
+      "note": "EN #227 Imperial Suite: capacity/pricing basis (3 guests; 4 adults + 4 children) removed (decision 5)",
+      "match": {
+        "slug": "lan-ha-bay-cruise-guide",
+        "language_id": 2
+      }
+    },
+    {
+      "table": "app_article",
+      "id": "227",
+      "column": "content",
+      "type": "replace",
+      "old": "All wastewater is biologically treated on board before discharge.",
+      "new": "The wastewater system is designed to treat all wastewater biologically on board before discharge (design specification, not yet verified in operation).",
+      "note": "EN #227 wastewater: framed as design spec, not verified in operation (decision 4)",
+      "match": {
+        "slug": "lan-ha-bay-cruise-guide",
+        "language_id": 2
+      }
+    }
+  ]
+}

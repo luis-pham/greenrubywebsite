@@ -1,0 +1,58 @@
+{
+ "name": "2026-11-11 eco-gstc (VI, optional, for approval): Green Globe GSTC claims removed",
+ "reviewed": "2026-11-11; owner decisions (chat); old values read from green_ruby_c1111 (verified = prod for these rows). Ids differ between databases: run scripts/resolve-ja-ids.php first.",
+ "revalidate": [
+  "articles",
+  "content"
+ ],
+ "ops": [
+  {
+   "table": "app_faq",
+   "id": "113",
+   "column": "answer",
+   "type": "replace",
+   "old": "<p>Green Globe là tiêu chuẩn du lịch bền vững được kiểm định độc lập và được GSTC (Hội đồng Du lịch Bền vững Toàn cầu) công nhận, khác với các giải thưởng dựa trên bình chọn. Chúng tôi sẽ công bố",
+   "new": "<p>Green Globe là tiêu chuẩn du lịch bền vững được đánh giá độc lập, có kiểm tra tại chỗ, khác với các giải thưởng dựa trên bình chọn. Green Ruby Cruises đang hướng tới chứng nhận Green Globe: quá trình chứng nhận đang được tiến hành, nhưng cả hai tàu đều chưa được chứng nhận. Chúng tôi sẽ công bố",
+   "note": "VI FAQ #113: GSTC claim removed, owner wording (decision 1)",
+   "match": {
+    "language_id": 1,
+    "question": "<p>Chứng nhận Green Globe là gì, có uy tín không?</p>"
+   }
+  },
+  {
+   "table": "app_page_config",
+   "id": "78",
+   "column": "value",
+   "type": "replace",
+   "old": "Chúng tôi đang trên lộ trình đạt chứng nhận Green Globe, tiêu chuẩn được kiểm định độc lập và được GSTC công nhận, vì chúng tôi muốn có chứng nhận thật sự chứ không phải tự gắn nhãn.",
+   "new": "Chúng tôi đang hướng tới chứng nhận Green Globe, một tiêu chuẩn được đánh giá độc lập, vì chúng tôi muốn có chứng nhận thật sự chứ không phải tự gắn nhãn. Quá trình chứng nhận đang được tiến hành, nhưng cả hai tàu đều chưa được chứng nhận.",
+   "note": "app_page_config #78 VI about-us-eco-content (page 11): GSTC claim removed (decision 1)"
+  },
+  {
+   "table": "app_article",
+   "id": "241",
+   "column": "content",
+   "type": "replace",
+   "old": "Green Ruby đang làm thủ tục để đạt chứng nhận Green Globe (tiêu chuẩn được GSTC công nhận) và hiện chưa được chứng nhận.",
+   "new": "Green Ruby Cruises đang hướng tới chứng nhận Green Globe; quá trình chứng nhận đang được tiến hành, nhưng cả hai tàu đều chưa được chứng nhận.",
+   "note": "VI draft #241: GSTC claim removed, owner wording (decision 1)",
+   "match": {
+    "slug": "so-sanh-du-thuyen-ha-long-cao-cap",
+    "language_id": 1
+   }
+  },
+  {
+   "table": "app_article",
+   "id": "263",
+   "column": "content",
+   "type": "replace",
+   "old": "<p>Green Globe là chương trình chứng nhận được GSTC công nhận (GSTC-accredited). Khi tàu đi vào hoạt động,",
+   "new": "<p>Khi tàu đi vào hoạt động,",
+   "note": "VI draft #263: sentence claiming Green Globe is GSTC-accredited removed; status already in the table above (decision 1)",
+   "match": {
+    "slug": "du-thuyen-xanh-ha-long",
+    "language_id": 1
+   }
+  }
+ ]
+}
