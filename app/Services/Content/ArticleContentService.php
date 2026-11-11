@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Services\Publication\PublishedScope;
 use App\Support\NewsCategory;
 use Modules\BackEnd\Entities\AdLanguage;
 use Modules\BackEnd\Entities\AppCategory;
@@ -209,7 +210,10 @@ class ArticleContentService
         $languageId = (int) $language->id;
         $type = config('backend.categoryType.article');
         $all = FeAppCategoryService::getAll($type, $languageId)->reject(fn ($c) => NewsCategory::isNews($c->slug));
-        $rootIds = AppCategory::where('type', $type)->where('language_id', $languageId)->where('slug', 'root')->pluck('id')->all();
+        // The root is structural and never shown: a new language's root stays unpublished, so look it up past the
+        // public-read scope (otherwise its categories had no parent to hang from and the tree came back empty).
+        $rootIds = AppCategory::withoutGlobalScope(PublishedScope::class)
+            ->where('type', $type)->where('language_id', $languageId)->where('slug', 'root')->pluck('id')->all();
 
         $build = function ($parentIds) use (&$build, $all, $languageId) {
             return $all->filter(fn ($c) => in_array($c->parent_id, $parentIds, false))
