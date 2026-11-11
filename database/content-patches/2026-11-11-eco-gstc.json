@@ -530,13 +530,13 @@
    "table": "app_faq",
    "id": "243",
    "column": "answer",
-   "type": "replace",
-   "old": "des panneaux solaires d'environ 70 kW en toiture et une climatisation refroidie à l'eau de mer (conçus pour réduire d'environ 40 % la consommation d'énergie à bord), la récupération de chaleur sur les moteurs et les générateurs, le traitement de 100 % des eaux usées avant rejet",
-   "new": "des panneaux solaires en toiture d'environ 70 kW par navire (spécification de conception) et une climatisation refroidie à l'eau de mer (ensemble, une réduction d'environ 40 % de la consommation d'énergie à bord, selon une estimation de conception et non une mesure), un système de récupération de chaleur fatale sur les moteurs et les générateurs, le traitement biologique de 100 % des eaux usées avant rejet (spécification de conception, pas encore vérifiée en exploitation ; il ne s'agit pas de rejet zéro)",
+   "type": "set",
+   "old": "<p>Plutôt que des slogans, voici les équipements prévus : des panneaux solaires d’environ 70 kW en toiture et une climatisation à eau de mer (conçus pour réduire d’environ 40 % la consommation d’énergie à bord), la récupération de chaleur sur les moteurs et les générateurs, le traitement de 100 % des eaux usées avant rejet et un plan de suppression des plastiques à usage unique. Green Ruby 1 navigue en baie d’Halong, Green Ruby 2 dans la baie de Lan Ha, plus tranquille.</p>",
+   "new": "<p>Plutôt que des slogans, voici les équipements prévus : des panneaux solaires en toiture d’environ 70 kW par navire (spécification de conception) et une climatisation à eau de mer (ensemble, une réduction d’environ 40 % de la consommation d’énergie à bord, selon une estimation de conception et non une mesure), un système de récupération de chaleur fatale sur les moteurs et les générateurs, le traitement biologique de 100 % des eaux usées avant rejet (spécification de conception, pas encore vérifiée en exploitation ; il ne s’agit pas d’un rejet zéro) et un plan de suppression des plastiques à usage unique. Green Ruby 1 navigue en baie d’Halong, Green Ruby 2 dans la baie de Lan Ha.</p>",
    "note": "FR FAQ #243: figure labels (decision 4) + heat recovery term (decision 2)",
    "match": {
-    "language_id": 4,
-    "question": "<p>Quels dispositifs environnementaux trouve-t-on à bord des navires Green Ruby ?</p>"
+    "id": "243",
+    "language_id": 4
    }
   },
   {
@@ -556,13 +556,13 @@
    "table": "app_faq",
    "id": "245",
    "column": "answer",
-   "type": "replace",
-   "old": "<p>Des panneaux solaires d'environ 70 kW installés en toiture fournissent une partie de l'électricité à bord pendant la journée, ce qui soulage les générateurs, et la climatisation est refroidie à l'eau de mer. Ensemble, ces dispositifs sont conçus pour réduire d'environ 40 % la consommation d'énergie à bord. Un système de récupération de chaleur réutilise en outre la chaleur perdue des moteurs et des générateurs pour l'eau chaude et la climatisation. Il s'agit d'estimations de conception ; nous publierons les valeurs mesurées une fois les navires en service.</p>",
-   "new": "<p>Des panneaux solaires d'environ 70 kW par navire (spécification de conception), installés en toiture, fournissent une partie de l'électricité à bord pendant la journée, ce qui soulage les générateurs, et la climatisation est refroidie à l'eau de mer. Ensemble, ces dispositifs sont conçus pour réduire d'environ 40 % la consommation d'énergie à bord : il s'agit d'une estimation de conception, et nous publierons les valeurs mesurées une fois les navires en service. Un système de récupération de chaleur fatale réutilise en outre la chaleur des moteurs et des générateurs pour l'eau chaude et la climatisation.</p>",
+   "type": "set",
+   "old": "<p>Des panneaux solaires d’environ 70 kW installés en toiture fournissent une partie de l’électricité à bord pendant la journée, ce qui soulage les générateurs, et la climatisation utilise l’eau de mer pour son refroidissement. Ensemble, ces dispositifs sont conçus pour réduire d’environ 40 % la consommation d’énergie à bord. Un système de récupération de chaleur réutilise en outre la chaleur perdue des moteurs et des générateurs pour l’eau chaude et la climatisation. Il s’agit d’estimations de conception ; nous publierons les valeurs mesurées une fois les navires en service.</p>",
+   "new": "<p>Des panneaux solaires d’environ 70 kW par navire (spécification de conception), installés en toiture, fournissent une partie de l’électricité à bord pendant la journée, ce qui soulage les générateurs, et la climatisation utilise l’eau de mer pour son refroidissement. Ensemble, ces dispositifs sont conçus pour réduire d’environ 40 % la consommation d’énergie à bord : il s’agit d’une estimation de conception, et nous publierons les valeurs mesurées une fois les navires en service. Un système de récupération de chaleur fatale réutilise en outre la chaleur des moteurs et des générateurs pour l’eau chaude et la climatisation.</p>",
    "note": "FR FAQ #245: 70 kW per ship design spec, 40% estimate; heat recovery stated as confirmed (decisions 2, 4)",
    "match": {
-    "language_id": 4,
-    "question": "<p>Comment le navire réduit-il sa consommation d'énergie et ses émissions ?</p>"
+    "id": "245",
+    "language_id": 4
    }
   },
   {
