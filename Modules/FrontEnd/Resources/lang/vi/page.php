@@ -18,7 +18,7 @@ return [
     // Text Item Filter trang thư viện
     'gallery-file-cabins-suites' => 'Cabin & Suite',
     'gallery-file-activities' => 'Hoạt động',
-    'gallery-file-nature-bay-views' => 'Thiên nhiên & Vịnh',
+    'gallery-file-nature-bay-views' => 'Cảnh quan vịnh',
     'gallery-file-guests-moments' => 'Khoảnh khắc du khách',
     'gallery-file' => 'Cuộc sống trên tàu',
 

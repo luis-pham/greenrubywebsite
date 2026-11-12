@@ -16,10 +16,10 @@ return [
     'page_payment_methods_title' => 'Payment Methods',
 
     // Text Item Filter trang thư viện
-    'gallery-file-cabins-suites' => 'Cabins Suites',
+    'gallery-file-cabins-suites' => 'Cabins & Suites',
     'gallery-file-activities' => 'Activities',
-    'gallery-file-nature-bay-views' => 'Nature Bay Views',
-    'gallery-file-guests-moments' => 'Guests Moments',
+    'gallery-file-nature-bay-views' => 'Nature & Bay Views',
+    'gallery-file-guests-moments' => 'Guest Moments',
     'gallery-file' => 'Onboard life',
 
     // Text Fabs
