@@ -51,6 +51,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('editor')
                 ->group(base_path('routes/editor_api.php'));
 
+            Route::prefix('api/v1/rsv')
+                ->middleware('rsv')
+                ->group(base_path('routes/rsv_api.php'));
+
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));

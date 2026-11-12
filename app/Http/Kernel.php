@@ -76,6 +76,13 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\ApiNoIndexRobots::class,
         ],
+
+        // Reservations desk (rsv.greenruby.cruises). Auth is a token cookie (rsv.auth), no session.
+        'rsv' => [
+            'throttle:240,1',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ApiNoIndexRobots::class,
+        ],
     ];
 
     /**
@@ -107,5 +114,6 @@ class Kernel extends HttpKernel
         'content.preview' => \App\Http\Middleware\ContentPreview::class,
         'public.content' => \App\Http\Middleware\PublicContent::class,
         'editor.auth' => \App\Http\Middleware\EditorAuth::class,
+        'rsv.auth' => \App\Http\Middleware\RsvAuth::class,
     ];
 }

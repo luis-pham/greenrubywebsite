@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Modules\BackEnd\Helpers\Logging;
@@ -13,7 +14,8 @@ use Modules\FrontEnd\Http\Requests\Contact\ContactRequest;
 
 /**
  * JSON twin of Modules\FrontEnd\Http\Controllers\ContactController@request:
- * same validation rules/messages (ContactRequest) and the same SendMail to config('mail.admin.address').
+ * same validation rules/messages (ContactRequest) and the same SendMail, sent to config('rsv.contact_notify_to').
+ * Every message is also stored in contact_messages for the reservations desk.
  * API field "message" maps to the form field "request_content".
  */
 class ContactController extends Controller
@@ -47,13 +49,37 @@ class ContactController extends Controller
             return response()->json(['success' => false, 'errors' => $errors], 422);
         }
 
+        // Stored first (reservations desk, rsv.greenruby.cruises), then e-mailed: a mail failure no longer loses the message.
+        $valid = $validator->validated();
+        $id = null;
         try {
-            Mail::to(config('mail.admin.address'))
-                ->send(new SendMail(__('frontend::contact.subject'), $validator->validated()));
+            $id = DB::table('contact_messages')->insertGetId([
+                'name' => mb_substr((string) $valid['name'], 0, 191),
+                'email' => $valid['email'] ?? null,
+                'phone' => isset($valid['phone']) ? mb_substr((string) $valid['phone'], 0, 50) : null,
+                'message' => (string) $valid['request_content'],
+                'locale' => $language->code,
+                'source' => 'contact_form',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } catch (\Throwable $e) {
+            Logging::logError('Contact: không lưu được tin nhắn: ' . $e->getMessage());
+        }
+
+        try {
+            Mail::to(config('rsv.contact_notify_to') ?: config('mail.admin.address'))
+                ->send(new SendMail(__('frontend::contact.subject'), $valid));
+            if ($id) {
+                DB::table('contact_messages')->where('id', $id)->update(['mail_status' => 'sent', 'updated_at' => now()]);
+            }
         } catch (\Throwable $e) {
             Logging::logError($e->getMessage());
-
-            return response()->json(['success' => false, 'error' => 'send_failed'], 500);
+            if (!$id) {
+                return response()->json(['success' => false, 'error' => 'send_failed'], 500);
+            }
+            DB::table('contact_messages')->where('id', $id)
+                ->update(['mail_status' => 'failed', 'mail_error' => mb_substr($e->getMessage(), 0, 2000), 'updated_at' => now()]);
         }
 
         return response()->json(['success' => true], 201);
