@@ -102,6 +102,8 @@ class HomepageContentService
             ])->filter(fn ($f) => $f['question'])->values(),
             'support' => $text('homepage-support'),
             'readyToSail' => $text('homepage-ready-to-sail-description'),
+            // Background of the closing "ready to sail" block (page config, image); the web falls back to the second banner.
+            'readyToSailImage' => CabinContentService::fileLink($text('homepage-ready-to-sail-image')),
         ];
     }
 
