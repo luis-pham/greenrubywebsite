@@ -90,4 +90,12 @@ return [
         'secret' => env('FRONTEND_REVALIDATE_SECRET'),
     ],
 
+    // IndexNow (seo:indexnow). The key is public by design: nginx serves it at {site}/{key}.txt.
+    // INDEXNOW_KEY= (empty) disables submissions.
+    'indexnow' => [
+        'key' => env('INDEXNOW_KEY', '894f4421370144fd95591ea4cd4027ee'),
+        'site' => env('INDEXNOW_SITE', 'https://greenrubycruises.com'),
+        'endpoint' => env('INDEXNOW_ENDPOINT', 'https://api.indexnow.org/IndexNow'),
+    ],
+
 ];
