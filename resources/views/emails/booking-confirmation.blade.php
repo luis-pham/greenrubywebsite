@@ -18,7 +18,15 @@
 
 <p>Dear {{ $booking->full_name }},</p>
 
+@php
+    $isRequest = $isRequest ?? false;
+    $pricesHidden = $pricesHidden ?? false;
+@endphp
+@if ($isRequest)
+<p>Thank you for your reservation request. We have received the details below. Our reservations team will contact you to confirm availability and the fare; your booking is confirmed only once we have done so. Nothing has been charged.</p>
+@else
 <p>Thank you for choosing our cruise services. We are pleased to confirm your reservation with the following details:</p>
+@endif
 
 <hr>
 
@@ -47,7 +55,9 @@
     @php
         $cabinPrice = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($cabin->total_price, $booking->currency, false);
     @endphp
+@unless ($pricesHidden)
     <p>Cabin Price: {{ strtoupper($booking->currency) }} {{ $cabinPrice }}</p>
+@endunless
     <p style="margin-bottom: 16px;"></p>
 @endforeach
 @else
@@ -71,7 +81,9 @@
     @php
         // $amenityPrice already computed above
     @endphp
+@unless ($pricesHidden)
     <p>Price: {{ strtoupper($booking->currency) }} {{ $amenityPrice }}</p>
+@endunless
     <p style="margin-bottom: 12px;"></p>
 @endforeach
 @else
@@ -86,7 +98,11 @@
     @php
         $estimatedTotal = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->total_amount, $booking->currency, false);
     @endphp
+@if ($pricesHidden)
+    <p>Estimated Total: price on request. Our reservations team will send you the fare for your dates.</p>
+@else
     <p>Estimated Total: {{ strtoupper($booking->currency) }} {{ $estimatedTotal }}</p>
+@endif
 </div>
 
 <hr>
@@ -96,7 +112,9 @@
     @php
         $totalAmount = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->total_amount, $booking->currency, false);
     @endphp
+@unless ($pricesHidden)
     <p>Total Amount: {{ strtoupper($booking->currency) }} {{ $totalAmount }}</p>
+@endunless
     @if (($booking->payment_plan ?? null) === 'deposit')
         @php
             $paid = \Modules\BackEnd\Helpers\Utilities::formatStoredAmount($booking->amount_paid, $booking->currency, false);

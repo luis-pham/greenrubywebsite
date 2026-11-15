@@ -42,7 +42,7 @@ class BookingConfirmationMail extends Mailable
         }
         $mailable = $this->from($fromAddress, $companyName)
             ->replyTo($replyToAddress, $companyName)
-            ->subject('Booking Confirmation - ' . $this->booking->code);
+            ->subject(($this->isRequest() ? 'Reservation Request Received - ' : 'Booking Confirmation - ') . $this->booking->code);
         if ($customerEmail !== '') {
             $mailable->to($customerEmail);
         }
@@ -55,7 +55,24 @@ class BookingConfirmationMail extends Mailable
                 'supportEmail' => $email,
                 'website' => $website,
                 'paymentMethodLabel' => $this->getPaymentMethodLabel($this->booking->payment->gateway ?? null),
+                'isRequest' => $this->isRequest(),
+                'pricesHidden' => $this->pricesHidden(),
             ]);
+    }
+
+    /** A reservation request (nothing charged): the team still has to confirm availability and the fare. */
+    protected function isRequest(): bool
+    {
+        return ($this->booking->payment->gateway ?? null) === 'cash';
+    }
+
+    /**
+     * While public prices are switched off (frontend.showPublicPrices, the same switch as the website), a request
+     * e-mail shows no amounts: the CMS rates are not published fares yet. Paid bookings always show what was charged.
+     */
+    protected function pricesHidden(): bool
+    {
+        return $this->isRequest() && ! config('frontend.showPublicPrices', false);
     }
 
     /** Guest e-mail in a phase-2B locale (resources/views/emails/{locale}/booking-confirmation.blade.php). */

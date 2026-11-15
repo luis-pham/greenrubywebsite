@@ -1,4 +1,4 @@
-Subject: Booking Confirmation - BK20261027228C70
+Subject: Reservation Request Received - BK20261027228C70
 From: Green Ruby Cruises <noreply@greenruby.test>
 Reply-To: Green Ruby Cruises <noreply@greenruby.test>
 To: <guest-legacy@example.test>
@@ -23,7 +23,7 @@ To: <guest-legacy@example.test>
 
 <p>Dear Jane Doe,</p>
 
-<p>Thank you for choosing our cruise services. We are pleased to confirm your reservation with the following details:</p>
+<p>Thank you for your reservation request. We have received the details below. Our reservations team will contact you to confirm availability and the fare; your booking is confirmed only once we have done so. Nothing has been charged.</p>
 
 <hr>
 
@@ -41,12 +41,10 @@ To: <guest-legacy@example.test>
 <div class="section">
     <p><span class="label">Cabin Type:</span> Imperial Suite</p>
     <p>Guests:  2 Adults, 1 Child (6-12y), 1 Infant</p>
-        <p>Cabin Price: USD 640.00</p>
-    <p style="margin-bottom: 16px;"></p>
+        <p style="margin-bottom: 16px;"></p>
     <p><span class="label">Cabin Type:</span> Serenity Deluxe</p>
     <p>Guests:  1 Adult, 1 Child (2-5y)</p>
-        <p>Cabin Price: USD 320.00</p>
-    <p style="margin-bottom: 16px;"></p>
+        <p style="margin-bottom: 16px;"></p>
 </div>
 
 <hr>
@@ -55,23 +53,21 @@ To: <guest-legacy@example.test>
 <div class="section">
     <p><span class="label">Hanoi transfer</span></p>
         <p>Quantity: 2</p>
-        <p>Price: USD 40.00</p>
-    <p style="margin-bottom: 12px;"></p>
+        <p style="margin-bottom: 12px;"></p>
 </div>
 
 <hr>
 
 <p class="section-title">ESTIMATED TOTAL</p>
 <div class="section">
-        <p>Estimated Total: USD 1,000.00</p>
+        <p>Estimated Total: price on request. Our reservations team will send you the fare for your dates.</p>
 </div>
 
 <hr>
 
 <p class="section-title">PAYMENT INFORMATION</p>
 <div class="section">
-        <p>Total Amount: USD 1,000.00</p>
-        <p>Payment Methods:</p>
+            <p>Payment Methods:</p>
     <p class="list-item">• Reservation Only</p>
 </div>
 
