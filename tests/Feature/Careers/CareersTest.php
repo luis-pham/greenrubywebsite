@@ -134,6 +134,10 @@ class CareersTest extends AdminTestCase
         $request = Request::create('/admincp/job/update/1', 'POST');
         $request->setRouteResolver(fn () => $route->bind($request));
         $this->assertSame(['careers'], (new RevalidateFrontend())->tagsFor($request));
+        $this->assertTrue((new RevalidateFrontend())->expires($request), 'job saves expire the cache at once');
+        $other = Request::create('/admincp/destination/update/1', 'POST');
+        $other->setRouteResolver(fn () => Route::getRoutes()->getByName('backend.destination.update')->bind($other));
+        $this->assertFalse((new RevalidateFrontend())->expires($other), 'other entities keep stale-while-revalidate');
     }
 
     public function test_sitemap_lists_hub_and_open_postings_only(): void

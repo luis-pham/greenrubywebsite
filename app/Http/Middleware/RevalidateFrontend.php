@@ -93,13 +93,31 @@ class RevalidateFrontend
         }
 
         try {
-            $result = Http::timeout(3)->acceptJson()->post($url, ['secret' => $secret, 'tags' => $tags]);
+            $payload = ['secret' => $secret, 'tags' => $tags] + ($this->expires($request) ? ['expire' => true] : []);
+            $result = Http::timeout(3)->acceptJson()->post($url, $payload);
             if (!$result->successful()) {
                 Log::warning('Frontend revalidate failed', ['status' => $result->status(), 'tags' => $tags]);
             }
         } catch (\Throwable $e) {
             Log::warning('Frontend revalidate unreachable', ['error' => $e->getMessage(), 'tags' => $tags]);
         }
+    }
+
+    /**
+     * Entities whose saves expire the website's cache at once instead of stale-while-revalidate. Job postings: a
+     * URL opened while the posting was a draft is cached as a 404 (noindex); after "publish" the stale-while-
+     * revalidate pass could keep serving that noindex head. Few, small pages, so a blocking re-render is cheap.
+     */
+    protected const EXPIRE = ['job'];
+
+    public function expires(Request $request): bool
+    {
+        $name = (string) optional($request->route())->getName();
+        if (!str_starts_with($name, 'backend.')) {
+            return false;
+        }
+
+        return in_array(explode('.', explode('|', substr($name, strlen('backend.')))[0])[0], self::EXPIRE, true);
     }
 
     /** @return string[] */
