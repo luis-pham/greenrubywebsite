@@ -144,10 +144,16 @@ abstract class AdminTestCase extends TestCase
                 $t->string('type')->nullable();
                 $t->timestamps();
             });
+            $this->beforeBoot($app);
         });
         $app->make(Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    /** Extra tables or migrations a test needs before the providers boot (admin gates are built from ad_privilege at boot). */
+    protected function beforeBoot($app): void
+    {
     }
 
     protected function setUp(): void

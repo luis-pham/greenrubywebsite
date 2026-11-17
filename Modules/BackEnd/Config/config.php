@@ -119,4 +119,19 @@ return [
         'review' => 'Chờ kiểm duyệt',
         'published' => 'Đã xuất bản',
     ],
+    // Job postings (app_job, /tuyen-dung). Only "published" rows before their deadline are listed and in the
+    // sitemap; "closed" (or past the deadline) keeps the URL with a closed notice; "draft" is never public.
+    'jobStatus' => [
+        'draft' => 'Bản nháp',
+        'published' => 'Đang tuyển (xuất bản)',
+        'closed' => 'Đã đóng',
+    ],
+    // Stored keys map to schema.org JobPosting employmentType in the Content API (CareerContentService::SCHEMA_TYPES).
+    'jobEmploymentType' => [
+        'full-time' => 'Toàn thời gian',
+        'part-time' => 'Bán thời gian',
+        'contract' => 'Hợp đồng có thời hạn',
+        'temporary' => 'Thời vụ',
+        'intern' => 'Thực tập',
+    ],
 ];

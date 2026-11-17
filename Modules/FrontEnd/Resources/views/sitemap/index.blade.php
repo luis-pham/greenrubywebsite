@@ -64,4 +64,10 @@
             <lastmod>{{ Carbon\Carbon::parse($destinationUpdatedAt)->format('Y-m-d\TH:i:sP') }}</lastmod>
         </sitemap>
     @endif
+    <sitemap>
+        <loc>{{ route('frontend.sitemap.career') }}</loc>
+        @if ($careerUpdatedAt)
+            <lastmod>{{ Carbon\Carbon::parse($careerUpdatedAt)->format('Y-m-d\TH:i:sP') }}</lastmod>
+        @endif
+    </sitemap>
 </sitemapindex>

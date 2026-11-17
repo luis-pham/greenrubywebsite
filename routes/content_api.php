@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Content\ArticleController;
 use App\Http\Controllers\Api\Content\CabinController;
+use App\Http\Controllers\Api\Content\CareerController;
 use App\Http\Controllers\Api\Content\ContactController;
 use App\Http\Controllers\Api\Content\CruiseController;
 use App\Http\Controllers\Api\Content\DestinationController;
@@ -45,6 +46,12 @@ Route::get('/destinations', [DestinationController::class, 'index'])->name('api.
 Route::get('/destinations/{slug}', [DestinationController::class, 'show'])
     ->where('slug', '[a-z0-9\-]+')
     ->name('api.content.destinations.show');
+
+// Recruitment (/tuyen-dung): Vietnamese only, open postings listed; a closed posting's page stays with a notice.
+Route::get('/careers', [CareerController::class, 'index'])->name('api.content.careers.index');
+Route::get('/careers/{slug}', [CareerController::class, 'show'])
+    ->where('slug', '[a-z0-9\-]+')
+    ->name('api.content.careers.show');
 
 Route::get('/services', [ServiceController::class, 'index'])->name('api.content.services.index');
 

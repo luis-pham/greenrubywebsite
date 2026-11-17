@@ -32,6 +32,8 @@ class RevalidateFrontend
         'group' => ['cabins', 'experiences', 'services', 'faqs'],
         // Destination pages list the itineraries that stop there.
         'itinerary' => ['itineraries', 'cruises', 'destinations'],
+        // Recruitment pages (/tuyen-dung). The default application e-mail is a system config: 'config' => 'site'.
+        'job' => ['careers'],
         'menuFrontEnd' => ['site'],
         'page-config' => ['pages'],
         'service' => ['services', 'itineraries', 'cruises'],

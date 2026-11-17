@@ -263,6 +263,16 @@ Route::prefix('admincp')->middleware(['auth:admin', 'language.backend'])->group(
     Route::post('/{languageCode}/destination/destroy', 'DestinationController@destroy')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.destroy'))->where('languageCode', $listLanguageCode)->middleware('can:destination-delete');
     Route::post('/{languageCode}/destination/order-update', 'DestinationController@orderUpdate')->name(Utilities::bindRouteNameMultiLanguage('backend.destination.orderUpdate'))->where('languageCode', $listLanguageCode)->middleware('can:destination-update');
 
+    // Recruitment (/tuyen-dung on the website): Vietnamese only, so no {languageCode} variants.
+    Route::get('/job', 'JobController@index')->name('backend.job.index')->middleware('can:job-read');
+    Route::get('/job/create', 'JobController@create')->name('backend.job.create')->middleware('can:job-create');
+    Route::post('/job/store', 'JobController@store')->name('backend.job.store')->middleware('can:job-create');
+    Route::get('/job/edit/{id}', 'JobController@edit')->name('backend.job.edit')->where('id', '[0-9]+')->middleware('can:job-update');
+    Route::post('/job/update/{id}', 'JobController@update')->name('backend.job.update')->where('id', '[0-9]+')->middleware('can:job-update');
+    Route::post('/job/status', 'JobController@status')->name('backend.job.status')->middleware('can:job-update');
+    Route::post('/job/destroy', 'JobController@destroy')->name('backend.job.destroy')->middleware('can:job-delete');
+    Route::post('/job/order-update', 'JobController@orderUpdate')->name('backend.job.orderUpdate')->middleware('can:job-update');
+
     Route::get('/testimonial', 'TestimonialController@index')->name('backend.testimonial.index')->middleware('can:group-testimonial-read');
     Route::get('/testimonial/show/{id}', 'TestimonialController@show')->name('backend.testimonial.show')->middleware('can:group-testimonial-read');
     Route::get('/testimonial/create', 'TestimonialController@create')->name('backend.testimonial.create')->middleware('can:group-testimonial-create');

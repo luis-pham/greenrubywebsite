@@ -32,6 +32,7 @@ use Modules\BackEnd\Entities\AppFaq;
 use App\Services\Content\CabinContentService;
 use App\Services\Content\ContentTranslations;
 use Modules\BackEnd\Entities\AppDestination;
+use App\Services\Content\CareerContentService;
 
 class SitemapController extends Controller
 {
@@ -91,10 +92,12 @@ class SitemapController extends Controller
 
         $cabinUpdatedAt = \Modules\BackEnd\Entities\AppCabin::query()->max(\DB::raw('COALESCE(updated_at, created_at)'));
         $destinationUpdatedAt = AppDestination::where('status', 'published')->max(\DB::raw('COALESCE(updated_at, created_at)'));
+        $careerUpdatedAt = CareerContentService::openQuery()->reorder()->max(\DB::raw('COALESCE(updated_at, created_at)'));
 
         return response()->view($this->baseView . __FUNCTION__, [
             'cabinUpdatedAt' => $cabinUpdatedAt,
             'destinationUpdatedAt' => $destinationUpdatedAt,
+            'careerUpdatedAt' => $careerUpdatedAt,
             'article' => $article,
             'experience' => $experience,
             'service' => $service,
@@ -534,6 +537,28 @@ class SitemapController extends Controller
 
         return response()->view($this->baseView . 'entries', ['entries' => PublicLocaleGate::sitemapEntries($entries, __FUNCTION__)])->header('Content-Type', 'text/xml');
     }
+
+    /**
+     * Recruitment (Next.js only, Vietnamese only, no hreflang): the /tuyen-dung hub and every OPEN posting
+     * (published, deadline not passed). Closed, expired and draft postings are left out.
+     */
+    public function career()
+    {
+        $hub = url('/' . self::CAREERS_PATH);
+        $jobs = CareerContentService::openQuery()->get();
+        $lastmod = fn ($row) => $row ? Carbon::parse($row->getRawOriginal('updated_at') ?: $row->getRawOriginal('created_at'))->format('Y-m-d\TH:i:sP') : '';
+        $latest = $jobs->sortByDesc(fn ($j) => $j->getRawOriginal('updated_at') ?: $j->getRawOriginal('created_at'))->first();
+
+        $entries = [$this->makeUrlEntry($hub, $lastmod($latest), 'weekly', '0.5')];
+        foreach ($jobs as $job) {
+            $entries[] = $this->makeUrlEntry($hub . '/' . $job->slug, $lastmod($job), 'weekly', '0.5');
+        }
+
+        return response()->view($this->baseView . 'entries', ['entries' => PublicLocaleGate::sitemapEntries($entries)])->header('Content-Type', 'text/xml');
+    }
+
+    /** Must match CAREERS_PATH in greenruby-web/src/views/careers/paths.ts (Vietnamese page without the /vi prefix). */
+    private const CAREERS_PATH = 'tuyen-dung';
 
     /** Must match `segments.destinations` in greenruby-web/src/lib/i18n.ts. */
     private const DESTINATIONS_SEGMENT = ['en' => 'destinations', 'vi' => 'dia-diem-tham-quan'];
