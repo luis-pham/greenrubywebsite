@@ -69,6 +69,22 @@ Nhân viên Kinh doanh Kênh trực tuyến (Sales OTA) tại Du thuyền Green 
 
 - Chủ động, linh hoạt trong xử lý tình huống phát sinh của khách hàng trực tuyến và chịu được áp lực chỉ tiêu doanh số (KPI).
 
+## QUYỀN LỢI
+
+- Mức lương cạnh tranh, tương xứng với năng lực và kinh nghiệm.
+
+- Thưởng các dịp lễ, Tết và thưởng theo hiệu quả công việc, chính sách công ty.
+
+- Tham gia đầy đủ BHXH, BHYT, BHTN theo quy định.
+
+- Chế độ nghỉ phép năm, nghỉ lễ, Tết theo quy định của nhà nước.
+
+- Cơ hội đào tạo, phát triển chuyên môn và thăng tiến trong sự nghiệp.
+
+- Môi trường làm việc chuyên nghiệp, thân thiện, khuyến khích sự chủ động và sáng tạo.
+
+- Cơ hội đồng hành cùng thương hiệu du thuyền cao cấp ngay từ giai đoạn ra mắt và phát triển thị trường.
+
 ## ỨNG TUYỂN
 
 **Email nhận hồ sơ:** hrm@greenrubycruises.com  

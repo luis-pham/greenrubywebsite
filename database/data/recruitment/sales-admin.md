@@ -71,6 +71,22 @@ Nhân viên Hành chính Kinh doanh (Sales Admin) tại Du thuyền Green Ruby l
 
 - Tiếng Anh đọc hiểu và giao tiếp cơ bản phục vụ soạn thảo báo giá, hợp đồng và trao đổi qua email là một lợi thế.
 
+## QUYỀN LỢI
+
+- Mức lương cạnh tranh, tương xứng với năng lực và kinh nghiệm.
+
+- Thưởng các dịp lễ, Tết và thưởng theo hiệu quả công việc, chính sách công ty.
+
+- Tham gia đầy đủ BHXH, BHYT, BHTN theo quy định.
+
+- Chế độ nghỉ phép năm, nghỉ lễ, Tết theo quy định của nhà nước.
+
+- Cơ hội đào tạo, phát triển chuyên môn và thăng tiến trong sự nghiệp.
+
+- Môi trường làm việc chuyên nghiệp, thân thiện, khuyến khích sự chủ động và sáng tạo.
+
+- Cơ hội đồng hành cùng thương hiệu du thuyền cao cấp ngay từ giai đoạn ra mắt và phát triển thị trường.
+
 ## ỨNG TUYỂN
 
 **Email nhận hồ sơ:** hrm@greenrubycruises.com  
