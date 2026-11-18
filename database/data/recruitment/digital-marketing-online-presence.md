@@ -104,11 +104,14 @@ publish_status: "draft"
 ## 3. QUYỀN LỢI
 
 - Thu nhập theo năng lực, trao đổi cụ thể khi phỏng vấn.
+- Thưởng các dịp lễ, Tết và thưởng theo hiệu quả công việc, chính sách công ty.
+- Tham gia đầy đủ BHXH, BHYT, BHTN theo quy định.
+- Chế độ nghỉ phép năm, nghỉ lễ, Tết theo quy định của nhà nước.
+- Cơ hội đào tạo, phát triển chuyên môn và thăng tiến trong sự nghiệp.
 - Được tham gia xây dựng và phát triển thương hiệu du thuyền cao cấp Green Ruby Cruises ngay từ giai đoạn ra mắt.
 - Có cơ hội làm việc với các agency, đối tác truyền thông và nền tảng du lịch trong nước, quốc tế.
 - Được tiếp cận các công cụ AI, công nghệ mới và phương pháp truyền thông số hiện đại.
-- Môi trường làm việc khuyến khích sáng tạo, chủ động đề xuất và triển khai ý tưởng.
-- Các chế độ phúc lợi, bảo hiểm và nghỉ phép theo quy định của công ty.
+- Môi trường làm việc chuyên nghiệp, thân thiện, khuyến khích sáng tạo, chủ động đề xuất và triển khai ý tưởng.
 
 ## 4. ỨNG TUYỂN
 
